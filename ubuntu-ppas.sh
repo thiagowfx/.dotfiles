@@ -1,9 +1,6 @@
 # VLC Media Player
 sudo add-apt-repository ppa:videolan/stable-daily
 
-# Deluge BitTorrent Client
-sudo add-apt-repository ppa:deluge-team/ppa
-
 # Oracle Java
 sudo add-apt-repository ppa:webupd8team/java
 
@@ -26,3 +23,5 @@ sudo add-apt repository ppa:kubuntu-ppa/backports
 #sudo add-apt-repository ppa:nilarimogard/webupd8 
 #sudo add-apt-repository ppa:gnome3-team/gnome3
 #sudo add-apt-repository ppa:shnatsel/zram
+# Deluge BitTorrent Client
+# sudo add-apt-repository ppa:deluge-team/ppa
