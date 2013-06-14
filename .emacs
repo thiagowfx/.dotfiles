@@ -1,5 +1,9 @@
-(add-to-list 'load-path "~/dotfiles/elisp")
-(require 'install)
+;packages & scripts!!!
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+					;(add-to-list 'load-path "~/dotfiles/elisp")
+					;(require 'install)
 
 (define-key global-map (kbd "RET") 'newline-and-indent) ;RET acts likes C-j, automatically indenting newlines
 (icomplete-mode 99)			;autoactivate icomplete-mode
