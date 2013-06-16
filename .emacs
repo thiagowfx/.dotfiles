@@ -1,6 +1,5 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Copyright (C) 2013-2013 Thiago Barroso Perrotta.                         ;;
-;; URL: http://www.github.com/thiagowfx/dotfiles/.emacs/                    ;;
 ;; This file is free software licensed under the terms of the               ;;
 ;; GNU General Public License, version 3 or later.                          ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
