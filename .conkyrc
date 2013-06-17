@@ -1,0 +1,75 @@
+# References:
+# http://conky.sourceforge.net/conkyrc-vert
+# http://conky.sourceforge.net/variables.html
+
+background yes
+use_xft yes
+xftfont monospace:size=9
+xftalpha 1
+update_interval 1.0
+total_run_times 0
+own_window yes
+own_window_transparent yes
+own_window_type desktop
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_colour black
+double_buffer yes
+minimum_size 1 1
+maximum_width 240
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+default_color gray
+default_shade_color 000000
+default_outline_color d9d7d6
+alignment tl
+gap_x 12
+gap_y 12
+no_buffers yes
+uppercase no
+cpu_avg_samples 2
+override_utf8_locale no
+color1 red
+color2 gray
+##############################################
+#  Output
+##############################################
+TEXT
+CPU: $alignr${cpu cpu0}%
+${cpubar cpu0}
+RAM: $alignr$mem/$memmax
+$membar
+SWAP: $alignr$swap/$swapmax
+$swapbar
+
+${font sans-serif:bold:size=8}NETWORK ${hr 2}
+Download speed: ${downspeedf wlp4s0}
+${downspeedgraph wlp4s0}
+Upload speed: ${upspeedf wlp4s0}
+${upspeedgraph wlp4s0}
+
+${font sans-serif:bold:size=8}SYSTEM ${hr 2}
+${font sans-serif:normal:size=8}$sysname $kernel $alignr $machine
+Host:$alignr$nodename
+Uptime:$alignr$uptime
+
+${font sans-serif:bold:size=8}TOP PROCESSES ${hr 2}
+${font sans-serif:normal:size=8}${top_mem name 1}${alignr}${top mem 1} %
+${top_mem name 2}${alignr}${top mem 2} %
+$font${top_mem name 3}${alignr}${top mem 3} %
+$font${top_mem name 4}${alignr}${top mem 4} %
+
+${font sans-serif:bold:size=8}SHORTCUT KEYS ${hr 2}
+${font sans-serif:normal:size=8}
+Alt+F3$alignr Dmenu
+Super+space$alignr Main Menu
+Super+t$alignr Terminal
+Super+f$alignr File Manager
+Super+e$alignr Editor
+Super+w$alignr Web Browser
+Super+q$alignr Force Quit
+Super+g$alignr Character Map
+Super+r$alignr Read the DOC
+Super+x$alignr Tiling Keybinds
+Super+l$alignr Lock
