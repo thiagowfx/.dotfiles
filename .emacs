@@ -8,7 +8,6 @@
   "Reload .emacs file while inside emacs."
   (interactive)
   (load-file "~/.emacs"))
-(global-set-key "\C-c\C-e" 'reload-dot-emacs)
 
 (defun toggle-fullscreen (&optional f)
   "Fullscreen on F11 -- GNU/Linux Only"
@@ -19,7 +18,30 @@
                              (if (boundp 'old-fullscreen) old-fullscreen nil)
                            (progn (setq old-fullscreen current-value)
                                   'fullboth)))))
-(global-set-key [f11] 'toggle-fullscreen)
+
+(defun exec-program ()
+  "Execute the current buffer name."
+  (interactive)
+  (shell-command (file-name-sans-extension buffer-file-name)))
+
+(defun exec-program-with-input ()
+  "Execute the current buffer name with the .in input"
+  (interactive)
+  (shell-command (concat (file-name-sans-extension buffer-file-name)
+			 "< "
+			 (file-name-sans-extension buffer-file-name)
+			 ".in")))
+
+(defun exec-program-with-input-and-output ()
+  "Execute the current buffer name with the .in input and flushing it to the .out output"
+  (interactive)
+  (shell-command (concat (file-name-sans-extension buffer-file-name)
+			 "< "
+			 (file-name-sans-extension buffer-file-name)
+			 ".in "
+			 "> "
+			 (file-name-sans-extension buffer-file-name)
+			 ".out")))
 
 (defun notify-compilation-result (buffer msg)
   "Notify that the compilation is finished,
@@ -33,6 +55,12 @@ and set the focus back to Emacs frame"
   (setq current-frame (car (car (cdr (current-frame-configuration)))))
   (select-frame-set-input-focus current-frame))
 (add-to-list 'compilation-finish-functions 'notify-compilation-result)
+
+;; file associations
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.mdownx\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.nfo\\'" . text-mode))
 
 ;; set the load path, add everything under ~/.emacs.d to it
 (let* ((my-lisp-dir "~/.emacs.d/")
@@ -52,16 +80,22 @@ and set the focus back to Emacs frame"
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
 			 ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
+(setq url-http-attempt-keepalives nil)
 
 ;; my custom shortcuts
-(define-key global-map (kbd "RET")         'newline-and-indent)        ;; RET acts likes C-j, automatically indenting newlines ;alt: reindent-then-newline-and-indent
-(global-set-key        "\C-x\C-m"          'compile)                   ;; shortcut for compile command
-(global-set-key        "\M-g"              'goto-line)                 ;; alt: (kbd "M-g")
+(define-key global-map (kbd "RET")         'newline-and-indent)          ;; C-j like, auto indenting newlines ;alt: reindent-then-newline-and-indent
+(global-set-key        "\C-x\C-m"          'compile)                     ;; shortcut for compile command
+(global-set-key        "\M-g"              'goto-line)                   ;; alt: (kbd "M-g")
 (global-set-key        (kbd "C-<f4>")      'kill-buffer-and-window)
+(global-set-key        (kbd "<f4>")        'magit-status)
 (global-set-key        (kbd "<f5>")        'compile)
-(global-set-key        [C-tab]             'other-window)              ;; easy switching buffers
-(global-set-key (kbd "<f6>") 'magit-status)               ;; ...git mode
-(global-set-key (kbd "<f8>") 'comment-or-uncomment-region) ;; (un)comment
+(global-set-key        (kbd "<f6>")        'exec-program)
+(global-set-key        (kbd "<f7>")        'exec-program-with-input)
+(global-set-key        [f8]                'exec-program-with-input-and-output)
+(global-set-key        [C-tab]             'other-window)                ;; easy switching buffers
+(global-set-key        (kbd "<f9>")        'comment-or-uncomment-region) ;; (un)comment
+(global-set-key        [f11]               'toggle-fullscreen)
+(global-set-key        "\C-c\C-e"          'reload-dot-emacs)
 
 ;; my custom (minor) modes
 (icomplete-mode t)                           ;; autoactivate icomplete-mode
@@ -73,15 +107,16 @@ and set the focus back to Emacs frame"
 (size-indication-mode t)                     ;; display size of the current file
 (file-name-shadow-mode t)                    ;; be smart about filenames in minibuffer
 (winner-mode t)                              ;; use C-c <left> to restore the previous window configurations -- useful for compile commands, for example
-;(ido-mode 'both)     ;powerful mode for find-file and switch-to-buffer
+(require 'ido)
+(ido-mode 'both)                             ;; powerful mode for find-file and switch-to-buffer
 (setq make-backup-files nil
       auto-save-default nil)                 ;; I use version control, don't annoy me with backup files everywhere
 (setq require-final-newline t
-      default-indicate-empty-lines t ;every file will have a \n at the end and empty lines will be indicated
-      next-line-add-newlines nil ;C-n at the end of a file acts like newline --> i don't want it
-      inhibit-startup-message t ;don't show startup screen, it's annoying
+      default-indicate-empty-lines t         ;; every file will have a \n at the end and empty lines will be indicated
+      next-line-add-newlines nil             ;; C-n at the end of a file acts like newline --> i don't want it
+      inhibit-startup-message t              ;; don't show startup screen, it's annoying
       inhibit-startup-echo-area-message t
-      initial-scratch-message ";; scratch buffer created -- let's go\n")
+      initial-scratch-message                ";; scratch buffer created -- let's rock\n")
 (transient-mark-mode t)			     ;; highlight marked region
 (global-font-lock-mode t)		     ;; syntax highlight everywhere
 (fset 'yes-or-no-p 'y-or-n-p)                ;; make all "yes or no" prompts show "y or n" instead, which is less annoying
@@ -89,7 +124,8 @@ and set the focus back to Emacs frame"
 
 ;; auto-complete mode, also look for M-/ shortcut
 (require 'auto-complete)
-(setq ac-modes '(c-mode c++-mode))
+(require 'popup)
+(setq ac-modes '(c-mode c++-mode emacs-lisp-mode))
 (global-auto-complete-mode t)
 
 ;; TODO use format function
@@ -113,49 +149,51 @@ and set the focus back to Emacs frame"
 	  (lambda ()
 	    (setq compile-command
 		 (concat "javac "
-			 (buffer-file-name)
-			 ))))
+			 (buffer-file-name)))))
 
-(setq ;; scrolling
-  scroll-margin 0                        ;; do smooth scrolling, ...
-  scroll-conservatively 100000           ;; ... the defaults ...
-  scroll-up-aggressively 0               ;; ... are very ...
-  scroll-down-aggressively 0             ;; ... annoying
-  scroll-preserve-screen-position t)     ;; preserve screen pos with C-v/M-v 
+(add-hook 'latex-mode-hook
+	  (lambda ()
+	    (setq compile-command
+		  (concat "pdflatex "
+			  (buffer-file-name)))))
+
+(setq scroll-margin 0                        ;; do smooth scrolling, ...
+      scroll-conservatively 100000           ;; ... the defaults ...
+      scroll-up-aggressively 0               ;; ... are very ...
+      scroll-down-aggressively 0             ;; ... annoying
+      scroll-preserve-screen-position t)     ;; preserve screen pos with C-v/M-v 
 
 (setq x-select-enable-clipboard t        ;; copy-paste should work ...
-  interprogram-paste-function            ;; ...with...
-  'x-cut-buffer-or-selection-value)      ;; ...other X clients
+      interprogram-paste-function            ;; ...with...
+      'x-cut-buffer-or-selection-value)      ;; ...other X clients
 
-(setq-default
- frame-title-format
- '(:eval
-   (format "%s@%s: %s"
-           (or (file-remote-p default-directory 'user) user-login-name)
-           (or (file-remote-p default-directory 'host) system-name)
-           (file-name-nondirectory (or (buffer-file-name) default-directory)))))
+(setq-default  frame-title-format
+	       '(:eval
+		 (format "%s@%s: %s"
+			 (or (file-remote-p default-directory 'user) user-login-name)
+			 (or (file-remote-p default-directory 'host) system-name)
+			 (file-name-nondirectory (or (buffer-file-name) default-directory)))))
 
 ;; minibuffer goodies
-(setq
-  enable-recursive-minibuffers nil ;;  allow mb cmds in the mb
-  max-mini-window-height .25	   ;;  max 2 lines
-  minibuffer-scroll-window nil
-  resize-mini-windows nil)
+(setq enable-recursive-minibuffers nil ;;  allow mb cmds in the mb
+      max-mini-window-height .25	   ;;  max 2 lines
+      minibuffer-scroll-window nil
+      resize-mini-windows nil)
 
 ;; recent files, to save recently used files
 (require 'recentf)   
-(setq
-  recentf-save-file "~/.emacs.d/recentf"
-  recentf-max-saved-items 100     ;; max save 100
-  recentf-max-menu-items 15)      ;; max 15 in menu
+(setq recentf-save-file               "~/.emacs.d/recentf"
+      recentf-max-saved-items 100     ;; max save 100
+      recentf-max-menu-items 15)      ;; max 15 in menu
 (recentf-mode t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ido-mode
 ;; http://www.emacswiki.org/cgi-bin/wiki/InteractivelyDoThings
+
 (require 'ido) 
-(ido-mode 'both) ;; for buffers and files
-(setq 
+(ido-mode 'both)                   ;; for buffers and files
+(setq
   ;ido-save-directory-list-file "~/.emacs.d/cache/ido.last"
   ido-ignore-buffers ;; ignore these guys
   '("\\` " "^\*Mess" "^\*Back" ".*Completion" "^\*Ido" "^\*trace"

@@ -23,7 +23,7 @@ draw_graph_borders yes
 default_color gray
 default_shade_color 000000
 default_outline_color d9d7d6
-alignment tr
+alignment br
 gap_x 12
 gap_y 12
 no_buffers yes
