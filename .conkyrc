@@ -46,10 +46,10 @@ DISK: $alignr${diskio /dev/sda}
 ${diskiograph /dev/sda}
 
 ${font sans-serif:bold:size=8}NETWORK ${hr 2}
-Download speed: ${downspeedf wlp4s0}
-${downspeedgraph wlp4s0}
-Upload speed: ${upspeedf wlp4s0}
-${upspeedgraph wlp4s0}
+Download speed: ${downspeedf wlan0}
+${downspeedgraph wlan0}
+Upload speed: ${upspeedf wlan0}
+${upspeedgraph wlan0}
 
 ${font sans-serif:bold:size=8}SYSTEM ${hr 2}
 ${font sans-serif:normal:size=8}$sysname $kernel $alignr $machine

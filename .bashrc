@@ -7,7 +7,7 @@ fi
 # export SHELL=bash
 
 # add to PATH
-export PATH="/opt/TeamSpeak3-Client-linux_x86/:$PATH"
+export PATH="/opt/TeamSpeak3-Client-linux_x86:/opt/copy/x86:$PATH"
 
 # default EDITOR. Options: vim, gvim, nano, emacs -nw
 export EDITOR="emacs -nw"
