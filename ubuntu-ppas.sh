@@ -17,7 +17,10 @@ sudo add-apt-repository ppa:webupd8team/y-ppa-manager
 sudo add-apt-repository ppa:indicator-multiload/stable-daily
 
 # Kubuntu Backports (caution here!)
-sudo add-apt repository ppa:kubuntu-ppa/backports
+sudo add-apt-repository ppa:kubuntu-ppa/backports
+
+#
+sudo add-apt-repository ppa:danielrichter2007/grub-customizer
 
 #sudo add-apt-repository ppa:pidgin-developers/ppa
 #sudo add-apt-repository ppa:nilarimogard/webupd8 

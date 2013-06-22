@@ -19,11 +19,14 @@ alias upq="sudo apt-get -y update && sudo apt-get -y upgrade && sudo apt-get -y 
 # alias upq="sudo zypper -n update && sudo zypper -n upgrade && sudo -n zypper dup" #openSUSE
 
 # force the usage of other programs. Use with caution!
+
+# it is a better one
 alias top="htop"
 alias vi="vim"
-alias emacs="emacs -nw" # force opening emacs in terminal (not the X client) while in terminal #alt: install emacs-nox package
+# force opening emacs in terminal (not the X client) while in terminal #alt: install emacs-nox package
+alias emacs="emacs -nw" 
 alias grep="grep --color=auto"
-alias ls="ls --color=auto"
+alias ls="ls -F --color=auto"
 
 # utilities for bash
 alias l="ls -al"
@@ -31,8 +34,8 @@ alias la="ls -a"
 alias ll="ls -l"
 alias sai="sudo aptitude install"
 alias sar="sudo aptitude remove"
-alias sash="sudo aptitude show"
-alias sase="sudo aptitude search"
+alias sas="sudo aptitude search"
+alias mount-iso="mount -o loop"
 alias youtube-dl-mp3-download="youtube-dl -t --extract-audio --audio-format mp3"
 alias youtuble-dl-video-download="youtube-dl -t"
 
