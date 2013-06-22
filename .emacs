@@ -107,8 +107,7 @@ and set the focus back to Emacs frame"
 (size-indication-mode t)                     ;; display size of the current file
 (file-name-shadow-mode t)                    ;; be smart about filenames in minibuffer
 (winner-mode t)                              ;; use C-c <left> to restore the previous window configurations -- useful for compile commands, for example
-(require 'ido)
-(ido-mode 'both)                             ;; powerful mode for find-file and switch-to-buffer
+(linum-mode t)                               ;; display line numbers
 (setq make-backup-files nil
       auto-save-default nil)                 ;; I use version control, don't annoy me with backup files everywhere
 (setq require-final-newline t
@@ -123,13 +122,14 @@ and set the focus back to Emacs frame"
 (setq compilation-read-command nil)          ;; compilation: autocompile without prompting the user, unless you give it a prefix argument
 
 ;; auto-complete mode, also look for M-/ shortcut
-(require 'auto-complete)
-(require 'popup)
-(setq ac-modes '(c-mode c++-mode emacs-lisp-mode))
-(global-auto-complete-mode t)
+(when (and (fboundp 'auto-complete) (fboundp 'popup))
+  (require 'auto-complete)
+  (require 'popup)
+  (setq ac-modes '(c-mode c++-mode emacs-lisp-mode tex-mode latex-mode))
+  (global-auto-complete-mode t))
 
-;; TODO use format function
-(add-hook 'c++-mode-hook
+;; C++
+(add-hook 'c++-mode-hook 
 	  (lambda ()
 	    (setq compile-command
 		 (concat "g++ "
@@ -137,6 +137,8 @@ and set the focus back to Emacs frame"
 			 " -o "
 			 (file-name-sans-extension buffer-file-name)
 			 " -Wall"))))
+
+;; C
 (add-hook 'c-mode-hook
 	  (lambda ()
 	    (setq compile-command
@@ -145,12 +147,15 @@ and set the focus back to Emacs frame"
 			 " -o "
 			 (file-name-sans-extension buffer-file-name)
 			 " -Wall"))))
+
+;; Java
 (add-hook 'java-mode-hook
 	  (lambda ()
 	    (setq compile-command
 		 (concat "javac "
 			 (buffer-file-name)))))
 
+;; LaTeX
 (add-hook 'latex-mode-hook
 	  (lambda ()
 	    (setq compile-command
@@ -163,7 +168,7 @@ and set the focus back to Emacs frame"
       scroll-down-aggressively 0             ;; ... annoying
       scroll-preserve-screen-position t)     ;; preserve screen pos with C-v/M-v 
 
-(setq x-select-enable-clipboard t        ;; copy-paste should work ...
+(setq x-select-enable-clipboard t            ;; copy-paste should work ...
       interprogram-paste-function            ;; ...with...
       'x-cut-buffer-or-selection-value)      ;; ...other X clients
 
@@ -181,38 +186,35 @@ and set the focus back to Emacs frame"
       resize-mini-windows nil)
 
 ;; recent files, to save recently used files
-(require 'recentf)   
-(setq recentf-save-file               "~/.emacs.d/recentf"
-      recentf-max-saved-items 100     ;; max save 100
-      recentf-max-menu-items 15)      ;; max 15 in menu
-(recentf-mode t)
+(when (fboundp 'recentf)
+  (require 'recentf)   
+  (setq recentf-save-file               "~/.emacs.d/recentf"
+	recentf-max-saved-items 100     ;; max save 100
+	recentf-max-menu-items 15)      ;; max 15 in menu
+  (recentf-mode t))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ido-mode
-;; http://www.emacswiki.org/cgi-bin/wiki/InteractivelyDoThings
-
-(require 'ido) 
-(ido-mode 'both)                   ;; for buffers and files
-(setq
-  ;ido-save-directory-list-file "~/.emacs.d/cache/ido.last"
-  ido-ignore-buffers ;; ignore these guys
-  '("\\` " "^\*Mess" "^\*Back" ".*Completion" "^\*Ido" "^\*trace"
+;; ido-mode - both)) - powerful mode for find-file and switch-to-buffer - http://www.emacswiki.org/cgi-bin/wiki/InteractivelyDoThings
+(when (fboundp 'ido)
+  (require 'ido)
+  (ido-mode 'both)
+  (setq
+					;ido-save-directory-list-file "~/.emacs.d/cache/ido.last"
+   ido-ignore-buffers ;; ignore these guys
+   '("\\` " "^\*Mess" "^\*Back" ".*Completion" "^\*Ido" "^\*trace"
      "^\*compilation" "^\*GTAGS" "^session\.*" "^\*")
-  ido-work-directory-list '("~/" "~/Desktop" "~/Documents")
-  ido-case-fold  t                 ; be case-insensitive
-  ;ido-enable-last-directory-history t ; remember last used dirs
-  ido-max-work-directory-list 30   ; should be enough
-  ido-max-work-file-list      50   ; remember many
-  ido-use-filename-at-point nil    ; don't use filename at point (annoying)
-  ido-use-url-at-point nil         ; don't use url at point (annoying)
-  ido-enable-flex-matching nil     ; don't try to be too smart
-  ido-max-prospects 8              ; don't spam my minibuffer
-  ido-confirm-unique-completion t) ; wait for RET, even with unique completion
-(setq confirm-nonexistent-file-or-buffer nil) ;; when using ido, the confirmation is so annoying
+   ido-work-directory-list '("~/" "~/Desktop" "~/Documents")
+   ido-case-fold  t                 ; be case-insensitive
+					;ido-enable-last-directory-history t ; remember last used dirs
+   ido-max-work-directory-list 30   ; should be enough
+   ido-max-work-file-list      50   ; remember many
+   ido-use-filename-at-point nil    ; don't use filename at point (annoying)
+   ido-use-url-at-point nil         ; don't use url at point (annoying)
+   ido-enable-flex-matching nil     ; don't try to be too smart
+   ido-max-prospects 8              ; don't spam my minibuffer
+   ido-confirm-unique-completion t) ; wait for RET, even with unique completion
+  (setq confirm-nonexistent-file-or-buffer nil)) ;; when using ido, the confirmation is so annoying
 
-(autoload 'linum-mode "linum" "mode for line numbers" t)
-
-; .emacs References (some of them were used here)
+;; .emacs References (some of them were used here)
 ; Load your .emacs file while in emacs M-x load-file RET ~/.emacs
 ; https://news.ycombinator.com/item?id=1654164
 ; https://github.com/vvv/dotfiles/blob/master/.emacs
@@ -221,14 +223,14 @@ and set the focus back to Emacs frame"
 ; http://www.emacswiki.org/emacs/CompileCommand
 ; http://www.djcbsoftware.nl/dot-emacs.html
 
-;custom theme for emacs
+;;custom theme for emacs
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
- '(custom-enabled-themes (quote (adwaita)))
+ '(custom-enabled-themes (quote (misterioso)))
  '(ecb-source-path (quote (("/" "/")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
