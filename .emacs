@@ -82,12 +82,12 @@ and set the focus back to Emacs frame"
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 (setq url-http-attempt-keepalives nil)
 
-;; my custom shortcuts
+;; my custom shortcuts / hotkeys
 (define-key global-map (kbd "RET")         'newline-and-indent)          ;; C-j like, auto indenting newlines ;alt: reindent-then-newline-and-indent
-(global-set-key        "\C-x\C-m"          'compile)                     ;; shortcut for compile command
 (global-set-key        "\M-g"              'goto-line)                   ;; alt: (kbd "M-g")
-(global-set-key        (kbd "C-<f4>")      'kill-buffer-and-window)
+(global-set-key        (kbd "<f3>")        'reload-dot-emacs)
 (global-set-key        (kbd "<f4>")        'magit-status)
+(global-set-key        (kbd "C-<f4>")      'kill-buffer-and-window)
 (global-set-key        (kbd "<f5>")        'compile)
 (global-set-key        (kbd "<f6>")        'exec-program)
 (global-set-key        (kbd "<f7>")        'exec-program-with-input)
@@ -95,7 +95,11 @@ and set the focus back to Emacs frame"
 (global-set-key        [C-tab]             'other-window)                ;; easy switching buffers
 (global-set-key        (kbd "<f9>")        'comment-or-uncomment-region) ;; (un)comment
 (global-set-key        [f11]               'toggle-fullscreen)
-(global-set-key        "\C-c\C-e"          'reload-dot-emacs)
+(global-set-key        "\C-z"              'undo)
+
+(require 'redo+)
+(when (fboundp 'redo+)
+  (global-set-key        [C-S-z]              'undo))
 
 ;; my custom (minor) modes
 (icomplete-mode t)                           ;; autoactivate icomplete-mode
@@ -122,11 +126,13 @@ and set the focus back to Emacs frame"
 (setq compilation-read-command nil)          ;; compilation: autocompile without prompting the user, unless you give it a prefix argument
 
 ;; auto-complete mode, also look for M-/ shortcut
-(when (and (fboundp 'auto-complete) (fboundp 'popup))
-  (require 'auto-complete)
-  (require 'popup)
-  (setq ac-modes '(c-mode c++-mode emacs-lisp-mode tex-mode latex-mode))
-  (global-auto-complete-mode t))
+(require 'auto-complete)
+(require 'popup)
+(setq ac-modes '(c-mode c++-mode emacs-lisp-mode tex-mode latex-mode))
+(global-auto-complete-mode t)
+
+;; get AUCTeX to work in PDF insted of dvi mode
+(setq TeX-PDF-mode t)
 
 ;; C++
 (add-hook 'c++-mode-hook 
@@ -186,33 +192,31 @@ and set the focus back to Emacs frame"
       resize-mini-windows nil)
 
 ;; recent files, to save recently used files
-(when (fboundp 'recentf)
-  (require 'recentf)   
-  (setq recentf-save-file               "~/.emacs.d/recentf"
-	recentf-max-saved-items 100     ;; max save 100
-	recentf-max-menu-items 15)      ;; max 15 in menu
-  (recentf-mode t))
+(require 'recentf)   
+(setq recentf-save-file               "~/.emacs.d/recentf"
+      recentf-max-saved-items 100     ;; max save 100
+      recentf-max-menu-items 15)      ;; max 15 in menu
+(recentf-mode t)
 
 ;; ido-mode - both)) - powerful mode for find-file and switch-to-buffer - http://www.emacswiki.org/cgi-bin/wiki/InteractivelyDoThings
-(when (fboundp 'ido)
-  (require 'ido)
-  (ido-mode 'both)
-  (setq
+(require 'ido)
+(ido-mode 'both)
+(setq
 					;ido-save-directory-list-file "~/.emacs.d/cache/ido.last"
-   ido-ignore-buffers ;; ignore these guys
-   '("\\` " "^\*Mess" "^\*Back" ".*Completion" "^\*Ido" "^\*trace"
-     "^\*compilation" "^\*GTAGS" "^session\.*" "^\*")
-   ido-work-directory-list '("~/" "~/Desktop" "~/Documents")
-   ido-case-fold  t                 ; be case-insensitive
+ ido-ignore-buffers ;; ignore these guys
+ '("\\` " "^\*Mess" "^\*Back" ".*Completion" "^\*Ido" "^\*trace"
+   "^\*compilation" "^\*GTAGS" "^session\.*" "^\*")
+ ido-work-directory-list '("~/" "~/Desktop" "~/Documents")
+ ido-case-fold  t                 ; be case-insensitive
 					;ido-enable-last-directory-history t ; remember last used dirs
-   ido-max-work-directory-list 30   ; should be enough
-   ido-max-work-file-list      50   ; remember many
-   ido-use-filename-at-point nil    ; don't use filename at point (annoying)
-   ido-use-url-at-point nil         ; don't use url at point (annoying)
-   ido-enable-flex-matching nil     ; don't try to be too smart
-   ido-max-prospects 8              ; don't spam my minibuffer
-   ido-confirm-unique-completion t) ; wait for RET, even with unique completion
-  (setq confirm-nonexistent-file-or-buffer nil)) ;; when using ido, the confirmation is so annoying
+ ido-max-work-directory-list 30   ; should be enough
+ ido-max-work-file-list      50   ; remember many
+ ido-use-filename-at-point nil    ; don't use filename at point (annoying)
+ ido-use-url-at-point nil         ; don't use url at point (annoying)
+ ido-enable-flex-matching nil     ; don't try to be too smart
+ ido-max-prospects 8              ; don't spam my minibuffer
+ ido-confirm-unique-completion t) ; wait for RET, even with unique completion
+(setq confirm-nonexistent-file-or-buffer nil) ;; when using ido, the confirmation is so annoying
 
 ;; .emacs References (some of them were used here)
 ; Load your .emacs file while in emacs M-x load-file RET ~/.emacs

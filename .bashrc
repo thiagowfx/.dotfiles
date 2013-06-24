@@ -11,7 +11,6 @@ export PATH="/opt/TeamSpeak3-Client-linux_x86:/opt/copy/x86:$PATH"
 
 # default EDITOR. Options: vim, gvim, nano, emacs -nw
 export EDITOR="emacs -nw"
-#export EDITOR="nano"
 
 # easy updating command
 alias upq="sudo apt-get -y update && sudo apt-get -y upgrade && sudo apt-get -y dist-upgrade && sudo apt-get -y autoclean && sudo apt-get -y autoremove"

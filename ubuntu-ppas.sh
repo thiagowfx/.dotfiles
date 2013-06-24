@@ -19,8 +19,18 @@ sudo add-apt-repository ppa:indicator-multiload/stable-daily
 # Kubuntu Backports (caution here!)
 sudo add-apt-repository ppa:kubuntu-ppa/backports
 
-#
+# Grub Customizer
 sudo add-apt-repository ppa:danielrichter2007/grub-customizer
+
+# Docky / Plank
+sudo apt-add-repository ppa:ricotz/docky
+
+# RazorQt
+sudo add-apt-repository ppa:razor-qt
+
+# Unity Experimental
+# http://ubuntued.info/unity-smart-scopes-tenha-seu-unity-bastante-mais-inteligente
+sudo add-apt-repository ppa:ubuntu-unity/experimental-prevalidation
 
 #sudo add-apt-repository ppa:pidgin-developers/ppa
 #sudo add-apt-repository ppa:nilarimogard/webupd8 
