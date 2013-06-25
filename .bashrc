@@ -20,7 +20,7 @@ alias upq="sudo apt-get -y update && sudo apt-get -y upgrade && sudo apt-get -y 
 # force the usage of other programs. Use with caution!
 
 # it is a better one
-alias top="htop"
+# alias top="htop"
 alias vi="vim"
 # force opening emacs in terminal (not the X client) while in terminal #alt: install emacs-nox package
 alias emacs="emacs -nw" 

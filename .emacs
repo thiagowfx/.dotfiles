@@ -22,26 +22,40 @@
 (defun exec-program ()
   "Execute the current buffer name."
   (interactive)
-  (shell-command (file-name-sans-extension buffer-file-name)))
+  (shell-command (concat "\""
+			 (file-name-sans-extension buffer-file-name)
+			 "\"")))
 
 (defun exec-program-with-input ()
   "Execute the current buffer name with the .in input"
   (interactive)
-  (shell-command (concat (file-name-sans-extension buffer-file-name)
-			 "< "
+  (shell-command (concat "\""
 			 (file-name-sans-extension buffer-file-name)
-			 ".in")))
+			 "\" < \""
+			 (file-name-sans-extension buffer-file-name)
+			 ".in\"")))
 
 (defun exec-program-with-input-and-output ()
   "Execute the current buffer name with the .in input and flushing it to the .out output"
   (interactive)
-  (shell-command (concat (file-name-sans-extension buffer-file-name)
-			 "< "
+  (shell-command (concat "\""
 			 (file-name-sans-extension buffer-file-name)
-			 ".in "
-			 "> "
+			 "\" < \""
 			 (file-name-sans-extension buffer-file-name)
-			 ".out")))
+			 ".in\" "
+			 "> \""
+			 (file-name-sans-extension buffer-file-name)
+			 ".out\"")))
+
+(defun fc-eval-and-replace ()
+  "Replace the preceding sexp with its value."
+  (interactive)
+  (backward-kill-sexp)
+  (condition-case nil
+      (prin1 (eval (read (current-kill 0)))
+             (current-buffer))
+    (error (message "Invalid expression")
+           (insert (current-kill 0)))))
 
 (defun notify-compilation-result (buffer msg)
   "Notify that the compilation is finished,
@@ -111,7 +125,7 @@ and set the focus back to Emacs frame"
 (size-indication-mode t)                     ;; display size of the current file
 (file-name-shadow-mode t)                    ;; be smart about filenames in minibuffer
 (winner-mode t)                              ;; use C-c <left> to restore the previous window configurations -- useful for compile commands, for example
-(linum-mode t)                               ;; display line numbers
+;(linum-mode t)                               ;; display line numbers
 (setq make-backup-files nil
       auto-save-default nil)                 ;; I use version control, don't annoy me with backup files everywhere
 (setq require-final-newline t
@@ -138,35 +152,45 @@ and set the focus back to Emacs frame"
 (add-hook 'c++-mode-hook 
 	  (lambda ()
 	    (setq compile-command
-		 (concat "g++ "
+		 (concat "g++ \""
 			 (buffer-file-name)
-			 " -o "
+			 "\" -o \""
 			 (file-name-sans-extension buffer-file-name)
-			 " -Wall"))))
+			 "\" -Wall"))))
 
 ;; C
 (add-hook 'c-mode-hook
 	  (lambda ()
 	    (setq compile-command
-		 (concat "gcc "
+		 (concat "gcc \""
 			 (buffer-file-name)
-			 " -o "
+			 "\" -o \""
 			 (file-name-sans-extension buffer-file-name)
-			 " -Wall"))))
+			 "\" -Wall"))))
 
 ;; Java
 (add-hook 'java-mode-hook
 	  (lambda ()
 	    (setq compile-command
-		 (concat "javac "
-			 (buffer-file-name)))))
+		 (concat "javac \""
+			 (buffer-file-name)
+			 "\""))))
 
 ;; LaTeX
 (add-hook 'latex-mode-hook
 	  (lambda ()
 	    (setq compile-command
-		  (concat "pdflatex "
-			  (buffer-file-name)))))
+		  (concat "pdflatex \""
+			  (buffer-file-name)
+			  "\""))))
+
+;; Python
+(add-hook 'python-mode-hook
+	  (lambda ()
+	    (setq compile-command
+		  (concat "python \""
+			  (buffer-file-name)
+			  "\""))))
 
 (setq scroll-margin 0                        ;; do smooth scrolling, ...
       scroll-conservatively 100000           ;; ... the defaults ...

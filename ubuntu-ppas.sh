@@ -32,6 +32,19 @@ sudo add-apt-repository ppa:razor-qt
 # http://ubuntued.info/unity-smart-scopes-tenha-seu-unity-bastante-mais-inteligente
 sudo add-apt-repository ppa:ubuntu-unity/experimental-prevalidation
 
+# NoobsLab
+# http://www.noobslab.com/2013/06/nemo-file-manager-for-ubuntu.html
+sudo add-apt-repository ppa:noobslab/mint
+
+# LyX Document Processor
+sudo add-apt-repository ppa:lyx-devel/daily
+
+# Compiz
+sudo add-apt-repository ppa:compiz/ppa
+
+# PlayStation Emulator
+# sudo add-apt-repository ppa:noobslab/pcsx2
+
 #sudo add-apt-repository ppa:pidgin-developers/ppa
 #sudo add-apt-repository ppa:nilarimogard/webupd8 
 #sudo add-apt-repository ppa:gnome3-team/gnome3

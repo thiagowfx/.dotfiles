@@ -11,14 +11,20 @@ sudo aptitude remove -y unity-lens-shopping rhythmbox evolution totem transmissi
 echo "Unnecessary programs removed."
 
 ## Install several programs, asking for the user confirmation (security issues)
-sudo aptitude install zram-config calibre anki emacs emacs-goodies-el gparted p7zip guake p7zip-rar virtualbox tomboy nfoview unison-gtk unison krename chmsee bluefish kdiff3 geogebra carmetal kolourpaint4 xchat ttf-mscorefonts-installer winff pingus inkscape blender kile gwenview gimp lyx gnucash gnucash retext pdfsam calligraflow deluge wxmaxima clementine audacity vlc smplayer easytag gpodder avidemux kdenlive winff vim mtpfs mtp-tools dropbox g++ openjdk-7-jre eclipse git git-core apt-file dropbox compizconfig-settings-manager unity-tweak-tool skype scribus gnome-tweak-tool mozplugger gedit-plugins clipit w3m youtube-dl ubuntu-restricted-extras racket wine winetricks playonlinux bleachbit flashplugin-installer gsfonts-x11 indicator-multiload libavformat-extra-53 libavcodec-extra-53 w32-codecs non-free-codecs dia radiotray scilab nautilus-open-terminal unity-2d indent markdown python-progressbar idle openshot kipi-plugins unity-webapps-googlecalendar meld pcmanfm conky gcalctool gimp-data-extras tuxpaint
+sudo aptitude install zram-config calibre anki emacs emacs-goodies-el gparted p7zip guake p7zip-rar virtualbox tomboy nfoview unison-gtk unison krename chmsee bluefish kdiff3 geogebra carmetal kolourpaint4 xchat ttf-mscorefonts-installer winff pingus inkscape blender kile gwenview gimp lyx gnucash gnucash retext pdfsam calligraflow deluge wxmaxima clementine audacity vlc smplayer easytag gpodder avidemux kdenlive winff vim mtpfs mtp-tools dropbox g++ openjdk-7-jre eclipse git git-core apt-file dropbox compizconfig-settings-manager unity-tweak-tool skype scribus gnome-tweak-tool mozplugger gedit-plugins clipit w3m youtube-dl ubuntu-restricted-extras racket wine winetricks playonlinux bleachbit flashplugin-installer gsfonts-x11 indicator-multiload libavformat-extra-53 libavcodec-extra-53 w32-codecs non-free-codecs dia radiotray scilab nautilus-open-terminal unity-2d indent markdown python-progressbar idle openshot kipi-plugins unity-webapps-googlecalendar meld pcmanfm conky gcalctool gimp-data-extras baobab minitube
 echo "Several programs installed".
+
+# Choose:
+# unity-lens-* unity-scope-*
 
 ## utilities
 # exo-utils
 
 ## old
 # xpaint idraw xfig tgif bitmap
+
+# not but worth trying
+# tuxpaint nemo dolphin
 
 # general shell utilities (arch version)
 sudo aptitude install -y htop feh nmap ranger zathura traceroute
