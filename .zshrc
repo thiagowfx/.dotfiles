@@ -11,3 +11,6 @@ zstyle :compinstall filename '/home/thiago/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+
+# Custom config
+alias upq="sudo pacman -Syy && sudo pacman -Syu"

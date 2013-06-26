@@ -4,6 +4,10 @@
 ;; GNU General Public License (GLP), version 3 or later.                    ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; install the following packages
+;; auctex - rich featured tex mode
+;; redo+ - utilities for redo
+
 (defun reload-dot-emacs ()
   "Reload .emacs file while inside emacs."
   (interactive)
