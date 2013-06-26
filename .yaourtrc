@@ -1,0 +1,10 @@
+EDITOR="emacs -nw"
+
+# do ask for confirmation when installing packages
+NOCONFIRM=0
+
+# don't prompt me to edit PKGBUILDS
+EDITFILES=0
+
+# colorful please (-;
+USECOLOR=1
