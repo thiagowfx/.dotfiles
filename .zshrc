@@ -20,8 +20,8 @@ export SHELL=/usr/bin/zsh
 # default system editor
 export EDITOR="emacs -nw"
 
-# easy updating command
-alias upq="sudo pacman -Syy && sudo pacman -Syu"
+# easy updating && cache cleaning command
+alias upq="sudo pacman -Syy && sudo pacman -Syu && sudo pacman -Rs $(pacman -Qtdq) --color never"
 
 # alias top="htop" # better top
 alias vi="vim"
