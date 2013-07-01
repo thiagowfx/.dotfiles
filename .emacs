@@ -116,6 +116,8 @@ and set the focus back to Emacs frame"
   (global-set-key        [C-S-z]              'undo))
 
 ;; my custom (minor) modes
+(menu-bar-mode nil)		             ;; hide the menu bar
+;(tool-bar-mode nil)                          ;; hide the tool bar
 (icomplete-mode t)                           ;; autoactivate icomplete-mode
 (setq icomplete-prospects-height 1           ;; don't spam my minibuffer
       icomplete-compute-delay 0)             ;; don't wait

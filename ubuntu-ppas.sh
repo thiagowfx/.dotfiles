@@ -30,7 +30,7 @@ sudo add-apt-repository ppa:razor-qt
 
 # Unity Experimental
 # http://ubuntued.info/unity-smart-scopes-tenha-seu-unity-bastante-mais-inteligente
-sudo add-apt-repository ppa:ubuntu-unity/experimental-prevalidation
+# sudo add-apt-repository ppa:ubuntu-unity/experimental-prevalidation
 
 # NoobsLab
 # http://www.noobslab.com/2013/06/nemo-file-manager-for-ubuntu.html
@@ -40,7 +40,7 @@ sudo add-apt-repository ppa:noobslab/mint
 sudo add-apt-repository ppa:lyx-devel/daily
 
 # Compiz
-sudo add-apt-repository ppa:compiz/ppa
+# sudo add-apt-repository ppa:compiz/ppa
 
 # PlayStation Emulator
 # sudo add-apt-repository ppa:noobslab/pcsx2
