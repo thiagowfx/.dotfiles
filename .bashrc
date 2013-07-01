@@ -4,12 +4,12 @@ if [ -f /etc/bash_completion ]; then
 fi
 
 # default SHELL
-# export SHELL=bash
+export SHELL=/usr/bin/bash
 
-# add to PATH
+# add some goodies to PATH
 export PATH="/opt/TeamSpeak3-Client-linux_x86:/opt/copy/x86:$PATH"
 
-# default EDITOR. Options: vim, gvim, nano, emacs -nw
+# default system EDITOR. Other options are: vim, gvim, nano, emacs -nw
 export EDITOR="emacs -nw"
 
 # easy updating command
@@ -19,8 +19,7 @@ alias upq="sudo apt-get -y update && sudo apt-get -y upgrade && sudo apt-get -y 
 
 # force the usage of other programs. Use with caution!
 
-# it is a better one
-# alias top="htop"
+# alias top="htop" # better top
 alias vi="vim"
 # force opening emacs in terminal (not the X client) while in terminal #alt: install emacs-nox package
 alias emacs="emacs -nw" 

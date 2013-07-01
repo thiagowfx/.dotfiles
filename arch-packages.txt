@@ -1,0 +1,13 @@
+This file contains some interesting Arch Linux packages, from or not from the AUR.
+
+!!!
+
+Yaourt Front-Ends
+yaourt-gui  # bash
+pacmind     # gtk
+
+
+!!! DEPRECATED FOR ME
+
+pacmanxg4-bin
+A GUI front-end for pacman. From Antergos Linux (former Cinnarch).
