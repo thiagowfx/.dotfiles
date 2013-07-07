@@ -28,6 +28,9 @@ echo "Install some PPAs"
 # VLC Media Player
 sudo add-apt-repository ppa:videolan/stable-daily
 
+# Clementine Player
+sudo add-apt-repository ppa:me-davidsansome/clementine
+
 # Oracle Java
 sudo add-apt-repository ppa:webupd8team/java
 
