@@ -21,24 +21,20 @@ complete -cf sudo
 # shopt -s hostcomplete
 # shopt -s nocaseglob
 
-export HISTSIZE=10000
-export HISTFILESIZE=${HISTSIZE}
-export HISTCONTROL=ignoreboth
-export SHELL=/usr/bin/bash
-# add some goodies to PATH
-export PATH="/opt:$PATH"
-export EDITOR="emacs -nw"
-export BROWSER=/usr/bin/xdg-open
-
 # easy updating command (Ubuntu version)
 alias upq="sudo apt-get -y update && sudo apt-get -y upgrade && sudo apt-get -y dist-upgrade && sudo apt-get -y autoclean && sudo apt-get -y autoremove"
 # alias upq="sudo yum -y update && sudo yum -y upgrade" #fedora
 # alias upq="sudo zypper -n update && sudo zypper -n upgrade && sudo -n zypper dup" #openSUSE
-
+export HISTSIZE=10000
+export HISTFILESIZE=${HISTSIZE}
+export HISTCONTROL=ignoreboth
+export SHELL=/usr/bin/bash
+export PATH="/opt:$PATH"
+export EDITOR="emacs -nw"
+export BROWSER=/usr/bin/xdg-open
 alias vi="vim"
 alias grep="grep --color=auto"
 alias ls="ls -F --color=auto"
-# force opening emacs in terminal (not the X client) while in terminal #alt: install emacs-nox package
 alias emacs="emacs -nw" 
 alias l="ls -al"
 alias sai="sudo aptitude install"
@@ -54,8 +50,6 @@ alias grep='grep --color=tty -d skip'
 alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
-
-# windows alias
 alias cls="echo Using Unix program clear; clear"
 alias tracert="echo Using Unix program traceroute; traceroute"
 alias ipconfig="echo Using Unix program ifconfig; ifconfig"
@@ -83,4 +77,3 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
-
