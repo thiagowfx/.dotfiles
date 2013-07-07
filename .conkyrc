@@ -62,19 +62,4 @@ ${font sans-serif:normal:size=8}${top_mem name 1}${alignr}${top mem 1} %
 ${top_mem name 2}${alignr}${top mem 2} %
 $font${top_mem name 3}${alignr}${top mem 3} %
 $font${top_mem name 4}${alignr}${top mem 4} %
-Processes: $alignr$processes
-
-
-${font sans-serif:bold:size=8}SHORTCUT KEYS ${hr 2}
-${font sans-serif:normal:size=8}
-Alt+F3$alignr Dmenu
-Super+space$alignr Main Menu
-Super+t$alignr Terminal
-Super+f$alignr File Manager
-Super+e$alignr Editor
-Super+w$alignr Web Browser
-Super+q$alignr Force Quit
-Super+g$alignr Character Map
-Super+r$alignr Read the DOC
-Super+x$alignr Tiling Keybinds
-Super+l$alignr Lock
+$font${top_mem name 5}${alignr}${top mem 5} %
