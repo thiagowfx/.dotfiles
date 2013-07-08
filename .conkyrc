@@ -1,8 +1,11 @@
 # References:
 # http://conky.sourceforge.net/conkyrc-vert
 # http://conky.sourceforge.net/variables.html
+# man conky
+# this conky has been forked from the default one that comes with archbang linux
 
 background yes
+# better fonts
 use_xft yes
 xftfont monospace:size=9
 xftalpha 1
@@ -23,20 +26,24 @@ draw_graph_borders yes
 default_color gray
 default_shade_color 000000
 default_outline_color d9d7d6
-alignment br
+# alignment middle_right
+alignment mr
+# span
 gap_x 12
 gap_y 12
 no_buffers yes
 uppercase no
 cpu_avg_samples 2
-override_utf8_locale no
+override_utf8_locale yes
 color1 red
 color2 gray
+
 ##############################################
-#  Output
+#  Output                                    #
 ##############################################
 TEXT
-CPU: $alignr${cpu cpu0}%
+${font sans-serif:bold:size=8}OVERVIEW ${hr 2}
+${font sans-serif:normal:size=8}CPU: $alignr${cpu cpu0}%
 ${cpubar cpu0}
 RAM: $alignr$mem/$memmax
 $membar
@@ -44,22 +51,29 @@ SWAP: $alignr$swap/$swapmax
 $swapbar
 DISK: $alignr${diskio /dev/sda}
 ${diskiograph /dev/sda}
+${font sans-serif:bold:size=8}SENSOR ${hr 2}
+${font sans-serif:normal:size=8}ACPI:$alignr$acpitemp ºC
 
 ${font sans-serif:bold:size=8}NETWORK ${hr 2}
-Download speed: ${downspeedf wlan0}
-${downspeedgraph wlan0}
-Upload speed: ${upspeedf wlan0}
-${upspeedgraph wlan0}
+${font sans-serif:normal:size=8}IP Address:$alignr${addr wlp4s0}
+AP:$alignr${wireless_essid wlp4s0}
+Strength: $alignr${wireless_link_bar 4,80 wlp4s0}  ${wireless_link_qual wlp4s0}/${wireless_link_qual_max wlp4s0}
+Down speed:$alignr${downspeedf wlp4s0}
+${downspeedgraph wlp4s0}
+Up speed:$alignr${upspeedf wlp4s0}
+${upspeedgraph wlp4s0}
+Total down:$alignr${totaldown wlp4s0}
+Total up:$alignr${totalup wlp4s0}
 
 ${font sans-serif:bold:size=8}SYSTEM ${hr 2}
 ${font sans-serif:normal:size=8}$sysname $kernel $alignr $machine
 Host:$alignr$nodename
 Uptime:$alignr$uptime
 
-
-${font sans-serif:bold:size=8}TOP PROCESSES ${hr 2}
-${font sans-serif:normal:size=8}${top_mem name 1}${alignr}${top mem 1} %
+${font sans-serif:bold:size=8}PROCESSES ${hr 2}
+${font sans-serif:normal:size=8}Total:$alignr$processes
+${top_mem name 1}${alignr}${top mem 1} %
 ${top_mem name 2}${alignr}${top mem 2} %
-$font${top_mem name 3}${alignr}${top mem 3} %
-$font${top_mem name 4}${alignr}${top mem 4} %
-$font${top_mem name 5}${alignr}${top mem 5} %
+${top_mem name 3}${alignr}${top mem 3} %
+${top_mem name 4}${alignr}${top mem 4} %
+${top_mem name 5}${alignr}${top mem 5} %
