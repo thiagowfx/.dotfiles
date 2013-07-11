@@ -42,7 +42,7 @@ alias sar="sudo aptitude remove"
 alias sas="sudo aptitude search"
 alias mount-iso="mount -o loop"
 alias youtube-dl-mp3-download="youtube-dl -t --extract-audio --audio-format mp3"
-alias youtuble-dl-video-download="youtube-dl -t"
+alias youtube-dl-video-download="youtube-dl -t"
 alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 alias la='ls -la --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
@@ -53,6 +53,7 @@ alias free='free -m'                      # show sizes in MB
 alias cls="echo Using Unix program clear; clear"
 alias tracert="echo Using Unix program traceroute; traceroute"
 alias ipconfig="echo Using Unix program ifconfig; ifconfig"
+alias top10="history|awk '{print $2}'|awk 'BEGIN {FS="|"} {print $1}'|sort|uniq -c|sort -rn|head -10"
 
 # ex - archive extractor
 # usage: ex <file>

@@ -13,7 +13,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>. #
 #########################################################################
 
-# set my editor
+# I configured this file with my custom options while reading the yaourtrc man page. Feel free to fork it if you want.
+
+# set my custom editor
 EDITOR="emacs -nw"
 
 # do ask for confirmation when installing packages
@@ -24,3 +26,9 @@ EDITFILES=0
 
 # colorful please (-;
 USECOLOR=1
+
+# don't annoy me prompting me to vote in the packages
+AURVOTE=0
+
+# show me more aur comments, please
+AURCOMMENT=10
