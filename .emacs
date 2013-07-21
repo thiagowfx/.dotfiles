@@ -7,7 +7,9 @@
 ;; install the following packages
 ;; auctex - rich featured tex mode
 ;; redo+ - utilities for redo
+;; auto-complete
 
+;; defuns
 (defun reload-dot-emacs ()
   "Reload .emacs file while inside emacs."
   (interactive)
@@ -101,7 +103,7 @@ and set the focus back to Emacs frame"
 (setq url-http-attempt-keepalives nil)
 
 ;; my custom shortcuts / hotkeys
-(define-key global-map (kbd "RET")         'newline-and-indent)          ;; C-j like, auto indenting newlines ;alt: reindent-then-newline-and-indent
+(define-key global-map (kbd "RET")         'newline-and-indent)          ;; C-j like; alt: reindent-then-newline-and-indent
 (global-set-key        "\M-g"              'goto-line)                   ;; alt: (kbd "M-g")
 (global-set-key        (kbd "<f3>")        'reload-dot-emacs)
 (global-set-key        (kbd "<f4>")        'magit-status)
@@ -115,13 +117,8 @@ and set the focus back to Emacs frame"
 (global-set-key        [f11]               'toggle-fullscreen)
 (global-set-key        "\C-z"              'undo)
 
-(require 'redo+)
-(when (fboundp 'redo+)
-  (global-set-key        [C-S-z]              'undo))
-
-;; my custom (minor) modes
+;; my custom minor modes
 (menu-bar-mode nil)		             ;; hide the menu bar
-;(tool-bar-mode nil)                          ;; hide the tool bar
 (icomplete-mode t)                           ;; autoactivate icomplete-mode
 (setq icomplete-prospects-height 1           ;; don't spam my minibuffer
       icomplete-compute-delay 0)             ;; don't wait
@@ -130,26 +127,19 @@ and set the focus back to Emacs frame"
 (column-number-mode t)                       ;; display the column number in the mode bar
 (size-indication-mode t)                     ;; display size of the current file
 (file-name-shadow-mode t)                    ;; be smart about filenames in minibuffer
-(winner-mode t)                              ;; use C-c <left> to restore the previous window configurations -- useful for compile commands, for example
-;(linum-mode t)                               ;; display line numbers
+(winner-mode t)                              ;; C-c <left> restore the previous window configs
 (setq make-backup-files nil
-      auto-save-default nil)                 ;; I use version control, don't annoy me with backup files everywhere
+      auto-save-default nil)                 ;; don't annoy me with backup files everywhere
 (setq require-final-newline t
-      default-indicate-empty-lines t         ;; every file will have a \n at the end and empty lines will be indicated
-      next-line-add-newlines nil             ;; C-n at the end of a file acts like newline --> i don't want it
+      default-indicate-empty-lines t         
+      next-line-add-newlines nil             ;; C-n at the end of a file acts like newline
       inhibit-startup-message t              ;; don't show startup screen, it's annoying
       inhibit-startup-echo-area-message t
       initial-scratch-message                ";; scratch buffer created -- let's rock\n")
 (transient-mark-mode t)			     ;; highlight marked region
 (global-font-lock-mode t)		     ;; syntax highlight everywhere
-(fset 'yes-or-no-p 'y-or-n-p)                ;; make all "yes or no" prompts show "y or n" instead, which is less annoying
+(fset 'yes-or-no-p 'y-or-n-p)                ;; make all "yes or no" prompts show "y or n" instead
 (setq compilation-read-command nil)          ;; compilation: autocompile without prompting the user, unless you give it a prefix argument
-
-;; auto-complete mode, also look for M-/ shortcut
-(require 'auto-complete)
-(require 'popup)
-(setq ac-modes '(c-mode c++-mode emacs-lisp-mode tex-mode latex-mode))
-(global-auto-complete-mode t)
 
 ;; get AUCTeX to work in PDF insted of dvi mode
 (setq TeX-PDF-mode t)
@@ -272,3 +262,14 @@ and set the focus back to Emacs frame"
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; these require installation of packages
+(require 'redo+)
+(when (fboundp 'redo+)
+  (global-set-key        [C-S-z]              'undo))
+
+;; auto-complete mode, also look for M-/ shortcut
+(require 'auto-complete)
+(require 'popup)
+(setq ac-modes '(c-mode c++-mode emacs-lisp-mode tex-mode latex-mode))
+(global-auto-complete-mode t)
