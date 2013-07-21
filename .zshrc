@@ -36,7 +36,7 @@ alias grep="grep --color=auto"
 alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 alias la='ls -la --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
-alias l="la"
+alias l="ls -1A --color=auto"
 
 # shorthands
 alias mount-iso="mount -o loop"
@@ -79,4 +79,4 @@ ex ()
 }
 
 # output
-alsi    # archey
+alsi    # archey, screenfetch
