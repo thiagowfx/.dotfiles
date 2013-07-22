@@ -1,4 +1,6 @@
 #########################################################################
+# Copyright (C) 2013-2013 Thiago Barroso Perrotta.			#
+#									#
 # This program is free software: you can redistribute it and/or modify  #
 # it under the terms of the GNU General Public License as published by  #
 # the Free Software Foundation, either version 3 of the License, or     #
@@ -20,7 +22,7 @@
 # References:										    #
 # - http://conky.sourceforge.net/conkyrc-vert						    #
 # - http://conky.sourceforge.net/variables.html						    #
-# - `man` conky										    #
+# - conky man page									    #
 #############################################################################################
 
 background yes
@@ -37,7 +39,7 @@ own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 own_window_colour black
 double_buffer yes
 minimum_size 1 1
-maximum_width 240
+maximum_width 250
 draw_shades no
 draw_outline no
 draw_borders yes
@@ -45,8 +47,7 @@ draw_graph_borders yes
 default_color gray
 default_shade_color 000000
 default_outline_color d9d7d6
-# alignment middle_right
-alignment mr
+alignment mr 	      # alt: alignment middle_right
 # span
 gap_x 12
 gap_y 12
@@ -75,8 +76,10 @@ ${diskiograph /dev/sda}
 /   ${fs_bar 5,50 /}$alignr${fs_used /}/${fs_size /}
 /home $alignr${fs_used /home}/${fs_size /home}
 
-${font sans-serif:bold:size=8}SENSOR ${hr 2}
+${font sans-serif:bold:size=8}MISC ${hr 2}
 ${font sans-serif:normal:size=8}ACPI:$alignr$acpitemp ºC
+Processes:$alignr$processes
+Running:$alignr$running_processes
 
 ${font sans-serif:bold:size=8}NETWORK ${hr 2}
 ${font sans-serif:normal:size=8}IP Address:$alignr${addr wlp4s0}
@@ -93,10 +96,16 @@ ${font sans-serif:normal:size=8}$sysname $kernel $alignr $machine
 Host:$alignr$nodename
 Uptime:$alignr$uptime
 
-${font sans-serif:bold:size=8}PROCESSES ${hr 2}
-${font sans-serif:normal:size=8}Total:$alignr$processes
-${top_mem name 1}${alignr}${top mem 1} %
+${font sans-serif:bold:size=8}TOP RAM${hr 2}
+${font sans-serif:normal:size=8}${top_mem name 1}${alignr}${top mem 1} %
 ${top_mem name 2}${alignr}${top mem 2} %
 ${top_mem name 3}${alignr}${top mem 3} %
 ${top_mem name 4}${alignr}${top mem 4} %
 ${top_mem name 5}${alignr}${top mem 5} %
+
+${font sans-serif:bold:size=8}TOP CPU${hr 2}
+${font sans-serif:normal:size=8}${top name 1}${alignr}${top cpu 1} %
+${top name 2}${alignr}${top cpu 2} %
+${top name 3}${alignr}${top cpu 3} %
+${top name 4}${alignr}${top cpu 4} %
+${top name 5}${alignr}${top cpu 5} %
