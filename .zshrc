@@ -62,7 +62,7 @@ alias cp="cp -v -i"                         # confirm before overwriting somethi
 alias chmod="chmod -v"
 alias chown="chown -v"
 alias df='df -h'                          # human-readable sizes
-alias cp="cp -i"
+alias cp="cp -i -v"
 alias em="emacs -nw"
 alias free='free -m'                      # show sizes in MB
 alias grep="grep --color=auto -E -d skip"
@@ -73,7 +73,7 @@ alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color
 alias ln="ln -v"
 alias mv="mv -v"
 alias pgrep="pgrep --color=auto"
-alias rm="rm -v"
+alias rm="rm -v -i"
 alias vi="vim"
 
 # shorthands
