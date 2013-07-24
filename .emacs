@@ -1,15 +1,27 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Copyright (C) 2013-2013 Thiago Barroso Perrotta.                         ;;
-;; This file is free software licensed under the terms of the               ;;
-;; GNU General Public License (GLP), version 3 or later.                    ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Copyright (C) 2013-2013 Thiago Barroso Perrotta.                      ;
+;                                                                       ;
+; This program is free software: you can redistribute it and/or modify  ;
+; it under the terms of the GNU General Public License as published by  ;
+; the Free Software Foundation, either version 3 of the License, or     ;
+; (at your option) any later version.                                   ;
+;                                                                       ;
+; This program is distributed in the hope that it will be useful,       ;
+; but WITHOUT ANY WARRANTY; without even the implied warranty of        ;
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         ;
+; GNU General Public License for more details.                          ;
+;                                                                       ;
+; You should have received a copy of the GNU General Public License     ;
+; along with this program.  If not, see <http://www.gnu.org/licenses/>. ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; install the following packages
 ;; auctex - rich featured tex mode
 ;; redo+ - utilities for redo
 ;; auto-complete
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; defuns
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun reload-dot-emacs ()
   "Reload .emacs file while inside emacs."
   (interactive)
@@ -76,12 +88,17 @@ and set the focus back to Emacs frame"
   (select-frame-set-input-focus current-frame))
 (add-to-list 'compilation-finish-functions 'notify-compilation-result)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; file associations
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.mdownx\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.nfo\\'" . text-mode))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; packages and emacs lisp files
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; set the load path, add everything under ~/.emacs.d to it
 (let* ((my-lisp-dir "~/.emacs.d/")
        (default-directory my-lisp-dir))
@@ -92,17 +109,15 @@ and set the focus back to Emacs frame"
   (when (load (expand-file-name "~/.emacs.d/elpa/package.el"))
     (package-initialize)))
 
-;; enable ibuffer
-(when (fboundp 'ibuffer)
-  (global-set-key (kbd "C-x C-b") 'ibuffer))
-
 ;; add more repos. More packages and .el scripts.
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
 			 ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 (setq url-http-attempt-keepalives nil)
 
-;; my custom shortcuts / hotkeys
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; custom shortcuts / hotkeys
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (define-key global-map (kbd "RET")         'newline-and-indent)          ;; C-j like; alt: reindent-then-newline-and-indent
 (global-set-key        "\M-g"              'goto-line)                   ;; alt: (kbd "M-g")
 (global-set-key        (kbd "<f3>")        'reload-dot-emacs)
@@ -117,7 +132,9 @@ and set the focus back to Emacs frame"
 (global-set-key        [f11]               'toggle-fullscreen)
 (global-set-key        "\C-z"              'undo)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; my custom minor modes
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (menu-bar-mode nil)		             ;; hide the menu bar
 (icomplete-mode t)                           ;; autoactivate icomplete-mode
 (setq icomplete-prospects-height 1           ;; don't spam my minibuffer
@@ -140,10 +157,11 @@ and set the focus back to Emacs frame"
 (global-font-lock-mode t)		     ;; syntax highlight everywhere
 (fset 'yes-or-no-p 'y-or-n-p)                ;; make all "yes or no" prompts show "y or n" instead
 (setq compilation-read-command nil)          ;; compilation: autocompile without prompting the user, unless you give it a prefix argument
+(setq TeX-PDF-mode t)                        ;; get AUCTeX to work in PDF insted of dvi mode
 
-;; get AUCTeX to work in PDF insted of dvi mode
-(setq TeX-PDF-mode t)
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; custom mode hooks
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C++
 (add-hook 'c++-mode-hook 
 	  (lambda ()
@@ -188,6 +206,14 @@ and set the focus back to Emacs frame"
 			  (buffer-file-name)
 			  "\""))))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; general emacs tweaking
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; enable ibuffer
+(when (fboundp 'ibuffer)
+  (global-set-key (kbd "C-x C-b") 'ibuffer))
+
 (setq scroll-margin 0                        ;; do smooth scrolling, ...
       scroll-conservatively 100000           ;; ... the defaults ...
       scroll-up-aggressively 0               ;; ... are very ...
@@ -198,6 +224,7 @@ and set the focus back to Emacs frame"
       interprogram-paste-function            ;; ...with...
       'x-cut-buffer-or-selection-value)      ;; ...other X clients
 
+;; change title from a frame
 (setq-default  frame-title-format
 	       '(:eval
 		 (format "%s@%s: %s"
@@ -221,54 +248,56 @@ and set the focus back to Emacs frame"
 ;; ido-mode - both)) - powerful mode for find-file and switch-to-buffer - http://www.emacswiki.org/cgi-bin/wiki/InteractivelyDoThings
 (require 'ido)
 (ido-mode 'both)
-(setq
-					;ido-save-directory-list-file "~/.emacs.d/cache/ido.last"
- ido-ignore-buffers ;; ignore these guys
- '("\\` " "^\*Mess" "^\*Back" ".*Completion" "^\*Ido" "^\*trace"
-   "^\*compilation" "^\*GTAGS" "^session\.*" "^\*")
- ido-work-directory-list '("~/" "~/Desktop" "~/Documents")
- ido-case-fold  t                 ; be case-insensitive
-					;ido-enable-last-directory-history t ; remember last used dirs
- ido-max-work-directory-list 30   ; should be enough
- ido-max-work-file-list      50   ; remember many
- ido-use-filename-at-point nil    ; don't use filename at point (annoying)
- ido-use-url-at-point nil         ; don't use url at point (annoying)
- ido-enable-flex-matching nil     ; don't try to be too smart
- ido-max-prospects 8              ; don't spam my minibuffer
- ido-confirm-unique-completion t) ; wait for RET, even with unique completion
-(setq confirm-nonexistent-file-or-buffer nil) ;; when using ido, the confirmation is so annoying
+(setq ido-save-directory-list-file "~/.ido.last"
+      ido-ignore-buffers               ;; ignore these guys
+      '("\\` " "^\*Mess" "^\*Back" ".*Completion" "^\*Ido" "^\*trace"
+	"^\*compilation" "^\*GTAGS" "^session\.*" "^\*")
+      ido-work-directory-list '("~/" "~/Desktop" "~/Documents")
+      ido-case-fold  t                    ;; be case-insensitive
+      ido-enable-last-directory-history t ;; remember last used dirs
+      ido-max-work-directory-list 30	  ;; should be enough
+      ido-max-work-file-list      50	  ;; remember many
+      ido-use-filename-at-point nil       ;; don't use filename at point (annoying)
+      ido-use-url-at-point nil            ;; don't use url at point (annoying)
+      ido-enable-flex-matching nil        ;; don't try to be too smart
+      ido-max-prospects 8                 ;; don't spam my minibuffer
+      ido-confirm-unique-completion t)    ;; wait for RET, even with unique completion
+(setq confirm-nonexistent-file-or-buffer nil) ;; disable annoying confirmation
 
-;; .emacs References (some of them were used here)
-; Load your .emacs file while in emacs M-x load-file RET ~/.emacs
-; https://news.ycombinator.com/item?id=1654164
-; https://github.com/vvv/dotfiles/blob/master/.emacs
-; http://www.emacsrocks.com/
-; http://www.damtp.cam.ac.uk/user/sje30/emacs/ell.html ;lots of elisp packages!
-; http://www.emacswiki.org/emacs/CompileCommand
-; http://www.djcbsoftware.nl/dot-emacs.html
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; .emacs references used here
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Load your .emacs file while in emacs M-x load-file RET ~/.emacs
+;; - https://news.ycombinator.com/item?id=1654164
+;; - https://github.com/vvv/dotfiles/blob/master/.emacs
+;; - http://www.emacsrocks.com/
+;; - http://www.damtp.cam.ac.uk/user/sje30/emacs/ell.html ;lots of elisp packages!
+;; - http://www.emacswiki.org/emacs/CompileCommand
+;; - http://www.djcbsoftware.nl/dot-emacs.html
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;custom theme for emacs
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(custom-set-variables 
  '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(custom-enabled-themes (quote (misterioso)))
  '(ecb-source-path (quote (("/" "/")))))
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
+ ;; custom-set-faces and custom-set-variables were added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
 
-;; these require installation of packages
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; these require installation of extra packages, use package-install or list-packages
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'redo+)
 (when (fboundp 'redo+)
   (global-set-key        [C-S-z]              'undo))
 
-;; auto-complete mode, also look for M-/ shortcut
+;; auto-complete mode, also see M-/ shortcut
 (require 'auto-complete)
 (require 'popup)
 (setq ac-modes '(c-mode c++-mode emacs-lisp-mode tex-mode latex-mode))

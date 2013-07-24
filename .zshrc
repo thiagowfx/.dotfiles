@@ -1,3 +1,20 @@
+#########################################################################
+# Copyright (C) 2013-2013 Thiago Barroso Perrotta.                      #
+#                                                                       #
+# This program is free software: you can redistribute it and/or modify  #
+# it under the terms of the GNU General Public License as published by  #
+# the Free Software Foundation, either version 3 of the License, or     #
+# (at your option) any later version.                                   #
+#                                                                       #
+# This program is distributed in the hope that it will be useful,       #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of        #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         #
+# GNU General Public License for more details.                          #
+#                                                                       #
+# You should have received a copy of the GNU General Public License     #
+# along with this program.  If not, see <http://www.gnu.org/licenses/>. #
+#########################################################################
+
 # variables
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -45,7 +62,8 @@ alias cp="cp -v -i"                         # confirm before overwriting somethi
 alias chmod="chmod -v"
 alias chown="chown -v"
 alias df='df -h'                          # human-readable sizes
-alias cp="cp -i"  
+alias cp="cp -i"
+alias em="emacs -nw"
 alias free='free -m'                      # show sizes in MB
 alias grep="grep --color=auto -E -d skip"
 alias l="ls -1A --color=auto"
@@ -108,4 +126,6 @@ function changeroot {
 }
 
 # output
-alsi    # alt: archey, screenfetch
+if [[ -f /usr/bin/alsi ]]; then
+    alsi    # alt: archey, screenfetch
+fi
