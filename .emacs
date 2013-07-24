@@ -158,6 +158,7 @@ and set the focus back to Emacs frame"
 (fset 'yes-or-no-p 'y-or-n-p)                ;; make all "yes or no" prompts show "y or n" instead
 (setq compilation-read-command nil)          ;; compilation: autocompile without prompting the user, unless you give it a prefix argument
 (setq TeX-PDF-mode t)                        ;; get AUCTeX to work in PDF insted of dvi mode
+(setq vc-follow-symlinks t)                  ;; annoying prompt in git
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; custom mode hooks
