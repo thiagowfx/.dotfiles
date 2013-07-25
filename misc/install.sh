@@ -6,10 +6,10 @@
 # Variables - customize here
 ########################################
 
-dir       = ~/dotfiles		# dotfiles directory
-olddir    = ~/.dotfiles_backup	# old dotfiles backup directory
-vundledir = ~/.vim/bundle/vundle
-files     = ".bashrc .conkyrc .emacs .gitconfig .gitignore .vimrc .yaourtrc .zshrc" # list of files/folders to symlink in homedir
+dir=~/dotfiles		# dotfiles directory
+olddir=~/.dotfiles_backup	# old dotfiles backup directory
+vundledir=~/.vim/bundle/vundle
+files=".bashrc .conkyrc .emacs .gitconfig .gitignore .vimrc .yaourtrc .zshrc" # list of files/folders to symlink in homedir
 
 ########################################
 
