@@ -26,3 +26,6 @@ export SHELL=/usr/bin/bash
 export PATH="/opt:$PATH"
 export EDITOR="emacs -nw"
 export BROWSER=/usr/bin/xdg-open
+
+# bash-only aliases
+alias redo="fc -s"

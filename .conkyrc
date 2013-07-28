@@ -62,9 +62,9 @@ color2 gray
 #  Output                                    #
 ##############################################
 TEXT
-${font sans-serif:bold:size=8}OVERVIEW ${hr 2}
-${font sans-serif:normal:size=8}BAT:$alignr${battery_short BAT1} - ${battery_time BAT1}
-${battery_bar BAT1}
+${font sans-serif:bold:size=8}OVERVIEW ${hr 2}${font sans-serif:normal:size=8}
+# BAT:$alignr${battery_short BAT1} - ${battery_time BAT1}
+# ${battery_bar BAT1}
 CPUs: $alignr${cpu cpu0}% | ${cpu cpu1}%
 ${cpubar 5,80 cpu0}$alignr${cpubar 5,80 cpu1}
 RAM: $alignr$mem/$memmax
@@ -73,35 +73,34 @@ SWAP: $alignr$swap/$swapmax
 $swapbar
 DISK:$alignr${diskio /dev/sda}
 ${diskiograph /dev/sda}
-/   ${fs_bar 5,50 /}$alignr${fs_used /}/${fs_size /}
-/home $alignr${fs_used /home}/${fs_size /home}
+/$alignr${fs_used /}/${fs_size /}  ${fs_bar 5,30 /}
+/home$alignr${fs_used /home}/${fs_size /home}  ${fs_bar 5,30 /home}
 
-${font sans-serif:bold:size=8}MISC ${hr 2}
-${font sans-serif:normal:size=8}ACPI:$alignr$acpitemp ºC
-Processes:$alignr$processes
-Running:$alignr$running_processes
+${font sans-serif:bold:size=8}MISC ${hr 2}${font sans-serif:normal:size=8}
+Processes:$alignr$processes 
+Running:$alignr$running_processes 
 
-${font sans-serif:bold:size=8}NETWORK ${hr 2}
-${font sans-serif:normal:size=8}IP Address:$alignr${addr wlp4s0}
-AP:$alignr${wireless_essid wlp4s0}
-Link: ${wireless_link_bar 5,90 wlp4s0} $alignr ${wireless_link_qual wlp4s0}/${wireless_link_qual_max wlp4s0}
-Total D/U:$alignr${totaldown wlp4s0} / ${totalup wlp4s0}
-Down speed:$alignr${downspeedf wlp4s0} kB/s
-${downspeedgraph wlp4s0}
-Up speed:$alignr${upspeedf wlp4s0} kB/s
-${upspeedgraph wlp4s0}
+${font sans-serif:bold:size=8}NETWORK ${hr 2}${font sans-serif:normal:size=8}
+IP Address:$alignr${addr wlp0s29f7u2}
+AP:$alignr${wireless_essid wlp0s29f7u2}
+Link: ${wireless_link_bar 5,90 wlp0s29f7u2} $alignr ${wireless_link_qual wlp0s29f7u2}/${wireless_link_qual_max wlp0s29f7u2}
+Total D/U:$alignr${totaldown wlp0s29f7u2} / ${totalup wlp0s29f7u2}
+Down speed:$alignr${downspeedf wlp0s29f7u2} kB/s
+${downspeedgraph wlp0s29f7u2}
+Up speed:$alignr${upspeedf wlp0s29f7u2} kB/s
+${upspeedgraph wlp0s29f7u2}
 
-${font sans-serif:bold:size=8}SYSTEM ${hr 2}
-${font sans-serif:normal:size=8}$sysname $kernel $alignr $machine
+${font sans-serif:bold:size=8}SYSTEM ${hr 2}${font sans-serif:normal:size=8}
+$sysname $kernel $alignr$machine
 Host:$alignr$nodename
 Uptime:$alignr$uptime
 
-${font sans-serif:bold:size=8}TOP RAM${hr 2}
-${font sans-serif:normal:size=8}${top_mem name 1}${alignr}${top mem 1} %
-${top_mem name 2}${alignr}${top mem 2} %
-${top_mem name 3}${alignr}${top mem 3} %
-${top_mem name 4}${alignr}${top mem 4} %
-${top_mem name 5}${alignr}${top mem 5} %
+${font sans-serif:bold:size=8}TOP RAM${hr 2}${font sans-serif:normal:size=8}
+${top_mem name 1}${alignr}${top_mem mem_res 1}  ${top_mem mem 1} %
+${top_mem name 2}${alignr}${top_mem mem_res 2}  ${top_mem mem 2} %
+${top_mem name 3}${alignr}${top_mem mem_res 3}  ${top_mem mem 3} %
+${top_mem name 4}${alignr}${top_mem mem_res 4}  ${top_mem mem 4} %
+${top_mem name 5}${alignr}${top_mem mem_res 5}  ${top_mem mem 5} %
 
 ${font sans-serif:bold:size=8}TOP CPU${hr 2}
 ${font sans-serif:normal:size=8}${top name 1}${alignr}${top cpu 1} %

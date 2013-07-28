@@ -92,7 +92,7 @@ alias mount-iso="mount -o loop"
 alias youtube-dl-mp3-download="youtube-dl -t --restrict-filenames --extract-audio --audio-format mp3"
 alias youtube-dl-video-download="youtube-dl -t --restrict-filenames"
 
-# most used commands
+# most used commands - based on http://crunchbang.org/forums/viewtopic.php?id=6487
 alias top10="fc -l 0 | awk '{print \$2}' | awk 'BEGIN {FS=\"|\"} {print \$1}' | sort | uniq -c | sort -rn | head -n 10"
 
 # windows
@@ -135,4 +135,9 @@ function changeroot {
 # output
 if [[ -f /usr/bin/alsi ]]; then
     alsi    # alt: archey, screenfetch
+fi
+
+
+if [[ -e ~/.zshrc-custom ]]; then
+    source ~/.zshrc-custom
 fi
