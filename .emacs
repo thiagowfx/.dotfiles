@@ -19,6 +19,8 @@
 ;; auto-complete - support for autocompletion
 ;; magit - git support
 ;; redo+ - utilities for redo
+;; eldoc
+;; emacs-pkgbuild-mode (for arch linux)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; defuns
@@ -161,8 +163,13 @@ and set the focus back to Emacs frame"
 (setq TeX-PDF-mode t)                        ;; get AUCTeX to work in PDF insted of dvi mode
 (setq vc-follow-symlinks t)                  ;; annoying prompt in git
 
+;; eldoc mode (function signatures in modeline)
+(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; custom mode hooks
+;; Custom mode hooks
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C++
 (add-hook 'c++-mode-hook 
@@ -304,3 +311,7 @@ and set the focus back to Emacs frame"
 (require 'popup)
 (setq ac-modes '(c-mode c++-mode emacs-lisp-mode tex-mode latex-mode))
 (global-auto-complete-mode t)
+
+;; emacs-pkgbuild-mode in Arch Linux
+(autoload 'pkgbuild-mode "pkgbuild-mode.el" "PKGBUILD mode." t)
+(setq auto-mode-alist (append '(("/PKGBUILD$" . pkgbuild-mode)) auto-mode-alist))
