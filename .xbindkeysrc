@@ -1,0 +1,32 @@
+# emacs: -*- shell-script -*-
+
+# By defaults, xbindkeys does not pay attention with the modifiers
+# NumLock, CapsLock and ScrollLock.
+# Uncomment the lines above if you want to pay attention to them.
+
+#keystate_numlock = enable
+#keystate_capslock = enable
+#keystate_scrolllock= enable
+
+# Use xbindkeys -d to generate an example file
+# Use xbindkeys -k to find the code of a keystroke
+# Use xbindkeys -mk to find codes of multiple keystrokes
+# Use xbindkeys_show to see the keys already mapped
+
+## Examples of commands:
+#"xterm -geom 50x20+20+20"
+#   Shift+Mod2+alt + s
+#
+## Control+Shift+a  release event starts rxvt
+#"rxvt"
+#  release+control+shift + a
+#
+## Control + mouse button 2 release event starts rxvt
+#"rxvt"
+#  Control + b:2 + Release
+
+"xbindkeys_show" 
+  control+shift + q
+
+"dmenu-launch"     # dmenu_run
+  Alt+Mod2 + F3

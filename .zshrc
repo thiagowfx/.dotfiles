@@ -51,13 +51,13 @@ bindkey '\eOF' end-of-line
 
 # distro specific commands
 if [[ -f /etc/arch-release ]]; then
-    alias world="sudo pacman -Syy && sudo pacman -Syu"
+    alias world="sudo pacman -Syy && sudo pacman -Syu && sudo pacman-optimize"
 elif
     [[ -f /etc/gentoo-release ]]; then
     alias world=""
 elif
     [[ -f /etc/debian-release ]]; then
-    alias world="sudo apt-get -y update && sudo apt-get -y upgrade && sudo apt-get -y dist-upgrade && sudo apt-get -y autoclean && sudo apt-get -y autoremove"
+    alias world="sudo apt-get -y update && sudo apt-get -y upgrade && sudo apt-get -y dist-upgrade && sudo apt-get -y autoclean && sudo apt-get -y autoremove" # alt: aptitude
     # fedora
     # alias world="sudo yum -y update && sudo yum -y upgrade"
     # openSUSE
