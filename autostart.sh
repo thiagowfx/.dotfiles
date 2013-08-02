@@ -14,3 +14,4 @@ synclient PalmMinZ=200
 # set my keyboard to br
 setxkbmap br
 
+xbindkeys &
