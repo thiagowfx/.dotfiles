@@ -51,7 +51,7 @@ bindkey '\eOF' end-of-line
 
 # distro specific commands
 if [[ -f /etc/arch-release  ]]; then
-    alias world="sudo pacman -Syy && sudo pacman -Syu && sudo pacman-optimize"
+    alias world="sudo pacman -Syy && sudo pacman -Syu && yaourt -Sbu --aur" # && sudo pacman-optimize"
 elif
     [[ -f /etc/manjaro-release ]]; then
     alias world="sudo pacman -Syy && sudo pacman -Syu && sudo pacman-optimize"
@@ -102,8 +102,7 @@ alias ipconfig="ifconfig"	# alt: ip addr
 
 # functions
 # ex - archive extractor
-ex ()
-{
+ex () {
   if [ -f $1 ] ; then
     case $1 in
       *.tar.bz2)   tar xjf $1   ;;
@@ -123,6 +122,14 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
+
+# sort aur packages by their number of votes
+# https://bbs.archlinux.org/viewtopic.php?id=167554
+cower_votes() {
+    cower --format "%n %o" -s $1 | grep $1 | grep -v extension | sort -nk 2 | column -t
+}
+
+
 function changeroot {
     sudo cp -L /etc/resolv.conf $1/etc/resolv.conf
     sudo mount -t proc proc $1/proc
