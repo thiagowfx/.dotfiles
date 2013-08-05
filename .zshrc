@@ -54,7 +54,7 @@ if [[ -f /etc/arch-release  ]]; then
     alias world="sudo pacman -Syy && sudo pacman -Syu && yaourt -Sbu --aur" # && sudo pacman-optimize"
 elif
     [[ -f /etc/manjaro-release ]]; then
-    alias world="sudo pacman -Syy && sudo pacman -Syu && sudo pacman-optimize"
+    alias world="sudo pacman -Syy && sudo pacman -Syu && yaourt -Sbu --aur" # && sudo pacman-optimize"
 elif
     [[ -f /etc/debian-release ]]; then
     alias world="sudo apt-get -y update && sudo apt-get -y upgrade && sudo apt-get -y dist-upgrade && sudo apt-get -y autoclean && sudo apt-get -y autoremove" # alt: aptitude
