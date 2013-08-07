@@ -9,6 +9,7 @@ fi
 # enable sudo autocompletion
 complete -cf sudo
 
+set -o emacs
 # shopt -s cdspell
 # shopt -s checkwinsize
 # shopt -s cmdhist

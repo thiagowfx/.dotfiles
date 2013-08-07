@@ -63,8 +63,8 @@ color2 gray
 ##############################################
 TEXT
 ${font sans-serif:bold:size=8}OVERVIEW ${hr 2}${font sans-serif:normal:size=8}
-# BAT:$alignr${battery_short BAT1} - ${battery_time BAT1}
-# ${battery_bar BAT1}
+BAT:$alignr${battery_short BAT1} - ${battery_time BAT1}
+${battery_bar BAT1}
 CPUs: $alignr${cpu cpu0}% | ${cpu cpu1}%
 ${cpubar 5,80 cpu0}$alignr${cpubar 5,80 cpu1}
 RAM: $alignr$mem/$memmax

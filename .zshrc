@@ -24,7 +24,7 @@ RPROMPT=""
 export SHELL=/usr/bin/zsh
 export PATH="/opt:$PATH"
 export EDITOR="emacs -nw"
-export VISUAL="emacs"
+export VISUAL="emacs" # X editor
 export BROWSER=/usr/bin/xdg-open
 
 # misc
@@ -39,7 +39,7 @@ prompt suse
 bindkey -e			        # emacs
 bindkey '\e[A' history-search-backward
 bindkey '\e[B' history-search-forward
-bindkey '^K' kill-whole-line
+# bindkey '^K' kill-whole-line
 bindkey "\e[H" beginning-of-line        # Home (xorg)
 bindkey "\e[1~" beginning-of-line       # Home (console)
 bindkey "\e[4~" end-of-line             # End (console)
