@@ -50,18 +50,18 @@ bindkey '\eOH' beginning-of-line
 bindkey '\eOF' end-of-line
 
 # distro specific commands
-if [[ -f /etc/arch-release  ]]; then
-    alias world="sudo pacman -Syy && sudo pacman -Syu && yaourt -Sbu --aur" # && sudo pacman-optimize"
-elif
-    [[ -f /etc/manjaro-release ]]; then
-    alias world="sudo pacman -Syy && sudo pacman -Syu && yaourt -Sbu --aur" # && sudo pacman-optimize"
+if [[ -f /etc/arch-release  ]] || [[ -f /etc/manjaro-release ]]; then
+    alias world="sudo pacman -Syy && sudo pacman -Syu"
+    alias worldworld="sudo pacman -Syy && sudo pacman -Syu && sudo pacman-optimize && yaourt -Sbu --aur"
 elif
     [[ -f /etc/debian-release ]]; then
     alias world="sudo apt-get -y update && sudo apt-get -y upgrade && sudo apt-get -y dist-upgrade && sudo apt-get -y autoclean && sudo apt-get -y autoremove" # alt: aptitude
-    # fedora
-    # alias world="sudo yum -y update && sudo yum -y upgrade"
-    # openSUSE
-    # alias world="sudo zypper -n update && sudo zypper -n upgrade && sudo -n zypper dup"
+elif
+    [[ -f /etc/fedora-release ]]; then
+    alias world="sudo yum -y update && sudo yum -y upgrade"
+elif
+    [[ -f /etc/suse-release ]]; then
+    alias world="sudo zypper -n update && sudo zypper -n upgrade && sudo -n zypper dup"
 fi
 
 # aliases, tweaking some common tasks
