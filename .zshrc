@@ -82,19 +82,21 @@ alias mv="mv -v"
 alias pgrep="pgrep --list-name"
 alias rm="rm -v -i"
 alias vi="vim"
-alias wget-utils="wget -mpEkK -np -t inf -T 60 --"
-alias wget-utils-pdf="wget -A pdf -mpEkK -np -t inf -T 60 --"
 
 # shorthands
+
+# download webpage
+alias wget-utils="wget -mpEkK -np -t inf -T 60 --"
+alias wget-utils-pdf="wget -A pdf -mpEkK -np -t inf -T 60 --"
 
 # mount cd/dvd
 alias mount-iso="mount -o loop"
 
-# require youtube-dl package
+# this method requires youtube-dl program
 alias youtube-dl-mp3-download="youtube-dl -t --restrict-filenames --extract-audio --audio-format mp3"
 alias youtube-dl-video-download="youtube-dl -t --restrict-filenames"
 
-# most used commands - based on http://crunchbang.org/forums/viewtopic.php?id=6487
+# most used commands @ ZSH - based on http://crunchbang.org/forums/viewtopic.php?id=6487
 alias top10="fc -l 0 | awk '{print \$2}' | awk 'BEGIN {FS=\"|\"} {print \$1}' | sort | uniq -c | sort -rn | head -n 10"
 
 # windows
