@@ -82,6 +82,8 @@ alias mv="mv -v"
 alias pgrep="pgrep --list-name"
 alias rm="rm -v -i"
 alias vi="vim"
+alias wget-utils="wget -mpEkK -np -t inf -T 60 --"
+alias wget-utils-pdf="wget -A pdf -mpEkK -np -t inf -T 60 --"
 
 # shorthands
 
