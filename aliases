@@ -55,7 +55,7 @@ elif
 elif
     [[ -f /etc/fedora-release ]]; then
     alias world="sudo yum -y update && sudo yum -y upgrade"
-    alias worldworld="sudo yum -y update && sudo yum -y upgrade && sudo yum -y autoremove && sudo yum -y clean"
+    alias worldworld="sudo yum -y update && sudo yum -y upgrade && sudo yum -y autoremove && sudo yum -y clean all"
 elif
     [[ -f /etc/suse-release ]]; then
     alias world="sudo zypper -n update && sudo zypper -n upgrade && sudo -n zypper dup"

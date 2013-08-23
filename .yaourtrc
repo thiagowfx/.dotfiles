@@ -1,29 +1,9 @@
-#########################################################################
-# Copyright (C) 2013-2013 Thiago Barroso Perrotta.			#
-#									#
-# This program is free software: you can redistribute it and/or modify  #
-# it under the terms of the GNU General Public License as published by  #
-# the Free Software Foundation, either version 3 of the License, or     #
-# (at your option) any later version.				        #
-# 								        #
-# This program is distributed in the hope that it will be useful,       #
-# but WITHOUT ANY WARRANTY; without even the implied warranty of        #
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the	        #
-# GNU General Public License for more details.			        #
-# 								        #
-# You should have received a copy of the GNU General Public License     #
-# along with this program.  If not, see <http://www.gnu.org/licenses/>. #
-#########################################################################
-
-# I configured this file with my custom options while reading the yaourtrc man page. Feel free to fork it if you want.
-
-# set my custom editor
-EDITOR="emacs -nw"
+# I've configured this file with my custom options while reading the yaourtrc man page.
 
 # do ask for confirmation when installing packages
 NOCONFIRM=0
 
-# don't prompt me to edit PKGBUILDS
+# do not prompt me to edit PKGBUILDS
 EDITFILES=0
 
 # colorful please (-;
