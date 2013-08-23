@@ -20,7 +20,6 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 COMPLETION_WAITING_DOTS="true"
-RPROMPT=""
 export SHELL=/usr/bin/zsh
 export PATH="/opt:$PATH"
 export EDITOR="emacs -nw"
@@ -29,11 +28,14 @@ export BROWSER=/usr/bin/xdg-open
 
 # misc
 autoload -U zutil
-autoload -U compinit
-compinit
+autoload -U compinit && compinit
 autoload -U complist
-setopt appendhistory autocd beep extendedglob nomatch 
-prompt suse
+autoload -U colors && colors
+setopt appendhistory autocd beep extendedglob nomatch
+
+# prompt suse
+PROMPT="%{$fg_bold[blue]%}%n%{$reset_color%}%{$fg_bold[yellow]%}@%{$reset_color%}%{$fg_bold[blue]%}%m%{$reset_color%}:%{$fg_bold[yellow]%}%~%{$reset_color%} %# "
+RPROMPT="%{$fg_bold[blue]%}%? - %*%{$reset_color%}"
 
 # keybindings
 bindkey -e			        # emacs
@@ -91,6 +93,9 @@ alias wget-utils-pdf="wget -A pdf -mpEkK -np -t inf -T 60 --"
 
 # mount cd/dvd
 alias mount-iso="mount -o loop"
+
+# rsync over LAN/SSH
+alias rsync-dotfiles="rsync -uzlLh --verbose --times --recursive --progress --delete-excluded ~/dotfiles"
 
 # this method requires youtube-dl program
 alias youtube-dl-mp3-download="youtube-dl -t --restrict-filenames --extract-audio --audio-format mp3"
