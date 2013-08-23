@@ -1,3 +1,5 @@
+# -*- lua -*-
+
 #########################################################################
 # Copyright (C) 2013-2013 Thiago Barroso Perrotta.			#
 #									#
@@ -34,7 +36,7 @@ update_interval 1.0
 total_run_times 0
 own_window yes
 own_window_transparent no
-own_window_type desktop
+own_window_type desktop # normal
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 own_window_colour black
 double_buffer yes
@@ -81,14 +83,14 @@ Processes:$alignr$processes
 Running:$alignr$running_processes 
 
 ${font sans-serif:bold:size=8}NETWORK ${hr 2}${font sans-serif:normal:size=8}
-IP Address:$alignr${addr wlp0s29f7u2}
-AP:$alignr${wireless_essid wlp0s29f7u2}
-Link: ${wireless_link_bar 5,90 wlp0s29f7u2} $alignr ${wireless_link_qual wlp0s29f7u2}/${wireless_link_qual_max wlp0s29f7u2}
-Total D/U:$alignr${totaldown wlp0s29f7u2} / ${totalup wlp0s29f7u2}
-Down speed:$alignr${downspeedf wlp0s29f7u2} kB/s
-${downspeedgraph wlp0s29f7u2}
-Up speed:$alignr${upspeedf wlp0s29f7u2} kB/s
-${upspeedgraph wlp0s29f7u2}
+IP Address:$alignr${addr wlp4s0}
+AP:$alignr${wireless_essid wlp4s0}
+Link: ${wireless_link_bar 5,90 wlp4s0} $alignr ${wireless_link_qual wlp4s0}/${wireless_link_qual_max wlp4s0}
+Total D/U:$alignr${totaldown wlp4s0} / ${totalup wlp4s0}
+Down speed:$alignr${downspeedf wlp4s0} kB/s
+${downspeedgraph wlp4s0}
+Up speed:$alignr${upspeedf wlp4s0} kB/s
+${upspeedgraph wlp4s0}
 
 ${font sans-serif:bold:size=8}SYSTEM ${hr 2}${font sans-serif:normal:size=8}
 $sysname $kernel $alignr$machine

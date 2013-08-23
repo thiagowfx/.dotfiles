@@ -36,30 +36,31 @@ done
 ########################################
 # create symlinks for folders
 ########################################
-if [[ -f $musicdir ]]; then
-    touch .dummy
-else
-    mkdir -p $musicdir
-    ln -s $musicdir ~/Music
-fi
-
-if [[ -f $picturesdir ]]; then
-    touch .dummy
-else
-    mkdir -p $picturesdir
-    ln -s $picturesdir ~/Pictures
-fi
-
-if [[ -f $videosdir ]]; then
-    touch .dummy
-else
-    mkdir -p $videosdir
-    ln -s $videosdir ~/Videos
-fi
-
-if [[ -f $templatesdir ]]; then
-    touch .dummy
-else
-    mkdir -p $templatesdir
-    ln -s $templatesdir ~/Templates
-fi
+# if [[ -f $musicdir ]]; then
+#     touch .dummy
+# else
+#     mkdir -p $musicdir
+#     ln -s $musicdir ~/Music
+# fi
+# 
+# if [[ -f $picturesdir ]]; then
+#     touch .dummy
+# else
+#     mkdir -p $picturesdir
+#     ln -s $picturesdir ~/Pictures
+# fi
+# 
+# if [[ -f $videosdir ]]; then
+#     touch .dummy
+# else
+#     mkdir -p $videosdir
+#     ln -s $videosdir ~/Videos
+# fi
+# 
+# if [[ -f $templatesdir ]]; then
+#     touch .dummy
+# else
+#     mkdir -p $templatesdir
+#     ln -s $templatesdir ~/Templates
+# fi
+# 

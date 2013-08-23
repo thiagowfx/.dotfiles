@@ -20,13 +20,10 @@ set -o emacs
 # shopt -s hostcomplete
 # shopt -s nocaseglob
 
-export HISTSIZE=10000
-export HISTFILESIZE=${HISTSIZE}
-export HISTCONTROL=ignoreboth
 export SHELL=/usr/bin/bash
-export PATH="/opt:$PATH"
-export EDITOR="emacs -nw"
-export BROWSER=/usr/bin/xdg-open
+
+# aliases
+[[ -f ~/dotfiles/aliases ]] && . ~/dotfiles/aliases
 
 # bash-only aliases
 alias redo="fc -s"
