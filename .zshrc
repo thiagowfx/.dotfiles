@@ -92,4 +92,4 @@ if [[ -f /usr/bin/alsi ]]; then
     alsi    # alt: archey, screenfetch
 fi
 
-[[ which /usr/bin/fortune ]] && /usr/bin/fortune
+[[ -f /usr/bin/fortune ]] && /usr/bin/fortune
