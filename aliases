@@ -39,6 +39,9 @@ alias youtube-dl-flv-template="youtube-dl -t --restrict-filenames"
 # most used commands @ ZSH - based on http://crunchbang.org/forums/viewtopic.php?id=6487
 alias top10-zsh="fc -l 0 | awk '{print \$2}' | awk 'BEGIN {FS=\"|\"} {print \$1}' | sort | uniq -c | sort -rn | head -n 10"
 
+# programs
+alias copy-agent-location="/opt/copy/x86/CopyAgent"
+
 ## windows like
 alias cls="clear"
 alias tracert="traceroute"
