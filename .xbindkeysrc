@@ -1,4 +1,4 @@
-# emacs: -*- shell-script -*-
+# -*- shell-script -*-
 
 # By defaults, xbindkeys does not pay attention with the modifiers
 # NumLock, CapsLock and ScrollLock.

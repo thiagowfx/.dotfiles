@@ -15,16 +15,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>. #
 #########################################################################
 
-# variables
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-COMPLETION_WAITING_DOTS="true"
+# environment variables
 export SHELL=/usr/bin/zsh
-export PATH="/opt:$PATH"
-export EDITOR="emacs -nw"
-export VISUAL="emacs" # X editor
-export BROWSER=/usr/bin/xdg-open
+COMPLETION_WAITING_DOTS="true"
 
 # misc
 autoload -U zutil
@@ -33,9 +26,10 @@ autoload -U complist
 autoload -U colors && colors
 setopt appendhistory autocd beep extendedglob nomatch
 
-# prompt suse
+# prompt 
 PROMPT="%{$fg_bold[blue]%}%n%{$reset_color%}%{$fg_bold[yellow]%}@%{$reset_color%}%{$fg_bold[blue]%}%m%{$reset_color%}:%{$fg_bold[yellow]%}%~%{$reset_color%} %# "
 RPROMPT="%{$fg_bold[blue]%}%? - %*%{$reset_color%}"
+# prompt suse
 
 # keybindings
 bindkey -e			        # emacs
@@ -51,63 +45,8 @@ bindkey "\e[3~" delete-char             # Delete
 bindkey '\eOH' beginning-of-line
 bindkey '\eOF' end-of-line
 
-# distro specific commands
-if [[ -f /etc/arch-release  ]] || [[ -f /etc/manjaro-release ]]; then
-    alias world="sudo pacman -Syy && sudo pacman -Syu"
-    alias worldworld="sudo pacman -Syy && sudo pacman -Syu && sudo pacman-optimize && yaourt -Sbu --aur"
-elif
-    [[ -f /etc/debian-release ]]; then
-    alias world="sudo apt-get -y update && sudo apt-get -y upgrade && sudo apt-get -y dist-upgrade && sudo apt-get -y autoclean && sudo apt-get -y autoremove" # alt: aptitude
-elif
-    [[ -f /etc/fedora-release ]]; then
-    alias world="sudo yum -y update && sudo yum -y upgrade"
-elif
-    [[ -f /etc/suse-release ]]; then
-    alias world="sudo zypper -n update && sudo zypper -n upgrade && sudo -n zypper dup"
-fi
-
-# aliases, tweaking some common tasks
-alias cp="cp -v -i"                         # confirm before overwriting something
-alias chmod="chmod -v"
-alias chown="chown -v"
-alias df='df -h'                          # human-readable sizes
-alias cp="cp -i -v"
-alias em="emacs -nw"
-alias free='free -m'                      # show sizes in MB
-alias grep="grep --color=auto -E -d skip"
-alias l="ls -1A --color=auto"
-alias la='ls -la --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
-alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
-alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
-alias ln="ln -v"
-alias mv="mv -v"
-alias pgrep="pgrep --list-name"
-alias rm="rm -v -i"
-alias vi="vim"
-
-# shorthands / templates
-
-# download webpage
-alias wget-template="wget -mpEkK -np -t inf -T 60 --"
-alias wget-template-pdf="wget -A pdf -mpEkK -np -t inf -T 60 --"
-
-# mount cd/dvd
-alias mount-iso-template="mount -o loop"
-
-# rsync over LAN/SSH
-alias rsync-template="rsync -uzlLh --verbose --times --recursive --progress --delete-excluded"
-
-# this method requires youtube-dl program
-alias youtube-dl-mp3-template="youtube-dl -t --restrict-filenames --extract-audio --audio-format mp3"
-alias youtube-dl-video-template="youtube-dl -t --restrict-filenames"
-
-# most used commands @ ZSH - based on http://crunchbang.org/forums/viewtopic.php?id=6487
-alias top10="fc -l 0 | awk '{print \$2}' | awk 'BEGIN {FS=\"|\"} {print \$1}' | sort | uniq -c | sort -rn | head -n 10"
-
-# windows
-alias cls="clear"
-alias tracert="traceroute"
-alias ipconfig="ifconfig"	# alt: ip addr
+# aliases
+[[ -f ~/dotfiles/aliases ]] && source ~/dotfiles/aliases
 
 # functions
 # ex - archive extractor
@@ -132,7 +71,7 @@ ex () {
   fi
 }
 
-# sort aur packages by their number of votes
+# sort aur packages by their number of votes -- requires cower program
 # https://bbs.archlinux.org/viewtopic.php?id=167554
 cower_votes() {
     cower --format "%n %o" -s $1 | grep $1 | grep -v extension | sort -nk 2 | column -t
@@ -148,12 +87,9 @@ function changeroot {
     sudo chroot $1/ /bin/bash
 }
 
-# output
+# arch linux info
 if [[ -f /usr/bin/alsi ]]; then
     alsi    # alt: archey, screenfetch
 fi
 
-
-if [[ -e ~/.zshrc-custom ]]; then
-    source ~/.zshrc-custom
-fi
+[[ which /usr/bin/fortune ]] && /usr/bin/fortune

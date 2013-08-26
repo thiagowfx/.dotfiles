@@ -1,0 +1,74 @@
+# -*- shell-script -*-
+
+## tweaking programs
+alias cp="cp -v -i"                       # confirm before overwriting something
+alias chmod="chmod -v"
+alias chown="chown -v"
+alias df='df -h'                          # human-readable sizes
+alias cp="cp -i -v"
+alias em="emacs -nw"
+alias free='free -m'                      # show sizes in MB
+alias grep="grep --color=auto -E -d skip"
+alias l="ls -1A --color=auto"
+alias la='ls -la --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+alias ln="ln -v"
+alias mv="mv -v"
+alias pgrep="pgrep --list-name"
+alias rm="rm -v -i"
+alias vi="vim"
+
+## shorthands
+
+# download webpage
+alias wget-template="wget -mpEkK -np -t inf -T 60 --"
+alias wget-template-pdf="wget -A pdf -mpEkK -np -t inf -T 60 --"
+
+# mount cd/dvd
+alias mount-iso-template="mount -o loop"
+
+# rsync over LAN/SSH
+alias rsync-template="rsync -uzlLh --verbose --times --recursive --progress"
+alias rsync-exclude-template="rsync -uzlLh --verbose --times --recursive --progress --delete-excluded"
+
+# download youtube videos
+alias youtube-dl-mp3-template="youtube-dl -t --restrict-filenames --extract-audio --audio-format mp3"
+alias youtube-dl-flv-template="youtube-dl -t --restrict-filenames"
+
+# most used commands @ ZSH - based on http://crunchbang.org/forums/viewtopic.php?id=6487
+alias top10-zsh="fc -l 0 | awk '{print \$2}' | awk 'BEGIN {FS=\"|\"} {print \$1}' | sort | uniq -c | sort -rn | head -n 10"
+
+## windows like
+alias cls="clear"
+alias tracert="traceroute"
+alias ipconfig="ifconfig"	# alt: ip addr
+
+## distro specific commands
+if [[ -f /etc/arch-release  ]] || [[ -f /etc/manjaro-release ]]; then
+    alias world="sudo pacman -Syy && sudo pacman -Syu"
+    alias worldworld="sudo pacman -Syy && sudo pacman -Syu && sudo pacman-optimize && yaourt -Sbu --aur"
+elif
+    [[ -f /etc/debian-release ]] || [[ -f /etc/ubuntu-release ]]; then
+    alias world="sudo apt-get -y update && sudo apt-get -y upgrade"
+    alias worldworld="sudo apt-get -y update && sudo apt-get -y upgrade && sudo apt-get -y dist-upgrade && sudo apt-get -y autoclean && sudo apt-get -y autoremove"
+elif
+    [[ -f /etc/fedora-release ]]; then
+    alias world="sudo yum -y update && sudo yum -y upgrade"
+    alias worldworld="sudo yum -y update && sudo yum -y upgrade && sudo yum -y autoremove && sudo yum -y clean all"
+elif
+    [[ -f /etc/suse-release ]]; then
+    alias world="sudo zypper -n update && sudo zypper -n upgrade && sudo -n zypper dup"
+fi
+
+## common environment variables
+
+# control history
+export HISTSIZE=10000
+export HISTFILESIZE=${HISTSIZE}
+export HISTCONTROL=ignoreboth
+
+export PATH="opt/:$PATH"
+export BROWSER="/usr/bin/xdg-open"
+export EDITOR="emacs -nw"
+export VISUAL="emacs"
