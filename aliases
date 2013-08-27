@@ -22,8 +22,9 @@ alias vi="vim"
 ## shorthands
 
 # download webpage
-alias wget-template="wget -mpEkK -np -t inf -T 60 --"
-alias wget-template-pdf="wget -A pdf -mpEkK -np -t inf -T 60 --"
+alias wget-template="wget -e robots=off -mpEkK -np -t inf -T 60 --"
+alias wget-template-pdf="wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
+alias wget-template-span="wget -e robots=off --wait=2 --random-wait --recursive --span-hosts --spider --timestamping --tries=5 --dns-timeout=30 --connect-timeout=5 --read-timeout=5 --level=10 --"
 
 # mount cd/dvd
 alias mount-iso-template="mount -o loop"
@@ -69,6 +70,6 @@ export HISTFILESIZE=${HISTSIZE}
 export HISTCONTROL=ignoreboth
 
 export PATH="opt/:$PATH"
-export BROWSER="/usr/bin/xdg-open"
+export BROWSER="/usr/bin/firefox"
 export EDITOR="emacs -nw"
 export VISUAL="emacs"

@@ -30,3 +30,7 @@
 
 "dmenu-launch"     # dmenu_run
   Alt+Mod2 + F3
+  
+"xkill"
+  Control+Alt+Mod2 + Escape
+    
