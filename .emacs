@@ -25,6 +25,10 @@
 ; redo+ - utilities for redo
 ; emacs-pkgbuild-mode (for arch linux)
 
+; predictive{-mode} -- maybe you'll have to download it manually + follow instructions:
+; http://www.emacswiki.org/emacs/PredictiveMode
+; http://www.dr-qubit.org/predictive/predictive-user-manual/html/Obtaining-and-Installing.html#Obtaining-and-Installing
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; file associations
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -92,8 +96,8 @@
 (winner-mode t)
 
 ;; don't annoy me with backup files everywhere
-(setq make-backup-files nil
-      auto-save-default nil)
+;(setq make-backup-files nil
+;      auto-save-default nil)
 
 ;; lines
 (setq require-final-newline t
@@ -236,9 +240,14 @@
 ; - http://www.djcbsoftware.nl/dot-emacs.html
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;custom dark theme for emacs
+;;custom dark theme for emacs + AuCTeX editing
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(custom-set-variables 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(TeX-command-list (quote (("TeX" "%(PDF)%(tex) %`%S%(PDFout)%(mode)%' %t" TeX-run-TeX nil (plain-tex-mode texinfo-mode ams-tex-mode) :help "Run plain TeX") ("LaTeX" "%`%l%(mode)%' %t" TeX-run-TeX nil (latex-mode doctex-mode) :help "Run LaTeX") ("Makeinfo" "makeinfo %t" TeX-run-compile nil (texinfo-mode) :help "Run Makeinfo with Info output") ("Makeinfo HTML" "makeinfo --html %t" TeX-run-compile nil (texinfo-mode) :help "Run Makeinfo with HTML output") ("AmSTeX" "%(PDF)amstex %`%S%(PDFout)%(mode)%' %t" TeX-run-TeX nil (ams-tex-mode) :help "Run AMSTeX") ("ConTeXt" "texexec --once --texutil %(execopts)%t" TeX-run-TeX nil (context-mode) :help "Run ConTeXt once") ("ConTeXt Full" "texexec %(execopts)%t" TeX-run-TeX nil (context-mode) :help "Run ConTeXt until completion") ("BibTeX" "bibtex %s" TeX-run-BibTeX nil t :help "Run BibTeX") ("View" "zathura %o" TeX-run-discard-or-function t t :help "Run Viewer") ("Print" "%p" TeX-run-command t t :help "Print the file") ("Queue" "%q" TeX-run-background nil t :help "View the printer queue" :visible TeX-queue-command) ("File" "%(o?)dvips %d -o %f " TeX-run-command t t :help "Generate PostScript file") ("Index" "makeindex %s" TeX-run-command nil t :help "Create index file") ("Check" "lacheck %s" TeX-run-compile nil (latex-mode) :help "Check LaTeX file for correctness") ("Spell" "(TeX-ispell-document \"\")" TeX-run-function nil t :help "Spell-check the document") ("Clean" "TeX-clean" TeX-run-function nil t :help "Delete generated intermediate files") ("Clean All" "(TeX-clean t)" TeX-run-function nil t :help "Delete generated intermediate and output files") ("Other" "" TeX-run-command t t :help "Run an arbitrary command"))))
  '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(custom-enabled-themes (quote (misterioso)))
  '(ecb-source-path (quote (("/" "/")))))
@@ -329,7 +338,6 @@ and set the focus back to Emacs frame"
 (setq ac-modes '(c-mode c++-mode emacs-lisp-mode tex-mode latex-mode))
 (global-auto-complete-mode t)
 
-
 ;; AuCTeX stuff
 (setq TeX-PDF-mode t)                        ;; get AUCTeX to work in PDF insted of dvi mode
 (setq TeX-auto-save t)
@@ -340,7 +348,6 @@ and set the focus back to Emacs frame"
 (add-hook 'LaTeX-mode-hook 'visual-line-mode)
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
-
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
 
@@ -350,25 +357,25 @@ and set the focus back to Emacs frame"
 (add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
 
 (defun ac-latex-mode-setup ()         ; add ac-sources to default ac-sources
-  (setq ac-sources
-     (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
-               ac-sources)))
-
+  (setq ac-sources (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
+			   ac-sources)))
 (add-hook 'latex-mode-hook 'ac-latex-mode-setup)
 
-;; define zathura as viewer, please
-(defcustom tex-my-viewer "zathura --fork -s -x \"emacsclient --eval '(progn (switch-to-buffer  (file-name-nondirectory \"'\"'\"%{input}\"'\"'\")) (goto-line %{line}))'\"" 
-  "PDF Viewer for TeX documents. You may want to fork the viewer
-so that it detects when the same document is launched twice, and
-persists when Emacs gets closed. 
-
-Simple command:
-
-  zathura --fork
-
-We can use
-
-  emacsclient --eval '(progn (switch-to-buffer  (file-name-nondirectory \"%{input}\")) (goto-line %{line}))'
-
-to reverse-search a pdf using SyncTeX. Note that the quotes and double-quotes matter and must be escaped appropriately."
-:safe 'stringp)
+;; predictive mode (example, for LaTeX)
+(add-to-list 'load-path "~/.emacs.d/predictive/")
+;; dictionary locations
+(add-to-list 'load-path "~/.emacs.d/predictive/latex/")
+(add-to-list 'load-path "~/.emacs.d/predictive/texinfo/")
+(add-to-list 'load-path "~/.emacs.d/predictive/html/")
+;; load predictive package
+; (require 'predictive)
+;; use libraries only when they are needed 
+(autoload 'predictive-mode "~/.emacs.d/predictive/predictive" "Turn on Predictive Completion Mode." t)
+;; set zathura to view documents
+(setq TeX-view-program-list '(("Evince" "zathura %o")))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

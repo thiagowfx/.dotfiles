@@ -34,9 +34,11 @@ xftfont monospace:size=9
 xftalpha 1
 update_interval 1.0
 total_run_times 0
+
+own_window_class Conky
 own_window yes
 own_window_transparent no
-own_window_type desktop # normal
+own_window_type normal # normal
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 own_window_colour black
 double_buffer yes
