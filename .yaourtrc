@@ -1,4 +1,5 @@
-# I've configured this file with my custom options while reading the yaourtrc man page.
+# -*- conf -*-
+# see `man yaourtrc` for more advanced configs
 
 # do ask for confirmation when installing packages
 NOCONFIRM=0

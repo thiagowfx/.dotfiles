@@ -1,3 +1,5 @@
+-*- emacs-lisp -*-
+
 (defun exec-program ()
   "Execute the current buffer name."
   (interactive)

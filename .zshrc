@@ -28,7 +28,7 @@ setopt appendhistory autocd beep extendedglob nomatch
 
 # prompt 
 PROMPT="%{$fg_bold[blue]%}%n%{$reset_color%}%{$fg_bold[yellow]%}@%{$reset_color%}%{$fg_bold[blue]%}%m%{$reset_color%}:%{$fg_bold[yellow]%}%~%{$reset_color%} %# "
-RPROMPT="%{$fg_bold[blue]%}%? - %*%{$reset_color%}"
+RPROMPT="%{$fg_bold[blue]%}%? / %*%{$reset_color%}"
 # prompt suse
 
 # keybindings

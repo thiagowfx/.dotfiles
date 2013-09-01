@@ -25,10 +25,6 @@
 ; redo+ - utilities for redo
 ; emacs-pkgbuild-mode (for arch linux)
 
-; predictive{-mode} -- maybe you'll have to download it manually + follow instructions:
-; http://www.emacswiki.org/emacs/PredictiveMode
-; http://www.dr-qubit.org/predictive/predictive-user-manual/html/Obtaining-and-Installing.html#Obtaining-and-Installing
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; file associations
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -53,7 +49,7 @@
   (when (load (expand-file-name "~/.emacs.d/elpa/package.el"))
     (package-initialize)))
 
-;; add more repos. More packages and .el scripts.
+;; repos
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
 			 ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
@@ -91,6 +87,14 @@
       icomplete-compute-delay 0)             ;; don't wait
 (iswitchb-mode t)                            ;; switches between buffers using substrings
 (icomplete-mode t)                           ;; autoactivate icomplete-mode
+(setq enable-recursive-minibuffers nil ;;  allow mb cmds in the mb
+      max-mini-window-height .25	   ;;  max 2 lines
+      minibuffer-scroll-window nil
+      resize-mini-windows nil)
+
+;; enable ibuffer
+(when (fboundp 'ibuffer)
+  (global-set-key (kbd "C-x C-b") 'ibuffer))
 
 ;; enable winner mode - C-c <left> restore the previous window configs
 (winner-mode t)
@@ -152,29 +156,6 @@
 				  (concat "javac \""
 					  (buffer-file-name)
 					  "\""))))
-;; TeX
-(add-hook 'tex-mode-hook (lambda ()
-			     (setq compile-command
-				   (concat "pdflatex \""
-					   (buffer-file-name)
-					   "\""))))
-;; LaTeX
-(add-hook 'latex-mode-hook (lambda ()
-			     (setq compile-command
-				   (concat "pdflatex \""
-					   (buffer-file-name)
-					   "\""))))
-;; Python
-(add-hook 'python-mode-hook (lambda ()
-			      (setq compile-command
-				    (concat "python \""
-					    (buffer-file-name)
-					    "\""))))
-
-;; enable ibuffer
-(when (fboundp 'ibuffer)
-  (global-set-key (kbd "C-x C-b") 'ibuffer))
-
 ;; do smooth scrolling, please
 (setq scroll-margin 0                        
       scroll-conservatively 100000           
@@ -194,12 +175,6 @@
 			 (or (file-remote-p default-directory 'user) user-login-name)
 			 (or (file-remote-p default-directory 'host) system-name)
 			 (file-name-nondirectory (or (buffer-file-name) default-directory)))))
-
-;; minibuffer goodies
-(setq enable-recursive-minibuffers nil ;;  allow mb cmds in the mb
-      max-mini-window-height .25	   ;;  max 2 lines
-      minibuffer-scroll-window nil
-      resize-mini-windows nil)
 
 ;; recent files, to save recently used files
 (require 'recentf)   
@@ -230,28 +205,31 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; .emacs references used here
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ;; Load your .emacs file while in emacs M-x load-file RET ~/.emacs
+; - http://www.emacsrocks.com/
+; - http://www.emacswiki.org/emacs/
+; - http://www.damtp.cam.ac.uk/user/sje30/emacs/ell.html ;lots of elisp packages!
 ; - https://news.ycombinator.com/item?id=1654164
 ; - https://github.com/vvv/dotfiles/blob/master/.emacs
-; - http://www.emacsrocks.com/
-; - http://www.damtp.cam.ac.uk/user/sje30/emacs/ell.html ;lots of elisp packages!
-; - http://www.emacswiki.org/emacs/CompileCommand
 ; - http://www.djcbsoftware.nl/dot-emacs.html
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;custom dark theme for emacs + AuCTeX editing
+;;custom dark theme for emacs
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(TeX-command-list (quote (("TeX" "%(PDF)%(tex) %`%S%(PDFout)%(mode)%' %t" TeX-run-TeX nil (plain-tex-mode texinfo-mode ams-tex-mode) :help "Run plain TeX") ("LaTeX" "%`%l%(mode)%' %t" TeX-run-TeX nil (latex-mode doctex-mode) :help "Run LaTeX") ("Makeinfo" "makeinfo %t" TeX-run-compile nil (texinfo-mode) :help "Run Makeinfo with Info output") ("Makeinfo HTML" "makeinfo --html %t" TeX-run-compile nil (texinfo-mode) :help "Run Makeinfo with HTML output") ("AmSTeX" "%(PDF)amstex %`%S%(PDFout)%(mode)%' %t" TeX-run-TeX nil (ams-tex-mode) :help "Run AMSTeX") ("ConTeXt" "texexec --once --texutil %(execopts)%t" TeX-run-TeX nil (context-mode) :help "Run ConTeXt once") ("ConTeXt Full" "texexec %(execopts)%t" TeX-run-TeX nil (context-mode) :help "Run ConTeXt until completion") ("BibTeX" "bibtex %s" TeX-run-BibTeX nil t :help "Run BibTeX") ("View" "zathura %o" TeX-run-discard-or-function t t :help "Run Viewer") ("Print" "%p" TeX-run-command t t :help "Print the file") ("Queue" "%q" TeX-run-background nil t :help "View the printer queue" :visible TeX-queue-command) ("File" "%(o?)dvips %d -o %f " TeX-run-command t t :help "Generate PostScript file") ("Index" "makeindex %s" TeX-run-command nil t :help "Create index file") ("Check" "lacheck %s" TeX-run-compile nil (latex-mode) :help "Check LaTeX file for correctness") ("Spell" "(TeX-ispell-document \"\")" TeX-run-function nil t :help "Spell-check the document") ("Clean" "TeX-clean" TeX-run-function nil t :help "Delete generated intermediate files") ("Clean All" "(TeX-clean t)" TeX-run-function nil t :help "Delete generated intermediate and output files") ("Other" "" TeX-run-command t t :help "Run an arbitrary command"))))
  '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(custom-enabled-themes (quote (misterioso)))
  '(ecb-source-path (quote (("/" "/")))))
-;(custom-set-faces)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; defuns
@@ -300,16 +278,6 @@
 			 (file-name-sans-extension buffer-file-name)
 			 ".out\"")))
 
-(defun fc-eval-and-replace ()
-  "Replace the preceding sexp with its value."
-  (interactive)
-  (backward-kill-sexp)
-  (condition-case nil
-      (prin1 (eval (read (current-kill 0)))
-             (current-buffer))
-    (error (message "Invalid expression")
-           (insert (current-kill 0)))))
-
 (defun notify-compilation-result (buffer msg)
   "Notify that the compilation is finished,
 close the *compilation* buffer if the compilation is successful,
@@ -317,14 +285,24 @@ and set the focus back to Emacs frame"
   (if (string-match "^finished" msg)
       (progn
 	(delete-windows-on buffer)
-	(tooltip-show "\n Compilation Successful ;-) \n "))
-    (tooltip-show "\n Compilation Failed =/ \n "))
+	(tooltip-show "\n Compilation Successful!!! ;-) \n "))
+    (tooltip-show "\n Compilation Failed =/ mimi \n "))
   (setq current-frame (car (car (cdr (current-frame-configuration)))))
   (select-frame-set-input-focus current-frame))
 (add-to-list 'compilation-finish-functions 'notify-compilation-result)
 
+;; (defun fc-eval-and-replace ()
+;;   "Replace the preceding sexp with its value."
+;;   (interactive)
+;;   (backward-kill-sexp)
+;;   (condition-case nil
+;;       (prin1 (eval (read (current-kill 0)))
+;;              (current-buffer))
+;;     (error (message "Invalid expression")
+;;            (insert (current-kill 0)))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; these require installation of extra packages, use package-install or list-packages
+;; these require installation of extra packages, so use package-install or list-packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; redo utilities
@@ -339,43 +317,20 @@ and set the focus back to Emacs frame"
 (global-auto-complete-mode t)
 
 ;; AuCTeX stuff
-(setq TeX-PDF-mode t)                        ;; get AUCTeX to work in PDF insted of dvi mode
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
-(setq TeX-save-query nil)
-(setq-default TeX-master nil)
-
-(add-hook 'LaTeX-mode-hook 'visual-line-mode)
-(add-hook 'LaTeX-mode-hook 'flyspell-mode)
-(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-(setq reftex-plug-into-AUCTeX t)
-
-;; ac-math for LaTeX
-(require 'ac-math)
-
-(add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
-
-(defun ac-latex-mode-setup ()         ; add ac-sources to default ac-sources
-  (setq ac-sources (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
-			   ac-sources)))
-(add-hook 'latex-mode-hook 'ac-latex-mode-setup)
-
-;; predictive mode (example, for LaTeX)
-(add-to-list 'load-path "~/.emacs.d/predictive/")
-;; dictionary locations
-(add-to-list 'load-path "~/.emacs.d/predictive/latex/")
-(add-to-list 'load-path "~/.emacs.d/predictive/texinfo/")
-(add-to-list 'load-path "~/.emacs.d/predictive/html/")
-;; load predictive package
-; (require 'predictive)
-;; use libraries only when they are needed 
-(autoload 'predictive-mode "~/.emacs.d/predictive/predictive" "Turn on Predictive Completion Mode." t)
-;; set zathura to view documents
-(setq TeX-view-program-list '(("Evince" "zathura %o")))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;; (setq TeX-PDF-mode t)                        ;; get AUCTeX to work in PDF insted of dvi mode
+;; (setq TeX-auto-save t)
+;; (setq TeX-parse-self t)
+;; (setq TeX-save-query nil)
+;; (setq-default TeX-master nil)
+;; (add-hook 'LaTeX-mode-hook 'visual-line-mode)
+;; (add-hook 'LaTeX-mode-hook 'flyspell-mode)
+;; (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+;; (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+;; (setq reftex-plug-into-AUCTeX t)
+;; (require 'ac-math) ;; ac-math for LaTeX
+;; (add-to-list 'ac-modes 'latex-mode) ; make auto-complete aware of `latex-mode`
+;; (defun ac-latex-mode-setup ()         ; add ac-sources to default ac-sources
+;;   (setq ac-sources (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
+;; 			   ac-sources)))
+;; (add-hook 'latex-mode-hook 'ac-latex-mode-setup)
+;; (setq TeX-view-program-list '(("Evince" "zathura %o"))) ;; set zathura to view documents (gambiarra)

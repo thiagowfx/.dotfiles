@@ -26,11 +26,13 @@
 #  Control + b:2 + Release
 
 "xbindkeys_show" 
-  control+shift + q
+  Control+Shift + q
 
-"dmenu-launch"     # dmenu_run
-  Alt+Mod2 + F3
+"xdg-open ~"
+  Mod2+Mod4+Super_L + f
+
+"xdg-open http://www.google.com/"
+  Mod2+Mod4+Super_L + w
   
 "xkill"
   Control+Alt+Mod2 + Escape
-    
