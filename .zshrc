@@ -46,7 +46,7 @@ bindkey '\eOH' beginning-of-line
 bindkey '\eOF' end-of-line
 
 # aliases
-[[ -f ~/dotfiles/aliases ]] && source ~/dotfiles/aliases
+[[ -f ~/.aliases ]] && source ~/.aliases
 
 # functions
 # ex - archive extractor

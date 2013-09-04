@@ -30,7 +30,7 @@ shopt -s histappend
 export SHELL=/usr/bin/bash
 
 # aliases
-[[ -f ~/dotfiles/aliases ]] && . ~/dotfiles/aliases
+[[ -f ~/.aliases ]] && . ~/.aliases
 
 # bash-only aliases
 alias redo="fc -s"
