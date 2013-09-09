@@ -26,6 +26,9 @@ autoload -U complist
 autoload -U colors && colors
 setopt appendhistory autocd beep extendedglob nomatch
 
+fpath=(path/to/zsh-completions/src $fpath)
+rm -f ~/.zcompdump; compinit
+
 # prompt 
 PROMPT="%{$fg_bold[blue]%}%n%{$reset_color%}%{$fg_bold[yellow]%}@%{$reset_color%}%{$fg_bold[blue]%}%m%{$reset_color%}:%{$fg_bold[yellow]%}%~%{$reset_color%} %# "
 RPROMPT="%{$fg_bold[blue]%}%? / %*%{$reset_color%}"
@@ -91,5 +94,7 @@ function changeroot {
 if [[ -f /usr/bin/alsi ]]; then
     alsi    # alt: archey, screenfetch
 fi
+
+[[ -f /usr/share/zsh/plugins/zsh-syntax-highlight/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh/plugins/zsh-syntax-highlight/zsh-syntax-highlighting.zsh
 
 [[ -f /usr/bin/fortune ]] && /usr/bin/fortune

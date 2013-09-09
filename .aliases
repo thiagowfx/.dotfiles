@@ -1,12 +1,11 @@
 # -*- shell-script -*-
 
-## tweaking programs
+## tweaking programs, be more verbose
 alias cp="cp -v -i"                       # confirm before overwriting something
 alias chmod="chmod -v"
 alias chown="chown -v"
 alias df='df -h'                          # human-readable sizes
 alias cp="cp -i -v"
-alias em="emacs -nw"
 alias free='free -m'                      # show sizes in MB
 alias grep="grep --color=auto -E -d skip"
 alias l="ls -1A --color=auto"
@@ -17,6 +16,12 @@ alias ln="ln -v"
 alias mv="mv -v"
 alias pgrep="pgrep --list-name"
 alias rm="rm -v -i"
+
+alias em="emacs -nw"
+alias cower="cower --color=always"
+
+## replacing programs
+alias top="htop"
 alias vi="vim"
 
 ## shorthands
@@ -39,6 +44,9 @@ alias youtube-dl-flv-template="youtube-dl -t --restrict-filenames"
 
 # most used commands @ ZSH - based on http://crunchbang.org/forums/viewtopic.php?id=6487
 alias top10-zsh="fc -l 0 | awk '{print \$2}' | awk 'BEGIN {FS=\"|\"} {print \$1}' | sort | uniq -c | sort -rn | head -n 10"
+
+# fluxbox
+alias fluxbox-generate_menu-template="fluxbox-generate_menu -kg -su -t lxterminal -w www.google.com -is -ds"
 
 # programs
 alias copy-agent-location="/opt/copy/x86/CopyAgent"
@@ -72,7 +80,8 @@ export HISTSIZE=10000
 export HISTFILESIZE=${HISTSIZE}
 export HISTCONTROL=ignoreboth
 
-export PATH="opt/:$PATH"
+export PATH="/opt:$PATH"
 export BROWSER="/usr/bin/firefox"
 export EDITOR="emacs -nw"
 export VISUAL="emacs"
+export PAGER="less"
