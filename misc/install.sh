@@ -9,8 +9,7 @@
 dir=~/git/dotfiles		# dotfiles directory
 olddir=~/.dotfiles_backup	# old dotfiles backup directory
 vundledir=~/.vim/bundle/vundle
-files=".aliases .bashrc .conkyrc .emacs .gitconfig .gitignore .vimrc .yaourtrc .zshrc" # list of files/folders to symlink in 
-homedir
+files=".aliases .bashrc .conkyrc .emacs .gitconfig .gitignore .xbindkeysrc .vimrc .yaourtrc .zshrc" # list of files/folders to symlink in homedir
 #musicdir=~/Copy/Music
 #picturesdir=~/Dropbox/Pictures
 #videosdir=~/Downloads/Torrents
