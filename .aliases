@@ -77,8 +77,10 @@ fi
 
 # control history
 export HISTSIZE=10000
-export HISTFILESIZE=${HISTSIZE}
+export HISTFILESIZE=$HISTSIZE
+export HISTFILE="$HOME/.history"
 export HISTCONTROL=ignoreboth
+export SAVEHIST=$HISTSIZE
 
 export PATH="/opt:$PATH"
 export BROWSER="/usr/bin/firefox"

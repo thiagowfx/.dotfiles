@@ -23,16 +23,16 @@ COMPLETION_WAITING_DOTS="true"
 autoload -U zutil
 autoload -U compinit && compinit
 autoload -U complist
+autoload -U promptinit && promptinit
 autoload -U colors && colors
-setopt appendhistory autocd beep extendedglob nomatch
-
-fpath=(path/to/zsh-completions/src $fpath)
-rm -f ~/.zcompdump; compinit
+setopt appendhistory autocd beep extendedglob nomatch hist_ignore_space hist_ignore_all_dups
 
 # prompt 
 PROMPT="%{$fg_bold[blue]%}%n%{$reset_color%}%{$fg_bold[yellow]%}@%{$reset_color%}%{$fg_bold[blue]%}%m%{$reset_color%}:%{$fg_bold[yellow]%}%~%{$reset_color%} %# "
 RPROMPT="%{$fg_bold[blue]%}%? / %*%{$reset_color%}"
 # prompt suse
+zstyle ':completion:*:descriptions' format '%U%B%d%b%u' 
+zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 
 # keybindings
 bindkey -e			        # emacs
