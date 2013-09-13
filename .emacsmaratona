@@ -1,66 +1,18 @@
--*- emacs-lisp -*-
+;; modes to activate (mode t): winner-mode, icomplete-mode, ido-mode
 
-(defun exec-program ()
-  "Execute the current buffer name."
+(defalias 'fn 'file-name-sans-extension)
+(defvaralias 'bf 'buffer-file-name)
+
+(defun ep()
   (interactive)
-  (shell-command (concat "\""
-			 (file-name-sans-extension buffer-file-name)
-			 "\"")))
-(defun exec-program-with-input ()
-  "Execute the current buffer name with the .in input"
-  (interactive)
-  (shell-command (concat "\""
-			 (file-name-sans-extension buffer-file-name)
-			 "\" < \""
-			 (file-name-sans-extension buffer-file-name)
-			 ".in\"")))
-(defun exec-program-with-input-and-output ()
-  "Execute the current buffer name with the .in input and flushing it to the .out output"
-  (interactive)
-  (shell-command (concat "\""
-			 (file-name-sans-extension buffer-file-name)
-			 "\" < \""
-			 (file-name-sans-extension buffer-file-name)
-			 ".in\" "
-			 "> \""
-			 (file-name-sans-extension buffer-file-name)
-			 ".out\"")))
-(defun notify-compilation-result (buffer msg)
-  "Notify that the compilation is finished,
-close the *compilation* buffer if the compilation is successful,
-and set the focus back to Emacs frame"
-  (if (string-match "^finished" msg)
-      (progn
-	(delete-windows-on buffer)
-	(tooltip-show "\n Compilation Successful ;-) \n "))
-    (tooltip-show "\n Compilation Failed =/ \n "))
-  (setq current-frame (car (car (cdr (current-frame-configuration)))))
-  (select-frame-set-input-focus current-frame))
-(add-to-list 'compilation-finish-functions 'notify-compilation-result)
-(define-key global-map (kbd "RET")         'newline-and-indent)          
-(global-set-key        "\M-g"              'goto-line)                   
-(global-set-key        [f5]        'compile)
-(global-set-key        [f6]        'exec-program)
-(global-set-key        [f7]        'exec-program-with-input)
-(global-set-key        [f8]        'exec-program-with-input-and-output)
-(global-set-key        [f9]        'comment-or-uncomment-region) ;; (un)comment
-(icomplete-mode t)                           ;; autoactivate icomplete-mode
-(iswitchb-mode t)                            ;; switches between buffers using substrings
-(line-number-mode t)
-(file-name-shadow-mode t)                    ;; be smart about filenames in minibuffer
-(winner-mode t)                              ;; C-c <left> restore the previous window configs
-(setq require-final-newline t
-      default-indicate-empty-lines t         
-      next-line-add-newlines nil             ;; C-n at the end of a file acts like newline
-(setq compilation-read-command nil)          ;; compilation: autocompile without prompting the user, unless you give it a prefix argument
+  (shell-command (concat "\"" (fn bf) "\" < \"" (fn bf) ".in\" " "> \"" (fn bf) ".out\"")))
+			 
 (add-hook 'c++-mode-hook 
 	  (lambda ()
 	    (setq compile-command
-		 (concat "g++ \""
-			 (buffer-file-name)
-			 "\" -o \""
-			 (file-name-sans-extension buffer-file-name)
-			 "\" -Wall -Wextra"))))
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(ido-mode 'both)
-(setq confirm-nonexistent-file-or-buffer nil)
+		 (concat "g++ \"" bf "\" -o \"" (fn bf) "\" -Wall -Wextra"))))
+
+(global-set-key [f5] 'compile)
+(global-set-key [f6] 'ep)
+(global-set-key (kbd "RET") 'newline-and-indent)
+(setq compilation-read-command nil)
