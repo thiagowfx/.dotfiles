@@ -1,17 +1,15 @@
 ;; -*- lisp -*-
 ;; modes to activate (mode t): winner-mode, icomplete-mode, ido-mode
-
 (defalias 'fn 'file-name-sans-extension)
 (defvaralias 'bf 'buffer-file-name)
 
 (defun ep()
   (interactive)
-  (shell-command (concat "\"" (fn bf) "\" < \"" (fn bf) ".in\" " "> \"" (fn bf) ".out\"")))
-			 
+  (shell-command (concat (fn bf) " <" (fn bf) ".in" " >" (fn bf) ".out")))
+
 (add-hook 'c++-mode-hook 
 	  (lambda ()
-	    (setq compile-command
-		 (concat "g++ \"" bf "\" -o \"" (fn bf) "\" -Wall -Wextra -g"))))
+	    (setq compile-command (concat "g++ -Wall -Wextra -g -O2 -o " (fn bf) " " bf))))
 
 (global-set-key [f5] 'compile)
 (global-set-key [f6] 'ep)
