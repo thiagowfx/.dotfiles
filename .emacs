@@ -141,7 +141,7 @@
 					 (buffer-file-name)
 					 "\" -o \""
 					 (file-name-sans-extension buffer-file-name)
-					 "\" -Wall"))))
+					 "\" -Wall -Wextra -g"))))
 ;; C
 (add-hook 'c-mode-hook
 	  (lambda () (setq compile-command
