@@ -1,5 +1,7 @@
 # -*- shell-script -*-
 
+alias _="sudo "
+
 ## tweaking programs, be more verbose
 alias cp="cp -v -i"                       # confirm before overwriting something
 alias chmod="chmod -v"
@@ -43,13 +45,10 @@ alias youtube-dl-mp3-template="youtube-dl -t --restrict-filenames --extract-audi
 alias youtube-dl-flv-template="youtube-dl -t --restrict-filenames"
 
 # most used commands @ ZSH - based on http://crunchbang.org/forums/viewtopic.php?id=6487
-alias top10-zsh="fc -l 0 | awk '{print \$2}' | awk 'BEGIN {FS=\"|\"} {print \$1}' | sort | uniq -c | sort -rn | head -n 10"
+alias zsh-stats="fc -l 0 | awk '{print \$2}' | awk 'BEGIN {FS=\"|\"} {print \$1}' | sort | uniq -c | sort -rn | head -n 10"
 
 # fluxbox
 alias fluxbox-generate_menu-template="fluxbox-generate_menu -kg -su -t lxterminal -w www.google.com -is -ds"
-
-# programs
-alias copy-agent-location="/opt/copy/x86/CopyAgent"
 
 ## windows like
 alias cls="clear"
