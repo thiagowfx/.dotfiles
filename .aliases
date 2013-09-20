@@ -19,7 +19,8 @@ alias mv="mv -v"
 alias pgrep="pgrep --list-name"
 alias rm="rm -v -i"
 
-alias em="emacs -nw"
+alias em="emacs -nw -Q"
+alias emq="emacs -nw"
 alias cower="cower --color=always"
 
 ## replacing programs
