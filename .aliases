@@ -48,6 +48,10 @@ alias youtube-dl-flv-template="youtube-dl -t --restrict-filenames"
 # most used commands @ ZSH - based on http://crunchbang.org/forums/viewtopic.php?id=6487
 alias zsh-stats="fc -l 0 | awk '{print \$2}' | awk 'BEGIN {FS=\"|\"} {print \$1}' | sort | uniq -c | sort -rn | head -n 10"
 
+## dd-aliases with progress indicator
+# (pv -n /dev/sda | dd of=/dev/sdb bs=128M conv=notrunc,noerror) 2>&1 | dialog --gauge "Running dd command (cloning), please wait..." 10 70 0
+# pv -tpreb /dev/sda | dd of=/dev/sdb bs=4096 conv=notrunc,noerror
+
 # fluxbox
 alias fluxbox-generate_menu-template="fluxbox-generate_menu -kg -su -t lxterminal -w www.google.com -is -ds"
 
