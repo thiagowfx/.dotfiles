@@ -1,14 +1,14 @@
 # -*- shell-script -*-
 
-alias _="sudo "
+alias _="sudo"
 
-## tweaking programs, be more verbose
+## tweaking programs + be more verbose
 alias cp="cp -v -i"                       # confirm before overwriting something
 alias chmod="chmod -v"
 alias chown="chown -v"
 alias df='df -h'                          # human-readable sizes
 alias cp="cp -i -v"
-alias free='free -m'                      # show sizes in MB
+alias free="free -m"                      # show sizes in MB
 alias grep="grep --color=auto -E -d skip"
 alias l="ls -1A --color=auto"
 alias la='ls -la --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
@@ -16,11 +16,12 @@ alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=au
 alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 alias ln="ln -v"
 alias mv="mv -v"
+alias du="du -h"
 alias pgrep="pgrep --list-name"
 alias rm="rm -v -i"
 
-alias em="emacs -nw -Q"
-alias emq="emacs -nw"
+alias emq="emacs -nw -Q" # fast startup
+alias em="emacs -nw"     # shell
 alias cower="cower --color=always"
 
 ## replacing programs

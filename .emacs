@@ -99,8 +99,10 @@
 ;; enable winner mode - C-c <left> restore the previous window configs
 (winner-mode t)
 
+(setq mouse-yank-at-point t)
+
 ;; don't annoy me with backup files everywhere
-;(setq make-backup-files nil
+(setq make-backup-files nil)
 ;      auto-save-default nil)
 
 ;; lines
