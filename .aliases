@@ -20,8 +20,8 @@ alias du="du -h"
 alias pgrep="pgrep --list-name"
 alias rm="rm -v -i"
 
-alias emq="emacs -nw -Q" # fast startup
-alias em="emacs -nw"     # shell
+alias em="emacs -nw -Q" # fast startup
+alias emq="emacs -nw"     # shell
 alias cower="cower --color=always"
 
 ## replacing programs
