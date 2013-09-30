@@ -1,5 +1,4 @@
 # prompt
-
 [[ -f /etc/bashrc ]] && . /etc/bashrc
 
 # without colors
@@ -16,21 +15,23 @@ fi
 # enable sudo autocompletion
 complete -cf sudo
 
+# tweaks
 set -o emacs
-# shopt -s cdspell
 shopt -s checkwinsize
+shopt -s histappend
+# shopt -s cdspell
 # shopt -s cmdhist
 # shopt -s dotglob
 # shopt -s expand_aliases
 # shopt -s extglob
-shopt -s histappend
 # shopt -s hostcomplete
 # shopt -s nocaseglob
-
-export SHELL=/usr/bin/bash
 
 # aliases
 [[ -f ~/.aliases ]] && . ~/.aliases
 
 # bash-only aliases
 alias redo="fc -s"
+
+# environment variables
+export SHELL=/usr/bin/bash

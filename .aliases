@@ -1,13 +1,11 @@
 # -*- shell-script -*-
-
 alias _="sudo"
 
-## tweaking programs + be more verbose
+# tweaks
 alias cp="cp -v -i"                       # confirm before overwriting something
 alias chmod="chmod -v"
 alias chown="chown -v"
 alias df='df -h'                          # human-readable sizes
-alias cp="cp -i -v"
 alias free="free -m"                      # show sizes in MB
 alias grep="grep --color=auto -E -d skip"
 alias l="ls -1A --color=auto"
@@ -19,14 +17,9 @@ alias mv="mv -v"
 alias du="du -h"
 alias pgrep="pgrep --list-name"
 alias rm="rm -v -i"
-
-alias em="emacs -nw -Q" # fast startup
-alias emq="emacs -nw"     # shell
+alias em="emacs -nw -Q"		# fast startup
+alias emq="emacs -nw"		# shell
 alias cower="cower --color=always"
-
-## replacing programs
-alias top="htop"
-alias vi="vim"
 
 ## shorthands
 
@@ -46,20 +39,17 @@ alias rsync-exclude-template="rsync -uzlLh --verbose --times --recursive --progr
 alias youtube-dl-mp3-template="youtube-dl -t --restrict-filenames --extract-audio --audio-format mp3"
 alias youtube-dl-flv-template="youtube-dl -t --restrict-filenames"
 
-# most used commands @ ZSH - based on http://crunchbang.org/forums/viewtopic.php?id=6487
-alias zsh-stats="fc -l 0 | awk '{print \$2}' | awk 'BEGIN {FS=\"|\"} {print \$1}' | sort | uniq -c | sort -rn | head -n 10"
-
 ## dd-aliases with progress indicator
 # (pv -n /dev/sda | dd of=/dev/sdb bs=128M conv=notrunc,noerror) 2>&1 | dialog --gauge "Running dd command (cloning), please wait..." 10 70 0
 # pv -tpreb /dev/sda | dd of=/dev/sdb bs=4096 conv=notrunc,noerror
 
 # fluxbox
-alias fluxbox-generate_menu-template="fluxbox-generate_menu -kg -su -t lxterminal -w www.google.com -is -ds"
+# alias fluxbox-generate_menu-template="fluxbox-generate_menu -kg -su -t lxterminal -w www.google.com -is -ds"
 
 ## windows like
-alias cls="clear"
-alias tracert="traceroute"
-alias ipconfig="ifconfig"	# alt: ip addr
+# alias cls="clear"
+# alias tracert="traceroute"
+# alias ipconfig="ifconfig"	# alt: ip addr
 
 ## distro specific commands
 if [[ -f /etc/arch-release  ]] || [[ -f /etc/manjaro-release ]]; then

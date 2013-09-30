@@ -99,3 +99,8 @@ fi
 [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # [[ -f /usr/bin/fortune ]] && /usr/bin/fortune
+
+# zsh-only aliases
+
+# most used commands @ ZSH - based on http://crunchbang.org/forums/viewtopic.php?id=6487
+alias zsh-stats="fc -l 0 | awk '{print \$2}' | awk 'BEGIN {FS=\"|\"} {print \$1}' | sort | uniq -c | sort -rn | head -n 10"

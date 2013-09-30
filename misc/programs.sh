@@ -3,7 +3,7 @@ mkdir -p ~/.local/share/vlc/lua/extensions && cd $_
 wget https://raw.github.com/exebetche/vlsub/master/vlsub.lua
 
 # set default file manager (ex. for Dropbox)
-xdg-mime default Thunar.desktop inode/directory
+# xdg-mime default Thunar.desktop inode/directory
 # xdg-mime default Nemo.desktop inode/directory
 
 # create this script
