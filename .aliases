@@ -1,6 +1,10 @@
 # -*- shell-script -*-
 alias _="sudo"
 
+function lndot {
+    ln -s ~/dotfiles/$1 ~/$1
+}
+
 # tweaks
 alias cp="cp -v -i"                       # confirm before overwriting something
 alias chmod="chmod -v"
@@ -9,8 +13,8 @@ alias df='df -h'                          # human-readable sizes
 alias free="free -m"                      # show sizes in MB
 alias grep="grep --color=auto -E -d skip"
 alias l="ls -1A --color=auto"
-alias la='ls -la --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
-alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+alias la='ls -a --group-directories-first --color=auto -F'
+alias ls='ls --group-directories-first --color=auto -F'
 alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 alias ln="ln -v"
 alias mv="mv -v"
@@ -21,21 +25,17 @@ alias em="emacs -nw -Q"		# fast startup
 alias emq="emacs -nw"		# shell
 alias cower="cower --color=always"
 
-## shorthands
+# templates
 
-# download webpage
 alias wget-template="wget -e robots=off -mpEkK -np -t inf -T 60 --"
 alias wget-template-pdf="wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
 alias wget-template-span="wget -e robots=off --wait=2 --random-wait --recursive --span-hosts --spider --timestamping --tries=5 --dns-timeout=30 --connect-timeout=5 --read-timeout=5 --level=10 --"
-
-# mount cd/dvd
 alias mount-iso-template="mount -o loop"
 
 # rsync over LAN/SSH
 alias rsync-template="rsync -uzlLh --verbose --times --recursive --progress"
 alias rsync-exclude-template="rsync -uzlLh --verbose --times --recursive --progress --delete-excluded"
 
-# download youtube videos
 alias youtube-dl-mp3-template="youtube-dl -t --restrict-filenames --extract-audio --audio-format mp3"
 alias youtube-dl-flv-template="youtube-dl -t --restrict-filenames"
 
@@ -45,11 +45,6 @@ alias youtube-dl-flv-template="youtube-dl -t --restrict-filenames"
 
 # fluxbox
 # alias fluxbox-generate_menu-template="fluxbox-generate_menu -kg -su -t lxterminal -w www.google.com -is -ds"
-
-## windows like
-# alias cls="clear"
-# alias tracert="traceroute"
-# alias ipconfig="ifconfig"	# alt: ip addr
 
 ## distro specific commands
 if [[ -f /etc/arch-release  ]] || [[ -f /etc/manjaro-release ]]; then
@@ -67,8 +62,6 @@ elif
     [[ -f /etc/suse-release ]]; then
     alias world="sudo zypper -n update && sudo zypper -n upgrade && sudo -n zypper dup"
 fi
-
-## common environment variables
 
 # control history
 export HISTSIZE=10000

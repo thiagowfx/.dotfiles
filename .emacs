@@ -1,3 +1,5 @@
+; -*- lisp -*-
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Copyright (C) 2013-2013 Thiago Barroso Perrotta.                      ;
 ;                                                                       ;
@@ -21,7 +23,6 @@
 
 ; auctex - rich featured tex mode
 ; auto-complete - support for autocompletion
-; magit - git support
 ; redo+ - utilities for redo
 ; emacs-pkgbuild-mode (for arch linux)
 
@@ -33,7 +34,7 @@
 (add-to-list 'auto-mode-alist '("\\.mdownx\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.nfo\\'" . text-mode))
 (autoload 'pkgbuild-mode "pkgbuild-mode.el" "PKGBUILD mode." t)
-(add-to-list 'auto-mode-alist '("/PKGBUILD$" . pkgbuild-mode)) ;; emacs-pkgbuild-mode on Arch Linux
+(add-to-list 'auto-mode-alist '("/PKGBUILD$" . pkgbuild-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; emacs lisp files

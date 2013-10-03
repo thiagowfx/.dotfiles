@@ -26,13 +26,15 @@
 #  Control + b:2 + Release
 
 "xbindkeys_show" 
-  Control+Shift + q
+  Control + Shift + q
 
+# file manager
 "xdg-open ~"
-  Mod2+Mod4+Super_L + f
+  Mod2 + Mod4 + Super_L + f
 
+# web browser
 "xdg-open http://www.google.com/"
-  Mod2+Mod4+Super_L + w
+  Mod2 + Mod4 + w
   
 "xkill"
-  Control+Alt+Mod2 + Escape
+  Control + Mod2 + Escape

@@ -69,30 +69,27 @@ TEXT
 ${font sans-serif:bold:size=8}OVERVIEW ${hr 2}${font sans-serif:normal:size=8}
 BAT:$alignr${battery_short BAT1} - ${battery_time BAT1}
 ${battery_bar BAT1}
-CPUs: $alignr${cpu cpu0}% | ${cpu cpu1}%
-${cpubar 5,80 cpu0}$alignr${cpubar 5,80 cpu1}
+CPUs: $alignr${cpu cpu0}% | ${cpu cpu1}% | ${cpu cpu2}% | ${cpu cpu3}%
+
 RAM: $alignr$mem/$memmax
 $membar
 SWAP: $alignr$swap/$swapmax
 $swapbar
-DISK:$alignr${diskio /dev/sda}
-${diskiograph /dev/sda}
+
+DISK: $alignr${diskio /dev/sdb}
 /$alignr${fs_used /}/${fs_size /}  ${fs_bar 5,30 /}
-/home$alignr${fs_used /home}/${fs_size /home}  ${fs_bar 5,30 /home}
+#/home$alignr${fs_used /home}/${fs_size /home}  ${fs_bar 5,30 /home}
 
 ${font sans-serif:bold:size=8}MISC ${hr 2}${font sans-serif:normal:size=8}
 Processes:$alignr$processes 
 Running:$alignr$running_processes 
 
 ${font sans-serif:bold:size=8}NETWORK ${hr 2}${font sans-serif:normal:size=8}
-IP Address:$alignr${addr wlp4s0}
-AP:$alignr${wireless_essid wlp4s0}
-Link: ${wireless_link_bar 5,90 wlp4s0} $alignr ${wireless_link_qual wlp4s0}/${wireless_link_qual_max wlp4s0}
-Total D/U:$alignr${totaldown wlp4s0} / ${totalup wlp4s0}
-Down speed:$alignr${downspeedf wlp4s0} kB/s
-${downspeedgraph wlp4s0}
-Up speed:$alignr${upspeedf wlp4s0} kB/s
-${upspeedgraph wlp4s0}
+IP:$alignr${addr wlan0}
+AP:$alignr${wireless_essid wlan0}
+Link:   ${wireless_link_bar 5,70 wlp4s0} $alignr ${wireless_link_qual wlan0}/${wireless_link_qual_max wlan0}
+D: ${totaldown wlan0}$alignr T: $alignr${totalup wlan0}
+D: ${downspeedf wlan0} kB/s $alignr U:$alignr${upspeedf wlp4s0} kB/s
 
 ${font sans-serif:bold:size=8}SYSTEM ${hr 2}${font sans-serif:normal:size=8}
 $sysname $kernel $alignr$machine
