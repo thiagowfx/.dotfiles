@@ -1,20 +1,3 @@
-#########################################################################
-# Copyright (C) 2013-2013 Thiago Barroso Perrotta.                      #
-#                                                                       #
-# This program is free software: you can redistribute it and/or modify  #
-# it under the terms of the GNU General Public License as published by  #
-# the Free Software Foundation, either version 3 of the License, or     #
-# (at your option) any later version.                                   #
-#                                                                       #
-# This program is distributed in the hope that it will be useful,       #
-# but WITHOUT ANY WARRANTY; without even the implied warranty of        #
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         #
-# GNU General Public License for more details.                          #
-#                                                                       #
-# You should have received a copy of the GNU General Public License     #
-# along with this program.  If not, see <http://www.gnu.org/licenses/>. #
-#########################################################################
-
 # environment variables
 export SHELL=/usr/bin/zsh
 COMPLETION_WAITING_DOTS="true"
@@ -101,6 +84,5 @@ fi
 # [[ -f /usr/bin/fortune ]] && /usr/bin/fortune
 
 # zsh-only aliases
-
 # most used commands @ ZSH - based on http://crunchbang.org/forums/viewtopic.php?id=6487
 alias zsh-stats="fc -l 0 | awk '{print \$2}' | awk 'BEGIN {FS=\"|\"} {print \$1}' | sort | uniq -c | sort -rn | head -n 10"
