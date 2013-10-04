@@ -88,7 +88,7 @@ ${font sans-serif:bold:size=8}NETWORK ${hr 2}${font sans-serif:normal:size=8}
 IP:$alignr${addr wlan0}
 AP:$alignr${wireless_essid wlan0}
 Link:   ${wireless_link_bar 5,70 wlp4s0} $alignr ${wireless_link_qual wlan0}/${wireless_link_qual_max wlan0}
-D: ${totaldown wlan0}$alignr T: $alignr${totalup wlan0}
+D: ${totaldown wlan0}$alignr U: $alignr${totalup wlan0}
 D: ${downspeedf wlan0} kB/s $alignr U:$alignr${upspeedf wlp4s0} kB/s
 
 ${font sans-serif:bold:size=8}SYSTEM ${hr 2}${font sans-serif:normal:size=8}
