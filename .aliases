@@ -24,6 +24,7 @@ alias rm="rm -v -i"
 alias em="emacs -nw -Q"		# fast startup
 alias emq="emacs -nw"		# shell
 alias cower="cower --color=always"
+alias pingg="ping google.com"
 
 # templates
 
