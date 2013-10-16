@@ -6,7 +6,7 @@ function lndot {
 }
 
 # tweaks
-alias cp="cp -v -i"                       # confirm before overwriting something
+alias cp="cp -v"
 alias chmod="chmod -v"
 alias chown="chown -v"
 alias df='df -h'                          # human-readable sizes
