@@ -27,6 +27,7 @@ menuentry "Windows 8 aaaaaaaaaa" {
 	chainloader /EFI/Microsoft/Boot/bootmgfw.efi
 }
 
+# Point out manually to Windows 8. Root should be your ESP partition.
 menuentry "My Windows 8 OS" {
 	search --fs-uuid --no-floppy --set=root E662-93C5
 	chainloader (${root})/EFI/Microsoft/Boot/bootmgfw.efi

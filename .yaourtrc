@@ -4,8 +4,8 @@
 # do ask for confirmation when installing packages
 NOCONFIRM=0
 
-# do not prompt me to edit PKGBUILDS
-EDITFILES=0
+# do prompt me to edit PKGBUILDS
+EDITFILES=1
 
 # colorful please (-;
 USECOLOR=1
