@@ -22,6 +22,6 @@ case $1 in
     kde) exec startkde;;
     xfce) exec startxfce4;;
     awesome) exec awesome;;
-    openbox) exec openbox;;
-    fluxbox|*) exec startfluxbox;;
+    fluxbox) exec startfluxbox;;
+    openbox|*) exec openbox-session;;
 esac

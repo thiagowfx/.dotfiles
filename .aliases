@@ -67,3 +67,5 @@ function changeroot {
     sudo mount -t devpts pts $1/dev/pts/
     sudo chroot $1/ /bin/bash
 }
+
+alias mmaker-template="mmaker -t Konsole -vf openbox3"
