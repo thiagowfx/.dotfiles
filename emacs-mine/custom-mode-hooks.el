@@ -16,7 +16,7 @@
 				   (buffer-file-name)
 				   "\" -o \""
 				   (file-name-sans-extension buffer-file-name)
-				   "\" -Wall -Wextra"))))
+				   "\" -Wall -Wextra -g"))))
 ;; Java
 (add-hook 'java-mode-hook (lambda ()
 			    (setq compile-command

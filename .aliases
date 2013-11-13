@@ -27,6 +27,7 @@ alias rsync-exclude-template="rsync -uzlLh --verbose --times --recursive --progr
 alias youtube-dl-mp3-template="youtube-dl -t --restrict-filenames --extract-audio --audio-format mp3"
 alias youtube-dl-flv-template="youtube-dl -t --restrict-filenames"
 alias fluxbox-generate_menu-template="fluxbox-generate_menu -kg -su -t lxterminal -w www.startpage.com -is -ds"
+alias mmaker-template="mmaker -t Konsole -vf openbox3"
 ## dd-aliases with progress indicator
 # (pv -n /dev/sda | dd of=/dev/sdb bs=128M conv=notrunc,noerror) 2>&1 | dialog --gauge "Running dd command (cloning), please wait..." 10 70 0
 # pv -tpreb /dev/sda | dd of=/dev/sdb bs=4096 conv=notrunc,noerror
@@ -53,11 +54,6 @@ export EDITOR="emacs -nw"
 export VISUAL="emacs"
 export PAGER="less"
 
-# sort aur packages by their number of votes with cower -- https://bbs.archlinux.org/viewtopic.php?id=167554
-cower_votes() {
-    cower --format "%n %o" -s $1 | grep $1 | grep -v extension | sort -nk 2 | column -t
-}
-
 # improved chroot
 function changeroot {
     sudo cp -L /etc/resolv.conf $1/etc/resolv.conf
@@ -68,4 +64,3 @@ function changeroot {
     sudo chroot $1/ /bin/bash
 }
 
-alias mmaker-template="mmaker -t Konsole -vf openbox3"

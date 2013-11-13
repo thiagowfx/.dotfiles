@@ -1,10 +1,13 @@
 ; -*- lisp -*-
 
 ;; install these after a fresh emacs installation
-; auctex - rich featured tex mode
-; auto-complete - support for autocompletion
-; markdown mode
-; redo+ - utilities for redo
+
+;; mandaroty
+; auto-complete-mode
+; redo+
+
+;; optional
+; markdown-mode
 ; emacs-pkgbuild-mode (for arch linux)
 
 ;; set the load path, add everything under ~/.emacs.d to it
@@ -21,10 +24,6 @@
 			 ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 (setq url-http-attempt-keepalives nil)
-
-;; load all configs
-;(require 'load-directory)
-;(load-directory "~/.emacs.d/emacs-mine")
 
 ;; load custom configs
 (require 'file-extensions)

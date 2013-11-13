@@ -1,8 +1,11 @@
 ;; keystrokes
 (provide 'keystrokes)
 
+;; template
+;; (kbd "M-g")
+
 (define-key global-map (kbd "RET")         'newline-and-indent)          ;; C-j like; alt: reindent-then-newline-and-indent
-(global-set-key        "\M-g"              'goto-line)                   ;; alt: (kbd "M-g")
+(global-set-key        "\M-g"              'goto-line)                   
 (global-set-key        (kbd "<f3>")        'reload-dot-emacs)
 (global-set-key        (kbd "<f4>")        'magit-status)
 (global-set-key        (kbd "C-<f4>")      'kill-buffer-and-window)

@@ -1,3 +1,6 @@
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
 # enable bash autocompletion
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
@@ -8,8 +11,11 @@ complete -cf sudo
 
 # config prompt
 [[ -f /etc/bashrc ]] && . /etc/bashrc
-# PS1='[\u@\h \W]\$ ' # without colors
-PS1='\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]\[\033[1;32m\]\$\[\033[m\] ' # with colors
+
+# without colors
+# PS1='[\u@\h \W]\$ '
+# with colors
+PS1='\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]\[\033[1;32m\]\$\[\033[m\] '
 
 # tweaks
 set -o emacs
@@ -23,7 +29,6 @@ shopt -s histappend
 # shopt -s hostcomplete
 # shopt -s nocaseglob
 
-# aliases
 [[ -f ~/.aliases ]] && . ~/.aliases
 
 alias redo="fc -s"

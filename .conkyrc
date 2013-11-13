@@ -34,7 +34,6 @@ xftfont monospace:size=9
 xftalpha 1
 update_interval 1.0
 total_run_times 0
-
 own_window_class Conky
 own_window yes
 own_window_transparent no
@@ -43,7 +42,7 @@ own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 own_window_colour black
 double_buffer yes
 minimum_size 1 1
-maximum_width 250
+maximum_width 230
 draw_shades no
 draw_outline no
 draw_borders yes
@@ -51,7 +50,8 @@ draw_graph_borders yes
 default_color gray
 default_shade_color 000000
 default_outline_color d9d7d6
-alignment mr 	      # alt: alignment middle_right
+alignment mr 	      # alt: alignme
+nt middle_right
 # span
 gap_x 12
 gap_y 12
@@ -67,7 +67,8 @@ color2 gray
 ##############################################
 TEXT
 ${font sans-serif:bold:size=8}OVERVIEW ${hr 2}${font sans-serif:normal:size=8}
-BAT:$alignr${battery_short BAT1} - ${battery_time BAT1}
+# BAT:$alignr${battery_short BAT1} - ${battery_time BAT1}
+BAT:$alignr${battery BAT1} - ${battery_time BAT1}
 ${battery_bar BAT1}
 CPUs: $alignr${cpu cpu0}% | ${cpu cpu1}% | ${cpu cpu2}% | ${cpu cpu3}%
 
@@ -77,24 +78,24 @@ SWAP: $alignr$swap/$swapmax
 $swapbar
 
 DISK: $alignr${diskio /dev/sdb}
-/$alignr${fs_used /}/${fs_size /}  ${fs_bar 5,30 /}
-#/home$alignr${fs_used /home}/${fs_size /home}  ${fs_bar 5,30 /home}
-
-${font sans-serif:bold:size=8}MISC ${hr 2}${font sans-serif:normal:size=8}
-Processes:$alignr$processes 
-Running:$alignr$running_processes 
+# /$alignr${fs_used /}/${fs_size /}  ${fs_bar 5,30 /}
+/$alignr${fs_used /}/${fs_size /}
+${fs_bar /}
+/home$alignr${fs_used /home}/${fs_size /home}
+${fs_bar /home}
 
 ${font sans-serif:bold:size=8}NETWORK ${hr 2}${font sans-serif:normal:size=8}
-IP:$alignr${addr wlan0}
-AP:$alignr${wireless_essid wlan0}
-Link:   ${wireless_link_bar 5,70 wlp4s0} $alignr ${wireless_link_qual wlan0}/${wireless_link_qual_max wlan0}
-D: ${totaldown wlan0}$alignr U: $alignr${totalup wlan0}
-D: ${downspeedf wlan0} kB/s $alignr U:$alignr${upspeedf wlp4s0} kB/s
+${wireless_essid wlp2s0}$alignr${addr wlp2s0}
+Link: $alignr ${wireless_link_qual wlp2s0}/${wireless_link_qual_max wlp2s0}
+${wireless_link_bar wlp2s0}
+Download:  ${totaldown wlp2s0}$alignr${downspeedf wlp2s0} kB/s
+Upload:      ${totalup wlp2s0}$alignr${upspeedf wlp2s0} kB/s
 
 ${font sans-serif:bold:size=8}SYSTEM ${hr 2}${font sans-serif:normal:size=8}
 $sysname $kernel $alignr$machine
 Host:$alignr$nodename
 Uptime:$alignr$uptime
+Processes:$alignr$processes 
 
 ${font sans-serif:bold:size=8}TOP RAM${hr 2}${font sans-serif:normal:size=8}
 ${top_mem name 1}${alignr}${top_mem mem_res 1}  ${top_mem mem 1} %

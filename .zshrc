@@ -5,6 +5,7 @@ autoload -U complist
 autoload -U promptinit && promptinit
 autoload -U colors && colors
 setopt appendhistory autocd beep extendedglob nomatch hist_ignore_space hist_ignore_all_dups
+[[ -f ~/.aliases ]] && . ~/.aliases
 
 # enable zsh syntax highlightning
 [[ -f /usr/share/zsh/plugins/zsh-syntax-highlight/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh/plugins/zsh-syntax-highlight/zsh-syntax-highlighting.zsh
