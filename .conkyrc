@@ -77,7 +77,7 @@ $membar
 SWAP: $alignr$swap/$swapmax
 $swapbar
 
-DISK: $alignr${diskio /dev/sdb}
+DISK:
 # /$alignr${fs_used /}/${fs_size /}  ${fs_bar 5,30 /}
 /$alignr${fs_used /}/${fs_size /}
 ${fs_bar /}

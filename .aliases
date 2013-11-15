@@ -13,9 +13,12 @@ alias free="free -m"                      # show sizes in MB
 alias grep="grep --color=auto -E -d skip"
 alias ln="ln -v"
 alias pgrep="pgrep --list-name"
+
+# mine
 alias emq="emacs -nw"		# shell
 alias cower="cower --color=always --sort=votes"
 alias pingg="ping google.com"
+alias packback='pacman -Qqe | grep -v "$(pacman -Qmq)" > ~/Dropbox/para/pklist-new.txt'
 
 # templates
 alias wget-template="wget -e robots=off -mpEkK -np -t inf -T 60 --"
@@ -35,15 +38,13 @@ alias mmaker-template="mmaker -t Konsole -vf openbox3"
 # distro specific commands
 if [[ -f /etc/arch-release  ]] || [[ -f /etc/manjaro-release ]]; then
     alias world="sudo pacman -Syyuu"
-    alias worldw="sudo pacman-optimize" # yaourt -Sbu --aur"
+    alias iogurte="yaourt -Syu --devel --aur" # && sudo pacman-optimize
 elif
     [[ -f /etc/debian-release ]] || [[ -f /etc/ubuntu-release ]]; then
-    alias world="sudo aptitude -y update && sudo aptitude -y upgrade"
-    alias worldw="sudo apt-get -y dist-upgrade && sudo apt-get -y autoclean && sudo apt-get -y autoremove"
+    alias world="sudo aptitude -y update && sudo aptitude -y upgrade && sudo apt-get -y dist-upgrade && sudo apt-get -y autoremove"
 elif
     [[ -f /etc/fedora-release ]]; then
-    alias world="sudo yum -y update && sudo yum -y upgrade"
-    alias worldw="sudo yum -y autoremove && sudo yum -y clean all"
+    alias world="sudo yum -y update && sudo yum -y upgrade && sudo yum -y autoremove"
 elif
     [[ -f /etc/suse-release ]]; then
     alias world="sudo zypper -n update && sudo zypper -n upgrade && sudo -n zypper dup"
@@ -53,8 +54,9 @@ export BROWSER="/usr/bin/firefox"
 export EDITOR="emacs -nw"
 export VISUAL="emacs"
 export PAGER="less"
+# export MAILER=
 
-# improved chroot
+# arch-chroot like
 function changeroot {
     sudo cp -L /etc/resolv.conf $1/etc/resolv.conf
     sudo mount -t proc proc $1/proc
@@ -63,4 +65,3 @@ function changeroot {
     sudo mount -t devpts pts $1/dev/pts/
     sudo chroot $1/ /bin/bash
 }
-

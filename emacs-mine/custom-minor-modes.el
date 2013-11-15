@@ -39,7 +39,7 @@
 ;; startup message
 (setq inhibit-startup-message t              ;; don't show startup screen, it's annoying
       inhibit-startup-echo-area-message t
-      initial-scratch-message                ";; scratch buffer created -- let's rock\n")
+      initial-scratch-message                "")
 
 ;; UI elements
 (transient-mark-mode t)			     ;; highlight marked region

@@ -4,14 +4,16 @@
 # do ask for confirmation when installing packages
 NOCONFIRM=0
 
-# do prompt me to edit PKGBUILDS
-EDITFILES=1
+# do not prompt me to edit PKGBUILDS
+EDITFILES=0
 
 # colorful please (-;
 USECOLOR=1
 
-# don't annoy me prompting me to vote in the packages
+# don't prompt me to vote up packages
 AURVOTE=0
 
-# show me more aur comments, please
-AURCOMMENT=10
+# show me some aur comments
+AURCOMMENT=6
+
+DEVEL=1
