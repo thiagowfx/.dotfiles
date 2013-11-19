@@ -2,7 +2,7 @@
 
 ;; install these after a fresh emacs installation
 
-;; mandaroty
+;; mandatory
 ; auto-complete-mode
 ; redo+
 

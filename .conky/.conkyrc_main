@@ -1,0 +1,124 @@
+# -*- lua -*-
+
+#########################################################################
+# A simple, lightweight conky config.					#
+# This conky has been originally forked from the default one 		#
+# that comes with ArchBang Linux.                                   	#
+# 									#
+# References:								#
+# - http://conky.sourceforge.net/conkyrc-vert				#
+# - http://conky.sourceforge.net/variables.html				#
+# - conky man page							#
+#########################################################################
+
+######################
+# - Conky settings - #
+######################
+update_interval 2.0
+update_interval_on_battery 5.0
+total_run_times 0
+net_avg_samples 1
+cpu_avg_samples 1
+double_buffer yes
+no_buffers yes
+background yes
+no_buffers yes
+
+#####################
+# - Text settings - #
+#####################
+use_xft yes
+xftfont monospace:size=9
+override_utf8_locale yes
+xftalpha 0.8
+
+#############################
+# - Window specifications - #
+#############################
+own_window yes
+own_window_colour 010020
+own_window_type conky
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+alignment mr
+gap_x 10
+gap_y 0
+minimum_size 100 100
+maximum_width 300
+# default_bar_size 60 8
+
+#########################
+# - Graphics settings - #
+#########################
+draw_outline no
+draw_borders yes
+draw_graph_borders no
+draw_shades no
+default_color BDB5A1
+color0 254ea4
+color1 D6713C
+
+####################
+#      colors      #
+####################
+# yellow
+color1 FFEE44
+# orange 
+color2 orange
+# red
+color3 FF6A6A
+# dark gray
+color4 989898
+# dark green
+color5 66a971
+# sky blue
+color6 6796a9
+
+##############################################
+#  Output                                    #
+##############################################
+TEXT
+${color2}${font sans-serif:bold:size=8}SYSTEM ${hr 2}${font sans-serif:normal:size=8}
+$sysname $kernel$alignr$machine
+$nodename$alignr$uptime
+
+Battery:$alignr${battery_short BAT1} - ${battery_time BAT1}
+${battery_bar BAT1}
+RAM: $alignr$mem/$memmax
+$membar
+Swap: $alignr$swap/$swapmax
+$swapbar
+
+${color4}${font sans-serif:bold:size=8}HDD ${hr 2}${font sans-serif:normal:size=8}
+${diskiograph /dev/sdb 20}
+/boot$alignr${fs_used /boot}/${fs_size /boot}
+${fs_bar /boot}
+/$alignr${fs_used /}/${fs_size /}
+${fs_bar /}
+
+${color5}${font sans-serif:bold:size=8}SSD ${hr 2}${font sans-serif:normal:size=8}
+${diskiograph /dev/sda 20}
+/home$alignr${fs_used /home}/${fs_size /home}
+${fs_bar /home}
+/var$alignr${fs_used /var}/${fs_size /var}
+${fs_bar /var}
+
+${color6}${font sans-serif:bold:size=8}NETWORK ${hr 2}${font sans-serif:normal:size=8}
+${wireless_essid wlp2s0}$alignr${addr wlp2s0}
+Quality:$alignr${wireless_link_bar 6,100 wlp2s0}  ${wireless_link_qual_perc wlp2s0}%
+   
+${color 00ff00}Download:  ${totaldown wlp2s0}$alignr${downspeedf wlp2s0} kB/s
+${downspeedgraph wlp2s0 20}
+${color 28d1e9}Upload: ${totalup wlp2s0}$alignr${upspeedf wlp2s0} kB/s
+${upspeedgraph wlp2s0 20}
+${color3}
+${font sans-serif:bold:size=8}TOP RAM ${hr 2}${font sans-serif:normal:size=8}
+${top_mem name 1}${alignr}${top_mem mem_res 1}  ${top_mem mem 1} %
+${top_mem name 2}${alignr}${top_mem mem_res 2}  ${top_mem mem 2} %
+${top_mem name 3}${alignr}${top_mem mem_res 3}  ${top_mem mem 3} %
+
+${font sans-serif:bold:size=8}TOP CPU ${hr 2}
+${font sans-serif:normal:size=8}${top name 1}${alignr}${top cpu 1} %
+${top name 2}${alignr}${top cpu 2} %
+${top name 3}${alignr}${top cpu 3} %
