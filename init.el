@@ -29,7 +29,7 @@
 (require 'file-extensions)
 (require 'keystrokes)
 (require 'custom-minor-modes)
-(require 'custom-mode-hooks)
+;(require 'custom-mode-hooks)
 (require 'defuns)
 (require 'extras)
 

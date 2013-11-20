@@ -5,6 +5,7 @@
 alias cp="cp -v -i"
 alias mv="mv -v -i"
 alias rm="rm -v -i"
+alias rmdir="rmdir -v"
 alias chmod="chmod -v"
 alias chown="chown -v"
 alias df='df -h'                          # human-readable sizes

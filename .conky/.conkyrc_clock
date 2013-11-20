@@ -35,8 +35,7 @@ gap_y 0
 draw_shades no
 default_color BDB5A1
 default_shade_color 1d1d1d
-color0 254ea4
-color1 D6713C
+color1 ff510e
 
 TEXT
 ${color1}${time %H}:${color1}${time %M}

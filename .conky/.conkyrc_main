@@ -30,15 +30,15 @@ no_buffers yes
 use_xft yes
 xftfont monospace:size=9
 override_utf8_locale yes
-xftalpha 0.8
+xftalpha 1.0
 
 #############################
 # - Window specifications - #
 #############################
 own_window yes
-own_window_colour 010020
+own_window_colour 000000
 own_window_type conky
-own_window_transparent yes
+own_window_transparent no
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 
 alignment mr
@@ -46,7 +46,7 @@ gap_x 10
 gap_y 0
 minimum_size 100 100
 maximum_width 300
-# default_bar_size 60 8
+# default_bar_size 180 6
 
 #########################
 # - Graphics settings - #
@@ -56,8 +56,6 @@ draw_borders yes
 draw_graph_borders no
 draw_shades no
 default_color BDB5A1
-color0 254ea4
-color1 D6713C
 
 ####################
 #      colors      #
