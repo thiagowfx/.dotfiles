@@ -32,6 +32,7 @@ alias youtube-dl-mp3-template="youtube-dl -t --restrict-filenames --extract-audi
 alias youtube-dl-flv-template="youtube-dl -t --restrict-filenames"
 alias fluxbox-generate_menu-template="fluxbox-generate_menu -kg -su -t lxterminal -w www.startpage.com -is -ds"
 alias mmaker-template="mmaker -t Konsole -vf openbox3"
+alias trayer-template="trayer --edge top --align right --widthtype request --SetDockType false"
 ## dd-aliases with progress indicator
 # (pv -n /dev/sda | dd of=/dev/sdb bs=128M conv=notrunc,noerror) 2>&1 | dialog --gauge "Running dd command (cloning), please wait..." 10 70 0
 # pv -tpreb /dev/sda | dd of=/dev/sdb bs=4096 conv=notrunc,noerror
@@ -56,6 +57,8 @@ export EDITOR="emacs -nw"
 export VISUAL="emacs"
 export PAGER="less"
 # export MAILER=
+
+export PYTHONDOCS=/usr/share/doc/python2/html/
 
 # arch-chroot like
 function changeroot {

@@ -83,20 +83,20 @@ $nodename$alignr$uptime
 
 Battery:$alignr${battery_short BAT1} - ${battery_time BAT1}
 ${battery_bar BAT1}
-RAM: $alignr$mem/$memmax
+RAM:$alignr$mem/$memmax
 $membar
-Swap: $alignr$swap/$swapmax
+Swap:$alignr$swap/$swapmax
 $swapbar
 
-${color4}${font sans-serif:bold:size=8}HDD ${hr 2}${font sans-serif:normal:size=8}
-${diskiograph /dev/sdb 20}
+${color5}${font sans-serif:bold:size=8}SSD ${hr 2}${font sans-serif:normal:size=8}
+${diskiograph /dev/sda 20}
 /boot$alignr${fs_used /boot}/${fs_size /boot}
 ${fs_bar /boot}
 /$alignr${fs_used /}/${fs_size /}
 ${fs_bar /}
 
-${color5}${font sans-serif:bold:size=8}SSD ${hr 2}${font sans-serif:normal:size=8}
-${diskiograph /dev/sda 20}
+${color4}${font sans-serif:bold:size=8}HDD ${hr 2}${font sans-serif:normal:size=8}
+${diskiograph /dev/sdb 20}
 /home$alignr${fs_used /home}/${fs_size /home}
 ${fs_bar /home}
 /var$alignr${fs_used /var}/${fs_size /var}

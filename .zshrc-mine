@@ -3,7 +3,6 @@
 # misc
 autoload -U zutil
 autoload -U compinit && compinit
-# support bash completion
 autoload -U bashcompinit && bashcompinit
 autoload -U complist
 autoload -U promptinit && promptinit
@@ -21,9 +20,9 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 # extensions 
 alias -s txt=emacs
-
 # global aliases
-# alias -g gp='| grep -i'
+alias -g gi='| grep -i'
+
 # export LIBGL_DRIVERS_PATH=/usr/lib32/dri
 # export LIBGL_DRIVERS_PATH=/usr/lib32/xorg/modules/dri
 export LIBGL_DEBUG=verbose

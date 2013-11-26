@@ -26,7 +26,7 @@ own_window_transparent yes
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 
 alignment ml
-gap_x 60
+gap_x 100
 gap_y 0
 
 #########################

@@ -14,15 +14,18 @@ fi
 # set the X cursor
 xsetroot -cursor_name left_ptr
 # set Brazilian keyboard layout
-setxkbmap br
+setxkbmap -layout br
 
 # xinit window_manager
 case $1 in
     gnome) exec gnome-session;;
+    unity) exec unity;;
     kde) exec startkde;;
     cinnamon) exec cinnamon;;
-    awesome) exec awesome;;
     openbox) exec openbox-session;;
+    awesome) exec awesome;;
     fluxbox) exec startfluxbox;;
+    xmonad) exec xmonad;;
+    i3) exec i3;;
     xfce|*) exec startxfce4;;
 esac
