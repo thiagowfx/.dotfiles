@@ -35,6 +35,9 @@
 # web browser
 "xdg-open http://www.google.com/"
   Mod2 + Mod4 + w
+
+"lxtask"
+  Control + Mod2 + Escape
   
 "xkill"
-  Control + Mod2 + Escape
+  Control + Alt + Mod2 + Escape

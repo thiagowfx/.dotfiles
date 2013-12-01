@@ -1,0 +1,105 @@
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[portuges]{babel}
+\usepackage{graphicx}
+\usepackage[a4paper, margin=1in]{geometry}
+
+% inclua aqui algum pacote que você precise
+%\usepackage{}
+
+
+\newcommand{\handout}[5]{
+  \noindent
+  \begin{center}
+  \framebox{
+    \vbox{
+      \hbox to 6.2in { {\bf Teoria dos Grafos (COS242) - ECI/UFRJ } \hfill #2 }
+      \vspace{8mm}
+      \hbox to 6.2in { {\Large \hfill #5  \hfill} }
+      \vspace{4mm}
+      \hbox to 6.2in { {\em #3 \hfill #4} }
+    }
+  }
+  \end{center}
+  \vspace*{4mm}
+}
+
+\newcommand{\lecture}[4]{\handout{#1}{#2}{#3}{Escriba: #4}{Aula #1}}
+
+\parindent 0in
+\parskip 1.5ex
+
+\begin{document}
+
+% editar a linha abaixo com info da aula
+\lecture{NUMERO --- DIA/MÊS}{2013/2}{Profs. Daniel R. Figueiredo e Ricardo Marroquim}{SEU NOME AQUI}
+
+
+% sempre colocar um resumo da aula anterior e desta aula
+\section{Resumo}
+
+Na última aula nós.
+
+Nesta aula nós.
+
+\section{Primeira parte}
+
+Descrever os aspectos abordados nesta aula em sequência.
+Utilize as subseções para melhor dividir a aula. Seja $G=(V,E)$ um grafo 
+não direcionado onde com $n=|V|$ vértices. Você deve usar o modo de equação 
+para escrever funções como $O(n + m)$, ou símbolos matemáticos, como $\sum_{v \in V} d_v = 2m$.
+
+\subsection{Primeira subseção}
+
+Você pode colocar termos em {\bf negrito desta forma}. Você pode colocar termos em {\em itálico desta forma}.
+
+\begin{figure}[h!]
+\centering
+%\includegraphics[width=0.50\textwidth]{grafo.pdf}
+\caption{Exemplo de um grafo não direcionado.}\label{fig:grafo}
+\end{figure}
+
+Assim (ver acima), você pode incluir uma figura e referenciá-la no texto. Na Figura \ref{fig:grafo} temos um grafo!
+
+Assim podemos criar uma lista de pontos:
+\begin{itemize}
+\item 
+Este é o primeiro ponto
+
+\item 
+Este é o segundo ponto
+
+\item 
+E assim vai $\ldots$
+\end{itemize}
+
+Se você quiser enumerar sua lista, pode fazer assim:
+\begin{enumerate}
+\item 
+Este é o primeiro ponto
+
+\item 
+Este é o segundo ponto
+
+\item 
+E assim vai $\ldots$
+\end{enumerate}
+
+\section{Próxima seção}
+
+Aqui temos um exemplo de uma citação a algum livro, artigo, ou qualquer outra fonte de informação~\cite{KT05}.
+
+
+% sempre colocar referência a livros, indicando o capítulo e página, ou mesmo outras fontes
+\begin{thebibliography}{9}
+
+\bibitem{KT05}
+{\sc J.~Kleinberg} e {\sc E.~Tardos}, 
+``Algorithm Design,'' 2005,
+{\it Capítulo 4}, pp 219--222.
+
+\end{thebibliography}
+
+% **** Não apague a linha abaixo!
+\end{document}

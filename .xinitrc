@@ -14,7 +14,7 @@ fi
 # set the X cursor
 xsetroot -cursor_name left_ptr
 # set Brazilian keyboard layout
-setxkbmap -layout br
+setxkbmap br
 
 # xinit window_manager
 case $1 in
@@ -26,6 +26,12 @@ case $1 in
     awesome) exec awesome;;
     fluxbox) exec startfluxbox;;
     xmonad) exec xmonad;;
+    ede) exec startede;;
     i3) exec i3;;
-    xfce|*) exec startxfce4;;
+    icewm) exec icewm-session;;
+    jwm) exec jwm;;
+    e17|enlightenment) exec enlightenment_start;;
+    notion) exec notion;;
+    xfce) exec startxfce4;;
+    *) exec startfluxbox;;
 esac
