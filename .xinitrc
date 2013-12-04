@@ -32,6 +32,8 @@ case $1 in
     jwm) exec jwm;;
     e17|enlightenment) exec enlightenment_start;;
     notion) exec notion;;
-    xfce) exec startxfce4;;
+    xfce|xfce4) exec startxfce4;;
+    monster|monsterwm) exec monsterwm;;
+# default window manager
     *) exec startfluxbox;;
 esac

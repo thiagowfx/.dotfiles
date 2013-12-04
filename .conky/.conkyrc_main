@@ -14,8 +14,8 @@
 ######################
 # - Conky settings - #
 ######################
-update_interval 2.0
-update_interval_on_battery 5.0
+update_interval 5.0
+update_interval_on_battery 10.0
 total_run_times 0
 net_avg_samples 1
 cpu_avg_samples 1
