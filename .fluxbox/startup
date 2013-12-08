@@ -21,6 +21,8 @@ xmodmap "/home/thiago/.Xmodmap"
 batti &
 CopyAgent &
 dropboxd &
+# eval `cat .fehbg` &
+fbsetbg ~/Pictures/para/wallpapers/arch3.png
 guake &
 gnome-do &
 numlockx on &

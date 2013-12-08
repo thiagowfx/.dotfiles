@@ -6,17 +6,21 @@
 # options. Put a backslash in before odd chars
 # MY_TERM='Eterm --tint \#123456'
 # MY_TERM='aterm -tint $(random_color)'
+MY_TERM='konsole'
 
 # Your favourite browser. You can also specify options.
 # MY_BROWSER=mozilla
+MY_BROWSER=firefox-nightly
 
 # Name of the outputfile
 # MENUFILENAME=/home/thiago/.fluxbox/menu
 
 # MENUTITLE=`fluxbox -version|cut -d " " -f-2`
+MENUTITLE='my fluxbox'
 
 # standard url for console-browsers
 # HOMEPAGE=fluxbox.org
+HOMEPAGE=google.com
 
 # location with your own menu-entries
 # USERMENU=~/.fluxbox/usermenu
@@ -26,7 +30,7 @@
 # LAUNCHER=fbgm
 
 # Options for fbrun
-# FBRUNOPTIONS='-font 10x20 -fg grey -bg black -title run'
+# FBRUNOPTIONS='-font 10x20 -fg grey -bg black -title fbrun'
 
 # --- PREFIX'es
 # These are prefixes; So if fluxbox is installed in /usr/bin/fluxbox
@@ -53,16 +57,19 @@
 
 # Include KDE-menus
 # KDEMENU=yes
+KDEMENU=yes
 
 # Include Gnome-menus
 # GNOMEMENU=yes
+GNOMEMENU=yes
 
 # Enable sudo commands
 # DOSUDO=yes
+DOSUDO=yes
 
 # Don't cleanup the menu
 # REMOVE=no
+REMOVE=yes
 
 # Don't add icons to the menu
 # NO_ICON=yes
-
