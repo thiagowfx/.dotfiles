@@ -1,45 +1,41 @@
 # -*- shell-script -*-
 # This is intended as a complement to oh-my-zsh framework.
 
-# tweaks
+# caution / verbose / human-readable / color
 alias cp="cp -v -i"
+alias ln="ln -v"
 alias mv="mv -v -i"
 alias rm="rm -v -i"
 alias rmdir="rmdir -v"
 alias chmod="chmod -v"
 alias chown="chown -v"
-alias df='df -h'                          # human-readable sizes
+alias df='df -h'
 alias du="du -h"
-alias free="free -m"                      # show sizes in MB
+alias free="free -m"
 alias grep="grep --color=auto -E -d skip"
-alias ln="ln -v"
 alias pgrep="pgrep --list-name"
-
-# mine
-alias emq="emacs -nw"		# shell
 alias cower="cower --color=always --sort=votes"
+
+# aliases
+alias emq="emacs -nw"
 alias pingg="ping google.com"
-alias packback='pacman -Qqe | grep -v "$(pacman -Qmq)" > ~/Dropbox/para/pklist-new.txt'
 
 # templates
-alias wget-template="wget -e robots=off -mpEkK -np -t inf -T 60 --"
+alias xephyr-template="Xephyr -ac -br -noreset -screen 800x600 :1"
+alias wget-template-basic="wget -e robots=off -mpEkK -np -t inf -T 60 --"
 alias wget-template-pdf="wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
-alias wget-template-span="wget -e robots=off --wait=2 --random-wait --recursive --span-hosts --spider --timestamping --tries=5 --dns-timeout=30 --connect-timeout=5 --read-timeout=5 --level=10 --"
-alias mount-iso-template="mount -o loop"
-alias rsync-exclude-template="rsync -uzlLh --verbose --times --recursive --progress --delete-excluded"
-alias youtube-dl-mp3-template="youtube-dl -t --restrict-filenames --extract-audio --audio-format mp3"
-alias youtube-dl-flv-template="youtube-dl -t --restrict-filenames"
-alias fluxbox-generate_menu-template="fluxbox-generate_menu -kg -su -t lxterminal -w www.startpage.com -is -ds"
+alias wget-template-spider="wget -e robots=off --wait=2 --random-wait --recursive --span-hosts --spider --timestamping --tries=5 --dns-timeout=30 --connect-timeout=5 --read-timeout=5 --level=10 --"
+alias mount-template-iso="mount -o loop"
+alias youtube-dl-template-mp3="youtube-dl -t --restrict-filenames --extract-audio --audio-format mp3"
+alias youtube-dl-template-flv="youtube-dl -t --restrict-filenames"
+alias fluxbox-generate_menu-template="fluxbox-generate_menu -kg -su -t mate-terminal -w www.google.com -is -ds"
 alias mmaker-template="mmaker -t Konsole -vf openbox3"
 alias trayer-template="trayer --edge top --align right --widthtype request --SetDockType false"
-## dd-aliases with progress indicator
-# (pv -n /dev/sda | dd of=/dev/sdb bs=128M conv=notrunc,noerror) 2>&1 | dialog --gauge "Running dd command (cloning), please wait..." 10 70 0
-# pv -tpreb /dev/sda | dd of=/dev/sdb bs=4096 conv=notrunc,noerror
 
-# distro specific commands
+# distro upgrade
 if [[ -f /etc/arch-release  ]] || [[ -f /etc/manjaro-release ]]; then
     alias world="sudo pacman -Syyuu"
-    alias iogurte="yaourt -Syu --devel --aur" # && sudo pacman-optimize
+    alias iogurte="yaourt -Syu --devel --aur"
 elif
     [[ -f /etc/debian-release ]] || [[ -f /etc/ubuntu-release ]]; then
     alias world="sudo aptitude -y update && sudo aptitude -y upgrade && sudo apt-get -y dist-upgrade && sudo apt-get -y autoremove"
@@ -51,12 +47,11 @@ elif
     alias world="sudo zypper -n update && sudo zypper -n upgrade && sudo -n zypper dup"
 fi
 
+# export variables
 export BROWSER="/usr/bin/firefox"
 export EDITOR="emacs -nw"
 export VISUAL="emacs"
 export PAGER="less"
-# export MAILER=
-
 export PYTHONDOCS=/usr/share/doc/python2/html/
 
 # arch-chroot like

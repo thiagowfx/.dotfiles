@@ -79,12 +79,11 @@ Mod4 Up :Maximize
 Mod1 F11 :Fullscreen
 
 # task manager commands
-# Control 1 :Exec lxtask
-# Control Mod1 1 :Exec xkill
+Control Escape :Exec lxtask
+Control Mod1 Escape :Exec xkill
 
 # open the window menu
 Mod1 space :WindowMenu
-# cst
 Mod1 F3 :WindowMenu
 
 # exit fluxbox

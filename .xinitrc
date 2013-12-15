@@ -33,7 +33,8 @@ case $1 in
     e17|enlightenment) exec enlightenment_start;;
     notion) exec notion;;
     xfce|xfce4) exec startxfce4;;
+    mate) exec mate-session;;
     monster|monsterwm) exec monsterwm;;
 # default window manager
-    *) exec startfluxbox;;
+    *) exec mate-session;;
 esac

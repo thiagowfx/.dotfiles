@@ -3,9 +3,8 @@
   [Layer]	{2}
 [end]
 
-[app] (name=xfce4-appfinder)
+[app] (name=.*)
   [Position]	(WINCENTER)	{0 0}
-  [Layer]	{2}
 [end]
 
 [group]
