@@ -20,9 +20,12 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 # extensions 
 alias -s txt=emacs
+
 # global aliases
 alias -g gi='| grep -i'
 
+# export variables
 # export LIBGL_DRIVERS_PATH=/usr/lib32/dri
 # export LIBGL_DRIVERS_PATH=/usr/lib32/xorg/modules/dri
-export LIBGL_DEBUG=verbose
+# export LIBGL_DEBUG=verbose
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'

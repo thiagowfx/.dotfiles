@@ -18,23 +18,23 @@ setxkbmap br
 
 # xinit window_manager
 case $1 in
-    gnome) exec gnome-session;;
-    unity) exec unity;;
-    kde) exec startkde;;
-    cinnamon) exec cinnamon;;
-    openbox) exec openbox-session;;
     awesome) exec awesome;;
-    fluxbox) exec startfluxbox;;
-    xmonad) exec xmonad;;
+    cinnamon) exec cinnamon-session;;
     ede) exec startede;;
+    fluxbox) exec startfluxbox;;
+    gnome) exec gnome-session;;
+    gnome-classic) exec gnome-session --session=gnome-classic;;
     i3) exec i3;;
     icewm) exec icewm-session;;
-    jwm) exec jwm;;
     e17|enlightenment) exec enlightenment_start;;
-    notion) exec notion;;
-    xfce|xfce4) exec startxfce4;;
+    jwm) exec jwm;;
+    kde) exec startkde;;
     mate) exec mate-session;;
     monster|monsterwm) exec monsterwm;;
-# default window manager
+    notion) exec notion;;
+    openbox) exec openbox-session;;
+    xfce|xfce4) exec startxfce4;;
+    xmonad) exec xmonad;;
+    unity) exec unity;;
     *) exec mate-session;;
 esac

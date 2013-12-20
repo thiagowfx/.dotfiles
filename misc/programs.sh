@@ -8,6 +8,7 @@ wget https://raw.github.com/exebetche/vlsub/master/vlsub.lua
 # Default applications
 xdg-mime default zathura.desktop application/pdf
 xdg-mime default Thunar.desktop inode/directory
+xdg-mime default kde4/ktorrent.desktop x-scheme-handler/magnet
 
 # create this script
 # /usr/bin/nemo
