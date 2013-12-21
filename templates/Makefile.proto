@@ -1,12 +1,12 @@
 # -*- makefile -*-
 
-##################################
-PREFIX=
-BINDIR=$(PREFIX)/bin
 CC=gcc
+TARGET=main
+
+##################################
+
 SRC=$(wildcard *.c)
 OBJ=$(SRC:.c=.o)
-TARGET=main
 GLFLAGS=-lGL -lGLU -lglut -lGLEW
 CFLAGS=-Wall -Wextra $(GLFLAGS)
 
@@ -22,7 +22,6 @@ $(TARGET): $(OBJ)
 %.o: %.c
 	$(CC) -o $@ -c $<
 
-# clean compilation and backup files
 clean:
 	rm -f *.o
 	rm -f *~

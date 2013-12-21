@@ -1,3 +1,5 @@
+% -*- tex -*-
+
 \documentclass[a4paper,12pt]{article}
 \usepackage[a4paper]{geometry}
 \geometry{a4paper,nohead,verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=3cm,rmargin=3cm}
