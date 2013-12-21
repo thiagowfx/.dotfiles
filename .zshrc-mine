@@ -1,31 +1,17 @@
 # -*- sh -*-
 
-# misc
 autoload -U zutil
 autoload -U compinit && compinit
 autoload -U bashcompinit && bashcompinit
 autoload -U complist
 autoload -U promptinit && promptinit
 autoload -U colors && colors
+alias -s txt=emacs
+alias -g gi='| grep -i'
 setopt appendhistory autocd beep emacs extendedglob nomatch hist_ignore_space hist_ignore_all_dups
 [[ -f ~/.aliases ]] && . ~/.aliases
 
 # enable zsh syntax highlightning
-[[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
-# my old zsh prompt 
-# PROMPT="%(?,%{$bg[green]%}✔,%{$bg[red]%}✘)%{$reset_color%}%{$fg_bold[blue]%}%n%{$reset_color%}%{$fg_bold[yellow]%}@%{$reset_color%}%{$fg_bold[blue]%}%m%{$reset_color%}:%{$fg_bold[yellow]%}%~%{$reset_color%} %# "
-# RPROMPT="%{$fg_bold[blue]%}%? / %*%{$reset_color%}"
-
-# extensions 
-alias -s txt=emacs
-
-# global aliases
-alias -g gi='| grep -i'
-
-# export variables
-# export LIBGL_DRIVERS_PATH=/usr/lib32/dri
-# export LIBGL_DRIVERS_PATH=/usr/lib32/xorg/modules/dri
-# export LIBGL_DEBUG=verbose
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'

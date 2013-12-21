@@ -1,7 +1,5 @@
 # -*- shell-script -*-
-# This is intended as a complement to oh-my-zsh framework.
 
-# caution / verbose / human-readable / color
 alias cp="cp -v -i"
 alias ln="ln -v"
 alias mv="mv -v -i"
@@ -12,49 +10,34 @@ alias chown="chown -v"
 alias df='df -h'
 alias du="du -h"
 alias free="free -m"
-alias grep="grep --color=auto -E -d skip"
+alias grep="grep --color=auto"
 alias pgrep="pgrep --list-name"
 alias cower="cower --color=always --sort=votes"
-
-# aliases
 alias emq="emacs -nw"
 alias pingg="ping google.com"
-
-# templates
 alias xephyr-template="Xephyr -ac -br -noreset -screen 800x600 :1"
 alias wget-template-basic="wget -e robots=off -mpEkK -np -t inf -T 60 --"
 alias wget-template-pdf="wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
 alias wget-template-spider="wget -e robots=off --wait=2 --random-wait --recursive --span-hosts --spider --timestamping --tries=5 --dns-timeout=30 --connect-timeout=5 --read-timeout=5 --level=10 --"
-alias mount-template-iso="mount -o loop"
 alias youtube-dl-template-mp3="youtube-dl -t --restrict-filenames --extract-audio --audio-format mp3"
 alias youtube-dl-template-flv="youtube-dl -t --restrict-filenames"
 alias fluxbox-generate_menu-template="fluxbox-generate_menu -kg -su -t mate-terminal -w www.google.com -is -ds"
 alias mmaker-template="mmaker -t Konsole -vf openbox3"
 alias trayer-template="trayer --edge top --align right --widthtype request --SetDockType false"
+alias world="sudo pacman -Syyuu"
+alias world-aura="sudo aura -Au"
+alias world-iogurte="yaourt -Syu --devel --aur"
+alias world-debian="sudo aptitude -y update && sudo aptitude -y upgrade && sudo apt-get -y dist-upgrade"
+alias world-fedora="sudo yum -y update && sudo yum -y upgrade"
+alias world-suse="sudo zypper -n update && sudo zypper -n upgrade && sudo -n zypper dup"
 
-# distro upgrade
-if [[ -f /etc/arch-release  ]] || [[ -f /etc/manjaro-release ]]; then
-    alias world="sudo pacman -Syyuu"
-    alias iogurte="yaourt -Syu --devel --aur"
-elif
-    [[ -f /etc/debian-release ]] || [[ -f /etc/ubuntu-release ]]; then
-    alias world="sudo aptitude -y update && sudo aptitude -y upgrade && sudo apt-get -y dist-upgrade && sudo apt-get -y autoremove"
-elif
-    [[ -f /etc/fedora-release ]]; then
-    alias world="sudo yum -y update && sudo yum -y upgrade && sudo yum -y autoremove"
-elif
-    [[ -f /etc/suse-release ]]; then
-    alias world="sudo zypper -n update && sudo zypper -n upgrade && sudo -n zypper dup"
-fi
-
-# export variables
-export BROWSER="/usr/bin/firefox"
+export BROWSER="/usr/bin/chromium"
 export EDITOR="emacs -nw"
 export VISUAL="emacs"
 export PAGER="less"
-export PYTHONDOCS=/usr/share/doc/python2/html/
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
-# arch-chroot like
+# arch-chroot
 function changeroot {
     sudo cp -L /etc/resolv.conf $1/etc/resolv.conf
     sudo mount -t proc proc $1/proc

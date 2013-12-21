@@ -11,9 +11,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
-# set the X cursor
 xsetroot -cursor_name left_ptr
-# set Brazilian keyboard layout
 setxkbmap br
 
 # xinit window_manager
