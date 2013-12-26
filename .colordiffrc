@@ -1,0 +1,10 @@
+# -*- conf -*-
+
+# be more git-like:
+plain=off
+newtext=darkgreen
+oldtext=darkred
+diffstuff=darkcyan
+
+# Reference:
+# http://stackoverflow.com/questions/4857310/how-to-get-diff-working-like-git-diff

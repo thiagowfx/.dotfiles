@@ -17,6 +17,7 @@ setxkbmap br
 # xinit window_manager
 case $1 in
     awesome) exec awesome;;
+    catwm) exec catwm;;
     cinnamon) exec cinnamon-session;;
     ede) exec startede;;
     fluxbox) exec startfluxbox;;
@@ -34,5 +35,5 @@ case $1 in
     xfce|xfce4) exec startxfce4;;
     xmonad) exec xmonad;;
     unity) exec unity;;
-    *) exec mate-session;;
+    *) exec cinnamon-session;;
 esac

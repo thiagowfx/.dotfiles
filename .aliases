@@ -1,6 +1,7 @@
 # -*- shell-script -*-
 
 alias cp="cp -v -i"
+alias diff="diff -u"
 alias ln="ln -v"
 alias mv="mv -v -i"
 alias rm="rm -v -i"
@@ -25,7 +26,7 @@ alias fluxbox-generate_menu-template="fluxbox-generate_menu -kg -su -t mate-term
 alias mmaker-template="mmaker -t Konsole -vf openbox3"
 alias trayer-template="trayer --edge top --align right --widthtype request --SetDockType false"
 alias world="sudo pacman -Syyuu"
-alias world-aura="sudo aura -Au"
+alias world-aura="sudo aura -Akuax"
 alias world-iogurte="yaourt -Syu --devel --aur"
 alias world-debian="sudo aptitude -y update && sudo aptitude -y upgrade && sudo apt-get -y dist-upgrade"
 alias world-fedora="sudo yum -y update && sudo yum -y upgrade"
@@ -45,4 +46,13 @@ function changeroot {
     sudo mount -o bind /dev $1/dev
     sudo mount -t devpts pts $1/dev/pts/
     sudo chroot $1/ /bin/bash
+}
+
+function coweri {
+    # switch to aur folder
+    [ -f ~/aur ] && mkdir ~/aur
+    cd ~/aur
+
+    # download PKGBUILD, build then install package
+    cower -d $@ && cd $@ && makepkg -si
 }

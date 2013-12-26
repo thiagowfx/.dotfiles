@@ -39,3 +39,7 @@ parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
 }
 PS1="\[\e[0;32m\]\$(parse_git_branch)\[\e[m\]$PS1"
+
+# ccache
+export PATH="/usr/lib/ccache/bin/:$PATH"
+export PATH="/opt/android-sdk/platform-tools/:$PATH"

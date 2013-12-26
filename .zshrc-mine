@@ -15,3 +15,6 @@ setopt appendhistory autocd beep emacs extendedglob nomatch hist_ignore_space hi
 [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
+# ccache
+export PATH="/usr/lib/ccache/bin/:$PATH"
+export PATH="/opt/android-sdk/platform-tools/:$PATH"
