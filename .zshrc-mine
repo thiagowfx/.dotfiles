@@ -6,9 +6,10 @@ autoload -U bashcompinit && bashcompinit
 autoload -U complist
 autoload -U promptinit && promptinit
 autoload -U colors && colors
-alias -s txt=emacs
-alias -g gi='| grep -i'
-setopt appendhistory autocd beep emacs extendedglob nomatch hist_ignore_space hist_ignore_all_dups
+
+setopt emacs
+setopt appendhistory autocd beep extendedglob nomatch hist_ignore_space hist_ignore_all_dups
+
 [[ -f ~/.aliases ]] && . ~/.aliases
 
 # enable zsh syntax highlightning
@@ -18,3 +19,9 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 # ccache
 export PATH="/usr/lib/ccache/bin/:$PATH"
 export PATH="/opt/android-sdk/platform-tools/:$PATH"
+
+#export WINEDLLOVERRIDES='winemenubuilder.exe=d' # Prevent Wine from adding menu entries and desktop links.
+#export WINEPREFIX=~/.wine/wineprefixes/portal4
+export WINEPREFIX=~/.wine32
+export WINEDEBUG=fixme-all
+export WINEARCH=win32

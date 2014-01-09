@@ -1,13 +1,11 @@
 xaudchromium
-nightly
-guake
-thunar
-gcolor2
-lxappearance
-firefox
-guake
-
-guake
+nnetkolourpaint
+-applet
+nm-applet
+volumeicon
+batti
+chromium
+ke
 thunar
 gcolor2
 lxappearance
@@ -17,3 +15,4 @@ network-manager-applet
 nm-applet
 volumeicon
 batti
+kolourpaint
