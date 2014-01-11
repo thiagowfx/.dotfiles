@@ -1,0 +1,8 @@
+# -*- conf -*-
+
+[ui]
+username = Thiago Perrotta
+
+[extensions]
+hgk=		 # hg view
+progress=	 

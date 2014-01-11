@@ -1,19 +1,23 @@
 # -*- shell-script -*-
 
+alias sudo='sudo ' # aliases for sudo!
 alias xz="xz -v"
 alias gzip="gzip -v"
 alias gunzip="gunzip -v"
-alias cp="cp -v -i"
-alias diff="diff -u"
+# alias cp="cp -v -i"
+alias cp="cp -v"
+alias diff="diff -uN"
 alias ln="ln -v"
 alias mv="mv -v -i"
-alias rm="rm -v -i"
+# alias rm="rm -v -i"
+alias rm="rm -v"
 alias rmdir="rmdir -v"
 alias chmod="chmod -v"
 alias chown="chown -v"
 alias df='df -h'
 alias du="du -h"
 alias free="free -m"
+alias lynx="lynx -emacskeys -color"
 alias grep="grep --color=auto"
 alias pgrep="pgrep --list-name"
 alias uptime="uptime --pretty"
@@ -42,13 +46,13 @@ alias ffmpeg-template-screencast="ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -qscal
 alias vncserver-template-start="vncserver -geometry 960x540 -alwaysshared -dpi 96 :1"
 alias vncserver-template-kill="vncserver -kill :1"
 alias vncserver-template-connect="vncviewer -passwd ~/.vnc/passwd localhost:1"
-alias world="sudo pacman -Syu"
+alias world="sudo pacman -Syu && cower -u"
 alias arch-world=world
 alias aura-world="sudo aura -Akuax"
-alias yaourt-world="yaourt -Syu --devel --aur"
 alias debian-world="sudo aptitude -y update && sudo aptitude -y upgrade && sudo apt-get -y dist-upgrade"
 alias fedora-world="sudo yum -y update && sudo yum -y upgrade"
 alias suse-world="sudo zypper -n update && sudo zypper -n upgrade && sudo -n zypper dup"
+alias yaourt-world="yaourt -Syu --devel --aur"
 
 export BROWSER="/usr/bin/chromium"
 export EDITOR="emacs -nw"
@@ -67,10 +71,16 @@ function changeroot {
 }
 
 function coweri {
-    # switch to aur folder
+    initfolder=$(pwd)
     [ -f ~/aur ] && mkdir ~/aur
-    cd ~/aur
 
-    # download PKGBUILD, build then install package
-    cower -d $@ && cd $@ && makepkg -si
+    for pkg
+    do
+	echo "Processando $pkg..."
+	# download PKGBUILD, then build and install package
+	cd ~/aur
+	cower -df $pkg && cd $pkg && makepkg -csi
+    done
+
+    cd "${initfolder}"
 }

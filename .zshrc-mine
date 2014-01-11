@@ -1,5 +1,8 @@
 # -*- sh -*-
 
+## If not running interactively, do nothing
+[ -z "$PS1" ] && return
+
 autoload -U zutil
 autoload -U compinit && compinit
 autoload -U bashcompinit && bashcompinit
@@ -7,8 +10,15 @@ autoload -U complist
 autoload -U promptinit && promptinit
 autoload -U colors && colors
 
+# $ /etc instead of $ cd /etc
+setopt autocd
+# alert me if something has failed
+setopt printexitvalue
 setopt emacs
-setopt appendhistory autocd beep extendedglob nomatch hist_ignore_space hist_ignore_all_dups
+setopt appendhistory beep extendedglob nomatch hist_ignore_space hist_ignore_all_dups
+
+# tab completion after the installation of new packages
+zstyle ':completion:*' rehash true
 
 [[ -f ~/.aliases ]] && . ~/.aliases
 
