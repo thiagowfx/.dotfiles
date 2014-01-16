@@ -4,5 +4,6 @@
 username = Thiago Perrotta
 
 [extensions]
-hgk=		 # hg view
+color=
+hgk=
 progress=	 

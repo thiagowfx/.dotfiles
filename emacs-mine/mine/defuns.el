@@ -44,18 +44,18 @@
 			 (file-name-sans-extension buffer-file-name)
 			 ".out\"")))
 
-(defun notify-compilation-result (buffer msg)
-  "Notify that the compilation is finished,
-close the *compilation* buffer if the compilation is successful,
-and set the focus back to Emacs frame"
-  (if (string-match "^finished" msg)
-      (progn
-	(delete-windows-on buffer)
-	(tooltip-show "\n Compilation Successful!!! ;-) \n "))
-    (tooltip-show "\n Compilation Failed =/ mimi \n "))
-  (setq current-frame (car (car (cdr (current-frame-configuration)))))
-  (select-frame-set-input-focus current-frame))
-(add-to-list 'compilation-finish-functions 'notify-compilation-result)
+;; (defun notify-compilation-result (buffer msg)
+;;   "Notify that the compilation is finished,
+;; close the *compilation* buffer if the compilation is successful,
+;; and set the focus back to Emacs frame"
+;;   (if (string-match "^finished" msg)
+;;       (progn
+;; 	(delete-windows-on buffer)
+;; 	(tooltip-show "\n Compilation Successful!!! ;-) \n "))
+;;     (tooltip-show "\n Compilation Failed =/ mimi \n "))
+;;   (setq current-frame (car (car (cdr (current-frame-configuration)))))
+;;   (select-frame-set-input-focus current-frame))
+;; (add-to-list 'compilation-finish-functions 'notify-compilation-result)
 
 ;; (defun fc-eval-and-replace ()
 ;;   "Replace the preceding sexp with its value."

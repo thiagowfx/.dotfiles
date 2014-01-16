@@ -1,4 +1,0 @@
-#!/bin/sh
-# conky -c ~/.conky/.conkyrc_clock &
-# conky -c ~/.conky/.conkyrc_audio &
-conky -c ~/.conky/.conkyrc_main &

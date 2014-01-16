@@ -1,15 +1,13 @@
 # -*- shell-script -*-
 
 alias sudo='sudo ' # aliases for sudo!
+alias diff="diff -uN"
 alias xz="xz -v"
 alias gzip="gzip -v"
 alias gunzip="gunzip -v"
-# alias cp="cp -v -i"
 alias cp="cp -v"
-alias diff="diff -uN"
 alias ln="ln -v"
 alias mv="mv -v -i"
-# alias rm="rm -v -i"
 alias rm="rm -v"
 alias rmdir="rmdir -v"
 alias chmod="chmod -v"
@@ -23,36 +21,35 @@ alias pgrep="pgrep --list-name"
 alias uptime="uptime --pretty"
 alias strace="strace -t"
 alias reflector="reflector -x rsync"
-alias cower="cower --color=always --sort=votes"
+alias cower="cower --color=always --sort=votes -t ~/aur"
 alias emq="emacs -nw"
 alias pingg="ping google.com"
 alias rsync="rsync --progress"
-alias winetricks-template="winetricks corefonts vcrun2005 vcrun2008 vb6run"
-alias qemu-template-iso="qemu-system-x86_64 --enable-kvm -m 512M -cdrom" #path here
 alias emulator-template="emulator -avd "Intel-10-480x800" -qemu --enable-kvm -dns-server 8.8.8.8,8.8.4.4"
+alias fluxbox-generate_menu-template="fluxbox-generate_menu -kg -su -t mate-terminal -w www.google.com -is -ds"
+alias qemu-template-test-iso="qemu-system-x86_64 --enable-kvm -m 512M -cdrom" #path here
+alias winetricks-template-install="winetricks corefonts vcrun2005 vcrun2008 vb6run"
 alias xrandr-template-reset="xrandr --output LVDS1 --mode 1366x768"
-alias xephyr-template="Xephyr -ac -br -noreset -screen 800x600 :1" # change DISPLAY=:1 to execute some command
-alias webmin-template="sudo systemctl start webmin && chromium localhost:10000"
-alias wget-template-basic="wget -e robots=off -mpEkK -np -t inf -T 60 --"
+alias xephyr-template="Xephyr -ac -br -noreset -screen 1024x768 :1" # set DISPLAY=:1 to execute commands
+alias webmin-template="sudo systemctl start webmin && $BROWSER localhost:10000"
 alias wget-template-pdf="wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
 alias wget-template-spider="wget -e robots=off --wait=2 --random-wait --recursive --span-hosts --spider --timestamping --tries=5 --dns-timeout=30 --connect-timeout=5 --read-timeout=5 --level=10 --"
 alias youtube-dl-template-mp3="youtube-dl -t --restrict-filenames --extract-audio --audio-format mp3"
 alias youtube-dl-template-flv="youtube-dl -t --restrict-filenames"
-alias fluxbox-generate_menu-template="fluxbox-generate_menu -kg -su -t mate-terminal -w www.google.com -is -ds"
 alias mmaker-template="mmaker -t Konsole -vf openbox3"
 alias trayer-template="trayer --edge top --align right --widthtype request --SetDockType false"
 alias ffmpeg-template-screencast-mic="ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -f alsa -ac 2 -i pulse -qscale 0 /tmp/out.mpg"
 alias ffmpeg-template-screencast="ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -qscale 0 /tmp/out.mpg"
-alias vncserver-template-start="vncserver -geometry 960x540 -alwaysshared -dpi 96 :1"
+alias ps1-template="PS1='$ '"
+alias vncserver-template-start="vncserver -geometry 960x540 -alwaysshared -dpi 96 :1" # using DISPLAY=:1
 alias vncserver-template-kill="vncserver -kill :1"
 alias vncserver-template-connect="vncviewer -passwd ~/.vnc/passwd localhost:1"
-alias world="sudo pacman -Syu && cower -u"
-alias arch-world=world
-alias aura-world="sudo aura -Akuax"
-alias debian-world="sudo aptitude -y update && sudo aptitude -y upgrade && sudo apt-get -y dist-upgrade"
-alias fedora-world="sudo yum -y update && sudo yum -y upgrade"
-alias suse-world="sudo zypper -n update && sudo zypper -n upgrade && sudo -n zypper dup"
-alias yaourt-world="yaourt -Syu --devel --aur"
+alias world="sudo pacman -Syu"
+alias world-aura="sudo aura -Akuax"
+alias world-debian="sudo aptitude -y update && sudo aptitude -y upgrade && sudo apt-get -y dist-upgrade"
+alias world-fedora="sudo yum -y update && sudo yum -y upgrade"
+alias world-suse="sudo zypper -n update && sudo zypper -n upgrade && sudo -n zypper dup"
+alias world-yaourt="yaourt -Syu --devel --aur"
 
 export BROWSER="/usr/bin/chromium"
 export EDITOR="emacs -nw"
@@ -68,19 +65,4 @@ function changeroot {
     sudo mount -o bind /dev $1/dev
     sudo mount -t devpts pts $1/dev/pts/
     sudo chroot $1/ /bin/bash
-}
-
-function coweri {
-    initfolder=$(pwd)
-    [ -f ~/aur ] && mkdir ~/aur
-
-    for pkg
-    do
-	echo "Processando $pkg..."
-	# download PKGBUILD, then build and install package
-	cd ~/aur
-	cower -df $pkg && cd $pkg && makepkg -csi
-    done
-
-    cd "${initfolder}"
 }

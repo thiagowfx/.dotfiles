@@ -17,10 +17,10 @@
       minibuffer-scroll-window nil
       resize-mini-windows nil)
 
-;; enable winner mode - C-c <left> restore the previous window configs
+;; winner mode - C-c <left> restore the previous window view
 (winner-mode t)
 
-;; mouse
+;; mouse stuff
 (setq mouse-yank-at-point t)
 
 ;; enable ibuffer
@@ -28,16 +28,16 @@
   (global-set-key (kbd "C-x C-b") 'ibuffer))
 
 ;; don't annoy me with backup files everywhere
-(setq make-backup-files nil)
-;      auto-save-default nil)
+(setq make-backup-files nil
+      auto-save-default nil)
 
 ;; lines
 (setq require-final-newline t
       default-indicate-empty-lines t         
       next-line-add-newlines nil)            ;; C-n at the end of a file acts like newline
 
-;; startup message
-(setq inhibit-startup-message t              ;; don't show startup screen, it's annoying
+;; do not show any startup message, it's annoying
+(setq inhibit-startup-message t
       inhibit-startup-echo-area-message t
       initial-scratch-message                "")
 
@@ -48,7 +48,7 @@
 
 ;; some tweaking
 (fset 'yes-or-no-p 'y-or-n-p)                ;; make all "yes or no" prompts show "y or n" instead
-(setq compilation-read-command nil)          ;; compilation: autocompile without prompting the user, unless you give it a prefix argument
+; (setq compilation-read-command nil)          ;; compilation: autocompile without prompting the user, unless you give it a prefix argument
 
 ;; stop annoying prompt in git
 (setq vc-follow-symlinks t)                 
@@ -73,10 +73,10 @@
 ;; change title from a frame
 (setq-default  frame-title-format
 	       '(:eval
-		 (format "%s@%s: %s"
+		 (format "%s : %s@%s"
+			 (file-name-nondirectory (or (buffer-file-name) default-directory))
 			 (or (file-remote-p default-directory 'user) user-login-name)
-			 (or (file-remote-p default-directory 'host) system-name)
-			 (file-name-nondirectory (or (buffer-file-name) default-directory)))))
+			 (or (file-remote-p default-directory 'host) system-name))))
 
 ;; recent files, to save recently used files
 (require 'recentf)   
