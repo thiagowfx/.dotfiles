@@ -1,49 +1,72 @@
 # -*- shell-script -*-
 
-alias sudo='sudo ' # aliases for sudo!
-alias diff="diff -uN"
+# aliases for sudo!
+alias sudo='sudo '
+
+# aliases
+alias emq="emacs -nw"
+alias pingg="ping google.com"
+
+# verbose output
 alias xz="xz -v"
 alias gzip="gzip -v"
 alias gunzip="gunzip -v"
 alias cp="cp -v"
 alias ln="ln -v"
-alias mv="mv -v -i"
+alias mv="mv -v"
 alias rm="rm -v"
 alias rmdir="rmdir -v"
 alias chmod="chmod -v"
 alias chown="chown -v"
+
+# default behavior
+alias cower="cower --color=auto --sort=votes -t ~/aur"
 alias df='df -h'
+alias diff="diff -uN"
 alias du="du -h"
 alias free="free -m"
-alias lynx="lynx -emacskeys -color"
 alias grep="grep --color=auto"
+alias lynx="lynx -emacskeys"
 alias pgrep="pgrep --list-name"
-alias uptime="uptime --pretty"
-alias strace="strace -t"
 alias reflector="reflector -x rsync"
-alias cower="cower --color=always --sort=votes -t ~/aur"
-alias emq="emacs -nw"
-alias pingg="ping google.com"
 alias rsync="rsync --progress"
+alias strace="strace -t"
+alias trayer="trayer --edge top --align right --widthtype request --SetDockType false"
+alias uptime="uptime --pretty"
+
+# templates
+
+## Android
 alias emulator-template="emulator -avd "Intel-10-480x800" -qemu --enable-kvm -dns-server 8.8.8.8,8.8.4.4"
-alias fluxbox-generate_menu-template="fluxbox-generate_menu -kg -su -t mate-terminal -w www.google.com -is -ds"
-alias qemu-template-test-iso="qemu-system-x86_64 --enable-kvm -m 512M -cdrom" #path here
-alias winetricks-template-install="winetricks corefonts vcrun2005 vcrun2008 vb6run"
-alias xrandr-template-reset="xrandr --output LVDS1 --mode 1366x768"
-alias xephyr-template="Xephyr -ac -br -noreset -screen 1024x768 :1" # set DISPLAY=:1 to execute commands
-alias webmin-template="sudo systemctl start webmin && $BROWSER localhost:10000"
-alias wget-template-pdf="wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
-alias wget-template-spider="wget -e robots=off --wait=2 --random-wait --recursive --span-hosts --spider --timestamping --tries=5 --dns-timeout=30 --connect-timeout=5 --read-timeout=5 --level=10 --"
-alias youtube-dl-template-mp3="youtube-dl -t --restrict-filenames --extract-audio --audio-format mp3"
-alias youtube-dl-template-flv="youtube-dl -t --restrict-filenames"
-alias mmaker-template="mmaker -t Konsole -vf openbox3"
-alias trayer-template="trayer --edge top --align right --widthtype request --SetDockType false"
+alias emulator-template-kill="adb emu kill"
+
+## FFMpeg
 alias ffmpeg-template-screencast-mic="ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -f alsa -ac 2 -i pulse -qscale 0 /tmp/out.mpg"
 alias ffmpeg-template-screencast="ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -qscale 0 /tmp/out.mpg"
-alias ps1-template="PS1='$ '"
-alias vncserver-template-start="vncserver -geometry 960x540 -alwaysshared -dpi 96 :1" # using DISPLAY=:1
-alias vncserver-template-kill="vncserver -kill :1"
+
+# Menu maker
+alias fluxbox-generate_menu-template="fluxbox-generate_menu -kg -su -t mate-terminal -w www.google.com -is -ds"
+alias mmaker-template="mmaker -t Konsole -vf openbox3"
+
+## QEMU
+alias qemu-template-test-iso="qemu-system-x86_64 --enable-kvm -m 512M -cdrom" #path here
+
+## VNC
 alias vncserver-template-connect="vncviewer -passwd ~/.vnc/passwd localhost:1"
+alias vncserver-template-kill="vncserver -kill :1"
+alias vncserver-template-start="vncserver -geometry 960x540 -alwaysshared -dpi 96 :1" # using DISPLAY=:1
+
+## Webmin
+alias webmin-template="sudo systemctl start webmin && ${BROWSER} localhost:10000"
+
+## Wget
+alias wget-template-pdf="wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
+alias wget-template-spider="wget -e robots=off --wait=2 --random-wait --recursive --span-hosts --spider --timestamping --tries=5 --dns-timeout=30 --connect-timeout=5 --read-timeout=5 --level=10 --"
+
+## Winetricks
+alias winetricks-template-install="winetricks corefonts vcrun2005 vcrun2008 vb6run"
+
+## World: upgrade your system
 alias world="sudo pacman -Syu"
 alias world-aura="sudo aura -Akuax"
 alias world-debian="sudo aptitude -y update && sudo aptitude -y upgrade && sudo apt-get -y dist-upgrade"
@@ -51,13 +74,31 @@ alias world-fedora="sudo yum -y update && sudo yum -y upgrade"
 alias world-suse="sudo zypper -n update && sudo zypper -n upgrade && sudo -n zypper dup"
 alias world-yaourt="yaourt -Syu --devel --aur"
 
+## Xephyr
+alias xephyr-template="Xephyr -ac -br -noreset -screen 1024x768 :1" # set DISPLAY=:1 to execute commands
+
+## Xrandr : reset
+alias xrandr-template-reset="xrandr --output LVDS1 --mode 1366x768"
+
+# Youtube-dl
+alias youtube-dl-template-flv="youtube-dl -t --restrict-filenames"
+alias youtube-dl-template-mp3="youtube-dl -t --restrict-filenames --extract-audio --audio-format mp3"
+
+# Environment variables
 export BROWSER="/usr/bin/chromium"
 export EDITOR="emacs -nw"
-export VISUAL="emacs"
 export PAGER="less"
+export PATH="$PATH:/opt/android-sdk/platform-tools/"
+export PATH="$PATH:/usr/lib/ccache/bin/"
+export VISUAL="emacs"
+export WINEARCH=win32
+export WINEDEBUG=fixme-all
+export WINEPREFIX=~/.wine32
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+## Prevent wine from adding menu entries and desktop links
+#export WINEDLLOVERRIDES='winemenubuilder.exe=d'
 
-# arch-chroot
+# Arch-chroot
 function changeroot {
     sudo cp -L /etc/resolv.conf $1/etc/resolv.conf
     sudo mount -t proc proc $1/proc
@@ -66,3 +107,6 @@ function changeroot {
     sudo mount -t devpts pts $1/dev/pts/
     sudo chroot $1/ /bin/bash
 }
+
+# Temp
+# man2ps: man -t pagename > pagename.ps

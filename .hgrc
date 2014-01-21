@@ -1,9 +1,10 @@
 # -*- conf -*-
 
 [ui]
-username = Thiago Perrotta
+verbose = True
+username = Thiago Perrotta <thiagoperrotta95@gmail.com>
 
 [extensions]
 color=
 hgk=
-progress=	 
+progress=

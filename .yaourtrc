@@ -16,4 +16,5 @@ AURVOTE=0
 # show me some aur comments
 AURCOMMENT=6
 
+# development packages
 DEVEL=1

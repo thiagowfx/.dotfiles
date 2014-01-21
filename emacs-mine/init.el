@@ -1,14 +1,10 @@
 ; -*- lisp -*-
 
-;; install these after a fresh emacs installation
-
-;; mandatory
+;; packages
 ; auto-complete-mode
-; redo+
-
-;; optional
-; markdown-mode
 ; emacs-pkgbuild-mode (for arch linux)
+; markdown-mode
+; redo+
 
 ;; set the load path, add everything under ~/.emacs.d to it
 (let* ((my-lisp-dir "~/.emacs.d/")
@@ -26,23 +22,19 @@
 (setq url-http-attempt-keepalives nil)
 
 ;; load custom configs
-(require 'file-extensions)
-(require 'keystrokes)
-(require 'custom-minor-modes)
-(require 'custom-mode-hooks)
+(require 'custom-modes)
 (require 'defuns)
 (require 'extras)
+(require 'keystrokes)
 
-;; (some) .emacs references used here
+;; Emacs references
 ; - Load your .emacs file while in emacs M-x load-file RET ~/.emacs
 ; - http://www.emacsrocks.com/
 ; - http://www.emacswiki.org/emacs/
-; - http://www.damtp.cam.ac.uk/user/sje30/emacs/ell.html ;lots of elisp packages!
-; - https://news.ycombinator.com/item?id=1654164
-; - https://github.com/vvv/dotfiles/blob/master/.emacs
-; - http://www.djcbsoftware.nl/dot-emacs.html
+; - Learning GNU Emacs - O'Reilly Media
+; - The Emacs Reference Manual - Richard Stallman
+; - An Introduction to Emacs Lisp
 
-;;custom dark theme for emacs
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

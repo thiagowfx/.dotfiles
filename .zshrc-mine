@@ -1,37 +1,34 @@
 # -*- sh -*-
 
-## If not running interactively, do nothing
+# If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-autoload -U zutil
-autoload -U compinit && compinit
-autoload -U bashcompinit && bashcompinit
-autoload -U complist
-autoload -U promptinit && promptinit
-autoload -U colors && colors
-
-# $ /etc instead of $ cd /etc
-setopt autocd
-# alert me if something has failed
-setopt printexitvalue
-setopt emacs
-setopt appendhistory beep extendedglob nomatch hist_ignore_space hist_ignore_all_dups
-
-# tab completion after the installation of new packages
-zstyle ':completion:*' rehash true
-
+# default config
 [[ -f ~/.aliases ]] && . ~/.aliases
 
+# autocompletion
+## tab completion after the installation of new packages
+zstyle ':completion:*' rehash true
+
+autoload -U bashcompinit && bashcompinit
+autoload -U colors && colors
+autoload -U compinit && compinit
+autoload -U complist
+autoload -U promptinit && promptinit
+autoload -U zutil
+
+# set options
+setopt appendhistory
+setopt autocd
+setopt beep
+setopt emacs
+setopt extendedglob
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt nomatch
+setopt printexitvalue
+
 # enable zsh syntax highlightning
-[[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+ZSH_SYNTAX_HIGHLIGHTING=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -f $ZSH_SYNTAX_HIGHLIGHTING ]] && . $ZSH_SYNTAX_HIGHLIGHTING
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
-
-# ccache
-export PATH="/usr/lib/ccache/bin/:$PATH"
-export PATH="/opt/android-sdk/platform-tools/:$PATH"
-
-#export WINEDLLOVERRIDES='winemenubuilder.exe=d' # Prevent Wine from adding menu entries and desktop links.
-#export WINEPREFIX=~/.wine/wineprefixes/portal4
-export WINEPREFIX=~/.wine32
-export WINEDEBUG=fixme-all
-export WINEARCH=win32

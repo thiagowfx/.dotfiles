@@ -2,12 +2,12 @@
 (provide 'defuns)
 
 (defun reload-dot-emacs ()
-  "Reload .emacs file while inside emacs."
+  "Reload your ~/.emacs file."
   (interactive)
   (load-file "~/.emacs"))
 
 (defun toggle-fullscreen (&optional f)
-  "Fullscreen on F11 -- GNU/Linux Only"
+  "Toggle Fullscreen -- GNU/Linux Only"
   (interactive)
   (let ((current-value (frame-parameter nil 'fullscreen)))
     (set-frame-parameter nil 'fullscreen
@@ -16,24 +16,8 @@
                            (progn (setq old-fullscreen current-value)
                                   'fullboth)))))
 
-(defun exec-program ()
-  "Execute the current buffer name."
-  (interactive)
-  (shell-command (concat "\""
-			 (file-name-sans-extension buffer-file-name)
-			 "\"")))
-
-(defun exec-program-with-input ()
-  "Execute the current buffer name with the .in input"
-  (interactive)
-  (shell-command (concat "\""
-			 (file-name-sans-extension buffer-file-name)
-			 "\" < \""
-			 (file-name-sans-extension buffer-file-name)
-			 ".in\"")))
-
-(defun exec-program-with-input-and-output ()
-  "Execute the current buffer name with the .in input and flushing it to the .out output"
+(defun exec-program-with-io ()
+  "Execute the current buffer name with the .in input and .out output"
   (interactive)
   (shell-command (concat "\""
 			 (file-name-sans-extension buffer-file-name)
@@ -56,13 +40,3 @@
 ;;   (setq current-frame (car (car (cdr (current-frame-configuration)))))
 ;;   (select-frame-set-input-focus current-frame))
 ;; (add-to-list 'compilation-finish-functions 'notify-compilation-result)
-
-;; (defun fc-eval-and-replace ()
-;;   "Replace the preceding sexp with its value."
-;;   (interactive)
-;;   (backward-kill-sexp)
-;;   (condition-case nil
-;;       (prin1 (eval (read (current-kill 0)))
-;;              (current-buffer))
-;;     (error (message "Invalid expression")
-;;            (insert (current-kill 0)))))

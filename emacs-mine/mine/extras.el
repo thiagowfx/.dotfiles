@@ -1,7 +1,6 @@
 ;; extras
 (provide 'extras)
 
-
 ;; redo utilities
 (require 'redo+)
 (when (fboundp 'redo+)
