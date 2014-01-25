@@ -67,6 +67,7 @@ alias wget-template-spider="wget -e robots=off --wait=2 --random-wait --recursiv
 alias winetricks-template-install="winetricks corefonts vcrun2005 vcrun2008 vb6run"
 
 ## World: upgrade your system
+alias pacbuilder-template="pacbuilder -Sbkvn"
 alias world="sudo pacman -Syu"
 alias world-aura="sudo aura -Akuax"
 alias world-debian="sudo aptitude -y update && sudo aptitude -y upgrade && sudo apt-get -y dist-upgrade"
@@ -91,14 +92,14 @@ export PAGER="less"
 export PATH="$PATH:/opt/android-sdk/platform-tools/"
 export PATH="$PATH:/usr/lib/ccache/bin/"
 export VISUAL="emacs"
-export WINEARCH=win32
+export WINEARCH=win64
 export WINEDEBUG=fixme-all
-export WINEPREFIX=~/.wine32
+export WINEPREFIX=~/.wine/wine0
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 ## Prevent wine from adding menu entries and desktop links
 #export WINEDLLOVERRIDES='winemenubuilder.exe=d'
 
-# Arch-chroot
+# arch-chroot to non-arch systems
 function changeroot {
     sudo cp -L /etc/resolv.conf $1/etc/resolv.conf
     sudo mount -t proc proc $1/proc
@@ -108,5 +109,76 @@ function changeroot {
     sudo chroot $1/ /bin/bash
 }
 
+# to actually create a chroot, see manpage (pacstrap...)
+alias systemd-nspawn-template="systemd-nspawn -bD"
+
+# alternatives include:
+# - arch-chroot
+# - schroot
+# - devtools package (makepkg builds...)
+
+# File extractor
+x() {
+    if [[ -f "$1" ]]; then
+	case "$1" in
+	    *.tar.lrz)
+		b=$(basename "$1" .tar.lrz)
+		lrztar -d "$1" && [[ -d "$b" ]] && cd "$b" ;;
+	    *.lrz)
+		b=$(basename "$1" .lrz)
+		lrunzip "$1" && [[ -d "$b" ]] && cd "$b" ;;
+	    *.tar.bz2)
+		b=$(basename "$1" .tar.bz2)
+		tar xjf "$1" && [[ -d "$b" ]] && cd "$b" ;;
+	    *.bz2)
+		b=$(basename "$1" .bz2)
+		bunzip2 "$1" && [[ -d "$b" ]] && cd "$b" ;;
+	    *.tar.gz)
+		b=$(basename "$1" .tar.gz)
+		tar xzf "$1" && [[ -d "$b" ]] && cd "$b" ;;
+	    *.gz)
+		b=$(basename "$1" .gz)
+		gunzip "$1" && [[ -d "$b" ]] && cd "$b" ;;
+	    *.tar.xz)
+		b=$(basename "$1" .tar.xz)
+		tar Jxf "$1" && [[ -d "$b" ]] && cd "$b" ;;
+	    *.xz)
+		b=$(basename "$1" .gz)
+		xz -d "$1" && [[ -d "$b" ]] && cd "$b" ;;
+	    *.rar)
+		b=$(basename "$1" .rar)
+		unrar e "$1" && [[ -d "$b" ]] && cd "$b" ;;
+	    *.tar)
+		b=$(basename "$1" .tar)
+		tar xf "$1" && [[ -d "$b" ]] && cd "$b" ;;
+	    *.tbz2)
+		b=$(basename "$1" .tbz2)
+		tar xjf "$1" && [[ -d "$b" ]] && cd "$b" ;;
+	    *.tgz)
+		b=$(basename "$1" .tgz)
+		tar xzf "$1" && [[ -d "$b" ]] && cd "$b" ;;
+	    *.zip)
+		b=$(basename "$1" .zip)
+		unzip "$1" && [[ -d "$b" ]] && cd "$b" ;;
+	    *.Z)
+		b=$(basename "$1" .Z)
+		uncompress "$1" && [[ -d "$b" ]] && cd "$b" ;;
+	    *.7z)
+		b=$(basename "$1" .7z)
+		7z x "$1" && [[ -d "$b" ]] && cd "$b" ;;
+	    *) echo "don't know how to extract '$1'..." && return 1;;
+	esac
+	return 0
+    else
+	echo "'$1' is not a valid file!"
+	return 1
+    fi
+}
+
+# typos
+alias pacma="pacman"
+
+
 # Temp
 # man2ps: man -t pagename > pagename.ps
+# dmidecode: dmidecode -t 1
