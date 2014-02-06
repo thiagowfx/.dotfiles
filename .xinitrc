@@ -11,8 +11,15 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
+# mouse and keyboard
 xsetroot -cursor_name left_ptr
 setxkbmap br
+
+# apps
+CopyAgent &
+dropboxd &
+volumeicon &
+wicd-gtk -t &
 
 # xinit window_manager
 case $1 in
@@ -35,5 +42,5 @@ case $1 in
     unity) exec unity;;
     xfce|xfce4) exec startxfce4;;
     xmonad) exec xmonad;;
-    *) exec cinnamon-session;;
+    *) exec i3;;
 esac
