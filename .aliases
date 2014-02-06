@@ -177,6 +177,7 @@ x() {
 
 # typos
 alias pacma="pacman"
+alias sl="ls"
 
 
 # Temp
