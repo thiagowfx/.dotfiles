@@ -24,7 +24,7 @@
 ;; load custom configs
 (require 'custom-modes)
 (require 'defuns)
-(require 'extras)
+;; (require 'extras)
 (require 'keystrokes)
 
 ;; Emacs references
