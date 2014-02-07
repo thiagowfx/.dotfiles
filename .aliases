@@ -20,7 +20,7 @@ alias chmod="chmod -v"
 alias chown="chown -v"
 
 # default behavior
-alias cower="cower --color=auto --sort=votes -t ~/aur"
+alias cower="cower --color=auto --sort=votes -t ~/.aur"
 alias df='df -h'
 alias diff="diff -uN"
 alias du="du -h"
@@ -67,13 +67,10 @@ alias wget-template-spider="wget -e robots=off --wait=2 --random-wait --recursiv
 alias winetricks-template-install="winetricks corefonts vcrun2005 vcrun2008 vb6run"
 
 ## World: upgrade your system
-alias pacbuilder-template="pacbuilder -Sbkvn"
 alias world="sudo pacman -Syu"
 alias world-aura="sudo aura -Akuax"
-alias world-debian="sudo aptitude -y update && sudo aptitude -y upgrade && sudo apt-get -y dist-upgrade"
-alias world-fedora="sudo yum -y update && sudo yum -y upgrade"
-alias world-suse="sudo zypper -n update && sudo zypper -n upgrade && sudo -n zypper dup"
 alias world-yaourt="yaourt -Syu --devel --aur"
+alias pacbuilder-template="pacbuilder -Sbkvn"
 
 ## Xephyr
 alias xephyr-template="Xephyr -ac -br -noreset -screen 1024x768 :1" # set DISPLAY=:1 to execute commands
@@ -94,7 +91,7 @@ export PATH="$PATH:/usr/lib/ccache/bin/"
 export VISUAL="emacs"
 export WINEARCH=win64
 export WINEDEBUG=fixme-all
-export WINEPREFIX=~/.wine/wine0
+export WINEPREFIX=~/.wine
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 ## Prevent wine from adding menu entries and desktop links
 #export WINEDLLOVERRIDES='winemenubuilder.exe=d'
@@ -118,7 +115,7 @@ alias systemd-nspawn-template="systemd-nspawn -bD"
 # - devtools package (makepkg builds...)
 
 # File extractor
-x() {
+ex() {
     if [[ -f "$1" ]]; then
 	case "$1" in
 	    *.tar.lrz)

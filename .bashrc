@@ -4,7 +4,16 @@
 # default config
 [[ -f ~/.aliases ]] && . ~/.aliases
 [[ -f /etc/bashrc ]] && . /etc/bashrc
+
+# prompt
 PS1='\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]\[\033[1;32m\] \$\[\033[m\] '
+
+## git support
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
+}
+PS1="\[\e[0;32m\]\$(parse_git_branch)\[\e[m\]$PS1"
+
 
 # autocompletion
 if [ -f /etc/bash_completion ]; then
@@ -35,13 +44,3 @@ man() {
 	LESS_TERMCAP_us=$'\E[04;38;5;146m' \
 	man "$@"
 }
-
-# git support
-parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
-}
-PS1="\[\e[0;32m\]\$(parse_git_branch)\[\e[m\]$PS1"
-
-# ccache
-export PATH="/usr/lib/ccache/bin/:$PATH"
-export PATH="/opt/android-sdk/platform-tools/:$PATH"
