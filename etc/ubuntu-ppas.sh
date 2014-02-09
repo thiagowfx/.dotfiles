@@ -1,3 +1,5 @@
+# -*- sh -*-
+
 ppas=(
 "ppa:videolan/stable-daily"
 "ppa:me-davidsansome/clementine"

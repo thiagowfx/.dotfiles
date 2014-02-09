@@ -1,6 +1,6 @@
 # -*- conf -*-
 
-# be more git-like:
+# Be more git-like:
 diffstuff=darkcyan
 newtext=darkgreen
 oldtext=darkred

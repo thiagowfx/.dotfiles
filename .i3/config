@@ -35,7 +35,7 @@ bindsym $mod+q kill
 bindsym $Alt+F4 kill
 
 # start dmenu (a program launcher)
-# bindsym $mod+d exec dmenu_run
+# bindsym $mod+d exec dmenu_run -p "Yes master?"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -43,24 +43,12 @@ bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 bindsym $Alt+F2 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym Mod1+j focus left
-bindsym Mod1+k focus down
-bindsym Mod1+l focus up
-bindsym Mod1+semicolon focus right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym Mod1+Shift+j move left
-bindsym Mod1+Shift+k move down
-bindsym Mod1+Shift+l move up
-bindsym Mod1+Shift+semicolon move right
-
-# alternatively, you can use the cursor keys:
 bindsym Mod1+Shift+Left move left
 bindsym Mod1+Shift+Down move down
 bindsym Mod1+Shift+Up move up
@@ -151,13 +139,30 @@ mode "resize" {
         bindsym Up resize shrink height $step px or $step ppt
         bindsym Right resize grow width $step px or $step ppt
 
-        # back to normal: Enter or Escape
+        # back to normal: Enter or Escape or space
         bindsym Return mode "default"
         bindsym Escape mode "default"
  	bindsym space mode "default"
 }
-
 bindsym $mod+r mode "resize"
+
+set $mode_system System (l)ock, (e) logout, (s)uspend, (h)ibernate, (r)eboot, (Shift+s) shutdown
+mode "$mode_system" {
+        set $i3lock i3lock -c 111111 -d
+
+        bindsym l exec --no-startup-id $i3lock, mode "default"
+        bindsym e exec --no-startup-id i3-msg exit, mode "default"
+        bindsym s exec --no-startup-id $i3lock && systemctl suspend, mode "default"
+        bindsym h exec --no-startup-id $i3lock && systemctl hibernate, mode "default"
+        bindsym r exec --no-startup-id systemctl reboot, mode "default"
+        bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"  
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym space mode "default"
+}
+bindsym $mod+l mode "$mode_system"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -206,6 +211,7 @@ assign [class="^Firefox$"] → "2:Web"
 
 
 # for_window
+for_window [window_role="pop-up"] floating enable
 for_window [class="^feh$"] floating enable
 for_window [class="^Chromium$"] border 1pixel
 for_window [class="^gimp$"] floating enable
@@ -213,7 +219,7 @@ for_window [class="^Xfce4-notifyd$"] floating enable; border none; focus mode_to
 
 # Startup applications:
 # Foreground
-exec --no-startup-id i3-msg 'workspace 1:Shell; exec /usr/bin/sakura'
+exec --no-startup-id i3-msg 'workspace 1:Shell; exec ${VISUAL}; exec ${TERMINAL}'
 exec --no-startup-id sh ~/.fehbg
 
 # Background

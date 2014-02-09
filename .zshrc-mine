@@ -6,7 +6,6 @@
 # default config
 [[ -f ~/.aliases ]] && . ~/.aliases
 
-# autocompletion
 ## tab completion after the installation of new packages
 zstyle ':completion:*' rehash true
 

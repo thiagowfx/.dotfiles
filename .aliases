@@ -35,7 +35,7 @@ alias strace="strace -t"
 alias trayer="trayer --edge top --align right --widthtype request --SetDockType false"
 alias uptime="uptime --pretty"
 
-# templates
+# Templates
 
 ## Android
 alias emulator-template="emulator -avd "Intel-10-480x800" -qemu --enable-kvm -dns-server 8.8.8.8,8.8.4.4"
@@ -58,7 +58,7 @@ alias vncserver-template-kill="vncserver -kill :1"
 alias vncserver-template-start="vncserver -geometry 960x540 -alwaysshared -dpi 96 :1" # using DISPLAY=:1
 
 ## Webmin
-alias webmin-template="sudo systemctl start webmin && ${BROWSER} localhost:10000"
+alias webmin-template="sudo systemctl start webmin && "${BROWSER}" localhost:10000"
 
 ## Wget
 alias wget-template-pdf="wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
@@ -69,8 +69,9 @@ alias winetricks-template-install="winetricks corefonts vcrun2005 vcrun2008 vb6r
 
 ## World: upgrade your system
 alias world="sudo pacman -Syu"
-alias world-aura="sudo aura -Akuax"
-alias world-yaourt="yaourt -Syu --devel --aur"
+alias aura-template="sudo aura -Akuax"
+alias packer-template="sudo packer -Syu --devel"
+alias yaourt-template="yaourt -Syu --devel --aur"
 alias pacbuilder-template="pacbuilder -Sbkvn"
 
 ## Xephyr
@@ -85,18 +86,16 @@ alias youtube-dl-template-mp3="youtube-dl -t --restrict-filenames --extract-audi
 
 # Environment variables
 export BROWSER="/usr/bin/chromium"
-export EDITOR="emacs -nw"
+export EDITOR="/usr/bin/emacs -nw"
+export FILEMANAGER="/usr/bin/thunar"
 export PAGER="less"
-export TERMINAL="sakura"
+export TERMINAL="/usr/bin/sakura"
 export PATH="$PATH:/opt/android-sdk/platform-tools/"
-export PATH="$PATH:/usr/lib/ccache/bin/"
-export VISUAL="emacs"
+export VISUAL="/usr/bin/emacs"
 export WINEARCH=win64
 export WINEDEBUG=fixme-all
 export WINEPREFIX=~/.wine
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
-## Prevent wine from adding menu entries and desktop links
-#export WINEDLLOVERRIDES='winemenubuilder.exe=d'
 
 # arch-chroot to non-arch systems
 function changeroot {
@@ -111,7 +110,7 @@ function changeroot {
 # to actually create a chroot, see manpage (pacstrap...)
 alias systemd-nspawn-template="systemd-nspawn -bD"
 
-# alternatives include:
+# Alternatives include:
 # - arch-chroot
 # - schroot
 # - devtools package (makepkg builds...)
@@ -175,6 +174,7 @@ ex() {
 }
 
 # typos
+alias eamcs="emacs"
 alias pacma="pacman"
 alias sl="ls"
 
