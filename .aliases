@@ -19,13 +19,14 @@ alias rmdir="rmdir -v"
 alias chmod="chmod -v"
 alias chown="chown -v"
 
-# default behavior
+# change default behavior
 alias cower="cower --color=auto --sort=votes -t ~/.aur"
 alias df='df -h'
 alias diff="diff -uN"
 alias du="du -h"
 alias free="free -m"
 alias grep="grep --color=auto"
+alias i3lock="i3lock -c 111111 -d"
 alias lynx="lynx -emacskeys"
 alias pgrep="pgrep --list-name"
 alias reflector="reflector -x rsync"
@@ -86,6 +87,7 @@ alias youtube-dl-template-mp3="youtube-dl -t --restrict-filenames --extract-audi
 export BROWSER="/usr/bin/chromium"
 export EDITOR="emacs -nw"
 export PAGER="less"
+export TERMINAL="sakura"
 export PATH="$PATH:/opt/android-sdk/platform-tools/"
 export PATH="$PATH:/usr/lib/ccache/bin/"
 export VISUAL="emacs"

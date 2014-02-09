@@ -12,14 +12,12 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 fi
 
 # mouse and keyboard
-xsetroot -cursor_name left_ptr
-setxkbmap br
+xsetroot -cursor_name left_ptr &
+setxkbmap br &
 
-# apps
-CopyAgent &
-dropboxd &
-volumeicon &
-wicd-gtk -t &
+# backlight
+xbacklight -set 50 &
+# xset dpms 300 600 900 &
 
 # xinit window_manager
 case $1 in
