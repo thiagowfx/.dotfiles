@@ -1,20 +1,22 @@
-# Maintainer: Thiago Perrotta <thiagoperrotta95@gmail.com>
+# Maintainer: Thiago Perrotta <echo dGhpYWdvcGVycm90dGE5NUBnbWFpbC5jb20K | base64 -d > 
 
 pkgname=arch-firefox-nightly-search
-pkgver=0.1
+pkgver=30.0a1
 pkgrel=1
-pkgdesc="Firefox Nightly Arch search engines (AUR, Pkgs, BBS, Wiki, etc.)"
+pkgdesc="Firefox Nightly Arch search engines (packages and AUR, BBS, wiki and bugs)"
 arch=('any')
 url="http://archlinux.org/"
 license=('GPL')
 depends=('firefox-nightly')
-source=(arch-bugs-fs.xml
-	arch-bugs-t.xml
-	arch-forum-a.xml
-	arch-forum-c.xml
-	arch-pkgs.xml
-	arch-wiki.xml
-	aur.xml)
+_base='https://raw2.github.com/thiagowfx/dotfiles/master/PKGBUILDS/arch-firefox-nightly'
+# source=('http://raw2.github.com/thiagowfx/dotfiles/master/PKGBUILDS/arch-firefox-nightly/arch-bugs-fs.xml'
+source=("${_base}"/arch-bugs-fs.xml
+	"${_base}"/arch-bugs-t.xml
+	"${_base}"/arch-forum-a.xml
+	"${_base}"/arch-forum-c.xml
+	"${_base}"/arch-pkgs.xml
+	"${_base}"/arch-wiki.xml
+	"${_base}"/aur.xml)
 md5sums=('df18835df1ea78bc3fc0e05f934b1e46'
          '0226a317c8bf23feaa80e21d1706f2d5'
          '4eaa3d26ac41077ee25b66127ad9ef0a'
@@ -22,9 +24,9 @@ md5sums=('df18835df1ea78bc3fc0e05f934b1e46'
          '403c346ce089ec56c2db67f9f3d87514'
          'dbb93d1e793b92252b69f65110b33c42'
          'b70839977625bceb3004dc62fb9e5a65')
+
 package() {
-  nightly_ver=30.0a1
-  prefix="${pkgdir}"/opt/firefox-"${nightly_ver}"/browser/searchplugins/
+  prefix="${pkgdir}"/opt/firefox-"${pkgver}"/browser/searchplugins/
 
   for file in ${source[@]}; do
     install -D -m 0644 "${srcdir}"/"${file}" "${prefix}"/"${file}"
