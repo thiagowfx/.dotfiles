@@ -97,9 +97,9 @@
 (show-paren-mode t) ;; highlight matching parenthesis
 (fset 'yes-or-no-p 'y-or-n-p)
 (winner-mode t) ;; use C-c <left> to restore the previous window view
+(electric-pair-mode t) ;; autoclose parenthesis
 
 (global-set-key (kbd "M-/") 'hippie-expand)
-
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "C-M-s") 'isearch-forward)
