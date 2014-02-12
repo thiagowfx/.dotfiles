@@ -21,21 +21,27 @@
   (setq load-path (cons my-lisp-dir load-path))
   (normal-top-level-add-subdirs-to-load-path))
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Repositories (see list-packages and package-install)
-(when (file-exists-p "~/.emacs.d/elpa/package.el")
-  (when (load (expand-file-name "~/.emacs.d/elpa/package.el"))
-    (package-initialize)))
-(setq package-archives '(("marmalade" . "http://marmalade-repo.org/packages/")
+;; (when (file-exists-p "~/.emacs.d/elpa/package.el")
+;;   (when (load (expand-file-name "~/.emacs.d/elpa/package.el"))
+;;     (package-initialize)))
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (package-initialize)
+  (setq package-archives '(("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")
 			 ("gnu" . "http://elpa.gnu.org/packages/")))
-(setq url-http-attempt-keepalives nil)
+  (setq url-http-attempt-keepalives nil))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Modeline
 (column-number-mode t)
 (line-number-mode t)
 (size-indication-mode t)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Minibuffer
@@ -45,7 +51,6 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; X
-
 ;; Title for X frames. Template: source.cpp: thiago@arch
 (setq-default frame-title-format ;; change title from a frame (X Only)
 	      '(:eval (format "%s: %s@%s" 
@@ -96,7 +101,8 @@
 (setq-default indent-tabs-mode nil)
 (show-paren-mode t) ;; highlight matching parenthesis
 (fset 'yes-or-no-p 'y-or-n-p)
-(winner-mode t) ;; use C-c <left> to restore the previous window view
+(winner-mode t) ;; use C-c <left> to restore the previous window view-
+(linum-mode t)
 
 (global-set-key (kbd "M-/") 'hippie-expand)
 
@@ -145,19 +151,21 @@
       inhibit-startup-echo-area-message t
       initial-scratch-message "")
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Syntax Highlighting
+;; Syntax Highlighting Everywhere
 (global-font-lock-mode t)
 (setq font-lock-maximum-decoration t)
 
-;; Arch Linux PKGBUILDs
+;; Arch Linux PKGBUILD Mode
 (when (locate-library "pkgbuild-mode")
   (autoload 'pkgbuild-mode "pkgbuild-mode.el" "PKGBUILD mode." t)
   (add-to-list 'auto-mode-alist '("/PKGBUILD$" . pkgbuild-mode)))
 
-;; Markdown
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+;; Markdown Mode
+(when (locate-library "markdown-mode")
+  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -228,7 +236,7 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; custom keystrokes
+;; Custom keystrokes/keybindings
 
 ;; Templates:
 ;; - (kbd "M-g")
@@ -236,16 +244,16 @@
 ;; - (kbd "<f1>")
 
 (global-set-key    "\M-g"          'goto-line)                   
-(global-set-key    (kbd "<f3>")    'reload-dot-emacs)
 (global-set-key    (kbd "RET")     'newline-and-indent)	;; C-j like; alt: reindent-then-newline-and-indent
 (global-set-key    [C-tab]         'other-window)
+(global-set-key    (kbd "<f3>")    'reload-dot-emacs)
 (global-set-key    [f5]            'compile)
 (global-set-key    [f9]            'comment-or-uncomment-region)
 (global-set-key    [f11]           'toggle-fullscreen)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; customize
+;; Customize
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
