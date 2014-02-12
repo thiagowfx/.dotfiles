@@ -59,12 +59,8 @@
 			      (or (file-remote-p default-directory 'user) user-login-name)
 			      (or (file-remote-p default-directory 'host) system-name))))
 
-(when (fboundp 'menu-bar-mode)
-  (menu-bar-mode -1))
-(when (fboundp 'tool-bar-mode)
-    (tool-bar-mode -1))
-(when (fboundp 'scroll-bar-mode)
-  (scroll-bar-mode -1))
+(menu-bar-mode -1)
+(tool-bar-mode -1)
 
 (defun toggle-fullscreen (&optional f)
   "Toggle Fullscreen -- GNU/Linux Only"
@@ -104,11 +100,12 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (winner-mode t) ;; use C-c <left> to restore the previous window view-
 (linum-mode t)
-(when (fboundp 'electric-pair-mode)
-  (electric-pair-mode t)) ;; autoclose parenthesis
+
+(when (>= emacs-major-version 24)
+  (electric-pair-mode t) ;; autoclose parenthesis
+  (electric-indent-mode +1))
 
 (global-set-key (kbd "M-/") 'hippie-expand)
-
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "C-M-s") 'isearch-forward)
@@ -183,7 +180,10 @@
 (when (and (locate-library "auto-complete")
 	   (locate-library "popup"))
   (require 'auto-complete)
+  (require 'auto-complete-config)
   (require 'popup)
+  (ac-config-default)
+  (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
   (setq ac-modes '(c-mode c++-mode emacs-lisp-mode java-mode python-mode))
   (global-auto-complete-mode t))
 
