@@ -51,6 +51,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; X
+
 ;; Title for X frames. Template: source.cpp: thiago@arch
 (setq-default frame-title-format ;; change title from a frame (X Only)
 	      '(:eval (format "%s: %s@%s" 
@@ -103,6 +104,8 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (winner-mode t) ;; use C-c <left> to restore the previous window view-
 (linum-mode t)
+(when (fboundp 'electric-pair-mode)
+  (electric-pair-mode t)) ;; autoclose parenthesis
 
 (global-set-key (kbd "M-/") 'hippie-expand)
 

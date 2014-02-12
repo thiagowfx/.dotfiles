@@ -35,12 +35,12 @@ bindsym $mod+q kill
 bindsym $Alt+F4 kill
 
 # start dmenu (a program launcher)
-# bindsym $mod+d exec dmenu_run -p "Yes master?"
+bindsym $mod+d exec dmenu_run -p "Yes master?"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-bindsym $Alt+F2 exec --no-startup-id i3-dmenu-desktop
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $Alt+F2 exec dmenu_run -p "Yes master?"
 
 # change focus
 bindsym $mod+Left focus left
@@ -183,8 +183,8 @@ bindsym XF86AudioLowerVolume exec amixer set Master 2%- unmute
 bindsym XF86AudioMute exec amixer set Master toggle
 bindsym Print exec --no-startup-id /usr/bin/scrot '%Y-%m-%d_%H%M%S_$wx$h.png' -e 'mv $f ~/Pictures/' && notify-send 'Screenshot taken!'
 
-bindsym Ctrl+$Alt+Left workspace prev
-bindsym Ctrl+$Alt+Right workspace next
+# bindsym Ctrl+$Alt+Left workspace prev
+# bindsym Ctrl+$Alt+Right workspace next
 bindsym $Win+Tab workspace next
 bindsym $Win+Shift+Tab workspace prev
 
@@ -219,13 +219,15 @@ for_window [class="^Xfce4-notifyd$"] floating enable; border none; focus mode_to
 
 # Startup applications:
 # Foreground
-exec --no-startup-id i3-msg 'workspace 1:Shell; exec ${VISUAL}; exec ${TERMINAL}'
+exec --no-startup-id i3-msg 'exec ${TERMINAL}; move scratchpad'
+exec --no-startup-id i3-msg 'workspace 1:Shell; exec ${TERMINAL}'
 exec --no-startup-id sh ~/.fehbg
 
 # Background
 exec --no-startup-id /usr/bin/CopyAgent
 exec --no-startup-id /usr/bin/dropboxd
 exec --no-startup-id LC_ALL=C /usr/bin/parcellite
+exec --no-startup-id /usr/bin/nm-applet
 exec --no-startup-id /usr/bin/redshift-gtk
 # exec --no-startup-id /usr/bin/volumeicon
-exec --no-startup-id /usr/bin/wicd-gtk -t
+# exec --no-startup-id /usr/bin/wicd-gtk -t
