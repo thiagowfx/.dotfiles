@@ -8,15 +8,13 @@ arch=('any')
 url="http://archlinux.org/"
 license=('GPL')
 depends=('firefox-nightly')
-_base='https://raw2.github.com/thiagowfx/dotfiles/master/PKGBUILDS/arch-firefox-nightly'
-# source=('http://raw2.github.com/thiagowfx/dotfiles/master/PKGBUILDS/arch-firefox-nightly/arch-bugs-fs.xml'
-source=("${_base}"/arch-bugs-fs.xml
-	"${_base}"/arch-bugs-t.xml
-	"${_base}"/arch-forum-a.xml
-	"${_base}"/arch-forum-c.xml
-	"${_base}"/arch-pkgs.xml
-	"${_base}"/arch-wiki.xml
-	"${_base}"/aur.xml)
+source=(arch-bugs-fs.xml
+	arch-bugs-t.xml
+	arch-forum-a.xml
+	arch-forum-c.xml
+	arch-pkgs.xml
+	arch-wiki.xml
+	aur.xml)
 md5sums=('df18835df1ea78bc3fc0e05f934b1e46'
          '0226a317c8bf23feaa80e21d1706f2d5'
          '4eaa3d26ac41077ee25b66127ad9ef0a'
