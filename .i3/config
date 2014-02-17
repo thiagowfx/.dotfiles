@@ -49,10 +49,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym Mod1+Shift+Left move left
-bindsym Mod1+Shift+Down move down
-bindsym Mod1+Shift+Up move up
-bindsym Mod1+Shift+Right move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -80,35 +80,46 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-# workspace names
-workspace "1:Shell" output LVDS1
-workspace "2:Web" output LVDS1
-workspace "3:Editor" output LVDS1
-workspace 9 output HDMI1
+# workspace labels
+set $workspace1_label "1:Shell"
+set $workspace2_label "2:Web"
+set $workspace3_label 3
+set $workspace4_label 4
+set $workspace5_label 5
+set $workspace6_label 6
+set $workspace7_label 7
+set $workspace8_label 8
+set $workspace9_label 9
+set $workspace0_label 0
+
+# workspace outputs
+workspace $workspace1_label output LVDS1
+workspace $workspace2_label output LVDS1
+workspace $workspace9_label output HDMI1
 
 # switch to workspace
-bindsym $mod+1 workspace "1:Shell"
-bindsym $mod+2 workspace "2:Web"
-bindsym $mod+3 workspace "3:Editor"
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+1 workspace $workspace1_label
+bindsym $mod+2 workspace $workspace2_label
+bindsym $mod+3 workspace $workspace3_label
+bindsym $mod+4 workspace $workspace4_label
+bindsym $mod+5 workspace $workspace5_label
+bindsym $mod+6 workspace $workspace6_label
+bindsym $mod+7 workspace $workspace7_label
+bindsym $mod+8 workspace $workspace8_label
+bindsym $mod+9 workspace $workspace9_label
+bindsym $mod+0 workspace $workspace0_label
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace "1:Shell"
-bindsym $mod+Shift+2 move container to workspace "2:Web"
-bindsym $mod+Shift+3 move container to workspace "3:Editor"
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+1 move container to workspace $workspace1_label
+bindsym $mod+Shift+2 move container to workspace $workspace2_label
+bindsym $mod+Shift+3 move container to workspace $workspace3_label
+bindsym $mod+Shift+4 move container to workspace $workspace4_label
+bindsym $mod+Shift+5 move container to workspace $workspace5_label
+bindsym $mod+Shift+6 move container to workspace $workspace6_label
+bindsym $mod+Shift+7 move container to workspace $workspace7_label
+bindsym $mod+Shift+8 move container to workspace $workspace8_label
+bindsym $mod+Shift+9 move container to workspace $workspace9_label
+bindsym $mod+Shift+0 move container to workspace $workspace0_label
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -164,6 +175,14 @@ mode "$mode_system" {
 }
 bindsym $mod+l mode "$mode_system"
 
+
+# client colors tweaking
+client.focused          #4c7899 #601010 #ffffff #2e9ef4
+client.focused_inactive #333333 #5f676a #ffffff #484e50
+client.unfocused        #333333 #222222 #888888 #292d2e
+client.urgent           #2f343a #900000 #ffffff #900000
+
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
@@ -178,8 +197,8 @@ bar {
 # Custom hotkeys: use xev to learn the hotkey names
 bindsym XF86MonBrightnessUp exec --no-startup-id /usr/bin/xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec --no-startup-id /usr/bin/xbacklight -dec 5
-bindsym XF86AudioRaiseVolume exec amixer set Master 2%+ unmute
-bindsym XF86AudioLowerVolume exec amixer set Master 2%- unmute
+bindsym XF86AudioRaiseVolume exec amixer set Master 3%+ unmute
+bindsym XF86AudioLowerVolume exec amixer set Master 3%- unmute
 bindsym XF86AudioMute exec amixer set Master toggle
 bindsym Print exec --no-startup-id /usr/bin/scrot '%Y-%m-%d_%H%M%S_$wx$h.png' -e 'mv $f ~/Pictures/' && notify-send 'Screenshot taken!'
 
@@ -200,14 +219,13 @@ bindsym $mod+o scratchpad show
 # Options tweaking
 default_orientation auto
 focus_follows_mouse yes
-# hide_edge_borders vertical
 workspace_auto_back_and_forth yes
 workspace_layout tabbed
 
+
 # assign: use xprop to learn the class string
-assign [class="^Sakura$"] → "1:Shell"
-assign [class="^Chromium$"] → "2:Web"
-assign [class="^Firefox$"] → "2:Web"
+assign [class="^Chromium$"] → $workspace2_label
+assign [class="^Firefox$"] → $workspace2_label
 
 
 # for_window
@@ -219,8 +237,7 @@ for_window [class="^Xfce4-notifyd$"] floating enable; border none; focus mode_to
 
 # Startup applications:
 # Foreground
-exec --no-startup-id i3-msg 'exec ${TERMINAL}; move scratchpad'
-exec --no-startup-id i3-msg 'workspace 1:Shell; exec ${TERMINAL}'
+exec --no-startup-id i3-msg 'workspace "${workspace1_label}"; exec ${TERMINAL}'
 exec --no-startup-id sh ~/.fehbg
 
 # Background
