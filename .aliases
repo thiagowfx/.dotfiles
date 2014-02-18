@@ -82,8 +82,8 @@ alias xrandr-template-reset="xrandr --output LVDS1 --mode 1366x768"
 alias xrandr-template-hdmi="xrandr --output HDMI1 --auto --right-of LVDS1"
 
 # Youtube-dl
-alias youtube-dl-template-flv="youtube-dl -t --restrict-filenames"
-alias youtube-dl-template-mp3="youtube-dl -t --restrict-filenames --extract-audio --audio-format mp3"
+alias youtube-dl-template-flv="youtube-dl -c -t --restrict-filenames"
+alias youtube-dl-template-mp3="youtube-dl -c -t --restrict-filenames --extract-audio --audio-format mp3"
 
 # Environment variables
 export BROWSER="/usr/bin/chromium"

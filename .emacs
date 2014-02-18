@@ -4,8 +4,10 @@
 ;; Custom Packages
 ;; - ace-jump-mode: use C-0 to go anywhere
 ;; - auto-complete-mode
-;;- graphviz-dot-mode (graphviz)
+;; - cmake-mode
+;; - graphviz-dot-mode (graphviz)
 ;; - markdown-mode
+;; - nav
 ;; - pkgbuild-mode (for Arch Linux)
 
 
@@ -69,7 +71,7 @@
 			      (file-name-nondirectory (or (buffer-file-name) default-directory))
 			      (or (file-remote-p default-directory 'user) user-login-name)
 			      (or (file-remote-p default-directory 'host) system-name))))
-(menu-bar-mode -1)
+(menu-bar-mode t)
 (tool-bar-mode -1)
 
 ;; Clipboard stuff
@@ -191,6 +193,12 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ECB: Emacs Code Browser
+(when (locate-library "ecb")
+  (setq ecb-examples-bufferinfo-buffer-name nil))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Recently used files tracking
 (require 'recentf)   
 (setq recentf-save-file               "~/.emacs.d/recentf"
@@ -269,6 +277,7 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(custom-enabled-themes (quote (misterioso)))
+ '(ecb-options-version "2.40")
  '(use-file-dialog nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
