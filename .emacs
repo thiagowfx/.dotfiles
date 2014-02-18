@@ -1,17 +1,17 @@
-; -*- lisp -*-
+;; -*- lisp -*-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Packages
-; - ace-jump-mode
-; - auto-complete-mode
-; - graphviz-dot-mode (graphviz)
-; - markdown-mode
-; - pkgbuild-mode (for arch linux)
+;; Custom Packages
+;; - ace-jump-mode: use C-0 to go anywhere
+;; - auto-complete-mode
+;;- graphviz-dot-mode (graphviz)
+;; - markdown-mode
+;; - pkgbuild-mode (for Arch Linux)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Links
-; - https://github.com/technomancy/better-defaults
+;; - https://github.com/technomancy/better-defaults: this is already embedded here
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -23,16 +23,13 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Repositories (see list-packages and package-install)
-;; (when (file-exists-p "~/.emacs.d/elpa/package.el")
-;;   (when (load (expand-file-name "~/.emacs.d/elpa/package.el"))
-;;     (package-initialize)))
+;; Repositories (see `list-packages` and `package-install`)
 (when (>= emacs-major-version 24)
   (require 'package)
   (package-initialize)
   (setq package-archives '(("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")
-			 ("gnu" . "http://elpa.gnu.org/packages/")))
+                           ("melpa" . "http://melpa.milkbox.net/packages/")
+                           ("gnu" . "http://elpa.gnu.org/packages/")))
   (setq url-http-attempt-keepalives nil))
 
 
@@ -42,15 +39,29 @@
 (line-number-mode t)
 (size-indication-mode t)
 
+;; uniquify: better buffer names
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+(setq uniquify-separator "/")
+(setq uniquify-after-kill-buffer-p t)	;; rename after killing uniquify
+(setq uniquify-ignore-buffers-re "^\\*")
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Minibuffer
 (file-name-shadow-mode t) ;; be smart about filenames in minibuffer
 (icomplete-mode t)
 
+;; a powerful mode for find-file and switch-to-buffer: interactively do things
+(ido-mode t)
+(setq ido-enable-flex-matching t
+      ido-enable-last-directory-history t
+      ido-case-fold t)
+(setq confirm-nonexistent-file-or-buffer nil) ;; disable annoying confirmation
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; X
+;; Emacs GUI/X Interface
 
 ;; Title for X frames. Template: source.cpp: thiago@arch
 (setq-default frame-title-format ;; change title from a frame (X Only)
@@ -58,7 +69,6 @@
 			      (file-name-nondirectory (or (buffer-file-name) default-directory))
 			      (or (file-remote-p default-directory 'user) user-login-name)
 			      (or (file-remote-p default-directory 'host) system-name))))
-
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 
@@ -75,56 +85,47 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Hooks
 
-; - Lisp
+;; - Lisp
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
 
-; - C
+;; - C
 (add-hook 'c-mode-hook (lambda () (setq compile-command (concat "gcc \""
 								(buffer-file-name)
 								"\" -o \""
 								(file-name-sans-extension buffer-file-name)
 								"\" -Wall -Wextra -g"))))
-; - C++
+;; - C++
 (add-hook 'c++-mode-hook (lambda () (setq compile-command (concat "g++ \""
 								  (buffer-file-name)
 								  "\" -o \""
 								  (file-name-sans-extension buffer-file-name)
 								  "\" -Wall -Wextra -g"))))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Design and Tweaks...
+;; Design
 (set-cursor-color "white")
-(setq-default indent-tabs-mode nil)
 (show-paren-mode t) ;; highlight matching parenthesis
+(linum-mode t)      ;; show line numbers
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Tweaks and Small Improvements
 (fset 'yes-or-no-p 'y-or-n-p)
-(winner-mode t) ;; use C-c <left> to restore the previous window view-
-(linum-mode t)
+(setq-default indent-tabs-mode nil)
+(winner-mode t) ;; use C-c <left> to restore the previous window view
 
 (when (>= emacs-major-version 24)
-  (electric-pair-mode t) ;; autoclose parenthesis
-  (electric-indent-mode +1))
-
-(global-set-key (kbd "M-/") 'hippie-expand)
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "C-r") 'isearch-backward-regexp)
-(global-set-key (kbd "C-M-s") 'isearch-forward)
-(global-set-key (kbd "C-M-r") 'isearch-backward)
-
-;; ibuffer
-(when (fboundp 'ibuffer)
-  (global-set-key (kbd "C-x C-b") 'ibuffer))
-
-;; uniquify
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'forward)
-(setq uniquify-separator "/")
-(setq uniquify-after-kill-buffer-p t)	;; rename after killing uniquify
-(setq uniquify-ignore-buffers-re "^\\*")
+  (electric-pair-mode t)    ;; autoclose parenthesis
+  (electric-indent-mode +1) ;; autoindent lines
+  )
 
 ;; saveplace
 (require 'saveplace)
 (setq-default save-place t)
+
 
 (setq scroll-margin 0                        
       scroll-conservatively 100000           
@@ -198,15 +199,6 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ido-mode: a powerful mode for find-file and switch-to-buffer - interactively do things
-(ido-mode t)
-(setq ido-enable-flex-matching t
-      ido-enable-last-directory-history t
-      ido-case-fold t)
-(setq confirm-nonexistent-file-or-buffer nil) ;; disable annoying confirmation
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; defuns
 
 (defun reload-dot-emacs ()
@@ -253,6 +245,16 @@
 (global-set-key    [f5]            'compile)
 (global-set-key    [f9]            'comment-or-uncomment-region)
 (global-set-key    [f11]           'toggle-fullscreen)
+(global-set-key (kbd "M-/") 'hippie-expand)
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(global-set-key (kbd "C-r") 'isearch-backward-regexp)
+(global-set-key (kbd "C-M-s") 'isearch-forward)
+(global-set-key (kbd "C-M-r") 'isearch-backward)
+
+;; ibuffer
+(when (fboundp 'ibuffer)
+  (global-set-key (kbd "C-x C-b") 'ibuffer))
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

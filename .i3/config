@@ -177,10 +177,10 @@ bindsym $mod+l mode "$mode_system"
 
 
 # client colors tweaking
-client.focused          #4c7899 #601010 #ffffff #2e9ef4
-client.focused_inactive #333333 #5f676a #ffffff #484e50
-client.unfocused        #333333 #222222 #888888 #292d2e
-client.urgent           #2f343a #900000 #ffffff #900000
+# client.focused          #4c7899 #601010 #ffffff #2e9ef4
+# client.focused_inactive #333333 #5f676a #ffffff #484e50
+# client.unfocused        #333333 #222222 #888888 #292d2e
+# client.urgent           #2f343a #900000 #ffffff #900000
 
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -237,7 +237,7 @@ for_window [class="^Xfce4-notifyd$"] floating enable; border none; focus mode_to
 
 # Startup applications:
 # Foreground
-exec --no-startup-id i3-msg 'workspace "${workspace1_label}"; exec ${TERMINAL}'
+exec --no-startup-id i3-msg 'workspace $workspace1_label; exec ${TERMINAL}'
 exec --no-startup-id sh ~/.fehbg
 
 # Background
