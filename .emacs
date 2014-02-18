@@ -72,6 +72,14 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 
+;; Clipboard stuff
+(setq x-select-enable-clipboard t
+      x-select-enable-primary t
+      save-interprogram-paste-before-kill t
+      mouse-yank-at-point t
+      interprogram-paste-function 'x-cut-buffer-or-selection-value)
+
+
 (defun toggle-fullscreen (&optional f)
   "Toggle Fullscreen -- GNU/Linux Only"
   (interactive)
@@ -109,6 +117,11 @@
 (set-cursor-color "white")
 (show-paren-mode t) ;; highlight matching parenthesis
 (linum-mode t)      ;; show line numbers
+(setq default-indicate-empty-lines t) ;; vim like
+
+;; Syntax Highlighting Everywhere
+(global-font-lock-mode t)
+(setq font-lock-maximum-decoration t)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -117,6 +130,7 @@
 (setq-default indent-tabs-mode nil)
 (winner-mode t) ;; use C-c <left> to restore the previous window view
 
+;; Electric modes
 (when (>= emacs-major-version 24)
   (electric-pair-mode t)    ;; autoclose parenthesis
   (electric-indent-mode +1) ;; autoindent lines
@@ -125,38 +139,26 @@
 ;; saveplace
 (require 'saveplace)
 (setq-default save-place t)
+(setq save-place-file (concat user-emacs-directory "places"))
 
+;; scroll
+(setq scroll-margin 10
+      scroll-conservatively 10
+      scroll-preserve-screen-position t) ;; preserve screen pos with C-v/M-v
 
-(setq scroll-margin 0                        
-      scroll-conservatively 100000           
-      scroll-up-aggressively 0               
-      scroll-down-aggressively 0             
-      scroll-preserve-screen-position t ;; preserve screen pos with C-v/M-v 
-      compilation-read-command t  ;; autocompile without prompting the user, unless you give it a prefix argument?
-      default-indicate-empty-lines t ;; vi like
-      make-backup-files nil	     ;; file.ext~
-      require-final-newline t
-      case-fold-search t ;; make searches case insensitive
-      save-place-file (concat user-emacs-directory "places")
+(setq make-backup-files nil) ;; do not create example.txt~ files
+(setq require-final-newline t)
+(setq case-fold-search t)   ;; make searches case insensitive
+(setq vc-follow-symlinks t) ;; do not ask for symlink confirmations
+(setq apropos-do-all t)
 
-      ;; clipboard stuff
-      x-select-enable-clipboard t
-      x-select-enable-primary t
-      save-interprogram-paste-before-kill t
-      apropos-do-all t
-      mouse-yank-at-point t
-      
-      interprogram-paste-function 'x-cut-buffer-or-selection-value
-      vc-follow-symlinks t ;; do not ask for symlink confirmations
-      inhibit-startup-message t
+;; Startup messages
+(setq inhibit-startup-message t
       inhibit-startup-echo-area-message t
       initial-scratch-message "")
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Syntax Highlighting Everywhere
-(global-font-lock-mode t)
-(setq font-lock-maximum-decoration t)
 
 ;; Arch Linux PKGBUILD Mode
 (when (locate-library "pkgbuild-mode")
@@ -170,27 +172,26 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ace-jump-mode
+;; Ace-jump-mode
 (when (locate-library "ace-jump-mode")
-  (require 'ace-jump-mode)
-  (define-key global-map (kbd "C-0") 'ace-jump-mode))
+  (require 'ace-jump-mode))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; auto-complete-mode
+;; Auto-complete-mode
 (when (and (locate-library "auto-complete")
 	   (locate-library "popup"))
   (require 'auto-complete)
   (require 'auto-complete-config)
   (require 'popup)
   (ac-config-default)
-  (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
-  (setq ac-modes '(c-mode c++-mode emacs-lisp-mode java-mode python-mode))
+  ;; (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
+  ;; (setq ac-modes '(c-mode c++-mode emacs-lisp-mode java-mode python-mode))
   (global-auto-complete-mode t))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; tracks recently used files
+;; Recently used files tracking
 (require 'recentf)   
 (setq recentf-save-file               "~/.emacs.d/recentf"
       recentf-max-saved-items 100     ;; max save 100
@@ -199,7 +200,7 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; defuns
+;; Defuns
 
 (defun reload-dot-emacs ()
   "Reload your ~/.emacs file."
@@ -238,23 +239,24 @@
 ;; - [f1]
 ;; - (kbd "<f1>")
 
-(global-set-key    "\M-g"          'goto-line)                   
-(global-set-key    (kbd "RET")     'newline-and-indent)	;; C-j like; alt: reindent-then-newline-and-indent
-(global-set-key    [C-tab]         'other-window)
-(global-set-key    (kbd "<f3>")    'reload-dot-emacs)
-(global-set-key    [f5]            'compile)
-(global-set-key    [f9]            'comment-or-uncomment-region)
-(global-set-key    [f11]           'toggle-fullscreen)
-(global-set-key (kbd "M-/") 'hippie-expand)
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "C-r") 'isearch-backward-regexp)
-(global-set-key (kbd "C-M-s") 'isearch-forward)
-(global-set-key (kbd "C-M-r") 'isearch-backward)
+(global-set-key "\M-g"          'goto-line)                   
+(global-set-key (kbd "RET")     'newline-and-indent) ;; C-j like
+(global-set-key [C-tab]         'other-window)
+(global-set-key (kbd "<f3>")    'reload-dot-emacs)
+(global-set-key [f5]            'compile)
+(global-set-key [f9]            'comment-or-uncomment-region)
+(global-set-key [f11]           'toggle-fullscreen)
+(global-set-key (kbd "M-/") 	'hippie-expand)
+(global-set-key (kbd "C-s") 	'isearch-forward-regexp)
+(global-set-key (kbd "C-r") 	'isearch-backward-regexp)
+(global-set-key (kbd "C-M-s") 	'isearch-forward)
+(global-set-key (kbd "C-M-r") 	'isearch-backward)
 
-;; ibuffer
 (when (fboundp 'ibuffer)
   (global-set-key (kbd "C-x C-b") 'ibuffer))
 
+(when (locate-library "ace-jump-mode")
+  (define-key global-map (kbd "C-0") 'ace-jump-mode))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -267,7 +269,6 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(custom-enabled-themes (quote (misterioso)))
- '(ecb-source-path (quote (("/" "/"))))
  '(use-file-dialog nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
