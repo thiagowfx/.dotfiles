@@ -133,10 +133,10 @@
 (winner-mode t) ;; use C-c <left> to restore the previous window view
 
 ;; Electric modes
-(when (>= emacs-major-version 24)
-  (electric-pair-mode t)    ;; autoclose parenthesis
-  (electric-indent-mode +1) ;; autoindent lines
-  )
+;; (when (>= emacs-major-version 24)
+;; (electric-pair-mode t)    ;; autoclose parenthesis
+;; (electric-indent-mode +1) ;; autoindent lines
+;;  )
 
 ;; saveplace
 (require 'saveplace)

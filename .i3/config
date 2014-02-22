@@ -21,7 +21,7 @@ set $mod Mod4
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
 # font pango:DejaVu Sans Mono 10
-font pango:DejaVu Sans 10
+font pango:Arimo 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -31,16 +31,16 @@ bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
-bindsym $mod+q kill
+# bindsym $mod+q kill
 bindsym $Alt+F4 kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -p "Yes master?"
+bindsym $mod+d exec dmenu_run -p "Yes?"
+bindsym $Alt+F2 exec dmenu_run -p "Yes?"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-bindsym $Alt+F2 exec dmenu_run -p "Yes master?"
 
 # change focus
 bindsym $mod+Left focus left
@@ -81,45 +81,44 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # workspace labels
-set $workspace1_label "1:Shell"
-set $workspace2_label "2:Web"
-set $workspace3_label 3
-set $workspace4_label 4
-set $workspace5_label 5
-set $workspace6_label 6
-set $workspace7_label 7
-set $workspace8_label 8
-set $workspace9_label 9
-set $workspace0_label 0
+set $workspace1 1
+set $workspace2 2
+set $workspace3 3
+set $workspace4 4
+set $workspace5 5
+set $workspace6 6
+set $workspace7 7
+set $workspace8 8
+set $workspace9 9
+set $workspace0 0
 
 # workspace outputs
-workspace $workspace1_label output LVDS1
-workspace $workspace2_label output LVDS1
-workspace $workspace9_label output HDMI1
+workspace $workspace1 output LVDS1
+workspace $workspace9 output HDMI1
 
 # switch to workspace
-bindsym $mod+1 workspace $workspace1_label
-bindsym $mod+2 workspace $workspace2_label
-bindsym $mod+3 workspace $workspace3_label
-bindsym $mod+4 workspace $workspace4_label
-bindsym $mod+5 workspace $workspace5_label
-bindsym $mod+6 workspace $workspace6_label
-bindsym $mod+7 workspace $workspace7_label
-bindsym $mod+8 workspace $workspace8_label
-bindsym $mod+9 workspace $workspace9_label
-bindsym $mod+0 workspace $workspace0_label
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace0
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $workspace1_label
-bindsym $mod+Shift+2 move container to workspace $workspace2_label
-bindsym $mod+Shift+3 move container to workspace $workspace3_label
-bindsym $mod+Shift+4 move container to workspace $workspace4_label
-bindsym $mod+Shift+5 move container to workspace $workspace5_label
-bindsym $mod+Shift+6 move container to workspace $workspace6_label
-bindsym $mod+Shift+7 move container to workspace $workspace7_label
-bindsym $mod+Shift+8 move container to workspace $workspace8_label
-bindsym $mod+Shift+9 move container to workspace $workspace9_label
-bindsym $mod+Shift+0 move container to workspace $workspace0_label
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace0
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -128,7 +127,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3 and end your X session?' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3 and end your X session?' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -224,8 +223,8 @@ workspace_layout tabbed
 
 
 # assign: use xprop to learn the class string
-assign [class="^Chromium$"] → $workspace2_label
-assign [class="^Firefox$"] → $workspace2_label
+assign [class="^Chromium$"] → $workspace2
+assign [class="^Firefox$"] → $workspace2
 
 
 # for_window
@@ -237,7 +236,7 @@ for_window [class="^Xfce4-notifyd$"] floating enable; border none; focus mode_to
 
 # Startup applications:
 # Foreground
-exec --no-startup-id i3-msg 'workspace $workspace1_label; exec ${TERMINAL}'
+exec --no-startup-id i3-msg 'workspace $workspace1; exec ${TERMINAL}'
 exec --no-startup-id sh ~/.fehbg
 
 # Background
@@ -245,6 +244,5 @@ exec --no-startup-id /usr/bin/CopyAgent
 exec --no-startup-id /usr/bin/dropboxd
 exec --no-startup-id LC_ALL=C /usr/bin/parcellite
 exec --no-startup-id /usr/bin/nm-applet
-exec --no-startup-id /usr/bin/redshift-gtk
-# exec --no-startup-id /usr/bin/volumeicon
 # exec --no-startup-id /usr/bin/wicd-gtk -t
+exec --no-startup-id /usr/bin/redshift-gtk
