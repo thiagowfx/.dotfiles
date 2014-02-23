@@ -2,18 +2,35 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom Packages
-;; - ace-jump-mode: use C-0 to go anywhere
-;; - auto-complete-mode
+;; - ace-jump-mode ;; use C-0 to go anywhere
+;; - auto-complete
 ;; - cmake-mode
 ;; - graphviz-dot-mode (graphviz)
 ;; - markdown-mode
 ;; - nav
 ;; - pkgbuild-mode (for Arch Linux)
+;; - popup
+;; - yaml-mode
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Topics
+;;
+;; Narrowing
+;; - C-x n n: narrow between point and mark
+;; - C-x n w: un-narrow (~widen)
+;;
+;; M-x Paradise
+;; - Imenu :: Go directly to a function definition.
+;; - Occur :: Overview of your file (just choose a keyword)
+;;
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Links
-;; - https://github.com/technomancy/better-defaults: this is already embedded here
+;; - http://www.emacsrocks.com/
+;; - http://www.emacswiki.org/emacs/EmacsCrashCode
+;; - https://github.com/technomancy/better-defaults
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -65,12 +82,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Emacs GUI/X Interface
 
-;; Title for X frames. Template: source.cpp: thiago@arch
-(setq-default frame-title-format ;; change title from a frame (X Only)
-	      '(:eval (format "%s: %s@%s" 
-			      (file-name-nondirectory (or (buffer-file-name) default-directory))
-			      (or (file-remote-p default-directory 'user) user-login-name)
-			      (or (file-remote-p default-directory 'host) system-name))))
+(setq-default frame-title-format (concat "%b - " (message "%s@emacs" (replace-regexp-in-string "\n$" "" (shell-command-to-string "whoami")))))
 (menu-bar-mode t)
 (tool-bar-mode -1)
 
@@ -95,7 +107,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Hooks
 
-;; - Lisp
+;; - Emacs Lisp
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
@@ -113,13 +125,24 @@
 								  (file-name-sans-extension buffer-file-name)
 								  "\" -Wall -Wextra -g"))))
 
+;; use C-c @ C-c to toggle folding / hiding
+(add-hook 'lisp-mode-hook (lambda () (hs-minor-mode t)))
+(add-hook 'emacs-lisp-mode-hook (lambda () (hs-minor-mode t)))
+(add-hook 'c-mode-hook (lambda () (hs-minor-mode t)))
+(add-hook 'c++-mode-hook (lambda () (hs-minor-mode t)))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Design
 (set-cursor-color "white")
 (show-paren-mode t) ;; highlight matching parenthesis
-(linum-mode t)      ;; show line numbers
+(setq show-paren-style 'expression) ;; and its expression
+(global-linum-mode t)      ;; show line numbers
 (setq default-indicate-empty-lines t) ;; vim like
+(blink-cursor-mode -1)
+(mouse-avoidance-mode 'animate) ;; mouse gets out of the way
+
+
 
 ;; Syntax Highlighting Everywhere
 (global-font-lock-mode t)
@@ -131,6 +154,12 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq-default indent-tabs-mode nil)
 (winner-mode t) ;; use C-c <left> to restore the previous window view
+(setq-default inhibit-debugger t)
+(setq read-file-name-completion-ignore-case t)
+(setq enable-recursive-minibuffers t) ;; stack minibuffers
+(setq read-buffer-completion-ignore-case 't) ;; Ignore case when completing buffer names
+(windmove-default-keybindings) ;; shift + arrow key to switch buffers
+
 
 ;; Electric modes
 ;; (when (>= emacs-major-version 24)
@@ -250,7 +279,7 @@
 (global-set-key "\M-g"          'goto-line)                   
 (global-set-key (kbd "RET")     'newline-and-indent) ;; C-j like
 (global-set-key [C-tab]         'other-window)
-(global-set-key (kbd "<f3>")    'reload-dot-emacs)
+(global-set-key (kbd "<f2>")    'reload-dot-emacs)
 (global-set-key [f5]            'compile)
 (global-set-key [f9]            'comment-or-uncomment-region)
 (global-set-key [f11]           'toggle-fullscreen)
@@ -276,7 +305,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
- '(custom-enabled-themes (quote (misterioso)))
+ '(custom-enabled-themes (quote (wombat)))
  '(ecb-options-version "2.40")
  '(use-file-dialog nil))
 (custom-set-faces
@@ -285,3 +314,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'narrow-to-region 'disabled nil)

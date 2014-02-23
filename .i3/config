@@ -225,6 +225,7 @@ workspace_layout tabbed
 # assign: use xprop to learn the class string
 assign [class="^Chromium$"] → $workspace2
 assign [class="^Firefox$"] → $workspace2
+assign [class="^Midori$"] → $workspace2
 
 
 # for_window
@@ -237,6 +238,8 @@ for_window [class="^Xfce4-notifyd$"] floating enable; border none; focus mode_to
 # Startup applications:
 # Foreground
 exec --no-startup-id i3-msg 'workspace $workspace1; exec ${TERMINAL}'
+exec --no-startup-id i3-msg 'workspace $workspace2; exec ${BROWSER}'
+exec --no-startup-id i3-msg 'workspace $workspace1'
 exec --no-startup-id sh ~/.fehbg
 
 # Background

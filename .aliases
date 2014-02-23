@@ -91,7 +91,8 @@ export EDITOR="/usr/bin/emacs -nw"
 export FILEMANAGER="/usr/bin/thunar"
 export PAGER="less"
 export TERMINAL="/usr/bin/sakura"
-export PATH="$PATH:/opt/android-sdk/platform-tools/"
+# export PATH="$PATH:/opt/android-sdk/platform-tools/"
+export PATH="$PATH:/home/thiago/.gem/ruby/2.1.0/bin/"
 export VISUAL="/usr/bin/emacs"
 export WINEARCH=win64
 export WINEDEBUG=fixme-all
@@ -108,13 +109,28 @@ function changeroot {
     sudo chroot $1/ /bin/bash
 }
 
-# to actually create a chroot, see manpage (pacstrap...)
+# to actually create a chroot, see manpage (uses pacstrap...)
 alias systemd-nspawn-template="systemd-nspawn -bD"
 
 # Alternatives include:
 # - arch-chroot
 # - schroot
 # - devtools package (makepkg builds...)
+
+
+function qkkdiff-file {
+    pkg="$(pacman -Qo $1 | awk '//{printf "%s-%s", $(NF-1), $NF;}')"
+    bsdtar -xOf /var/cache/pacman/pkg/${pkg}-x86_64.pkg.tar.xz ${1/\//} | diff - $1
+    return 0
+}
+
+
+function qkkdiff {
+    ver=$(pacman -Q $1 | cut -f2 -d' ')
+    pacman -Qkkq $1 | while read package file; do echo $file; bsdtar -xOf /var/cache/pacman/pkg/${package}-${ver}-x86_64.pkg.tar.xz ${file/\//} | diff - $file  ; done
+    return 0
+}
+
 
 # File extractor
 ex() {
