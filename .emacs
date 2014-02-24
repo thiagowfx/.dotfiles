@@ -10,6 +10,7 @@
 ;; - nav
 ;; - pkgbuild-mode (for Arch Linux)
 ;; - popup
+;; - smex
 ;; - yaml-mode
 
 
@@ -24,6 +25,12 @@
 ;; - Imenu :: Go directly to a function definition.
 ;; - Occur :: Overview of your file (just choose a keyword)
 ;;
+;; Registers
+;; - C-x r s <label> :: save region to register <label>
+;; - C-x r i <label> :: insert register <label> to region
+;;
+;; Follow mode (two buffers with the same content to scroll simultaneously)
+;; Scroll all mode
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -173,8 +180,8 @@
 (setq save-place-file (concat user-emacs-directory "places"))
 
 ;; scroll
-(setq scroll-margin 10
-      scroll-conservatively 10
+(setq scroll-margin 4
+      scroll-conservatively 4
       scroll-preserve-screen-position t) ;; preserve screen pos with C-v/M-v
 
 (setq make-backup-files nil) ;; do not create example.txt~ files

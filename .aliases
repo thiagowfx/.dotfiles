@@ -19,7 +19,8 @@ alias rmdir="rmdir -v"
 alias chmod="chmod -v"
 alias chown="chown -v"
 
-# change default behavior
+# change default behavior of some programs
+alias colordiff="colordiff -uN"
 alias cower="cower --color=auto --sort=votes -t ~/.aur"
 alias df='df -h'
 alias diff="diff -uN"
