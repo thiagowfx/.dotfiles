@@ -229,9 +229,9 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ECB: Emacs Code Browser
-(when (locate-library "ecb")
-  (setq ecb-examples-bufferinfo-buffer-name nil))
+;; TAGS
+;; http://www.svi.nl/EmacsProgrammingTips
+(setq tags-table-list (list "./" "./../" "./../../" "./../../../" (getenv "DEVELOP")))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
