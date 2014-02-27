@@ -24,12 +24,13 @@ case $1 in
     awesome) exec awesome;;
     catwm) exec catwm;;
     cinnamon) exec cinnamon-session;;
-    e17|enlightenment) exec enlightenment_start;;
+    dwm) exec dwm;;
+    enlightenment) exec enlightenment_start;;
     ede) exec startede;;
     fluxbox) exec startfluxbox;;
     gnome) exec gnome-session;;
     gnome-classic) exec gnome-session --session=gnome-classic;;
-    i3) exec i3;;
+    i3|i3wm) exec i3;;
     icewm) exec icewm-session;;
     jwm) exec jwm;;
     kde) exec startkde;;
