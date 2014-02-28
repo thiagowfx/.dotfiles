@@ -115,6 +115,7 @@
 ;; Hooks
 
 ;; - Emacs Lisp
+(add-hook 'lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
@@ -291,10 +292,11 @@
 (global-set-key [f9]            'comment-or-uncomment-region)
 (global-set-key [f11]           'toggle-fullscreen)
 (global-set-key (kbd "M-/") 	'hippie-expand)
-
+(when (fboundp 'smex)
+  (global-set-key "\M-x" 	'smex)
+  (global-set-key "\M-X"	'smex-major-mode-commands))
 (when (fboundp 'ibuffer)
   (global-set-key (kbd "C-x C-b") 'ibuffer))
-
 (when (locate-library "ace-jump-mode")
   (define-key global-map (kbd "C-0") 'ace-jump-mode))
 

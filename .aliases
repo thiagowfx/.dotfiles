@@ -4,6 +4,7 @@
 alias sudo='sudo '
 
 # aliases
+alias em="emacs -nw"
 alias emq="emacs -nw"
 alias pingg="ping google.com"
 
@@ -21,7 +22,7 @@ alias chown="chown -v"
 
 # change default behavior of some programs
 alias colordiff="colordiff -uN"
-alias cower="cower --color=auto --sort=votes -t ~/.aur"
+alias cower="cower --color=always --sort=votes -t ~/.aur"
 alias df='df -h'
 alias diff="diff -uN"
 alias du="du -h"
@@ -29,6 +30,8 @@ alias free="free -m"
 alias grep="grep --color=auto"
 alias i3lock="i3lock -c 111111 -d"
 alias lynx="lynx -emacskeys"
+alias make="time make -j3"
+alias makepkg="time makepkg"
 alias pgrep="pgrep --list-name"
 alias reflector="reflector -x rsync"
 alias rsync="rsync --progress"

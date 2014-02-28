@@ -205,9 +205,15 @@ bar {
 # Custom hotkeys: use xev to learn the hotkey names
 bindsym XF86MonBrightnessUp exec --no-startup-id /usr/bin/xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec --no-startup-id /usr/bin/xbacklight -dec 5
-bindsym XF86AudioRaiseVolume exec amixer set Master 3%+ unmute
-bindsym XF86AudioLowerVolume exec amixer set Master 3%- unmute
-bindsym XF86AudioMute exec amixer set Master toggle
+bindsym XF86AudioRaiseVolume exec /usr/bin/amixer set Master 3%+ unmute
+bindsym XF86AudioLowerVolume exec /usr/bin/amixer set Master 3%- unmute
+bindsym XF86AudioMute exec /usr/bin/amixer set Master toggle
+bindsym XF86AudioNext exec /usr/bin/audacious --fwd
+bindsym XF86AudioPrev exec /usr/bin/audacious --rew
+bindsym XF86Play exec /usr/bin/audacious --play-pause
+bindsym Shift+XF86AudioRaiseVolume exec /usr/bin/audacious --fwd
+bindsym Shift+XF86AudioLowerVolume exec /usr/bin/audacious --rew
+bindsym Shift+XF86AudioMute exec /usr/bin/audacious --play-pause
 bindsym Print exec --no-startup-id /usr/bin/gscreenshot
 # bindsym Print exec --no-startup-id /usr/bin/scrot '%Y-%m-%d_%H%M%S_$wx$h.png' -e 'mv $f ~/Pictures/' && notify-send 'Screenshot taken!'
 
@@ -251,7 +257,7 @@ exec --no-startup-id i3-msg 'workspace $workspace1; exec ${TERMINAL}'
 exec --no-startup-id i3-msg 'workspace $workspace2; exec ${BROWSER}'
 exec --no-startup-id i3-msg 'workspace $workspace1'
 exec --no-startup-id sh ~/.fehbg
-exec --no-startup-id xcompmgr -cCfF
+exec --no-startup-id compton -cCfF
 
 # Background
 exec --no-startup-id /usr/bin/CopyAgent
