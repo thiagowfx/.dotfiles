@@ -11,15 +11,15 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
-# mouse and keyboard
+
 xsetroot -cursor_name left_ptr &
-setxkbmap br &
-
-# backlight
-xbacklight -set 50 &
+setxkbmap br &                  # see also: localectl set-x11-keymap
+xbacklight -set 45 &
 # xset dpms 300 600 900 &
+synclient CoastingFriction=400
 
-# xinit window_manager
+
+# xinit your_window_manager_here
 case $1 in
     awesome) exec awesome;;
     catwm) exec catwm;;

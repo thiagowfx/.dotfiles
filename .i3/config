@@ -192,7 +192,7 @@ client.unfocused        #333333 #93a1a1 #fdf6e3 #292d2e
 # Start i3bar to display a workspace bar (system information)
 bar {
         status_command i3status
-        tray_output LVDS1
+        tray_output primary
 	colors {
 	       # background #090020
                background #002b32
@@ -242,9 +242,9 @@ workspace_layout tabbed
 
 
 # assign: use xprop to learn the class string
-assign [class="^Chromium$"] → $workspace2
-assign [class="^Firefox$"] → $workspace2
-assign [class="^Midori$"] → $workspace2
+# assign [class="^Chromium$"] → $workspace2
+# assign [class="^Firefox$"] → $workspace2
+# assign [class="^Midori$"] → $workspace2
 
 
 # for_window

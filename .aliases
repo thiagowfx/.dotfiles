@@ -5,6 +5,7 @@ alias sudo='sudo '
 
 # aliases
 alias em="emacs -nw"
+alias emc="emacsclient -c"      # run emacs --daemon first
 alias emq="emacs -nw"
 alias pingg="ping google.com"
 
@@ -35,6 +36,7 @@ alias makepkg="time makepkg"
 alias pgrep="pgrep --list-name"
 alias reflector="reflector -x rsync"
 alias rsync="rsync --progress"
+alias smem="smem -k"
 alias strace="strace -t"
 alias trayer="trayer --edge top --align right --widthtype request --SetDockType false"
 alias uptime="uptime --pretty"
@@ -73,17 +75,17 @@ alias winetricks-template-install="winetricks corefonts vcrun2005 vcrun2008 vb6r
 
 ## World: upgrade your system
 alias world="sudo pacman -Syu"
-alias aura-template="sudo aura -Akuax"
-alias packer-template="sudo packer -Syu --devel"
+alias aura-template="aura -Akuax"
+alias packer-template="packer -Syu --devel"
 alias yaourt-template="yaourt -Syu --devel --aur"
 alias pacbuilder-template="pacbuilder -Sbkvn"
 
 ## Xephyr
-alias xephyr-template="Xephyr -ac -br -noreset -screen 1024x768 :1" # set DISPLAY=:1 to execute commands
+alias xephyr-template="Xephyr -ac -br -noreset -screen 1024x768 :1" # export DISPLAY=:1 to execute commands
 
 ## Xrandr
 alias xrandr-template-reset="xrandr --output LVDS1 --mode 1366x768"
-alias xrandr-template-hdmi="xrandr --output HDMI1 --auto --right-of LVDS1"
+alias xrandr-template-hdmi="xrandr --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1"
 
 # Youtube-dl
 alias youtube-dl-template-flv="youtube-dl -c -t --restrict-filenames"
