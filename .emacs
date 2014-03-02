@@ -11,6 +11,7 @@
 ;; - nav
 ;; - pkgbuild-mode (for Arch Linux)
 ;; - popup
+;; - rainbow-mode (colorize strings)
 ;; - smex
 ;; - yaml-mode
 
@@ -200,6 +201,9 @@
 (when (locate-library "markdown-mode")
   (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
   (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
+
+;; Autoenter SH mode
+(add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

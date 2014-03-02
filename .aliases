@@ -202,6 +202,9 @@ alias pacma="pacman"
 alias sl="ls"
 
 
-# Temp
-# man2ps: man -t pagename > pagename.ps
+# Notes
+# - Find serial of manufacturer
 # dmidecode: dmidecode -t 1
+#
+# - Convert manpage to ps format
+# - man2ps: man -t pagename > pagename.ps
