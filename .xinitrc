@@ -14,9 +14,11 @@ fi
 
 xsetroot -cursor_name left_ptr &
 setxkbmap br &                  # see also: localectl set-x11-keymap
-xbacklight -set 45 &
+# setxkbmap -option 'ctrl:swapcaps' # for emacs
+setxkbmap -option 'ctrl:nocaps' & # for emacs
+xbacklight -set 50 &
 # xset dpms 300 600 900 &
-synclient CoastingFriction=400
+synclient CoastingFriction=400 & # increase the touchpad scrolling friction (this avoids excessive accidental zooming on Chromium)
 
 
 # xinit your_window_manager_here

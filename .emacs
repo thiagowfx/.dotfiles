@@ -9,6 +9,7 @@
                             auto-complete
                             autopair
                             cmake-mode
+                            deft
                             graphviz-dot-mode
                             keyfreq
                             icicles
@@ -17,17 +18,16 @@
                             pkgbuild-mode
                             popup
                             rainbow-mode
+                            smartparens
                             smex
                             yaml-mode
                             ac-slime
-                            deft
                             gist
                             go-mode
                             haml-mode
                             haskell-mode
                             htmlize
                             magit
-                            markdown-mode
                             marmalade
                             nrepl
                             o-blog
@@ -78,6 +78,9 @@
 ;; If not using MELPA/package.el, please do the following to manually load a package:
 ;; (add-to-list 'load-path "/path/to/your/package")
 ;; (require 'package-provide-name)
+;; If creating a new config, please add the following to avoid errors when the package is not present:
+;; (when (locate-library "package-name") (package-configs-here))
+;; OR (when (require 'provide-name nil 'noerror) (package-configs-here))
 (let* ((my-lisp-dir "~/.emacs.d/")
        (default-directory my-lisp-dir))
   (setq load-path (cons my-lisp-dir load-path))
@@ -117,6 +120,7 @@
 (setq ido-enable-flex-matching t
       ido-enable-last-directory-history t
       confirm-nonexistent-file-or-buffer nil) ;; disable annoying confirmation
+(icomplete-mode t)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -134,15 +138,80 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Flyspell with aspell
+(setq flyspell-issue-welcome-flag nil)
+(setq-default ispell-program-name "/usr/bin/aspell")
+(setq-default ispell-list-command "list")
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Abbrev
+;; (info "(emacs) Abbrevs"
+;; sample use of emacs abbreviation feature
+;; (define-abbrev-table 'global-abbrev-table
+;;   '(
+;;     ("8abbrev" "abbreviation")
+;;     ))
+;; ;; stop asking whether to save newly added abbrev when quitting emacs
+;; (setq save-abbrevs nil)
+;; ;; turn on abbrev mode globally
+;; (setq-default abbrev-mode t)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Projectile :: Manages projects
+;; https://github.com/bbatsov/projectile
+;; Use C-c p as a prefix for everything
+;; If you want to change it... (setq projectile-keymap-prefix (kbd "C-c C-p"))
+;; add .projectile file to the root of your project folder to enable it
+;; if using a git, hg, etc project, this is not needed
+;; to turn projectile on for every folder, just add
+;; (setq projectile-require-project-root nil)
+(when (locate-library "projectile")
+  (projectile-global-mode))
+;; per-mode basis
+;; (add-hook 'ruby-mode-hook 'projectile-on)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Powerline :: more modern modeline
+(when (locate-library "powerline")
+  (powerline-default-theme))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Keyfreq :: stats about your keystrokes
 (when (locate-library "keyfreq")
   (keyfreq-mode t))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Deft
+;; Simple integrated note taking for emacs
+(when (locate-library "deft")
+  (setq deft-directory "~/Dropbox/deft")
+  (setq deft-use-filename-as-title t)
+  (setq deft-extension "org")
+  (setq deft-text-mode 'org-mode)
+  (global-set-key [f8] 'deft))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Windmove
 ;; Use Shift + arrow key to switch buffers
 (windmove-default-keybindings)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Autopair :: autocloses parenthesis
+;; (when (locate-library "autopair")
+;;   (autopair-global-mode t))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Smartparens :: autocloses parenthesis
+(when (locate-library "smartparens")
+  (smartparens-global-mode t))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -155,7 +224,8 @@
 ;; Saveplace
 (require 'saveplace) ;; do not remove this
 (setq-default save-place t
-              save-place-file (concat user-emacs-directory "places"))
+              save-place-file (concat user-emacs-directory "places")
+              recentf-max-saved-items 180)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -163,7 +233,7 @@
 (require 'uniquify) ;; do not remove this
 (setq uniquify-buffer-name-style 'forward)
 (setq uniquify-separator "/")
-(setq uniquify-after-kill-buffer-p t)	;; rename after killing uniquify
+(setq uniquify-after-kill-buffer-p t)   ;; rename after killing uniquify
 (setq uniquify-ignore-buffers-re "^\\*")
 
 
@@ -171,10 +241,13 @@
 ;; Scroll
 (setq scroll-margin 4
       scroll-conservatively 4
+      scroll-up-aggressively 0.1
+      scroll-down-aggressively 0.1
       scroll-preserve-screen-position t) ;; preserve screen pos with C-v/M-v
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Folding (hiding) - use C-c @ C-c to toggle it (on a function)
 (add-hook 'lisp-mode-hook (lambda () (hs-minor-mode t)))
 (add-hook 'emacs-lisp-mode-hook (lambda () (hs-minor-mode t)))
@@ -197,6 +270,13 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; js2-mode
+;; Use it instead of the built-in javascript-mode
+(when (locate-library "js2-mode")
+  (defalias 'javascript-mode 'js2-mode))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Emacs Lisp
 (add-hook 'lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
@@ -207,19 +287,19 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C
 (add-hook 'c-mode-hook (lambda () (setq compile-command (concat "gcc \""
-								(buffer-file-name)
-								"\" -o \""
-								(file-name-sans-extension buffer-file-name)
+                                                                (buffer-file-name)
+                                                                "\" -o \""
+                                                                (file-name-sans-extension buffer-file-name)
 
-								"\" -Wall -Wextra -g -O2"))))
+                                                                "\" -Wall -Wextra -g -O2"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C++
 (add-hook 'c++-mode-hook (lambda () (setq compile-command (concat "g++ \""
-								  (buffer-file-name)
-								  "\" -o \""
-								  (file-name-sans-extension buffer-file-name)
-								  "\" -Wall -Wextra -g -O2"))))
+                                                                  (buffer-file-name)
+                                                                  "\" -o \""
+                                                                  (file-name-sans-extension buffer-file-name)
+                                                                  "\" -Wall -Wextra -g -O2"))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -232,8 +312,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Markdown Mode
 (when (locate-library "markdown-mode")
-  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
   (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.mdown\\'" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
   (add-hook 'markdown-mode-hook '(lambda () (variable-pitch-mode t))))
 
 
@@ -246,8 +327,9 @@
 ;; Smex
 (when (fboundp 'smex)
   (smex-initialize)
-  (global-set-key "\M-x" 	'smex)
-  (global-set-key "\M-X"	'smex-major-mode-commands))
+  (global-set-key "\M-x"        'smex)
+  (global-set-key "\M-X"        'smex-major-mode-commands)
+  (global-set-key (kbd "C-c M-x") 'execute-extended-command))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -262,7 +344,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Auto-complete-mode
 (when (and (locate-library "auto-complete")
-	   (locate-library "popup"))
+           (locate-library "popup"))
   (require 'auto-complete-config)
   (ac-config-default)
   (setq ac-auto-start 3) ;; how many chars to auto-activate AC
@@ -274,13 +356,20 @@
 ;; Company-mode
 ;; You may want to bind: company-complete
 (when (locate-library "company")
-  (add-hook 'after-init-hook	'global-company-mode))
+  (add-hook 'after-init-hook    'global-company-mode))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Icicles
 (when (locate-library "icicles")
   (icy-mode t))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Helm
+;; (when (locate-library "helm")
+;;   (helm-mode t))
+;; You can also use `helm-mini`
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -328,13 +417,13 @@
   "Execute the current buffer name with the .in input and .out output"
   (interactive)
   (shell-command (concat "\""
-			 (file-name-sans-extension buffer-file-name)
-			 "\" < \""
-			 (file-name-sans-extension buffer-file-name)
-			 ".in\" "
-			 "> \""
-			 (file-name-sans-extension buffer-file-name)
-			 ".out\"")))
+                         (file-name-sans-extension buffer-file-name)
+                         "\" < \""
+                         (file-name-sans-extension buffer-file-name)
+                         ".in\" "
+                         "> \""
+                         (file-name-sans-extension buffer-file-name)
+                         ".out\"")))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -345,7 +434,28 @@
   (let ((value (eval (preceding-sexp))))
     (kill-sexp -1)
     (insert (format "%s" value))))
-(global-set-key "\C-c\C-x\C-e" 	'replace-last-sexp)
+(global-set-key "\C-c\C-x\C-e"  'replace-last-sexp)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Buffer cleaning
+(defun untabify-buffer ()
+  "Converts tabs to space on the whole buffer."
+  (interactive)
+  (untabify (point-min) (point-max)))
+
+(defun indent-buffer ()
+  "Indents the whole buffer."
+  (interactive)
+  (indent-region (point-min) (point-max)))
+
+(defun cleanup-buffer ()
+  "Perform a bunch of operations on the whitespace content of a buffer."
+  (interactive)
+  (indent-buffer)
+  (untabify-buffer)
+  (delete-trailing-whitespace))
+(global-set-key [f12] 'cleanup-buffer)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -355,12 +465,12 @@
 (global-unset-key "\C-xf")
 (global-set-key "\M-g"          'goto-line)
 (global-set-key (kbd "RET")     'newline-and-indent) ;; C-j like
-(global-set-key [?\C-\t]	'other-window)
+(global-set-key [?\C-\t]        'other-window)
 (global-set-key (kbd "<C-S-iso-lefttab>")  '(lambda () (interactive) (other-window -1)))
 (global-set-key [f5]            'compile)
 (global-set-key [f9]            'comment-or-uncomment-region)
-(global-set-key (kbd "C-;")	'comment-or-uncomment-region)
-(global-set-key (kbd "M-/") 	'hippie-expand)
+(global-set-key (kbd "C-;")     'comment-or-uncomment-region)
+(global-set-key (kbd "M-/")     'hippie-expand)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 
