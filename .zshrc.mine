@@ -9,6 +9,10 @@
 ## tab completion after the installation of new packages
 zstyle ':completion:*' rehash true
 
+# Make zsh know about hosts already accessed by SSH
+zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+
+
 autoload -U bashcompinit && bashcompinit
 autoload -U colors && colors
 autoload -U compinit && compinit

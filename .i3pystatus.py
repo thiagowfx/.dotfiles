@@ -34,7 +34,7 @@ status.register("backlight",
 # Battery
 status.register("battery",
                 battery_ident="BAT1",
-                format="{status} [{percentage_design:.2f}%]", # {remaining:%E%hh:%Mm}",
+                format="{status} [{percentage_design:.1f}%]", # {remaining:%E%hh:%Mm}",
                 alert=True,
                 alert_percentage=15,
                 status={

@@ -48,10 +48,12 @@ DISABLE_AUTO_UPDATE="true"
 plugins=(
     archlinux
     autojump
-    battery
     colored-man
     command-not-found
     git
+    extract
+    rsync
+    z
 )
 
 source $ZSH/oh-my-zsh.sh
