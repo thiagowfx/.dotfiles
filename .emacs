@@ -2,6 +2,7 @@
 (setq user-full-name "Thiago Perrotta")
 (load-theme 'wombat t)
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; My Custom Packages
 ;; To upgrade them, just use U x on the *Packages* buffer
@@ -12,7 +13,9 @@
 ;;                             deft
 ;;                             graphviz-dot-mode
 ;;                             keyfreq
+;;                             helm
 ;;                             icicles
+;;                             gitignore-mode
 ;;                             markdown-mode
 ;;                             nav
 ;;                             pkgbuild-mode
@@ -28,8 +31,6 @@
 ;;                             global
 ;;                             yasnippet(yas)
 ;;                             emacs-eclim
-;;                             !archwiki
-;;                             http://www.emacswiki.org/emacs/Icicles_-_Fuzzy_Completion
 ;;                             ac-slime
 ;;                             gist
 ;;                             go-mode
@@ -104,13 +105,6 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; DO NOT create backups
-(setq make-backup-files nil) ;; do not create *~ files
-(setq backup-directory-alist `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Repositories
 ;; See `list-packages` and `package-install`
 (when (>= emacs-major-version 24)
@@ -119,6 +113,19 @@
                                    ("melpa" . "http://melpa.milkbox.net/packages/")
                                    ("gnu" . "http://elpa.gnu.org/packages/")))
   (setq-default url-http-attempt-keepalives nil))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Desktop-session
+;; (desktop-save-mode t)
+;; (setq desktop-restore-eager 5)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; DO NOT create backups
+(setq make-backup-files nil) ;; do not create *~ files
+(setq backup-directory-alist `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -131,10 +138,16 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Ido
+;; Completion { | | |}
 (ido-mode t)
 (setq-default ido-enable-flex-matching t
               ido-enable-last-directory-history t
               confirm-nonexistent-file-or-buffer nil) ;; disable annoying confirmation
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Icomplete
+;; Completion {,,,}
 (icomplete-mode t)
 
 
@@ -142,10 +155,12 @@
 ;; Modeline stats
 (column-number-mode 1)
 (line-number-mode t)
+(size-indication-mode t)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Powerline :: more modern modeline
+;; Powerline
+;; Modern modeline
 (when (locate-library "powerline")
   (powerline-default-theme))
 
@@ -154,7 +169,7 @@
 ;; Visual-line -- Better C-a C-e C-k for very long line
 ;; Toggle it interactively with M-x visual-line-mode
 ;; See also M-x toggle-truncate-lines (line wrapping)
-(global-visual-line-mode t)
+;; (global-visual-line-mode t)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -172,10 +187,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Yasnippet (yas)
 ;; Activate it globally
-(when (locate-library "yasnippet")
-  (yas-global-mode 1)
-  (yas-reload-all)
-  (global-set-key "\C-c\M-\t" 'yas/expand))
+;; (when (locate-library "yasnippet")
+;;   (yas-global-mode 1)
+;;   (yas-reload-all)
+;;   (global-set-key "\C-c\M-\t" 'yas/expand))
 ;; If you want to load it on a per-buffer basis:
 ;; Use (yas-minor-mode) and (yas-reload-all)
 
@@ -197,7 +212,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Projectile :: Manages projects
 ;; https://github.com/bbatsov/projectile
-;; Use C-c p as a prefix for everything
+;; Use C-c p as a prefix for everything, 
 ;; If you want to change it... (setq projectile-keymap-prefix (kbd "C-c C-p"))
 ;; add .projectile file to the root of your project folder to enable it
 ;; if using a git, hg, etc project, this is not needed
@@ -227,6 +242,11 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Tabs vs Spaces War
+(setq-default indent-tabs-mode nil) ;; only spaces, please
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Windmove
 ;; Use Shift + arrow key to switch buffers
 (windmove-default-keybindings)
@@ -240,8 +260,10 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Smartparens :: autocloses parenthesis
-(when (locate-library "smartparens")
-  (smartparens-global-mode t))
+;; Looks better than autopair
+;; (when (locate-library "smartparens")
+;;   (smartparens-global-mode t))
+(show-paren-mode t) ;; highlight matching parenthesis
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -276,11 +298,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Folding (hiding)
 ;;- Use C-c @ C-c to toggle it (on a function)
-(add-hook 'c++-mode-hook (lambda () (hs-minor-mode t)))
+;; (add-hook 'c++-mode-hook (lambda () (hs-minor-mode t)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Startup / Interface
+;; Startup / Interface / Default Behavior
 (setq inhibit-startup-message t
       inhibit-startup-echo-area-message t
       initial-scratch-message "")
@@ -291,6 +313,19 @@
 (mouse-avoidance-mode 'exile) ;; mouse gets out of the way
 (global-linum-mode t) ;; show line numbers, toggle interactively with M-x linum-mode
 (setq-default indicate-empty-lines t) ;; vim like
+(setq visible-bell t)     ;; flash the frame to represent a bell
+(setq use-dialog-box nil) ;; use the echo area for everything
+(setq echo-keystrokes 0.1) ;; display keystrokes on the minibuffer as soon as possible
+(delete-selection-mode t) ;; delete text on the region after inserting any character
+(fset 'yes-or-no-p 'y-or-n-p)
+;; (setq-default inhibit-debugger t) ;; disable (emacs) from autoentering in the debugger
+(setq read-file-name-completion-ignore-case t)
+(setq enable-recursive-minibuffers t) ;; stack minibuffers, exit with `top-level`
+(setq read-buffer-completion-ignore-case t) ;; Ignore case when completing buffer names
+(setq require-final-newline t)
+(setq case-fold-search t)   ;; make searches case insensitive
+(setq vc-follow-symlinks t) ;; do not ask for symlink confirmations
+(global-auto-revert-mode t) ;; autoloads modified files outside emacs
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -309,7 +344,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C
-(add-hook 'c-mode-hook (lambda () (setq compile-command (concat "gcc \""
+(add-hook 'c-mode-hook (lambda () (setq compile-command (concat "g++ \""
                                                                 (buffer-file-name)
                                                                 "\" -o \""
                                                                 (file-name-sans-extension buffer-file-name)
@@ -336,8 +371,7 @@
 ;; Markdown Mode
 (when (locate-library "markdown-mode")
   (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-  (add-hook 'markdown-mode-hook (lambda () (variable-pitch-mode t)))) ;; change font face (non-monospace)
+  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -372,7 +406,7 @@
   (ac-config-default)
   (setq-default ac-auto-start 3) ;; how many chars to auto-activate AC
   (global-auto-complete-mode t)
-  (semantic-mode t)
+  ;; (semantic-mode t)
   (set-default 'ac-sources '(ac-source-abbrev
                              ac-source-dictionary
                              ac-source-yasnippet ;; add yasnippet support
@@ -395,19 +429,20 @@
 ;; Minibuffer completion framework, almost everywhere
 ;; Use TAB or S-TAB to complete
 ;; Use C-( and M-( to cycle through the different completion methods
-(when (locate-library "icicles")
-  (icy-mode t))
+;; (when (locate-library "icicles")
+;;   (icy-mode t))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Helm :: minbuffer autocompletion
-;; (when (locate-library "helm")
-;;   (helm-mode t))
+;; Helm :: minibuffer autocompletion
+(when (locate-library "helm")
+  (helm-mode t))
 ;; You can also use `helm-mini`
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Undo-tree
+;; Adds better undo support, plus redo
 (when (locate-library "undo-tree")
   (undo-tree-mode t)
   (defalias 'undo 'undo-tree-undo)
@@ -427,8 +462,8 @@
 (setq bookmark-default-file  (concat user-emacs-directory "bookmarks")) ;; emacs 23 compatibility
 (defalias 'bookmarks-menu-list 'bookmarks-bmenu-list) ;; easier to remember
 ;; switch to bookmarks buffer on startup
-(bookmark-bmenu-list)
-(switch-to-buffer "*Bookmark List*")
+;; (bookmark-bmenu-list)
+;; (switch-to-buffer "*Bookmark List*")
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -518,24 +553,6 @@
 (global-set-key (kbd "M-/")     'hippie-expand)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key "\C-xrq"	'save-buffers-kill-terminal)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Keyboard-centric + Misc Stuff
-(setq visible-bell t)     ;; flash the frame to represent a bell
-(setq use-dialog-box nil) ;; use the echo area for everything
-(setq echo-keystrokes 0.1) ;; display keystrokes on the minibuffer as soon as possible
-(delete-selection-mode t) ;; delete text on the region after inserting any character
-(fset 'yes-or-no-p 'y-or-n-p)
-(setq-default indent-tabs-mode nil) ;; only spaces
-;; (setq-default inhibit-debugger t) ;; disable (emacs) from autoentering in the debugger
-(setq read-file-name-completion-ignore-case t)
-(setq enable-recursive-minibuffers t) ;; stack minibuffers, exit with `top-level`
-(setq read-buffer-completion-ignore-case t) ;; Ignore case when completing buffer names
-(setq require-final-newline t)
-(setq case-fold-search t)   ;; make searches case insensitive
-(setq vc-follow-symlinks t) ;; do not ask for symlink confirmations
-(show-paren-mode t)         ;; highlight matching parenthesis
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

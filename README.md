@@ -1,7 +1,7 @@
 dotfiles
 ========
 
-Copyright (C) 2014 Thiago B. Perrotta
+Copyright (C) 2014 Thiago Perrotta
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

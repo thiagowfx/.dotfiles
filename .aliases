@@ -4,10 +4,13 @@
 alias sudo='sudo '
 
 # aliases
-alias em="emacs -nw"
 alias emc="emacsclient -c"      # run emacs --daemon first
 alias emq="emacs -nw"
+alias emqc="emacsclient -c -nw"
 alias pingg="ping google.com"
+
+# non-verbose output
+alias gdb="gdb -q"
 
 # verbose output
 alias xz="xz -v"
@@ -23,7 +26,7 @@ alias chown="chown -v"
 
 # change default behavior of some programs
 alias colordiff="colordiff -uN"
-alias cower="cower --color=always --sort=votes -t ~/.aur"
+alias cower="cower --color=always --sort=votes" # -t ~/.aur"
 alias df='df -h'
 alias diff="diff -uN"
 alias du="du -h"
