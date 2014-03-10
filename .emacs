@@ -1,5 +1,4 @@
 ;; -*- lisp -*-
-(setq user-full-name "Thiago Perrotta")
 (load-theme 'wombat t)
 
 
@@ -16,6 +15,7 @@
 ;;                             helm
 ;;                             icicles
 ;;                             gitignore-mode
+;;                             magit
 ;;                             markdown-mode
 ;;                             nav
 ;;                             pkgbuild-mode
@@ -37,11 +37,9 @@
 ;;                             haml-mode
 ;;                             haskell-mode
 ;;                             htmlize
-;;                             magit
 ;;                             marmalade
 ;;                             nrepl
 ;;                             o-blog
-;;                             org
 ;;                             paredit
 ;;                             puppet-mode
 ;;                             restclient
@@ -84,7 +82,6 @@
 ;;
 ;; Javascript/Web with Emacs:
 ;; - skewer-mode
-;; - js2-mode
 ;; - ac-js2
 ;; - web-mode
 ;; - jss
@@ -111,14 +108,7 @@
   (package-initialize)
   (setq-default package-archives '(("marmalade" . "http://marmalade-repo.org/packages/")
                                    ("melpa" . "http://melpa.milkbox.net/packages/")
-                                   ("gnu" . "http://elpa.gnu.org/packages/")))
-  (setq-default url-http-attempt-keepalives nil))
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Desktop-session
-;; (desktop-save-mode t)
-;; (setq desktop-restore-eager 5)
+                                   ("gnu" . "http://elpa.gnu.org/packages/"))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -141,8 +131,8 @@
 ;; Completion { | | |}
 (ido-mode t)
 (setq-default ido-enable-flex-matching t
-              ido-enable-last-directory-history t
-              confirm-nonexistent-file-or-buffer nil) ;; disable annoying confirmation
+	      ido-enable-last-directory-history t
+	      confirm-nonexistent-file-or-buffer nil) ;; disable annoying confirmation
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -163,6 +153,12 @@
 ;; Modern modeline
 (when (locate-library "powerline")
   (powerline-default-theme))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; mode-icons-mode: replaces some major modes with icons on the modeline
+(when (locate-library "mode-icons")
+  (mode-icons-mode))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -218,16 +214,16 @@
 ;; if using a git, hg, etc project, this is not needed
 ;; to turn projectile on for every folder, just add
 ;; (setq projectile-require-project-root nil)
-(when (locate-library "projectile")
-  (projectile-global-mode))
+;; (when (locate-library "projectile")
+;;  (projectile-global-mode))
 ;; per-mode basis
 ;; (add-hook 'ruby-mode-hook 'projectile-on)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Keyfreq :: stats about your keystrokes
-(when (locate-library "keyfreq")
-  (keyfreq-mode t))
+;; (when (locate-library "keyfreq")
+;;  (keyfreq-mode t))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -235,15 +231,17 @@
 ;; Simple integrated note taking for emacs
 (when (locate-library "deft")
   (setq-default deft-directory "~/Dropbox/deft"
-                deft-use-filename-as-title t
-                deft-extension "org"
-                deft-text-mode 'org-mode)
+		deft-use-filename-as-title t
+		deft-extension "org"
+		deft-text-mode 'org-mode)
   (global-set-key [f8] 'deft))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Tabs vs Spaces War
 (setq-default indent-tabs-mode nil) ;; only spaces, please
+(setq tab-width 4)
+(setq standard-indent 4)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -276,8 +274,8 @@
 ;; Saveplace
 (require 'saveplace) ;; do not remove this
 (setq-default save-place t
-              save-place-file (concat user-emacs-directory "places")
-              recentf-max-saved-items 150)
+	      save-place-file (concat user-emacs-directory "places")
+	      recentf-max-saved-items 150)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -316,7 +314,7 @@
 (setq visible-bell t)     ;; flash the frame to represent a bell
 (setq use-dialog-box nil) ;; use the echo area for everything
 (setq echo-keystrokes 0.1) ;; display keystrokes on the minibuffer as soon as possible
-(delete-selection-mode t) ;; delete text on the region after inserting any character
+;; (delete-selection-mode t) ;; delete text on the region after inserting any character
 (fset 'yes-or-no-p 'y-or-n-p)
 ;; (setq-default inhibit-debugger t) ;; disable (emacs) from autoentering in the debugger
 (setq read-file-name-completion-ignore-case t)
@@ -331,8 +329,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; js2-mode
 ;; Use it instead of the built-in javascript-mode
-;; (when (locate-library "js2-mode")
-;;   (defalias 'javascript-mode 'js2-mode))
+(when (locate-library "js2-mode")
+  (defalias 'javascript-mode 'js2-mode))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -343,21 +341,12 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; C
-(add-hook 'c-mode-hook (lambda () (setq compile-command (concat "g++ \""
-                                                                (buffer-file-name)
-                                                                "\" -o \""
-                                                                (file-name-sans-extension buffer-file-name)
-
-                                                                "\" -Wall -Wextra -g -O2"))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C++
 (add-hook 'c++-mode-hook (lambda () (setq compile-command (concat "g++ \""
-                                                                  (buffer-file-name)
-                                                                  "\" -o \""
-                                                                  (file-name-sans-extension buffer-file-name)
-                                                                  "\" -Wall -Wextra -g -O2"))))
+								  (buffer-file-name)
+								  "\" -o \""
+								  (file-name-sans-extension buffer-file-name)
+								  "\" -Wall -Wextra -g -O2"))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -369,7 +358,9 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Markdown Mode
+;; <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 (when (locate-library "markdown-mode")
+  ;; (add-hook 'markdown-mode-hook (lambda () (visual-line-mode t)))
   (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
   (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode)))
 
@@ -394,26 +385,33 @@
   (define-key global-map (kbd "C-0") 'ace-jump-mode)
   ;; default order (cycling)
   (setq-default ace-jump-mode-submode-list '(ace-jump-char-mode
-                                             ace-jump-line-mode
-                                             ace-jump-word-mode)))
+					     ace-jump-line-mode
+					     ace-jump-word-mode)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Auto-complete-mode
 (when (and (locate-library "auto-complete")
-           (locate-library "popup"))
+	   (locate-library "popup"))
   (require 'auto-complete-config)
   (ac-config-default)
   (setq-default ac-auto-start 3) ;; how many chars to auto-activate AC
   (global-auto-complete-mode t)
   ;; (semantic-mode t)
-  (set-default 'ac-sources '(ac-source-abbrev
-                             ac-source-dictionary
-                             ac-source-yasnippet ;; add yasnippet support
-                             ac-source-words-in-buffer
-                             ac-source-words-in-same-mode-buffers
-                             ac-source-semantic)) ;; add semantic support
-  (define-key global-map "\M-\t" 'auto-complete)) ;; to execute it manually
+  (add-to-list 'ac-sources 'ac-source-abbrev)
+  (add-to-list 'ac-sources 'ac-source-dictionary)
+  (add-to-list 'ac-sources 'ac-source-yasnippet)
+  (add-to-list 'ac-sources 'ac-source-words-in-buffer)
+  (add-to-list 'ac-sources 'ac-source-words-in-same-mode-buffers)
+  (add-to-list 'ac-sources 'ac-source-semantic)
+  (add-to-list 'ac-sources 'ac-source-c-headers)
+
+  ;; (add-hook 'c-mode-hook
+  ;;           (lambda ()
+  ;;             (add-to-list 'ac-sources 'ac-source-c-headers)
+  ;;             (add-to-list 'ac-sources 'ac-source-c-header-symbols t)))
+
+  (define-key global-map "\M-\t" 'auto-complete)) ;; calling it manually
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -438,6 +436,16 @@
 (when (locate-library "helm")
   (helm-mode t))
 ;; You can also use `helm-mini`
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; helm-company
+(when (and (locate-library "helm")
+	   (locate-library "company"))
+  (eval-after-load 'company
+    '(progn
+       (define-key company-mode-map (kbd "C-:") 'helm-company)
+       (define-key company-active-map (kbd "C-:") 'helm-company))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -470,8 +478,8 @@
 ;; recentf
 ;; manages your recent (acessed) files
 (setq-default recentf-save-file (concat user-emacs-directory "recentf")
-              recentf-max-saved-items 150
-              recentf-max-menu-items 25)
+	      recentf-max-saved-items 150
+	      recentf-max-menu-items 25)
 (recentf-mode t)
 
 (defun ido-choose-from-recentf ()
@@ -497,13 +505,13 @@
   "Execute the current buffer name with the .in input and .out output"
   (interactive)
   (shell-command (concat "\""
-                         (file-name-sans-extension buffer-file-name)
-                         "\" < \""
-                         (file-name-sans-extension buffer-file-name)
-                         ".in\" "
-                         "> \""
-                         (file-name-sans-extension buffer-file-name)
-                         ".out\"")))
+			 (file-name-sans-extension buffer-file-name)
+			 "\" < \""
+			 (file-name-sans-extension buffer-file-name)
+			 ".in\" "
+			 "> \""
+			 (file-name-sans-extension buffer-file-name)
+			 ".out\"")))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

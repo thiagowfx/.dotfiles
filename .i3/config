@@ -21,7 +21,7 @@ set $mod Mod4
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
 # font pango:DejaVu Sans Mono 10
-font pango:Arimo 10
+font pango:Arimo 9
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -29,14 +29,18 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
+# file manager
+bindsym $mod+BackSpace exec --no-startup-id /usr/bin/thunar
+
+# task manager
+bindsym $mod+Escape exec --no-startup-id /usr/bin/lxtask
+
 # kill focused window
 bindsym $mod+Shift+q kill
-# bindsym $mod+q kill
 bindsym $Alt+F4 kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -p "Yes?"
-bindsym $Alt+F2 exec dmenu_run -p "Yes?"
+bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -79,10 +83,11 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
+bindsym $mod+z focus child
 
 # workspace labels
 set $workspace1 1
-set $workspace2 2
+set $workspace2 2:www
 set $workspace3 3
 set $workspace4 4
 set $workspace5 5
@@ -127,8 +132,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3 and end your X session?' -b 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+e exec "i3-msg exit"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -217,18 +221,13 @@ bindsym XF86Play exec /usr/bin/audacious --play-pause
 bindsym Shift+XF86AudioRaiseVolume exec /usr/bin/audacious --fwd
 bindsym Shift+XF86AudioLowerVolume exec /usr/bin/audacious --rew
 bindsym Shift+XF86AudioMute exec /usr/bin/audacious --play-pause
-bindsym Print exec --no-startup-id /usr/bin/gscreenshot
-# bindsym Print exec --no-startup-id /usr/bin/scrot '%Y-%m-%d_%H%M%S_$wx$h.png' -e 'mv $f ~/Pictures/' && notify-send 'Screenshot taken!'
+bindsym Print exec --no-startup-id /usr/bin/scrot '%Y-%m-%d_%H%M%S_$wx$h_scrot.png' -e 'mv $f ~/ramdisk/' && notify-send 'SS taken'
 
-# bindsym Ctrl+$Alt+Left workspace prev
-# bindsym Ctrl+$Alt+Right workspace next
 bindsym $Win+Tab workspace next
 bindsym $Win+Shift+Tab workspace prev
 
 bindsym $Alt+Tab focus right
 bindsym $Alt+Shift+Tab focus left
-
-bindsym $mod+Escape exec --no-startup-id /usr/bin/lxtask
 
 # Scratchpad
 bindsym $mod+m move scratchpad
@@ -236,7 +235,7 @@ bindsym $mod+o scratchpad show
 
 # Options tweaking
 default_orientation auto
-focus_follows_mouse yes
+focus_follows_mouse no
 workspace_auto_back_and_forth yes
 workspace_layout tabbed
 
@@ -253,19 +252,22 @@ for_window [class="^feh$"] floating enable
 for_window [class="^Chromium$"] border 1pixel
 for_window [class="^gimp$"] floating enable
 for_window [class="^Xfce4-notifyd$"] floating enable; border none; focus mode_toggle
+for_window [class="sscratch"] move scratchpad
+
 
 # Startup applications:
 # Foreground
 exec --no-startup-id i3-msg 'workspace $workspace1; exec ${TERMINAL}'
 exec --no-startup-id i3-msg 'workspace $workspace2; exec ${BROWSER}'
 exec --no-startup-id i3-msg 'workspace $workspace1'
-exec --no-startup-id sh ~/.fehbg
-exec --no-startup-id compton -cCfF
+exec --no-startup-id "${TERMINAL} --class=sscratch"
+# exec --no-startup-id sh ~/.fehbg # wallpaper
+# exec --no-startup-id compton -cCfF # composition
 
 # Background
-exec --no-startup-id /usr/bin/CopyAgent
+# exec --no-startup-id /usr/bin/CopyAgent
 exec --no-startup-id /usr/bin/dropboxd
 exec --no-startup-id LC_ALL=C /usr/bin/parcellite
 exec --no-startup-id /usr/bin/nm-applet
 # exec --no-startup-id /usr/bin/wicd-gtk -t
-exec --no-startup-id /usr/bin/redshift
+exec --no-startup-id /usr/bin/redshift # on background

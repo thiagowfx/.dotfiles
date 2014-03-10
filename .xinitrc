@@ -12,10 +12,10 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 fi
 
 
-xsetroot -cursor_name left_ptr &
-setxkbmap br &                  # see also: localectl set-x11-keymap
+# xsetroot -cursor_name left_ptr &
+# setxkbmap br &                  # see also: localectl set-x11-keymap
 # setxkbmap -option 'ctrl:swapcaps' # for emacs
-setxkbmap -option 'ctrl:nocaps' & # for emacs
+# setxkbmap -option 'ctrl:nocaps' & # for emacs
 xbacklight -set 50 &
 # xset dpms 300 600 900 &
 synclient CoastingFriction=400 & # increase the touchpad scrolling friction (this avoids excessive accidental zooming on Chromium)

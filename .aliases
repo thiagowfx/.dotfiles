@@ -88,7 +88,8 @@ alias xephyr-template="Xephyr -ac -br -noreset -screen 1024x768 :1" # export DIS
 
 ## Xrandr
 alias xrandr-template-reset="xrandr --output LVDS1 --mode 1366x768"
-alias xrandr-template-hdmi="xrandr --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1"
+alias xrandr-template-hdmi-connected="xrandr --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1 && sh ~/.fehbg"
+alias xrandr-template-hdmi-disconnected="xrandr --output HDMI1 --off"
 
 # Youtube-dl
 alias youtube-dl-template-flv="youtube-dl -c -t --restrict-filenames"
@@ -100,13 +101,15 @@ export EDITOR="/usr/bin/emacs -nw"
 export FILEMANAGER="/usr/bin/thunar"
 export PAGER="less"
 export TERMINAL="/usr/bin/sakura"
-# export PATH="$PATH:/opt/android-sdk/platform-tools/"
-export PATH="$PATH:/home/thiago/.gem/ruby/2.1.0/bin/"
+export RAMDISK="/home/thiago/ramdisk/"
 export VISUAL="/usr/bin/emacs"
 export WINEARCH=win64
 export WINEDEBUG=fixme-all
 export WINEPREFIX=~/.wine
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+
+# export PATH="$PATH:/opt/android-sdk/platform-tools/"
+export PATH="$PATH:/home/thiago/.gem/ruby/2.1.0/bin/"
 
 # arch-chroot to non-arch systems
 function changeroot {
@@ -147,9 +150,6 @@ alias pacma="pacman"
 alias sl="ls"
 
 
-# Notes
-# - Find serial of manufacturer
-# dmidecode: dmidecode -t 1
-#
-# - Convert manpage to ps format
-# - man2ps: man -t pagename > pagename.ps
+# remember
+alias inxi-template="inxi -F -M"
+alias dmidecode-template="sudo dmidecode -t 1"

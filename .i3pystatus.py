@@ -5,7 +5,8 @@ import subprocess
 from i3pystatus import Status
 
 status = Status(standalone=True)
-default_color="#cccccc"
+# default_color="#cccccc"
+default_color="#ffffff"
 
 # Clock
 # 2014-03-02 17:05 KW09
@@ -19,7 +20,7 @@ status.register("alsa",
 
 # Backlight
 status.register("backlight",
-                format="LCD {brightness}%",
+                format="B: {brightness}%",
                 color=default_color,)
 
 
@@ -96,7 +97,7 @@ status.register("wireless",
 
 # Memory
 status.register("mem",
-                format="M: {used_mem:.0f} MiB ({percent_used_mem}%)",
+                format="{used_mem:.0f} MiB ({percent_used_mem}%)",
                 color=default_color,)
 
 
