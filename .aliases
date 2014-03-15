@@ -25,6 +25,7 @@ alias chmod="chmod -v"
 alias chown="chown -v"
 
 # change default behavior of some programs
+alias acpi"date && acpi"
 alias colordiff="colordiff -uN"
 alias cower="cower --color=always --sort=votes" # -t ~/.aur"
 alias df='df -h'

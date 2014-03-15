@@ -11,17 +11,20 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
-
-# xsetroot -cursor_name left_ptr &
-# setxkbmap br &                  # see also: localectl set-x11-keymap
+##################################################
+# Keyboard
+# setxkbmap br &                  # see also: localectl set-x11-keymap for systemd
 # setxkbmap -option 'ctrl:swapcaps' # for emacs
-# setxkbmap -option 'ctrl:nocaps' & # for emacs
-xbacklight -set 50 &
+# setxkbmap -option 'ctrl:nocaps'   # for emacs
+# xmodmap .Xmodmap
+##################################################
+
+# xsetroot -cursor_name left_ptr
 # xset dpms 300 600 900 &
-synclient CoastingFriction=400 & # increase the touchpad scrolling friction (this avoids excessive accidental zooming on Chromium)
+# xbacklight -set 50
+synclient CoastingFriction=400 # increase the touchpad scrolling friction (this avoids excessive accidental zooming on Chromium)
 
-
-# xinit your_window_manager_here
+# xinit <your_window_manager_here>
 case $1 in
     awesome) exec awesome;;
     catwm) exec catwm;;

@@ -97,7 +97,8 @@ status.register("wireless",
 
 # Memory
 status.register("mem",
-                format="{used_mem:.0f} MiB ({percent_used_mem}%)",
+#                format="{used_mem:.0f} MiB ({percent_used_mem}%)",
+                format="{used_mem:.0f} MiB",
                 color=default_color,)
 
 

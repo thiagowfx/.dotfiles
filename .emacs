@@ -33,18 +33,13 @@
 ;;                             emacs-eclim
 ;;                             ac-slime
 ;;                             gist
-;;                             go-mode
-;;                             haml-mode
-;;                             haskell-mode
 ;;                             htmlize
 ;;                             marmalade
 ;;                             nrepl
 ;;                             o-blog
 ;;                             paredit
-;;                             puppet-mode
 ;;                             restclient
-;;                             rvm
-;;                             sml-mode) "Default packages")
+;;                             rvm) "Default packages")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Topics
 ;;
@@ -83,7 +78,6 @@
 ;; Javascript/Web with Emacs:
 ;; - skewer-mode
 ;; - ac-js2
-;; - web-mode
 ;; - jss
 
 
