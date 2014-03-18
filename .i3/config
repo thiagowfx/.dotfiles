@@ -86,10 +86,10 @@ bindsym $mod+a focus parent
 bindsym $mod+z focus child
 
 # workspace labels
-set $workspace1 1
+set $workspace1 1:sh
 set $workspace2 2:www
 set $workspace3 3
-set $workspace4 4
+set $workspace4 4:♪
 set $workspace5 5
 set $workspace6 6
 set $workspace7 7
@@ -132,7 +132,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec 'i3-msg exit'
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -196,7 +197,7 @@ client.unfocused        #333333 #93a1a1 #fdf6e3 #292d2e
 # Start i3bar to display a workspace bar (system information)
 bar {
         status_command python ~/.i3pystatus.py # i3status
-        tray_output LVDS1
+        tray_output LVDS1                      # alt: primary
 	colors {
 	       # background #090020
                background #002b32
@@ -235,7 +236,7 @@ bindsym $mod+o scratchpad show
 
 # Options tweaking
 default_orientation auto
-focus_follows_mouse no
+focus_follows_mouse yes
 workspace_auto_back_and_forth yes
 workspace_layout tabbed
 
@@ -255,7 +256,7 @@ for_window [class="^Xfce4-notifyd$"] floating enable; border none; focus mode_to
 for_window [class="sscratch"] move scratchpad
 
 
-# Startup applications:
+# i3 startup
 # Foreground
 exec --no-startup-id i3-msg 'workspace $workspace1; exec ${TERMINAL}'
 exec --no-startup-id i3-msg 'workspace $workspace2; exec ${BROWSER}'
@@ -271,3 +272,4 @@ exec --no-startup-id LC_ALL=C /usr/bin/parcellite
 exec --no-startup-id /usr/bin/nm-applet
 # exec --no-startup-id /usr/bin/wicd-gtk -t
 exec --no-startup-id /usr/bin/redshift # on background
+exec --no-startup-id /usr/bin/dunst    # simple notification daemon

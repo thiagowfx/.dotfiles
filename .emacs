@@ -1,30 +1,67 @@
 ;; -*- lisp -*-
 (load-theme 'wombat t)
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; My Custom Packages
-;; To upgrade them, just use U x on the *Packages* buffer
-;; (defvar perrotta/packages '(ace-jump-mode
-;;                             auto-complete
-;;                             autopair
-;;                             cmake-mode
-;;                             deft
-;;                             graphviz-dot-mode
-;;                             keyfreq
-;;                             helm
-;;                             icicles
-;;                             gitignore-mode
-;;                             magit
-;;                             markdown-mode
-;;                             nav
-;;                             pkgbuild-mode
-;;                             popup
-;;                             rainbow-mode
-;;                             smartparens
-;;                             smex
-;;                             yaml-mode
-;;
+;; snapshot of my custom packages
+;; upgrade them with U x on the *Packages* buffer
+(fset 'package-get-snapshot-line [?\C-a ?\C-s ?  ?\C-s ?\C-m ?\C-  ?\C-e ?\C-w escape ?  backspace ?\C-a ?\; ?\; ?  ?- ?\C-d ?\C-a ?\C-n])
+;; - ac-c-headers
+;; - ac-helm
+;; - ac-js2
+;; - ace-jump-mode
+;; - auto-complete
+;; - auto-complete-c...
+;; - blank-mode
+;; - cmake-mode
+;; - company
+;; - dash
+;; - deft
+;; - epl
+;; - f
+;; - flycheck
+;; - fuzzy
+;; - fuzzy-match
+;; - git-commit-mode
+;; - git-rebase-mode
+;; - gitignore-mode
+;; - graphviz-dot-mode
+;; - helm
+;; - helm-company
+;; - helm-git
+;; - help+
+;; - icomplete+
+;; - ido-better-flex
+;; - ido-hacks
+;; - imenu+
+;; - info+
+;; - js2-mode
+;; - json-mode
+;; - magit
+;; - markdown-mode
+;; - markdown-mode+
+;; - mode-icons
+;; - mouse+
+;; - org
+;; - paredit
+;; - pkg-info
+;; - pkgbuild-mode
+;; - popup
+;; - powerline
+;; - projectile
+;; - rainbow-mode
+;; - s
+;; - scss-mode
+;; - shell-command
+;; - simple-httpd
+;; - skewer-mode
+;; - smart-mode-line
+;; - smartparens
+;; - smex
+;; - undo-tree
+;; - web-mode
+;; - xclip
+;; - yaml-mode
+;; - yasnippet
 ;;                             emacs-live
 ;;                             semantic-mode
 ;;                             gccsense
@@ -39,31 +76,40 @@
 ;;                             o-blog
 ;;                             paredit
 ;;                             restclient
+;; skewer-mode
+;; jss
 ;;                             rvm) "Default packages")
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Topics
 ;;
-;; Narrowing:
+;; macros
+;; - C-( or F3, later C-) or F4, execute with C-x e
+;;
+;; narrowing:
 ;; - C-x n n: narrow between point and mark
 ;; - C-x n w: un-narrow (~widen)
 ;;
-;; M-x Paradise:
+;; IDE paradise:
 ;; - Imenu :: Go directly to a function definition.
 ;; - Occur :: Overview of your file (just choose a keyword)
 ;;
-;; Registers:
-;; - C-x r s <label> :: save region to register <label>
+;; registers and bookmarks:
+;; - C-x r b         :: jump to bookmark
 ;; - C-x r i <label> :: insert register <label> to region
+;; - C-x r l         :: list bookmarks
+;; - C-x r s <label> :: save region to register <label>
+;; - C-x r SPC <label> :: save point position to register
+;; - C-x r j <label> :: go to saved point position
 ;;
-;; Modes:
-;; - Follow-mode :: two buffers with the same content to scroll simultaneously
-;; - Scroll-all-mode :: scroll any two buffers simultaneously
-;;
-;; Commands:
-;; - compare-windows
-;; - top-level
-;;
-;;
+;; useful (built-in) modes and commands
+;; - follow-mode     :: scroll buffers (equal)
+;; - scroll-all-mode :: scroll buffers (different)
+;; - compare-windows :: diff two open buffers on point
+;; - top-level       :: get out of the minibuffer
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Homepages
 ;; - http://www.emacsrocks.com/
@@ -75,10 +121,6 @@
 ;; - https://github.com/technomancy/better-defaults/
 ;; - http://www.aaronbedra.com/emacs.d/ ;; teaches how to install all (missing) packages from a given list
 ;;
-;; Javascript/Web with Emacs:
-;; - skewer-mode
-;; - ac-js2
-;; - jss
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -122,35 +164,44 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Ido
-;; Completion { | | |}
+;; Completion: { | | | }
 (ido-mode t)
 (setq-default ido-enable-flex-matching t
-	      ido-enable-last-directory-history t
-	      confirm-nonexistent-file-or-buffer nil) ;; disable annoying confirmation
+              ido-enable-last-directory-history t
+              confirm-nonexistent-file-or-buffer nil) ;; disable annoying confirmation
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Icomplete
-;; Completion {,,,}
+;; Completion: {,,,}
 (icomplete-mode t)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Modeline stats
-(column-number-mode 1)
+(column-number-mode t)
 (line-number-mode t)
 (size-indication-mode t)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Powerline
-;; Modern modeline
-(when (locate-library "powerline")
-  (powerline-default-theme))
+;; modern modeline
+;; (when (locate-library "powerline")
+;;   (powerline-default-theme))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; mode-icons-mode: replaces some major modes with icons on the modeline
+;; smart-mode-line
+;; better modeline
+(when (locate-library "smart-mode-line")
+  ;;   (setq sml/theme 'dark)
+  (sml/setup))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; mode-icons-mode
+;; replaces some major modes with icons on the modeline
 (when (locate-library "mode-icons")
   (mode-icons-mode))
 
@@ -202,7 +253,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Projectile :: Manages projects
 ;; https://github.com/bbatsov/projectile
-;; Use C-c p as a prefix for everything, 
+;; Use C-c p as a prefix for everything,
 ;; If you want to change it... (setq projectile-keymap-prefix (kbd "C-c C-p"))
 ;; add .projectile file to the root of your project folder to enable it
 ;; if using a git, hg, etc project, this is not needed
@@ -215,47 +266,48 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Keyfreq :: stats about your keystrokes
-;; (when (locate-library "keyfreq")
-;;  (keyfreq-mode t))
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Deft
 ;; Simple integrated note taking for emacs
 (when (locate-library "deft")
   (setq-default deft-directory "~/Dropbox/deft"
-		deft-use-filename-as-title t
-		deft-extension "org"
-		deft-text-mode 'org-mode)
+                deft-use-filename-as-title t
+                deft-extension "org"
+                deft-text-mode 'org-mode)
   (global-set-key [f8] 'deft))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Tabs vs Spaces War
+;; tabs vs spaces war
 (setq-default indent-tabs-mode nil) ;; only spaces, please
-(setq tab-width 4)
-(setq standard-indent 4)
+(setq-default tab-width 4)
+(setq-default standard-indent 4)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Windmove
-;; Use Shift + arrow key to switch buffers
+;; windmove
+;; use shift + arrow key to switch buffers
 (windmove-default-keybindings)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Autopair :: autocloses parenthesis
-;; (when (locate-library "autopair")
-;;   (autopair-global-mode t))
+;; subword mode
+;; treat a word camel-case like
+(global-subword-mode t)
+
+;; change-case commands
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Smartparens :: autocloses parenthesis
 ;; Looks better than autopair
-;; (when (locate-library "smartparens")
-;;   (smartparens-global-mode t))
-(show-paren-mode t) ;; highlight matching parenthesis
+(when (locate-library "smartparens")
+  (setq sp-autoescape-string-quote nil)
+  (smartparens-global-mode t))
+
+;; highlight matching parenthesis
+(show-paren-mode t)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -268,8 +320,8 @@
 ;; Saveplace
 (require 'saveplace) ;; do not remove this
 (setq-default save-place t
-	      save-place-file (concat user-emacs-directory "places")
-	      recentf-max-saved-items 150)
+              save-place-file (concat user-emacs-directory "places")
+              recentf-max-saved-items 150)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -301,6 +353,7 @@
 (setq-default frame-title-format (concat "%b - " (message "%s@emacs" (replace-regexp-in-string "\n$" "" (shell-command-to-string "whoami")))))
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+(scroll-bar-mode t)
 (blink-cursor-mode -1)
 (mouse-avoidance-mode 'exile) ;; mouse gets out of the way
 (global-linum-mode t) ;; show line numbers, toggle interactively with M-x linum-mode
@@ -337,10 +390,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C++
 (add-hook 'c++-mode-hook (lambda () (setq compile-command (concat "g++ \""
-								  (buffer-file-name)
-								  "\" -o \""
-								  (file-name-sans-extension buffer-file-name)
-								  "\" -Wall -Wextra -g -O2"))))
+                                                                  (buffer-file-name)
+                                                                  "\" -o \""
+                                                                  (file-name-sans-extension buffer-file-name)
+                                                                  "\" -Wall -Wextra -g -O2"))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -379,41 +432,32 @@
   (define-key global-map (kbd "C-0") 'ace-jump-mode)
   ;; default order (cycling)
   (setq-default ace-jump-mode-submode-list '(ace-jump-char-mode
-					     ace-jump-line-mode
-					     ace-jump-word-mode)))
+                                             ace-jump-line-mode
+                                             ace-jump-word-mode)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Auto-complete-mode
-(when (and (locate-library "auto-complete")
-	   (locate-library "popup"))
-  (require 'auto-complete-config)
-  (ac-config-default)
-  (setq-default ac-auto-start 3) ;; how many chars to auto-activate AC
-  (global-auto-complete-mode t)
-  ;; (semantic-mode t)
-  (add-to-list 'ac-sources 'ac-source-abbrev)
-  (add-to-list 'ac-sources 'ac-source-dictionary)
-  (add-to-list 'ac-sources 'ac-source-yasnippet)
-  (add-to-list 'ac-sources 'ac-source-words-in-buffer)
-  (add-to-list 'ac-sources 'ac-source-words-in-same-mode-buffers)
-  (add-to-list 'ac-sources 'ac-source-semantic)
-  (add-to-list 'ac-sources 'ac-source-c-headers)
-
-  ;; (add-hook 'c-mode-hook
-  ;;           (lambda ()
-  ;;             (add-to-list 'ac-sources 'ac-source-c-headers)
-  ;;             (add-to-list 'ac-sources 'ac-source-c-header-symbols t)))
-
-  (define-key global-map "\M-\t" 'auto-complete)) ;; calling it manually
+;; (when (and (locate-library "auto-complete")
+;;            (locate-library "popup"))
+;;   (define-key global-map "\M-\t" 'auto-complete)) ;; calling it manually
+;;   (require 'auto-complete-config)
+;;   (ac-config-default)
+;;   (setq-default ac-auto-start 3) ;; how many chars to auto-activate AC
+;;   (global-auto-complete-mode t)
+;;   (add-to-list 'ac-sources 'ac-source-abbrev)
+;;   (add-to-list 'ac-sources 'ac-source-dictionary)
+;;   (add-to-list 'ac-sources 'ac-source-yasnippet)
+;;   (add-to-list 'ac-sources 'ac-source-words-in-buffer)
+;;   (add-to-list 'ac-sources 'ac-source-words-in-same-mode-buffers)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Company-mode
 ;; Autocompletes your code
 ;; You may want to bind: company-complete
-(when (locate-library "company")
-  (add-hook 'after-init-hook    'global-company-mode))
+;; (when (locate-library "company")
+;;   (add-hook 'after-init-hook 'global-company-mode))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -435,7 +479,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helm-company
 (when (and (locate-library "helm")
-	   (locate-library "company"))
+           (locate-library "company"))
   (eval-after-load 'company
     '(progn
        (define-key company-mode-map (kbd "C-:") 'helm-company)
@@ -472,8 +516,8 @@
 ;; recentf
 ;; manages your recent (acessed) files
 (setq-default recentf-save-file (concat user-emacs-directory "recentf")
-	      recentf-max-saved-items 150
-	      recentf-max-menu-items 25)
+              recentf-max-saved-items 150
+              recentf-max-menu-items 25)
 (recentf-mode t)
 
 (defun ido-choose-from-recentf ()
@@ -499,13 +543,13 @@
   "Execute the current buffer name with the .in input and .out output"
   (interactive)
   (shell-command (concat "\""
-			 (file-name-sans-extension buffer-file-name)
-			 "\" < \""
-			 (file-name-sans-extension buffer-file-name)
-			 ".in\" "
-			 "> \""
-			 (file-name-sans-extension buffer-file-name)
-			 ".out\"")))
+                         (file-name-sans-extension buffer-file-name)
+                         "\" < \""
+                         (file-name-sans-extension buffer-file-name)
+                         ".in\" "
+                         "> \""
+                         (file-name-sans-extension buffer-file-name)
+                         ".out\"")))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -554,7 +598,7 @@
 (global-set-key (kbd "C-;")     'comment-or-uncomment-region)
 (global-set-key (kbd "M-/")     'hippie-expand)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key "\C-xrq"	'save-buffers-kill-terminal)
+(global-set-key "\C-xrq"        'save-buffers-kill-terminal)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

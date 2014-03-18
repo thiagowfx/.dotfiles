@@ -5,8 +5,8 @@ import subprocess
 from i3pystatus import Status
 
 status = Status(standalone=True)
-# default_color="#cccccc"
 default_color="#ffffff"
+secondary_color="881010"
 
 # Clock
 # 2014-03-02 17:05 KW09
@@ -16,17 +16,19 @@ status.register("clock",
 # ALSA
 status.register("alsa",
                 format="♪ {volume}",
-                color=default_color,)
+                color=default_color,
+                color_muted=secondary_color,
+)
 
 # Backlight
 status.register("backlight",
-                format="B: {brightness}%",
+                format="L: {brightness}%",
                 color=default_color,)
 
 
 # Shows the average load of the last minute and the last 5 minutes
 # (the default value for format is used)
-# status.register("load")
+status.register("load")
 
 # Shows your CPU temperature, if you have a Intel CPU
 # status.register("temp",
@@ -82,13 +84,6 @@ status.register("wireless",
 #                 format_up="E: {v4cidr}",
 #                 format_down="",)
 
-# Shows disk usage of /
-# Format:
-# 42/128G [86G]
-# status.register("disk",
-#                     path="/",
-#                     format="{used}/{total}G [{avail}G]",)
-
 # Shows pulseaudio default sink volume
 #
 # Note: requires libpulseaudio from PyPI
@@ -99,7 +94,19 @@ status.register("wireless",
 status.register("mem",
 #                format="{used_mem:.0f} MiB ({percent_used_mem}%)",
                 format="{used_mem:.0f} MiB",
-                color=default_color,)
+                color=default_color,
+                warn_color=default_color,
+                alert_color=default_color,
+)
+
+
+# Shows disk usage of /
+# Format:
+# 42/128G [86G]
+status.register("disk",
+                path="/home",
+#                format="{used}/{total}G [{avail}G]",)
+                format="{avail}G @ /home",)
 
 
 # Shows mpd status
