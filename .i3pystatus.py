@@ -9,7 +9,7 @@ default_color="#ffffff"
 secondary_color="881010"
 
 # Clock
-# 2014-03-02 17:05 KW09
+# YYYY-MM-DD HH:mm KWxx
 status.register("clock",
                 format="%Y-%m-%d %H:%M KW%V",)
 
@@ -107,18 +107,7 @@ status.register("mem",
 status.register("disk",
                 path="/home",
 #                format="{used}/{total}G [{avail}G]",)
-                format="{avail:.0f}G @ /home",)
+                format="{used:.0f}G+{avail:.0f}G/home",)
 
-
-# Shows mpd status
-# Format:
-# Cloud connected▶Reroute to Remain
-# status.register("mpd",
-#                     format="{title}{status}{album}",
-#                     status={
-#                                 "pause": "▷",
-#                                 "play": "▶",
-#                                 "stop": "◾",
-#                             },)
 
 status.run()

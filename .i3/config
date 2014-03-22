@@ -272,7 +272,7 @@ exec --no-startup-id "${TERMINAL} --class=sscratch"
 # Background
 exec --no-startup-id /usr/bin/CopyAgent
 exec --no-startup-id /usr/bin/dropboxd
-exec --no-startup-id LC_ALL=C /usr/bin/parcellite
+# exec --no-startup-id LC_ALL=C /usr/bin/parcellite
 exec --no-startup-id /usr/bin/nm-applet
 # exec --no-startup-id /usr/bin/wicd-gtk -t
 exec --no-startup-id /usr/bin/redshift # on background
