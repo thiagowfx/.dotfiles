@@ -302,9 +302,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Smartparens :: autocloses parenthesis
 ;; Looks better than autopair
-(when (locate-library "smartparens")
-  (setq sp-autoescape-string-quote nil)
-  (smartparens-global-mode t))
+;; (when (locate-library "smartparens")
+;;   (setq sp-autoescape-string-quote nil)
+;;   (smartparens-global-mode t))
 
 ;; highlight matching parenthesis
 (show-paren-mode t)
