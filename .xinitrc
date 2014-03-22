@@ -16,7 +16,7 @@ fi
 # setxkbmap br &                  # see also: localectl set-x11-keymap for systemd
 # setxkbmap -option 'ctrl:swapcaps' # for emacs
 # setxkbmap -option 'ctrl:nocaps'   # for emacs
-# xmodmap .Xmodmap
+xmodmap .Xmodmap
 ##################################################
 
 # xsetroot -cursor_name left_ptr

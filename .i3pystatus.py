@@ -28,7 +28,7 @@ status.register("backlight",
 
 # Shows the average load of the last minute and the last 5 minutes
 # (the default value for format is used)
-status.register("load")
+# status.register("load")
 
 # Shows your CPU temperature, if you have a Intel CPU
 # status.register("temp",
@@ -69,7 +69,8 @@ status.register("battery",
 status.register("network",
                 interface="wlp2s0",
                 color_up=default_color,
-                format_up="{v4cidr}",
+#                format_up="{v4cidr}",
+                format_up="{v4}",
                 format_down="",)
 
 status.register("wireless",
@@ -106,7 +107,7 @@ status.register("mem",
 status.register("disk",
                 path="/home",
 #                format="{used}/{total}G [{avail}G]",)
-                format="{avail}G @ /home",)
+                format="{avail:.0f}G @ /home",)
 
 
 # Shows mpd status

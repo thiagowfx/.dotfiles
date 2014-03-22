@@ -196,17 +196,21 @@ client.unfocused        #333333 #93a1a1 #fdf6e3 #292d2e
 
 # Start i3bar to display a workspace bar (system information)
 bar {
-        status_command python ~/.i3pystatus.py # i3status
-        tray_output LVDS1                      # alt: primary
+        # status_command i3status
+        status_command python ~/.i3pystatus.py
+        
+        # tray_output LVDS1
+        # tray_output primary
+        
 	colors {
 	       # background #090020
-               background #002b32
-               statusline #eee8d5
+           background #002b32
+           statusline #eee8d5
 
-               # Solarized theme
-               focused_workspace #cb4b16 #cb4b16 #eee8d5
-               active_workspace #cb4b16 #cb4b16 #eee8d5
-               inactive_workspace #b58900 #b58900 #eee8d5
+           # solarized theme
+           focused_workspace #cb4b16 #cb4b16 #eee8d5
+           active_workspace #cb4b16 #cb4b16 #eee8d5
+           inactive_workspace #b58900 #b58900 #eee8d5
 	}
 }
 
@@ -266,7 +270,7 @@ exec --no-startup-id "${TERMINAL} --class=sscratch"
 # exec --no-startup-id compton -cCfF # composition
 
 # Background
-# exec --no-startup-id /usr/bin/CopyAgent
+exec --no-startup-id /usr/bin/CopyAgent
 exec --no-startup-id /usr/bin/dropboxd
 exec --no-startup-id LC_ALL=C /usr/bin/parcellite
 exec --no-startup-id /usr/bin/nm-applet
