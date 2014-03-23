@@ -99,7 +99,7 @@ alias youtube-dl-template-mp3="youtube-dl -c -t --restrict-filenames --extract-a
 # Environment variables
 export BROWSER="/usr/bin/chromium"
 export EDITOR="/usr/bin/emacs -nw"
-export FILEMANAGER="/usr/bin/thunar"
+export FILEMANAGER="/usr/bin/pcmanfm"
 export PAGER="less"
 export TERMINAL="/usr/bin/sakura"
 export RAMDISK="/home/thiago/ramdisk/"

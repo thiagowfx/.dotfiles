@@ -1,136 +1,19 @@
 ;; -*- lisp -*-
 (load-theme 'wombat t)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; snapshot of my custom packages
-;; upgrade them with U x on the *Packages* buffer
-(fset 'package-get-snapshot-line [?\C-a ?\C-s ?  ?\C-s ?\C-m ?\C-  ?\C-e ?\C-w escape ?  backspace ?\C-a ?\; ?\; ?  ?- ?\C-d ?\C-a ?\C-n])
-;; - ac-c-headers
-;; - ac-helm
-;; - ac-js2
-;; - ace-jump-mode
-;; - auto-complete
-;; - auto-complete-c...
-;; - blank-mode
-;; - cmake-mode
-;; - company
-;; - dash
-;; - deft
-;; - epl
-;; - f
-;; - flycheck
-;; - fuzzy
-;; - fuzzy-match
-;; - git-commit-mode
-;; - git-rebase-mode
-;; - gitignore-mode
-;; - graphviz-dot-mode
-;; - helm
-;; - helm-company
-;; - helm-git
-;; - help+
-;; - icomplete+
-;; - ido-better-flex
-;; - ido-hacks
-;; - imenu+
-;; - info+
-;; - js2-mode
-;; - json-mode
-;; - magit
-;; - markdown-mode
-;; - markdown-mode+
-;; - mode-icons
-;; - mouse+
-;; - org
-;; - paredit
-;; - pkg-info
-;; - pkgbuild-mode
-;; - popup
-;; - powerline
-;; - projectile
-;; - rainbow-mode
-;; - s
-;; - scss-mode
-;; - shell-command
-;; - simple-httpd
-;; - skewer-mode
-;; - smart-mode-line
-;; - smartparens
-;; - smex
-;; - undo-tree
-;; - web-mode
-;; - xclip
-;; - yaml-mode
-;; - yasnippet
-;;                             emacs-live
-;;                             semantic-mode
-;;                             gccsense
-;;                             global
-;;                             yasnippet(yas)
-;;                             emacs-eclim
-;;                             ac-slime
-;;                             gist
-;;                             htmlize
-;;                             marmalade
-;;                             nrepl
-;;                             o-blog
-;;                             paredit
-;;                             restclient
-;; skewer-mode
-;; jss
-;;                             rvm) "Default packages")
+(defvar user-full-name "Thiago Perrotta")
+(setq fav-languages-mine '(c c++ emacs-lisp lisp markdown python text))
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Topics
-;;
-;; macros
-;; - C-( or F3, later C-) or F4, execute with C-x e
-;;
-;; narrowing:
-;; - C-x n n: narrow between point and mark
-;; - C-x n w: un-narrow (~widen)
-;;
-;; IDE paradise:
-;; - Imenu :: Go directly to a function definition.
-;; - Occur :: Overview of your file (just choose a keyword)
-;;
-;; registers and bookmarks:
-;; - C-x r b         :: jump to bookmark
-;; - C-x r i <label> :: insert register <label> to region
-;; - C-x r l         :: list bookmarks
-;; - C-x r s <label> :: save region to register <label>
-;; - C-x r SPC <label> :: save point position to register
-;; - C-x r j <label> :: go to saved point position
-;;
-;; useful (built-in) modes and commands
-;; - follow-mode     :: scroll buffers (equal)
-;; - scroll-all-mode :: scroll buffers (different)
-;; - compare-windows :: diff two open buffers on point
-;; - top-level       :: get out of the minibuffer
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Homepages
-;; - http://www.emacsrocks.com/
-;; - http://www.emacswiki.org/
-;;
-;;
-;; References
-;; - http://www.emacswiki.org/emacs/EmacsCrashCode/
-;; - https://github.com/technomancy/better-defaults/
-;; - http://www.aaronbedra.com/emacs.d/ ;; teaches how to install all (missing) packages from a given list
-;;
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Load-path :: ~/.emacs.d
 ;; If not using MELPA/package.el, please do the following to manually load a package:
 ;; (add-to-list 'load-path "/path/to/your/package")
 ;; (require 'package-provide-name)
 ;; If creating a new config, please add the following to avoid errors when the package is not present:
 ;; (when (locate-library "package-name") (package-configs-here))
 ;; OR (when (require 'provide-name nil 'noerror) (package-configs-here))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Load-path :: ~/.emacs.d
 (let* ((my-lisp-dir "~/.emacs.d/")
        (default-directory my-lisp-dir))
   (setq load-path (cons my-lisp-dir load-path))
@@ -138,24 +21,24 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Repositories
-;; See `list-packages` and `package-install`
+;; Repositories: see `list-packages` and `package-install`
 (when (>= emacs-major-version 24)
   (package-initialize)
-  (setq-default package-archives '(("marmalade" . "http://marmalade-repo.org/packages/")
-                                   ("melpa" . "http://melpa.milkbox.net/packages/")
-                                   ("gnu" . "http://elpa.gnu.org/packages/"))))
+  ; (package-refresh-contents)
+  (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; DO NOT create backups
+;; do NOT create backups
 (setq make-backup-files nil) ;; do not create *~ files
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Clipboard Stuff
+;; clipboard stuff
 (setq x-select-enable-primary t
       save-interprogram-paste-before-kill t
       mouse-yank-at-point t
@@ -163,45 +46,35 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Ido
-;; Completion: { | | | }
+;; minibuffer completion
+
+;; Ido: completion: { | | | }
 (ido-mode t)
 (setq-default ido-enable-flex-matching t
               ido-enable-last-directory-history t
-              confirm-nonexistent-file-or-buffer nil) ;; disable annoying confirmation
+              confirm-nonexistent-file-or-buffer nil) ; disable annoying confirmation
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Icomplete
-;; Completion: {,,,}
+;; Icomplete: completion: {,,,}
 (icomplete-mode t)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Modeline stats
+;; modeline
+
+;; stats
 (column-number-mode t)
 (line-number-mode t)
 (size-indication-mode t)
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Powerline
-;; modern modeline
+;; powerline : modern modeline
 ;; (when (locate-library "powerline")
 ;;   (powerline-default-theme))
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; smart-mode-line
-;; better modeline
+;; smart-mode-line : better modeline
 (when (locate-library "smart-mode-line")
-  ;;   (setq sml/theme 'dark)
   (sml/setup))
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; mode-icons-mode
-;; replaces some major modes with icons on the modeline
+;; mode-icons-mode : icons on the modeline
 (when (locate-library "mode-icons")
   (mode-icons-mode))
 
@@ -211,6 +84,37 @@
 ;; Toggle it interactively with M-x visual-line-mode
 ;; See also M-x toggle-truncate-lines (line wrapping)
 ;; (global-visual-line-mode t)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Go to the last change
+(when (locate-library "goto-chg")
+  (defun goto-last-change-mine (arg)
+    "- Without a prefix argument, calls goto-last-change.
+- With a prefix argument, calls goto-last-change-reverse."
+    (interactive "P")
+    (if arg
+        (call-interactively 'goto-last-change-reverse)
+      (call-interactively 'goto-last-change)
+      (global-set-key [(control .)] 'goto-last-change-mine))))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; control lock: lock the control key to avoid pinky
+;; could be used together with chords
+(when (locate-library "control-lock")
+  (require 'control-lock)
+  (global-set-key "\C-z" 'control-lock-toggle))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; fic-ext-mode: Highlight TODO and FIXME in comments
+(when (locate-library "fic-ext-mode")
+  (defun add-something-to-mode-hooks (mode-list something)
+    "helper function to add a callback to multiple hooks"
+    (dolist (mode mode-list)
+      (add-hook (intern (concat (symbol-name mode) "-mode-hook")) something)))
+  (add-something-to-mode-hooks fav-languages-mine 'fic-ext-mode))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -284,24 +188,33 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; windmove
-;; use shift + arrow key to switch buffers
+;; Flymake: On the fly syntax checking
+;; stronger error display
+(defface flymake-message-face
+  '((((class color) (background light)) (:foreground "#b2dfff"))
+    (((class color) (background dark))  (:foreground "#b2dfff")))
+  "Flymake message face")
+;; show the flymake errors in the minibuffer
+(when (locate-library "flymake-cursor")
+  (require 'flymake-cursor))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; windmove : use shift + arrow key to switch buffers
 (windmove-default-keybindings)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; subword mode
-;; treat a word camel-case like
+;; subword mode: treat a word camel-case like
 (global-subword-mode t)
 
-;; change-case commands
+;; change-case commands: C-x C-l and C-x C-u
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Smartparens :: autocloses parenthesis
-;; Looks better than autopair
+;; Smartparens :: autocloses parenthesis, better than autopair
 ;; (when (locate-library "smartparens")
 ;;   (setq sp-autoescape-string-quote nil)
 ;;   (smartparens-global-mode t))
@@ -311,17 +224,8 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Winner mode
-;; use C-c <left> and C-c <right> to cycle through window views
+;; winner mode: C-c <left> and C-c <right> to cycle through window views
 (winner-mode t)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Saveplace
-(require 'saveplace) ;; do not remove this
-(setq-default save-place t
-              save-place-file (concat user-emacs-directory "places")
-              recentf-max-saved-items 150)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -334,8 +238,8 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Scroll
-(setq scroll-margin 3
-      scroll-conservatively 3
+(setq scroll-margin 4
+      scroll-conservatively 4
       scroll-preserve-screen-position t) ;; preserve screen pos with C-v/M-v
 
 
@@ -513,6 +417,19 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; savehist : save minibuffer history
+(require 'savehist)
+(savehist-mode t)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; saveplace
+(require 'saveplace) ;; do not remove this
+(setq-default save-place t
+              save-place-file (concat user-emacs-directory "places"))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; recentf
 ;; manages your recent (acessed) files
 (setq-default recentf-save-file (concat user-emacs-directory "recentf")
@@ -616,3 +533,61 @@
  ;; If there is more than one, they won't work right.
  )
 (put 'narrow-to-region 'disabled nil)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Topics
+;;
+;; macros
+;; - C-( or F3, later C-) or F4, execute with C-x e
+;;
+;; narrowing:
+;; - C-x n n: narrow between point and mark
+;; - C-x n w: un-narrow (~widen)
+;;
+;; IDE paradise:
+;; - Imenu :: Go directly to a function definition.
+;; - Occur :: Overview of your file (just choose a keyword)
+;;
+;; registers and bookmarks:
+;; - C-x r b         :: jump to bookmark
+;; - C-x r i <label> :: insert register <label> to region
+;; - C-x r l         :: list bookmarks
+;; - C-x r s <label> :: save region to register <label>
+;; - C-x r SPC <label> :: save point position to register
+;; - C-x r j <label> :: go to saved point position
+;;
+;; useful (built-in) modes and commands
+;; - follow-mode     :: scroll buffers (equal)
+;; - scroll-all-mode :: scroll buffers (different)
+;; - compare-windows :: diff two open buffers on point
+;; - top-level       :: get out of the minibuffer
+
+;;                             emacs-live
+;;                             semantic-mode
+;;                             global
+;;                             yasnippet(yas)
+;;                             emacs-eclim
+;;                             ac-slime
+;;                             gist
+;;                             htmlize
+;;                             marmalade
+;;                             nrepl
+;;                             o-blog
+;;                             paredit
+;;                             restclient
+;; skewer-mode
+;; jss
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Homepages
+;; - http://www.emacsrocks.com/
+;; - http://www.emacswiki.org/
+;;
+;;
+;; References
+;; - http://www.emacswiki.org/emacs/EmacsCrashCode/
+;; - https://github.com/technomancy/better-defaults/
+;; - http://www.aaronbedra.com/emacs.d/ ;; teaches how to install all (missing) packages from a given list
+;; - http://draketo.de/light/english/emacs/babcore

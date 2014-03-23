@@ -16,13 +16,19 @@ fi
 # setxkbmap br &                  # see also: localectl set-x11-keymap for systemd
 # setxkbmap -option 'ctrl:swapcaps' # for emacs
 # setxkbmap -option 'ctrl:nocaps'   # for emacs
-xmodmap .Xmodmap
+[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
 ##################################################
 
+##################################################
+[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+hsetroot -solid "#222222" # background (solid) color
+# sh ~/.fehbg
+# /usr/bin/compton -cCfF & # desktop composer
 # xsetroot -cursor_name left_ptr
 # xset dpms 300 600 900 &
 # xbacklight -set 50
 synclient CoastingFriction=400 # increase the touchpad scrolling friction (this avoids excessive accidental zooming on Chromium)
+##################################################
 
 # xinit <your_window_manager_here>
 case $1 in

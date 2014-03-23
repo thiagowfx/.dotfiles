@@ -30,7 +30,7 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 
 # file manager
-bindsym $mod+BackSpace exec --no-startup-id /usr/bin/thunar
+bindsym $mod+BackSpace exec --no-startup-id /usr/bin/pcmanfm
 
 # task manager
 bindsym $mod+Escape exec --no-startup-id /usr/bin/lxtask
@@ -169,7 +169,7 @@ mode "$mode_system" {
         bindsym l exec --no-startup-id $i3lock, mode "default"
         bindsym e exec --no-startup-id i3-msg exit
         bindsym s exec --no-startup-id $i3lock && systemctl suspend, mode "default"
-        bindsym h exec --no-startup-id $i3lock && systemctl hibernate, mode "default"
+        bindsym h exec --no-startup-id systemctl hibernate, mode "default"
         bindsym r exec --no-startup-id systemctl reboot
         bindsym Shift+s exec --no-startup-id systemctl poweroff
 
@@ -198,19 +198,21 @@ client.unfocused        #333333 #93a1a1 #fdf6e3 #292d2e
 bar {
         # status_command i3status
         status_command python ~/.i3pystatus.py
+        position top
+        mode dock
         
         # tray_output LVDS1
         # tray_output primary
         
 	colors {
-	       # background #090020
-           background #002b32
-           statusline #eee8d5
+	    # background #090020
+        background #002b32
+        statusline #eee8d5
 
-           # solarized theme
-           focused_workspace #cb4b16 #cb4b16 #eee8d5
-           active_workspace #cb4b16 #cb4b16 #eee8d5
-           inactive_workspace #b58900 #b58900 #eee8d5
+        # solarized theme
+        focused_workspace #cb4b16 #cb4b16 #eee8d5
+        active_workspace #cb4b16 #cb4b16 #eee8d5
+        inactive_workspace #b58900 #b58900 #eee8d5
 	}
 }
 
@@ -252,12 +254,11 @@ workspace_layout tabbed
 
 
 # for_window
-for_window [window_role="pop-up"] floating enable
-for_window [class="^feh$"] floating enable
+for_window [window_role="pop-up"] floating enable, move absolute center
+for_window [class="feh|Viewnior|Java|Galculator|Lxappearance|Arandr|gimp"] floating enable
 for_window [class="^Chromium$"] border 1pixel
-for_window [class="^gimp$"] floating enable
-for_window [class="^Xfce4-notifyd$"] floating enable; border none; focus mode_toggle
-for_window [class="sscratch"] move scratchpad
+for_window [class="^Xfce4-notifyd$"] floating enable, border none, focus mode_toggle
+for_window [class="scratchpad"] move scratchpad
 
 
 # i3 startup
@@ -265,14 +266,11 @@ for_window [class="sscratch"] move scratchpad
 exec --no-startup-id i3-msg 'workspace $workspace1; exec ${TERMINAL}'
 exec --no-startup-id i3-msg 'workspace $workspace2; exec ${BROWSER}'
 exec --no-startup-id i3-msg 'workspace $workspace1'
-exec --no-startup-id "${TERMINAL} --class=sscratch"
-# exec --no-startup-id sh ~/.fehbg # wallpaper
-# exec --no-startup-id compton -cCfF # composition
+exec --no-startup-id "${TERMINAL} --class=scratchpad"
 
 # Background
 exec --no-startup-id /usr/bin/CopyAgent
 exec --no-startup-id /usr/bin/dropboxd
-# exec --no-startup-id LC_ALL=C /usr/bin/parcellite
 exec --no-startup-id /usr/bin/nm-applet
 # exec --no-startup-id /usr/bin/wicd-gtk -t
 exec --no-startup-id /usr/bin/redshift # on background

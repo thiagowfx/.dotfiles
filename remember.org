@@ -1,0 +1,4 @@
+# -*- org -*-
+
+* jekyll
+** jekyll serve --watch --baseurl=''
