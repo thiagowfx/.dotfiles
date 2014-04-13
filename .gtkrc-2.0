@@ -1,12 +1,12 @@
 # DO NOT EDIT! This file will be overwritten by LXAppearance.
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
-gtk-theme-name="Zukitwo"
-gtk-icon-theme-name="NITRUX"
-gtk-font-name="Arimo 10"
-gtk-cursor-theme-name="OpenZone_Ice"
+gtk-theme-name="Adwaita"
+gtk-icon-theme-name="menta"
+gtk-font-name="Ubuntu Light 10"
+gtk-cursor-theme-name="OpenZone_White_Slim"
 gtk-cursor-theme-size=0
-gtk-toolbar-style=GTK_TOOLBAR_ICONS
+gtk-toolbar-style=GTK_TOOLBAR_BOTH_HORIZ
 gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
 gtk-button-images=1
 gtk-menu-images=1
@@ -16,4 +16,5 @@ gtk-xft-antialias=1
 gtk-xft-hinting=1
 gtk-xft-hintstyle="hintfull"
 gtk-xft-rgba="rgb"
+gtk-color-scheme="tooltip_fg_color:#FFFFFF\nbase_color:#FFFFFF\nselected_fg_color:#FFFFFF\ntext_color:#313739\nbg_color:#EDEDED\ninsensitive_bg_color:#F4F4F2\ntooltip_bg_color:#343434\nselected_bg_color:#29138bc32632\nfg_color:#000000\n"
 include "/home/thiago/.gtkrc-2.0.mine"

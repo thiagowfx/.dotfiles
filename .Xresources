@@ -1,0 +1,15 @@
+! font settings
+Xft.autohint: true
+Xft.antialias: true
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.dpi: 96
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
+
+! xterm
+XTerm*metaSendsEscape: true
+XTerm*locale: true
+Xterm*saveLines: 4096
+XTerm*reverseVideo: on
+xterm*faceName: Ubuntu Mono:size=11:antialias=true

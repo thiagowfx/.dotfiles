@@ -20,8 +20,7 @@ set $mod Mod4
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-# font pango:DejaVu Sans Mono 10
-font pango:Arimo 9
+font pango:Ubuntu Light 9
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -30,21 +29,16 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 
 # file manager
-bindsym $mod+BackSpace exec --no-startup-id /usr/bin/pcmanfm
-
-# task manager
-bindsym $mod+Escape exec --no-startup-id /usr/bin/lxtask
+bindsym $mod+BackSpace exec --no-startup-id /usr/bin/spacefm
 
 # kill focused window
 bindsym $mod+Shift+q kill
 bindsym $Alt+F4 kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
+# bindsym $mod+d exec --no-startuo-id dmenu_run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id j4-dmenu-desktop
 
 # change focus
 bindsym $mod+Left focus left
@@ -82,19 +76,18 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
 bindsym $mod+z focus child
 
 # workspace labels
 set $workspace1 1:sh
 set $workspace2 2:www
 set $workspace3 3
-set $workspace4 4:♪
+set $workspace4 4
 set $workspace5 5
 set $workspace6 6
 set $workspace7 7
-set $workspace8 8
-set $workspace9 9
+set $workspace8 8:♪media
+set $workspace9 9:HDMI
 set $workspace0 0
 
 # workspace outputs
@@ -164,7 +157,7 @@ bindsym $mod+r mode "resize"
 
 set $mode_system System (l)ock, (e) logout, (s)uspend, (h)ibernate, (r)eboot, (Shift+s) shutdown
 mode "$mode_system" {
-        set $i3lock i3lock -c 111111 -d
+        set $i3lock i3lock -c 222222
 
         bindsym l exec --no-startup-id $i3lock, mode "default"
         bindsym e exec --no-startup-id i3-msg exit
@@ -196,8 +189,8 @@ client.unfocused        #333333 #93a1a1 #fdf6e3 #292d2e
 
 # Start i3bar to display a workspace bar (system information)
 bar {
-        # status_command i3status
-        status_command python ~/.i3pystatus.py
+        status_command i3status
+        # status_command python ~/.i3pystatus.py
         position top
         mode dock
         
@@ -217,19 +210,21 @@ bar {
 }
 
 # Custom hotkeys: use xev to learn the hotkey names
+bindsym Print exec --no-startup-id /usr/bin/scrot '%Y-%m-%d_%H%M%S_$wx$h_scrot.png' -e 'mv $f ~/ramdisk/' && notify-send 'SS taken'
 bindsym XF86MonBrightnessUp exec --no-startup-id /usr/bin/xbacklight -inc 4
 bindsym XF86MonBrightnessDown exec --no-startup-id /usr/bin/xbacklight -dec 4
 bindsym XF86AudioRaiseVolume exec /usr/bin/amixer set Master 3%+ unmute
 bindsym XF86AudioLowerVolume exec /usr/bin/amixer set Master 3%- unmute
 bindsym XF86AudioMute exec /usr/bin/amixer set Master toggle
+
 bindsym XF86AudioNext exec /usr/bin/audacious --fwd
 bindsym XF86AudioPrev exec /usr/bin/audacious --rew
 bindsym XF86Play exec /usr/bin/audacious --play-pause
 bindsym Shift+XF86AudioRaiseVolume exec /usr/bin/audacious --fwd
 bindsym Shift+XF86AudioLowerVolume exec /usr/bin/audacious --rew
 bindsym Shift+XF86AudioMute exec /usr/bin/audacious --play-pause
-bindsym Print exec --no-startup-id /usr/bin/scrot '%Y-%m-%d_%H%M%S_$wx$h_scrot.png' -e 'mv $f ~/ramdisk/' && notify-send 'SS taken'
 
+# alt tab style
 bindsym $Win+Tab workspace next
 bindsym $Win+Shift+Tab workspace prev
 
@@ -246,32 +241,26 @@ focus_follows_mouse yes
 workspace_auto_back_and_forth yes
 workspace_layout tabbed
 
-
 # assign: use xorg-xprop to learn the class string
 # assign [class="^Chromium$"] → $workspace2
-# assign [class="^Firefox$"] → $workspace2
-# assign [class="^Midori$"] → $workspace2
-
 
 # for_window
 for_window [window_role="pop-up"] floating enable, move absolute center
-for_window [class="feh|Viewnior|Java|Galculator|Lxappearance|Arandr|gimp"] floating enable
+for_window [class="feh|Viewnior|Java|Galculator|Lxappearance|Arandr|gimp|Epsxe"] floating enable
 for_window [class="^Chromium$"] border 1pixel
 for_window [class="^Xfce4-notifyd$"] floating enable, border none, focus mode_toggle
-for_window [class="scratchpad"] move scratchpad
-
+for_window [class="scratch|scratchpad"] move scratchpad
 
 # i3 startup
 # Foreground
+exec --no-startup-id i3lock -c 222222
+exec --no-startup-id "${TERMINAL} --class=scratchpad"
 exec --no-startup-id i3-msg 'workspace $workspace1; exec ${TERMINAL}'
 exec --no-startup-id i3-msg 'workspace $workspace2; exec ${BROWSER}'
-exec --no-startup-id i3-msg 'workspace $workspace1'
-exec --no-startup-id "${TERMINAL} --class=scratchpad"
 
 # Background
 exec --no-startup-id /usr/bin/CopyAgent
 exec --no-startup-id /usr/bin/dropboxd
 exec --no-startup-id /usr/bin/nm-applet
-# exec --no-startup-id /usr/bin/wicd-gtk -t
-exec --no-startup-id /usr/bin/redshift # on background
-exec --no-startup-id /usr/bin/dunst    # simple notification daemon
+exec --no-startup-id /usr/bin/redshift
+exec --no-startup-id /usr/bin/dunst

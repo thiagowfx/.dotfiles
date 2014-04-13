@@ -1,0 +1,6 @@
+# -*- conf -*-
+$include /etc/inputrc
+
+# Readline
+"\e[A":history-search-backward
+"\e[B":history-search-forward

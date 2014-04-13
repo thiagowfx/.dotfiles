@@ -89,7 +89,7 @@ status.register("wireless",
 #
 # Note: requires libpulseaudio from PyPI
 # status.register("pulseaudio",
-#                     format="♪{volume}",)
+#                     format="♪:{volume}",)
 
 # Memory
 status.register("mem",

@@ -6,7 +6,7 @@
 # default config
 [[ -f ~/.aliases ]] && . ~/.aliases
 
-## tab completion after the installation of new packages
+# tab completion after the installation of new packages
 zstyle ':completion:*' rehash true
 
 # Make zsh know about hosts already accessed by SSH

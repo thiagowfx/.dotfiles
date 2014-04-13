@@ -1,12 +1,10 @@
 # -*- shell-script -*-
 
-# aliases for sudo!
+# enable aliases for sudo
 alias sudo='sudo '
 
-# aliases
-alias emc="emacsclient -c"      # run emacs --daemon first
+# custom aliases
 alias emq="emacs -nw"
-alias emqc="emacsclient -c -nw"
 alias pingg="ping google.com"
 
 # non-verbose output
@@ -25,15 +23,15 @@ alias chmod="chmod -v"
 alias chown="chown -v"
 
 # change default behavior of some programs
-alias acpi"date && acpi"
+alias acpi="date && acpi"
 alias colordiff="colordiff -uN"
-alias cower="cower --color=always --sort=votes" # -t ~/.aur"
+alias cower='cower --color=always --sort=votes --target="${HOME}"/.aur'
 alias df='df -h'
 alias diff="diff -uN"
 alias du="du -h"
 alias free="free -m"
 alias grep="grep --color=auto"
-alias i3lock="i3lock -c 111111 -d"
+alias i3lock="i3lock -c 222222"
 alias lynx="lynx -emacskeys"
 alias make="time make -j3"
 alias makepkg="time makepkg"
@@ -45,81 +43,82 @@ alias strace="strace -t"
 alias trayer="trayer --edge top --align right --widthtype request --SetDockType false"
 alias uptime="uptime --pretty"
 
-# Templates
-
 ## Android
 alias emulator-template="emulator -avd "Intel-10-480x800" -qemu --enable-kvm -dns-server 8.8.8.8,8.8.4.4"
 alias emulator-template-kill="adb emu kill"
 
-## FFMpeg
-alias ffmpeg-template-screencast-mic="ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -f alsa -ac 2 -i pulse -qscale 0 /tmp/out.mpg"
+## ffmpeg
+alias ffmpeg-template-screencast-plusmic="ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -f alsa -ac 2 -i pulse -qscale 0 /tmp/out.mpg"
 alias ffmpeg-template-screencast="ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -qscale 0 /tmp/out.mpg"
 
-# Menu maker
+# menu maker
 alias fluxbox-generate_menu-template="fluxbox-generate_menu -kg -su -t mate-terminal -w www.google.com -is -ds"
 alias mmaker-template="mmaker -t Konsole -vf openbox3"
 
-## QEMU
+# qemu
 alias qemu-template-test-iso="qemu-system-x86_64 --enable-kvm -m 512M -cdrom" #path here
 
-## VNC
+# vnc
 alias vncserver-template-connect="vncviewer -passwd ~/.vnc/passwd localhost:1"
 alias vncserver-template-kill="vncserver -kill :1"
 alias vncserver-template-start="vncserver -geometry 960x540 -alwaysshared -dpi 96 :1" # using DISPLAY=:1
 
-## Webmin
+# webmin
 alias webmin-template="sudo systemctl start webmin && "${BROWSER}" localhost:10000"
 
-## Wget
+# wget
 alias wget-template-pdf="wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
 alias wget-template-spider="wget -e robots=off --wait=2 --random-wait --recursive --span-hosts --spider --timestamping --tries=5 --dns-timeout=30 --connect-timeout=5 --read-timeout=5 --level=10 --"
 
-## Winetricks
+# winetricks
 alias winetricks-template-install="winetricks corefonts vcrun2005 vcrun2008 vb6run"
 
-## World: upgrade your system
+# world (Arch)
 alias world="sudo pacman -Syu"
+alias worldd="packer -Syu --auronly --devel --noconfirm"
 alias aura-template="aura -Akuax"
-alias packer-template="packer -Syu --devel"
 alias yaourt-template="yaourt -Syu --devel --aur"
 alias pacbuilder-template="pacbuilder -Sbkvn"
 
-## Xephyr
+# xephyr
 alias xephyr-template="Xephyr -ac -br -noreset -screen 1024x768 :1" # export DISPLAY=:1 to execute commands
 
-## Xrandr
+# xrandr
 alias xrandr-template-reset="xrandr --output LVDS1 --mode 1366x768"
 alias xrandr-template-hdmi-connected="xrandr --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1 && sh ~/.fehbg"
 alias xrandr-template-hdmi-disconnected="xrandr --output HDMI1 --off"
 
-# Youtube-dl
-alias youtube-dl-template-flv="youtube-dl -c -t --restrict-filenames"
-alias youtube-dl-template-mp3="youtube-dl -c -t --restrict-filenames --extract-audio --audio-format mp3"
+# youtube-dl
+alias youtube-dl-template-mp3="youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3"
+alias youtube-dl-template-video="youtube-dl --continue --title --restrict-filenames"
 
-# Environment variables
+# environment options
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+export HISTCONTROL=ignoreboth
+export WINEARCH="win64"
+export WINEDEBUG="fixme-all"
+export WINEPREFIX="~/.wine"
+
+# environment customizations
 export BROWSER="/usr/bin/chromium"
 export EDITOR="/usr/bin/emacs -nw"
-export FILEMANAGER="/usr/bin/pcmanfm"
-export PAGER="less"
+export FILEMANAGER="/usr/bin/spacefm"
+export RAMDISK="~/ramdisk/"
 export TERMINAL="/usr/bin/sakura"
-export RAMDISK="/home/thiago/ramdisk/"
 export VISUAL="/usr/bin/emacs"
-export WINEARCH=win64
-export WINEDEBUG=fixme-all
-export WINEPREFIX=~/.wine
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
+# path
 # export PATH="$PATH:/opt/android-sdk/platform-tools/"
-export PATH="$PATH:/home/thiago/.gem/ruby/2.1.0/bin/"
+# export PATH="~/.gem/ruby/2.1.0/bin:$PATH"
 
-# arch-chroot to non-arch systems
+# arch-chroot for non-arch systems
 function changeroot {
-    sudo cp -L /etc/resolv.conf $1/etc/resolv.conf
-    sudo mount -t proc proc $1/proc
-    sudo mount -t sysfs sys $1/sys
-    sudo mount -o bind /dev $1/dev
-    sudo mount -t devpts pts $1/dev/pts/
-    sudo chroot $1/ /bin/bash
+    sudo cp -L /etc/resolv.conf "$1"/etc/resolv.conf
+    sudo mount -t proc proc "$1"/proc
+    sudo mount -t sysfs sys "$1"/sys
+    sudo mount -o bind /dev "$1"/dev
+    sudo mount -t devpts pts "$1"/dev/pts/
+    sudo chroot "$1"/ /bin/bash
 }
 
 # to actually create a chroot, see manpage (uses pacstrap...)
@@ -128,7 +127,12 @@ alias systemd-nspawn-template="systemd-nspawn -bD"
 # Alternatives include:
 # - arch-chroot
 # - schroot
-# - devtools package (makepkg builds...)
+# - devtools package (for packagers)
+
+# AUR Keychain (modus operandi)
+# - /usr/share/pacman to get PKGBUILD prototypes
+# - makepkg --source (better: mkaurball, if sharing)
+# - burp (aur uploader)
 
 
 function qkkdiff-file {
@@ -136,7 +140,6 @@ function qkkdiff-file {
     bsdtar -xOf /var/cache/pacman/pkg/${pkg}-x86_64.pkg.tar.xz ${1/\//} | diff - $1
     return 0
 }
-
 
 function qkkdiff {
     ver=$(pacman -Q $1 | cut -f2 -d' ')
@@ -150,7 +153,7 @@ alias eamcs="emacs"
 alias pacma="pacman"
 alias sl="ls"
 
-
 # remember
-alias inxi-template="inxi -F -M"
-alias dmidecode-template="sudo dmidecode -t 1"
+alias dmidecode-remember="sudo dmidecode -t 1"
+alias inxi-remember="inxi -F -M"
+alias jekyll-serve-remember="jekyll serve --baseurl='' --watch"
