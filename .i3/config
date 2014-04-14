@@ -13,6 +13,8 @@ set $Alt Mod1
 set $Win Mod4
 set $mod Mod4
 
+set $FILEMANAGER "/usr/bin/spacefm"
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -20,7 +22,7 @@ set $mod Mod4
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-font pango:Ubuntu Light 9
+font pango:Ubuntu Light 9.3
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -29,7 +31,7 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 
 # file manager
-bindsym $mod+BackSpace exec --no-startup-id /usr/bin/spacefm
+bindsym $mod+BackSpace exec --no-startup-id $FILEMANAGER
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -88,11 +90,19 @@ set $workspace6 6
 set $workspace7 7
 set $workspace8 8:♪media
 set $workspace9 9:HDMI
-set $workspace0 0
+set $workspace0 zero
 
 # workspace outputs
 workspace $workspace1 output LVDS1
+workspace $workspace2 output LVDS1
+workspace $workspace3 output LVDS1
+workspace $workspace4 output LVDS1
+workspace $workspace5 output LVDS1
+workspace $workspace6 output LVDS1
+workspace $workspace7 output LVDS1
+workspace $workspace8 output LVDS1
 workspace $workspace9 output HDMI1
+workspace $workspace0 output HDMI1
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -125,8 +135,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+e exec 'i3-msg exit'
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+e exec 'i3-msg exit'
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -193,9 +203,7 @@ bar {
         # status_command python ~/.i3pystatus.py
         position top
         mode dock
-        
-        # tray_output LVDS1
-        # tray_output primary
+        # tray_output  # LVDS1|primary|none
         
 	colors {
 	    # background #090020

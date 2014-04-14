@@ -84,9 +84,9 @@ alias pacbuilder-template="pacbuilder -Sbkvn"
 alias xephyr-template="Xephyr -ac -br -noreset -screen 1024x768 :1" # export DISPLAY=:1 to execute commands
 
 # xrandr
-alias xrandr-template-reset="xrandr --output LVDS1 --mode 1366x768"
 alias xrandr-template-hdmi-connected="xrandr --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1 && sh ~/.fehbg"
 alias xrandr-template-hdmi-disconnected="xrandr --output HDMI1 --off"
+alias xrandr-template-reset="xrandr --output LVDS1 --primary --mode 1366x768"
 
 # youtube-dl
 alias youtube-dl-template-mp3="youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3"
@@ -94,7 +94,7 @@ alias youtube-dl-template-video="youtube-dl --continue --title --restrict-filena
 
 # environment options
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
-export HISTCONTROL=ignoreboth
+export HISTCONTROL=ignoreboth # ignore consecutive entries of history
 export WINEARCH="win64"
 export WINEDEBUG="fixme-all"
 export WINEPREFIX="~/.wine"
