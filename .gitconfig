@@ -1,7 +1,7 @@
 # -*- conf -*-
 
 [push]
-default = simple
+default = matching
 
 [user]
 name = Thiago Perrotta
