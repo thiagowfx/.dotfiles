@@ -31,7 +31,7 @@ alias diff="diff -uN"
 alias du="du -h"
 alias free="free -m"
 alias grep="grep --color=auto"
-alias i3lock="i3lock -c 222222"
+alias i3lock="i3lock-wrapper || i3lock -c 222222"
 alias lynx="lynx -emacskeys"
 alias make="time make -j3"
 alias makepkg="time makepkg"
@@ -85,7 +85,8 @@ alias xephyr-template="Xephyr -ac -br -noreset -screen 1024x768 :1" # export DIS
 
 # xrandr
 alias xrandr-template-hdmi-connected="xrandr --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1 && sh ~/.fehbg"
-alias xrandr-template-hdmi-disconnected="xrandr --output HDMI1 --off"
+alias xrandr-template-hdmi-disconnected="xrandr --output HDMI1 --off && sh ~/.fehbg"
+alias xrandr-template-hdmi-mirror="xrandr --output LVDS1 --auto --output HDMI1 --auto --same-as LVDS1 && sh ~/.fehbg"
 alias xrandr-template-reset="xrandr --output LVDS1 --primary --mode 1366x768"
 
 # youtube-dl
