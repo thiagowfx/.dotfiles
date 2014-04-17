@@ -1,0 +1,18 @@
+# Maintainer: Thiago Perrotta <echo dGhpYWdvcGVycm90dGE5NUBnbWFpbC5jb20K | base64 -d >
+
+pkgname=i3lock-wrapper
+pkgver=1
+pkgrel=1
+pkgdesc='a simple wrapper around i3lock which blurs the current desktop'
+arch=('any')
+url='https://github.com/ashinkarov/i3-extras/'
+license=('unknown')
+groups=('i3')
+depends=('i3lock' 'scrot' 'imagemagick')
+source=("https://raw.githubusercontent.com/ashinkarov/i3-extras/master/$pkgname")
+md5sums=('d13ac2e50b76ad94206986cd158fdd12')
+
+package() {
+  cd "$srcdir"
+  install -Dm777 "$pkgname" "$pkgdir/usr/bin/$pkgname"
+}
