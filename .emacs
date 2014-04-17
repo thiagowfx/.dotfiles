@@ -82,12 +82,11 @@
 (setq-default recentf-save-file (concat user-emacs-directory "recentf")
               recentf-max-saved-items 150
               recentf-max-menu-items 25)
-(setq default-frame-alist
-      '((cursor-color . "white")))
+(setq default-frame-alist '((cursor-color . "white")))
 (set-cursor-color "white")
 
 (when (locate-library "drag-stuff") ; M-down, M-up
-  (drag-stuff-mode t))
+  (drag-stuff-global-mode t))
 
 (when (locate-library "smart-mode-line")
   (sml/setup))
@@ -95,13 +94,10 @@
 (when (locate-library "mode-icons")
   (mode-icons-mode))
 
-(when (locate-library "flycheck")
-  (add-hook 'after-init-hook #'global-flycheck-mode))
-
 (when (locate-library "goto-chg")
   (global-set-key [(control .)] 'goto-last-change))
 
-(when (locate-library "control-lock")   ; pinky
+(when (locate-library "control-lock")   ; no-pinky
   (require 'control-lock)
   (global-set-key "\C-z" 'control-lock-toggle))
 
@@ -198,18 +194,6 @@
   (interactive)
   (load-file "~/.emacs"))
 (global-set-key (kbd "<f2>")    'reload-dot-emacs)
-
-(defun exec-program-with-io ()
-  "Execute the current buffer name with the .in input and .out output"
-  (interactive)
-  (shell-command (concat "\""
-                         (file-name-sans-extension buffer-file-name)
-                         "\" < \""
-                         (file-name-sans-extension buffer-file-name)
-                         ".in\" "
-                         "> \""
-                         (file-name-sans-extension buffer-file-name)
-                         ".out\"")))
 
 (defun replace-last-sexp ()
   "Eval in place"

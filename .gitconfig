@@ -8,8 +8,8 @@ name = Thiago Perrotta
 email = thiagoperrotta95@gmail.com
 
 [credential]
-helper = cache --timeout=604800
-# helper = store
+# helper = cache --timeout=7200
+helper = store
 
 [alias]
 graph = log --graph --oneline --decorate
@@ -17,7 +17,6 @@ hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
 st = status
 puhs = push
-dump = cat-faile -p
 
 [core]
 editor = emacs -nw
@@ -42,9 +41,6 @@ whitespace = red reverse
 added = yellow
 changed = green
 untracked = cyan
-
-[diff]
-tool = meld
 
 [merge]
 tool = meld

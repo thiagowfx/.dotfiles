@@ -14,6 +14,7 @@ set $Win Mod4
 set $mod Mod4
 
 set $FILEMANAGER "/usr/bin/spacefm"
+set $I3LOCK i3lock-wrapper # i3lock-wrapper|i3lock -c 222222
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -141,12 +142,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you want to exit i3?' -b 
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
-	set $step 20
+    	set $step 20
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
         bindsym j resize shrink width $step px or $step ppt
         bindsym k resize grow height $step px or $step ppt
         bindsym l resize shrink height $step px or $step ppt
@@ -161,17 +158,17 @@ mode "resize" {
         # back to normal: Enter or Escape or space
         bindsym Return mode "default"
         bindsym Escape mode "default"
- 	bindsym space mode "default"
+ 	    bindsym space mode "default"
 }
 bindsym $mod+r mode "resize"
 
-set $mode_system System (l)ock, (e) logout, (s)uspend, (h)ibernate, (r)eboot, (Shift+s) shutdown
+set $mode_system System (l)ock, (e)logout, (s)uspend, (h)ibernate, (r)eboot, (Shift+s) shutdown
 mode "$mode_system" {
-        set $i3lock i3lock -c 222222
+        
 
-        bindsym l exec --no-startup-id $i3lock, mode "default"
+        bindsym l exec --no-startup-id $I3LOCK, mode "default"
         bindsym e exec --no-startup-id i3-msg exit
-        bindsym s exec --no-startup-id $i3lock && systemctl suspend, mode "default"
+        bindsym s exec --no-startup-id $I3LOCK && systemctl suspend, mode "default"
         bindsym h exec --no-startup-id systemctl hibernate, mode "default"
         bindsym r exec --no-startup-id systemctl reboot
         bindsym Shift+s exec --no-startup-id systemctl poweroff
@@ -196,18 +193,15 @@ client.focused          #859900 #859900 #fdf6e3 #2e9ef4
 client.focused_inactive #268bd2 #268bd2 #fdf6e3 #484e50
 client.unfocused        #333333 #93a1a1 #fdf6e3 #292d2e
 
-
 # Start i3bar to display a workspace bar (system information)
 bar {
-        status_command i3status
-        # status_command python ~/.i3pystatus.py
+        status_command i3status # i3status|python ~/.i3pystatus.py
         position top
         mode dock
         # tray_output  # LVDS1|primary|none
         
 	colors {
-	    # background #090020
-        background #002b32
+        background #080808
         statusline #eee8d5
 
         # solarized theme
@@ -218,19 +212,18 @@ bar {
 }
 
 # Custom hotkeys: use xev to learn the hotkey names
-bindsym Print exec --no-startup-id /usr/bin/scrot '%Y-%m-%d_%H%M%S_$wx$h_scrot.png' -e 'mv $f ~/ramdisk/' && notify-send 'SS taken'
-bindsym XF86MonBrightnessUp exec --no-startup-id /usr/bin/xbacklight -inc 4
-bindsym XF86MonBrightnessDown exec --no-startup-id /usr/bin/xbacklight -dec 4
-bindsym XF86AudioRaiseVolume exec /usr/bin/amixer set Master 3%+ unmute
-bindsym XF86AudioLowerVolume exec /usr/bin/amixer set Master 3%- unmute
-bindsym XF86AudioMute exec /usr/bin/amixer set Master toggle
-
-bindsym XF86AudioNext exec /usr/bin/audacious --fwd
-bindsym XF86AudioPrev exec /usr/bin/audacious --rew
-bindsym XF86Play exec /usr/bin/audacious --play-pause
+bindsym Print                      exec --no-startup-id /usr/bin/scrot '%Y-%m-%d_%H%M%S_$wx$h_scrot.png' -e 'mv $f ~/ramdisk/' && notify-send 'SS taken'
+bindsym XF86MonBrightnessUp        exec --no-startup-id /usr/bin/xbacklight -inc 5
+bindsym XF86MonBrightnessDown      exec --no-startup-id /usr/bin/xbacklight -dec 5
+bindsym XF86AudioRaiseVolume       exec /usr/bin/amixer set Master 3%+ unmute
+bindsym XF86AudioLowerVolume       exec /usr/bin/amixer set Master 3%- unmute
+bindsym XF86AudioMute              exec /usr/bin/amixer set Master toggle
+bindsym XF86AudioNext              exec /usr/bin/audacious --fwd
+bindsym XF86AudioPrev              exec /usr/bin/audacious --rew
+bindsym XF86Play                   exec /usr/bin/audacious --play-pause
 bindsym Shift+XF86AudioRaiseVolume exec /usr/bin/audacious --fwd
 bindsym Shift+XF86AudioLowerVolume exec /usr/bin/audacious --rew
-bindsym Shift+XF86AudioMute exec /usr/bin/audacious --play-pause
+bindsym Shift+XF86AudioMute        exec /usr/bin/audacious --play-pause
 
 # alt tab style
 bindsym $Win+Tab workspace next
@@ -261,14 +254,15 @@ for_window [class="scratch|scratchpad"] move scratchpad
 
 # i3 startup
 # Foreground
-exec --no-startup-id i3lock -c 222222
+exec --no-startup-id $I3LOCK
 exec --no-startup-id "${TERMINAL} --class=scratchpad"
 exec --no-startup-id i3-msg 'workspace $workspace1; exec ${TERMINAL}'
 exec --no-startup-id i3-msg 'workspace $workspace2; exec ${BROWSER}'
 
 # Background
+exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon-localeexec
 exec --no-startup-id /usr/bin/CopyAgent
 exec --no-startup-id /usr/bin/dropboxd
+exec --no-startup-id /usr/bin/dunst
 exec --no-startup-id /usr/bin/nm-applet
 exec --no-startup-id /usr/bin/redshift
-exec --no-startup-id /usr/bin/dunst

@@ -11,22 +11,25 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
-
+# gnome-keyring stuff
 eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
 export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
 
-
+# X stuff
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
-# hsetroot -solid "#222222"
-sh ~/.fehbg
 xbacklight -set 45
 synclient CoastingFriction=400  # avoids accidental zooming
+
+# Default wallpaper
+# hsetroot -solid "#222222"
+sh ~/.fehbg
 
 
 # xinit <your_window_manager_here>
 case $1 in
     awesome           ) exec awesome;;
+    bspwm             ) exec bspwm;;
     catwm             ) exec catwm;;
     cinnamon          ) exec cinnamon-session;;
     dwm               ) exec dwm;;
