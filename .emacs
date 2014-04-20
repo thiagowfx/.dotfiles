@@ -27,9 +27,7 @@
 
 ;; Miscellaneous
 (prefer-coding-system 'utf-8)
-(setq make-backup-files nil)            ; *~ files
-(setq backup-directory-alist `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
+(setq make-backup-files nil)            ; do not create *~ files
 (setq x-select-enable-primary t
       save-interprogram-paste-before-kill t
       mouse-yank-at-point t
@@ -42,10 +40,10 @@
 (column-number-mode t)
 (line-number-mode t)
 (size-indication-mode t)
-(setq-default indent-tabs-mode nil)     ; only spaces, please
+(setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq-default standard-indent 4)
-(windmove-default-keybindings)          ; shift + arrow keys
+(windmove-default-keybindings)
 (global-subword-mode t)                 ; camel-case
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
@@ -64,21 +62,17 @@
 (global-linum-mode t)
 (setq-default indicate-empty-lines t)
 (setq visible-bell t)
-(setq use-dialog-box nil)           ; use the echo area for everything
-(setq echo-keystrokes 0.1) ;; display keystrokes on the minibuffer as soon as possible
+(setq use-dialog-box nil)
+(setq echo-keystrokes 0.1)
 (fset 'yes-or-no-p 'y-or-n-p)
-;; (setq-default inhibit-debugger t) ; disable (emacs) from autoentering in the debugger
 (setq enable-recursive-minibuffers t) ; stack minibuffers, exit with `top-level`
-(setq read-buffer-completion-ignore-case t) ;; Ignore case when completing buffer names
+(setq read-buffer-completion-ignore-case t)
 (setq require-final-newline t)
 (setq case-fold-search t)    ; make searches case insensitive
 (setq vc-follow-symlinks t)  ; do not ask for symlink confirmations
 (global-auto-revert-mode t)  ; autoload modified files outside emacs
 (setq bookmark-default-file  (concat user-emacs-directory "bookmarks"))
 (recentf-mode t)
-(setq-default recentf-save-file (concat user-emacs-directory "recentf")
-              recentf-max-saved-items 150
-              recentf-max-menu-items 25)
 (setq default-frame-alist '((cursor-color . "white")))
 (set-cursor-color "white")
 
@@ -102,9 +96,6 @@
   (helm-mode t)
   (global-set-key "\M-x" 'helm-M-x))
 
-;; (when (locate-library "projectile")     ; prefix: C-c p
-;;   (projectile-global-mode))
-
 (when (locate-library "undo-tree")
   (undo-tree-mode t)
   (defalias 'undo 'undo-tree-undo)
@@ -120,8 +111,7 @@
 
 (when (locate-library "ace-jump-mode")
   (define-key global-map (kbd "C-0") 'ace-jump-mode)
-  (setq-default ace-jump-mode-submode-list '(
-                                             ace-jump-char-mode
+  (setq-default ace-jump-mode-submode-list '(ace-jump-char-mode
                                              ace-jump-line-mode
                                              ace-jump-word-mode)))
 
@@ -129,16 +119,13 @@
 (savehist-mode t)
 
 (require 'saveplace)
-(setq-default save-place t
-              save-place-file (concat user-emacs-directory "places"))
+(setq-default save-place t)
 
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward
-      uniquify-separator "/"
-      uniquify-ignore-buffers-re "^\\*")
+      uniquify-separator "/")
 
-(when (locate-library "pkgbuild-mode")
-  (add-to-list 'auto-mode-alist '("/PKGBUILD$" . pkgbuild-mode)))
+(add-to-list 'auto-mode-alist '("/PKGBUILD$" . pkgbuild-mode))
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
 
 ;; Markdown Mode
@@ -160,28 +147,20 @@
   (global-auto-complete-mode t)
   (global-set-key "\M-\t" 'auto-complete)
   (setq ac-auto-show-menu nil)
-  (setq ac-sources '(
-                     ac-source-abbrev
+  (setq ac-sources '(ac-source-abbrev
                      ac-source-dictionary
                      ac-source-features
                      ac-source-filename
                      ac-source-files-in-current-dir
                      ac-source-functions
-                     ;; ac-source-gtags
                      ac-source-imenu
-                     ;; ac-source-semantic
                      ac-source-symbols
                      ac-source-variables
                      ac-source-yasnippet
                      ac-source-words-in-buffer
                      ac-source-words-in-same-mode-buffers)))
-
-(defun ido-choose-from-recentf ()
-  "Use ido to select a recently visited file from the `recentf-list'"
-  (interactive)
-  (find-file (ido-completing-read "Open file: " recentf-list nil t)))
-(global-set-key "\C-x\C-r" 'recentf-open-files)
-(global-set-key "\C-c\C-x\C-r" 'ido-choose-from-recentf)
+                                        ; ac-source-semantic
+                                        ; ac-source-gtags
 
 (defun reload-dot-emacs ()
   "Reload your ~/.emacs file."
@@ -220,16 +199,14 @@
 ;; - RET, "\M-g", [C-tab], (kbd "M-g"), [f1], (kbd "<f1>"), [?\C-\t], (kbd "<C-S-iso-lefttab>")
 (global-set-key "\M-g"          'goto-line)
 (global-set-key (kbd "RET")     'newline-and-indent)
-(global-set-key [?\C-\t]        'other-window)
-(global-set-key (kbd "<C-S-iso-lefttab>")  (lambda () (interactive) (other-window -1)))
 (global-set-key [f5]            'compile)
 (global-set-key [f6]            'magit-status)
-(global-set-key [f8]            'deft)
 (global-set-key [f9]            'comment-or-uncomment-region)
 (global-set-key [f12]           'cleanup-buffer)
 (global-set-key (kbd "C-;")     'comment-or-uncomment-region)
 (global-set-key (kbd "M-/")     'hippie-expand)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key "\C-x\C-r" 		'recentf-open-files)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom
@@ -245,27 +222,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-;; registers/bookmarks
-;; - C-x r b         :: jump to bookmark
-;; - C-x r i <label> :: insert register <label> to region
-;; - C-x r l         :: list bookmarks
-;; - C-x r s <label> :: save region to register <label>
-;; - C-x r SPC <label> :: save point position to register
-;; - C-x r j <label> :: go to saved point position
-;;
-;; - follow-mode     :: scroll buffers (equal)
-;; - scroll-all-mode :: scroll buffers (different)
-;; - compare-windows :: diff two open buffers on point
-;; - top-level       :: get out of the minibuffer
-;; - imenu
-;; - occur
-;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Homepages/References
 ;; - http://www.emacsrocks.com/
 ;; - http://www.emacswiki.org/
-;;
 ;; - http://www.emacswiki.org/emacs/EmacsCrashCode/
 ;; - https://github.com/technomancy/better-defaults/
 ;; - http://www.aaronbedra.com/emacs.d/ ;; teaches how to install all (missing) packages from a given list
