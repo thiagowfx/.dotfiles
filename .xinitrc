@@ -16,6 +16,7 @@ eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh
 export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
 
 # X stuff
+# setxkbmap br,us '' ctrl:nocaps grp:ctrl_rshift_toggle
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 xbacklight -set 45

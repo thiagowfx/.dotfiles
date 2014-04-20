@@ -52,9 +52,6 @@
 (put 'narrow-to-region 'disabled nil)
 (show-paren-mode t)
 (winner-mode t)
-(setq-default scroll-margin 4
-              scroll-conservatively 4
-              scroll-preserve-screen-position t)
 (setq inhibit-startup-message t
       inhibit-startup-echo-area-message t
       initial-scratch-message "")
@@ -100,9 +97,6 @@
 (when (locate-library "control-lock")   ; no-pinky
   (require 'control-lock)
   (global-set-key "\C-z" 'control-lock-toggle))
-
-(when (locate-library "fic-ext-mode")   ; TODO and FIXME
-  (add-something-to-mode-hooks '(c c++ emacs-lisp lisp python) 'fic-ext-mode))
 
 (when (locate-library "helm")
   (helm-mode t)

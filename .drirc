@@ -1,5 +1,7 @@
-<device screen="0" driver="dri2">
-  <application name="Default">
-    <option name="vblank_mode" value="0"/>
-  </application>
-</device>
+<driconf>
+  <device screen="0" driver="dri2">
+    <application name="Default">
+      <option name="vblank_mode" value="0"/>
+    </application>
+  </device>
+</driconf>

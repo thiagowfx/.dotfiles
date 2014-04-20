@@ -33,8 +33,9 @@ alias free="free -m"
 alias grep="grep --color=auto"
 alias i3lock="i3lock-wrapper || i3lock -c 222222"
 alias lynx="lynx -emacskeys"
-alias make="time make -j3"
-alias makepkg="time makepkg"
+alias make="make -j5"
+# alias make="time make -j5"
+# alias makepkg="time makepkg"
 alias pgrep="pgrep --list-name"
 alias reflector="reflector -x rsync"
 alias rsync="rsync --progress"
@@ -108,7 +109,6 @@ export RAMDISK="~/ramdisk/"
 export TERMINAL="/usr/bin/sakura"
 export VISUAL="/usr/bin/emacs"
 
-# path
 # export PATH="$PATH:/opt/android-sdk/platform-tools/"
 # export PATH="~/.gem/ruby/2.1.0/bin:$PATH"
 
@@ -125,14 +125,15 @@ function changeroot {
 # to actually create a chroot, see manpage (uses pacstrap...)
 alias systemd-nspawn-template="systemd-nspawn -bD"
 
-# Alternatives include:
+# Options include:
 # - arch-chroot
 # - schroot
 # - devtools package (for packagers)
 
 # AUR Keychain (modus operandi)
-# - /usr/share/pacman to get PKGBUILD prototypes
-# - makepkg --source (better: mkaurball, if sharing)
+# - /usr/share/pacman/ to get PKGBUILD prototypes
+# - emacs PKGBUILD mode
+# - makepkg --source (better: mkaurball, appends metadata)
 # - burp (aur uploader)
 
 

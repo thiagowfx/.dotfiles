@@ -13,3 +13,10 @@ XTerm*locale: true
 Xterm*saveLines: 4096
 XTerm*reverseVideo: on
 xterm*faceName: Ubuntu Mono:size=11:antialias=true
+
+! urxvt (rxvt-unicode)
+URxvt*background: #000000
+URxvt*foreground: #ffffff
+URxvt.scrollBar: false
+URxvt.font: xft:Ubuntu Mono:size=11
+URxvt.perl-ext-common: default,tabbed

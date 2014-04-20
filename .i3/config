@@ -251,18 +251,23 @@ for_window [class="feh|Viewnior|Java|Galculator|Lxappearance|Arandr|gimp|Epsxe"]
 for_window [class="^Chromium$"] border 1pixel
 for_window [class="^Xfce4-notifyd$"] floating enable, border none, focus mode_toggle
 for_window [class="scratch|scratchpad"] move scratchpad
+for_window [class="qtRaytracer"] floating enable
 
 # i3 startup
 # Foreground
-exec --no-startup-id $I3LOCK
-exec --no-startup-id "${TERMINAL} --class=scratchpad"
+# exec --no-startup-id $I3LOCK
+# exec --no-startup-id "${TERMINAL} --class=scratchpad"
+exec --no-startup-id /usr/bin/emacs ~/.ob --class=scratchpad
 exec --no-startup-id i3-msg 'workspace $workspace1; exec ${TERMINAL}'
-exec --no-startup-id i3-msg 'workspace $workspace2; exec ${BROWSER}'
+# exec --no-startup-id i3-msg 'workspace $workspace2; exec ${BROWSER}'
 
 # Background
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon-localeexec
+# exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon-localeexec
+exec --no-startup-id /usr/bin/compton -bcC -o 0.3
 exec --no-startup-id /usr/bin/CopyAgent
 exec --no-startup-id /usr/bin/dropboxd
 exec --no-startup-id /usr/bin/dunst
 exec --no-startup-id /usr/bin/nm-applet
+exec --no-startup-id /usr/bin/parcellite
 exec --no-startup-id /usr/bin/redshift
+exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon

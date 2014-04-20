@@ -1,15 +1,14 @@
 # -*- conf -*-
 
 [push]
-default = matching
+default = matching # matching|simple
 
 [user]
 name = Thiago Perrotta
 email = thiagoperrotta95@gmail.com
 
 [credential]
-# helper = cache --timeout=7200
-helper = store
+helper = store # store|cache --timeout=7200
 
 [alias]
 graph = log --graph --oneline --decorate
