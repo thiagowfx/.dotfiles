@@ -41,9 +41,11 @@ end
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
+terminal = os.getenv("TERMINAL") or "xterm"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
+browser = os.getenv("BROWSER") or "chromium"
+filemanager = os.getenv("FILEMANAGER") or "spacefm"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -55,17 +57,17 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
 {
-    awful.layout.suit.floating,
     awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
+    awful.layout.suit.floating,
+--    awful.layout.suit.tile.left,
+--    awful.layout.suit.tile.top,
     awful.layout.suit.fair,
     awful.layout.suit.fair.horizontal,
     awful.layout.suit.spiral,
     awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
+--    awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier
 }
 -- }}}
@@ -83,7 +85,7 @@ end
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
+    tags[s] = awful.tag({ "1:sh", "2:web", 3, 4, 5, 6, 7, "8:media", 9, "zero" }, s, layouts[1])
 end
 -- }}}
 
@@ -97,7 +99,8 @@ myawesomemenu = {
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
+                                    { "open terminal", terminal },
+                                    { "open editor", editor_cmd }
                                   }
                         })
 
@@ -121,6 +124,7 @@ mytaglist.buttons = awful.util.table.join(
                     awful.button({ }, 1, awful.tag.viewonly),
                     awful.button({ modkey }, 1, awful.client.movetotag),
                     awful.button({ }, 3, awful.tag.viewtoggle),
+                    awful.button({ "Control" }, 1, awful.tag.viewtoggle),
                     awful.button({ modkey }, 3, awful.client.toggletag),
                     awful.button({ }, 4, function(t) awful.tag.viewnext(awful.tag.getscreen(t)) end),
                     awful.button({ }, 5, function(t) awful.tag.viewprev(awful.tag.getscreen(t)) end)
@@ -149,7 +153,7 @@ mytasklist.buttons = awful.util.table.join(
                                                   instance = nil
                                               else
                                                   instance = awful.menu.clients({
-                                                      theme = { width = 250 }
+                                                      theme = { width = 300 }
                                                   })
                                               end
                                           end),
@@ -184,9 +188,9 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()
-    left_layout:add(mylauncher)
-    left_layout:add(mytaglist[s])
     left_layout:add(mypromptbox[s])
+--    left_layout:add(mylauncher)
+    left_layout:add(mytaglist[s])
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
@@ -214,6 +218,12 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
+    awful.key({                   }, "Print", function () awful.util.spawn("/usr/bin/scrot '%Y-%m-%d_%H%M%S_$wx$h_scrot.png' -e 'mv $f ~/ramdisk/' && notify-send 'SS taken'") end),
+    awful.key({                   }, "XF86MonBrightnessUp",   function () awful.util.spawn("/usr/bin/xbacklight -inc 5 -time 0") end),
+    awful.key({                   }, "XF86MonBrightnessDown", function () awful.util.spawn("/usr/bin/xbacklight -dec 5 -time 0") end),
+    awful.key({                   }, "XF86AudioLowerVolume",  function () awful.util.spawn("/usr/bin/amixer set Master 5%- unmute") end),
+    awful.key({                   }, "XF86AudioRaiseVolume",  function () awful.util.spawn("/usr/bin/amixer set Master 5%+ unmute") end),
+    awful.key({                   }, "XF86AudioMute",         function () awful.util.spawn("/usr/bin/amixer set Master toggle") end),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
@@ -246,8 +256,10 @@ globalkeys = awful.util.table.join(
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
-    awful.key({ modkey, "Control" }, "r", awesome.restart),
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit),
+    awful.key({ modkey,           }, "BackSpace", function() awful.util.spawn(filemanager) end),
+    awful.key({ modkey,           }, "=", function() awful.util.spawn(browser) end),
+    awful.key({ modkey, "Shift" }, "r", awesome.restart),
+    awful.key({ modkey, "Shift"   }, "e", awesome.quit),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
@@ -271,13 +283,17 @@ globalkeys = awful.util.table.join(
                   awful.util.getdir("cache") .. "/history_eval")
               end),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end)
+    awful.key({ modkey }, "p", function() menubar.show() end),
+    awful.key({ modkey }, "d", function() awful.util.spawn("j4-dmenu-desktop") end)
 )
 
 clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
-    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
+--    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
+    awful.key({ modkey, "Shift"   }, "q",      function (c) c:kill()                         end),
+    awful.key({ "Mod1"   }, "F4",      function (c) c:kill()                         end),
+--    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
+    awful.key({ modkey, "Shift" }, "space",  awful.client.floating.toggle                     ),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
@@ -359,15 +375,35 @@ awful.rules.rules = {
                      raise = true,
                      keys = clientkeys,
                      buttons = clientbuttons } },
-    { rule = { class = "MPlayer" },
+    { rule = { class = "Arandr" },
       properties = { floating = true } },
-    { rule = { class = "pinentry" },
+    { rule = { class = "Epsxe" },
+      properties = { floating = true } },
+    { rule = { class = "feh" },
+      properties = { floating = true } },
+    { rule = { class = "Galculator" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
+      properties = { floating = true } },
+    { rule = { class = "Java" },
+      properties = { floating = true } },
+    { rule = { class = "Lxappearance" },
+      properties = { floating = true } },
+    { rule = { class = "MPlayer" },
+      properties = { floating = true } },
+    { rule = { class = "Viewnior" },
       properties = { floating = true } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
+    { rule = { class = "Audacious" },
+      properties = { tag = tags[1][8] } },
+    { rule = { class = "Clementine" },
+      properties = { tag = tags[1][8] } },
+    { rule = { class = "Spotify" },
+      properties = { tag = tags[1][8] } },
+    { rule = { class = "Vlc" },
+      properties = { tag = tags[1][8] } },
 }
 -- }}}
 
@@ -443,3 +479,32 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+-- http://awesome.naquadah.org/wiki/Autostart
+function run_once(prg,arg_string,pname,screen)
+   if not prg then
+      do return nil end
+   end
+   
+   if not pname then
+      pname = prg
+   end
+   
+   if not arg_string then
+      awful.util.spawn_with_shell("pgrep -f -u $USER -x '" .. pname .. "' || (" .. prg .. ")",screen)
+   else
+      awful.util.spawn_with_shell("pgrep -f -u $USER -x '" .. pname .. " ".. arg_string .."' || (" .. prg .. " " .. arg_string .. ")",screen)
+   end
+end
+
+run_once("/usr/bin/compton", "-bcC -o 0.3");
+run_once("/usr/bin/CopyAgent")
+run_once("/usr/bin/dropboxd")
+run_once("/usr/bin/dunst")
+run_once("/usr/bin/nm-applet")
+run_once("/usr/bin/parcellite")
+run_once("/usr/bin/redshift")
+run_once("/usr/lib/gnome-settings-daemon/gnome-settings-daemon")
+
+-- References:
+-- https://gitorious.org/qmpdotfiles/dotfiles/source/85790657be36267c1a0f8f8b1473d65809b4fc4e:.config/awesome/rc.lua

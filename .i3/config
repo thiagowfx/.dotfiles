@@ -28,11 +28,9 @@ font pango:Ubuntu Light 9.3
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
-
-# file manager
+bindsym $mod+Return    exec i3-sensible-terminal
 bindsym $mod+BackSpace exec --no-startup-id $FILEMANAGER
+bindsym $mod+=         exec --no-startup-id $BROWSER
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -213,10 +211,10 @@ bar {
 
 # Custom hotkeys: use xev to learn the hotkey names
 bindsym Print                      exec --no-startup-id /usr/bin/scrot '%Y-%m-%d_%H%M%S_$wx$h_scrot.png' -e 'mv $f ~/ramdisk/' && notify-send 'SS taken'
-bindsym XF86MonBrightnessUp        exec --no-startup-id /usr/bin/xbacklight -inc 5
-bindsym XF86MonBrightnessDown      exec --no-startup-id /usr/bin/xbacklight -dec 5
-bindsym XF86AudioRaiseVolume       exec /usr/bin/amixer set Master 3%+ unmute
-bindsym XF86AudioLowerVolume       exec /usr/bin/amixer set Master 3%- unmute
+bindsym XF86MonBrightnessUp        exec --no-startup-id /usr/bin/xbacklight -inc 5 -time 0
+bindsym XF86MonBrightnessDown      exec --no-startup-id /usr/bin/xbacklight -dec 5 -time 0
+bindsym XF86AudioLowerVolume       exec /usr/bin/amixer set Master 5%- unmute
+bindsym XF86AudioRaiseVolume       exec /usr/bin/amixer set Master 5%+ unmute
 bindsym XF86AudioMute              exec /usr/bin/amixer set Master toggle
 bindsym XF86AudioNext              exec /usr/bin/audacious --fwd
 bindsym XF86AudioPrev              exec /usr/bin/audacious --rew
@@ -242,16 +240,19 @@ focus_follows_mouse yes
 workspace_auto_back_and_forth yes
 workspace_layout tabbed
 
-# assign: use xorg-xprop to learn the class string
-# assign [class="^Chromium$"] → $workspace2
-
 # for_window
 for_window [window_role="pop-up"] floating enable, move absolute center
-for_window [class="feh|Viewnior|Java|Galculator|Lxappearance|Arandr|gimp|Epsxe"] floating enable
+for_window [class="scratch|scratchpad"] move scratchpad
 for_window [class="^Chromium$"] border 1pixel
 for_window [class="^Xfce4-notifyd$"] floating enable, border none, focus mode_toggle
-for_window [class="scratch|scratchpad"] move scratchpad
 for_window [class="qtRaytracer"] floating enable
+
+for_window [class="Arandr|Epsxe|feh|Galculator|gimp|Java|Lxappearance|MPlayer|Viewnior"] floating enable
+
+# assign: use xorg-xprop to learn the class string
+# assign [class="^Chromium$"] → $workspace2
+assign [class="Audacious|Clementine|Spotify|Vlc"] → $workspace8
+
 
 # i3 startup
 # Foreground
@@ -262,7 +263,6 @@ exec --no-startup-id i3-msg 'workspace $workspace1; exec ${TERMINAL}'
 # exec --no-startup-id i3-msg 'workspace $workspace2; exec ${BROWSER}'
 
 # Background
-# exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon-localeexec
 exec --no-startup-id /usr/bin/compton -bcC -o 0.3
 exec --no-startup-id /usr/bin/CopyAgent
 exec --no-startup-id /usr/bin/dropboxd
