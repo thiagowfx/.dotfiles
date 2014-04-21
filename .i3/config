@@ -257,7 +257,7 @@ for_window [class="qtRaytracer"] floating enable
 # Foreground
 # exec --no-startup-id $I3LOCK
 # exec --no-startup-id "${TERMINAL} --class=scratchpad"
-exec --no-startup-id /usr/bin/emacs ~/.ob --class=scratchpad
+exec --no-startup-id /usr/bin/emacs ~/.ob
 exec --no-startup-id i3-msg 'workspace $workspace1; exec ${TERMINAL}'
 # exec --no-startup-id i3-msg 'workspace $workspace2; exec ${BROWSER}'
 

@@ -115,6 +115,13 @@
                                              ace-jump-line-mode
                                              ace-jump-word-mode)))
 
+(setq org-src-fontify-natively t)
+(setq org-todo-keyword-faces
+  '(("TODO" . "red")
+   ("CURRENT" . "orange")
+   ("FLOURISH" . "yellow")
+   ("DONE" . "green")))
+
 (require 'savehist)
 (savehist-mode t)
 

@@ -50,5 +50,5 @@ case $1 in
     unity             ) exec unity;;
     xfce|xfce4        ) exec startxfce4;;
     xmonad            ) exec xmonad;;
-    *                 ) exec i3;;
+    *                 ) exec awesome;;
 esac
