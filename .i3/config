@@ -13,8 +13,10 @@ set $Alt Mod1
 set $Win Mod4
 set $mod Mod4
 
-set $FILEMANAGER "/usr/bin/spacefm"
-set $I3LOCK i3lock-wrapper # i3lock-wrapper|i3lock -c 222222
+set $BROWSER     "/usr/bin/chromium"
+set $EDITOR      "/usr/bin/emacs"
+set $FILEMANAGER "/usr/bin/thunar"
+set $I3LOCK      i3lock-wrapper # i3lock-wrapper|i3lock -c 222222
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -23,14 +25,15 @@ set $I3LOCK i3lock-wrapper # i3lock-wrapper|i3lock -c 222222
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-font pango:Ubuntu Light 9.3
+font pango:Ubuntu Light 9.4
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-bindsym $mod+Return    exec i3-sensible-terminal
+bindsym $mod+Return    exec --no-startup-id i3-sensible-terminal
+bindsym $mod+minus     exec --no-startup-id $BROWSER
+bindsym $mod+equal     exec --no-startup-id $EDITOR
 bindsym $mod+BackSpace exec --no-startup-id $FILEMANAGER
-bindsym $mod+=         exec --no-startup-id $BROWSER
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -235,10 +238,10 @@ bindsym $mod+m move scratchpad
 bindsym $mod+o scratchpad show
 
 # Options tweaking
-default_orientation auto
-focus_follows_mouse yes
-workspace_auto_back_and_forth yes
-workspace_layout tabbed
+default_orientation            auto
+focus_follows_mouse            yes
+workspace_auto_back_and_forth  yes
+workspace_layout               tabbed
 
 # for_window
 for_window [window_role="pop-up"] floating enable, move absolute center
@@ -246,7 +249,6 @@ for_window [class="scratch|scratchpad"] move scratchpad
 for_window [class="^Chromium$"] border 1pixel
 for_window [class="^Xfce4-notifyd$"] floating enable, border none, focus mode_toggle
 for_window [class="qtRaytracer"] floating enable
-
 for_window [class="Arandr|Epsxe|feh|Galculator|gimp|Java|Lxappearance|MPlayer|Viewnior"] floating enable
 
 # assign: use xorg-xprop to learn the class string
@@ -257,8 +259,8 @@ assign [class="Audacious|Clementine|Spotify|Vlc"] → $workspace8
 # i3 startup
 # Foreground
 # exec --no-startup-id $I3LOCK
-# exec --no-startup-id "${TERMINAL} --class=scratchpad"
 exec --no-startup-id /usr/bin/emacs ~/.ob
+exec --no-startup-id /usr/bin/emacs ~/.mygit/icpc-journal/lists.org
 exec --no-startup-id i3-msg 'workspace $workspace1; exec ${TERMINAL}'
 # exec --no-startup-id i3-msg 'workspace $workspace2; exec ${BROWSER}'
 

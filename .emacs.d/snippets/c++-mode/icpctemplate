@@ -1,0 +1,38 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name : icpctemplate
+# key : icpctemplate
+# --
+#include <algorithm>
+#include <bitset>
+#include <cassert>
+#include <climits>
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <ctime>
+#include <deque>
+#include <iostream>
+#include <list>
+#include <map>
+#include <queue>
+#include <set>
+#include <stack>
+#include <sstream>
+#include <string>
+#include <utility>
+#include <vector>
+using namespace std;
+
+typedef long long int ll;
+typedef pair<int,int> ii;
+typedef vector<int> vi;
+
+const double EPS = 1e-9;
+#define mp make_pair
+
+int main() {
+	$0
+  
+  return 0;
+}

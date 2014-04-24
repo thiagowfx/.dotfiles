@@ -1,9 +1,11 @@
 ;; -*- lisp -*-
 
+;; To reproduce this setup, you'll need to do the following:
+;; 1 - Have a recent version of Emacs (as of today, 24)
+;; 2 - package-install all the "locate-library" listed packages that you want
+;; 3 - git clone the yasnippet repository on github
+
 ;; (add-to-list 'load-path "/path/to/your/package")
-;; (require 'package-provide-name)
-;; (when (locate-library "package-name") (package-configs-here))
-;; (when (require 'provide-name nil 'noerror) (package-configs-here))
 
 (let* ((my-lisp-dir "~/.emacs.d/")
        (default-directory my-lisp-dir))
@@ -11,18 +13,18 @@
   (normal-top-level-add-subdirs-to-load-path))
 
 (when (>= emacs-major-version 24)
+  (load-theme 'wombat t)
   (package-initialize)
   (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/")))
-
-(load-theme 'wombat t)
 
 ;; Helper Functions
 (defun add-something-to-mode-hooks (mode-list something)
   "Helper function to add a callback to multiple hooks"
   (dolist (mode mode-list)
     (add-hook (intern (concat (symbol-name mode) "-mode-hook")) something)))
-(add-something-to-mode-hooks '(emacs-lisp-mode-hook lisp-mode-hook) 'turn-on-eldoc-mode)
+(defvar my-programming-alist '(c c++ emacs-lisp lisp python))
+(add-something-to-mode-hooks '(emacs-lisp lisp) 'turn-on-eldoc-mode)
 
 
 ;; Miscellaneous
@@ -41,20 +43,21 @@
 (line-number-mode t)
 (size-indication-mode t)
 (setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
-(setq-default standard-indent 4)
-(windmove-default-keybindings)
+(setq-default tab-width 2)
+(setq-default c-basic-offset 2)
+(setq-default standard-indent 2)
+(windmove-default-keybindings)          ; shift + arrow keys
 (global-subword-mode t)                 ; camel-case
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
 (show-paren-mode t)
-(winner-mode t)
+(winner-mode t)                         ; C-c left, C-c right
 (setq inhibit-startup-message t
       inhibit-startup-echo-area-message t
       initial-scratch-message "")
 (setq-default frame-title-format (concat "%b - " (message "%s@emacs" (replace-regexp-in-string "\n$" "" (shell-command-to-string "whoami")))))
-(menu-bar-mode -1)
+(menu-bar-mode 1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (blink-cursor-mode -1)
@@ -76,6 +79,7 @@
 (setq default-frame-alist '((cursor-color . "white")))
 (set-cursor-color "white")
 
+;; external libraries
 (when (locate-library "drag-stuff") ; M-down, M-up
   (drag-stuff-global-mode t))
 
@@ -85,68 +89,79 @@
 (when (locate-library "mode-icons")
   (mode-icons-mode))
 
-(when (locate-library "goto-chg")
+(when (locate-library "goto-chg")       ; more powerful than C-u C-SPC
   (global-set-key [(control .)] 'goto-last-change))
 
 (when (locate-library "control-lock")   ; no-pinky
   (require 'control-lock)
   (global-set-key "\C-z" 'control-lock-toggle))
 
+(when (locate-library "mediawiki")
+  (require 'archwiki-credentials))      ; do not include passwords here
+
 (when (locate-library "helm")
   (helm-mode t)
-  (global-set-key "\M-x" 'helm-M-x))
+  (defalias 'imenu 'helm-imenu)
+  (defalias 'occur 'helm-occur)
+  (global-set-key "\M-x" 'helm-M-x)
+  
+  (when (locate-library "smex")
+    (global-set-key "\M-X" 'smex-major-mode-commands)
+    (global-set-key "\C-c\M-x" 'smex)
+    (global-set-key "\C-c\C-c\M-x" 'execute-extended-command))
 
-(when (locate-library "undo-tree")
+  (when (and (locate-library "anything") (locate-library "helm-anything"))
+    (require 'helm-anything)
+    (helm-anything-set-keys)))
+
+(when (locate-library "undo-tree") ; more powerful than the native undo
   (undo-tree-mode t)
   (defalias 'undo 'undo-tree-undo)
   (defalias 'redo 'undo-tree-redo)
   (global-set-key (kbd "C-_") 'undo-tree-undo)
   (global-set-key (kbd "C-+") 'undo-tree-redo))
 
-(when (locate-library "js2-mode")
-  (defalias 'javascript-mode 'js2-mode))
+(when (and (locate-library "js2-mode") (locate-library "ac-js2"))
+  (defalias 'javascript-mode 'js2-mode)
+  (add-hook 'js2-mode-hook 'ac-js2-mode))
 
 (when (locate-library "web-mode")
-  (defalias 'html-mode 'web-mode))
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
 
 (when (locate-library "ace-jump-mode")
-  (define-key global-map (kbd "C-0") 'ace-jump-mode)
+  (define-key global-map (kbd "C-0") 'ace-jump-mode) ; use C-u as prefix
   (setq-default ace-jump-mode-submode-list '(ace-jump-char-mode
                                              ace-jump-line-mode
                                              ace-jump-word-mode)))
 
-(setq org-src-fontify-natively t)
-(setq org-todo-keyword-faces
-  '(("TODO" . "red")
-   ("CURRENT" . "orange")
-   ("FLOURISH" . "yellow")
-   ("DONE" . "green")))
+(when (locate-library "idle-highlight")
+  (add-something-to-mode-hooks my-programming-alist 'idle-highlight))
 
-(require 'savehist)
-(savehist-mode t)
+(when (locate-library "pkgbuild-mode")
+  (add-to-list 'auto-mode-alist '("/PKGBUILD$" . pkgbuild-mode)))
 
-(require 'saveplace)
-(setq-default save-place t)
+(when (locate-library "org")
+  (setq org-src-fontify-natively t)
+  (setq org-todo-keyword-faces
+        '(("TODO" . "red")
+          ("INPROGRESS" . "orange")
+          ("FLOURISH" . "yellow")
+          ("DONE" . "green")
+          ("POSTPONED" . "blue")))
+  (when (locate-library "org2blog")
+    (require 'org2blog-autoloads)
+    (require 'wordpress-credentials)))
 
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'forward
-      uniquify-separator "/")
-
-(add-to-list 'auto-mode-alist '("/PKGBUILD$" . pkgbuild-mode))
-(add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
-
-;; Markdown Mode
-;; <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 (when (locate-library "markdown-mode")
   (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
   (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode)))
 
-(add-hook 'c++-mode-hook
-          (lambda () (setq compile-command (concat "g++ \""
-                                                   (buffer-file-name)
-                                                   "\" -o \""
-                                                   (file-name-sans-extension buffer-file-name)
-                                                   "\" -Wall -g -O2"))))
+(when (locate-library "magit")
+  (global-set-key [f6] 'magit-status))
+
+(when (locate-library "yasnippet")
+  (require 'yasnippet)
+  (yas-global-mode 1))
 
 (when (locate-library "auto-complete")
   (require 'auto-complete-config)
@@ -166,14 +181,36 @@
                      ac-source-yasnippet
                      ac-source-words-in-buffer
                      ac-source-words-in-same-mode-buffers)))
-                                        ; ac-source-semantic
-                                        ; ac-source-gtags
+
+;; native libraries
+(when (locate-library "savehist")
+  (require 'savehist)
+  (savehist-mode t))
+
+(when (locate-library "saveplace")
+  (require 'saveplace)
+  (setq-default save-place t))
+
+(when (locate-library "uniquify")
+  (require 'uniquify)
+  (setq uniquify-buffer-name-style 'forward
+        uniquify-separator "/"))
+
+(when (locate-library "sh-mode")
+  (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode)))
+
+(add-hook 'c++-mode-hook
+          (lambda () (setq compile-command (concat "g++ \""
+                                                   (buffer-file-name)
+                                                   "\" -o \""
+                                                   (file-name-sans-extension buffer-file-name)
+                                                   "\" -Wall -g -O2"))))
 
 (defun reload-dot-emacs ()
   "Reload your ~/.emacs file."
   (interactive)
   (load-file "~/.emacs"))
-(global-set-key (kbd "<f2>")    'reload-dot-emacs)
+(global-set-key (kbd "<f2>") 'reload-dot-emacs)
 
 (defun replace-last-sexp ()
   "Eval in place"
@@ -181,7 +218,7 @@
   (let ((value (eval (preceding-sexp))))
     (kill-sexp -1)
     (insert (format "%s" value))))
-(global-set-key "\C-c\C-x\C-e"  'replace-last-sexp)
+(global-set-key "\C-c\C-x\C-e" 'replace-last-sexp)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Buffer cleaning
@@ -206,14 +243,12 @@
 ;; - RET, "\M-g", [C-tab], (kbd "M-g"), [f1], (kbd "<f1>"), [?\C-\t], (kbd "<C-S-iso-lefttab>")
 (global-set-key "\M-g"          'goto-line)
 (global-set-key (kbd "RET")     'newline-and-indent)
-(global-set-key [f5]            'compile)
-(global-set-key [f6]            'magit-status)
 (global-set-key [f9]            'comment-or-uncomment-region)
 (global-set-key [f12]           'cleanup-buffer)
 (global-set-key (kbd "C-;")     'comment-or-uncomment-region)
 (global-set-key (kbd "M-/")     'hippie-expand)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key "\C-x\C-r" 		'recentf-open-files)
+(global-set-key "\C-x\C-r"      'recentf-open-files)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom
@@ -222,6 +257,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(safe-local-variable-values (quote ((require-final-newline))))
  '(use-file-dialog nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

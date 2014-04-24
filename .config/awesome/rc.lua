@@ -45,7 +45,7 @@ terminal = os.getenv("TERMINAL") or "xterm"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 browser = os.getenv("BROWSER") or "chromium"
-filemanager = os.getenv("FILEMANAGER") or "spacefm"
+filemanager = os.getenv("FILEMANAGER") or "thunar"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -59,15 +59,15 @@ local layouts =
 {
     awful.layout.suit.tile,
     awful.layout.suit.tile.bottom,
-    awful.layout.suit.floating,
 --    awful.layout.suit.tile.left,
 --    awful.layout.suit.tile.top,
     awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
---    awful.layout.suit.max.fullscreen,
+    awful.layout.suit.floating,
+--    awful.layout.suit.fair.horizontal,
+--    awful.layout.suit.spiral,
+--    awful.layout.suit.spiral.dwindle,
+--    awful.layout.suit.max, -- use mod4+m instead
+--    awful.layout.suit.max.fullscreen, -- use mod4+f instead
     awful.layout.suit.magnifier
 }
 -- }}}
@@ -257,7 +257,8 @@ globalkeys = awful.util.table.join(
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey,           }, "BackSpace", function() awful.util.spawn(filemanager) end),
-    awful.key({ modkey,           }, "=", function() awful.util.spawn(browser) end),
+    awful.key({ modkey,           }, "-", function() awful.util.spawn(browser) end),
+    awful.key({ modkey,           }, "=", function() awful.util.spawn(editor) end),
     awful.key({ modkey, "Shift" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "e", awesome.quit),
 

@@ -57,7 +57,7 @@ alias fluxbox-generate_menu-template="fluxbox-generate_menu -kg -su -t mate-term
 alias mmaker-template="mmaker -t Konsole -vf openbox3"
 
 # qemu
-alias qemu-template-test-iso="qemu-system-x86_64 --enable-kvm -m 512M -cdrom" #path here
+alias qemu-template-test-iso="qemu-system-x86_64 --enable-kvm -m 512M -cdrom" # <path here>
 
 # vnc
 alias vncserver-template-connect="vncviewer -passwd ~/.vnc/passwd localhost:1"
@@ -71,8 +71,11 @@ alias webmin-template="sudo systemctl start webmin && "${BROWSER}" localhost:100
 alias wget-template-pdf="wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
 alias wget-template-spider="wget -e robots=off --wait=2 --random-wait --recursive --span-hosts --spider --timestamping --tries=5 --dns-timeout=30 --connect-timeout=5 --read-timeout=5 --level=10 --"
 
-# winetricks
+# wine
 alias winetricks-template-install="winetricks corefonts vcrun2005 vcrun2008 vb6run"
+export WINEARCH="win64"
+export WINEDEBUG="fixme-all"
+export WINEPREFIX="${HOME}/.wine"
 
 # world (Arch)
 alias world="sudo pacman -Syu"
@@ -88,7 +91,7 @@ alias xephyr-template="Xephyr -ac -br -noreset -screen 1024x768 :1" # export DIS
 alias xrandr-template-hdmi-connected="xrandr --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1 && sh ~/.fehbg"
 alias xrandr-template-hdmi-disconnected="xrandr --output HDMI1 --off && sh ~/.fehbg"
 alias xrandr-template-hdmi-mirror="xrandr --output LVDS1 --primary --auto --output HDMI1 --auto --same-as LVDS1 && sh ~/.fehbg"
-alias xrandr-template-reset="xrandr --output LVDS1 --primary --mode 1366x768"
+alias xrandr-template-reset="xrandr --output LVDS1 --primary --mode 1366x768" # useful for fullscreen games on wine
 
 # youtube-dl
 alias youtube-dl-template-mp3="youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3"
@@ -96,21 +99,19 @@ alias youtube-dl-template-video="youtube-dl --continue --title --restrict-filena
 
 # environment options
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
-export HISTCONTROL=ignoreboth # ignore consecutive entries of history
-export WINEARCH="win64"
-export WINEDEBUG="fixme-all"
-export WINEPREFIX="~/.wine"
+export HISTCONTROL=ignoreboth # ignore equal and consecutive entries of history and commands beginning with a space
 
 # environment customizations
 export BROWSER="/usr/bin/chromium"
 export EDITOR="/usr/bin/emacs -nw"
-export FILEMANAGER="/usr/bin/spacefm"
+export FILEMANAGER="/usr/bin/thunar"
 export RAMDISK="~/ramdisk/"
 export TERMINAL="/usr/bin/sakura"
 export VISUAL="/usr/bin/emacs"
 
-# export PATH="$PATH:/opt/android-sdk/platform-tools/"
-# export PATH="~/.gem/ruby/2.1.0/bin:$PATH"
+# export PATH="/opt/android-sdk/platform-tools/:${PATH}"
+export PATH="${HOME}/.gem/ruby/2.1.0/bin:${PATH}"
+# if using zsh, use `rehash` to update your known commands. Also, do note use ~.
 
 # arch-chroot for non-arch systems
 function changeroot {

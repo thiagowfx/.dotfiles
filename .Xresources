@@ -1,9 +1,9 @@
 ! font settings
 Xft.autohint: true
-Xft.antialias: true
-Xft.hinting: true
+Xft*antialias: true
+Xft*hinting: true
 Xft.hintstyle: hintslight
-Xft.dpi: 96
+Xft*dpi: 96
 Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 
@@ -18,8 +18,17 @@ xterm*faceName: Ubuntu Mono:size=11:antialias=true
 URxvt*background: #000000
 URxvt*foreground: #ffffff
 URxvt.scrollBar: false
-URxvt.font: xft:Ubuntu Mono:size=11
-URxvt.perl-ext-common: default,tabbed
+URxvt*font: xft:Ubuntu Mono:size=11
+URxvt.iso14755: false
+
+! urxvt extensions
+URxvt.perl-ext-common:      default,clipboard,url-select,tabbed
+URxvt.url-select.launcher:  /usr/bin/chromium
+URxvt.url-select.underline: true
+URxvt.keysym.Control-Shift-C: perl:clipboard:copy
+URxvt.keysym.Control-Shift-V: perl:clipboard:paste
+
+
 ! xcolors.net
 ! jasonwryan style
 ! Black
