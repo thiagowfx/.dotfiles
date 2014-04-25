@@ -1,7 +1,7 @@
-;; -*- lisp -*-
+;; -*- emacs-lisp -*-
 
 ;; To reproduce this setup, you'll need to do the following:
-;; 1 - Have a recent version of Emacs (as of today, 24)
+;; 1 - Ensure you have a recent version of Emacs (as of today, 24)
 ;; 2 - package-install all the "locate-library" listed packages that you want
 ;; 3 - git clone the yasnippet repository on github
 
@@ -75,7 +75,6 @@
 (setq vc-follow-symlinks t)  ; do not ask for symlink confirmations
 (global-auto-revert-mode t)  ; autoload modified files outside emacs
 (setq bookmark-default-file  (concat user-emacs-directory "bookmarks"))
-(recentf-mode t)
 (setq default-frame-alist '((cursor-color . "white")))
 (set-cursor-color "white")
 
@@ -104,7 +103,7 @@
   (defalias 'imenu 'helm-imenu)
   (defalias 'occur 'helm-occur)
   (global-set-key "\M-x" 'helm-M-x)
-  
+
   (when (locate-library "smex")
     (global-set-key "\M-X" 'smex-major-mode-commands)
     (global-set-key "\C-c\M-x" 'smex)
@@ -182,14 +181,21 @@
                      ac-source-words-in-buffer
                      ac-source-words-in-same-mode-buffers)))
 
+;; -------------------------------------------------------------
+;; -------------------------------------------------------------
 ;; native libraries
+(when (locate-library "recentf")
+  (recentf-mode t)
+  (global-set-key "\C-x\C-r" 'recentf-open-files))
+
 (when (locate-library "savehist")
   (require 'savehist)
   (savehist-mode t))
 
 (when (locate-library "saveplace")
   (require 'saveplace)
-  (setq-default save-place t))
+  (setq-default save-place t)
+  (setq save-place-file "~/.emacs.d/saved-places"))
 
 (when (locate-library "uniquify")
   (require 'uniquify)
@@ -199,12 +205,14 @@
 (when (locate-library "sh-mode")
   (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode)))
 
-(add-hook 'c++-mode-hook
-          (lambda () (setq compile-command (concat "g++ \""
-                                                   (buffer-file-name)
-                                                   "\" -o \""
-                                                   (file-name-sans-extension buffer-file-name)
-                                                   "\" -Wall -g -O2"))))
+(when (locate-library "compile")
+  (setq compilation-read-command nil)
+  (add-hook 'c++-mode-hook
+            (lambda () (setq compile-command (concat "g++ \""
+                                                     (buffer-file-name)
+                                                     "\" -o \""
+                                                     (file-name-sans-extension buffer-file-name)
+                                                     "\" -Wall -g -O2")))))
 
 (defun reload-dot-emacs ()
   "Reload your ~/.emacs file."
@@ -248,7 +256,6 @@
 (global-set-key (kbd "C-;")     'comment-or-uncomment-region)
 (global-set-key (kbd "M-/")     'hippie-expand)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key "\C-x\C-r"      'recentf-open-files)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom

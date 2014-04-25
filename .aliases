@@ -5,8 +5,9 @@ alias sudo='sudo '
 
 # custom aliases
 # emacs --daemon first
-em()  { emacsclient -t "$*" || emacs -nw "$*" } # console
-emq() { emacsclient -c "$*" || emacs "$*" }     # x11
+em()  { emacsclient -t "$@" -a ""        || emacs -nw "$@" }        # console
+ems() { emacsclient -t "/sudo::$@" -a "" || emacs -nw "/sudo::$@" } # console + sudo
+emq() { emacsclient -c "$@" -a ""        || emacs "$@" }            # x11
 alias pingg="ping google.com"
 
 # non-verbose output
@@ -30,7 +31,7 @@ alias diff="diff -uN"
 alias du="du -h"
 alias free="free -m"
 alias grep="grep --color=auto"
-alias i3lock="i3lock-wrapper || i3lock -c 222222"
+i3lock() { i3lock-wrapper || i3lock -c 222222 }
 alias lynx="lynx -emacskeys"
 alias make="make -j5"
 alias pgrep="pgrep --list-name"
@@ -101,11 +102,12 @@ export HISTCONTROL=ignoreboth # ignore equal and consecutive entries of history 
 
 # environment customizations
 export BROWSER="/usr/bin/chromium"
-export EDITOR="/usr/bin/emacsclient -t"
-export VISUAL="/usr/bin/emacsclient -c"
+export EDITOR='/usr/bin/emacsclient -t -a ""'
+export VISUAL="/usr/bin/emacsclient -c -a """
 export FILEMANAGER="/usr/bin/thunar"
 export RAMDISK="~/ramdisk/"
 export TERMINAL="/usr/bin/sakura"
+export LESS="-I -s -w" # case-insensitive search|squeeze lines
 
 # export PATH="/opt/android-sdk/platform-tools/:${PATH}"
 export PATH="${HOME}/.gem/ruby/2.1.0/bin:${PATH}"

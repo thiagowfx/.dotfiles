@@ -14,7 +14,7 @@ set $Win Mod4
 set $mod Mod4
 
 set $BROWSER     "/usr/bin/chromium"
-set $EDITOR      "/usr/bin/emacsclient -c"
+set $EDITOR      "/usr/bin/emacsclient -c -a """ # emacsclient -c|emacs
 set $FILEMANAGER "/usr/bin/thunar"
 set $I3LOCK      "i3lock-wrapper" # i3lock-wrapper|i3lock -c 222222
 
@@ -40,9 +40,7 @@ bindsym $mod+Shift+q kill
 bindsym $Alt+F4 kill
 
 # start dmenu (a program launcher)
-# bindsym $mod+d exec --no-startuo-id dmenu_run
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+d exec --no-startup-id j4-dmenu-desktop
+bindsym $mod+d exec --no-startup-id j4-dmenu-desktop # j4-dmenu-desktop|i3-dmenu-desktop|dmenu_run
 
 # change focus
 bindsym $mod+Left focus left
@@ -271,4 +269,5 @@ exec --no-startup-id /usr/bin/emacs --daemon
 exec --no-startup-id /usr/bin/nm-applet
 exec --no-startup-id /usr/bin/parcellite
 exec --no-startup-id /usr/bin/redshift
+exec --no-startup-id /usr/bin/thunar --daemon
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon

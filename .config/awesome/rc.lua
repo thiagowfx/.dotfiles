@@ -506,6 +506,7 @@ run_onde("/usr/bin/emacs","--daemon")
 run_once("/usr/bin/nm-applet")
 run_once("/usr/bin/parcellite")
 run_once("/usr/bin/redshift")
+run_once("/usr/bin/thunar", "--daemon")
 run_once("/usr/lib/gnome-settings-daemon/gnome-settings-daemon")
 
 -- References:
