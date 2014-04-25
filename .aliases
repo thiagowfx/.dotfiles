@@ -4,20 +4,19 @@
 alias sudo='sudo '
 
 # custom aliases
-alias emq="emacs -nw"
+# emacs --daemon first
+em()  { emacsclient -t "$*" || emacs -nw "$*" } # console
+emq() { emacsclient -c "$*" || emacs "$*" }     # x11
 alias pingg="ping google.com"
 
 # non-verbose output
 alias gdb="gdb -q"
 
 # verbose output
-alias xz="xz -v"
-alias gzip="gzip -v"
-alias gunzip="gunzip -v"
 alias cp="cp -v"
 alias ln="ln -v"
 alias mv="mv -v"
-alias rm="rm -v"
+alias rm="rm -v" # -i
 alias rmdir="rmdir -v"
 alias chmod="chmod -v"
 alias chown="chown -v"
@@ -34,8 +33,6 @@ alias grep="grep --color=auto"
 alias i3lock="i3lock-wrapper || i3lock -c 222222"
 alias lynx="lynx -emacskeys"
 alias make="make -j5"
-# alias make="time make -j5"
-# alias makepkg="time makepkg"
 alias pgrep="pgrep --list-name"
 alias reflector="reflector -x rsync"
 alias rsync="rsync --progress"
@@ -76,6 +73,7 @@ alias winetricks-template-install="winetricks corefonts vcrun2005 vcrun2008 vb6r
 export WINEARCH="win64"
 export WINEDEBUG="fixme-all"
 export WINEPREFIX="${HOME}/.wine"
+export WINEDLLOVERRIDES="winemenubuilder.exe=d" # stop creating shortcuts, desktop files and associating mimetypes
 
 # world (Arch)
 alias world="sudo pacman -Syu"
@@ -103,15 +101,15 @@ export HISTCONTROL=ignoreboth # ignore equal and consecutive entries of history 
 
 # environment customizations
 export BROWSER="/usr/bin/chromium"
-export EDITOR="/usr/bin/emacs -nw"
+export EDITOR="/usr/bin/emacsclient -t"
+export VISUAL="/usr/bin/emacsclient -c"
 export FILEMANAGER="/usr/bin/thunar"
 export RAMDISK="~/ramdisk/"
 export TERMINAL="/usr/bin/sakura"
-export VISUAL="/usr/bin/emacs"
 
 # export PATH="/opt/android-sdk/platform-tools/:${PATH}"
 export PATH="${HOME}/.gem/ruby/2.1.0/bin:${PATH}"
-# if using zsh, use `rehash` to update your known commands. Also, do note use ~.
+# if using zsh, use `rehash` to update your known commands. Also, do note use ~, use ${HOME}.
 
 # arch-chroot for non-arch systems
 function changeroot {
@@ -123,20 +121,20 @@ function changeroot {
     sudo chroot "$1"/ /bin/bash
 }
 
-# to actually create a chroot, see manpage (uses pacstrap...)
-alias systemd-nspawn-template="systemd-nspawn -bD"
-
-# Options include:
+# chroot
 # - arch-chroot
 # - schroot
-# - devtools package (for packagers)
+# - pacstrap
+# - devtools package
+alias systemd-nspawn-template="systemd-nspawn -bD"
 
-# AUR Keychain (modus operandi)
-# - /usr/share/pacman/ to get PKGBUILD prototypes
-# - emacs PKGBUILD mode
-# - makepkg --source (better: mkaurball, appends metadata)
-# - burp (aur uploader)
-
+# AUR Keychain / modus operandi
+# - /usr/share/pacman/ PROTOs
+# - makepkg -o (sources)
+# - makepkg -g / updpkgsums (checksums)
+# - makepkg --source  / mkaurball (.AURINFO) ==> .tar.xz
+# - tar tvf to see contents
+# - burp
 
 function qkkdiff-file {
     pkg="$(pacman -Qo $1 | awk '//{printf "%s-%s", $(NF-1), $NF;}')"
@@ -150,13 +148,12 @@ function qkkdiff {
     return 0
 }
 
-
 # typos
 alias eamcs="emacs"
 alias pacma="pacman"
 alias sl="ls"
 
-# remember
-alias dmidecode-remember="sudo dmidecode -t 1"
-alias inxi-remember="inxi -F -M"
-alias jekyll-serve-remember="jekyll serve --baseurl='' --watch"
+# default options / remember
+alias dmidecode-default="sudo dmidecode -t 1"
+alias inxi-default="inxi -F -M"
+alias jekyll-serve-default="jekyll serve --baseurl='' --watch"

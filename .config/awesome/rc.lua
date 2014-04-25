@@ -498,10 +498,11 @@ function run_once(prg,arg_string,pname,screen)
    end
 end
 
-run_once("/usr/bin/compton", "-bcC -o 0.3");
+run_once("/usr/bin/compton", "-bcC -o 0.3")
 run_once("/usr/bin/CopyAgent")
 run_once("/usr/bin/dropboxd")
 run_once("/usr/bin/dunst")
+run_onde("/usr/bin/emacs","--daemon")
 run_once("/usr/bin/nm-applet")
 run_once("/usr/bin/parcellite")
 run_once("/usr/bin/redshift")

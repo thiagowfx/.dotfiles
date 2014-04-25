@@ -14,9 +14,9 @@ set $Win Mod4
 set $mod Mod4
 
 set $BROWSER     "/usr/bin/chromium"
-set $EDITOR      "/usr/bin/emacs"
+set $EDITOR      "/usr/bin/emacsclient -c"
 set $FILEMANAGER "/usr/bin/thunar"
-set $I3LOCK      i3lock-wrapper # i3lock-wrapper|i3lock -c 222222
+set $I3LOCK      "i3lock-wrapper" # i3lock-wrapper|i3lock -c 222222
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -259,16 +259,15 @@ assign [class="Audacious|Clementine|Spotify|Vlc"] → $workspace8
 # i3 startup
 # Foreground
 # exec --no-startup-id $I3LOCK
-exec --no-startup-id /usr/bin/emacs ~/.ob
-exec --no-startup-id /usr/bin/emacs ~/.mygit/icpc-journal/lists.org
-exec --no-startup-id i3-msg 'workspace $workspace1; exec ${TERMINAL}'
 # exec --no-startup-id i3-msg 'workspace $workspace2; exec ${BROWSER}'
+exec --no-startup-id i3-msg 'workspace $workspace1; exec ${TERMINAL}'
 
 # Background
 exec --no-startup-id /usr/bin/compton -bcC -o 0.3
 exec --no-startup-id /usr/bin/CopyAgent
 exec --no-startup-id /usr/bin/dropboxd
 exec --no-startup-id /usr/bin/dunst
+exec --no-startup-id /usr/bin/emacs --daemon
 exec --no-startup-id /usr/bin/nm-applet
 exec --no-startup-id /usr/bin/parcellite
 exec --no-startup-id /usr/bin/redshift
