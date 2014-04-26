@@ -13,10 +13,14 @@ set $Alt Mod1
 set $Win Mod4
 set $mod Mod4
 
+# chromium|firefox
 set $BROWSER     "/usr/bin/chromium"
-set $EDITOR      "/usr/bin/emacsclient -c -a """ # emacsclient -c|emacs
+# emacsclient -c|emacs
+set $EDITOR      "/usr/bin/emacsclient -c -a ''"
+# thunar|pcmanfm|spacefm
 set $FILEMANAGER "/usr/bin/thunar"
-set $I3LOCK      "i3lock-wrapper" # i3lock-wrapper|i3lock -c 222222
+# i3lock-wrapper|i3lock -c 222222
+set $I3LOCK      "i3lock-wrapper" 
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode

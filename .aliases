@@ -1,31 +1,42 @@
 # -*- shell-script -*-
 
-# enable aliases for sudo
-alias sudo='sudo '
+# enable aliases for sudo. Do not include a trailing space
+alias sudo='nocorrect sudo'
+
+# environment customizations
+export AURHOME="${HOME}/.aur"
+export BROWSER="/usr/bin/chromium"
+export EDITOR='/usr/bin/emacsclient -t -a ""'
+export FILEMANAGER="/usr/bin/thunar"
+export RAMDISK="${HOME}/ramdisk/"
+export TERMINAL="/usr/bin/sakura"
+export VISUAL='/usr/bin/emacsclient -c -a ""'
+
+export PATH="${PATH}:${HOME}/.gem/ruby/2.1.0/bin"
+# export PATH="/opt/android-sdk/platform-tools/:${PATH}"
+# if using zsh, use `rehash` to update your known commands. Also, do note use ~, use ${HOME}.
 
 # custom aliases
 # emacs --daemon first
-em()  { emacsclient -t "$@" -a ""        || emacs -nw "$@" }        # console
-ems() { emacsclient -t "/sudo::$@" -a "" || emacs -nw "/sudo::$@" } # console + sudo
-emq() { emacsclient -c "$@" -a ""        || emacs "$@" }            # x11
+em()  {      emacsclient -t "$@" -a ""        ||      emacs -nw "$@" } # console
+ecs() { sudo emacsclient -t "$@" -a ""        || sudo emacs -nw "$@" } # console + sudo
+emq() {      emacsclient -c "$@" -a ""        ||      emacs "$@" }     # X11
 alias pingg="ping google.com"
 
-# non-verbose output
-alias gdb="gdb -q"
-
-# verbose output
+# verbose|non-verbose output
+alias chmod="chmod -v"
+alias chown="chown -v"
 alias cp="cp -v"
 alias ln="ln -v"
+alias gdb="gdb -q"
 alias mv="mv -v"
 alias rm="rm -v" # -i
 alias rmdir="rmdir -v"
-alias chmod="chmod -v"
-alias chown="chown -v"
 
 # change default behavior of some programs
 alias acpi="date && acpi"
 alias colordiff="colordiff -uN"
-alias cower='cower --color=always --sort=votes --target="${HOME}"/.aur'
+alias cower="cower --color=always --sort=votes --target=${AURHOME}"
 alias df='df -h'
 alias diff="diff -uN"
 alias du="du -h"
@@ -99,19 +110,7 @@ alias youtube-dl-template-video="youtube-dl --continue --title --restrict-filena
 # environment options
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 export HISTCONTROL=ignoreboth # ignore equal and consecutive entries of history and commands beginning with a space
-
-# environment customizations
-export BROWSER="/usr/bin/chromium"
-export EDITOR='/usr/bin/emacsclient -t -a ""'
-export VISUAL="/usr/bin/emacsclient -c -a """
-export FILEMANAGER="/usr/bin/thunar"
-export RAMDISK="~/ramdisk/"
-export TERMINAL="/usr/bin/sakura"
-export LESS="-I -s -w" # case-insensitive search|squeeze lines
-
-# export PATH="/opt/android-sdk/platform-tools/:${PATH}"
-export PATH="${HOME}/.gem/ruby/2.1.0/bin:${PATH}"
-# if using zsh, use `rehash` to update your known commands. Also, do note use ~, use ${HOME}.
+export LESS="-I -s -w -r -R"
 
 # arch-chroot for non-arch systems
 function changeroot {
@@ -140,13 +139,13 @@ alias systemd-nspawn-template="systemd-nspawn -bD"
 
 function qkkdiff-file {
     pkg="$(pacman -Qo $1 | awk '//{printf "%s-%s", $(NF-1), $NF;}')"
-    bsdtar -xOf /var/cache/pacman/pkg/${pkg}-x86_64.pkg.tar.xz ${1/\//} | diff - $1
+    bsdtar -xOf /var/cache/pacman/pkg/${pkg}-$(uname -m).pkg.tar.xz "${1/\//}" | diff - "$1"
     return 0
 }
 
 function qkkdiff {
-    ver=$(pacman -Q $1 | cut -f2 -d' ')
-    pacman -Qkkq $1 | while read package file; do echo $file; bsdtar -xOf /var/cache/pacman/pkg/${package}-${ver}-x86_64.pkg.tar.xz ${file/\//} | diff - $file  ; done
+    ver=$(pacman -Q "$1" | cut -f2 -d' ')
+    pacman -Qkkq "$1" | while read package file; do echo $file; bsdtar -xOf /var/cache/pacman/pkg/${package}-${ver}-$(uname -m).pkg.tar.xz ${file/\//} | diff - $file  ; done
     return 0
 }
 
