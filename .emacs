@@ -140,6 +140,11 @@
   (add-to-list 'auto-mode-alist '("/PKGBUILD$" . pkgbuild-mode)))
 
 (when (locate-library "org")
+  (defun my-org-hook ()
+    (progn
+      (define-key org-mode-map "\M-q" 'toggle-truncate-lines)
+      (when (locate-library "drag-stuff")
+        (drag-stuff-global-mode -1))))
   (setq org-src-fontify-natively t)
   (setq org-todo-keyword-faces
         '(("TODO" . "red")
@@ -149,7 +154,8 @@
           ("POSTPONED" . "blue")))
   (when (locate-library "org2blog")
     (require 'org2blog-autoloads)
-    (require 'wordpress-credentials)))
+    (require 'wordpress-credentials))
+  (add-hook 'org-mode-hook 'my-org-hook))
 
 (when (locate-library "markdown-mode")
   (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
