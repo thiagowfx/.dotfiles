@@ -44,6 +44,7 @@ alias free="free -m"
 alias grep="grep --color=auto"
 i3lock() { i3lock-wrapper || i3lock -c 222222 }
 alias lynx="lynx -emacskeys"
+alias hexdump="hexdump -C"
 alias make="make -j5"
 alias pgrep="pgrep --list-name"
 alias reflector="reflector -x rsync"

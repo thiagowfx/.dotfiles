@@ -149,7 +149,6 @@
   (setq org-todo-keyword-faces
         '(("TODO" . "red")
           ("INPROGRESS" . "orange")
-          ("FLOURISH" . "yellow")
           ("DONE" . "green")
           ("POSTPONED" . "blue")))
   (when (locate-library "org2blog")
