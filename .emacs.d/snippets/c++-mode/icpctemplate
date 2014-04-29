@@ -23,12 +23,10 @@
 #include <utility>
 #include <vector>
 using namespace std;
-
 typedef long long int ll;
 typedef pair<int,int> ii;
 typedef vector<int> vi;
-
-const double EPS = 1e-9;
+const double EPS = 1e-7;
 #define mp make_pair
 
 int main() {

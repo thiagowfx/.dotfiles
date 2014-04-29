@@ -91,10 +91,6 @@
 (when (locate-library "goto-chg")       ; more powerful than C-u C-SPC
   (global-set-key [(control .)] 'goto-last-change))
 
-(when (locate-library "control-lock")   ; no-pinky
-  (require 'control-lock)
-  (global-set-key "\C-z" 'control-lock-toggle))
-
 (when (locate-library "mediawiki")
   (require 'archwiki-credentials))      ; do not include passwords here
 
@@ -171,7 +167,6 @@
   (require 'auto-complete-config)
   (ac-config-default)
   (global-auto-complete-mode t)
-  (global-set-key "\M-\t" 'auto-complete)
   (setq ac-auto-show-menu nil)
   (setq ac-sources '(ac-source-abbrev
                      ac-source-dictionary
@@ -269,6 +264,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files (quote ("~/Dropbox/.mygit/icpc-journal/lists.org")))
  '(safe-local-variable-values (quote ((require-final-newline))))
  '(use-file-dialog nil))
 (custom-set-faces
