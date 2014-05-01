@@ -9,19 +9,30 @@ export BROWSER="/usr/bin/chromium"
 export EDITOR='/usr/bin/emacsclient -t -a ""'
 export FILEMANAGER="/usr/bin/thunar"
 export RAMDISK="${HOME}/ramdisk/"
+export TERM=xterm-256color
 export TERMINAL="/usr/bin/sakura"
 export VISUAL='/usr/bin/emacsclient -c -a ""'
 
+# `rehash` to update known zsh commands; ${HOME} instead of ~
 export PATH="${PATH}:${HOME}/.gem/ruby/2.1.0/bin"
 # export PATH="/opt/android-sdk/platform-tools/:${PATH}"
-# if using zsh, use `rehash` to update your known commands. Also, do note use ~, use ${HOME}.
 
-# custom aliases
-# emacs --daemon first
-em()  {      emacsclient -t "$@" -a ""        ||      emacs -nw "$@" } # console
-ecs() { sudo emacsclient -t "$@" -a ""        || sudo emacs -nw "$@" } # console + sudo
-emq() {      emacsclient -c "$@" -a ""        ||      emacs "$@" }     # X11
-alias pingg="ping google.com"
+# functions
+function em {
+    # console
+    emacsclient -t "$@" -a "" || emacs -nw "$@"
+}
+function ecs {
+    # console + sudo
+    sudo emacsclient -t "$@" -a "" || sudo emacs -nw "$@"
+}
+function emq {
+    # X11
+    emacsclient -c "$@" -a "" || emacs "$@"
+}
+function i3lock {
+    i3lock-wrapper || i3lock -c 222222
+}
 
 # verbose|non-verbose output
 alias chmod="chmod -v"
@@ -30,6 +41,7 @@ alias cp="cp -v"
 alias ln="ln -v"
 alias gdb="gdb -q"
 alias mv="mv -v"
+alias pingg="ping google.com"
 alias rm="rm -v" # -i
 alias rmdir="rmdir -v"
 
@@ -42,7 +54,6 @@ alias diff="diff -uN"
 alias du="du -h"
 alias free="free -m"
 alias grep="grep --color=auto"
-i3lock() { i3lock-wrapper || i3lock -c 222222 }
 alias lynx="lynx -emacskeys"
 alias hexdump="hexdump -C"
 alias make="make -j5"
@@ -55,8 +66,8 @@ alias trayer="trayer --edge top --align right --widthtype request --SetDockType 
 alias uptime="uptime --pretty"
 
 ## Android
-alias emulator-template="emulator -avd "Intel-10-480x800" -qemu --enable-kvm -dns-server 8.8.8.8,8.8.4.4"
-alias emulator-template-kill="adb emu kill"
+alias android-emulator-template="emulator -avd "Intel-10-480x800" -qemu --enable-kvm -dns-server 8.8.8.8,8.8.4.4"
+alias android-emulator-template-kill="adb emu kill"
 
 ## ffmpeg
 alias ffmpeg-template-screencast-plusmic="ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -f alsa -ac 2 -i pulse -qscale 0 /tmp/out.mpg"
@@ -90,10 +101,10 @@ export WINEDLLOVERRIDES="winemenubuilder.exe=d" # stop creating shortcuts, deskt
 
 # world (Arch)
 alias world="sudo pacman -Syu"
-alias worldd="packer -Syu --auronly --devel --noconfirm"
 alias aura-template="aura -Akuax"
-alias yaourt-template="yaourt -Syu --devel --aur"
 alias pacbuilder-template="pacbuilder -Sbkvn"
+alias packer-template="packer -Syu --auronly --devel --noconfirm"
+alias yaourt-template="yaourt -Syu --devel --aur"
 
 # xephyr
 alias xephyr-template="Xephyr -ac -br -noreset -screen 1024x768 :1" # export DISPLAY=:1 to execute commands

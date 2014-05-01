@@ -1,19 +1,16 @@
 ;; -*- emacs-lisp -*-
 
-;; To reproduce this setup, you'll need to do the following:
-;; 1 - Ensure you have a recent version of Emacs (as of today, 24)
-;; 2 - package-install all the "locate-library" listed packages that you want
-;; 3 - git clone the yasnippet repository on github
-
-;; (add-to-list 'load-path "/path/to/your/package")
-
 (let* ((my-lisp-dir "~/.emacs.d/")
        (default-directory my-lisp-dir))
   (setq load-path (cons my-lisp-dir load-path))
   (normal-top-level-add-subdirs-to-load-path))
 
 (when (>= emacs-major-version 24)
-  (load-theme 'wombat t)
+  (when (fboundp 'load-theme)
+    (load-theme 'wombat t)
+    (setq default-frame-alist '((cursor-color . "white")))
+    (set-cursor-color "white"))
+
   (package-initialize)
   (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/")))
@@ -26,19 +23,18 @@
 (defvar my-programming-alist '(c c++ emacs-lisp lisp python))
 (add-something-to-mode-hooks '(emacs-lisp lisp) 'turn-on-eldoc-mode)
 
-
 ;; Miscellaneous
 (prefer-coding-system 'utf-8)
-(setq make-backup-files nil)            ; do not create *~ files
+;; store all backup and autosave files in the tmp dir
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 (setq x-select-enable-primary t
       save-interprogram-paste-before-kill t
       mouse-yank-at-point t
       interprogram-paste-function 'x-cut-buffer-or-selection-value)
-(ido-mode t)                            ; completion: { | | | }
 (icomplete-mode t)                      ; completion: {,,,}
-(setq-default ido-enable-flex-matching t
-              ido-enable-last-directory-history t
-              confirm-nonexistent-file-or-buffer nil) ; disable annoying confirmation
 (column-number-mode t)
 (line-number-mode t)
 (size-indication-mode t)
@@ -59,7 +55,6 @@
 (setq-default frame-title-format (concat "%b - " (message "%s@emacs" (replace-regexp-in-string "\n$" "" (shell-command-to-string "whoami")))))
 (menu-bar-mode 1)
 (tool-bar-mode -1)
-(scroll-bar-mode -1)
 (blink-cursor-mode -1)
 (mouse-avoidance-mode 'exile)
 (global-linum-mode t)
@@ -75,8 +70,6 @@
 (setq vc-follow-symlinks t)  ; do not ask for symlink confirmations
 (global-auto-revert-mode t)  ; autoload modified files outside emacs
 (setq bookmark-default-file  (concat user-emacs-directory "bookmarks"))
-(setq default-frame-alist '((cursor-color . "white")))
-(set-cursor-color "white")
 
 ;; external libraries
 (when (locate-library "drag-stuff") ; M-down, M-up
@@ -92,24 +85,23 @@
   (global-set-key [(control .)] 'goto-last-change))
 
 (when (locate-library "mediawiki")
-  (require 'archwiki-credentials))      ; do not include passwords here
+  (require 'archwiki-credentials))
 
 (when (locate-library "helm")
   (helm-mode t)
   (defalias 'imenu 'helm-imenu)
   (defalias 'occur 'helm-occur)
   (global-set-key "\M-x" 'helm-M-x)
+  (global-set-key "\C-c\C-c\M-x" 'execute-extended-command))
 
-  (when (locate-library "smex")
-    (global-set-key "\M-X" 'smex-major-mode-commands)
-    (global-set-key "\C-c\M-x" 'smex)
-    (global-set-key "\C-c\C-c\M-x" 'execute-extended-command))
+(when (locate-library "smex")
+  (global-set-key "\M-X" 'smex)
+  (global-set-key "\C-c\M-x" 'smex-major-mode-commands))
 
-  (when (and (locate-library "anything") (locate-library "helm-anything"))
-    (require 'helm-anything)
-    (helm-anything-set-keys)))
+(when (locate-library "guru-mode")
+  (guru-global-mode t))
 
-(when (locate-library "undo-tree") ; more powerful than the native undo
+(when (locate-library "undo-tree")
   (undo-tree-mode t)
   (defalias 'undo 'undo-tree-undo)
   (defalias 'redo 'undo-tree-redo)
@@ -123,11 +115,11 @@
 (when (locate-library "web-mode")
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
 
-(when (locate-library "ace-jump-mode")
-  (define-key global-map (kbd "C-0") 'ace-jump-mode) ; use C-u as prefix
-  (setq-default ace-jump-mode-submode-list '(ace-jump-char-mode
-                                             ace-jump-line-mode
-                                             ace-jump-word-mode)))
+(when (and (locate-library "key-chord") (locate-library "ace-jump-mode"))
+  (key-chord-define-global "jj" 'ace-jump-word-mode)
+  (key-chord-define-global "jk" 'ace-jump-char-mode)
+  (key-chord-define-global "jl" 'ace-jump-line-mode)
+  (key-chord-mode 1))
 
 (when (locate-library "idle-highlight")
   (add-something-to-mode-hooks my-programming-alist 'idle-highlight))
@@ -157,7 +149,7 @@
   (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode)))
 
 (when (locate-library "magit")
-  (global-set-key [f6] 'magit-status))
+  (global-set-key "\C-xg" 'magit-status))
 
 (when (locate-library "yasnippet")
   (require 'yasnippet)
@@ -184,8 +176,17 @@
 ;; -------------------------------------------------------------
 ;; -------------------------------------------------------------
 ;; native libraries
+
+(when (locate-library "ido")
+  (ido-mode t)
+  (setq-default ido-enable-flex-matching t)
+  (setq-default ido-enable-last-directory-history t)
+  (setq-default confirm-nonexistent-file-or-buffer nil))
+
 (when (locate-library "recentf")
   (recentf-mode t)
+  (setq recentf-max-saved-items 50)
+  (setq recentf-save-file (concat user-emacs-directory "recentf"))
   (global-set-key "\C-x\C-r" 'recentf-open-files))
 
 (when (locate-library "savehist")
@@ -195,7 +196,7 @@
 (when (locate-library "saveplace")
   (require 'saveplace)
   (setq-default save-place t)
-  (setq save-place-file "~/.emacs.d/saved-places"))
+  (setq save-place-file (concat user-emacs-directory "saved-places")))
 
 (when (locate-library "uniquify")
   (require 'uniquify)
@@ -226,7 +227,7 @@
   (let ((value (eval (preceding-sexp))))
     (kill-sexp -1)
     (insert (format "%s" value))))
-(global-set-key "\C-c\C-x\C-e" 'replace-last-sexp)
+(global-set-key "\C-c\C-e" 'replace-last-sexp)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Buffer cleaning
@@ -273,12 +274,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Homepages/References
-;; - http://www.emacsrocks.com/
-;; - http://www.emacswiki.org/
-;; - http://www.emacswiki.org/emacs/EmacsCrashCode/
-;; - https://github.com/technomancy/better-defaults/
-;; - http://www.aaronbedra.com/emacs.d/ ;; teaches how to install all (missing) packages from a given list
-;; - http://draketo.de/light/english/emacs/babcore
-;; - http://www.nongnu.org/emacs-tiny-tools/keybindings/index-body.html
