@@ -18,7 +18,6 @@ st = status
 puhs = push
 
 [core]
-editor = emacs -nw
 whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
 [color]

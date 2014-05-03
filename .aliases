@@ -9,13 +9,14 @@ export BROWSER="/usr/bin/chromium"
 export EDITOR='/usr/bin/emacsclient -t -a ""'
 export FILEMANAGER="/usr/bin/thunar"
 export RAMDISK="${HOME}/ramdisk/"
-export TERM=xterm-256color
+export TERM="xterm-256color"
 export TERMINAL="/usr/bin/sakura"
 export VISUAL='/usr/bin/emacsclient -c -a ""'
 
 # `rehash` to update known zsh commands; ${HOME} instead of ~
-export PATH="${PATH}:${HOME}/.gem/ruby/2.1.0/bin"
+# export PATH="${PATH}:${HOME}/.gem/ruby/2.1.0/bin"
 # export PATH="/opt/android-sdk/platform-tools/:${PATH}"
+export PATH="/usr/lib/ccache/bin:${PATH}"
 
 # functions
 function em {
@@ -56,7 +57,7 @@ alias free="free -m"
 alias grep="grep --color=auto"
 alias lynx="lynx -emacskeys"
 alias hexdump="hexdump -C"
-alias make="make -j5"
+alias make="make -j3"
 alias pgrep="pgrep --list-name"
 alias reflector="reflector -x rsync"
 alias rsync="rsync --progress"
@@ -124,14 +125,18 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswi
 export HISTCONTROL=ignoreboth # ignore equal and consecutive entries of history and commands beginning with a space
 export LESS="-I -s -r -R"
 
-# arch-chroot for non-arch systems
-function changeroot {
-    sudo cp -L /etc/resolv.conf "$1"/etc/resolv.conf
-    sudo mount -t proc proc "$1"/proc
-    sudo mount -t sysfs sys "$1"/sys
-    sudo mount -o bind /dev "$1"/dev
-    sudo mount -t devpts pts "$1"/dev/pts/
-    sudo chroot "$1"/ /bin/bash
+# gentoo-chroot
+function gentoo-chroot {
+    [[ "$1" == "" ]] && echo "You forgot to add a parameter" && return 1
+    [[ ! -d "$1"  ]] && echo "Specified path doesn't exist" && return 1
+    # network
+    # sudo cp -L /etc/resolv.conf "$1"/etc/resolv.conf
+    # mounts
+    sudo mount -o bind /proc "$1"/proc
+    # sudo mount --rbind /dev  "$1"/dev
+    # sudo mount --rbind /sys  "$1"/sys
+    # chroot itself
+    sudo chroot "$1"/ /bin/env -i TERM=$TERM /bin/bash
 }
 
 # chroot
@@ -168,7 +173,6 @@ function qkkdiff {
 }
 
 # typos
-alias eamcs="emacs"
 alias pacma="pacman"
 alias sl="ls"
 

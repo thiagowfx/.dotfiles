@@ -13,11 +13,17 @@ set $Alt Mod1
 set $Win Mod4
 set $mod Mod4
 
-set $BROWSER        "/usr/bin/chromium"                      # chromium|firefox
-set $EDITOR         "/usr/bin/emacsclient -c -a ''"          # emacsclient -c|emacs
-set $FILEMANAGER    "/usr/bin/thunar"                        # thunar|pcmanfm|spacefm
-set $I3LOCK         "i3lock-wrapper"                         # i3lock-wrapper|i3lock -c 222222
-set $PROCESSMANAGER i3-sensible-terminal -e "/usr/bin/htop"  # lxtask|gnome-system-monitor
+# do not move these comments to the end of the line:
+# chromium|firefox
+# emacsclient -c|emacs
+# thunar|pcmanfm|spacefm
+# i3lock-wrapper|i3lock -c 222222
+# lxtask|gnome-system-monitor
+set $BROWSER        "/usr/bin/chromium"
+set $EDITOR         "/usr/bin/emacsclient -c -a ''"
+set $FILEMANAGER    "/usr/bin/thunar"
+set $I3LOCK         "i3lock-wrapper"
+set $PROCESSMANAGER i3-sensible-terminal -e "/usr/bin/htop"
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -36,14 +42,14 @@ bindsym $mod+Return    exec --no-startup-id i3-sensible-terminal
 bindsym $mod+minus     exec --no-startup-id $BROWSER
 bindsym $mod+equal     exec --no-startup-id $EDITOR
 bindsym $mod+BackSpace exec --no-startup-id $FILEMANAGER
-bindsym $mod+Escape  exec --no-startup-id   $PROCESSMANAGER
+bindsym $mod+Escape    exec --no-startup-id $PROCESSMANAGER
 
 # kill focused window
 bindsym $mod+Shift+q kill
 bindsym $Alt+F4      kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id j4-dmenu-desktop # j4-dmenu-desktop|i3-dmenu-desktop|dmenu_run
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop # j4-dmenu-desktop|i3-dmenu-desktop|dmenu_run
 
 # change focus
 bindsym $mod+Left focus left
@@ -88,16 +94,17 @@ set $workspace1 1:sh
 set $workspace2 2:www
 set $workspace3 3
 set $workspace4 4
-set $workspace5 5
-set $workspace6 6
-set $workspace7 7:msgs
+set $workspace5 5:dev
+set $workspace6 6:doc
+set $workspace7 7:mail
 set $workspace8 8:♪media
 set $workspace9 9:HDMI
 set $workspace0 zero
 
 # assign: use xorg-xprop to learn the class string
 # assign [class="^Chromium$|Firefox"] → $workspace2
-assign [class="Claws Mail|irssi|weechat|Xchat"]   → $workspace7
+assign [class="zathura"]                          → $workspace6
+assign [class="Claws-mail|irssi|weechat|Xchat"]   → $workspace7
 assign [class="Audacious|Clementine|Spotify|Vlc"] → $workspace8
 
 # workspace outputs
@@ -148,41 +155,41 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you want to exit i3?' -b 
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-    	set $step 20
+  # These bindings trigger as soon as you enter the resize mode
+  set $step 10
 
-        bindsym j resize shrink width $step px or $step ppt
-        bindsym k resize grow height $step px or $step ppt
-        bindsym l resize shrink height $step px or $step ppt
-        bindsym semicolon resize grow width $step px or $step ppt
+  bindsym j resize shrink width $step px or $step ppt
+  bindsym k resize grow height $step px or $step ppt
+  bindsym l resize shrink height $step px or $step ppt
+  bindsym semicolon resize grow width $step px or $step ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width $step px or $step ppt
-        bindsym Down resize grow height $step px or $step ppt
-        bindsym Up resize shrink height $step px or $step ppt
-        bindsym Right resize grow width $step px or $step ppt
+  # same bindings, but for the arrow keys
+  bindsym Left resize shrink width $step px or $step ppt
+  bindsym Down resize grow height $step px or $step ppt
+  bindsym Up resize shrink height $step px or $step ppt
+  bindsym Right resize grow width $step px or $step ppt
 
-        # back to normal: Enter or Escape or space
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
- 	    bindsym space mode "default"
+  # back to normal: Enter or Escape or space
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym space mode "default"
 }
 bindsym $mod+r mode "resize"
 
 set $mode_system System (l)ock, (e)logout, (s)uspend, (h)ibernate, (r)eboot, (Shift+s) shutdown
-mode "$mode_system" {
-        
-        bindsym l exec --no-startup-id $I3LOCK, mode "default"
-        bindsym e exec --no-startup-id i3-msg exit
-        bindsym s exec --no-startup-id $I3LOCK && systemctl suspend, mode "default"
-        bindsym h exec --no-startup-id systemctl hibernate, mode "default"
-        bindsym r exec --no-startup-id systemctl reboot
-        bindsym Shift+s exec --no-startup-id systemctl poweroff
+  mode "$mode_system" {
 
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym space mode "default"
+  bindsym l exec --no-startup-id $I3LOCK, mode "default"
+  bindsym e exec --no-startup-id i3-msg exit
+  bindsym s exec --no-startup-id $I3LOCK && systemctl suspend, mode "default"
+  bindsym h exec --no-startup-id systemctl hibernate, mode "default"
+  bindsym r exec --no-startup-id systemctl reboot
+  bindsym Shift+s exec --no-startup-id systemctl poweroff
+
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym space mode "default"
 }
 bindsym $mod+l mode "$mode_system"
 
@@ -212,33 +219,33 @@ client.unfocused          $gray2   $gray2   #FFFFFF   #000000
 
 # Start i3bar to display system information
 bar {
-  status_command i3status # i3status|python ~/.i3pystatus.py
-  position top
-  mode dock
-  # tray_output  # LVDS1|primary|none        
-	colors {
-    # Theme 2 - solarized
-    # background $gray3
-    # statusline $white1
-    # focused_workspace  $gray3  $orange $white1
-    # active_workspace   $orange $orange $white1
-    # inactive_workspace $banana $banana $white1
+    status_command i3status # i3status|python ~/.i3pystatus.py
+    position top
+    mode dock
+    # tray_output  # LVDS1|primary|none
+colors {
+       # Theme 2 - solarized
+       # background $gray3
+       # statusline $white1
+       # focused_workspace  $gray3  $orange $white1
+       # active_workspace   $orange $orange $white1
+       # inactive_workspace $banana $banana $white1
 
-    # Theme 3 - grayscale
-    statusline $white0
-    background $gray2
-    focused_workspace  $gray2 $gray2 $white1
-    inactive_workspace $gray1 $gray1 $white0
-	}
+       # Theme 3 - grayscale
+       statusline $white0
+       background $gray2
+       focused_workspace  #ff0000 $gray3 $white1
+       inactive_workspace $gray1 $gray1 $white0
+       }
 }
 
 # Custom hotkeys: use xev to learn the hotkey names
 bindsym Print                      exec --no-startup-id /usr/bin/scrot '%Y-%m-%d_%H%M%S_$wx$h_scrot.png' -e 'mv $f ~/ramdisk/' && notify-send 'SS taken'
 bindsym XF86MonBrightnessUp        exec --no-startup-id /usr/bin/xbacklight -inc 5 -time 0
 bindsym XF86MonBrightnessDown      exec --no-startup-id /usr/bin/xbacklight -dec 5 -time 0
-bindsym XF86AudioLowerVolume       exec /usr/bin/amixer set Master 5%- unmute
-bindsym XF86AudioRaiseVolume       exec /usr/bin/amixer set Master 5%+ unmute
-bindsym XF86AudioMute              exec /usr/bin/amixer set Master toggle
+bindsym XF86AudioLowerVolume       exec /usr/bin/amixer set Master 5%- unmute && killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume       exec /usr/bin/amixer set Master 5%+ unmute && killall -SIGUSR1 i3status
+bindsym XF86AudioMute              exec /usr/bin/amixer set Master toggle     && killall -SIGUSR1 i3status
 bindsym XF86AudioNext              exec /usr/bin/audacious --fwd
 bindsym XF86AudioPrev              exec /usr/bin/audacious --rew
 bindsym XF86Play                   exec /usr/bin/audacious --play-pause
@@ -267,25 +274,24 @@ workspace_layout               tabbed
 for_window [window_role="pop-up"] floating enable, move absolute center
 for_window [class="scratch|sscratch|scratchpad"] move scratchpad
 for_window [class="^Chromium$"] border 1pixel
-for_window [class="^Xfce4-notifyd$"] floating enable, border none, focus mode_toggle
-for_window [class="qtRaytracer"] floating enable
 for_window [class="Arandr|Epsxe|feh|Galculator|gimp|Java|Lxappearance|MPlayer|Viewnior"] floating enable
+for_window [class="qtRaytracer"] floating enable
 
 # i3 startup
-# Foreground
 # exec --no-startup-id $I3LOCK
 exec --no-startup-id i3-msg 'workspace $workspace1; exec ${TERMINAL}'
-# exec --no-startup-id i3-msg 'workspace $workspace2; exec ${BROWSER}'
-
-# Background
+exec --no-startup-id /usr/bin/autocutsel -fork
+exec --no-startup-id /usr/bin/autocutsel -selection PRIMARY -fork
 exec --no-startup-id /usr/bin/compton -b
 exec --no-startup-id /usr/bin/CopyAgent
 exec --no-startup-id /usr/bin/dropboxd
 exec --no-startup-id /usr/bin/dunst
 exec --no-startup-id /usr/bin/emacs --daemon
+exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
+exec --no-startup-id /usr/bin/hsetroot -add '#2C5648' -add '#555555' -gradient 0
 exec --no-startup-id /usr/bin/nm-applet
 exec --no-startup-id /usr/bin/parcellite
 exec --no-startup-id /usr/bin/redshift
 exec --no-startup-id /usr/bin/thunar --daemon
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
+exec --no-startup-id /usr/bin/synclient CoastingFriction=400  # avoids accidental zooming
 exec --no-startup-id /usr/bin/udiskie

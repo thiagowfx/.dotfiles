@@ -17,15 +17,8 @@ export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
 
 # X stuff
 # setxkbmap br,us '' ctrl:nocaps grp:ctrl_rshift_toggle
-[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
+[[ -f ~/.Xmodmap ]]    && xmodmap ~/.Xmodmap
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
-xbacklight -set 45
-synclient CoastingFriction=400  # avoids accidental zooming
-
-# Default wallpaper
-# hsetroot -solid "#222222"
-sh ~/.fehbg
-
 
 # xinit <your_window_manager_here>
 case $1 in
