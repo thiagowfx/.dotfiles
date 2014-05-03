@@ -211,11 +211,12 @@ set $gray1  #686868
 set $gray2  #333333
 set $gray3  #101010
 set $orange #cb4b16
+set $red    #ff0000
 set $white0 #bbbbbb
 set $white1 #eee8d5
-client.focused            $gray1   $gray1   #FFFFFF   #333333
-client.focused_inactive   $gray2   $gray2   #FFFFFF   #000000
-client.unfocused          $gray2   $gray2   #FFFFFF   #000000
+client.focused            $banana  $gray3   $white1   $gray2
+client.focused_inactive   $gray1   $gray2   $white1   $gray3
+client.unfocused          $gray1   $gray2   $white1   $gray3
 
 # Start i3bar to display system information
 bar {
@@ -234,9 +235,9 @@ colors {
        # Theme 3 - grayscale
        statusline $white0
        background $gray2
-       focused_workspace  #ff0000 $gray3 $white1
+       focused_workspace  $red   $gray3 $white1
        inactive_workspace $gray1 $gray1 $white0
-       }
+    }
 }
 
 # Custom hotkeys: use xev to learn the hotkey names
