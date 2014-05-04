@@ -4,36 +4,18 @@
 alias sudo='nocorrect sudo'
 
 # environment customizations
+export ALTERNATE_EDITOR=""
 export AURHOME="${HOME}/.aur"
 export BROWSER="/usr/bin/chromium"
-export EDITOR='/usr/bin/emacsclient -t -a ""'
-export FILEMANAGER="/usr/bin/thunar"
-export RAMDISK="${HOME}/ramdisk/"
+export EDITOR="emacsclient"
+export PATH="/usr/lib/ccache/bin:${PATH}"
+export RAMDISK="${HOME}/ramdisk"
 export TERM="xterm-256color"
 export TERMINAL="/usr/bin/sakura"
-export VISUAL='/usr/bin/emacsclient -c -a ""'
-
-# `rehash` to update known zsh commands; ${HOME} instead of ~
-# export PATH="${PATH}:${HOME}/.gem/ruby/2.1.0/bin"
-# export PATH="/opt/android-sdk/platform-tools/:${PATH}"
-export PATH="/usr/lib/ccache/bin:${PATH}"
-
-# functions
-function em {
-    # console
-    emacsclient -t "$@" -a "" || emacs -nw "$@"
-}
-function ecs {
-    # console + sudo
-    sudo emacsclient -t "$@" -a "" || sudo emacs -nw "$@"
-}
-function emq {
-    # X11
-    emacsclient -c "$@" -a "" || emacs "$@"
-}
-function i3lock {
-    i3lock-wrapper || i3lock -c 222222
-}
+export VISUAL="emacsclient"
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+export HISTCONTROL=ignoreboth # ignore equal and consecutive entries of history and commands beginning with a space
+export LESS="-I -s -r -R"
 
 # verbose|non-verbose output
 alias chmod="chmod -v"
@@ -43,7 +25,7 @@ alias ln="ln -v"
 alias gdb="gdb -q"
 alias mv="mv -v"
 alias pingg="ping google.com"
-alias rm="rm -v" # -i
+alias rm="rm -v"
 alias rmdir="rmdir -v"
 
 # change default behavior of some programs
@@ -53,6 +35,8 @@ alias cower="cower --color=always --sort=votes --target=${AURHOME}"
 alias df='df -h'
 alias diff="diff -uN"
 alias du="du -h"
+alias em="emacsclient -t"
+alias emq="emacsclient -c"
 alias free="free -m"
 alias grep="grep --color=auto"
 alias lynx="lynx -emacskeys"
@@ -66,20 +50,28 @@ alias strace="strace -t"
 alias trayer="trayer --edge top --align right --widthtype request --SetDockType false"
 alias uptime="uptime --pretty"
 
-## Android
+# android
 alias android-emulator-template="emulator -avd "Intel-10-480x800" -qemu --enable-kvm -dns-server 8.8.8.8,8.8.4.4"
 alias android-emulator-template-kill="adb emu kill"
 
-## ffmpeg
+# dmidecode
+alias dmidecode-template="sudo dmidecode -t 1"
+
+# ffmpeg
 alias ffmpeg-template-screencast-plusmic="ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -f alsa -ac 2 -i pulse -qscale 0 /tmp/out.mpg"
 alias ffmpeg-template-screencast="ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -qscale 0 /tmp/out.mpg"
 
-# menu maker
-alias fluxbox-generate_menu-template="fluxbox-generate_menu -kg -su -t mate-terminal -w www.google.com -is -ds"
-alias mmaker-template="mmaker -t Konsole -vf openbox3"
+# inxi
+alias inxi-template="inxi -F -M"
+
+# jekyll
+alias jekyll-serve-template="jekyll serve --baseurl='' --watch"
 
 # qemu
 alias qemu-template-test-iso="qemu-system-x86_64 --enable-kvm -m 512M -cdrom" # <path here>
+
+# systemd-nspawn
+alias systemd-nspawn-template="systemd-nspawn -bD"
 
 # vnc
 alias vncserver-template-connect="vncviewer -passwd ~/.vnc/passwd localhost:1"
@@ -100,7 +92,7 @@ export WINEDEBUG="fixme-all"
 export WINEPREFIX="${HOME}/.wine"
 export WINEDLLOVERRIDES="winemenubuilder.exe=d" # stop creating shortcuts, desktop files and associating mimetypes
 
-# world (Arch)
+# world for Arch
 alias world="sudo pacman -Syu"
 alias aura-template="aura -Akuax"
 alias pacbuilder-template="pacbuilder -Sbkvn"
@@ -120,12 +112,7 @@ alias xrandr-template-reset="xrandr --output LVDS1 --primary --mode 1366x768" # 
 alias youtube-dl-template-mp3="youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3"
 alias youtube-dl-template-video="youtube-dl --continue --title --restrict-filenames"
 
-# environment options
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
-export HISTCONTROL=ignoreboth # ignore equal and consecutive entries of history and commands beginning with a space
-export LESS="-I -s -r -R"
-
-# gentoo-chroot
+# arch-chroot
 function gentoo-chroot {
     [[ "$1" == "" ]] && echo "You forgot to add a parameter" && return 1
     [[ ! -d "$1"  ]] && echo "Specified path doesn't exist" && return 1
@@ -139,22 +126,9 @@ function gentoo-chroot {
     sudo chroot "$1"/ /bin/env -i TERM=$TERM /bin/bash
 }
 
-# chroot
-# - arch-chroot
-# - schroot
-# - pacstrap
-# - devtools package
-alias systemd-nspawn-template="systemd-nspawn -bD"
-
-# AUR Keychain / modus operandi
-# - /usr/share/pacman/ PROTOs
-# - makepkg -o (sources)
-# - makepkg -g / updpkgsums (checksums)
-# - makepkg --source  / mkaurball (.AURINFO) ==> .tar.xz
-# - tar tvf to see contents
-# - burp
-
+# qkkdiff
 function qkkdiff-file {
+    # Example usage: qkkdiff-file /etc/pacman.conf
     if [[ -f "$1" ]];
     then
         pkg="$(pacman -Qo $1 | awk '//{printf "%s-%s", $(NF-1), $NF;}')"
@@ -167,6 +141,7 @@ function qkkdiff-file {
 }
 
 function qkkdiff {
+    # Example usage: qkkdiff pacman
     ver=$(pacman -Q "$1" | cut -f2 -d' ')
     pacman -Qkkq "$1" | while read package file; do echo $file; bsdtar -xOf /var/cache/pacman/pkg/${package}-${ver}-$(uname -m).pkg.tar.xz ${file/\//} | diff - $file  ; done
     return 0
@@ -176,7 +151,10 @@ function qkkdiff {
 alias pacma="pacman"
 alias sl="ls"
 
-# default options / remember
-alias dmidecode-default="sudo dmidecode -t 1"
-alias inxi-default="inxi -F -M"
-alias jekyll-serve-default="jekyll serve --baseurl='' --watch"
+# AUR Keychain / modus operandi
+# - /usr/share/pacman/ PROTOs
+# - makepkg -o (sources)
+# - makepkg -g / updpkgsums (checksums)
+# - makepkg --source  / mkaurball (.AURINFO) ==> .tar.xz
+# - tar tvf to see contents
+# - burp

@@ -25,16 +25,10 @@
 
 ;; Miscellaneous
 (prefer-coding-system 'utf-8)
-;; store all backup and autosave files in the tmp dir
-(setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
 (setq x-select-enable-primary t
       save-interprogram-paste-before-kill t
       mouse-yank-at-point t
       interprogram-paste-function 'x-cut-buffer-or-selection-value)
-(icomplete-mode t)                      ; completion: {,,,}
 (column-number-mode t)
 (line-number-mode t)
 (size-indication-mode t)
@@ -53,14 +47,13 @@
       inhibit-startup-echo-area-message t
       initial-scratch-message "")
 (setq-default frame-title-format (concat "%b - " (message "%s@emacs" (replace-regexp-in-string "\n$" "" (shell-command-to-string "whoami")))))
-(menu-bar-mode 1)
+(menu-bar-mode -1)
 (tool-bar-mode -1)
 (blink-cursor-mode -1)
 (mouse-avoidance-mode 'exile)
 (global-linum-mode t)
 (setq-default indicate-empty-lines t)
 (setq visible-bell t)
-(setq use-dialog-box nil)
 (setq echo-keystrokes 0.1)
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq enable-recursive-minibuffers t) ; stack minibuffers, exit with `top-level`
@@ -70,6 +63,11 @@
 (setq vc-follow-symlinks t)  ; do not ask for symlink confirmations
 (global-auto-revert-mode t)  ; autoload modified files outside emacs
 (setq bookmark-default-file  (concat user-emacs-directory "bookmarks"))
+
+;; stop all BACKUPs
+(setq make-backup-files nil)
+(setq backup-inhibited t)
+(setq auto-save-default nil)
 
 ;; external libraries
 (when (locate-library "drag-stuff") ; M-down, M-up
@@ -98,8 +96,8 @@
   (global-set-key "\M-X" 'smex)
   (global-set-key "\C-c\M-x" 'smex-major-mode-commands))
 
-(when (locate-library "guru-mode")
-  (guru-global-mode t))
+;; (when (locate-library "guru-mode")
+;;  (guru-global-mode t))
 
 (when (locate-library "undo-tree")
   (undo-tree-mode t)
@@ -179,6 +177,7 @@
 
 (when (locate-library "ido")
   (ido-mode t)
+  (icomplete-mode t)
   (setq-default ido-enable-flex-matching t)
   (setq-default ido-enable-last-directory-history t)
   (setq-default confirm-nonexistent-file-or-buffer nil))

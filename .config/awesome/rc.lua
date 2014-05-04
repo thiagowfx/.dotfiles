@@ -498,16 +498,4 @@ function run_once(prg,arg_string,pname,screen)
    end
 end
 
-run_once("/usr/bin/compton", "-bcC -o 0.3")
-run_once("/usr/bin/CopyAgent")
-run_once("/usr/bin/dropboxd")
-run_once("/usr/bin/dunst")
-run_onde("/usr/bin/emacs","--daemon")
-run_once("/usr/bin/nm-applet")
-run_once("/usr/bin/parcellite")
-run_once("/usr/bin/redshift")
-run_once("/usr/bin/thunar", "--daemon")
-run_once("/usr/lib/gnome-settings-daemon/gnome-settings-daemon")
-
--- References:
--- https://gitorious.org/qmpdotfiles/dotfiles/source/85790657be36267c1a0f8f8b1473d65809b4fc4e:.config/awesome/rc.lua
+-- run_once("/usr/bin/program", "arguments")
