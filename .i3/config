@@ -12,7 +12,6 @@ set $I3LOCK         "i3lock-wrapper"
 set $PROCESSMANAGER i3-sensible-terminal -e "/usr/bin/htop"
 
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# font pango:Ubuntu Light 9.4
 font pango:Bitter 8.7
 
 # use Mouse+$mod to drag floating windows to their wanted position
@@ -194,7 +193,7 @@ set $orange #cb4b16
 set $red    #ff0000
 set $white0 #bbbbbb
 set $white1 #eee8d5
-client.focused            $banana  $gray3   $white1   $gray2
+client.focused            $banana  $banana  $white1   $gray2
 client.focused_inactive   $gray1   $gray2   $white1   $gray3
 client.unfocused          $gray1   $gray2   $white1   $gray3
 
@@ -262,7 +261,7 @@ for_window [class="qtRaytracer"] floating enable
 # exec --no-startup-id $I3LOCK
 exec --no-startup-id i3-msg 'workspace $workspace1; exec ${TERMINAL}'
 exec --no-startup-id /usr/bin/autocutsel -fork
-exec --no-startup-id /usr/bin/autocutsel -selection PRIMARY -fork
+# exec --no-startup-id /usr/bin/autocutsel -selection PRIMARY -fork
 exec --no-startup-id /usr/bin/compton -b
 exec --no-startup-id /usr/bin/CopyAgent
 exec --no-startup-id /usr/bin/dropboxd

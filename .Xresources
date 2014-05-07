@@ -12,13 +12,13 @@ XTerm*metaSendsEscape: true
 XTerm*locale: true
 Xterm*saveLines: 4096
 XTerm*reverseVideo: on
-xterm*faceName: Ubuntu Mono:size=11:antialias=true
+xterm*faceName: Inconsolata:size=11:antialias=true
 
 ! urxvt (rxvt-unicode)
 URxvt*background: #000000
 URxvt*foreground: #ffffff
 URxvt.scrollBar: false
-URxvt*font: xft:Ubuntu Mono:size=11
+URxvt*font: xft:Inconsolata:size=11
 URxvt.iso14755: false
 
 ! urxvt extensions

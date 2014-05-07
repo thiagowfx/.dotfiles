@@ -6,22 +6,42 @@
   (normal-top-level-add-subdirs-to-load-path))
 
 (when (>= emacs-major-version 24)
-  (when (fboundp 'load-theme)
-    (load-theme 'wombat t)
-    (setq default-frame-alist '((cursor-color . "white")))
-    (set-cursor-color "white"))
+  (load-theme 'wombat t)
+  (setq default-frame-alist '((cursor-color . "white")))
+  (set-cursor-color "white")
+  (blink-cursor-mode -1)
 
   (package-initialize)
   (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/")))
 
-;; Helper Functions
 (defun add-something-to-mode-hooks (mode-list something)
   "Helper function to add a callback to multiple hooks"
   (dolist (mode mode-list)
     (add-hook (intern (concat (symbol-name mode) "-mode-hook")) something)))
-(defvar my-programming-alist '(c c++ emacs-lisp lisp python))
-(add-something-to-mode-hooks '(emacs-lisp lisp) 'turn-on-eldoc-mode)
+
+(defun replace-last-sexp ()
+  "Eval inplace."
+  (interactive)
+  (let ((value (eval (preceding-sexp))))
+    (kill-sexp -1)
+    (insert (format "%s" value))))
+(global-set-key "\C-c\C-e" 'replace-last-sexp)
+
+(defun cleanup-buffer ()
+  "Buffer cleaning, performing a bunch of operations on the whitespace content of it."
+  (interactive)
+  (indent-region (point-min) (point-max))
+  (untabify (point-min) (point-max))
+  (delete-trailing-whitespace))
+(global-set-key [f12] 'cleanup-buffer)
+
+;; keystrokes/keybindings - RET, "\M-g", [C-tab], (kbd "M-g"), [f1], (kbd "<f1>"), [?\C-\t], (kbd "<C-S-iso-lefttab>")
+(global-set-key "\M-g"          'goto-line)
+(global-set-key (kbd "RET")     'newline-and-indent)
+(global-set-key (kbd "C-;")     'comment-or-uncomment-region)
+(global-set-key (kbd "M-/")     'hippie-expand)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; Miscellaneous
 (prefer-coding-system 'utf-8)
@@ -29,27 +49,20 @@
       save-interprogram-paste-before-kill t
       mouse-yank-at-point t
       interprogram-paste-function 'x-cut-buffer-or-selection-value)
-(column-number-mode t)
-(line-number-mode t)
-(size-indication-mode t)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (setq-default c-basic-offset 2)
 (setq-default standard-indent 2)
-(windmove-default-keybindings)          ; shift + arrow keys
 (global-subword-mode t)                 ; camel-case
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
 (show-paren-mode t)
+(windmove-default-keybindings)          ; shift + arrow keys
 (winner-mode t)                         ; C-c left, C-c right
 (setq inhibit-startup-message t
       inhibit-startup-echo-area-message t
       initial-scratch-message "")
-(setq-default frame-title-format (concat "%b - " (message "%s@emacs" (replace-regexp-in-string "\n$" "" (shell-command-to-string "whoami")))))
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(blink-cursor-mode -1)
 (mouse-avoidance-mode 'exile)
 (global-linum-mode t)
 (setq-default indicate-empty-lines t)
@@ -64,12 +77,22 @@
 (global-auto-revert-mode t)  ; autoload modified files outside emacs
 (setq bookmark-default-file  (concat user-emacs-directory "bookmarks"))
 
-;; stop all BACKUPs
-(setq make-backup-files nil)
-(setq backup-inhibited t)
-(setq auto-save-default nil)
+(progn
+  (menu-bar-mode -1)
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (column-number-mode t)
+  (line-number-mode t)
+  (setq-default frame-title-format (concat "%b - " (message "%s@emacs" (replace-regexp-in-string "\n$" "" (shell-command-to-string "whoami"))))))
 
+(progn
+  (setq make-backup-files nil)
+  (setq backup-inhibited t)
+  (setq auto-save-default nil))
+
+;; --------------------------------------------------
 ;; external libraries
+;; -------------------------------------------------
 (when (locate-library "drag-stuff") ; M-down, M-up
   (drag-stuff-global-mode t))
 
@@ -120,6 +143,7 @@
   (key-chord-mode 1))
 
 (when (locate-library "idle-highlight")
+  (defvar my-programming-alist '(c c++ emacs-lisp lisp python))
   (add-something-to-mode-hooks my-programming-alist 'idle-highlight))
 
 (when (locate-library "pkgbuild-mode")
@@ -130,7 +154,8 @@
     (progn
       (define-key org-mode-map "\M-q" 'toggle-truncate-lines)
       (when (locate-library "drag-stuff")
-        (drag-stuff-global-mode -1))))
+        (drag-stuff-mode -1))))
+  (add-hook 'org-mode-hook 'my-org-hook)
   (setq org-src-fontify-natively t)
   (setq org-todo-keyword-faces
         '(("TODO" . "red")
@@ -139,8 +164,7 @@
           ("POSTPONED" . "blue")))
   (when (locate-library "org2blog")
     (require 'org2blog-autoloads)
-    (require 'wordpress-credentials))
-  (add-hook 'org-mode-hook 'my-org-hook))
+    (require 'wordpress-credentials)))
 
 (when (locate-library "markdown-mode")
   (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
@@ -172,8 +196,11 @@
                      ac-source-words-in-same-mode-buffers)))
 
 ;; -------------------------------------------------------------
+;; built-in/native libraries
 ;; -------------------------------------------------------------
-;; native libraries
+
+(when (locate-library "eldoc")
+  (add-something-to-mode-hooks '(emacs-lisp lisp) 'turn-on-eldoc-mode))
 
 (when (locate-library "ido")
   (ido-mode t)
@@ -205,58 +232,6 @@
 (when (locate-library "sh-mode")
   (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode)))
 
-(when (locate-library "compile")
-  (setq compilation-read-command nil)
-  (add-hook 'c++-mode-hook
-            (lambda () (setq compile-command (concat "g++ \""
-                                                     (buffer-file-name)
-                                                     "\" -o \""
-                                                     (file-name-sans-extension buffer-file-name)
-                                                     "\" -Wall -g -O2")))))
-
-(defun reload-dot-emacs ()
-  "Reload your ~/.emacs file."
-  (interactive)
-  (load-file "~/.emacs"))
-(global-set-key (kbd "<f2>") 'reload-dot-emacs)
-
-(defun replace-last-sexp ()
-  "Eval in place"
-  (interactive)
-  (let ((value (eval (preceding-sexp))))
-    (kill-sexp -1)
-    (insert (format "%s" value))))
-(global-set-key "\C-c\C-e" 'replace-last-sexp)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Buffer cleaning
-(defun untabify-buffer ()
-  "Converts tabs to space on the whole buffer."
-  (interactive)
-  (untabify (point-min) (point-max)))
-
-(defun indent-buffer ()
-  "Indents the whole buffer."
-  (interactive)
-  (indent-region (point-min) (point-max)))
-
-(defun cleanup-buffer ()
-  "Perform a bunch of operations on the whitespace content of a buffer."
-  (interactive)
-  (indent-buffer)
-  (untabify-buffer)
-  (delete-trailing-whitespace))
-
-;; Custom keystrokes/keybindings
-;; - RET, "\M-g", [C-tab], (kbd "M-g"), [f1], (kbd "<f1>"), [?\C-\t], (kbd "<C-S-iso-lefttab>")
-(global-set-key "\M-g"          'goto-line)
-(global-set-key (kbd "RET")     'newline-and-indent)
-(global-set-key [f9]            'comment-or-uncomment-region)
-(global-set-key [f12]           'cleanup-buffer)
-(global-set-key (kbd "C-;")     'comment-or-uncomment-region)
-(global-set-key (kbd "M-/")     'hippie-expand)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom
 (custom-set-variables
@@ -264,9 +239,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/Dropbox/.mygit/icpc-journal/lists.org")))
- '(safe-local-variable-values (quote ((require-final-newline))))
- '(use-file-dialog nil))
+ '(safe-local-variable-values (quote ((require-final-newline)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

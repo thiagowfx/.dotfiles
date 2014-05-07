@@ -11,34 +11,13 @@ email = thiagoperrotta95@gmail.com
 helper = store # store|cache --timeout=7200
 
 [alias]
-graph = log --graph --oneline --decorate
-hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
 st = status
-puhs = push
+logg = log --graph --decorate --pretty=oneline --abbrev-commit --all
+loghist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+graph = log --graph --oneline --decorate
 
 [core]
 whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
 [color]
 ui = true
-
-[color "branch"]
-current = yellow reverse
-local = yellow
-remote = green
-
-[color "diff"]
-meta = yellow bold
-frag = magenta bold
-old = red bold
-new = green bold
-whitespace = red reverse
-
-[color "status"]
-added = yellow
-changed = green
-untracked = cyan
-
-[merge]
-tool = meld
