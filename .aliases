@@ -40,15 +40,14 @@ alias emq="emacsclient -c"
 alias free="free -m"
 alias grep="grep --color=auto"
 alias lynx="lynx -emacskeys"
+alias lsusb="lsusb -t"
 alias hexdump="hexdump -C"
-alias make="make -j3"
+alias make="make -j5 -l4"
 alias pgrep="pgrep --list-name"
 alias reflector="reflector -x rsync"
 alias rsync="rsync --progress"
 alias smem="smem -k"
 alias strace="strace -t"
-alias trayer="trayer --edge top --align right --widthtype request --SetDockType false"
-alias uptime="uptime --pretty"
 
 # android
 alias android-emulator-template="emulator -avd "Intel-10-480x800" -qemu --enable-kvm -dns-server 8.8.8.8,8.8.4.4"
@@ -78,9 +77,6 @@ alias vncserver-template-connect="vncviewer -passwd ~/.vnc/passwd localhost:1"
 alias vncserver-template-kill="vncserver -kill :1"
 alias vncserver-template-start="vncserver -geometry 960x540 -alwaysshared -dpi 96 :1" # using DISPLAY=:1
 
-# webmin
-alias webmin-template="sudo systemctl start webmin && "${BROWSER}" localhost:10000"
-
 # wget
 alias wget-template-pdf="wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
 alias wget-template-spider="wget -e robots=off --wait=2 --random-wait --recursive --span-hosts --spider --timestamping --tries=5 --dns-timeout=30 --connect-timeout=5 --read-timeout=5 --level=10 --"
@@ -103,10 +99,10 @@ alias yaourt-template="yaourt -Syu --devel --aur"
 alias xephyr-template="Xephyr -ac -br -noreset -screen 1024x768 :1" # export DISPLAY=:1 to execute commands
 
 # xrandr
-alias xrandr-template-hdmi-connected="xrandr --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1 && sh ~/.fehbg"
-alias xrandr-template-hdmi-disconnected="xrandr --output HDMI1 --off && sh ~/.fehbg"
-alias xrandr-template-hdmi-mirror="xrandr --output LVDS1 --primary --auto --output HDMI1 --auto --same-as LVDS1 && sh ~/.fehbg"
-alias xrandr-template-reset="xrandr --output LVDS1 --primary --mode 1366x768" # useful for fullscreen games on wine
+alias xrandr-template-hdmi-connect="xrandr    --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1"
+alias xrandr-template-hdmi-disconnect="xrandr --output HDMI1 --off"
+alias xrandr-template-hdmi-mirror="xrandr     --output LVDS1 --primary --auto --output HDMI1 --auto --same-as LVDS1"
+alias xrandr-template-reset="xrandr           --output LVDS1 --primary --mode 1366x768" # useful for fullscreen games on wine
 
 # youtube-dl
 alias youtube-dl-template-mp3="youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3"

@@ -28,11 +28,13 @@ set -o emacs
 shopt -s checkwinsize
 shopt -s cdspell
 shopt -s cmdhist
+shopt -s checkjobs
 shopt -s dotglob
 shopt -s expand_aliases
 shopt -s extglob
 shopt -s histappend
 shopt -s hostcomplete
+shopt -s ignoreeof
 shopt -s nocaseglob
 
 # colored man pages

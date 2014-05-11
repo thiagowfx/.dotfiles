@@ -260,18 +260,14 @@ for_window [class="qtRaytracer"] floating enable
 # i3 startup
 # exec --no-startup-id $I3LOCK
 exec --no-startup-id i3-msg 'workspace $workspace1; exec ${TERMINAL}'
-exec --no-startup-id /usr/bin/autocutsel -fork
-# exec --no-startup-id /usr/bin/autocutsel -selection PRIMARY -fork
-exec --no-startup-id /usr/bin/compton -b
+exec --no-startup-id "/usr/bin/autocutsel -fork"
+exec --no-startup-id "/usr/bin/compton -b"
 exec --no-startup-id /usr/bin/CopyAgent
 exec --no-startup-id /usr/bin/dropboxd
 exec --no-startup-id /usr/bin/dunst
-exec --no-startup-id /usr/bin/emacs --daemon
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
-exec --no-startup-id /usr/bin/hsetroot -add '#2C5648' -add '#555555' -gradient 0
+exec --no-startup-id "/usr/bin/emacs --daemon"
+exec --no-startup-id "/usr/bin/hsetroot -solid '#111019'"
 exec --no-startup-id /usr/bin/nm-applet
 exec --no-startup-id /usr/bin/parcellite
 exec --no-startup-id /usr/bin/redshift
-exec --no-startup-id /usr/bin/thunar --daemon
-exec --no-startup-id /usr/bin/synclient CoastingFriction=400  # avoids accidental zooming
-exec --no-startup-id /usr/bin/udiskie
+exec --no-startup-id "/usr/bin/thunar --daemon"
