@@ -29,10 +29,10 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
     (insert (format "%s" value))))
 (global-set-key "\C-c\C-x\C-e" 'replace-last-sexp)
 
-(defun close-all-buffers ()
+(defun kill-all-buffers ()
   (interactive)
   (mapc 'kill-buffer (buffer-list)))
-(global-set-key "\C-c\C-xk" 'close-all-buffers)
+(global-set-key "\C-c\C-x k" 'kill-all-buffers)
 
 (defun cleanup-buffer ()
   "Buffer cleaning, performing a bunch of operations on the whitespace content of it."
@@ -45,6 +45,7 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
 ;; keystrokes/keybindings - RET, "\M-g", [C-tab], (kbd "M-g"), [f1], (kbd "<f1>"), [?\C-\t], (kbd "<C-S-iso-lefttab>")
 (global-set-key "\M-g"          'goto-line)
 (global-set-key (kbd "RET")     'newline-and-indent)
+(global-set-key [f9]            'comment-or-uncomment-region)
 (global-set-key (kbd "C-;")     'comment-or-uncomment-region)
 (global-set-key (kbd "M-/")     'hippie-expand)
 
@@ -271,6 +272,7 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files (quote ("~/.mygit/open-bookmarks/README.org")))
  '(paradox-github-token t)
  '(safe-local-variable-values (quote ((require-final-newline)))))
 (custom-set-faces

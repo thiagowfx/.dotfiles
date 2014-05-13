@@ -90,10 +90,8 @@ export WINEDLLOVERRIDES="winemenubuilder.exe=d" # stop creating shortcuts, deskt
 
 # world for Arch
 alias world="sudo pacman -Syu"
-alias aura-template="aura -Akuax"
-alias pacbuilder-template="pacbuilder -Sbkvn"
-alias packer-template="packer -Syu --auronly --devel --noconfirm"
-alias yaourt-template="yaourt -Syu --devel --aur"
+alias world-aur="pacaur -Syua --noedit"
+alias pacman-template-extrapkgs="comm -23 <(pacman -Qeq|sort) <(pacman -Qgq base base-devel|sort)"
 
 # xephyr
 alias xephyr-template="Xephyr -ac -br -noreset -screen 1024x768 :1" # export DISPLAY=:1 to execute commands

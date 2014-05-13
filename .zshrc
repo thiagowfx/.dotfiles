@@ -50,10 +50,9 @@ plugins=(
     autojump
     colored-man
     command-not-found
-    git
     extract
+    git
     rsync
-    z
 )
 
 source $ZSH/oh-my-zsh.sh
