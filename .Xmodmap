@@ -1,6 +1,15 @@
 ! -*- conf-Xdefaults -*-
-! enable natural scrolling (4 5)
+! enable natural scrolling (switch 4 and 5)
 pointer = 1 2 3 5 4 6 7 8 9 10 11 12
 
-! right-click (menu) as compose key
+! map caps lock key to left control
+keycode 66 = Control_L
+clear Lock
+add Control = Control_L
+
+! map right-click menu key to control
+keycode 135 = Caps_Lock
+add Lock = Caps_Lock
+
+! map right-click menu key to compose
 ! keycode 135 = Multi_key

@@ -11,7 +11,7 @@ export EDITOR="emacsclient"
 export PATH="/usr/lib/ccache/bin:${PATH}"
 export RAMDISK="${HOME}/ramdisk"
 export TERM="xterm-256color"
-export TERMINAL="/usr/bin/sakura"
+export TERMINAL="/usr/bin/urxvt"
 export VISUAL="emacsclient"
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 export HISTCONTROL=ignoreboth # ignore equal and consecutive entries of history and commands beginning with a space
@@ -88,10 +88,11 @@ export WINEDEBUG="fixme-all"
 export WINEPREFIX="${HOME}/.wine"
 export WINEDLLOVERRIDES="winemenubuilder.exe=d" # stop creating shortcuts, desktop files and associating mimetypes
 
-# world for Arch
+# world
+alias pacman-template-extrapkgs="comm -23 <(pacman -Qeq|sort) <(pacman -Qgq base base-devel|sort)"
 alias world="sudo pacman -Syu"
 alias world-aur="pacaur -Syua --noedit"
-alias pacman-template-extrapkgs="comm -23 <(pacman -Qeq|sort) <(pacman -Qgq base base-devel|sort)"
+alias world-gentoo='su -c "emerge --sync && emerge -avuDN --with-bdeps y --keep-going @world && emerge -v --depclean && revdep-rebuild -v && dispatch-conf && etc-update && eclean -d distfiles"'
 
 # xephyr
 alias xephyr-template="Xephyr -ac -br -noreset -screen 1024x768 :1" # export DISPLAY=:1 to execute commands

@@ -96,9 +96,6 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
 ;; --------------------------------------------------
 ;; external libraries
 ;; -------------------------------------------------
-(when (locate-library "drag-stuff") ; M-down, M-up
-  (drag-stuff-global-mode t))
-
 (when (locate-library "smart-mode-line")
   (sml/setup))
 
@@ -108,43 +105,23 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
 (when (locate-library "goto-chg") ; more powerful than C-u C-SPC
   (global-set-key [(control .)] 'goto-last-change))
 
-(when (locate-library "mediawiki")
-  (require 'archwiki-credentials))
-
-(when (locate-library "helm")
-  (helm-mode t)
-  (defalias 'imenu 'helm-imenu)
-  (defalias 'occur 'helm-occur)
-  (global-set-key "\M-x" 'helm-M-x)
-  (global-set-key "\C-c\M-x" 'execute-extended-command))
-
 (when (locate-library "smex")
-  (global-set-key "\M-X" 'smex))
+  (global-set-key "\M-x" 'smex)
+  (global-set-key "\M-X" 'smex-major-mode-commands)
+  (global-set-key "\C-c\M-x" 'execute-extended-command))
 
 (when (locate-library "undo-tree")
   (global-undo-tree-mode t)
   (global-set-key (kbd "C-_") 'undo-tree-undo)
   (global-set-key (kbd "C-+") 'undo-tree-redo))
 
-(when (locate-library "js2-mode")
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-  (when (locate-library "ac-js2")
-    (add-hook 'js2-mode-hook 'ac-js2-mode)))
-
 (when (locate-library "web-mode")
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
 
 (when (and (locate-library "key-chord") (locate-library "ace-jump-mode"))
-  (key-chord-define-global "jj" 'ace-jump-word-mode)
   (key-chord-define-global "jk" 'ace-jump-char-mode)
   (key-chord-define-global "jl" 'ace-jump-line-mode)
   (key-chord-mode 1))
-
-(defvar my-programming-alist '(c c++ emacs-lisp lisp python))
-(when (locate-library "idle-highlight")
-  (add-something-to-mode-hooks my-programming-alist 'idle-highlight))
-(when (locate-library "nyan-mode")
-  (add-something-to-mode-hooks my-programming-alist 'nyan-mode))
 
 (when (locate-library "pkgbuild-mode")
   (add-to-list 'auto-mode-alist '("/PKGBUILD$" . pkgbuild-mode)))
@@ -152,9 +129,7 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
 (when (locate-library "org")
   (defun my-org-hook ()
     (progn
-      (define-key org-mode-map "\M-q" 'toggle-truncate-lines)
-      (when (locate-library "drag-stuff")
-        (drag-stuff-mode -1))))
+      (define-key org-mode-map "\M-q" 'toggle-truncate-lines)))
   (add-hook 'org-mode-hook 'my-org-hook)
   (setq org-src-fontify-natively t)
   (setq org-todo-keyword-faces
@@ -272,7 +247,6 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/.mygit/open-bookmarks/README.org")))
  '(paradox-github-token t)
  '(safe-local-variable-values (quote ((require-final-newline)))))
 (custom-set-faces

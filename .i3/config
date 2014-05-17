@@ -73,8 +73,8 @@ set $workspace1 1:sh
 set $workspace2 2:www
 set $workspace3 3
 set $workspace4 4
-set $workspace5 5:dev
-set $workspace6 6:doc
+set $workspace5 5
+set $workspace6 6
 set $workspace7 7:mail
 set $workspace8 8:♪media
 set $workspace9 9:HDMI
@@ -82,7 +82,6 @@ set $workspace0 zero
 
 # assign: use xorg-xprop to learn the class string
 # assign [class="^Chromium$|Firefox"] → $workspace2
-assign [class="zathura"]                          → $workspace6
 assign [class="Claws-mail|irssi|weechat|Xchat"]   → $workspace7
 assign [class="Audacious|Clementine|Spotify|Vlc"] → $workspace8
 
@@ -248,7 +247,7 @@ bindsym $mod+o scratchpad show
 default_orientation            auto
 focus_follows_mouse            yes
 workspace_auto_back_and_forth  yes
-workspace_layout               tabbed
+workspace_layout               stacking # tabbed
 
 # for_window
 for_window [window_role="pop-up"] floating enable, move absolute center
