@@ -32,7 +32,7 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
 (defun kill-all-buffers ()
   (interactive)
   (mapc 'kill-buffer (buffer-list)))
-(global-set-key "\C-c\C-x k" 'kill-all-buffers)
+(global-set-key "\C-c\C-xk" 'kill-all-buffers)
 
 (defun cleanup-buffer ()
   "Buffer cleaning, performing a bunch of operations on the whitespace content of it."
@@ -55,19 +55,14 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
       save-interprogram-paste-before-kill t
       mouse-yank-at-point t
       interprogram-paste-function 'x-cut-buffer-or-selection-value)
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 2)
-(setq-default c-basic-offset 2)
-(setq-default standard-indent 2)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
-(show-paren-mode t)
 (setq inhibit-startup-message t
       inhibit-startup-echo-area-message t
       initial-scratch-message "")
 (mouse-avoidance-mode 'exile)
-(setq-default indicate-empty-lines t)
+(setq indicate-empty-lines t)
 (setq visible-bell t)
 (setq echo-keystrokes 0.1)
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -76,7 +71,6 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
 (setq require-final-newline t)
 (setq case-fold-search t)    ; make searches case insensitive
 (setq vc-follow-symlinks t)  ; do not ask for symlink confirmations
-(global-auto-revert-mode t)  ; autoload modified files outside emacs
 
 (progn
   ;; Emacs frame appearance
@@ -85,7 +79,7 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
   (tool-bar-mode -1)
   (column-number-mode t)
   (line-number-mode t)
-  (setq-default frame-title-format (concat "%b - " (message "%s@emacs" (replace-regexp-in-string "\n$" "" (shell-command-to-string "whoami"))))))
+  (setq frame-title-format (concat "%b - " (message "%s@emacs" (replace-regexp-in-string "\n$" "" (shell-command-to-string "whoami"))))))
 
 (progn
   ;; Backup files
@@ -96,6 +90,9 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
 ;; --------------------------------------------------
 ;; external libraries
 ;; -------------------------------------------------
+;; (when (locate-library "git-auto-commit-mode")
+;;   (setq gac-automatically-push-p t))
+
 (when (locate-library "smart-mode-line")
   (sml/setup))
 
@@ -119,7 +116,7 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
 
 (when (and (locate-library "key-chord") (locate-library "ace-jump-mode"))
-  (key-chord-define-global "jk" 'ace-jump-char-mode)
+  (key-chord-define-global "jj" 'ace-jump-char-mode)
   (key-chord-define-global "jl" 'ace-jump-line-mode)
   (key-chord-mode 1))
 
@@ -127,17 +124,34 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
   (add-to-list 'auto-mode-alist '("/PKGBUILD$" . pkgbuild-mode)))
 
 (when (locate-library "org")
-  (defun my-org-hook ()
-    (progn
-      (define-key org-mode-map "\M-q" 'toggle-truncate-lines)))
-  (add-hook 'org-mode-hook 'my-org-hook)
+  (global-set-key "\C-ca" 'org-agenda)
+  (global-set-key "\C-cc" 'org-capture)
+  (global-set-key "\C-cl" 'org-store-link)
+  (global-set-key "\C-c\C-l" 'org-insert-link)
   (setq org-src-fontify-natively t)
+  (setq org-return-follows-link t)
+  (setq org-hierarchical-todo-statistics t)
+  (setq org-log-done 'time)
+  (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE" "PERFECT")))
+  (setq org-directory "~/Dropbox/org")
+  (setq org-default-notes-file (concat org-directory "/notes.org"))
+  (setq org-capture-templates
+        '(("b" "open-bookmarks" item (file+headline "~/mygit/open-bookmarks/README.org" "ORGCAPTURE")
+           "- %?\n %i\n")
+          ("t" "TODO" entry (file "")
+           "* TODO %?\n  %i\n")
+          ("p" "plain" item (file "")
+           "- %?\n %i\n")))
   (setq org-todo-keyword-faces
         '(("TODO" . "red")
-          ("INPROGRESS" . "orange")
+          ("PROGRESS" . "orange")
           ("DONE" . "green")
-          ("POSTPONED" . "blue")
           ("PERFECT" . "salmon")))
+  (defun org-summary-todo (n-done n-not-done)
+    "Switch entry to DONE when all subentries are done, to TODO otherwise."
+    (let (org-log-done org-log-states)   ; turn off logging
+      (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
+  (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
   (when (locate-library "org2blog")
     (require 'org2blog-autoloads)
     (require 'wordpress-credentials)))
@@ -175,6 +189,16 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
 ;; -------------------------------------------------------------
 ;; built-in/native libraries
 ;; -------------------------------------------------------------
+(when (locate-library "autorevert")
+  (global-auto-revert-mode t))
+
+(when (locate-library "paren")
+  (show-paren-mode t))
+
+(when (locate-library "indent")
+  (setq indent-tabs-mode nil)
+  (setq standard-indent 2)
+  (setq tab-width 2))
 
 (when (locate-library "ibuffer")
   (global-set-key (kbd "C-x C-b") 'ibuffer))
@@ -186,9 +210,10 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
   (winner-mode t))
 
 (when (locate-library "fill")
-  (setq-default fill-column 72))
+  ;; (auto-fill-mode t)
+  (setq fill-column 72))
 
-(when (locate-library "subword") ;; camel case
+(when (locate-library "subword")
   (global-subword-mode t))
 
 (when (locate-library "linum")
@@ -248,7 +273,7 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(paradox-github-token t)
- '(safe-local-variable-values (quote ((require-final-newline)))))
+ '(safe-local-variable-values (quote ((eval setq-default gac-automatically-push-p t) (require-final-newline)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

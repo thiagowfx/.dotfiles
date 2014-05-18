@@ -25,8 +25,6 @@ alias ln="ln -v"
 alias gdb="gdb -q"
 alias mv="mv -v"
 alias pingg="ping google.com"
-alias rm="rm -v"
-alias rmdir="rmdir -v"
 
 # change default behavior of some programs
 alias acpi="date && acpi"

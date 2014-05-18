@@ -42,10 +42,8 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
+# split in horizontal/vertical orientation
 bindsym $mod+h split h
-
-# split in vertical orientation
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
@@ -75,13 +73,13 @@ set $workspace3 3
 set $workspace4 4
 set $workspace5 5
 set $workspace6 6
-set $workspace7 7:mail
+set $workspace7 7:comm
 set $workspace8 8:♪media
 set $workspace9 9:HDMI
 set $workspace0 zero
 
 # assign: use xorg-xprop to learn the class string
-# assign [class="^Chromium$|Firefox"] → $workspace2
+assign [class="^Chromium$|Firefox"] → $workspace2
 assign [class="Claws-mail|irssi|weechat|Xchat"]   → $workspace7
 assign [class="Audacious|Clementine|Spotify|Vlc"] → $workspace8
 
@@ -127,10 +125,6 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
-# bindsym $mod+Shift+e exec 'i3-msg exit'
-
 # resize window (you can also use the mouse for that)
 mode "resize" {
   # These bindings trigger as soon as you enter the resize mode
@@ -154,7 +148,7 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-set $mode_system System (l)ock, (e)logout, (s)uspend, (h)ibernate, (r)eboot, (Shift+s) shutdown
+set $mode_system (l)ock, (e)logout, (s)uspend, (h)ibernate, (r)eboot, Shift+(s)hutdown
   mode "$mode_system" {
 
   bindsym l exec --no-startup-id $I3LOCK, mode "default"
@@ -231,11 +225,11 @@ bindsym XF86Play                   exec /usr/bin/audacious --play-pause
 bindsym Shift+XF86AudioRaiseVolume exec /usr/bin/audacious --fwd
 bindsym Shift+XF86AudioLowerVolume exec /usr/bin/audacious --rew
 bindsym Shift+XF86AudioMute        exec /usr/bin/audacious --play-pause
+bindsym $Mod+XF86AudioMute         exec i3-sensible-terminal -e "/usr/bin/alsamixer"
 
 # alt tab style
 bindsym $Win+Tab workspace next
 bindsym $Win+Shift+Tab workspace prev
-
 bindsym $Alt+Tab focus right
 bindsym $Alt+Shift+Tab focus left
 
@@ -247,14 +241,13 @@ bindsym $mod+o scratchpad show
 default_orientation            auto
 focus_follows_mouse            yes
 workspace_auto_back_and_forth  yes
-workspace_layout               stacking # tabbed
+workspace_layout               stacking # stacking|tabbed
 
 # for_window
 for_window [window_role="pop-up"] floating enable, move absolute center
 for_window [class="scratch|sscratch|scratchpad"] move scratchpad
-for_window [class="^Chromium$"] border 1pixel
-for_window [class="Arandr|Epsxe|feh|Galculator|gimp|Java|Lxappearance|MPlayer|Viewnior"] floating enable
-for_window [class="qtRaytracer"] floating enable
+for_window [class="^Chromium$|Firefox"] border 1pixel
+for_window [class="Arandr|Epsxe|feh|Galculator|gimp|Java|Lxappearance|MPlayer|Viewnior|qtRaytracer"] floating enable
 
 # i3 startup
 # exec --no-startup-id $I3LOCK
