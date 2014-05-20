@@ -123,17 +123,18 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
 (when (locate-library "pkgbuild-mode")
   (add-to-list 'auto-mode-alist '("/PKGBUILD$" . pkgbuild-mode)))
 
+;; orgmode
 (when (locate-library "org")
   (global-set-key "\C-ca" 'org-agenda)
   (global-set-key "\C-cc" 'org-capture)
   (global-set-key "\C-cl" 'org-store-link)
   (global-set-key "\C-c\C-l" 'org-insert-link)
   (setq org-src-fontify-natively t)
-  (setq org-return-follows-link t)
+  (setq org-return-follows-link t) ;; alt: C-c C-o
   (setq org-hierarchical-todo-statistics t)
   (setq org-log-done 'time)
   (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE" "PERFECT")))
-  (setq org-directory "~/Dropbox/org")
+  (setq org-directory (getenv "ORGHOME"))
   (setq org-default-notes-file (concat org-directory "/notes.org"))
   (setq org-capture-templates
         '(("b" "open-bookmarks" item (file+headline "~/mygit/open-bookmarks/README.org" "ORGCAPTURE")
@@ -272,6 +273,7 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files (quote ("~/Dropbox/org/raytracer.org")))
  '(paradox-github-token t)
  '(safe-local-variable-values (quote ((eval setq-default gac-automatically-push-p t) (require-final-newline)))))
 (custom-set-faces

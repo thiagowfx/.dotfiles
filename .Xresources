@@ -22,14 +22,11 @@ URxvt*font: xft:Inconsolata:size=10:antialias=true
 URxvt.iso14755: false
 
 ! urxvt extensions
-URxvt.perl-ext-common:      default,clipboard,url-select,tabbed
-URxvt.url-select.launcher:  /usr/bin/chromium
-URxvt.url-select.underline: true
+URxvt.perl-ext-common: default,clipboard,tabbed
 URxvt.keysym.Control-Shift-C: perl:clipboard:copy
 URxvt.keysym.Control-Shift-V: perl:clipboard:paste
 
-
-! xcolors.net
+! See http://xcolors.net/
 ! jasonwryan style
 ! Black
 *color0:   #222222

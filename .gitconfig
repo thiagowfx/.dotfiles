@@ -23,6 +23,3 @@ whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
 [color]
 ui = auto
-
-[rerere]
-enabled = true
