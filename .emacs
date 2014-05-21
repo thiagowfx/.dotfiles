@@ -9,7 +9,6 @@
   (load-theme 'wombat t)
   (setq default-frame-alist '((cursor-color . "white")))
   (set-cursor-color "white")
-  (blink-cursor-mode -1)
 
   (package-initialize)
   (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
@@ -116,7 +115,7 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
 
 (when (and (locate-library "key-chord") (locate-library "ace-jump-mode"))
-  (key-chord-define-global "jj" 'ace-jump-char-mode)
+  (key-chord-define-global "jk" 'ace-jump-char-mode)
   (key-chord-define-global "jl" 'ace-jump-line-mode)
   (key-chord-mode 1))
 
