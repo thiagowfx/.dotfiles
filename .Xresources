@@ -12,43 +12,44 @@ XTerm*metaSendsEscape: true
 XTerm*locale: true
 Xterm*saveLines: 4096
 XTerm*reverseVideo: on
-xterm*faceName: xft:Inconsolata:size=10:antialias=true
+xterm*faceName: xft:Inconsolata:size=10:antialias=false
 
 ! urxvt (rxvt-unicode)
+URxvt*scrollTtyOutput: false 
+URxvt*scrollWithBuffer: true
+URxvt*scrollTtyKeypress: true
 URxvt*background: #000000
 URxvt*foreground: #ffffff
 URxvt.scrollBar: false
-URxvt*font: xft:Inconsolata:size=10:antialias=true
+URxvt*font: xft:Inconsolata:size=10:antialias=false
 URxvt.iso14755: false
+URxvt.iso14755_52: false
 
 ! urxvt extensions
-URxvt.perl-ext-common: default,clipboard,tabbed
+! URxvt.perl-ext-common: default,clipboard,selection-to-clipboard,tabbed
+URxvt.perl-ext-common: default,clipboard,selection-to-clipboard,tabbedex
 URxvt.keysym.Control-Shift-C: perl:clipboard:copy
 URxvt.keysym.Control-Shift-V: perl:clipboard:paste
+URxvt.tabbed.autohide: true
+URXvt.tabbed.reopen-on-close: yes
+URxvt.keysym.Meta-Left: perl:tabbedex:prev_tab
+URxvt.keysym.Meta-Right: perl:tabbedex:next_tab
+URxvt.keysym.Control-Shift-T: perl:tabbedex:new_tab
 
-! See http://xcolors.net/
-! jasonwryan style
-! Black
+! http://xcolors.net/ - jasonwryan style
 *color0:   #222222
 *color8:   #454545
-! Red
 *color1:   #9E5641
 *color9:   #CC896D
-! Green
 *color2:   #6C7E55
 *color10:  #7DB37D
-! Yellow
 *color3:   #CAAF2B
 *color11:  #BFB556
-! Blue
 *color4:   #4c8ea1
 *color12:  #6bc1d0
-! Magenta
 *color5:   #956D9D
 *color13:  #C18FCB
-! Cyan
 *color6:   #7C9AA6
 *color14:  #8FADBF
-! White
 *color7:   #909090
 *color15:  #FFFFFF

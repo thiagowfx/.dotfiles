@@ -7,15 +7,15 @@ alias sudo='nocorrect sudo'
 export ALTERNATE_EDITOR=""
 export AURHOME="${HOME}/.aur"
 export BROWSER="/usr/bin/chromium"
-export EDITOR="emacsclient"
+export EDITOR="emacsclient -c"
 export ORGHOME="${HOME}/Dropbox/org"
 export PATH="/usr/lib/ccache/bin:${PATH}"
 export RAMDISK="${HOME}/ramdisk"
 export TERM="xterm-256color"
 export TERMINAL="/usr/bin/urxvt"
-export VISUAL="emacsclient"
+export VISUAL="emacsclient -c"
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
-export HISTCONTROL=ignoreboth # ignore equal and consecutive entries of history and commands beginning with a space
+export HISTCONTROL=ignoreboth
 export LESS="-I -s -r -R"
 
 # verbose|non-verbose output
@@ -30,7 +30,7 @@ alias pingg="ping google.com"
 # change default behavior of some programs
 alias acpi="date && acpi"
 alias colordiff="colordiff -uN"
-alias cower="cower --color=always --sort=votes --target=${AURHOME}"
+alias cower="cower --color=auto --sort=votes --target=${AURHOME}"
 alias df='df -h'
 alias diff="diff -uN"
 alias du="du -h"
@@ -106,24 +106,26 @@ alias xrandr-template-reset="xrandr           --output LVDS1 --primary --mode 13
 alias youtube-dl-template-mp3="youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3"
 alias youtube-dl-template-video="youtube-dl --continue --title --restrict-filenames"
 
-# arch-chroot
 function gentoo-chroot {
-    [[ "$1" == "" ]] && echo "You forgot to add a parameter" && return 1
-    [[ ! -d "$1"  ]] && echo "Specified path doesn't exist" && return 1
-    # network
-    # sudo cp -L /etc/resolv.conf "$1"/etc/resolv.conf
-    # mounts
+    [[ "$1" == "" ]] && echo "Example usage:\ngentoo-chroot /mnt/gentoo" && return 0
+    [[ ! -d "$1"  ]] && echo "Your specified path $1 doesn't exist" && return 1
+    sudo cp -L /etc/resolv.conf "$1"/etc/resolv.conf
     sudo mount -o bind /proc "$1"/proc
-    # sudo mount --rbind /dev  "$1"/dev
-    # sudo mount --rbind /sys  "$1"/sys
-    # chroot itself
+    sudo mount --rbind /dev  "$1"/dev
+    sudo mount --rbind /sys  "$1"/sys
     sudo chroot "$1"/ /bin/env -i TERM=$TERM /bin/bash
 }
 
-# qkkdiff
+function nohup-template {
+    [[ "$1" == "" ]] && echo "Example usage:\nnohup-template urxvtd" && return 0
+    nohup "$1" >/dev/null 2>&1 &
+}
+
 function qkkdiff-file {
-    # Example usage: qkkdiff-file /etc/pacman.conf
-    if [[ -f "$1" ]];
+    if [[ "$1" == "" ]];
+    then
+        echo "Example usage: qkkdiff-file /etc/pacman.conf"
+    elif [[ -f "$1" ]];
     then
         pkg="$(pacman -Qo $1 | awk '//{printf "%s-%s", $(NF-1), $NF;}')"
         bsdtar -xOf /var/cache/pacman/pkg/${pkg}-$(uname -m).pkg.tar.xz "${1/\//}" | diff - "$1"
@@ -135,20 +137,20 @@ function qkkdiff-file {
 }
 
 function qkkdiff {
-    # Example usage: qkkdiff pacman
-    ver=$(pacman -Q "$1" | cut -f2 -d' ')
-    pacman -Qkkq "$1" | while read package file; do echo $file; bsdtar -xOf /var/cache/pacman/pkg/${package}-${ver}-$(uname -m).pkg.tar.xz ${file/\//} | diff - $file  ; done
-    return 0
+    if [[ "$1" == "" ]];
+    then
+        echo "Example usage:\nqkkdiff pacman"
+    elif ! pacman -Q "$1";
+    then
+        return 1
+    else
+        # Example usage: qkkdiff pacman
+        ver=$(pacman -Q "$1" | cut -f2 -d' ')
+        pacman -Qkkq "$1" | while read package file; do echo $file; bsdtar -xOf /var/cache/pacman/pkg/${package}-${ver}-$(uname -m).pkg.tar.xz ${file/\//} | diff - $file  ; done
+        return 0
+    fi
 }
 
 # typos
 alias pacma="pacman"
 alias sl="ls"
-
-# AUR Keychain / modus operandi
-# - /usr/share/pacman/ PROTOs
-# - makepkg -o (sources)
-# - makepkg -g / updpkgsums (checksums)
-# - makepkg --source  / mkaurball (.AURINFO) ==> .tar.xz
-# - tar tvf to see contents
-# - burp

@@ -9,6 +9,8 @@
   (load-theme 'wombat t)
   (setq default-frame-alist '((cursor-color . "white")))
   (set-cursor-color "white")
+  (set-face-attribute 'default nil :height 100)
+  (blink-cursor-mode -1)
 
   (package-initialize)
   (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
@@ -44,9 +46,11 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
 ;; keystrokes/keybindings - RET, "\M-g", [C-tab], (kbd "M-g"), [f1], (kbd "<f1>"), [?\C-\t], (kbd "<C-S-iso-lefttab>")
 (global-set-key "\M-g"          'goto-line)
 (global-set-key (kbd "RET")     'newline-and-indent)
+(global-set-key [f5]            'compile)
 (global-set-key [f9]            'comment-or-uncomment-region)
 (global-set-key (kbd "C-;")     'comment-or-uncomment-region)
 (global-set-key (kbd "M-/")     'hippie-expand)
+(global-unset-key "\C-z")
 
 ;; Miscellaneous
 (prefer-coding-system 'utf-8)
@@ -112,7 +116,8 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
   (global-set-key (kbd "C-+") 'undo-tree-redo))
 
 (when (locate-library "web-mode")
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)
+  (add-to-list 'auto-mode-alist '("\\.php?\\'" . web-mode))))
 
 (when (and (locate-library "key-chord") (locate-library "ace-jump-mode"))
   (key-chord-define-global "jk" 'ace-jump-char-mode)
@@ -189,6 +194,9 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
 ;; -------------------------------------------------------------
 ;; built-in/native libraries
 ;; -------------------------------------------------------------
+(when (locate-library "server")
+  (remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function))
+
 (when (locate-library "autorevert")
   (global-auto-revert-mode t))
 
@@ -261,9 +269,10 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
   (setq compilation-read-command nil)
   (add-hook 'c++-mode-hook
             (lambda () (setq compile-command
-                             (concat "g++ -g -O2 -Wall '"
-                                     (buffer-file-name) "' -o '"
-                                     (file-name-sans-extension buffer-file-name) "'")))))
+			     (format "g++ %s %s -o %s"
+				     "-g -O2 -Wall"
+				     (buffer-file-name)
+				     (file-name-sans-extension buffer-file-name))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom
@@ -272,9 +281,10 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/Dropbox/org/raytracer.org")))
+ '(org-agenda-files (quote ("~/Dropbox/org/MASTERTODO.org" "~/Dropbox/org/MASTERICPC.org" "~/Dropbox/org/raytracer.org")))
  '(paradox-github-token t)
- '(safe-local-variable-values (quote ((eval setq-default gac-automatically-push-p t) (require-final-newline)))))
+ '(safe-local-variable-values (quote ((eval setq-default gac-automatically-push-p t) (require-final-newline))))
+ '(use-file-dialog nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

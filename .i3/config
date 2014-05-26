@@ -4,31 +4,20 @@
 set $Alt Mod1
 set $Win Mod4
 set $mod Mod4
-
-set $BROWSER        "/usr/bin/chromium"
-set $EDITOR         "/usr/bin/emacsclient -c"
-set $FILEMANAGER    "/usr/bin/thunar"
-set $I3LOCK         "i3lock-wrapper"
-set $PROCESSMANAGER i3-sensible-terminal -e "/usr/bin/htop"
+set $I3LOCK i3lock-wrapper
+floating_modifier $mod
 
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 font pango:Bitter 8.7
 
-# use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
 bindsym $mod+Return    exec --no-startup-id i3-sensible-terminal
-bindsym $mod+minus     exec --no-startup-id $BROWSER
-bindsym $mod+equal     exec --no-startup-id $EDITOR
-bindsym $mod+BackSpace exec --no-startup-id $FILEMANAGER
-bindsym $mod+Escape    exec --no-startup-id $PROCESSMANAGER
+bindsym $mod+equal     exec --no-startup-id "/usr/bin/emacsclient -c"
+bindsym $mod+BackSpace exec --no-startup-id "/usr/bin/thunar"
+bindsym $mod+Escape    exec --no-startup-id "/usr/bin/htop"
+bindsym $mod+d         exec --no-startup-id i3-dmenu-desktop
 
-# kill focused window
 bindsym $mod+Shift+q kill
 bindsym $Alt+F4      kill
-
-# start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop # i3-dmenu-desktop|dmenu_run
 
 # change focus
 bindsym $mod+Left focus left
@@ -42,11 +31,8 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal/vertical orientation
 bindsym $mod+h split h
 bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
@@ -54,16 +40,10 @@ bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-# toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
-# focus the parent container
 bindsym $mod+a focus parent
-
-# focus the child (baby) container
 bindsym $mod+b focus child
 
 # workspace labels
@@ -79,8 +59,8 @@ set $workspace9 9:HDMI
 set $workspace0 zero
 
 # assign: use xorg-xprop to learn the class string
-assign [class="^Chromium$|Firefox"] → $workspace2
-assign [class="Claws-mail|irssi|weechat|Xchat"]   → $workspace7
+assign [class="^Chromium$|Firefox|dwb"] → $workspace2
+assign [class="Claws-mail|irssi|qbittorrent|weechat|Xchat"] → $workspace7
 assign [class="Audacious|Clementine|Spotify|Vlc"] → $workspace8
 
 # workspace outputs
@@ -119,15 +99,11 @@ bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace0
 
-# reload the configuration file
 bindsym $mod+Shift+c reload
-
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-  # These bindings trigger as soon as you enter the resize mode
   set $step 10
 
   bindsym j resize shrink width $step px or $step ppt
@@ -135,13 +111,11 @@ mode "resize" {
   bindsym l resize shrink height $step px or $step ppt
   bindsym semicolon resize grow width $step px or $step ppt
 
-  # same bindings, but for the arrow keys
   bindsym Left resize shrink width $step px or $step ppt
   bindsym Down resize grow height $step px or $step ppt
   bindsym Up resize shrink height $step px or $step ppt
   bindsym Right resize grow width $step px or $step ppt
 
-  # back to normal: Enter or Escape or space
   bindsym Return mode "default"
   bindsym Escape mode "default"
   bindsym space mode "default"
@@ -158,26 +132,13 @@ set $mode_system (l)ock, (e)logout, (s)uspend, (h)ibernate, (r)eboot, Shift+(s)h
   bindsym r exec --no-startup-id systemctl reboot
   bindsym Shift+s exec --no-startup-id systemctl poweroff
 
-  # back to normal: Enter or Escape
   bindsym Return mode "default"
   bindsym Escape mode "default"
   bindsym space mode "default"
 }
 bindsym $mod+l mode "$mode_system"
 
-# Theme 1 - default colors
-# class                   border  backgr. text    indicator
-# client.focused          #4c7899 #285577 #ffffff #2e9ef4
-# client.focused_inactive #333333 #5f676a #ffffff #484e50
-# client.unfocused        #333333 #222222 #888888 #292d2e
-# client.urgent           #2f343a #900000 #ffffff #900000
-
-# Theme 2 - solarized
-# client.focused          #859900 #859900 #fdf6e3 #2e9ef4
-# client.focused_inactive #268bd2 #268bd2 #fdf6e3 #484e50
-# client.unfocused        #333333 #93a1a1 #fdf6e3 #292d2e
-
-# Theme 3 - grayscale
+# Themes
 set $banana #b58900
 set $gray1  #686868
 set $gray2  #333333
@@ -186,17 +147,31 @@ set $orange #cb4b16
 set $red    #ff0000
 set $white0 #bbbbbb
 set $white1 #eee8d5
-client.focused            $banana  $banana  $white1   $gray2
-client.focused_inactive   $gray1   $gray2   $white1   $gray3
-client.unfocused          $gray1   $gray2   $white1   $gray3
+
+# Theme 1 - default colors
+# class                   border  backgr. text    indicator
+client.focused          #4c7899 #285577 #ffffff #2e9ef4
+client.focused_inactive #333333 #5f676a #ffffff #484e50
+client.unfocused        #333333 #222222 #888888 #292d2e
+client.urgent           #2f343a #900000 #ffffff #900000
+
+# Theme 2 - solarized
+# client.focused          #859900 #859900 #fdf6e3 #2e9ef4
+# client.focused_inactive #268bd2 #268bd2 #fdf6e3 #484e50
+# client.unfocused        #333333 #93a1a1 #fdf6e3 #292d2e
+
+# Theme 3 - grayscale
+# client.focused            $banana  $banana  $white1   $gray2
+# client.focused_inactive   $gray1   $gray2   $white1   $gray3
+# client.unfocused          $gray1   $gray2   $white1   $gray3
 
 # Start i3bar to display system information
 bar {
-    status_command i3status # i3status|python ~/.i3pystatus.py
+    status_command i3status
     position top
     mode dock
     # tray_output  # LVDS1|primary|none
-colors {
+# colors {
        # Theme 2 - solarized
        # background $gray3
        # statusline $white1
@@ -205,11 +180,11 @@ colors {
        # inactive_workspace $banana $banana $white1
 
        # Theme 3 - grayscale
-       statusline $white0
-       background $gray2
-       focused_workspace  $red   $gray3 $white1
-       inactive_workspace $gray1 $gray1 $white0
-    }
+       # statusline $white0
+       # background $gray2
+       # focused_workspace  $red   $gray3 $white1
+       # inactive_workspace $gray1 $gray1 $white0
+#     }
 }
 
 # Custom hotkeys: use xev to learn the hotkey names
@@ -225,34 +200,28 @@ bindsym XF86Play                   exec /usr/bin/audacious --play-pause
 bindsym Shift+XF86AudioRaiseVolume exec /usr/bin/audacious --fwd
 bindsym Shift+XF86AudioLowerVolume exec /usr/bin/audacious --rew
 bindsym Shift+XF86AudioMute        exec /usr/bin/audacious --play-pause
-bindsym $Mod+XF86AudioMute         exec i3-sensible-terminal -e "/usr/bin/alsamixer"
+bindsym $Mod+XF86AudioMute         exec i3-sensible-terminal -e "/usr/bin/alsamixer" && killall -SIGUSR1 i3status
 
-# alt tab style
-bindsym $Win+Tab workspace next
-bindsym $Win+Shift+Tab workspace prev
-bindsym $Alt+Tab focus right
-bindsym $Alt+Shift+Tab focus left
-
-# Scratchpad
+# scratchpad
 bindsym $mod+m move scratchpad
 bindsym $mod+o scratchpad show
 
-# Options tweaking
+# options tweaking
 default_orientation            auto
 focus_follows_mouse            yes
 workspace_auto_back_and_forth  yes
-workspace_layout               stacking # stacking|tabbed
+workspace_layout               tabbed # stacking|tabbed
 
 # for_window
 for_window [window_role="pop-up"] floating enable, move absolute center
-for_window [class="scratch|sscratch|scratchpad"] move scratchpad
-for_window [class="^Chromium$|Firefox"] border 1pixel
+for_window [class="^Chromium$|Firefox|dwb|^Emacs$"] border 1pixel
 for_window [class="Arandr|Epsxe|feh|Galculator|gimp|Java|Lxappearance|MPlayer|Viewnior|qtRaytracer"] floating enable
 
 # i3 startup
 # exec --no-startup-id $I3LOCK
 exec --no-startup-id i3-msg 'workspace $workspace1; exec ${TERMINAL}'
 exec --no-startup-id "/usr/bin/autocutsel -fork"
+exec --no-startup-id "/usr/bin/autocutsel -selection PRIMARY -fork &"
 exec --no-startup-id "/usr/bin/compton -b"
 exec --no-startup-id /usr/bin/CopyAgent
 exec --no-startup-id /usr/bin/dropboxd

@@ -34,7 +34,6 @@ shopt -s expand_aliases
 shopt -s extglob
 shopt -s histappend
 shopt -s hostcomplete
-shopt -s ignoreeof
 shopt -s nocaseglob
 
 # colored man pages
