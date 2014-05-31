@@ -31,10 +31,6 @@ URxvt.perl-ext-common: default,clipboard,selection-to-clipboard,tabbedex
 URxvt.keysym.Control-Shift-C: perl:clipboard:copy
 URxvt.keysym.Control-Shift-V: perl:clipboard:paste
 URxvt.tabbed.autohide: true
-URXvt.tabbed.reopen-on-close: yes
-URxvt.keysym.Meta-Left: perl:tabbedex:prev_tab
-URxvt.keysym.Meta-Right: perl:tabbedex:next_tab
-URxvt.keysym.Control-Shift-T: perl:tabbedex:new_tab
 
 ! http://xcolors.net/ - jasonwryan style
 *color0:   #222222

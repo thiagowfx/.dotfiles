@@ -12,7 +12,9 @@
 #include <cstring>
 #include <ctime>
 #include <deque>
+#include <functional>
 #include <iostream>
+#include <limits>
 #include <list>
 #include <map>
 #include <queue>

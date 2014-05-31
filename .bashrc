@@ -9,15 +9,12 @@
 
 # Prompt
 PS1='\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]\[\033[1;32m\] \$\[\033[m\] '
-
-## Prompt :: Git support
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
 }
 PS1="\[\e[0;32m\]\$(parse_git_branch)\[\e[m\]$PS1"
 
-
-# Autocompletion
+# autocompletion
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
     complete -cf sudo

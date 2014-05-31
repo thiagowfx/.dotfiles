@@ -47,12 +47,12 @@ bindsym $mod+a focus parent
 bindsym $mod+b focus child
 
 # workspace labels
-set $workspace1 1:sh
+set $workspace1 1:./
 set $workspace2 2:www
 set $workspace3 3
 set $workspace4 4
 set $workspace5 5
-set $workspace6 6
+set $workspace6 6:stub
 set $workspace7 7:comm
 set $workspace8 8:♪media
 set $workspace9 9:HDMI
@@ -60,7 +60,7 @@ set $workspace0 zero
 
 # assign: use xorg-xprop to learn the class string
 assign [class="^Chromium$|Firefox|dwb"] → $workspace2
-assign [class="Claws-mail|irssi|qbittorrent|weechat|Xchat"] → $workspace7
+assign [class="Claws-mail|irssi|qbittorrent|weechat|Xchat|Quassel"] → $workspace7
 assign [class="Audacious|Clementine|Spotify|Vlc"] → $workspace8
 
 # workspace outputs
@@ -138,53 +138,10 @@ set $mode_system (l)ock, (e)logout, (s)uspend, (h)ibernate, (r)eboot, Shift+(s)h
 }
 bindsym $mod+l mode "$mode_system"
 
-# Themes
-set $banana #b58900
-set $gray1  #686868
-set $gray2  #333333
-set $gray3  #101010
-set $orange #cb4b16
-set $red    #ff0000
-set $white0 #bbbbbb
-set $white1 #eee8d5
-
-# Theme 1 - default colors
-# class                   border  backgr. text    indicator
-client.focused          #4c7899 #285577 #ffffff #2e9ef4
-client.focused_inactive #333333 #5f676a #ffffff #484e50
-client.unfocused        #333333 #222222 #888888 #292d2e
-client.urgent           #2f343a #900000 #ffffff #900000
-
-# Theme 2 - solarized
-# client.focused          #859900 #859900 #fdf6e3 #2e9ef4
-# client.focused_inactive #268bd2 #268bd2 #fdf6e3 #484e50
-# client.unfocused        #333333 #93a1a1 #fdf6e3 #292d2e
-
-# Theme 3 - grayscale
-# client.focused            $banana  $banana  $white1   $gray2
-# client.focused_inactive   $gray1   $gray2   $white1   $gray3
-# client.unfocused          $gray1   $gray2   $white1   $gray3
-
-# Start i3bar to display system information
 bar {
     status_command i3status
     position top
     mode dock
-    # tray_output  # LVDS1|primary|none
-# colors {
-       # Theme 2 - solarized
-       # background $gray3
-       # statusline $white1
-       # focused_workspace  $gray3  $orange $white1
-       # active_workspace   $orange $orange $white1
-       # inactive_workspace $banana $banana $white1
-
-       # Theme 3 - grayscale
-       # statusline $white0
-       # background $gray2
-       # focused_workspace  $red   $gray3 $white1
-       # inactive_workspace $gray1 $gray1 $white0
-#     }
 }
 
 # Custom hotkeys: use xev to learn the hotkey names
@@ -194,9 +151,6 @@ bindsym XF86MonBrightnessDown      exec --no-startup-id /usr/bin/xbacklight -dec
 bindsym XF86AudioLowerVolume       exec /usr/bin/amixer set Master 5%- unmute && killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume       exec /usr/bin/amixer set Master 5%+ unmute && killall -SIGUSR1 i3status
 bindsym XF86AudioMute              exec /usr/bin/amixer set Master toggle     && killall -SIGUSR1 i3status
-bindsym XF86AudioNext              exec /usr/bin/audacious --fwd
-bindsym XF86AudioPrev              exec /usr/bin/audacious --rew
-bindsym XF86Play                   exec /usr/bin/audacious --play-pause
 bindsym Shift+XF86AudioRaiseVolume exec /usr/bin/audacious --fwd
 bindsym Shift+XF86AudioLowerVolume exec /usr/bin/audacious --rew
 bindsym Shift+XF86AudioMute        exec /usr/bin/audacious --play-pause
@@ -208,18 +162,15 @@ bindsym $mod+o scratchpad show
 
 # options tweaking
 default_orientation            auto
-focus_follows_mouse            yes
-workspace_auto_back_and_forth  yes
-workspace_layout               tabbed # stacking|tabbed
+workspace_auto_back_and_forth  no
+workspace_layout               default # default|stacking|tabbed
 
 # for_window
 for_window [window_role="pop-up"] floating enable, move absolute center
-for_window [class="^Chromium$|Firefox|dwb|^Emacs$"] border 1pixel
+for_window [class="^Chromium$|Firefox|dwb|^Emacs$|Zathura|URxvt|Calibre"] border 1pixel
 for_window [class="Arandr|Epsxe|feh|Galculator|gimp|Java|Lxappearance|MPlayer|Viewnior|qtRaytracer"] floating enable
 
 # i3 startup
-# exec --no-startup-id $I3LOCK
-exec --no-startup-id i3-msg 'workspace $workspace1; exec ${TERMINAL}'
 exec --no-startup-id "/usr/bin/autocutsel -fork"
 exec --no-startup-id "/usr/bin/autocutsel -selection PRIMARY -fork &"
 exec --no-startup-id "/usr/bin/compton -b"
@@ -230,6 +181,6 @@ exec --no-startup-id "/usr/bin/emacs --daemon"
 exec --no-startup-id "/usr/bin/hsetroot -solid '#111019'"
 exec --no-startup-id /usr/bin/nm-applet
 exec --no-startup-id /usr/bin/parcellite
-exec --no-startup-id /usr/bin/redshift
+# exec --no-startup-id /usr/bin/redshift
 exec --no-startup-id "/usr/bin/thunar --daemon"
 exec --no-startup-id "/usr/bin/udiskie --tray"

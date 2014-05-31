@@ -117,7 +117,7 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
 
 (when (locate-library "web-mode")
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)
-  (add-to-list 'auto-mode-alist '("\\.php?\\'" . web-mode))))
+               (add-to-list 'auto-mode-alist '("\\.php?\\'" . web-mode))))
 
 (when (and (locate-library "key-chord") (locate-library "ace-jump-mode"))
   (key-chord-define-global "jk" 'ace-jump-char-mode)
@@ -134,12 +134,12 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
   (global-set-key "\C-cl" 'org-store-link)
   (global-set-key "\C-c\C-l" 'org-insert-link)
   (setq org-src-fontify-natively t)
-  (setq org-return-follows-link t) ;; alt: C-c C-o
   (setq org-hierarchical-todo-statistics t)
-  (setq org-log-done 'time)
   (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE" "PERFECT")))
   (setq org-directory (getenv "ORGHOME"))
   (setq org-default-notes-file (concat org-directory "/notes.org"))
+  ;; (setq org-return-follows-link t) ;; alt: C-c C-o
+  ;; (setq org-log-done 'time)
   (setq org-capture-templates
         '(("b" "open-bookmarks" item (file+headline "~/mygit/open-bookmarks/README.org" "ORGCAPTURE")
            "- %?\n %i\n")
@@ -269,10 +269,10 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
   (setq compilation-read-command nil)
   (add-hook 'c++-mode-hook
             (lambda () (setq compile-command
-			     (format "g++ %s %s -o %s"
-				     "-g -O2 -Wall"
-				     (buffer-file-name)
-				     (file-name-sans-extension buffer-file-name))))))
+                             (format "g++ %s %s -o %s"
+                                     "-g -O2 -Wall"
+                                     (buffer-file-name)
+                                     (file-name-sans-extension buffer-file-name))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom

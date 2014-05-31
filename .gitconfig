@@ -1,8 +1,5 @@
 # -*- conf -*-
 
-[push]
-default = tracking
-
 [user]
 name = Thiago Perrotta
 email = thiagoperrotta95@gmail.com
@@ -14,7 +11,7 @@ helper = store # store|cache --timeout=7200
 logg = log --graph --decorate --pretty=oneline --abbrev-commit --all
 logh = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 logr = log --graph --oneline --decorate
-lz = commit -a -m "update"
+lazy = commit -a -m "update"
 st = status
 puhs = push
 

@@ -1,2 +1,2 @@
-# Security reasons.
+# Security
 clear

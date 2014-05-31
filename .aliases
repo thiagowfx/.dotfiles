@@ -9,7 +9,6 @@ export AURHOME="${HOME}/.aur"
 export BROWSER="/usr/bin/chromium"
 export EDITOR="emacsclient -c"
 export ORGHOME="${HOME}/Dropbox/org"
-export PATH="/usr/lib/ccache/bin:${PATH}"
 export RAMDISK="${HOME}/ramdisk"
 export TERM="xterm-256color"
 export TERMINAL="/usr/bin/urxvt"
@@ -48,63 +47,39 @@ alias rsync="rsync --progress"
 alias smem="smem -k"
 alias strace="strace -t"
 
-# android
+# templates
 alias android-emulator-template="emulator -avd "Intel-10-480x800" -qemu --enable-kvm -dns-server 8.8.8.8,8.8.4.4"
 alias android-emulator-template-kill="adb emu kill"
-
-# dmidecode
 alias dmidecode-template="sudo dmidecode -t 1"
-
-# ffmpeg
 alias ffmpeg-template-screencast-plusmic="ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -f alsa -ac 2 -i pulse -qscale 0 /tmp/out.mpg"
 alias ffmpeg-template-screencast="ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -qscale 0 /tmp/out.mpg"
-
-# inxi
 alias inxi-template="inxi -F -M"
-
-# jekyll
 alias jekyll-serve-template="jekyll serve --baseurl='' --watch"
-
-# qemu
 alias qemu-template-test-iso="qemu-system-x86_64 --enable-kvm -m 512M -cdrom" # <path here>
-
-# systemd-nspawn
 alias systemd-nspawn-template="systemd-nspawn -bD"
-
-# vnc
 alias vncserver-template-connect="vncviewer -passwd ~/.vnc/passwd localhost:1"
 alias vncserver-template-kill="vncserver -kill :1"
 alias vncserver-template-start="vncserver -geometry 960x540 -alwaysshared -dpi 96 :1" # using DISPLAY=:1
-
-# wget
 alias wget-template-pdf="wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
 alias wget-template-spider="wget -e robots=off --wait=2 --random-wait --recursive --span-hosts --spider --timestamping --tries=5 --dns-timeout=30 --connect-timeout=5 --read-timeout=5 --level=10 --"
-
-# wine
 alias winetricks-template-install="winetricks corefonts vcrun2005 vcrun2008 vb6run"
 export WINEARCH="win64"
 export WINEDEBUG="fixme-all"
 export WINEPREFIX="${HOME}/.wine"
 export WINEDLLOVERRIDES="winemenubuilder.exe=d" # stop creating shortcuts, desktop files and associating mimetypes
-
-# world
-alias pacman-template-extrapkgs="comm -23 <(pacman -Qeq|sort) <(pacman -Qgq base base-devel|sort)"
-alias world="sudo pacman -Syu"
-alias world-aur="pacaur -Syua --noedit"
-alias world-gentoo='su -c "emerge --sync && emerge -avuDN --with-bdeps y --keep-going @world && emerge -v --depclean && revdep-rebuild -v && dispatch-conf && etc-update && eclean -d distfiles"'
-
-# xephyr
 alias xephyr-template="Xephyr -ac -br -noreset -screen 1024x768 :1" # export DISPLAY=:1 to execute commands
-
-# xrandr
 alias xrandr-template-hdmi-connect="xrandr    --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1"
 alias xrandr-template-hdmi-disconnect="xrandr --output HDMI1 --off"
 alias xrandr-template-hdmi-mirror="xrandr     --output LVDS1 --primary --auto --output HDMI1 --auto --same-as LVDS1"
 alias xrandr-template-reset="xrandr           --output LVDS1 --primary --mode 1366x768" # useful for fullscreen games on wine
-
-# youtube-dl
 alias youtube-dl-template-mp3="youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3"
 alias youtube-dl-template-video="youtube-dl --continue --title --restrict-filenames"
+
+# world
+alias pacman-template-extrapkgs="comm -23 <(pacman -Qeq|sort) <(pacman -Qgq base base-devel|sort)"
+alias world="sudo pacman -Syu"
+alias worldall="pacaur -Syua --noedit"
+alias world-gentoo='su -c "emerge --sync && emerge -avuDN --with-bdeps y --keep-going @world && emerge -v --depclean && revdep-rebuild -v && dispatch-conf && etc-update && eclean -d distfiles"'
 
 function gentoo-chroot {
     [[ "$1" == "" ]] && echo "Example usage:\ngentoo-chroot /mnt/gentoo" && return 0
