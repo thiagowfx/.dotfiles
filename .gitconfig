@@ -1,5 +1,8 @@
 # -*- conf -*-
 
+[push]
+default = simple
+
 [user]
 name = Thiago Perrotta
 email = thiagoperrotta95@gmail.com
