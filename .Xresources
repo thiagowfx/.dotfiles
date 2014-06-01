@@ -12,16 +12,19 @@ XTerm*metaSendsEscape: true
 XTerm*locale: true
 Xterm*saveLines: 4096
 XTerm*reverseVideo: on
-xterm*faceName: xft:Inconsolata:size=10:antialias=false
+
+! Emacs
+Emacs.font: Terminus-9
 
 ! urxvt (rxvt-unicode)
 URxvt*scrollTtyOutput: false 
 URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
+URxvt*termName: rxvt-unicode
 URxvt*background: #000000
 URxvt*foreground: #ffffff
 URxvt.scrollBar: false
-URxvt*font: xft:Inconsolata:size=10:antialias=false
+URxvt*font: xft:Terminus:size=9:antialias=true
 URxvt.iso14755: false
 URxvt.iso14755_52: false
 

@@ -8,7 +8,7 @@ set $I3LOCK i3lock-wrapper
 floating_modifier $mod
 
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:Bitter 8.7
+font pango:Terminus 9.0
 
 bindsym $mod+Return    exec --no-startup-id i3-sensible-terminal
 bindsym $mod+equal     exec --no-startup-id "/usr/bin/emacsclient -c"
@@ -19,13 +19,11 @@ bindsym $mod+d         exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+Shift+q kill
 bindsym $Alt+F4      kill
 
-# change focus
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# move focused window
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -35,7 +33,6 @@ bindsym $mod+h split h
 bindsym $mod+v split v
 bindsym $mod+f fullscreen
 
-# change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
@@ -46,24 +43,23 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 bindsym $mod+b focus child
 
-# workspace labels
 set $workspace1 1:./
 set $workspace2 2:www
 set $workspace3 3
 set $workspace4 4
 set $workspace5 5
-set $workspace6 6:stub
+set $workspace6 6:code
 set $workspace7 7:comm
 set $workspace8 8:♪media
 set $workspace9 9:HDMI
-set $workspace0 zero
+set $workspace0 zero:stub
 
 # assign: use xorg-xprop to learn the class string
 assign [class="^Chromium$|Firefox|dwb"] → $workspace2
+assign [class="^QtCreator$"] → $workspace6
 assign [class="Claws-mail|irssi|qbittorrent|weechat|Xchat|Quassel"] → $workspace7
 assign [class="Audacious|Clementine|Spotify|Vlc"] → $workspace8
 
-# workspace outputs
 workspace $workspace1 output LVDS1
 workspace $workspace2 output LVDS1
 workspace $workspace3 output LVDS1
@@ -75,7 +71,6 @@ workspace $workspace8 output LVDS1
 workspace $workspace9 output HDMI1
 workspace $workspace0 output HDMI1
 
-# switch to workspace
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
@@ -87,7 +82,6 @@ bindsym $mod+8 workspace $workspace8
 bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace0
 
-# move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
 bindsym $mod+Shift+2 move container to workspace $workspace2
 bindsym $mod+Shift+3 move container to workspace $workspace3
@@ -102,44 +96,48 @@ bindsym $mod+Shift+0 move container to workspace $workspace0
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
-# resize window (you can also use the mouse for that)
 mode "resize" {
   set $step 10
-
   bindsym j resize shrink width $step px or $step ppt
   bindsym k resize grow height $step px or $step ppt
   bindsym l resize shrink height $step px or $step ppt
   bindsym semicolon resize grow width $step px or $step ppt
-
   bindsym Left resize shrink width $step px or $step ppt
   bindsym Down resize grow height $step px or $step ppt
   bindsym Up resize shrink height $step px or $step ppt
   bindsym Right resize grow width $step px or $step ppt
-
   bindsym Return mode "default"
   bindsym Escape mode "default"
-  bindsym space mode "default"
 }
 bindsym $mod+r mode "resize"
 
 set $mode_system (l)ock, (e)logout, (s)uspend, (h)ibernate, (r)eboot, Shift+(s)hutdown
-  mode "$mode_system" {
-
+mode "$mode_system" {
   bindsym l exec --no-startup-id $I3LOCK, mode "default"
   bindsym e exec --no-startup-id i3-msg exit
   bindsym s exec --no-startup-id $I3LOCK && systemctl suspend, mode "default"
   bindsym h exec --no-startup-id systemctl hibernate, mode "default"
   bindsym r exec --no-startup-id systemctl reboot
   bindsym Shift+s exec --no-startup-id systemctl poweroff
-
   bindsym Return mode "default"
   bindsym Escape mode "default"
-  bindsym space mode "default"
 }
 bindsym $mod+l mode "$mode_system"
 
+set $mode_init_workspace Init workspace (1)./, (2)www, (7)comm, (8)media
+mode "$mode_init_workspace" {
+  bindsym 1 exec --no-startup-id /usr/bin/urxvt, mode "default"
+  bindsym 2 exec --no-startup-id /usr/bin/chromium, mode "default"
+  bindsym 7 exec --no-startup-id /usr/bin/quassel; exec --no-startup-id /usr/bin/claws-mail, mode "default"
+  bindsym 8 exec --no-startup-id /usr/bin/audacious, mode "default"
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+bindsym $mod+q mode "$mode_init_workspace"
+
 bar {
-    status_command i3status
+    # status_command i3status
+    status_command i3blocks
     position top
     mode dock
 }
@@ -148,8 +146,8 @@ bar {
 bindsym Print                      exec --no-startup-id /usr/bin/scrot '%Y-%m-%d_%H%M%S_$wx$h_scrot.png' -e 'mv $f ~/ramdisk/' && notify-send 'SS taken'
 bindsym XF86MonBrightnessUp        exec --no-startup-id /usr/bin/xbacklight -inc 5 -time 0
 bindsym XF86MonBrightnessDown      exec --no-startup-id /usr/bin/xbacklight -dec 5 -time 0
-bindsym XF86AudioLowerVolume       exec /usr/bin/amixer set Master 5%- unmute && killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume       exec /usr/bin/amixer set Master 5%+ unmute && killall -SIGUSR1 i3status
+bindsym XF86AudioLowerVolume       exec /usr/bin/amixer set Master 3%- unmute && killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume       exec /usr/bin/amixer set Master 3%+ unmute && killall -SIGUSR1 i3status
 bindsym XF86AudioMute              exec /usr/bin/amixer set Master toggle     && killall -SIGUSR1 i3status
 bindsym Shift+XF86AudioRaiseVolume exec /usr/bin/audacious --fwd
 bindsym Shift+XF86AudioLowerVolume exec /usr/bin/audacious --rew
@@ -172,7 +170,7 @@ for_window [class="Arandr|Epsxe|feh|Galculator|gimp|Java|Lxappearance|MPlayer|Vi
 
 # i3 startup
 exec --no-startup-id "/usr/bin/autocutsel -fork"
-exec --no-startup-id "/usr/bin/autocutsel -selection PRIMARY -fork &"
+# exec --no-startup-id "/usr/bin/autocutsel -selection PRIMARY -fork &"
 exec --no-startup-id "/usr/bin/compton -b"
 exec --no-startup-id /usr/bin/CopyAgent
 exec --no-startup-id /usr/bin/dropboxd
@@ -181,6 +179,6 @@ exec --no-startup-id "/usr/bin/emacs --daemon"
 exec --no-startup-id "/usr/bin/hsetroot -solid '#111019'"
 exec --no-startup-id /usr/bin/nm-applet
 exec --no-startup-id /usr/bin/parcellite
-# exec --no-startup-id /usr/bin/redshift
+exec --no-startup-id /usr/bin/redshift
 exec --no-startup-id "/usr/bin/thunar --daemon"
 exec --no-startup-id "/usr/bin/udiskie --tray"

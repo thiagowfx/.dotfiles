@@ -10,6 +10,7 @@
   (setq default-frame-alist '((cursor-color . "white")))
   (set-cursor-color "white")
   (set-face-attribute 'default nil :height 100)
+  (set-default-font "Terminus-9")
   (blink-cursor-mode -1)
 
   (package-initialize)
@@ -46,7 +47,7 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
 ;; keystrokes/keybindings - RET, "\M-g", [C-tab], (kbd "M-g"), [f1], (kbd "<f1>"), [?\C-\t], (kbd "<C-S-iso-lefttab>")
 (global-set-key "\M-g"          'goto-line)
 (global-set-key (kbd "RET")     'newline-and-indent)
-(global-set-key [f5]            'compile)
+(global-set-key [f16]            'compile)
 (global-set-key [f9]            'comment-or-uncomment-region)
 (global-set-key (kbd "C-;")     'comment-or-uncomment-region)
 (global-set-key (kbd "M-/")     'hippie-expand)
@@ -281,7 +282,7 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/Dropbox/org/MASTERTODO.org" "~/Dropbox/org/MASTERICPC.org" "~/Dropbox/org/raytracer.org")))
+ '(org-agenda-files (quote ("~/Dropbox/org/icpc.org" "~/Dropbox/org/todo.org" "~/Dropbox/org/raytracer.org")))
  '(paradox-github-token t)
  '(safe-local-variable-values (quote ((eval setq-default gac-automatically-push-p t) (require-final-newline))))
  '(use-file-dialog nil))
