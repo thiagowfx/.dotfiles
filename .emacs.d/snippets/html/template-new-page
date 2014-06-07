@@ -1,6 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: htmlemplate
-# key: htmlemplate
+# name: template-new-page
+# key: template-new-page
 # --
 <!DOCTYPE html>
 <html>

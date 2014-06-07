@@ -1,6 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name : icpctemplate
-# key : icpctemplate
+# name : template-icpc
+# key : template-icpc
 # --
 #include <algorithm>
 #include <bitset>

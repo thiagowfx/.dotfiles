@@ -182,4 +182,3 @@ exec --no-startup-id /usr/bin/parcellite
 exec --no-startup-id /usr/bin/redshift
 exec --no-startup-id "/usr/bin/thunar --daemon"
 exec --no-startup-id "/usr/bin/udiskie --tray"
-exec --no-startup-id "/usr/bin/urxvtd"

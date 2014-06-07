@@ -5,7 +5,7 @@
   (setq user-full-name "Thiago Perrotta"))
 
 (let* ((my-lisp-dir "~/.emacs.d/")
-        (default-directory my-lisp-dir))
+       (default-directory my-lisp-dir))
   (setq load-path (cons my-lisp-dir load-path))
   (normal-top-level-add-subdirs-to-load-path))
 
@@ -27,7 +27,7 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
   (switch-to-next-buffer))
 (defun hsplit-last-buffer ()
   (interactive)
-   (split-window-horizontally)
+  (split-window-horizontally)
   (other-window 1 nil)
   (switch-to-next-buffer))
 (global-set-key (kbd "C-x 2") 'vsplit-last-buffer)
@@ -202,8 +202,6 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
                      ac-source-words-in-buffer
                      ac-source-words-in-same-mode-buffers)))
 
-(require 'save-buffers-with-diff)
-
 ;; -------------------------------------------------------------
 ;; built-in/native libraries
 ;; -------------------------------------------------------------
@@ -269,7 +267,7 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
 (when (locate-library "savehist")
   (require 'savehist)
   (savehist-mode t)
-  (setq savehist-file (concat user-emacs-directory "history"))
+  (setq savehist-file (concat user-emacs-directory "history")))
 
 (when (locate-library "saveplace")
   (require 'saveplace)

@@ -11,7 +11,7 @@ export EDITOR="emacsclient -c"
 export ORGHOME="${HOME}/Dropbox/org"
 export RAMDISK="${HOME}/ramdisk"
 export TERM="rxvt-unicode"
-export TERMINAL="/usr/bin/urxvtc"
+export TERMINAL="/usr/bin/urxvt"
 export VISUAL="emacsclient -c"
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 export HISTCONTROL=ignoreboth
