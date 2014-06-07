@@ -1,20 +1,17 @@
 ;; -*- emacs-lisp -*-
 
+(progn
+  ;; Personal
+  (setq user-full-name "Thiago Perrotta"))
+
 (let* ((my-lisp-dir "~/.emacs.d/")
-       (default-directory my-lisp-dir))
+        (default-directory my-lisp-dir))
   (setq load-path (cons my-lisp-dir load-path))
   (normal-top-level-add-subdirs-to-load-path))
 
 (when (>= emacs-major-version 24)
   (load-theme 'wombat t)
-  (setq default-frame-alist '((cursor-color . "white")))
-  (set-cursor-color "white")
-  (set-face-attribute 'default nil :height 100)
-  (set-default-font "Terminus-9")
-  (blink-cursor-mode -1)
-
   (package-initialize)
-  (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/")))
 
 (defun add-something-to-mode-hooks (mode-list something)
@@ -22,6 +19,19 @@
 Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight))"
   (dolist (mode mode-list)
     (add-hook (intern (concat (symbol-name mode) "-mode-hook")) something)))
+
+(defun vsplit-last-buffer ()
+  (interactive)
+  (split-window-vertically)
+  (other-window 1 nil)
+  (switch-to-next-buffer))
+(defun hsplit-last-buffer ()
+  (interactive)
+   (split-window-horizontally)
+  (other-window 1 nil)
+  (switch-to-next-buffer))
+(global-set-key (kbd "C-x 2") 'vsplit-last-buffer)
+(global-set-key (kbd "C-x 3") 'hsplit-last-buffer)
 
 (defun replace-last-sexp ()
   "Eval inplace."
@@ -31,11 +41,6 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
     (insert (format "%s" value))))
 (global-set-key "\C-c\C-x\C-e" 'replace-last-sexp)
 
-(defun kill-all-buffers ()
-  (interactive)
-  (mapc 'kill-buffer (buffer-list)))
-(global-set-key "\C-c\C-xk" 'kill-all-buffers)
-
 (defun cleanup-buffer ()
   "Buffer cleaning, performing a bunch of operations on the whitespace content of it."
   (interactive)
@@ -44,14 +49,15 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
   (delete-trailing-whitespace))
 (global-set-key [f12] 'cleanup-buffer)
 
-;; keystrokes/keybindings - RET, "\M-g", [C-tab], (kbd "M-g"), [f1], (kbd "<f1>"), [?\C-\t], (kbd "<C-S-iso-lefttab>")
-(global-set-key "\M-g"          'goto-line)
-(global-set-key (kbd "RET")     'newline-and-indent)
-(global-set-key [f16]            'compile)
-(global-set-key [f9]            'comment-or-uncomment-region)
-(global-set-key (kbd "C-;")     'comment-or-uncomment-region)
-(global-set-key (kbd "M-/")     'hippie-expand)
-(global-unset-key "\C-z")
+(progn
+  ;; Shortcut keys
+  ;; keystrokes/keybindings - RET, "\M-g", [C-tab], (kbd "M-g"), [f1], (kbd "<f1>"), [?\C-\t], (kbd "<C-S-iso-lefttab>")
+  (global-set-key (kbd "RET")     'newline-and-indent)
+  (global-set-key [f16]           'compile)
+  (global-set-key (kbd "<menu>")  'compile)
+  (global-set-key (kbd "C-;")     'comment-or-uncomment-region)
+  (global-set-key (kbd "M-/")     'hippie-expand)
+  (global-unset-key "\C-z"))
 
 ;; Miscellaneous
 (prefer-coding-system 'utf-8)
@@ -83,10 +89,15 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
   (tool-bar-mode -1)
   (column-number-mode t)
   (line-number-mode t)
+  (blink-cursor-mode -1)
+  (setq default-frame-alist '((cursor-color . "white")))
+  ;; (set-cursor-color "white")
+  (set-face-attribute 'default nil :height 100)
+  (set-default-font "Terminus-9")
   (setq frame-title-format (concat "%b - " (message "%s@emacs" (replace-regexp-in-string "\n$" "" (shell-command-to-string "whoami"))))))
 
 (progn
-  ;; Backup files
+  ;; Do not backup files
   (setq make-backup-files nil)
   (setq backup-inhibited t)
   (setq auto-save-default nil))
@@ -103,7 +114,7 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
 (when (locate-library "mode-icons")
   (mode-icons-mode))
 
-(when (locate-library "goto-chg") ; more powerful than C-u C-SPC
+(when (locate-library "goto-chg")
   (global-set-key [(control .)] 'goto-last-change))
 
 (when (locate-library "smex")
@@ -117,13 +128,8 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
   (global-set-key (kbd "C-+") 'undo-tree-redo))
 
 (when (locate-library "web-mode")
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)
-               (add-to-list 'auto-mode-alist '("\\.php?\\'" . web-mode))))
-
-(when (and (locate-library "key-chord") (locate-library "ace-jump-mode"))
-  (key-chord-define-global "jk" 'ace-jump-char-mode)
-  (key-chord-define-global "jl" 'ace-jump-line-mode)
-  (key-chord-mode 1))
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.php?\\'"  . web-mode)))
 
 (when (locate-library "pkgbuild-mode")
   (add-to-list 'auto-mode-alist '("/PKGBUILD$" . pkgbuild-mode)))
@@ -139,7 +145,6 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
   (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE" "PERFECT")))
   (setq org-directory (getenv "ORGHOME"))
   (setq org-default-notes-file (concat org-directory "/notes.org"))
-  ;; (setq org-return-follows-link t) ;; alt: C-c C-o
   ;; (setq org-log-done 'time)
   (setq org-capture-templates
         '(("b" "open-bookmarks" item (file+headline "~/mygit/open-bookmarks/README.org" "ORGCAPTURE")
@@ -160,7 +165,12 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
   (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
   (when (locate-library "org2blog")
     (require 'org2blog-autoloads)
-    (require 'wordpress-credentials)))
+    (require 'wordpress-credentials))
+  (when (locate-library "org-crypt")
+    (require 'org-crypt)
+    (org-crypt-use-before-save-magic)
+    (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+    (setq org-crypt-key "A905373C")))
 
 (when (locate-library "markdown-mode")
   (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
@@ -192,9 +202,18 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
                      ac-source-words-in-buffer
                      ac-source-words-in-same-mode-buffers)))
 
+(require 'save-buffers-with-diff)
+
 ;; -------------------------------------------------------------
 ;; built-in/native libraries
 ;; -------------------------------------------------------------
+
+(when (locate-library "epa")
+  (require 'epa)
+  (epa-file-enable)
+  (setq epa-file-name-regexp "\\.\\(gpg\\|asc\\)$")
+  (epa-file-name-regexp-update))
+
 (when (locate-library "server")
   (remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function))
 
@@ -219,7 +238,6 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
   (winner-mode t))
 
 (when (locate-library "fill")
-  ;; (auto-fill-mode t)
   (setq fill-column 72))
 
 (when (locate-library "subword")
@@ -246,12 +264,12 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
 (when (locate-library "recentf")
   (recentf-mode t)
   (setq recentf-max-saved-items 50)
-  (setq recentf-save-file (concat user-emacs-directory "recentf"))
-  (global-set-key "\C-c\C-r" 'recentf-open-files))
+  (setq recentf-save-file (concat user-emacs-directory "recentf")))
 
 (when (locate-library "savehist")
   (require 'savehist)
-  (savehist-mode t))
+  (savehist-mode t)
+  (setq savehist-file (concat user-emacs-directory "history"))
 
 (when (locate-library "saveplace")
   (require 'saveplace)
@@ -260,8 +278,8 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
 
 (when (locate-library "uniquify")
   (require 'uniquify)
-  (setq uniquify-buffer-name-style 'forward
-        uniquify-separator "/"))
+  (setq uniquify-buffer-name-style 'forward)
+  (setq uniquify-separator "/"))
 
 (when (locate-library "sh-mode")
   (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode)))

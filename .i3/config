@@ -10,11 +10,11 @@ floating_modifier $mod
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 font pango:Terminus 9.0
 
-bindsym $mod+Return    exec --no-startup-id i3-sensible-terminal
-bindsym $mod+equal     exec --no-startup-id "/usr/bin/emacsclient -c"
-bindsym $mod+BackSpace exec --no-startup-id "/usr/bin/thunar"
-bindsym $mod+Escape    exec --no-startup-id "/usr/bin/htop"
-bindsym $mod+d         exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+Return       exec --no-startup-id i3-sensible-terminal
+bindsym $mod+Shift+Return exec --no-startup-id "/usr/bin/emacsclient -c"
+bindsym $mod+d            exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+Escape       exec --no-startup-id i3-sensible-terminal -e "/usr/bin/htop"
+bindsym $mod+BackSpace    exec --no-startup-id "/usr/bin/thunar"
 
 bindsym $mod+Shift+q kill
 bindsym $Alt+F4      kill
@@ -146,13 +146,13 @@ bar {
 bindsym Print                      exec --no-startup-id /usr/bin/scrot '%Y-%m-%d_%H%M%S_$wx$h_scrot.png' -e 'mv $f ~/ramdisk/' && notify-send 'SS taken'
 bindsym XF86MonBrightnessUp        exec --no-startup-id /usr/bin/xbacklight -inc 5 -time 0
 bindsym XF86MonBrightnessDown      exec --no-startup-id /usr/bin/xbacklight -dec 5 -time 0
-bindsym XF86AudioLowerVolume       exec /usr/bin/amixer set Master 3%- unmute && killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume       exec /usr/bin/amixer set Master 3%+ unmute && killall -SIGUSR1 i3status
-bindsym XF86AudioMute              exec /usr/bin/amixer set Master toggle     && killall -SIGUSR1 i3status
+bindsym XF86AudioLowerVolume       exec /usr/bin/amixer set Master 3%- unmute && killall -SIGUSR1 i3blocks
+bindsym XF86AudioRaiseVolume       exec /usr/bin/amixer set Master 3%+ unmute && killall -SIGUSR1 i3blocks
+bindsym XF86AudioMute              exec /usr/bin/amixer set Master toggle     && killall -SIGUSR1 i3blocks
 bindsym Shift+XF86AudioRaiseVolume exec /usr/bin/audacious --fwd
 bindsym Shift+XF86AudioLowerVolume exec /usr/bin/audacious --rew
 bindsym Shift+XF86AudioMute        exec /usr/bin/audacious --play-pause
-bindsym $Mod+XF86AudioMute         exec i3-sensible-terminal -e "/usr/bin/alsamixer" && killall -SIGUSR1 i3status
+bindsym $Mod+XF86AudioMute         exec i3-sensible-terminal -e "/usr/bin/alsamixer" && killall -SIGUSR1 i3blocks
 
 # scratchpad
 bindsym $mod+m move scratchpad
@@ -170,7 +170,7 @@ for_window [class="Arandr|Epsxe|feh|Galculator|gimp|Java|Lxappearance|MPlayer|Vi
 
 # i3 startup
 exec --no-startup-id "/usr/bin/autocutsel -fork"
-# exec --no-startup-id "/usr/bin/autocutsel -selection PRIMARY -fork &"
+exec --no-startup-id "/usr/bin/autocutsel -selection PRIMARY -fork &"
 exec --no-startup-id "/usr/bin/compton -b"
 exec --no-startup-id /usr/bin/CopyAgent
 exec --no-startup-id /usr/bin/dropboxd
@@ -182,3 +182,4 @@ exec --no-startup-id /usr/bin/parcellite
 exec --no-startup-id /usr/bin/redshift
 exec --no-startup-id "/usr/bin/thunar --daemon"
 exec --no-startup-id "/usr/bin/udiskie --tray"
+exec --no-startup-id "/usr/bin/urxvtd"
