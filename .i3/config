@@ -57,7 +57,7 @@ set $workspace0 zero:stub
 # assign: use xorg-xprop to learn the class string
 assign [class="^Chromium$|Firefox|dwb"] → $workspace2
 assign [class="^QtCreator$"] → $workspace6
-assign [class="Claws-mail|irssi|qbittorrent|weechat|Xchat|Quassel"] → $workspace7
+assign [class="Claws-mail|irssi|Qbittorrent|weechat|Xchat|Quassel"] → $workspace7
 assign [class="Audacious|Clementine|Spotify|Vlc"] → $workspace8
 
 workspace $workspace1 output LVDS1
@@ -126,9 +126,9 @@ bindsym $mod+l mode "$mode_system"
 
 set $mode_init_workspace Init workspace (1)./, (2)www, (7)comm, (8)media
 mode "$mode_init_workspace" {
-  bindsym 1 exec --no-startup-id /usr/bin/urxvt, mode "default"
+  bindsym 1 exec --no-startup-id i3-sensible-terminal, mode "default"
   bindsym 2 exec --no-startup-id /usr/bin/chromium, mode "default"
-  bindsym 7 exec --no-startup-id /usr/bin/quassel; exec --no-startup-id /usr/bin/claws-mail, mode "default"
+  bindsym 7 exec --no-startup-id i3-sensible-terminal -e irssi, mode "default"
   bindsym 8 exec --no-startup-id /usr/bin/audacious, mode "default"
   bindsym Return mode "default"
   bindsym Escape mode "default"
