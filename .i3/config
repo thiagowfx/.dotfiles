@@ -57,7 +57,8 @@ set $workspace0 zero:stub
 # assign: use xorg-xprop to learn the class string
 assign [class="^Chromium$|Firefox|dwb"] → $workspace2
 assign [class="^QtCreator$"] → $workspace6
-assign [class="Claws-mail|irssi|Qbittorrent|weechat|Xchat|Quassel"] → $workspace7
+assign [class="Claws-mail|Qbittorrent|weechat|Xchat|Quassel"] → $workspace7
+assign [class="URxvt" instance="irssi"] → $workspace7
 assign [class="Audacious|Clementine|Spotify|Vlc"] → $workspace8
 
 workspace $workspace1 output LVDS1

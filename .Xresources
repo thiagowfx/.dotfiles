@@ -10,8 +10,10 @@ Xft.lcdfilter: lcddefault
 ! xterm
 XTerm*metaSendsEscape: true
 XTerm*locale: true
-Xterm*saveLines: 4096
 XTerm*reverseVideo: on
+Xterm*saveLines: 4096
+XTerm*scrollKey: true
+XTerm*scrollTtyOutput: false
 
 ! Emacs
 Emacs.font: Terminus-9
@@ -29,31 +31,15 @@ URxvt.iso14755: false
 URxvt.iso14755_52: false
 
 ! urxvt extensions
-! URxvt.perl-ext-common: default,clipboard,selection-to-clipboard,tabbed
-URxvt.perl-ext-common: default,clipboard,selection-to-clipboard,tabbedex
+URxvt.perl-ext-common: default,clipboard,matcher,selection-to-clipboard,tabbedex
 URxvt.keysym.Control-Shift-C: perl:clipboard:copy
 URxvt.keysym.Control-Shift-V: perl:clipboard:paste
 URxvt.tabbed.autohide: true
-
-! http://xcolors.net/ - jasonwryan style
-*color0:   #222222
-*color8:   #454545
-*color1:   #9E5641
-*color9:   #CC896D
-*color2:   #6C7E55
-*color10:  #7DB37D
-*color3:   #CAAF2B
-*color11:  #BFB556
-*color4:   #4c8ea1
-*color12:  #6bc1d0
-*color5:   #956D9D
-*color13:  #C18FCB
-*color6:   #7C9AA6
-*color14:  #8FADBF
-*color7:   #909090
-*color15:  #FFFFFF
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
 
 ! http://felixc.at/URxvt - felixonmars style
+! alt: xcolors.net
 urxvt.color1:   #cc0000
 urxvt.color2:   #4e9a06
 urxvt.color3:   #c4a000
