@@ -58,7 +58,7 @@ set $workspace0 zero:stub
 assign [class="^Chromium$|Firefox|dwb"] → $workspace2
 assign [class="Claws-mail|Qbittorrent|weechat|Xchat|Quassel"] → $workspace7
 assign [class="URxvt" instance="irssi"] → $workspace7
-assign [class="Audacious|Clementine|Spotify|Vlc"] → $workspace8
+assign [class="Audacious|Clementine|Sonata|Spotify|Vlc"] → $workspace8
 
 workspace $workspace1 output LVDS1
 workspace $workspace2 output LVDS1
@@ -129,7 +129,7 @@ mode "$mode_init_workspace" {
   bindsym 1 exec --no-startup-id i3-sensible-terminal, mode "default"
   bindsym 2 exec --no-startup-id /usr/bin/chromium, mode "default"
   bindsym 7 exec --no-startup-id i3-sensible-terminal -e irssi, mode "default"
-  bindsym 8 exec --no-startup-id /usr/bin/audacious, mode "default"
+  bindsym 8 exec --no-startup-id /usr/bin/audacious; exec --no-startup-id /usr/bin/sonata, mode "default"
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }

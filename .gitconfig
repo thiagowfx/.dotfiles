@@ -11,9 +11,8 @@ email = thiagoperrotta95@gmail.com
 helper = store # store|cache --timeout=7200
 
 [alias]
-logg = log --graph --decorate --pretty=oneline --abbrev-commit --all
-logh = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-logr = log --graph --oneline --decorate
+logh = log --graph --decorate --oneline --pretty=format:\"%h %ad | %s%d [%an]\" --date=short
+logr = log --graph --decorate --oneline --all
 lazy = commit -a -m "update"
 st = status
 puhs = push
