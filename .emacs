@@ -144,15 +144,6 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
   (setq org-hierarchical-todo-statistics t)
   (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE" "PERFECT")))
   (setq org-directory (getenv "ORGHOME"))
-  (setq org-default-notes-file (concat org-directory "/notes.org"))
-  ;; (setq org-log-done 'time)
-  (setq org-capture-templates
-        '(("b" "open-bookmarks" item (file+headline "~/mygit/open-bookmarks/README.org" "ORGCAPTURE")
-           "- %?\n %i\n")
-          ("t" "TODO" entry (file "")
-           "* TODO %?\n  %i\n")
-          ("p" "plain" item (file "")
-           "- %?\n %i\n")))
   (setq org-todo-keyword-faces
         '(("TODO" . "red")
           ("PROGRESS" . "orange")

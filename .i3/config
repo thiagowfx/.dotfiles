@@ -48,7 +48,7 @@ set $workspace2 2:www
 set $workspace3 3
 set $workspace4 4
 set $workspace5 5
-set $workspace6 6:code
+set $workspace6 6
 set $workspace7 7:comm
 set $workspace8 8:♪media
 set $workspace9 9:HDMI
@@ -56,7 +56,6 @@ set $workspace0 zero:stub
 
 # assign: use xorg-xprop to learn the class string
 assign [class="^Chromium$|Firefox|dwb"] → $workspace2
-assign [class="^QtCreator$"] → $workspace6
 assign [class="Claws-mail|Qbittorrent|weechat|Xchat|Quassel"] → $workspace7
 assign [class="URxvt" instance="irssi"] → $workspace7
 assign [class="Audacious|Clementine|Spotify|Vlc"] → $workspace8

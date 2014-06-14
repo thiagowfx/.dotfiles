@@ -1,6 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
 # name : template-icpc
-# key : template-icpc
+# key : templateicpc
 # --
 #include <algorithm>
 #include <bitset>
@@ -25,12 +25,13 @@
 #include <utility>
 #include <vector>
 using namespace std;
+struct _ { ios_base::Init i; _() { cin.sync_with_stdio(0); cin.tie(0); } } _;
 typedef long long int ll;
-typedef pair<int,int> ii;
+typedef pair<int,int> pii;
 typedef vector<int> vi;
 const double EPS = 1e-7;
 
-int main() {
+int main(int argc, char* argv[]) {
 	$0
   
   return 0;
