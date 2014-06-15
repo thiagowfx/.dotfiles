@@ -50,6 +50,8 @@ assign [class="^Chromium$|Firefox|dwb"] 2
 
 bindsym $mod+o       move workspace to output HDMI1
 bindsym $mod+Shift+o move workspace to output LVDS1
+workspace 1 output LVDS1
+workspace 9 output HDMI1
 
 # rename workspaces
 bindsym $mod+z exec i3-input -F 'rename workspace to "%s"' -P 'New name for workspace: ' 
@@ -139,7 +141,8 @@ for_window [class="Arandr|Epsxe|feh|Galculator|gimp|Java|Lxappearance|MPlayer|Vi
 
 # i3 startup
 exec --no-startup-id "/usr/bin/autocutsel -fork"
-exec --no-startup-id "/usr/bin/autocutsel -selection PRIMARY -fork &"
+exec --no-startup-id "/usr/bin/autocutsel -selection PRIMARY -fork"
+exec --no-startup-id "/usr/bin/autocutsel -selection SECONDARY -fork"
 exec --no-startup-id "/usr/bin/compton -b"
 exec --no-startup-id /usr/bin/CopyAgent
 exec --no-startup-id /usr/bin/dropboxd
