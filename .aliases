@@ -95,7 +95,7 @@ function gentoo-chroot {
 
 function nohup-template {
     [[ "$1" == "" ]] && echo "Example usage:\nnohup-template urxvtd" && return 0
-    nohup "$1" >/dev/null 2>&1 &
+    nohup "$*" >/dev/null 2>&1 &
 }
 
 function qkkdiff-file {

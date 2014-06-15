@@ -58,7 +58,7 @@ set $workspace0 zero:stub
 assign [class="^Chromium$|Firefox|dwb"] → $workspace2
 assign [class="Claws-mail|Qbittorrent|weechat|Xchat|Quassel"] → $workspace7
 assign [class="URxvt" instance="irssi"] → $workspace7
-assign [class="Audacious|Clementine|Sonata|Spotify|Vlc"] → $workspace8
+assign [class="Audacious|Clementine|Gmpc|Sonata|Spotify|Vlc"] → $workspace8
 
 workspace $workspace1 output LVDS1
 workspace $workspace2 output LVDS1
@@ -143,16 +143,19 @@ bar {
 }
 
 # Custom hotkeys: use xev to learn the hotkey names
-bindsym Print                      exec --no-startup-id /usr/bin/scrot '%Y-%m-%d_%H%M%S_$wx$h_scrot.png' -e 'mv $f ~/ramdisk/' && notify-send 'SS taken'
-bindsym XF86MonBrightnessUp        exec --no-startup-id /usr/bin/xbacklight -inc 5 -time 0
-bindsym XF86MonBrightnessDown      exec --no-startup-id /usr/bin/xbacklight -dec 5 -time 0
+bindsym Print                      exec /usr/bin/scrot '%Y-%m-%d_%H%M%S_$wx$h_scrot.png' -e 'mv $f ~/ramdisk/' && notify-send 'SS taken'
+bindsym XF86MonBrightnessUp        exec /usr/bin/xbacklight -inc 5 -time 0
+bindsym XF86MonBrightnessDown      exec /usr/bin/xbacklight -dec 5 -time 0
 bindsym XF86AudioLowerVolume       exec /usr/bin/amixer set Master 3%- unmute && killall -SIGUSR1 i3blocks
 bindsym XF86AudioRaiseVolume       exec /usr/bin/amixer set Master 3%+ unmute && killall -SIGUSR1 i3blocks
 bindsym XF86AudioMute              exec /usr/bin/amixer set Master toggle     && killall -SIGUSR1 i3blocks
-bindsym Shift+XF86AudioRaiseVolume exec /usr/bin/audacious --fwd
-bindsym Shift+XF86AudioLowerVolume exec /usr/bin/audacious --rew
-bindsym Shift+XF86AudioMute        exec /usr/bin/audacious --play-pause
-bindsym $Mod+XF86AudioMute         exec i3-sensible-terminal -e "/usr/bin/alsamixer" && killall -SIGUSR1 i3blocks
+bindsym $Mod+XF86AudioMute         exec i3-sensible-terminal -e "/usr/bin/alsamixer"
+bindsym Shift+XF86AudioLowerVolume exec /usr/bin/mpc prev
+bindsym Shift+XF86AudioRaiseVolume exec /usr/bin/mpc next
+bindsym Shift+XF86AudioMute        exec /usr/bin/mpc toggle
+bindsym XF86AudioPrev              exec /usr/bin/mpc prev
+bindsym XF86AudioNext              exec /usr/bin/mpc next
+bindsym XF86AudioPlay              exec /usr/bin/mpc toggle
 
 # scratchpad
 bindsym $mod+m move scratchpad
@@ -177,6 +180,8 @@ exec --no-startup-id /usr/bin/dropboxd
 exec --no-startup-id /usr/bin/dunst
 exec --no-startup-id "/usr/bin/emacs --daemon"
 exec --no-startup-id "/usr/bin/hsetroot -solid '#111019'"
+exec --no-startup-id /usr/bin/mpd
+exec --no-startup-id /usr/bin/mpdas -d
 exec --no-startup-id /usr/bin/nm-applet
 exec --no-startup-id /usr/bin/parcellite
 exec --no-startup-id /usr/bin/redshift
