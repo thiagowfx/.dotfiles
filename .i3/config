@@ -80,10 +80,6 @@ bindsym $mod+Shift+0 move container to workspace number 0
 
 mode "resize" {
   set $step 10
-  bindsym j resize shrink width $step px or $step ppt
-  bindsym k resize grow height $step px or $step ppt
-  bindsym l resize shrink height $step px or $step ppt
-  bindsym semicolon resize grow width $step px or $step ppt
   bindsym Left resize shrink width $step px or $step ppt
   bindsym Down resize grow height $step px or $step ppt
   bindsym Up resize shrink height $step px or $step ppt
