@@ -34,10 +34,10 @@ bindsym $mod+h split h
 bindsym $mod+v split v
 bindsym $mod+f fullscreen
 
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-bindsym $mod+x layout toggle all
+bindsym $mod+s       layout stacking
+bindsym $mod+w       layout tabbed
+bindsym $mod+e       layout toggle split
+bindsym $mod+Shift+e layout toggle all
 
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
@@ -54,7 +54,10 @@ workspace 1 output LVDS1
 workspace 9 output HDMI1
 
 # rename workspaces
-bindsym $mod+z exec i3-input -F 'rename workspace to "%s"' -P 'New name for workspace: ' 
+bindsym $mod+z exec i3-input -F 'rename workspace to "%s"' -P 'New name for workspace: '
+
+# regex to jump to a window
+bindsym $mod+x exec python ~/.i3/winmenu.py
 
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
@@ -150,7 +153,7 @@ exec --no-startup-id /usr/bin/dunst
 exec --no-startup-id "/usr/bin/emacs --daemon"
 exec --no-startup-id "/usr/bin/hsetroot -solid '#111019'"
 exec --no-startup-id /usr/bin/mpd
-exec --no-startup-id /usr/bin/mpdas -d
+exec --no-startup-id "/usr/bin/mpdas -d -c ~/.mpdasrc"
 exec --no-startup-id /usr/bin/nm-applet
 exec --no-startup-id /usr/bin/parcellite
 exec --no-startup-id /usr/bin/redshift
