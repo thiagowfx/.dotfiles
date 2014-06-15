@@ -4,20 +4,21 @@
 set $Alt Mod1
 set $Win Mod4
 set $mod Mod4
-set $I3LOCK i3lock-wrapper
+set $i3lock i3lock-wrapper
 floating_modifier $mod
-
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 font pango:Terminus 9.0
 
 bindsym $mod+Return       exec --no-startup-id i3-sensible-terminal
 bindsym $mod+Shift+Return exec --no-startup-id "/usr/bin/emacsclient -c"
 bindsym $mod+d            exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+Shift+d      exec --no-startup-id dmenu_run
 bindsym $mod+Escape       exec --no-startup-id i3-sensible-terminal -e "/usr/bin/htop"
-bindsym $mod+BackSpace    exec --no-startup-id "/usr/bin/thunar"
+bindsym $mod+Shift+Escape exec --no-startup-id i3-sensible-terminal -e "/usr/bin/alsamixer"
 
 bindsym $mod+Shift+q kill
 bindsym $Alt+F4      kill
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
 
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -36,6 +37,7 @@ bindsym $mod+f fullscreen
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
+bindsym $mod+x layout toggle all
 
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
@@ -43,58 +45,38 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 bindsym $mod+b focus child
 
-set $workspace1 1:./
-set $workspace2 2:www
-set $workspace3 3
-set $workspace4 4
-set $workspace5 5
-set $workspace6 6
-set $workspace7 7:comm
-set $workspace8 8:♪media
-set $workspace9 9:HDMI
-set $workspace0 zero:stub
-
 # assign: use xorg-xprop to learn the class string
-assign [class="^Chromium$|Firefox|dwb"] → $workspace2
-assign [class="Claws-mail|Qbittorrent|weechat|Xchat|Quassel"] → $workspace7
-assign [class="URxvt" instance="irssi"] → $workspace7
-assign [class="Audacious|Clementine|Gmpc|Sonata|Spotify|Vlc"] → $workspace8
+assign [class="^Chromium$|Firefox|dwb"] 2
 
-workspace $workspace1 output LVDS1
-workspace $workspace2 output LVDS1
-workspace $workspace3 output LVDS1
-workspace $workspace4 output LVDS1
-workspace $workspace5 output LVDS1
-workspace $workspace6 output LVDS1
-workspace $workspace7 output LVDS1
-workspace $workspace8 output LVDS1
-workspace $workspace9 output HDMI1
-workspace $workspace0 output HDMI1
+bindsym $mod+o       move workspace to output HDMI1
+bindsym $mod+Shift+o move workspace to output LVDS1
 
-bindsym $mod+1 workspace $workspace1
-bindsym $mod+2 workspace $workspace2
-bindsym $mod+3 workspace $workspace3
-bindsym $mod+4 workspace $workspace4
-bindsym $mod+5 workspace $workspace5
-bindsym $mod+6 workspace $workspace6
-bindsym $mod+7 workspace $workspace7
-bindsym $mod+8 workspace $workspace8
-bindsym $mod+9 workspace $workspace9
-bindsym $mod+0 workspace $workspace0
+# rename workspaces
+bindsym $mod+z exec i3-input -F 'rename workspace to "%s"' -P 'New name for workspace: ' 
 
-bindsym $mod+Shift+1 move container to workspace $workspace1
-bindsym $mod+Shift+2 move container to workspace $workspace2
-bindsym $mod+Shift+3 move container to workspace $workspace3
-bindsym $mod+Shift+4 move container to workspace $workspace4
-bindsym $mod+Shift+5 move container to workspace $workspace5
-bindsym $mod+Shift+6 move container to workspace $workspace6
-bindsym $mod+Shift+7 move container to workspace $workspace7
-bindsym $mod+Shift+8 move container to workspace $workspace8
-bindsym $mod+Shift+9 move container to workspace $workspace9
-bindsym $mod+Shift+0 move container to workspace $workspace0
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 0
+bindsym $mod+p workspace prev
+bindsym $mod+n workspace next
 
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 0
 
 mode "resize" {
   set $step 10
@@ -113,9 +95,9 @@ bindsym $mod+r mode "resize"
 
 set $mode_system (l)ock, (e)logout, (s)uspend, (h)ibernate, (r)eboot, Shift+(s)hutdown
 mode "$mode_system" {
-  bindsym l exec --no-startup-id $I3LOCK, mode "default"
+  bindsym l exec --no-startup-id $i3lock, mode "default"
   bindsym e exec --no-startup-id i3-msg exit
-  bindsym s exec --no-startup-id $I3LOCK && systemctl suspend, mode "default"
+  bindsym s exec --no-startup-id $i3lock && systemctl suspend, mode "default"
   bindsym h exec --no-startup-id systemctl hibernate, mode "default"
   bindsym r exec --no-startup-id systemctl reboot
   bindsym Shift+s exec --no-startup-id systemctl poweroff
@@ -123,17 +105,6 @@ mode "$mode_system" {
   bindsym Escape mode "default"
 }
 bindsym $mod+l mode "$mode_system"
-
-set $mode_init_workspace Init workspace (1)./, (2)www, (7)comm, (8)media
-mode "$mode_init_workspace" {
-  bindsym 1 exec --no-startup-id i3-sensible-terminal, mode "default"
-  bindsym 2 exec --no-startup-id /usr/bin/chromium, mode "default"
-  bindsym 7 exec --no-startup-id i3-sensible-terminal -e irssi, mode "default"
-  bindsym 8 exec --no-startup-id /usr/bin/audacious; exec --no-startup-id /usr/bin/sonata, mode "default"
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
-bindsym $mod+q mode "$mode_init_workspace"
 
 bar {
     # status_command i3status
@@ -149,7 +120,6 @@ bindsym XF86MonBrightnessDown      exec /usr/bin/xbacklight -dec 5 -time 0
 bindsym XF86AudioLowerVolume       exec /usr/bin/amixer set Master 3%- unmute && killall -SIGUSR1 i3blocks
 bindsym XF86AudioRaiseVolume       exec /usr/bin/amixer set Master 3%+ unmute && killall -SIGUSR1 i3blocks
 bindsym XF86AudioMute              exec /usr/bin/amixer set Master toggle     && killall -SIGUSR1 i3blocks
-bindsym $Mod+XF86AudioMute         exec i3-sensible-terminal -e "/usr/bin/alsamixer"
 bindsym Shift+XF86AudioLowerVolume exec /usr/bin/mpc prev
 bindsym Shift+XF86AudioRaiseVolume exec /usr/bin/mpc next
 bindsym Shift+XF86AudioMute        exec /usr/bin/mpc toggle
@@ -158,8 +128,8 @@ bindsym XF86AudioNext              exec /usr/bin/mpc next
 bindsym XF86AudioPlay              exec /usr/bin/mpc toggle
 
 # scratchpad
-bindsym $mod+m move scratchpad
-bindsym $mod+o scratchpad show
+bindsym $mod+m       move scratchpad
+bindsym $mod+Shift+m scratchpad show
 
 # options tweaking
 default_orientation            auto
