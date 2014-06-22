@@ -47,7 +47,6 @@ DISABLE_AUTO_UPDATE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(
     archlinux
-    autojump
     colored-man
     command-not-found
     extract

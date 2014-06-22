@@ -1,86 +1,48 @@
 ;; -*- emacs-lisp -*-
 
-(progn
-  ;; Personal
-  (setq user-full-name "Thiago Perrotta"))
-
 (let* ((my-lisp-dir "~/.emacs.d/")
        (default-directory my-lisp-dir))
   (setq load-path (cons my-lisp-dir load-path))
   (normal-top-level-add-subdirs-to-load-path))
 
+(setq user-full-name "Thiago Perrotta")
+
 (when (>= emacs-major-version 24)
   (load-theme 'wombat t)
   (package-initialize)
+  ;; paradox-list-packages
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/")))
 
-(defun add-something-to-mode-hooks (mode-list something)
-  "Helper function to add a callback to multiple hooks.
-Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight))"
-  (dolist (mode mode-list)
-    (add-hook (intern (concat (symbol-name mode) "-mode-hook")) something)))
-
-(defun vsplit-last-buffer ()
-  (interactive)
-  (split-window-vertically)
-  (other-window 1 nil)
-  (switch-to-next-buffer))
-(defun hsplit-last-buffer ()
-  (interactive)
-  (split-window-horizontally)
-  (other-window 1 nil)
-  (switch-to-next-buffer))
-(global-set-key (kbd "C-x 2") 'vsplit-last-buffer)
-(global-set-key (kbd "C-x 3") 'hsplit-last-buffer)
-
-(defun replace-last-sexp ()
-  "Eval inplace."
-  (interactive)
-  (let ((value (eval (preceding-sexp))))
-    (kill-sexp -1)
-    (insert (format "%s" value))))
-(global-set-key "\C-c\C-x\C-e" 'replace-last-sexp)
-
-(defun cleanup-buffer ()
-  "Buffer cleaning, performing a bunch of operations on the whitespace content of it."
-  (interactive)
-  (indent-region (point-min) (point-max))
-  (untabify (point-min) (point-max))
-  (delete-trailing-whitespace))
-(global-set-key [f12] 'cleanup-buffer)
-
 (progn
-  ;; Shortcut keys
-  ;; keystrokes/keybindings - RET, "\M-g", [C-tab], (kbd "M-g"), [f1], (kbd "<f1>"), [?\C-\t], (kbd "<C-S-iso-lefttab>")
-  (global-set-key (kbd "RET")     'newline-and-indent)
-  (global-set-key [f16]           'compile)
+  ;; Shortcut keys - keystrokes/keybindings - RET, "\M-g", [C-tab], (kbd "M-g"), [f1], (kbd "<f1>"), [?\C-\t], (kbd "<C-S-iso-lefttab>")
+  (global-set-key (kbd "RET")     'reindent-then-newline-and-indent)
   (global-set-key (kbd "<menu>")  'compile)
   (global-set-key (kbd "C-;")     'comment-or-uncomment-region)
+  (global-set-key (kbd "C-x C-/") 'comment-or-uncomment-region)
   (global-set-key (kbd "M-/")     'hippie-expand)
+  (global-set-key "\C-xg"         'goto-line)
   (global-unset-key "\C-z"))
 
-;; Miscellaneous
-(prefer-coding-system 'utf-8)
-(setq x-select-enable-primary t
-      save-interprogram-paste-before-kill t
-      mouse-yank-at-point t
-      interprogram-paste-function 'x-cut-buffer-or-selection-value)
-(put 'downcase-region 'disabled nil)
-(put 'upcase-region 'disabled nil)
-(put 'narrow-to-region 'disabled nil)
-(setq inhibit-startup-message t
-      inhibit-startup-echo-area-message t
-      initial-scratch-message "")
-(mouse-avoidance-mode 'exile)
-(setq indicate-empty-lines t)
-(setq visible-bell t)
-(setq echo-keystrokes 0.1)
-(fset 'yes-or-no-p 'y-or-n-p)
-(setq enable-recursive-minibuffers t) ; stack minibuffers, exit with `top-level`
-(setq read-buffer-completion-ignore-case t)
-(setq require-final-newline t)
-(setq case-fold-search t)    ; make searches case insensitive
-(setq vc-follow-symlinks t)  ; do not ask for symlink confirmations
+(progn
+  ;; Usability / design
+  (setq case-fold-search t)
+  (setq x-select-enable-primary t
+        save-interprogram-paste-before-kill t
+        mouse-yank-at-point t
+        interprogram-paste-function 'x-cut-buffer-or-selection-value)
+  (setq visible-bell t)
+  (prefer-coding-system 'utf-8)
+  (mouse-avoidance-mode 'exile)
+  (setq indicate-empty-lines t)
+  (setq echo-keystrokes 0.1)
+  (fset 'yes-or-no-p 'y-or-n-p)
+  (setq enable-recursive-minibuffers t)
+  (setq require-final-newline t)
+  (setq read-buffer-completion-ignore-case t)
+  (setq vc-follow-symlinks t)
+  (setq make-backup-files nil)
+  (setq backup-inhibited t)
+  (setq auto-save-default nil))
 
 (progn
   ;; Emacs frame appearance
@@ -91,16 +53,31 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
   (line-number-mode t)
   (blink-cursor-mode -1)
   (setq default-frame-alist '((cursor-color . "white")))
-  ;; (set-cursor-color "white")
+  (setq inhibit-startup-message t
+        inhibit-startup-echo-area-message t
+        initial-scratch-message "")
   (set-face-attribute 'default nil :height 100)
   (set-default-font "Terminus-9")
   (setq frame-title-format (concat "%b - " (message "%s@emacs" (replace-regexp-in-string "\n$" "" (shell-command-to-string "whoami"))))))
 
 (progn
-  ;; Do not backup files
-  (setq make-backup-files nil)
-  (setq backup-inhibited t)
-  (setq auto-save-default nil))
+  ;; Custom functions
+  (defun cleanup-buffer ()
+    "Buffer cleaning, performing a bunch of operations on the whitespace content of it."
+    (interactive)
+    (save-excursion
+      (indent-region (point-min) (point-max))
+      (untabify (point-min) (point-max))
+      (delete-trailing-whitespace)))
+  (global-set-key [C-tab] 'cleanup-buffer)
+
+  (defun replace-last-sexp ()
+    "Eval in place."
+    (interactive)
+    (let ((value (eval (preceding-sexp))))
+      (kill-sexp -1)
+      (insert (format "%s" value))))
+  (global-set-key "\C-c\C-x\C-e" 'replace-last-sexp))
 
 ;; --------------------------------------------------
 ;; external libraries
@@ -134,12 +111,16 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
 (when (locate-library "pkgbuild-mode")
   (add-to-list 'auto-mode-alist '("/PKGBUILD$" . pkgbuild-mode)))
 
+(when (locate-library "guide-key")
+  (require 'guide-key)
+  (setq guide-key/guide-key-sequence '("C-x r" "C-x" "C-c"))
+  (setq guide-key/idle-delay 1.5)
+  (setq guide-key/recursive-key-sequence-flag t)
+  (guide-key-mode 1))
+
 ;; orgmode
 (when (locate-library "org")
   (global-set-key "\C-ca" 'org-agenda)
-  (global-set-key "\C-cc" 'org-capture)
-  (global-set-key "\C-cl" 'org-store-link)
-  (global-set-key "\C-c\C-l" 'org-insert-link)
   (setq org-src-fontify-natively t)
   (setq org-hierarchical-todo-statistics t)
   (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE" "PERFECT")))
@@ -173,6 +154,22 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
 (when (locate-library "yasnippet")
   (require 'yasnippet)
   (yas-global-mode t))
+
+(when (locate-library "auto-yasnippet")
+  (require 'auto-yasnippet)
+  (global-set-key (kbd "C-x C-\(") 'aya-create)
+  (global-set-key (kbd "C-x C-\)") 'aya-expand))
+
+(when (locate-library "golden-ratio")
+  (require 'golden-ratio)
+  (golden-ratio-mode t))
+
+(when (locate-library "buffer-move")
+  (require 'buffer-move)
+  (global-set-key (kbd "<C-S-up>")    'buf-move-up)
+  (global-set-key (kbd "<C-S-down>")  'buf-move-down)
+  (global-set-key (kbd "<C-S-left>")  'buf-move-left)
+  (global-set-key (kbd "<C-S-right>") 'buf-move-right))
 
 (when (locate-library "auto-complete")
   (require 'auto-complete-config)
@@ -239,7 +236,8 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
   (setq bookmark-default-file (concat user-emacs-directory "bookmarks")))
 
 (when (locate-library "eldoc")
-  (add-something-to-mode-hooks '(emacs-lisp lisp) 'turn-on-eldoc-mode))
+  (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+  (add-hook 'lisp-mode-hook 'turn-on-eldoc-mode))
 
 (when (locate-library "ido")
   (ido-mode t)
@@ -289,7 +287,7 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/Dropbox/org/icpc.org" "~/Dropbox/org/todo.org" "~/Dropbox/org/raytracer.org")))
+ '(org-agenda-files (quote ("~/Dropbox/org/icpc.org" "~/Dropbox/org/todo.org")))
  '(paradox-github-token t)
  '(safe-local-variable-values (quote ((eval setq-default gac-automatically-push-p t) (require-final-newline))))
  '(use-file-dialog nil))
@@ -299,3 +297,6 @@ Example usage: (add-something-to-mode-hooks my-programming-alist 'idle-highlight
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
