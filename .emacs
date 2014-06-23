@@ -15,8 +15,9 @@
 
 (progn
   ;; Shortcut keys - keystrokes/keybindings - RET, "\M-g", [C-tab], (kbd "M-g"), [f1], (kbd "<f1>"), [?\C-\t], (kbd "<C-S-iso-lefttab>")
-  (global-set-key (kbd "RET")     'reindent-then-newline-and-indent)
+  (global-set-key (kbd "RET")     'newline-and-indent)
   (global-set-key (kbd "<menu>")  'compile)
+  (global-set-key (kbd "C-x C-m") 'compile)
   (global-set-key (kbd "C-;")     'comment-or-uncomment-region)
   (global-set-key (kbd "C-x C-/") 'comment-or-uncomment-region)
   (global-set-key (kbd "M-/")     'hippie-expand)
@@ -157,12 +158,18 @@
 
 (when (locate-library "auto-yasnippet")
   (require 'auto-yasnippet)
-  (global-set-key (kbd "C-x C-\(") 'aya-create)
-  (global-set-key (kbd "C-x C-\)") 'aya-expand))
+  (global-set-key (kbd "C-\(") 'aya-create)
+  (global-set-key (kbd "C-\)") 'aya-expand))
 
 (when (locate-library "golden-ratio")
   (require 'golden-ratio)
   (golden-ratio-mode t))
+
+(when (locate-library "multiple-cursors")
+  (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
 
 (when (locate-library "buffer-move")
   (require 'buffer-move)
