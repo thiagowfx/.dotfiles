@@ -122,11 +122,11 @@ bindsym XF86MonBrightnessDown      exec /usr/bin/xbacklight -dec 5 -time 0
 bindsym XF86AudioLowerVolume       exec /usr/bin/amixer set Master 3%- unmute && killall -SIGUSR1 i3blocks
 bindsym XF86AudioRaiseVolume       exec /usr/bin/amixer set Master 3%+ unmute && killall -SIGUSR1 i3blocks
 bindsym XF86AudioMute              exec /usr/bin/amixer set Master toggle     && killall -SIGUSR1 i3blocks
-bindsym Shift+XF86AudioLowerVolume exec /usr/bin/mpc prev
-bindsym Shift+XF86AudioRaiseVolume exec /usr/bin/mpc next
+bindsym Shift+XF86AudioLowerVolume exec /usr/bin/mpc prev                     && killall -SIGUSR1 i3blocks
+bindsym Shift+XF86AudioRaiseVolume exec /usr/bin/mpc next                     && killall -SIGUSR1 i3blocks
 bindsym Shift+XF86AudioMute        exec /usr/bin/mpc toggle
-bindsym XF86AudioPrev              exec /usr/bin/mpc prev
-bindsym XF86AudioNext              exec /usr/bin/mpc next
+bindsym XF86AudioPrev              exec /usr/bin/mpc prev                     && killall -SIGUSR1 i3blocks
+bindsym XF86AudioNext              exec /usr/bin/mpc next                     && killall -SIGUSR1 i3blocks
 bindsym XF86AudioPlay              exec /usr/bin/mpc toggle
 
 # scratchpad

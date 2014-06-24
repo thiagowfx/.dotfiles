@@ -1,0 +1,45 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: icpc-merge-sort-verbose
+# key: icpc-merge-sort-verbose
+# binding: direct-keybinding
+# --
+void merge_sort(int *v, int b, int e) {
+  int m = b + (e - b) / 2;
+
+  if ( !(m > b) )
+    return;
+  
+  int n = e - b;
+  merge_sort(v,b,m);
+  merge_sort(v,m,e);
+  int *w = new int[n];
+  int wi = 0;
+
+  int bi = b, ei = m;
+  while( bi < m && ei < e ) {
+    if (v[bi] <= v[ei]) {
+      w[wi] = v[bi];
+      ++wi;
+      ++bi;
+    }
+    else {
+      w[wi] = v[ei];
+      ++wi;
+      ++ei;
+    }
+  }
+  while (bi < m) {
+    w[wi] = v[bi];
+    ++wi;
+    ++bi;
+  }
+  while (ei < e) {
+    w[wi] = v[ei];
+    ++wi;
+    ++ei;
+  }
+
+  wi = 0;
+  for (int vi = b; vi < e; ++vi)
+    v[vi] = w[wi++];
+}
