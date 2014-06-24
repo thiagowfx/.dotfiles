@@ -1,6 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: template-maintainer
-# key: template-maintainer
+# name: maintainer
+# key: maintainer
 # --
 # Maintainer: Thiago Perrotta <echo dGhpYWdvcGVycm90dGE5NUBnbWFpbC5jb20K | base64 -d >
 $0

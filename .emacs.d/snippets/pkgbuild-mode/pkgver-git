@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: pkgver-git
+# key: pkgver-git
+# --
+pkgver() {
+  cd "${srcdir}/${_gitname}"
+  git log -1 --format="%cd.g%h" --date=short | sed 's/-/./g'
+}

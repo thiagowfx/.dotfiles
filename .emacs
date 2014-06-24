@@ -114,8 +114,8 @@
 
 (when (locate-library "guide-key")
   (require 'guide-key)
-  (setq guide-key/guide-key-sequence '("C-x r" "C-x" "C-c"))
-  (setq guide-key/idle-delay 1.5)
+  (setq guide-key/guide-key-sequence '("C-x r" "C-c"))
+  (setq guide-key/idle-delay 2.0)
   (setq guide-key/recursive-key-sequence-flag t)
   (guide-key-mode 1))
 
