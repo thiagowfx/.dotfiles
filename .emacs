@@ -10,7 +10,6 @@
 (when (>= emacs-major-version 24)
   (load-theme 'wombat t)
   (package-initialize)
-  ;; paradox-list-packages
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/")))
 
 (progn
@@ -22,7 +21,8 @@
   (global-set-key (kbd "C-x C-/") 'comment-or-uncomment-region)
   (global-set-key (kbd "M-/")     'hippie-expand)
   (global-set-key "\C-xg"         'goto-line)
-  (global-unset-key "\C-z"))
+  (global-unset-key "\C-z")
+  (global-unset-key "\C-\M-h"))
 
 (progn
   ;; Usability / design
@@ -87,6 +87,7 @@
 ;;   (setq gac-automatically-push-p t))
 
 (when (locate-library "smart-mode-line")
+;;  (setq sml/no-confirm-load-theme t)
   (sml/setup))
 
 (when (locate-library "mode-icons")
@@ -154,7 +155,10 @@
 
 (when (locate-library "yasnippet")
   (require 'yasnippet)
-  (yas-global-mode t))
+  (yas-global-mode t)
+  (setq yas-prompt-functions '(yas-ido-prompt yas-completing-prompt yas-x-prompt yas-dropdown-prompt))
+  (add-to-list 'hippie-expand-try-functions-list 'yas-hippie-try-expand)
+  (add-hook 'yas-minor-mode-hook #'(lambda () (yas-activate-extra-mode 'perrotta-mode))))
 
 (when (locate-library "auto-yasnippet")
   (require 'auto-yasnippet)
@@ -182,8 +186,8 @@
   (require 'auto-complete-config)
   (ac-config-default)
   (global-auto-complete-mode t)
-  (global-set-key "\M-\t" 'auto-complete)
-  (setq ac-auto-show-menu nil)
+  (setq ac-auto-show-menu t)
+  (global-set-key (kbd "C-x C-<tab>") 'auto-complete)
   (setq ac-sources '(ac-source-abbrev
                      ac-source-dictionary
                      ac-source-features
@@ -248,9 +252,9 @@
 
 (when (locate-library "ido")
   (ido-mode t)
-  (setq-default ido-enable-flex-matching t)
-  (setq-default ido-enable-last-directory-history t)
-  (setq-default confirm-nonexistent-file-or-buffer nil))
+  (setq ido-enable-flex-matching t)
+  (setq ido-enable-last-directory-history t)
+  (setq confirm-nonexistent-file-or-buffer nil))
 
 (when (locate-library "icomplete")
   (icomplete-mode t))
@@ -294,6 +298,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("6fe6ab4abe97a4f13533e47ae59fbba7f2919583f9162b440dd06707b01f7794" default)))
  '(org-agenda-files (quote ("~/Dropbox/org/icpc.org" "~/Dropbox/org/todo.org")))
  '(paradox-github-token t)
  '(safe-local-variable-values (quote ((eval setq-default gac-automatically-push-p t) (require-final-newline))))
