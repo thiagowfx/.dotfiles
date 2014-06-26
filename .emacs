@@ -5,12 +5,16 @@
   (setq load-path (cons my-lisp-dir load-path))
   (normal-top-level-add-subdirs-to-load-path))
 
-(setq user-full-name "Thiago Perrotta")
+(setq user-full-name "Thiago Perrotta"
+      user-mail-address "thiagoperrotta95@gmail.com")
 
 (when (>= emacs-major-version 24)
-  (load-theme 'wombat t)
   (package-initialize)
-  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/")))
+  (load-theme 'wombat t)
+  (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                           ("marmalade" . "http://marmalade-repo.org/packages/")
+                           ("melpa" . "http://melpa.milkbox.net/packages/")
+                           ("org" . "http://orgmode.org/elpa/"))))
 
 (progn
   ;; Shortcut keys - keystrokes/keybindings - RET, "\M-g", [C-tab], (kbd "M-g"), [f1], (kbd "<f1>"), [?\C-\t], (kbd "<C-S-iso-lefttab>")
@@ -45,6 +49,14 @@
   (setq backup-inhibited t)
   (setq auto-save-default nil))
 
+(setq make-backup-files t ;; do make backups
+  backup-by-copying t     ;; and copy them here
+  backup-directory-alist '(("." . "~/.emacs.d/cache/backups"))
+  version-control t
+  kept-new-versions 2
+  kept-old-versions 5
+  delete-old-versions t)
+
 (progn
   ;; Emacs frame appearance
   (menu-bar-mode -1)
@@ -53,7 +65,6 @@
   (column-number-mode t)
   (line-number-mode t)
   (blink-cursor-mode -1)
-  (setq default-frame-alist '((cursor-color . "white")))
   (setq inhibit-startup-message t
         inhibit-startup-echo-area-message t
         initial-scratch-message "")
@@ -71,6 +82,7 @@
       (untabify (point-min) (point-max))
       (delete-trailing-whitespace)))
   (global-set-key [C-tab] 'cleanup-buffer)
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
   (defun replace-last-sexp ()
     "Eval in place."
@@ -86,8 +98,20 @@
 ;; (when (locate-library "git-auto-commit-mode")
 ;;   (setq gac-automatically-push-p t))
 
+(when (locate-library "nyan-mode")
+  (nyan-mode t))
+
+(when (locate-library "drag-stuff")
+  (drag-stuff-mode t))
+
+(when (locate-library "edit-server")
+  (if (daemonp)
+      (progn
+	(require 'edit-server)
+	(edit-server-start))))
+
 (when (locate-library "smart-mode-line")
-;;  (setq sml/no-confirm-load-theme t)
+  (setq sml/no-confirm-load-theme t)
   (sml/setup))
 
 (when (locate-library "mode-icons")
@@ -110,33 +134,30 @@
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.php?\\'"  . web-mode)))
 
+(when (locate-library "js2-mode")
+  (add-to-list 'auto-mode-alist '("\\.js?\\'" . js2-mode)))
+
 (when (locate-library "pkgbuild-mode")
   (add-to-list 'auto-mode-alist '("/PKGBUILD$" . pkgbuild-mode)))
 
 (when (locate-library "guide-key")
   (require 'guide-key)
-  (setq guide-key/guide-key-sequence '("C-x r" "C-c"))
+  (setq guide-key/guide-key-sequence '("C-x r"))
   (setq guide-key/idle-delay 2.0)
   (setq guide-key/recursive-key-sequence-flag t)
   (guide-key-mode 1))
 
-;; orgmode
 (when (locate-library "org")
   (global-set-key "\C-ca" 'org-agenda)
   (setq org-src-fontify-natively t)
   (setq org-hierarchical-todo-statistics t)
   (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE" "PERFECT")))
-  (setq org-directory (getenv "ORGHOME"))
+  (setq org-directory "~/Dropbox/org")
   (setq org-todo-keyword-faces
         '(("TODO" . "red")
           ("PROGRESS" . "orange")
           ("DONE" . "green")
           ("PERFECT" . "salmon")))
-  (defun org-summary-todo (n-done n-not-done)
-    "Switch entry to DONE when all subentries are done, to TODO otherwise."
-    (let (org-log-done org-log-states)   ; turn off logging
-      (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
-  (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
   (when (locate-library "org2blog")
     (require 'org2blog-autoloads)
     (require 'wordpress-credentials))
@@ -252,6 +273,7 @@
 
 (when (locate-library "ido")
   (ido-mode t)
+  (ido-everywhere t)
   (setq ido-enable-flex-matching t)
   (setq ido-enable-last-directory-history t)
   (setq confirm-nonexistent-file-or-buffer nil))
@@ -298,7 +320,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("6fe6ab4abe97a4f13533e47ae59fbba7f2919583f9162b440dd06707b01f7794" default)))
+ '(custom-safe-themes (quote ("42ac06835f95bc0a734c21c61aeca4286ddd881793364b4e9bc2e7bb8b6cf848" "6fe6ab4abe97a4f13533e47ae59fbba7f2919583f9162b440dd06707b01f7794" default)))
  '(org-agenda-files (quote ("~/Dropbox/org/icpc.org" "~/Dropbox/org/todo.org")))
  '(paradox-github-token t)
  '(safe-local-variable-values (quote ((eval setq-default gac-automatically-push-p t) (require-final-newline))))

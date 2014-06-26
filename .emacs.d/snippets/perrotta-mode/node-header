@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: node-header
+# key: node
+# group: node
+# --
+/*jslint node: true */
+"use strict";

@@ -1,6 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
 # name: pkgver-git
-# key: pkgver-git
+# key: pkgver
 # --
 pkgver() {
   cd "${srcdir}/${_gitname}"

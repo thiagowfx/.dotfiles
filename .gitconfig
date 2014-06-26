@@ -8,14 +8,14 @@ name = Thiago Perrotta
 email = thiagoperrotta95@gmail.com
 
 [credential]
-helper = store # store|cache --timeout=7200
+helper = store
 
 [alias]
+lazy = commit -a -m "update"
 logh = log --graph --decorate --oneline --pretty=format:\"%h %ad | %s%d [%an]\" --date=short
 logr = log --graph --decorate --oneline --all
-lazy = commit -a -m "update"
-st = status
 puhs = push
+st = status
 
 [core]
 whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol

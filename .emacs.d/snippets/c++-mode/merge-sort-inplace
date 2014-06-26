@@ -1,16 +1,13 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: icpc-merge-sort
-# key: icpc-merge-sort
+# name: merge-sort-inplace
+# key: merge-sort
+# group: icpc
 # --
 void merge_sort(int *v, int b, int e) {
   int m = b + (e - b) / 2;
   if ( !(m > b))
        return;
-  int n = e - b;
   merge_sort(v,b,m);
   merge_sort(v,m,e);
-  int *w = new int[n];
-  merge(v+b,v+m,v+m,v+e,w);
-  for (int i = b; i < e; ++i)
-    v[i] = w[i-b];
+  inplace_merge(v+b,v+m,v+e);
 }

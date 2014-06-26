@@ -1,57 +1,44 @@
-! font settings
 Xft.autohint: true
 Xft*antialias: true
 Xft*hinting: true
 Xft.hintstyle: hintslight
-Xft*dpi: 96
+Xft*dpi: 100
 Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 
-! xterm
-XTerm*metaSendsEscape: true
-XTerm*locale: true
-XTerm*reverseVideo: on
-Xterm*saveLines: 4096
-XTerm*scrollKey: true
-XTerm*scrollTtyOutput: false
-
-! Emacs
 Emacs.font: Terminus-9
 
-! urxvt (rxvt-unicode)
-URxvt*scrollTtyOutput: false 
+URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 URxvt*termName: rxvt-unicode
 URxvt*background: #000000
 URxvt*foreground: #ffffff
 URxvt.scrollBar: false
-URxvt*font: xft:Terminus:size=9:antialias=true
+URxvt*font: xft:Terminus:size=10:antialias=true
 URxvt.iso14755: false
 URxvt.iso14755_52: false
 
-! urxvt extensions
-URxvt.perl-ext-common: default,clipboard,matcher,selection-to-clipboard,tabbedex
+URxvt.perl-ext-common: default,clipboard,matcher,selection-to-clipboard,tabbed
 URxvt.keysym.Control-Shift-C: perl:clipboard:copy
 URxvt.keysym.Control-Shift-V: perl:clipboard:paste
-URxvt.tabbed.autohide: true
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 
-! http://felixc.at/URxvt - felixonmars style
-! alt: xcolors.net
-urxvt.color1:   #cc0000
-urxvt.color2:   #4e9a06
-urxvt.color3:   #c4a000
-urxvt.color4:   #3465a4
-urxvt.color5:   #75507b
-urxvt.color6:   #06989a
-urxvt.color7:   #d3d7cf
-urxvt.color8:   #555753
-urxvt.color9:   #ef2929
-urxvt.color10:  #8ae234
-urxvt.color11:  #fce94f
-urxvt.color12:  #729fcf
-urxvt.color13:  #ad7fa8
-urxvt.color14:  #34e2e2
-urxvt.color15:  #eeeeec
+! http://felixc.at/URxvt (felixonmars style)
+! http://xcolors.net
+urxvt.color1:  #cc0000
+urxvt.color2:  #4e9a06
+urxvt.color3:  #c4a000
+urxvt.color4:  #3465a4
+urxvt.color5:  #75507b
+urxvt.color6:  #06989a
+urxvt.color7:  #d3d7cf
+urxvt.color8:  #555753
+urxvt.color9:  #ef2929
+urxvt.color10: #8ae234
+urxvt.color11: #fce94f
+urxvt.color12: #729fcf
+urxvt.color13: #ad7fa8
+urxvt.color14: #34e2e2
+urxvt.color15: #eeeeec

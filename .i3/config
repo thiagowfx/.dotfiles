@@ -16,6 +16,9 @@ bindsym $mod+Escape       exec --no-startup-id i3-sensible-terminal -e "/usr/bin
 bindsym $mod+Shift+Escape exec --no-startup-id i3-sensible-terminal -e "/usr/bin/alsamixer"
 bindsym $mod+BackSpace    exec --no-startup-id /usr/bin/thunar
 
+bindsym $mod+m       move scratchpad
+bindsym $mod+Shift+m scratchpad show
+
 bindsym $mod+Shift+q kill
 bindsym $Alt+F4      kill
 bindsym $mod+Shift+c reload
@@ -46,7 +49,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 bindsym $mod+b focus child
 
-# assign: use xorg-xprop to learn the class string
+# xorg-xprop to learn class strings
 # assign [class="^Chromium$|Firefox|dwb"] 2
 
 bindsym $mod+o       move workspace to output HDMI1
@@ -54,12 +57,11 @@ bindsym $mod+Shift+o move workspace to output LVDS1
 workspace 1 output LVDS1
 workspace 9 output HDMI1
 
-# rename workspaces
 bindsym $mod+z exec i3-input -F 'rename workspace to "%s"' -P 'New name for workspace: '
-
-# regex to jump to a window
 bindsym $mod+x exec python ~/.i3/winmenu.py
 
+bindsym $mod+p workspace prev
+bindsym $mod+n workspace next
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
 bindsym $mod+3 workspace number 3
@@ -70,9 +72,9 @@ bindsym $mod+7 workspace number 7
 bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
 bindsym $mod+0 workspace number 0
-bindsym $mod+p workspace prev
-bindsym $mod+n workspace next
 
+bindsym $mod+Shift+p move container to workspace prev
+bindsym $mod+Shift+n move container to workspace next
 bindsym $mod+Shift+1 move container to workspace number 1
 bindsym $mod+Shift+2 move container to workspace number 2
 bindsym $mod+Shift+3 move container to workspace number 3
@@ -87,9 +89,9 @@ bindsym $mod+Shift+0 move container to workspace number 0
 mode "resize" {
   set $step 10
   bindsym Left resize shrink width $step px or $step ppt
-  bindsym Down resize grow height $step px or $step ppt
-  bindsym Up resize shrink height $step px or $step ppt
-  bindsym Right resize grow width $step px or $step ppt
+  bindsym Down resize grow height  $step px or $step ppt
+  bindsym Up resize shrink height  $step px or $step ppt
+  bindsym Right resize grow width  $step px or $step ppt
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
@@ -97,11 +99,11 @@ bindsym $mod+r mode "resize"
 
 set $mode_system (l)ock, (e)logout, (s)uspend, (h)ibernate, (r)eboot, Shift+(s)hutdown
 mode "$mode_system" {
-  bindsym l exec --no-startup-id $i3lock, mode "default"
-  bindsym e exec --no-startup-id i3-msg exit
-  bindsym s exec --no-startup-id $i3lock && systemctl suspend, mode "default"
-  bindsym h exec --no-startup-id systemctl hibernate, mode "default"
-  bindsym r exec --no-startup-id systemctl reboot
+  bindsym l exec       --no-startup-id $i3lock, mode "default"
+  bindsym e exec       --no-startup-id i3-msg exit
+  bindsym s exec       --no-startup-id $i3lock && systemctl suspend, mode "default"
+  bindsym h exec       --no-startup-id systemctl hibernate, mode "default"
+  bindsym r exec       --no-startup-id systemctl reboot
   bindsym Shift+s exec --no-startup-id systemctl poweroff
   bindsym Return mode "default"
   bindsym Escape mode "default"
@@ -109,13 +111,12 @@ mode "$mode_system" {
 bindsym $mod+l mode "$mode_system"
 
 bar {
-    # status_command i3status
     status_command i3blocks
-    position top
+    position bottom
     mode dock
 }
 
-# Custom hotkeys: use xev to learn the hotkey names
+# xev to learn hotkey names
 bindsym Print                      exec /usr/bin/scrot '%Y-%m-%d_%H%M%S_$wx$h_scrot.png' -e 'mv $f ~/ramdisk/' && notify-send 'SS taken'
 bindsym XF86MonBrightnessUp        exec /usr/bin/xbacklight -inc 5 -time 0
 bindsym XF86MonBrightnessDown      exec /usr/bin/xbacklight -dec 5 -time 0
@@ -129,33 +130,27 @@ bindsym XF86AudioPrev              exec /usr/bin/mpc prev                     &&
 bindsym XF86AudioNext              exec /usr/bin/mpc next                     && killall -SIGUSR1 i3blocks
 bindsym XF86AudioPlay              exec /usr/bin/mpc toggle
 
-# scratchpad
-bindsym $mod+m       move scratchpad
-bindsym $mod+Shift+m scratchpad show
-
-# options tweaking
 default_orientation            auto
 workspace_auto_back_and_forth  no
 workspace_layout               default # default|stacking|tabbed
 
-# for_window
 for_window [window_role="pop-up"] floating enable, move absolute center
 for_window [class="^Chromium$|Firefox|dwb|^Emacs$|Zathura|URxvt|Calibre"] border 1pixel
 for_window [class="Arandr|Epsxe|feh|Galculator|gimp|Java|Lxappearance|MPlayer|Viewnior|qtRaytracer"] floating enable
 
-# i3 startup
 exec --no-startup-id "/usr/bin/autocutsel -fork"
 exec --no-startup-id "/usr/bin/autocutsel -selection PRIMARY -fork"
 exec --no-startup-id "/usr/bin/autocutsel -selection SECONDARY -fork"
 exec --no-startup-id "/usr/bin/compton -b"
-exec --no-startup-id /usr/bin/CopyAgent
-exec --no-startup-id /usr/bin/dropboxd
-exec --no-startup-id /usr/bin/dunst
+exec --no-startup-id "/usr/bin/CopyAgent"
+exec --no-startup-id "/usr/bin/dropboxd"
+exec --no-startup-id "/usr/bin/dunst"
 exec --no-startup-id "/usr/bin/emacs --daemon"
 exec --no-startup-id "/usr/bin/hsetroot -solid '#111019'"
-exec --no-startup-id /usr/bin/mpd, exec --no-startup-id "/usr/bin/mpdas -d -c $HOME/.mpdasrc"
-exec --no-startup-id /usr/bin/nm-applet
-exec --no-startup-id /usr/bin/parcellite
-exec --no-startup-id /usr/bin/redshift
+exec --no-startup-id "/usr/bin/mpd"
+exec --no-startup-id "/usr/bin/mpdas -d -c $HOME/.mpdasrc"
+exec --no-startup-id "/usr/bin/nm-applet"
+exec --no-startup-id "/usr/bin/parcellite"
+exec --no-startup-id "/usr/bin/redshift"
 exec --no-startup-id "/usr/bin/thunar --daemon"
 exec --no-startup-id "/usr/bin/udiskie --tray"

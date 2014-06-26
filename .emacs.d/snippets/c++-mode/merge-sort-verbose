@@ -1,7 +1,7 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: icpc-merge-sort-verbose
-# key: icpc-merge-sort-verbose
-# binding: direct-keybinding
+# name: merge-sort-verbose
+# key: merge-sort
+# group: icpc
 # --
 void merge_sort(int *v, int b, int e) {
   int m = b + (e - b) / 2;

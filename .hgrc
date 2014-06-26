@@ -1,8 +1,8 @@
 # -*- conf -*-
 
 [ui]
-verbose = True
 username = Thiago Perrotta <thiagoperrotta95@gmail.com>
+verbose = True
 
 [extensions]
 color=

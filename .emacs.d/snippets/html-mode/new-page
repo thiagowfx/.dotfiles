@@ -1,0 +1,19 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: new-page
+# key: new
+# --
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="author" content="`user-full-name`">
+		<meta property="og:title" content="${1:title}" />
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<title>$1</title>
+	</head>
+	<body>
+		$0
+	</body>
+</html>

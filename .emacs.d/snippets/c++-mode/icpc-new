@@ -1,6 +1,7 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name : icpc-new
-# key : icpc-new
+# name : new-file
+# key : new
+# group: icpc
 # --
 #include <algorithm>
 #include <bitset>
