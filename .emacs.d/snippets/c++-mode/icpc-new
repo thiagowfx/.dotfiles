@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <bitset>
 #include <cassert>
+#include <cctype>
 #include <climits>
 #include <cmath>
 #include <cstdio>
@@ -34,6 +35,6 @@ const double EPS = 1e-7;
 
 int main(int argc, char* argv[]) {
 	$0
-  
+
   return 0;
 }

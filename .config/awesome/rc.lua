@@ -44,7 +44,7 @@ beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 terminal = os.getenv("TERMINAL") or "xterm"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
-browser = os.getenv("BROWSER") or "chromium"
+browser = os.getenv("BROWSER") or "google-chrome-stable"
 filemanager = os.getenv("FILEMANAGER") or "thunar"
 
 -- Default modkey.

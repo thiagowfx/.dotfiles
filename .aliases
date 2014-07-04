@@ -1,11 +1,11 @@
 # -*- shell-script -*-
 
 export ALTERNATE_EDITOR=""
-export BROWSER="/usr/bin/chromium"
+export BROWSER="/usr/bin/google-chrome-stable"
 export EDITOR="emacsclient -c"
 export HISTCONTROL=ignoreboth
-export PATH="/usr/lib/ccache/bin:$PATH"
 export RAMDISK="${HOME}/ramdisk"
+export PATH="/usr/lib/ccache/bin/:$HOME/.gem/ruby/2.1.0/bin/:$PATH"
 export TERM="rxvt-unicode"
 export TERMINAL="/usr/bin/urxvt"
 export VISUAL="emacsclient -c"
@@ -79,11 +79,9 @@ function nohup-t {
 }
 
 function qkkdiff-file {
-    if [[ "$1" == "" ]];
-    then
+    if [[ "$1" == "" ]]; then
         echo "Example usage: qkkdiff-file /etc/pacman.conf"
-    elif [[ -f "$1" ]];
-    then
+    elif [[ -f "$1" ]]; then
         pkg="$(pacman -Qo $1 | awk '//{printf "%s-%s", $(NF-1), $NF;}')"
         bsdtar -xOf /var/cache/pacman/pkg/${pkg}-$(uname -m).pkg.tar.xz "${1/\//}" | diff - "$1"
         return 0
@@ -94,15 +92,24 @@ function qkkdiff-file {
 }
 
 function qkkdiff-pkg {
-    if [[ "$1" == "" ]];
-    then
+    if [[ "$1" == "" ]]; then
         echo "Example usage: qkkdiff pacman"
-    elif ! pacman -Q "$1";
-    then
+    elif ! pacman -Q "$1"; then
         return 1
     else
         ver=$(pacman -Q "$1" | cut -f2 -d' ')
         pacman -Qkkq "$1" | while read package file; do echo $file; bsdtar -xOf /var/cache/pacman/pkg/${package}-${ver}-$(uname -m).pkg.tar.xz ${file/\//} | diff - $file  ; done
         return 0
     fi
+}
+
+function adbsync {
+    if [[ ! -d "$1" ]]; then
+	echo "Usage: adbsync /path/to/localdir"
+	return 0
+    fi
+    local TARGET_DIR="/storage/sdcard1/adbwifi"
+    adb wait-for-device
+    adb shell "[[ ! -d $TARGET_DIR ]] && mkdir -p $TARGET_DIR"
+    adb push "$1" "$TARGET_DIR/$(basename $1)" && echo "Files successfully copied."
 }

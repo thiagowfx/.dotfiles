@@ -1,30 +1,31 @@
 ;; -*- emacs-lisp -*-
 
+(setq user-full-name "Thiago Perrotta"
+      user-mail-address "thiagoperrotta95@gmail.com")
+
 (let* ((my-lisp-dir "~/.emacs.d/")
        (default-directory my-lisp-dir))
   (setq load-path (cons my-lisp-dir load-path))
   (normal-top-level-add-subdirs-to-load-path))
 
-(setq user-full-name "Thiago Perrotta"
-      user-mail-address "thiagoperrotta95@gmail.com")
-
 (when (>= emacs-major-version 24)
   (package-initialize)
   (load-theme 'wombat t)
   (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                           ("marmalade" . "http://marmalade-repo.org/packages/")
                            ("melpa" . "http://melpa.milkbox.net/packages/")
+                           ;; ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
+                           ;; ("marmalade" . "http://marmalade-repo.org/packages/")
                            ("org" . "http://orgmode.org/elpa/"))))
 
 (progn
   ;; Shortcut keys - keystrokes/keybindings - RET, "\M-g", [C-tab], (kbd "M-g"), [f1], (kbd "<f1>"), [?\C-\t], (kbd "<C-S-iso-lefttab>")
+
   (global-set-key (kbd "RET")     'newline-and-indent)
   (global-set-key (kbd "<menu>")  'compile)
-  (global-set-key (kbd "C-x C-m") 'compile)
   (global-set-key (kbd "C-;")     'comment-or-uncomment-region)
   (global-set-key (kbd "C-x C-/") 'comment-or-uncomment-region)
   (global-set-key (kbd "M-/")     'hippie-expand)
-  (global-set-key "\C-xg"         'goto-line)
+  (global-set-key (kbd "C-x g")   'goto-line)
   (global-unset-key "\C-z")
   (global-unset-key "\C-\M-h"))
 
@@ -49,14 +50,6 @@
   (setq backup-inhibited t)
   (setq auto-save-default nil))
 
-(setq make-backup-files t ;; do make backups
-  backup-by-copying t     ;; and copy them here
-  backup-directory-alist '(("." . "~/.emacs.d/cache/backups"))
-  version-control t
-  kept-new-versions 2
-  kept-old-versions 5
-  delete-old-versions t)
-
 (progn
   ;; Emacs frame appearance
   (menu-bar-mode -1)
@@ -68,8 +61,7 @@
   (setq inhibit-startup-message t
         inhibit-startup-echo-area-message t
         initial-scratch-message "")
-  (set-face-attribute 'default nil :height 100)
-  (set-default-font "Terminus-9")
+  (set-frame-font "Terminus-9")
   (setq frame-title-format (concat "%b - " (message "%s@emacs" (replace-regexp-in-string "\n$" "" (shell-command-to-string "whoami"))))))
 
 (progn
@@ -82,7 +74,6 @@
       (untabify (point-min) (point-max))
       (delete-trailing-whitespace)))
   (global-set-key [C-tab] 'cleanup-buffer)
-  (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
   (defun replace-last-sexp ()
     "Eval in place."
@@ -98,17 +89,21 @@
 ;; (when (locate-library "git-auto-commit-mode")
 ;;   (setq gac-automatically-push-p t))
 
+(when (locate-library "drag-stuff")
+  (require 'drag-stuff)
+  (drag-stuff-global-mode t))
+
 (when (locate-library "nyan-mode")
   (nyan-mode t))
 
-(when (locate-library "drag-stuff")
-  (drag-stuff-mode t))
+;; (when (locate-library "flycheck")
+;;   (add-hook 'after-init-hook #'global-flycheck-mode))
 
 (when (locate-library "edit-server")
   (if (daemonp)
       (progn
-	(require 'edit-server)
-	(edit-server-start))))
+        (require 'edit-server)
+        (edit-server-start))))
 
 (when (locate-library "smart-mode-line")
   (setq sml/no-confirm-load-theme t)
@@ -128,7 +123,8 @@
 (when (locate-library "undo-tree")
   (global-undo-tree-mode t)
   (global-set-key (kbd "C-_") 'undo-tree-undo)
-  (global-set-key (kbd "C-+") 'undo-tree-redo))
+  (global-set-key (kbd "C-+") 'undo-tree-redo)
+  (global-set-key (kbd "C-x u") 'undo-tree-visualize))
 
 (when (locate-library "web-mode")
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
@@ -142,7 +138,7 @@
 
 (when (locate-library "guide-key")
   (require 'guide-key)
-  (setq guide-key/guide-key-sequence '("C-x r"))
+  (setq guide-key/guide-key-sequence '("C-x r" "C-c" "C-c !"))
   (setq guide-key/idle-delay 2.0)
   (setq guide-key/recursive-key-sequence-flag t)
   (guide-key-mode 1))
@@ -153,11 +149,10 @@
   (setq org-hierarchical-todo-statistics t)
   (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE" "PERFECT")))
   (setq org-directory "~/Dropbox/org")
-  (setq org-todo-keyword-faces
-        '(("TODO" . "red")
-          ("PROGRESS" . "orange")
-          ("DONE" . "green")
-          ("PERFECT" . "salmon")))
+  (setq org-todo-keyword-faces '(("TODO" . "red")
+                                 ("PROGRESS" . "orange")
+                                 ("DONE" . "green")
+                                 ("PERFECT" . "salmon")))
   (when (locate-library "org2blog")
     (require 'org2blog-autoloads)
     (require 'wordpress-credentials))
@@ -203,24 +198,23 @@
   (global-set-key (kbd "<C-S-left>")  'buf-move-left)
   (global-set-key (kbd "<C-S-right>") 'buf-move-right))
 
+(when (locate-library "fixmee")
+  (require 'fixmee)
+  (global-fixmee-mode t)
+  (global-set-key (kbd "C-c f") 'fixmee-goto-nextmost-urgent))
+
 (when (locate-library "auto-complete")
+  (require 'auto-complete)
   (require 'auto-complete-config)
   (ac-config-default)
   (global-auto-complete-mode t)
-  (setq ac-auto-show-menu t)
-  (global-set-key (kbd "C-x C-<tab>") 'auto-complete)
-  (setq ac-sources '(ac-source-abbrev
-                     ac-source-dictionary
-                     ac-source-features
-                     ac-source-filename
-                     ac-source-files-in-current-dir
-                     ac-source-functions
-                     ac-source-imenu
-                     ac-source-symbols
-                     ac-source-variables
-                     ac-source-yasnippet
-                     ac-source-words-in-buffer
-                     ac-source-words-in-same-mode-buffers)))
+  (global-set-key (kbd "C-x <tab>") 'auto-complete)
+  (setq ac-auto-start nil)
+  (ac-set-trigger-key "TAB")
+  (defun ac-common-setup () (setq ac-sources (append ac-sources '(ac-source-filename
+                                                                  ac-source-files-in-current-dir
+                                                                  ac-source-imenu
+                                                                  ac-source-words-in-buffer)))))
 
 ;; -------------------------------------------------------------
 ;; built-in/native libraries
@@ -265,7 +259,7 @@
   (global-linum-mode t))
 
 (when (locate-library "bookmark")
-  (setq bookmark-default-file (concat user-emacs-directory "bookmarks")))
+  (setq zbookmark-default-file (concat user-emacs-directory "bookmarks")))
 
 (when (locate-library "eldoc")
   (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
@@ -293,7 +287,7 @@
 
 (when (locate-library "saveplace")
   (require 'saveplace)
-  (setq-default save-place t)
+  (setq save-place t)
   (setq save-place-file (concat user-emacs-directory "saved-places")))
 
 (when (locate-library "uniquify")
@@ -313,6 +307,12 @@
                                      (buffer-file-name)
                                      (file-name-sans-extension buffer-file-name))))))
 
+(when (locate-library "elfeed")
+  (require 'elfeed)
+  (global-set-key (kbd "C-x w") 'elfeed)
+  (setq elfeed-feeds '(("http://jasonwryan.com/atom.xml" core)
+                       ("http://allanmcrae.com/feed/" core))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom
 (custom-set-variables
@@ -323,7 +323,7 @@
  '(custom-safe-themes (quote ("42ac06835f95bc0a734c21c61aeca4286ddd881793364b4e9bc2e7bb8b6cf848" "6fe6ab4abe97a4f13533e47ae59fbba7f2919583f9162b440dd06707b01f7794" default)))
  '(org-agenda-files (quote ("~/Dropbox/org/icpc.org" "~/Dropbox/org/todo.org")))
  '(paradox-github-token t)
- '(safe-local-variable-values (quote ((eval setq-default gac-automatically-push-p t) (require-final-newline))))
+ '(safe-local-variable-values (quote ((require-final-newline) (eval setq-default gac-automatically-push-p t))))
  '(use-file-dialog nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

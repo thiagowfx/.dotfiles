@@ -55,6 +55,13 @@ bindsym $mod+b focus child
 bindsym $mod+o       move workspace to output HDMI1
 bindsym $mod+Shift+o move workspace to output LVDS1
 workspace 1 output LVDS1
+workspace 2 output LVDS1
+workspace 3 output LVDS1
+workspace 4 output LVDS1
+workspace 5 output LVDS1
+workspace 6 output LVDS1
+workspace 7 output LVDS1
+workspace 8 output LVDS1
 workspace 9 output HDMI1
 
 bindsym $mod+z exec i3-input -F 'rename workspace to "%s"' -P 'New name for workspace: '
@@ -135,12 +142,11 @@ workspace_auto_back_and_forth  no
 workspace_layout               default # default|stacking|tabbed
 
 for_window [window_role="pop-up"] floating enable, move absolute center
-for_window [class="^Chromium$|Firefox|dwb|^Emacs$|Zathura|URxvt|Calibre"] border 1pixel
+for_window [class="Firefox|^Emacs$|Zathura|URxvt|Calibre"] border 1pixel
 for_window [class="Arandr|Epsxe|feh|Galculator|gimp|Java|Lxappearance|MPlayer|Viewnior|qtRaytracer"] floating enable
 
 exec --no-startup-id "/usr/bin/autocutsel -fork"
 exec --no-startup-id "/usr/bin/autocutsel -selection PRIMARY -fork"
-exec --no-startup-id "/usr/bin/autocutsel -selection SECONDARY -fork"
 exec --no-startup-id "/usr/bin/compton -b"
 exec --no-startup-id "/usr/bin/CopyAgent"
 exec --no-startup-id "/usr/bin/dropboxd"
@@ -153,4 +159,4 @@ exec --no-startup-id "/usr/bin/nm-applet"
 exec --no-startup-id "/usr/bin/parcellite"
 exec --no-startup-id "/usr/bin/redshift"
 exec --no-startup-id "/usr/bin/thunar --daemon"
-exec --no-startup-id "/usr/bin/udiskie --tray"
+# exec --no-startup-id "/usr/bin/udiskie --tray"
