@@ -19,11 +19,10 @@
 
 (progn
   ;; Shortcut keys - keystrokes/keybindings - RET, "\M-g", [C-tab], (kbd "M-g"), [f1], (kbd "<f1>"), [?\C-\t], (kbd "<C-S-iso-lefttab>")
-
+  
   (global-set-key (kbd "RET")     'newline-and-indent)
   (global-set-key (kbd "<menu>")  'compile)
   (global-set-key (kbd "C-;")     'comment-or-uncomment-region)
-  (global-set-key (kbd "C-x C-/") 'comment-or-uncomment-region)
   (global-set-key (kbd "M-/")     'hippie-expand)
   (global-set-key (kbd "C-x g")   'goto-line)
   (global-unset-key "\C-z")
@@ -31,6 +30,7 @@
 
 (progn
   ;; Usability / design
+  (setq-default major-mode 'org-mode)
   (setq case-fold-search t)
   (setq x-select-enable-primary t
         save-interprogram-paste-before-kill t
@@ -38,7 +38,6 @@
         interprogram-paste-function 'x-cut-buffer-or-selection-value)
   (setq visible-bell t)
   (prefer-coding-system 'utf-8)
-  (mouse-avoidance-mode 'exile)
   (setq indicate-empty-lines t)
   (setq echo-keystrokes 0.1)
   (fset 'yes-or-no-p 'y-or-n-p)

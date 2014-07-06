@@ -12,8 +12,8 @@ helper = store
 
 [alias]
 lazy = commit -a -m "update"
-logh = log --graph --decorate --oneline --pretty=format:\"%h %ad | %s%d [%an]\" --date=short
-logr = log --graph --decorate --oneline --all
+log1 = log --graph --decorate --oneline --pretty=format:\"%h %ad | %s%d [%an]\" --date=short
+log2 = log --graph --decorate --oneline --all
 puhs = push
 st = status
 
@@ -25,3 +25,6 @@ ui = auto
 
 [merge]
 tool = emerge
+
+[github]
+user = thiagowfx

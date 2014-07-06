@@ -49,9 +49,6 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 bindsym $mod+b focus child
 
-# xorg-xprop to learn class strings
-# assign [class="^Chromium$|Firefox|dwb"] 2
-
 bindsym $mod+o       move workspace to output HDMI1
 bindsym $mod+Shift+o move workspace to output LVDS1
 workspace 1 output LVDS1
@@ -139,11 +136,15 @@ bindsym XF86AudioPlay              exec /usr/bin/mpc toggle
 
 default_orientation            auto
 workspace_auto_back_and_forth  no
-workspace_layout               default # default|stacking|tabbed
+workspace_layout               default
 
+# xprop to learn class strings
 for_window [window_role="pop-up"] floating enable, move absolute center
-for_window [class="Firefox|^Emacs$|Zathura|URxvt|Calibre"] border 1pixel
+for_window [class="Firefox|^Emacs$|Zathura|URxvt|Calibre|Google-chrome-stable"] border 1pixel
 for_window [class="Arandr|Epsxe|feh|Galculator|gimp|Java|Lxappearance|MPlayer|Viewnior|qtRaytracer"] floating enable
+
+# xprop to learn class strings
+# assign [class="^Chromium$|Firefox|dwb"] 2
 
 exec --no-startup-id "/usr/bin/autocutsel -fork"
 exec --no-startup-id "/usr/bin/autocutsel -selection PRIMARY -fork"
@@ -152,7 +153,7 @@ exec --no-startup-id "/usr/bin/CopyAgent"
 exec --no-startup-id "/usr/bin/dropboxd"
 exec --no-startup-id "/usr/bin/dunst"
 exec --no-startup-id "/usr/bin/emacs --daemon"
-exec --no-startup-id "/usr/bin/hsetroot -solid '#111019'"
+exec --no-startup-id "/usr/bin/hsetroot -solid '#222222'"
 exec --no-startup-id "/usr/bin/mpd"
 exec --no-startup-id "/usr/bin/mpdas -d -c $HOME/.mpdasrc"
 exec --no-startup-id "/usr/bin/nm-applet"
