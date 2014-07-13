@@ -115,6 +115,7 @@
   (global-set-key [(control .)] 'goto-last-change))
 
 (when (locate-library "smex")
+  (global-set-key (kbd "C-x C-m") 'smex)
   (global-set-key "\M-x" 'smex)
   (global-set-key "\M-X" 'smex-major-mode-commands)
   (global-set-key "\C-c\M-x" 'execute-extended-command))
@@ -134,13 +135,6 @@
 
 (when (locate-library "pkgbuild-mode")
   (add-to-list 'auto-mode-alist '("/PKGBUILD$" . pkgbuild-mode)))
-
-(when (locate-library "guide-key")
-  (require 'guide-key)
-  (setq guide-key/guide-key-sequence '("C-x r" "C-c" "C-c !"))
-  (setq guide-key/idle-delay 2.0)
-  (setq guide-key/recursive-key-sequence-flag t)
-  (guide-key-mode 1))
 
 (when (locate-library "org")
   (global-set-key "\C-ca" 'org-agenda)
@@ -175,6 +169,10 @@
   (add-to-list 'hippie-expand-try-functions-list 'yas-hippie-try-expand)
   (add-hook 'yas-minor-mode-hook #'(lambda () (yas-activate-extra-mode 'perrotta-mode))))
 
+(when (locate-library "projectile")
+  (require 'projectile)
+  (projectile-global-mode))
+
 (when (locate-library "auto-yasnippet")
   (require 'auto-yasnippet)
   (global-set-key (kbd "C-\(") 'aya-create)
@@ -188,7 +186,12 @@
   (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
+  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+  (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click))
+
+(when (locate-library "expand-region")
+  (require 'expand-region)
+  (global-set-key (kbd "C-=") 'er/expand-region))
 
 (when (locate-library "buffer-move")
   (require 'buffer-move)
@@ -305,12 +308,6 @@
                                      "-g -O2 -Wall"
                                      (buffer-file-name)
                                      (file-name-sans-extension buffer-file-name))))))
-
-(when (locate-library "elfeed")
-  (require 'elfeed)
-  (global-set-key (kbd "C-x w") 'elfeed)
-  (setq elfeed-feeds '(("http://jasonwryan.com/atom.xml" core)
-                       ("http://allanmcrae.com/feed/" core))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom

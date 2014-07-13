@@ -3,6 +3,12 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+if [[ -n ${INSIDE_EMACS} ]]; then
+    export TERM=emacs
+    prompt walters
+    unsetopt zle
+fi
+
 [[ -f ~/.aliases ]] && . ~/.aliases
 
 autoload -U bashcompinit && bashcompinit

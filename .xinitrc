@@ -14,6 +14,19 @@ export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
 [[ -f ~/.Xmodmap ]]    && xmodmap ~/.Xmodmap
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
+autocutsel -fork &
+autocutsel -selection PRIMARY -fork &
+compton -b &
+CopyAgent &
+dropbox start &
+dunst &
+emacs --daemon &
+hsetroot -solid '#442222' &
+nm-applet &
+parcellite &
+redshift &
+# udiskie --tray &
+
 # xinit <your_window_manager_here>
 case $1 in
     awesome           ) exec awesome;;
