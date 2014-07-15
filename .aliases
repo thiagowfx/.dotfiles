@@ -108,7 +108,7 @@ function adbsync {
 	echo "Usage: adbsync /path/to/localdir"
 	return 0
     fi
-    local TARGET_DIR="/storage/sdcard1/adbwifi"
+    local TARGET_DIR="/storage/sdcard1/adbsync"
     adb wait-for-device
     adb shell "[[ ! -d $TARGET_DIR ]] && mkdir -p $TARGET_DIR"
     adb push "$1" "$TARGET_DIR/$(basename $1)" && echo "Files successfully copied."

@@ -47,7 +47,11 @@
   (setq vc-follow-symlinks t)
   (setq make-backup-files nil)
   (setq backup-inhibited t)
-  (setq auto-save-default nil))
+  (setq auto-save-default nil)
+  (setq auto-save-file-name-transforms `((".*" ,(expand-file-name
+						 (concat user-emacs-directory "backups")))))
+  (setq backup-directory-alist `(("." . ,(expand-file-name
+                                    (concat user-emacs-directory "backups"))))))
 
 (progn
   ;; Emacs frame appearance
