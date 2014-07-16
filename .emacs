@@ -20,11 +20,12 @@
 (progn
   ;; Shortcut keys - keystrokes/keybindings - RET, "\M-g", [C-tab], (kbd "M-g"), [f1], (kbd "<f1>"), [?\C-\t], (kbd "<C-S-iso-lefttab>")
   
-  (global-set-key (kbd "RET")     'newline-and-indent)
-  (global-set-key (kbd "<menu>")  'compile)
-  (global-set-key (kbd "C-;")     'comment-or-uncomment-region)
-  (global-set-key (kbd "M-/")     'hippie-expand)
-  (global-set-key (kbd "C-x g")   'goto-line)
+  (global-set-key (kbd "RET")    'newline-and-indent)
+  (global-set-key (kbd "<menu>") 'compile)
+  (global-set-key (kbd "C-;")    'comment-or-uncomment-region)
+  (global-set-key (kbd "M-/")    'hippie-expand)
+  (global-set-key (kbd "C-x g")  'goto-line)
+  (global-set-key (kbd "C-x c")  'save-buffers-kill-terminal)
   (global-unset-key "\C-z")
   (global-unset-key "\C-\M-h"))
 
@@ -47,11 +48,7 @@
   (setq vc-follow-symlinks t)
   (setq make-backup-files nil)
   (setq backup-inhibited t)
-  (setq auto-save-default nil)
-  (setq auto-save-file-name-transforms `((".*" ,(expand-file-name
-						 (concat user-emacs-directory "backups")))))
-  (setq backup-directory-alist `(("." . ,(expand-file-name
-                                    (concat user-emacs-directory "backups"))))))
+  (setq auto-save-default nil))
 
 (progn
   ;; Emacs frame appearance
@@ -117,6 +114,9 @@
 
 (when (locate-library "goto-chg")
   (global-set-key [(control .)] 'goto-last-change))
+
+(when (locate-library "ace-jump-mode")
+  (global-set-key (kbd "C-z") 'ace-jump-mode))
 
 (when (locate-library "smex")
   (global-set-key (kbd "C-x C-m") 'smex)
