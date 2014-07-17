@@ -3,7 +3,7 @@
 # key: ubuntu
 # --
 FROM ubuntu
-MAINTAINER Thiago Perrotta <thiagoperrotta95@gmail.com>
+MAINTAINER `user-full-name` `user-mail-address`
 
 RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 RUN apt-get update

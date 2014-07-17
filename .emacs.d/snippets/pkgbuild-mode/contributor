@@ -2,5 +2,5 @@
 # name: contributor
 # key: contributor
 # --
-# Contributor: Thiago Perrotta <echo dGhpYWdvcGVycm90dGE5NUBnbWFpbC5jb20K | base64 -d >
+# Contributor: `user-full-name` <echo dGhpYWdvcGVycm90dGE5NUBnbWFpbC5jb20K | base64 -d >
 $0

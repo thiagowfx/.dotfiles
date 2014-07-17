@@ -19,7 +19,6 @@
 
 (progn
   ;; Shortcut keys - keystrokes/keybindings - RET, "\M-g", [C-tab], (kbd "M-g"), [f1], (kbd "<f1>"), [?\C-\t], (kbd "<C-S-iso-lefttab>")
-  
   (global-set-key (kbd "RET")    'newline-and-indent)
   (global-set-key (kbd "<menu>") 'compile)
   (global-set-key (kbd "C-;")    'comment-or-uncomment-region)
@@ -86,24 +85,23 @@
 ;; --------------------------------------------------
 ;; external libraries
 ;; -------------------------------------------------
+;; this is more useful when defined locally within a file
 ;; (when (locate-library "git-auto-commit-mode")
 ;;   (setq gac-automatically-push-p t))
 
 (when (locate-library "drag-stuff")
   (require 'drag-stuff)
-  (drag-stuff-global-mode t))
+  (drag-stuff-global-mode t)
+  (defun disable-drag-stuff-mode ()
+    (drag-stuff-mode -1))
+  (add-hook 'org-mode-hook 'disable-drag-stuff-mode))
 
-(when (locate-library "nyan-mode")
-  (nyan-mode t))
+(when (locate-library "go-mode")
+  (add-hook 'before-save-hook #'gofmt-before-save)
+  (eval-after-load "go-mode" '(define-key go-mode-map  (kbd "M-.") 'godef-jump)))
 
-;; (when (locate-library "flycheck")
-;;   (add-hook 'after-init-hook #'global-flycheck-mode))
-
-(when (locate-library "edit-server")
-  (if (daemonp)
-      (progn
-        (require 'edit-server)
-        (edit-server-start))))
+(when (locate-library "flycheck")
+  (add-hook 'after-init-hook #'global-flycheck-mode))
 
 (when (locate-library "smart-mode-line")
   (setq sml/no-confirm-load-theme t)
@@ -113,7 +111,7 @@
   (mode-icons-mode))
 
 (when (locate-library "goto-chg")
-  (global-set-key [(control .)] 'goto-last-change))
+  (global-set-key (kbd "C-.") 'goto-last-change))
 
 (when (locate-library "ace-jump-mode")
   (global-set-key (kbd "C-z") 'ace-jump-mode))
@@ -121,14 +119,12 @@
 (when (locate-library "smex")
   (global-set-key (kbd "C-x C-m") 'smex)
   (global-set-key "\M-x" 'smex)
-  (global-set-key "\M-X" 'smex-major-mode-commands)
   (global-set-key "\C-c\M-x" 'execute-extended-command))
 
 (when (locate-library "undo-tree")
   (global-undo-tree-mode t)
   (global-set-key (kbd "C-_") 'undo-tree-undo)
-  (global-set-key (kbd "C-+") 'undo-tree-redo)
-  (global-set-key (kbd "C-x u") 'undo-tree-visualize))
+  (global-set-key (kbd "C-+") 'undo-tree-redo))
 
 (when (locate-library "web-mode")
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
@@ -141,11 +137,11 @@
   (add-to-list 'auto-mode-alist '("/PKGBUILD$" . pkgbuild-mode)))
 
 (when (locate-library "org")
-  (global-set-key "\C-ca" 'org-agenda)
   (setq org-src-fontify-natively t)
-  (setq org-hierarchical-todo-statistics t)
-  (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE" "PERFECT")))
   (setq org-directory "~/Dropbox/org")
+  (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE" "PERFECT")))
+  (global-set-key "\C-ca" 'org-agenda)
+  (setq org-hierarchical-todo-statistics t)
   (setq org-todo-keyword-faces '(("TODO" . "red")
                                  ("PROGRESS" . "orange")
                                  ("DONE" . "green")
@@ -173,14 +169,14 @@
   (add-to-list 'hippie-expand-try-functions-list 'yas-hippie-try-expand)
   (add-hook 'yas-minor-mode-hook #'(lambda () (yas-activate-extra-mode 'perrotta-mode))))
 
-(when (locate-library "projectile")
-  (require 'projectile)
-  (projectile-global-mode))
-
 (when (locate-library "auto-yasnippet")
   (require 'auto-yasnippet)
   (global-set-key (kbd "C-\(") 'aya-create)
   (global-set-key (kbd "C-\)") 'aya-expand))
+
+(when (locate-library "projectile")
+  (require 'projectile)
+  (projectile-global-mode))
 
 (when (locate-library "golden-ratio")
   (require 'golden-ratio)
@@ -196,6 +192,9 @@
 (when (locate-library "expand-region")
   (require 'expand-region)
   (global-set-key (kbd "C-=") 'er/expand-region))
+
+(when (locate-library "smart-cursor-color")
+  (smart-cursor-color-mode t))
 
 (when (locate-library "buffer-move")
   (require 'buffer-move)
@@ -214,9 +213,9 @@
   (require 'auto-complete-config)
   (ac-config-default)
   (global-auto-complete-mode t)
-  (global-set-key (kbd "C-x <tab>") 'auto-complete)
   (setq ac-auto-start nil)
   (ac-set-trigger-key "TAB")
+  (global-set-key (kbd "C-x <tab>") 'auto-complete)
   (defun ac-common-setup () (setq ac-sources (append ac-sources '(ac-source-filename
                                                                   ac-source-files-in-current-dir
                                                                   ac-source-imenu

@@ -4,7 +4,7 @@
 [ -z "$PS1" ] && return
 
 if [[ -n ${INSIDE_EMACS} ]]; then
-    export TERM=emacs
+    export TERM=dumb
     prompt walters
     unsetopt zle
 fi

@@ -1,6 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name : new-file
-# key : new
+# name : template
+# key : template
 # group: icpc
 # --
 #include <algorithm>
