@@ -16,8 +16,8 @@ bindsym $mod+Escape       exec --no-startup-id i3-sensible-terminal -e "/usr/bin
 bindsym $mod+Shift+Escape exec --no-startup-id i3-sensible-terminal -e "/usr/bin/alsamixer"
 bindsym $mod+BackSpace    exec --no-startup-id /usr/bin/pcmanfm
 
-bindsym $mod+m       move scratchpad
-bindsym $mod+Shift+m scratchpad show
+bindsym $mod+o move scratchpad
+bindsym $mod+m scratchpad show
 
 bindsym $mod+Shift+q kill
 bindsym $Alt+F4      kill
@@ -49,8 +49,8 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 bindsym $mod+b focus child
 
-bindsym $mod+o       move workspace to output HDMI1
-bindsym $mod+Shift+o move workspace to output LVDS1
+bindsym $mod+i       move workspace to output HDMI1
+bindsym $mod+Shift+i move workspace to output LVDS1
 workspace 1 output LVDS1
 workspace 2 output LVDS1
 workspace 3 output LVDS1

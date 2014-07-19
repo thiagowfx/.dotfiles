@@ -3,13 +3,12 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+[[ -f ~/.aliases ]] && . ~/.aliases
+
 if [[ -n ${INSIDE_EMACS} ]]; then
-    export TERM=dumb
     prompt walters
     unsetopt zle
 fi
-
-[[ -f ~/.aliases ]] && . ~/.aliases
 
 autoload -U bashcompinit && bashcompinit
 autoload -U colors && colors

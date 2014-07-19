@@ -96,10 +96,6 @@
     (drag-stuff-mode -1))
   (add-hook 'org-mode-hook 'disable-drag-stuff-mode))
 
-(when (locate-library "go-mode")
-  (add-hook 'before-save-hook #'gofmt-before-save)
-  (eval-after-load "go-mode" '(define-key go-mode-map  (kbd "M-.") 'godef-jump)))
-
 (when (locate-library "flycheck")
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
@@ -126,6 +122,13 @@
   (global-set-key (kbd "C-_") 'undo-tree-undo)
   (global-set-key (kbd "C-+") 'undo-tree-redo))
 
+(when (locate-library "popwin")
+  (require 'popwin)
+  (popwin-mode t))
+
+(when (locate-library "auctex")
+  (load "auctex.el" nil t t))
+
 (when (locate-library "web-mode")
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.php?\\'"  . web-mode)))
@@ -136,7 +139,7 @@
 (when (locate-library "pkgbuild-mode")
   (add-to-list 'auto-mode-alist '("/PKGBUILD$" . pkgbuild-mode)))
 
-(when (locate-library "org")
+(when (locate-library "org") ;; orgmode
   (setq org-src-fontify-natively t)
   (setq org-directory "~/Dropbox/org")
   (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE" "PERFECT")))
@@ -221,13 +224,22 @@
                                                                   ac-source-imenu
                                                                   ac-source-words-in-buffer)))))
 
+(when (locate-library "go-mode") ;; golang
+  (add-hook 'before-save-hook #'gofmt-before-save)
+  (when (locate-library "go-autocomplete")
+    (require 'go-autocomplete))
+  (when (locate-library "go-eldoc")
+    (add-hook 'go-mode-hook 'go-eldoc-setup))
+  (when (locate-library "go-projectile")
+    (require 'go-projectile))
+  (add-hook 'go-mode-hook (lambda () (local-set-key (kbd "M-.") #'godef-jump))))
+
 ;; -------------------------------------------------------------
 ;; built-in/native libraries
 ;; -------------------------------------------------------------
 
 (when (locate-library "epa")
   (require 'epa)
-  (epa-file-enable)
   (setq epa-file-name-regexp "\\.\\(gpg\\|asc\\)$")
   (epa-file-name-regexp-update))
 
