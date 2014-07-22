@@ -10,7 +10,8 @@
 
 (when (>= emacs-major-version 24)
   (package-initialize)
-  (load-theme 'wombat t)
+  ;; (load-theme 'wombat t)
+  (load-theme 'monokai t)
   (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                            ("melpa" . "http://melpa.milkbox.net/packages/")
                            ;; ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
@@ -47,9 +48,7 @@
   (setq vc-follow-symlinks t)
   (setq make-backup-files nil)
   (setq backup-inhibited t)
-  (setq auto-save-default nil))
-
-(progn
+  (setq auto-save-default nil)
   ;; Emacs frame appearance
   (menu-bar-mode -1)
   (scroll-bar-mode -1)
@@ -92,9 +91,7 @@
 (when (locate-library "drag-stuff")
   (require 'drag-stuff)
   (drag-stuff-global-mode t)
-  (defun disable-drag-stuff-mode ()
-    (drag-stuff-mode -1))
-  (add-hook 'org-mode-hook 'disable-drag-stuff-mode))
+  (add-hook 'org-mode-hook '(lambda () (drag-stuff-mode -1))))
 
 (when (locate-library "flycheck")
   (add-hook 'after-init-hook #'global-flycheck-mode))
@@ -106,6 +103,9 @@
 (when (locate-library "mode-icons")
   (mode-icons-mode))
 
+(when (locate-library "autopair")
+  (autopair-global-mode t))
+
 (when (locate-library "goto-chg")
   (global-set-key (kbd "C-.") 'goto-last-change))
 
@@ -113,12 +113,12 @@
   (global-set-key (kbd "C-z") 'ace-jump-mode))
 
 (when (locate-library "smex")
-  (global-set-key (kbd "C-x C-m") 'smex)
-  (global-set-key "\M-x" 'smex)
-  (global-set-key "\C-c\M-x" 'execute-extended-command))
+  (global-set-key (kbd "C-x C-m") 'execute-extended-command)
+  (global-set-key (kbd "M-x") 'smex))
 
 (when (locate-library "undo-tree")
   (global-undo-tree-mode t)
+  (setq undo-tree-auto-save-history t)
   (global-set-key (kbd "C-_") 'undo-tree-undo)
   (global-set-key (kbd "C-+") 'undo-tree-redo))
 
@@ -139,28 +139,28 @@
 (when (locate-library "pkgbuild-mode")
   (add-to-list 'auto-mode-alist '("/PKGBUILD$" . pkgbuild-mode)))
 
-(when (locate-library "org") ;; orgmode
+(when (locate-library "org")
+  ;; orgmode
   (setq org-src-fontify-natively t)
+  (setq org-hierarchical-todo-statistics t)
   (setq org-directory "~/Dropbox/org")
   (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE" "PERFECT")))
-  (global-set-key "\C-ca" 'org-agenda)
-  (setq org-hierarchical-todo-statistics t)
-  (setq org-todo-keyword-faces '(("TODO" . "red")
-                                 ("PROGRESS" . "orange")
-                                 ("DONE" . "green")
-                                 ("PERFECT" . "salmon")))
+  (setq org-todo-keyword-faces '(("TODO" . "red") ("PROGRESS" . "orange") ("DONE" . "green") ("PERFECT" . "salmon")))
   (when (locate-library "org2blog")
     (require 'org2blog-autoloads)
     (require 'wordpress-credentials))
   (when (locate-library "org-crypt")
     (require 'org-crypt)
     (org-crypt-use-before-save-magic)
-    (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+    (setq org-tags-exclude-from-inheritance '("crypt"))
     (setq org-crypt-key "A905373C")))
 
 (when (locate-library "markdown-mode")
   (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
   (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode)))
+
+(when (locate-library "flyspell")
+  (add-hook 'text-mode-hook 'turn-on-flyspell))
 
 (when (locate-library "magit")
   (global-set-key "\C-cg" 'magit-status))
@@ -169,21 +169,17 @@
   (require 'yasnippet)
   (yas-global-mode t)
   (setq yas-prompt-functions '(yas-ido-prompt yas-completing-prompt yas-x-prompt yas-dropdown-prompt))
-  (add-to-list 'hippie-expand-try-functions-list 'yas-hippie-try-expand)
-  (add-hook 'yas-minor-mode-hook #'(lambda () (yas-activate-extra-mode 'perrotta-mode))))
-
-(when (locate-library "auto-yasnippet")
-  (require 'auto-yasnippet)
-  (global-set-key (kbd "C-\(") 'aya-create)
-  (global-set-key (kbd "C-\)") 'aya-expand))
+  (add-hook 'yas-minor-mode-hook #'(lambda () (yas-activate-extra-mode 'perrotta-mode)))
+  (when (locate-library "auto-yasnippet")
+    (require 'auto-yasnippet)
+    (global-set-key (kbd "C-\(") 'aya-create)
+    (global-set-key (kbd "C-\)") 'aya-expand)))
 
 (when (locate-library "projectile")
-  (require 'projectile)
   (projectile-global-mode))
 
-(when (locate-library "golden-ratio")
-  (require 'golden-ratio)
-  (golden-ratio-mode t))
+;; (when (locate-library "golden-ratio")
+;;   (golden-ratio-mode t))
 
 (when (locate-library "multiple-cursors")
   (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
@@ -193,21 +189,12 @@
   (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click))
 
 (when (locate-library "expand-region")
-  (require 'expand-region)
   (global-set-key (kbd "C-=") 'er/expand-region))
 
 (when (locate-library "smart-cursor-color")
   (smart-cursor-color-mode t))
 
-(when (locate-library "buffer-move")
-  (require 'buffer-move)
-  (global-set-key (kbd "<C-S-up>")    'buf-move-up)
-  (global-set-key (kbd "<C-S-down>")  'buf-move-down)
-  (global-set-key (kbd "<C-S-left>")  'buf-move-left)
-  (global-set-key (kbd "<C-S-right>") 'buf-move-right))
-
 (when (locate-library "fixmee")
-  (require 'fixmee)
   (global-fixmee-mode t)
   (global-set-key (kbd "C-c f") 'fixmee-goto-nextmost-urgent))
 
@@ -224,7 +211,8 @@
                                                                   ac-source-imenu
                                                                   ac-source-words-in-buffer)))))
 
-(when (locate-library "go-mode") ;; golang
+(when (locate-library "go-mode")
+  ;; golang -- you should go get external tools by yourself!
   (add-hook 'before-save-hook #'gofmt-before-save)
   (when (locate-library "go-autocomplete")
     (require 'go-autocomplete))
@@ -232,6 +220,12 @@
     (add-hook 'go-mode-hook 'go-eldoc-setup))
   (when (locate-library "go-projectile")
     (require 'go-projectile))
+  (when (locate-library "golint")
+    (require 'golint))
+  (setq gofmt-command "goimports")
+  (add-hook 'go-mode-hook (lambda () (if (not (string-match "go" compile-command))
+                                         (set (make-local-variable 'compile-command)
+                                              "go build -v && go test -v && go vet"))))
   (add-hook 'go-mode-hook (lambda () (local-set-key (kbd "M-.") #'godef-jump))))
 
 ;; -------------------------------------------------------------
@@ -261,7 +255,11 @@
   (global-set-key (kbd "C-x C-b") 'ibuffer))
 
 (when (locate-library "windmove")
-  (windmove-default-keybindings))
+  (windmove-default-keybindings)
+  (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
+  (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
+  (global-set-key (kbd "S-C-<down>") 'shrink-window)
+  (global-set-key (kbd "S-C-<up>") 'enlarge-window))
 
 (when (locate-library "winner")
   (winner-mode t))
@@ -317,12 +315,11 @@
 
 (when (locate-library "compile")
   (setq compilation-read-command nil)
-  (add-hook 'c++-mode-hook
-            (lambda () (setq compile-command
-                             (format "g++ %s %s -o %s"
-                                     "-g -O2 -Wall"
-                                     (buffer-file-name)
-                                     (file-name-sans-extension buffer-file-name))))))
+  (add-hook 'c++-mode-hook (lambda () (setq compile-command
+                                            (format "g++ %s %s -o %s"
+                                                    "-g -O2 -Wall"
+                                                    (buffer-file-name)
+                                                    (file-name-sans-extension buffer-file-name))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom
@@ -331,7 +328,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("42ac06835f95bc0a734c21c61aeca4286ddd881793364b4e9bc2e7bb8b6cf848" "6fe6ab4abe97a4f13533e47ae59fbba7f2919583f9162b440dd06707b01f7794" default)))
+ '(custom-safe-themes (quote ("60f04e478dedc16397353fb9f33f0d895ea3dab4f581307fbf0aa2f07e658a40" "42ac06835f95bc0a734c21c61aeca4286ddd881793364b4e9bc2e7bb8b6cf848" "6fe6ab4abe97a4f13533e47ae59fbba7f2919583f9162b440dd06707b01f7794" default)))
  '(org-agenda-files (quote ("~/Dropbox/org/icpc.org" "~/Dropbox/org/todo.org")))
  '(paradox-github-token t)
  '(safe-local-variable-values (quote ((require-final-newline) (eval setq-default gac-automatically-push-p t))))

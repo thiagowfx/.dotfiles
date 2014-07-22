@@ -141,5 +141,5 @@ workspace_layout               default
 # xprop to learn class strings
 for_window [window_role="pop-up"] floating enable, move absolute center
 for_window [class="Firefox|^Emacs$|Zathura|URxvt|Calibre|Google-chrome-stable|Spotify"] border 1pixel
-for_window [class="Arandr|Epsxe|feh|Galculator|gimp|Java|Lxappearance|MPlayer|Viewnior|qtRaytracer"] floating enable
+for_window [class="Arandr|Epsxe|feh|Galculator|gimp|Java|Lxappearance|MPlayer|Viewnior|qtraytracer"] floating enable
 # assign [class="^Chromium$|Firefox|dwb"] 2

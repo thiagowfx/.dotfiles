@@ -4,6 +4,7 @@ export ALTERNATE_EDITOR=""
 export BROWSER="/usr/bin/google-chrome-stable"
 export EDITOR="emacsclient -c"
 export GOPATH="$HOME/go"
+export GOBIN="$GOPATH/bin"
 export HISTCONTROL=ignoreboth
 export RAMDISK="${HOME}/ramdisk"
 export PATH="/usr/lib/ccache/bin/:$HOME/.gem/ruby/2.1.0/bin/:$GOPATH/bin:$PATH"
