@@ -19,6 +19,7 @@ alias chown="chown -v"
 alias colordiff="colordiff -uN"
 alias cower="cower --color=auto --sort=votes --target=${HOME}/.aur"
 alias cp="cp -v"
+alias curl="curl -v -L"
 alias df='df -h'
 alias diff="diff -uN"
 alias du="du -h"
@@ -112,4 +113,9 @@ function adbsync {
     adb wait-for-device
     adb shell "[[ ! -d $TARGET_DIR ]] && mkdir -p $TARGET_DIR"
     adb push "$1" "$TARGET_DIR/$(basename $1)" && echo "Files successfully copied."
+}
+
+function godev-t {
+    export GOPATH="$HOME/mygo"
+    export GOBIN="$GOPATH/bin"
 }
