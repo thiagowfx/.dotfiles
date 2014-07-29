@@ -113,11 +113,10 @@ chatnets = {
 
 channels = (
   { name = "#irssi"; chatnet = "ircnet"; autojoin = "No"; },
-  { name = "silc"; chatnet = "silc"; autojoin = "No"; },
   { name = "#archlinux"; chatnet = "fn"; autojoin = "yes"; },
+  { name = "#archlinux-br"; chatnet = "fn"; autojoin = "yes"; },
   { name = "#archlinux-offtopic"; chatnet = "fn"; autojoin = "yes"; },
-  { name = "#ubuntu"; chatnet = "fn"; autojoin = "yes"; },
-  { name = "#linux"; chatnet = "fn"; autojoin = "yes"; }
+  { name = "#golangbr"; chatnet = "fn"; autojoin = "yes"; }
 );
 
 aliases = {

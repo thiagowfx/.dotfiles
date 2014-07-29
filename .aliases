@@ -1,7 +1,7 @@
 # -*- shell-script -*-
 
 export ALTERNATE_EDITOR=""
-export BROWSER="/usr/bin/google-chrome-stable"
+export BROWSER="google-chrome-stable"
 export EDITOR="emacsclient -c"
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
@@ -33,6 +33,7 @@ alias ln="ln -v"
 alias lspci="lspci -v"
 alias lsusb="lsusb -t"
 alias make="make -j4 -l3"
+alias mkdir="mkdir -p"
 alias mv="mv -v"
 alias pacma="pacman"
 alias pgrep="pgrep --list-name"

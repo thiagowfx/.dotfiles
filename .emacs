@@ -5,8 +5,25 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "60f04e478dedc16397353fb9f33f0d895ea3dab4f581307fbf0aa2f07e658a40" default)))
- '(safe-local-variable-values (quote ((eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook" (add-hook (quote write-contents-functions) (lambda nil (delete-trailing-whitespace) nil)) (require (quote whitespace)) "Sometimes the mode needs to be toggled off and on." (whitespace-mode 0) (whitespace-mode 1)) (whitespace-line-column . 80) (whitespace-style face tabs trailing lines-tail) (require-final-newline . t)))))
+ '(custom-safe-themes
+   (quote
+    ("756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "60f04e478dedc16397353fb9f33f0d895ea3dab4f581307fbf0aa2f07e658a40" default)))
+ '(safe-local-variable-values
+   (quote
+    ((eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook"
+	   (add-hook
+	    (quote write-contents-functions)
+	    (lambda nil
+	      (delete-trailing-whitespace)
+	      nil))
+	   (require
+	    (quote whitespace))
+	   "Sometimes the mode needs to be toggled off and on."
+	   (whitespace-mode 0)
+	   (whitespace-mode 1))
+     (whitespace-line-column . 80)
+     (whitespace-style face tabs trailing lines-tail)
+     (require-final-newline . t)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -64,6 +81,10 @@
                         (add-hook 'org-mode-hook '(lambda () (drag-stuff-mode -1)))))
         (:name expand-region
                :after (global-set-key (kbd "C-=") 'er/expand-region))
+	(:name fill-column-indicator
+	       :after (progn
+			(require 'fill-column-indicator)
+			(fci-mode)))
         (:name fixmee
                :after (progn
                         (global-fixmee-mode t)
@@ -78,6 +99,10 @@
                         (add-hook 'go-mode-hook (lambda () (local-set-key (kbd "C-c C-d") #'godoc-at-point)))))
         (:name goto-chg
                :after (global-set-key (kbd "C-.") 'goto-last-change))
+	(:name go-snippets
+	       :type elpa)
+        (:name hlinum
+               :after (hlinum-activate))
         (:name hungry-delete
                :after (progn
                         (require 'hungry-delete)
@@ -99,10 +124,11 @@
                         (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)))
         (:name org-mode
                :after (progn
-                        (setq org-src-fontify-natively t)
-                        (setq org-directory "~/Dropbox/org")
-                        (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "TROUBLE" "|" "DONE")))
-                        (setq org-todo-keyword-faces '(("TODO" . "medium turquoise") ("PROGRESS" . "slate blue") ("TROUBLE" . "dark red") ("DONE" . "forest green")))
+                        (setq-default org-src-fontify-natively t)
+			(setq-default org-confirm-babel-evaluate nil)
+                        (setq-default org-directory "~/Dropbox/org")
+                        (setq-default org-todo-keywords '((sequence "TODO" "PROGRESS" "TROUBLE" "|" "DONE")))
+                        (setq-default org-todo-keyword-faces '(("TODO" . "medium turquoise") ("PROGRESS" . "slate blue") ("TROUBLE" . "dark red") ("DONE" . "forest green")))
                         (require 'org-crypt)
                         (org-crypt-use-before-save-magic)
                         (setq org-tags-exclude-from-inheritance '("crypt"))
@@ -110,7 +136,8 @@
         (:name org2blog
                :after (progn
                         (require 'org2blog-autoloads)
-                        (require 'wordpress-credentials)))
+                        (require 'wordpress-credentials)
+                        (auto-fill-mode t)))
         (:name popwin
                :after (progn
                         (require 'popwin)
@@ -118,7 +145,9 @@
         (:name projectile
                :after (projectile-global-mode))
         (:name rainbow-mode
-               :after (add-hook 'css-mode-hook '(lambda () (rainbow-mode t))))
+               :after (progn
+			(add-hook 'css-mode-hook '(lambda () (rainbow-mode t)))
+			(add-hook 'web-mode-hook '(lambda () (rainbow-mode t)))))
         (:name smart-cursor-color
                :type elpa
                :after (smart-cursor-color-mode t))
@@ -131,11 +160,18 @@
                         (global-undo-tree-mode t)
                         (global-set-key (kbd "C-_") 'undo-tree-undo)
                         (global-set-key (kbd "C-+") 'undo-tree-redo)))
+        (:name volatile-highlights
+               :after (volatile-highlights-mode t))
         (:name yasnippet
                :after (progn
                         (yas-global-mode t)
-                        (setq yas-prompt-functions '(yas-ido-prompt yas-completing-prompt yas-x-prompt yas-dropdown-prompt))
-                        (add-hook 'yas-minor-mode-hook #'(lambda () (yas-activate-extra-mode 'perrotta-mode)))))
+                        (setq yas-prompt-functions '(yas-ido-prompt yas-completing-prompt yas-x-prompt yas-dropdown-prompt))))
+                        ;; (add-hook 'yas-minor-mode-hook #'(lambda () (yas-activate-extra-mode 'perrotta-mode)))))
+        (:name zencoding-mode
+               :after (progn
+			(add-hook 'css-mode-hook 'zencoding-mode)
+			(add-hook 'web-mode-hook 'zencoding-mode)
+			(add-hook 'sgml-mode-hook 'zencoding-mode)))
         ))
 
 ;; packages
@@ -146,11 +182,10 @@
         auto-complete-c-headers
         auto-yasnippet
         autopair
-        bash-completion
-        completing-help
         dired+
         drag-stuff
         expand-region
+	fill-column-indicator
         fixmee
         flycheck
         flycheck-color-mode-line
@@ -163,8 +198,10 @@
         go-lint
         go-oracle
         go-projectile
+        go-snippets
         go-test
         goto-chg
+        hlinum
         hungry-delete
         init-eldoc
         js2-mode
@@ -186,8 +223,10 @@
         smooth-scroll
         smooth-scrolling
         undo-tree
+        volatile-highlights
         web-mode
         yasnippet
+        zencoding-mode
         ))
 (el-get 'sync my:el-get-packages)
 ;;(el-get-emacswiki-refresh el-get-recipe-path-emacswiki t)
@@ -211,7 +250,7 @@
 (setq make-backup-files nil)
 (setq backup-inhibited t)
 (setq auto-save-default nil)
-(setq fill-column 72)
+(setq-default fill-column 72)
 (fset 'yes-or-no-p 'y-or-n-p)
 (prefer-coding-system 'utf-8)
 (icomplete-mode t)
@@ -224,9 +263,6 @@
 (windmove-default-keybindings)
 (setq windmove-wrap-around t)
 (remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)
-(progn
-  (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
-  (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on))
 (progn
   (require 'saveplace)
   (setq save-place t)
@@ -264,6 +300,7 @@
   (require 'epa)
   (setq epa-file-name-regexp "\\.\\(gpg\\|asc\\)$")
   (epa-file-name-regexp-update))
+(setq browse-url-generic-program (executable-find (getenv "BROWSER")) browse-url-browser-function 'browse-url-generic)
 (blink-cursor-mode -1)
 (show-paren-mode t)
 (setq inhibit-startup-message t
@@ -300,7 +337,6 @@
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
-(global-unset-key "\C-z")
 (global-unset-key "\C-\M-h")
 
 (add-to-list 'auto-mode-alist '("\\.js?\\'" . js2-mode))
