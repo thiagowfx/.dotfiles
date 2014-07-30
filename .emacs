@@ -61,18 +61,13 @@
                         (ac-flyspell-workaround)
                         (global-auto-complete-mode t)
                         (ac-set-trigger-key "TAB")
-                        (global-set-key (kbd "C-c <tab>") 'auto-complete)
+                        (global-set-key (kbd "C-x <tab>") 'auto-complete)
                         (defun ac-common-setup () (setq ac-sources
                                                         (append
                                                          ac-sources '(ac-source-filename
                                                                       ac-source-files-in-current-dir
                                                                       ac-source-imenu
                                                                       ac-source-words-in-buffer))))))
-        (:name auto-yasnippet
-               :type elpa
-               :after (progn
-                        (global-set-key (kbd "C-\(") 'aya-create)
-                        (global-set-key (kbd "C-\)") 'aya-expand)))
         (:name autopair
                :after (autopair-global-mode))
         (:name drag-stuff
@@ -81,10 +76,6 @@
                         (add-hook 'org-mode-hook '(lambda () (drag-stuff-mode -1)))))
         (:name expand-region
                :after (global-set-key (kbd "C-=") 'er/expand-region))
-	(:name fill-column-indicator
-	       :after (progn
-			(require 'fill-column-indicator)
-			(fci-mode)))
         (:name fixmee
                :after (progn
                         (global-fixmee-mode t)
@@ -93,6 +84,8 @@
                :after (add-hook 'after-init-hook #'global-flycheck-mode))
         (:name git-auto-commit-mode
                :type elpa)
+	(:name go-imports
+	       :after (setq gofmt-command (concat (getenv "GOPATH") "/bin/goimports")))
         (:name go-mode
                :after (progn
                         (add-hook 'before-save-hook #'gofmt-before-save)
@@ -124,11 +117,11 @@
                         (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)))
         (:name org-mode
                :after (progn
-                        (setq-default org-src-fontify-natively t)
-			(setq-default org-confirm-babel-evaluate nil)
-                        (setq-default org-directory "~/Dropbox/org")
-                        (setq-default org-todo-keywords '((sequence "TODO" "PROGRESS" "TROUBLE" "|" "DONE")))
-                        (setq-default org-todo-keyword-faces '(("TODO" . "medium turquoise") ("PROGRESS" . "slate blue") ("TROUBLE" . "dark red") ("DONE" . "forest green")))
+                        (setq org-src-fontify-natively t)
+			(setq org-confirm-babel-evaluate nil)
+                        (setq org-directory "~/Dropbox/org")
+                        (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "TROUBLE" "|" "DONE")))
+                        (setq org-todo-keyword-faces '(("TODO" . "medium turquoise") ("PROGRESS" . "slate blue") ("TROUBLE" . "dark red") ("DONE" . "forest green")))
                         (require 'org-crypt)
                         (org-crypt-use-before-save-magic)
                         (setq org-tags-exclude-from-inheritance '("crypt"))
@@ -144,10 +137,6 @@
                         (popwin-mode t)))
         (:name projectile
                :after (projectile-global-mode))
-        (:name rainbow-mode
-               :after (progn
-			(add-hook 'css-mode-hook '(lambda () (rainbow-mode t)))
-			(add-hook 'web-mode-hook '(lambda () (rainbow-mode t)))))
         (:name smart-cursor-color
                :type elpa
                :after (smart-cursor-color-mode t))
@@ -166,7 +155,7 @@
                :after (progn
                         (yas-global-mode t)
                         (setq yas-prompt-functions '(yas-ido-prompt yas-completing-prompt yas-x-prompt yas-dropdown-prompt))))
-                        ;; (add-hook 'yas-minor-mode-hook #'(lambda () (yas-activate-extra-mode 'perrotta-mode)))))
+	;; (add-hook 'yas-minor-mode-hook #'(lambda () (yas-activate-extra-mode 'perrotta-mode)))))
         (:name zencoding-mode
                :after (progn
 			(add-hook 'css-mode-hook 'zencoding-mode)
@@ -175,63 +164,52 @@
         ))
 
 ;; packages
-(setq my:el-get-packages
-      '(ace-jump-mode
-        auctex
-        auto-complete
-        auto-complete-c-headers
-        auto-yasnippet
-        autopair
-        dired+
-        drag-stuff
-        expand-region
-	fill-column-indicator
-        fixmee
-        flycheck
-        flycheck-color-mode-line
-        flyspell
-        git-auto-commit-mode
-        go-mode
-        go-autocomplete
-        go-eldoc
-        go-imports
-        go-lint
-        go-oracle
-        go-projectile
-        go-snippets
-        go-test
-        goto-chg
-        hlinum
-        hungry-delete
-        init-eldoc
-        js2-mode
-        magit
-        markdown-mode
-        mode-icons
-        monokai-theme
-        multiple-cursors
-        org-mode
-        org2blog
-        pkgbuild-mode
-        popwin
-        projectile
-        rainbow-mode
-        rainbow-identifiers
-        smart-cursor-color
-        smart-mode-line
-        smex
-        smooth-scroll
-        smooth-scrolling
-        undo-tree
-        volatile-highlights
-        web-mode
-        yasnippet
-        zencoding-mode
-        ))
+(setq my:el-get-packages '(
+			   ace-jump-mode
+			   auctex
+			   auto-complete
+			   autopair
+			   dired+
+			   drag-stuff
+			   expand-region
+			   fixmee
+			   flycheck
+			   git-auto-commit-mode
+			   go-mode
+			   go-autocomplete
+			   go-eldoc
+			   go-imports
+			   go-lint
+			   go-oracle
+			   go-projectile
+			   go-snippets
+			   go-test
+			   goto-chg
+			   hlinum
+			   hungry-delete
+			   init-eldoc
+			   js2-mode
+			   magit
+			   markdown-mode
+			   mode-icons
+			   monokai-theme
+			   multiple-cursors
+			   org-mode
+			   org2blog
+			   pkgbuild-mode
+			   projectile
+			   rainbow-identifiers
+			   smex
+			   smooth-scroll
+			   smooth-scrolling
+			   undo-tree
+			   volatile-highlights
+			   web-mode
+			   yasnippet
+			   zencoding-mode
+			   ))
 (el-get 'sync my:el-get-packages)
-;;(el-get-emacswiki-refresh el-get-recipe-path-emacswiki t)
 
-;; mine
 (setq user-full-name "Thiago Perrotta"
       user-mail-address "thiagoperrotta95@gmail.com")
 (setq-default major-mode 'org-mode)
@@ -259,7 +237,6 @@
 (global-auto-revert-mode t)
 (global-subword-mode t)
 (global-linum-mode t)
-;; (global-hl-line-mode t)
 (windmove-default-keybindings)
 (setq windmove-wrap-around t)
 (remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)
@@ -317,14 +294,6 @@
     (untabify (point-min) (point-max))
     (delete-trailing-whitespace)))
 
-(defun replace-last-sexp ()
-  "Eval in place."
-  (interactive)
-  (let ((value (eval (preceding-sexp))))
-    (kill-sexp -1)
-    (insert (format "%s" value))))
-
-(global-set-key "\C-c\C-x\C-e" 'replace-last-sexp)
 (global-set-key [C-tab] 'cleanup-buffer)
 (global-set-key (kbd "RET")     'newline-and-indent)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -347,10 +316,10 @@
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.php?\\'"  . web-mode))
 
-(progn
-  ;; (setq compilation-read-command nil)
-  (add-hook 'c++-mode-hook (lambda () (setq compile-command
-                                            (format "g++ %s %s -o %s"
-                                                    "-g -O2 -Wall"
-                                                    (buffer-file-name)
-                                                    (file-name-sans-extension buffer-file-name))))))
+(add-hook 'c++-mode-hook
+	  (lambda ()
+	    (setq compile-command
+		  (format "g++ %s %s -o %s"
+			  "-g -O2 -Wall"
+			  (buffer-file-name)
+			  (file-name-sans-extension buffer-file-name)))))
