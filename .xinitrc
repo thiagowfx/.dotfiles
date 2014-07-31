@@ -11,19 +11,11 @@ fi
 eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
 export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
 
-[[ -f ~/.Xmodmap ]]    && xmodmap ~/.Xmodmap
-[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+[[ -f "$HOME"/.Xmodmap ]] && xmodmap "$HOME"/.Xmodmap
+[[ -f "$HOME"/.Xresources ]] && xrdb -merge "$HOME"/.Xresources
+[[ -f "$HOME"/.autostart ]] && ./"$HOME"/.autostart
 
-autocutsel -fork &
-autocutsel -selection PRIMARY -fork &
-dropbox start &
-dunst &
-hsetroot -solid '#442222' &
-nm-applet &
-parcellite &
-redshift &
-
-# xinit <your_window_manager_here>
+# xinit <window_manager>
 case $1 in
     awesome           ) exec awesome;;
     bspwm             ) exec bspwm;;

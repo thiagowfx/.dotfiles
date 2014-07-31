@@ -1,1 +1,2 @@
+# aliases
 alias exit = quit

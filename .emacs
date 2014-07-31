@@ -10,7 +10,8 @@
     ("756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "60f04e478dedc16397353fb9f33f0d895ea3dab4f581307fbf0aa2f07e658a40" default)))
  '(safe-local-variable-values
    (quote
-    ((eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook"
+    ((eval setq-default gac-automatically-push-p t)
+     (eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook"
 	   (add-hook
 	    (quote write-contents-functions)
 	    (lambda nil
@@ -58,7 +59,6 @@
                         (require 'auto-complete)
                         (require 'auto-complete-config)
                         (ac-config-default)
-                        (ac-flyspell-workaround)
                         (global-auto-complete-mode t)
                         (ac-set-trigger-key "TAB")
                         (global-set-key (kbd "C-x <tab>") 'auto-complete)
@@ -152,21 +152,12 @@
         (:name volatile-highlights
                :after (volatile-highlights-mode t))
         (:name yasnippet
-               :after (progn
-                        (yas-global-mode t)
-                        (setq yas-prompt-functions '(yas-ido-prompt yas-completing-prompt yas-x-prompt yas-dropdown-prompt))))
-	;; (add-hook 'yas-minor-mode-hook #'(lambda () (yas-activate-extra-mode 'perrotta-mode)))))
-        (:name zencoding-mode
-               :after (progn
-			(add-hook 'css-mode-hook 'zencoding-mode)
-			(add-hook 'web-mode-hook 'zencoding-mode)
-			(add-hook 'sgml-mode-hook 'zencoding-mode)))
+               :after (yas-global-mode t))
         ))
 
 ;; packages
 (setq my:el-get-packages '(
 			   ace-jump-mode
-			   auctex
 			   auto-complete
 			   autopair
 			   dired+
@@ -206,7 +197,6 @@
 			   volatile-highlights
 			   web-mode
 			   yasnippet
-			   zencoding-mode
 			   ))
 (el-get 'sync my:el-get-packages)
 

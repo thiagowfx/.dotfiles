@@ -1,38 +1,40 @@
 # -*- shell-script -*-
 
+# environment variables
 export ALTERNATE_EDITOR=""
 export BROWSER="google-chrome-stable"
 export EDITOR="emacsclient -c"
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 export HISTCONTROL=ignoreboth
-export RAMDISK="${HOME}/ramdisk"
+export RAMDISK="$HOME/ramdisk"
 export PATH="/usr/lib/ccache/bin/:$HOME/.gem/ruby/2.1.0/bin/:$GOPATH/bin:$PATH"
 export VISUAL="emacsclient -c"
 export WINEARCH="win32"
 export WINEDEBUG="fixme-all"
-export WINEDLLOVERRIDES="winemenubuilder.exe=d" # stop creating shortcuts, desktop files and mimetypes
-export WINEPREFIX="${HOME}/.wine"
+export WINEDLLOVERRIDES="winemenubuilder.exe=d"
+export WINEPREFIX="$HOME/.wine"
 
+# common commands
 alias chmod="chmod -v"
 alias chown="chown -v"
 alias colordiff="colordiff -uN"
-alias cower="cower --color=auto --sort=votes --target=${HOME}/.aur"
+alias cower="cower --color=always --sort=votes --target=$HOME/.aur"
 alias cp="cp -v"
 alias curl="curl -v -L"
 alias df='df -h'
-alias diff="diff -uN"
+alias diff="colordiff -uN"
 alias du="du -h"
 alias em="emacsclient -t"
 alias emq="emacsclient -c"
 alias free="free -m"
 alias gdb="gdb -q"
-alias grep="grep --color=auto"
+alias grep="grep --color=always"
 alias hexdump="hexdump -C"
 alias ln="ln -v"
 alias lspci="lspci -v"
 alias lsusb="lsusb -t"
-alias make="make -j4 -l3"
+alias make="make -j$(nproc) -l$(nproc)"
 alias mkdir="mkdir -p"
 alias mv="mv -v"
 alias pacma="pacman"
@@ -44,6 +46,7 @@ alias sl="ls"
 alias smem="smem -k"
 alias strace="strace -t"
 
+# common templates
 alias android-emulator-t-kill="adb emu kill"
 alias android-emulator-t-start="emulator -avd "Intel-10-480x800" -qemu --enable-kvm -dns-server 8.8.8.8,8.8.4.4"
 alias ffmpeg-t-screencast="ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -qscale 0 ${RAMDISK}/out.mpg"
@@ -55,15 +58,27 @@ alias systemd-t-nspawn="systemd-nspawn -bD"
 alias wget-t-pdf="wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
 alias wget-t-spider="wget -e robots=off --wait=2 --random-wait --recursive --span-hosts --spider --timestamping --tries=5 --dns-timeout=30 --connect-timeout=5 --read-timeout=5 --level=10 --"
 alias winetricks-t-install="winetricks corefonts flash vcrun2005 vcrun2008 vb6run"
-alias world-t-aur="pacaur -Syua --noedit"
-alias world-t-gentoo='su -c "emerge --sync && emerge -avuDN --with-bdeps y --keep-going @world && emerge -v --depclean && revdep-rebuild -v && dispatch-conf && etc-update && eclean -d distfiles"'
 alias world="sudo pacman -Syu"
-alias xrandr-t-hdmi-connect="xrandr    --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1"
+alias world-t-pacaur="pacaur -Syua --noedit"
+alias world-t-gentoo='su -c "emerge --sync && emerge -avuDN --with-bdeps y --keep-going @world && emerge -v --depclean && revdep-rebuild -v && dispatch-conf && etc-update && eclean -d distfiles"'
+alias xrandr-t-hdmi-connect="xrandr --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1"
 alias xrandr-t-hdmi-disconnect="xrandr --output HDMI1 --off"
-alias xrandr-t-hdmi-mirror="xrandr     --output LVDS1 --primary --auto --output HDMI1 --auto --same-as LVDS1"
-alias xrandr-t-reset="xrandr           --output LVDS1 --primary --mode 1366x768"
+alias xrandr-t-hdmi-mirror="xrandr --output LVDS1 --primary --auto --output HDMI1 --auto --same-as LVDS1"
+alias xrandr-t-reset="xrandr --output LVDS1 --primary --mode 1366x768"
 alias youtube-dl-t-mp3="youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3"
 alias youtube-dl-t-video="youtube-dl --continue --title --restrict-filenames"
+
+# helper functions
+function adbsync {
+    if [[ ! -d "$1" ]]; then
+	echo "Usage: adbsync <path to localdir>\nExample usage: adbsync $HOME/tvseries"
+	return 0
+    fi
+    local TARGET_DIR="/storage/sdcard1/adbsync"
+    adb wait-for-device
+    adb shell "[[ ! -d $TARGET_DIR ]] && mkdir -p $TARGET_DIR"
+    adb push "$1" "$TARGET_DIR/$(basename $1)" && echo "Files successfully copied."
+}
 
 function gentoo-chroot {
     [[ "$1" == "" ]] && echo "Example usage:\ngentoo-chroot /mnt/gentoo" && return 0
@@ -72,17 +87,12 @@ function gentoo-chroot {
     sudo mount -o bind /proc "$1"/proc
     sudo mount --rbind /dev  "$1"/dev
     sudo mount --rbind /sys  "$1"/sys
-    sudo chroot "$1"/ /bin/env -i TERM=$TERM /bin/bash
-}
-
-function nohup-t {
-    [[ "$1" == "" ]] && echo "Example usage:\nnohup-template urxvtd" && return 0
-    nohup "$*" >/dev/null 2>&1 &
+    sudo chroot "$1/" /bin/env -i TERM=$TERM /bin/bash
 }
 
 function qkkdiff-file {
     if [[ "$1" == "" ]]; then
-        echo "Example usage: qkkdiff-file /etc/pacman.conf"
+        echo "Usage: qkkdiff-file <file>\nExample usage: qkkdiff-file /etc/pacman.conf"
     elif [[ -f "$1" ]]; then
         pkg="$(pacman -Qo $1 | awk '//{printf "%s-%s", $(NF-1), $NF;}')"
         bsdtar -xOf /var/cache/pacman/pkg/${pkg}-$(uname -m).pkg.tar.xz "${1/\//}" | diff - "$1"
@@ -95,7 +105,7 @@ function qkkdiff-file {
 
 function qkkdiff-pkg {
     if [[ "$1" == "" ]]; then
-        echo "Example usage: qkkdiff pacman"
+        echo "Usage: qkkdiff <package>\nExample usage: qkkdiff pacman"
     elif ! pacman -Q "$1"; then
         return 1
     else
@@ -103,20 +113,4 @@ function qkkdiff-pkg {
         pacman -Qkkq "$1" | while read package file; do echo $file; bsdtar -xOf /var/cache/pacman/pkg/${package}-${ver}-$(uname -m).pkg.tar.xz ${file/\//} | diff - $file  ; done
         return 0
     fi
-}
-
-function adbsync {
-    if [[ ! -d "$1" ]]; then
-	echo "Usage: adbsync /path/to/localdir"
-	return 0
-    fi
-    local TARGET_DIR="/storage/sdcard1/adbsync"
-    adb wait-for-device
-    adb shell "[[ ! -d $TARGET_DIR ]] && mkdir -p $TARGET_DIR"
-    adb push "$1" "$TARGET_DIR/$(basename $1)" && echo "Files successfully copied."
-}
-
-function godev-t {
-    export GOPATH="$HOME/mygo"
-    export GOBIN="$GOPATH/bin"
 }

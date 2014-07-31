@@ -1,6 +1,0 @@
-# -*- mode: snippet; require-final-newline: nil -*-
-# name: contributor
-# key: contributor
-# --
-# Contributor: `user-full-name` <echo dGhpYWdvcGVycm90dGE5NUBnbWFpbC5jb20K | base64 -d >
-$0

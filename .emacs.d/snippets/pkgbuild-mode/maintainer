@@ -1,6 +1,0 @@
-# -*- mode: snippet; require-final-newline: nil -*-
-# name: maintainer
-# key: maintainer
-# --
-# Maintainer: `user-full-name` <echo dGhpYWdvcGVycm90dGE5NUBnbWFpbC5jb20K | base64 -d >
-$0

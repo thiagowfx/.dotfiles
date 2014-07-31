@@ -1,0 +1,9 @@
+# -*- sh -*-
+autocutsel -fork &
+autocutsel -selection PRIMARY -fork &
+dunst &
+xsetroot -solid '#442222' &
+dropbox start &
+nm-applet &
+parcellite &
+redshift &

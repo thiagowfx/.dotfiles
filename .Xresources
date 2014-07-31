@@ -1,3 +1,4 @@
+! better font rendering
 Xft.autohint: true
 Xft*antialias: true
 Xft*hinting: true
@@ -6,8 +7,7 @@ Xft*dpi: 100
 Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 
-Emacs.font: Terminus-9
-
+! better urxvt settings
 URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
@@ -18,15 +18,14 @@ URxvt.scrollBar: false
 URxvt*font: xft:Terminus:size=10:antialias=true
 URxvt.iso14755: false
 URxvt.iso14755_52: false
-
 URxvt.perl-ext-common: default,clipboard,matcher,selection-to-clipboard,tabbed
 URxvt.keysym.Control-Shift-C: perl:clipboard:copy
 URxvt.keysym.Control-Shift-V: perl:clipboard:paste
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 
-! http://felixc.at/URxvt (felixonmars style)
-! http://xcolors.net
+! better urxvt colors. For more, see http://xcolors.net
+! this is felixonmars style @ http://felixc.at/URxvt
 urxvt.color1:  #cc0000
 urxvt.color2:  #4e9a06
 urxvt.color3:  #c4a000
