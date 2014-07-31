@@ -2,6 +2,7 @@
 autocutsel -fork &
 autocutsel -selection PRIMARY -fork &
 dunst &
+emacs --daemon &
 xsetroot -solid '#442222' &
 dropbox start &
 nm-applet &
