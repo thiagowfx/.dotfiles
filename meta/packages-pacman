@@ -1,13 +1,16 @@
 abs
 autocutsel
 bash-completion
+bzr
 ccache
 colordiff
 cronie
 dmenu
 dunst
 emacs
+git
 htop
+mercurial
 mg
 mtr
 ntp
@@ -16,6 +19,7 @@ pkgfile
 pkgstats
 rxvt-unicode
 screenfetch
+subversion
 terminus-font
 urxvt-perls
 xclip
