@@ -73,6 +73,8 @@
         (:name drag-stuff
                :after (progn
                         (drag-stuff-global-mode)
+			(add-hook 'org-mode-hook '(lambda () (autopair-mode -1)))
+			(add-hook 'org-mode-hook '(lambda () (auto-fill-mode t)))
                         (add-hook 'org-mode-hook '(lambda () (drag-stuff-mode -1)))))
         (:name expand-region
                :after (global-set-key (kbd "C-=") 'er/expand-region))
@@ -85,7 +87,7 @@
         (:name git-auto-commit-mode
                :type elpa)
 	(:name go-imports
-	       :after (setq gofmt-command (concat (getenv "GOPATH") "/bin/goimports")))
+	       :after (setq gofmt-command (concat (getenv "HOME") "/go/bin/goimports")))
         (:name go-mode
                :after (progn
                         (add-hook 'before-save-hook #'gofmt-before-save)
@@ -303,7 +305,7 @@
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("/PKGBUILD$" . pkgbuild-mode))
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html?\\'"  . web-mode))
 (add-to-list 'auto-mode-alist '("\\.php?\\'"  . web-mode))
 
 (add-hook 'c++-mode-hook

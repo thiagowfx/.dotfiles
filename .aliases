@@ -23,6 +23,7 @@ alias cp="cp -v"
 alias curl="curl -v -L"
 alias df='df -h'
 alias diff="colordiff -uN"
+alias dmesg="dmesg -H"
 alias du="du -h"
 alias em="emacsclient -t"
 alias emq="emacsclient -c"
@@ -36,6 +37,7 @@ alias lsusb="lsusb -t"
 alias make="make -j$(nproc) -l$(nproc)"
 alias mkdir="mkdir -p"
 alias mv="mv -v"
+alias pacaur="pacaur --noedit"
 alias pacma="pacman"
 alias pgrep="pgrep --list-name"
 alias pingg="ping google.com"
@@ -51,6 +53,7 @@ alias android-emulator-t-start="emulator -avd "Intel-10-480x800" -qemu --enable-
 alias ffmpeg-t-screencast="ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -qscale 0 ${RAMDISK}/out.mpg"
 alias inxi-t="inxi -F -M"
 alias jekyll-t-serve="jekyll serve --baseurl='' --watch"
+alias netstat-t="netstat -pln"
 alias pacman-t-extrapkgs="comm -23 <(pacman -Qeq|sort) <(pacman -Qgq base base-devel|sort)"
 alias qemu-t-iso="qemu-system-x86_64 --enable-kvm -m 512M -cdrom"
 alias systemd-t-nspawn="systemd-nspawn -bD"
@@ -88,6 +91,9 @@ function gentoo-chroot {
     sudo mount --rbind /sys  "$1"/sys
     sudo chroot "$1/" /bin/env -i TERM=$TERM /bin/bash
 }
+
+# gitignore.io
+function gi() { curl "http://www.gitignore.io/api/$@" ;} 
 
 function qkkdiff-file {
     if [[ "$1" == "" ]]; then

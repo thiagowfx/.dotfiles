@@ -14,7 +14,7 @@ bindsym $mod+c            exec --no-startup-id google-chrome-stable
 bindsym $mod+d            exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+Shift+d      exec --no-startup-id dmenu_run
 bindsym $mod+Escape       exec --no-startup-id i3-sensible-terminal -e htop
-bindsym $mod+Shift+Escape exec --no-startup-id i3-sensible-terminal -e alsamixer
+bindsym $mod+Shift+Escape exec --no-startup-id i3-sensible-terminal -e ncmpcpp
 bindsym $mod+BackSpace    exec --no-startup-id pcmanfm
 
 bindsym $mod+o move scratchpad
