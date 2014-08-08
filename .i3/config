@@ -63,7 +63,7 @@ workspace 8 output LVDS1
 workspace 9 output HDMI1
 
 bindsym $mod+z exec i3-input -F 'rename workspace to "%s"' -P 'New name for workspace: '
-bindsym $mod+x exec python ~/.i3/winmenu.py
+bindsym $mod+x exec quickswitch.py
 
 bindsym $mod+p workspace prev
 bindsym $mod+n workspace next

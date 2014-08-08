@@ -6,5 +6,6 @@ emacs --daemon &
 dropbox start &
 nm-applet &
 parcellite &
+pcmanfm -d &
 redshift &
 sh "$HOME/.fehbg" &

@@ -26,6 +26,7 @@ case $1 in
     ede               ) exec startede;;
     fluxbox           ) exec startfluxbox;;
     gnome             ) exec gnome-session;;
+    hawaii            ) exec hawaii;;
     i3|i3wm           ) exec i3;;
     icewm             ) exec icewm-session;;
     jwm               ) exec jwm;;

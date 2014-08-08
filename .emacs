@@ -12,16 +12,16 @@
    (quote
     ((eval setq-default gac-automatically-push-p t)
      (eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook"
-	   (add-hook
-	    (quote write-contents-functions)
-	    (lambda nil
-	      (delete-trailing-whitespace)
-	      nil))
-	   (require
-	    (quote whitespace))
-	   "Sometimes the mode needs to be toggled off and on."
-	   (whitespace-mode 0)
-	   (whitespace-mode 1))
+           (add-hook
+            (quote write-contents-functions)
+            (lambda nil
+              (delete-trailing-whitespace)
+              nil))
+           (require
+            (quote whitespace))
+           "Sometimes the mode needs to be toggled off and on."
+           (whitespace-mode 0)
+           (whitespace-mode 1))
      (whitespace-line-column . 80)
      (whitespace-style face tabs trailing lines-tail)
      (require-final-newline . t)))))
@@ -73,9 +73,14 @@
         (:name drag-stuff
                :after (progn
                         (drag-stuff-global-mode)
-			(add-hook 'org-mode-hook '(lambda () (autopair-mode -1)))
-			(add-hook 'org-mode-hook '(lambda () (auto-fill-mode t)))
+                        (add-hook 'org-mode-hook '(lambda () (autopair-mode -1)))
+                        (add-hook 'org-mode-hook '(lambda () (auto-fill-mode t)))
                         (add-hook 'org-mode-hook '(lambda () (drag-stuff-mode -1)))))
+        (:name emmet-mode
+               :after (progn
+                        (add-hook 'sgml-mode-hook 'emmet-mode)
+                        (add-hook 'css-mode-hook  'emmet-mode)
+                        (setq emmet-move-cursor-between-quotes t)))
         (:name expand-region
                :after (global-set-key (kbd "C-=") 'er/expand-region))
         (:name fixmee
@@ -86,16 +91,14 @@
                :after (add-hook 'after-init-hook #'global-flycheck-mode))
         (:name git-auto-commit-mode
                :type elpa)
-	(:name go-imports
-	       :after (setq gofmt-command (concat (getenv "HOME") "/go/bin/goimports")))
+        (:name go-imports
+               :after (setq gofmt-command (concat (getenv "HOME") "/go/bin/goimports")))
         (:name go-mode
                :after (progn
                         (add-hook 'before-save-hook #'gofmt-before-save)
                         (add-hook 'go-mode-hook (lambda () (local-set-key (kbd "C-c C-d") #'godoc-at-point)))))
-        (:name goto-chg
-               :after (global-set-key (kbd "C-.") 'goto-last-change))
-	(:name go-snippets
-	       :type elpa)
+        (:name go-snippets
+               :type elpa)
         (:name hlinum
                :after (hlinum-activate))
         (:name hungry-delete
@@ -120,7 +123,7 @@
         (:name org-mode
                :after (progn
                         (setq org-src-fontify-natively t)
-			(setq org-confirm-babel-evaluate nil)
+                        (setq org-confirm-babel-evaluate nil)
                         (setq org-directory "~/Dropbox/org")
                         (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "TROUBLE" "|" "DONE")))
                         (setq org-todo-keyword-faces '(("TODO" . "medium turquoise") ("PROGRESS" . "slate blue") ("TROUBLE" . "dark red") ("DONE" . "forest green")))
@@ -159,47 +162,50 @@
 
 ;; packages
 (setq my:el-get-packages '(
-			   ace-jump-mode
-			   auto-complete
-			   autopair
-			   dired+
-			   drag-stuff
-			   expand-region
-			   fixmee
-			   flycheck
-			   git-auto-commit-mode
-			   go-mode
-			   go-autocomplete
-			   go-eldoc
-			   go-imports
-			   go-lint
-			   go-oracle
-			   go-projectile
-			   go-snippets
-			   go-test
-			   goto-chg
-			   hlinum
-			   hungry-delete
-			   init-eldoc
-			   js2-mode
-			   magit
-			   markdown-mode
-			   mode-icons
-			   monokai-theme
-			   multiple-cursors
-			   org-mode
-			   org2blog
-			   pkgbuild-mode
-			   projectile
-			   rainbow-identifiers
-			   smex
-			   smooth-scroll
-			   smooth-scrolling
-			   undo-tree
-			   volatile-highlights
-			   web-mode
-			   yasnippet
-			   ))
+                           ace-jump-mode
+                           auto-complete
+                           autopair
+                           cmake-mode
+                           dired+
+                           drag-stuff
+                           emmet-mode
+                           expand-region
+                           fixmee
+                           flycheck
+                           git-auto-commit-mode
+                           ;; golang
+                           go-mode
+                           go-autocomplete
+                           go-eldoc
+                           go-imports
+                           go-lint
+                           go-oracle
+                           go-projectile
+                           go-snippets
+                           go-test
+			   ;; end of golang
+                           hlinum
+                           hungry-delete
+                           init-eldoc
+                           js2-mode
+                           magit
+                           markdown-mode
+                           mode-icons
+                           monokai-theme
+                           multiple-cursors
+                           org-mode
+                           org2blog
+                           pkgbuild-mode
+                           projectile
+                           rainbow-identifiers
+                           smex
+                           smooth-scroll
+                           smooth-scrolling
+                           undo-tree
+                           volatile-highlights
+                           web-mode
+                           yasnippet
+                           ))
 (el-get 'sync my:el-get-packages)
 
 (setq user-full-name "Thiago Perrotta"
@@ -309,9 +315,9 @@
 (add-to-list 'auto-mode-alist '("\\.php?\\'"  . web-mode))
 
 (add-hook 'c++-mode-hook
-	  (lambda ()
-	    (setq compile-command
-		  (format "g++ %s %s -o %s"
-			  "-g -O2 -Wall"
-			  (buffer-file-name)
-			  (file-name-sans-extension buffer-file-name)))))
+          (lambda ()
+            (setq compile-command
+                  (format "g++ %s %s -o %s"
+                          "-g -O2 -Wall"
+                          (buffer-file-name)
+                          (file-name-sans-extension buffer-file-name)))))
