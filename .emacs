@@ -5,26 +5,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "60f04e478dedc16397353fb9f33f0d895ea3dab4f581307fbf0aa2f07e658a40" default)))
- '(safe-local-variable-values
-   (quote
-    ((eval setq-default gac-automatically-push-p t)
-     (eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook"
-           (add-hook
-            (quote write-contents-functions)
-            (lambda nil
-              (delete-trailing-whitespace)
-              nil))
-           (require
-            (quote whitespace))
-           "Sometimes the mode needs to be toggled off and on."
-           (whitespace-mode 0)
-           (whitespace-mode 1))
-     (whitespace-line-column . 80)
-     (whitespace-style face tabs trailing lines-tail)
-     (require-final-newline . t)))))
+ '(custom-safe-themes (quote ("756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "60f04e478dedc16397353fb9f33f0d895ea3dab4f581307fbf0aa2f07e658a40" default)))
+ '(magit-use-overlays nil)
+ '(safe-local-variable-values (quote ((eval setq-default gac-automatically-push-p t) (eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook" (add-hook (quote write-contents-functions) (lambda nil (delete-trailing-whitespace) nil)) (require (quote whitespace)) "Sometimes the mode needs to be toggled off and on." (whitespace-mode 0) (whitespace-mode 1)) (whitespace-line-column . 80) (whitespace-style face tabs trailing lines-tail) (require-final-newline . t))))
+ '(send-mail-function (quote mailclient-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -36,20 +20,19 @@
 (put 'narrow-to-region 'disabled nil)
 
 ;; el-get bootstrapping
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+(add-to-list 'load-path (concat user-emacs-directory "el-get/el-get"))
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
       (url-retrieve-synchronously
        "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
     (goto-char (point-max))
     (eval-print-last-sexp)))
-(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+(add-to-list 'el-get-recipe-path (concat user-emacs-directory "el-get-user/recipes"))
 (setq el-get-user-package-directory (concat user-emacs-directory "el-get-init-files"))
 
 (package-initialize)
-(add-to-list 'load-path (concat user-emacs-directory "credentials"))
-;;(el-get 'sync)
 
+;; common themes: monokai (sublime text), solarized (light/dark), wombat
 ;; extra recipes for packages yet unknown to el-get
 (setq el-get-sources
       '((:name ace-jump-mode
@@ -68,12 +51,12 @@
                                                                       ac-source-files-in-current-dir
                                                                       ac-source-imenu
                                                                       ac-source-words-in-buffer))))))
-        (:name autopair
-               :after (autopair-global-mode))
-        (:name drag-stuff
+	(:name color-theme-solarized
+	       :after (color-theme-solarized-dark))
+	(:name drag-stuff
                :after (progn
                         (drag-stuff-global-mode)
-                        (add-hook 'org-mode-hook '(lambda () (autopair-mode -1)))
+                        (add-hook 'org-mode-hook '(lambda () (smartparens-mode -1)))
                         (add-hook 'org-mode-hook '(lambda () (auto-fill-mode t)))
                         (add-hook 'org-mode-hook '(lambda () (drag-stuff-mode -1)))))
         (:name emmet-mode
@@ -110,9 +93,6 @@
         (:name mode-icons
                :type elpa
                :after (mode-icons-mode))
-        (:name monokai-theme
-               :type elpa
-               :after (load-theme 'monokai))
         (:name multiple-cursors
                :after (progn
                         (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
@@ -134,14 +114,16 @@
         (:name org2blog
                :after (progn
                         (require 'org2blog-autoloads)
-                        (require 'wordpress-credentials)
-                        (auto-fill-mode t)))
+			(add-to-list 'load-path (concat user-emacs-directory "credentials"))
+                        (require 'wordpress-credentials)))
         (:name popwin
                :after (progn
                         (require 'popwin)
                         (popwin-mode t)))
         (:name projectile
                :after (projectile-global-mode))
+	(:name smartparens
+	       :after (smartparens-global-mode))
         (:name smart-cursor-color
                :type elpa
                :after (smart-cursor-color-mode t))
@@ -154,18 +136,18 @@
                         (global-undo-tree-mode t)
                         (global-set-key (kbd "C-_") 'undo-tree-undo)
                         (global-set-key (kbd "C-+") 'undo-tree-redo)))
-        (:name volatile-highlights
-               :after (volatile-highlights-mode t))
+	(:name volatile-highlights
+	       :after (volatile-highlights-mode t))
         (:name yasnippet
                :after (yas-global-mode t))
         ))
 
-;; packages
+;; packages -- autoremove/cleanup: (el-get-cleanup my:el-get-packages)
 (setq my:el-get-packages '(
                            ace-jump-mode
                            auto-complete
-                           autopair
-                           cmake-mode
+			   cmake-mode
+			   color-theme-solarized
                            dired+
                            drag-stuff
                            emmet-mode
@@ -173,7 +155,6 @@
                            fixmee
                            flycheck
                            git-auto-commit-mode
-                           ;; golang
                            go-mode
                            go-autocomplete
                            go-eldoc
@@ -183,7 +164,6 @@
                            go-projectile
                            go-snippets
                            go-test
-			   ;; end of golang
                            hlinum
                            hungry-delete
                            init-eldoc
@@ -197,12 +177,12 @@
                            org2blog
                            pkgbuild-mode
                            projectile
-                           rainbow-identifiers
+			   smartparens
                            smex
                            smooth-scroll
                            smooth-scrolling
                            undo-tree
-                           volatile-highlights
+			   volatile-highlights
                            web-mode
                            yasnippet
                            ))
