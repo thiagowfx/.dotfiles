@@ -9,7 +9,7 @@ floating_modifier $mod
 font pango:Terminus 9.0
 
 bindsym $mod+Return       exec --no-startup-id i3-sensible-terminal
-bindsym $mod+Shift+Return exec --no-startup-id "emacsclient -c"
+bindsym $mod+Shift+Return exec --no-startup-id emacs
 bindsym $mod+c            exec --no-startup-id google-chrome-stable
 bindsym $mod+d            exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+Shift+d      exec --no-startup-id dmenu_run

@@ -19,6 +19,13 @@
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
 
+(progn
+  (menu-bar-mode -1)
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (column-number-mode t)
+  (line-number-mode t))
+
 ;; el-get bootstrapping
 (add-to-list 'load-path (concat user-emacs-directory "el-get/el-get"))
 (unless (require 'el-get nil 'noerror)
@@ -241,12 +248,6 @@
   (setq ido-save-directory-list-file (concat user-emacs-directory "ido-file"))
   (setq ido-show-dot-for-dired t)
   (setq ido-default-buffer-method 'selected-window))
-(progn
-  (menu-bar-mode -1)
-  (scroll-bar-mode -1)
-  (tool-bar-mode -1)
-  (column-number-mode t)
-  (line-number-mode t))
 (progn
   (setq indent-tabs-mode nil)
   (setq standard-indent 2)
