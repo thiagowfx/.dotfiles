@@ -5,7 +5,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "60f04e478dedc16397353fb9f33f0d895ea3dab4f581307fbf0aa2f07e658a40" default)))
+ '(custom-safe-themes (quote ("3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" "b8714d3e17ae1b52e42ceb8ddeb41f49cd635cb38efc48ee05bf070c10a3268f" "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "60f04e478dedc16397353fb9f33f0d895ea3dab4f581307fbf0aa2f07e658a40" default)))
  '(magit-use-overlays nil)
  '(safe-local-variable-values (quote ((eval setq-default gac-automatically-push-p t) (eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook" (add-hook (quote write-contents-functions) (lambda nil (delete-trailing-whitespace) nil)) (require (quote whitespace)) "Sometimes the mode needs to be toggled off and on." (whitespace-mode 0) (whitespace-mode 1)) (whitespace-line-column . 80) (whitespace-style face tabs trailing lines-tail) (require-final-newline . t))))
  '(send-mail-function (quote mailclient-send-it)))
@@ -45,22 +45,24 @@
       '((:name ace-jump-mode
                :after (global-set-key (kbd "C-z") 'ace-jump-mode))
         (:name auto-complete
-               :after (progn
-                        (require 'auto-complete)
+               :after (progn			
                         (require 'auto-complete-config)
                         (ac-config-default)
                         (global-auto-complete-mode t)
                         (ac-set-trigger-key "TAB")
-                        (global-set-key (kbd "C-x <tab>") 'auto-complete)
-                        (defun ac-common-setup () (setq ac-sources
-                                                        (append
-                                                         ac-sources '(ac-source-filename
-                                                                      ac-source-files-in-current-dir
-                                                                      ac-source-imenu
-                                                                      ac-source-words-in-buffer))))))
-	(:name color-theme-solarized
-	       :after (color-theme-solarized-dark))
-	(:name drag-stuff
+                        (global-set-key (kbd "C-x TAB") 'auto-complete)
+                        (defun ac-common-setup () (setq ac-sources (append ac-sources '(ac-source-filename ac-source-files-in-current-dir ac-source-imenu ac-source-words-in-buffer))))))
+        (:name company-mode
+               :after (progn
+                        (add-hook 'after-init-hook 'global-company-mode)
+                        (global-set-key (kbd "C-x TAB") 'company-complete)
+                        (setq company-tooltip-limit 20) ;; bigger popup window
+                        (setq company-idle-delay .3) ;; decrease delay before autocompletion popup shows
+                        (setq company-echo-delay 0.0) ;; remove annoying blinking
+                        ))
+        (:name diff-hl
+               :after (global-diff-hl-mode t))
+        (:name drag-stuff
                :after (progn
                         (drag-stuff-global-mode)
                         (add-hook 'org-mode-hook '(lambda () (smartparens-mode -1)))
@@ -78,11 +80,11 @@
                         (global-fixmee-mode t)
                         (global-set-key (kbd "C-c f") 'fixmee-goto-nextmost-urgent)))
         (:name flycheck
-               :after (add-hook 'after-init-hook #'global-flycheck-mode))
+               :after (progn
+                        (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
+                        (add-hook 'after-init-hook #'global-flycheck-mode)))
         (:name git-auto-commit-mode
                :type elpa)
-        (:name go-imports
-               :after (setq gofmt-command (concat (getenv "HOME") "/go/bin/goimports")))
         (:name go-mode
                :after (progn
                         (add-hook 'before-save-hook #'gofmt-before-save)
@@ -100,6 +102,8 @@
         (:name mode-icons
                :type elpa
                :after (mode-icons-mode))
+        (:name monokai-theme
+               :after (load-theme 'monokai))
         (:name multiple-cursors
                :after (progn
                         (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
@@ -111,7 +115,7 @@
                :after (progn
                         (setq org-src-fontify-natively t)
                         (setq org-confirm-babel-evaluate nil)
-                        (setq org-directory "~/Dropbox/org")
+                        (setq org-directory (concat (getenv "HOME") "/Dropbox/org"))
                         (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "TROUBLE" "|" "DONE")))
                         (setq org-todo-keyword-faces '(("TODO" . "medium turquoise") ("PROGRESS" . "slate blue") ("TROUBLE" . "dark red") ("DONE" . "forest green")))
                         (require 'org-crypt)
@@ -121,21 +125,16 @@
         (:name org2blog
                :after (progn
                         (require 'org2blog-autoloads)
-			(add-to-list 'load-path (concat user-emacs-directory "credentials"))
+                        (add-to-list 'load-path (concat user-emacs-directory "credentials"))
                         (require 'wordpress-credentials)))
-        (:name popwin
-               :after (progn
-                        (require 'popwin)
-                        (popwin-mode t)))
         (:name projectile
                :after (projectile-global-mode))
-	(:name smartparens
-	       :after (smartparens-global-mode))
-        (:name smart-cursor-color
-               :type elpa
-               :after (smart-cursor-color-mode t))
         (:name smart-mode-line
-               :after (sml/setup))
+               :after (progn
+                        (sml/setup)
+                        (sml/apply-theme 'dark)))
+        (:name smartparens
+               :after (smartparens-global-mode))
         (:name smex
                :after (global-set-key (kbd "M-x") 'smex))
         (:name undo-tree
@@ -143,38 +142,50 @@
                         (global-undo-tree-mode t)
                         (global-set-key (kbd "C-_") 'undo-tree-undo)
                         (global-set-key (kbd "C-+") 'undo-tree-redo)))
-	(:name volatile-highlights
-	       :after (volatile-highlights-mode t))
+        (:name volatile-highlights
+               :after (volatile-highlights-mode t))
+        (:name yafolding
+               :after (progn
+                        (add-hook 'prog-mode-hook (lambda () (yafolding-mode t)))
+                        (define-key yafolding-mode-map (kbd "<C-S-return>") nil)
+                        (define-key yafolding-mode-map (kbd "<C-return>") nil)
+                        (define-key yafolding-mode-map (kbd "C-c <C-S-return>") 'yafolding-toggle-all)
+                        (define-key yafolding-mode-map (kbd "C-c <C-return>") 'yafolding-toggle-element)))
         (:name yasnippet
                :after (yas-global-mode t))
         ))
 
 ;; packages -- autoremove/cleanup: (el-get-cleanup my:el-get-packages)
-(setq my:el-get-packages '(
-                           ace-jump-mode
+(setq my:el-get-packages '(ace-jump-mode
+                           ag
                            auto-complete
-			   cmake-mode
-			   color-theme-solarized
+                           back-button ;;maybe
+                           bookmark+ ;; maybe
+                           cmake-mode
+                           diff-hl ;; maybe
                            dired+
+                           dired-filetype-face ;; maybe
                            drag-stuff
                            emmet-mode
                            expand-region
                            fixmee
                            flycheck
                            git-auto-commit-mode
-                           go-mode
                            go-autocomplete
+                           go-mode
                            go-eldoc
+                           go-errcheck-el
                            go-imports
                            go-lint
+                           go-mode
                            go-oracle
                            go-projectile
                            go-snippets
                            go-test
                            hlinum
                            hungry-delete
-                           init-eldoc
                            js2-mode
+                           json-mode
                            magit
                            markdown-mode
                            mode-icons
@@ -184,13 +195,15 @@
                            org2blog
                            pkgbuild-mode
                            projectile
-			   smartparens
+                           smartparens
+                           smart-mode-line
                            smex
                            smooth-scroll
                            smooth-scrolling
                            undo-tree
-			   volatile-highlights
+                           volatile-highlights
                            web-mode
+                           yafolding
                            yasnippet
                            ))
 (el-get 'sync my:el-get-packages)
@@ -288,12 +301,10 @@
 (global-unset-key "\C-\M-h")
 
 (add-to-list 'auto-mode-alist '("\\.js?\\'" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("/PKGBUILD$" . pkgbuild-mode))
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
-(add-to-list 'auto-mode-alist '("\\.html?\\'"  . web-mode))
-(add-to-list 'auto-mode-alist '("\\.php?\\'"  . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.php?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
 
 (add-hook 'c++-mode-hook
           (lambda ()

@@ -26,6 +26,7 @@ alias df='df -h'
 alias diff="colordiff -uN"
 alias dmesg="dmesg -H"
 alias du="du -h"
+alias em="emacs"
 alias free="free -m"
 alias gdb="gdb -q"
 alias grep="grep --color=always"
