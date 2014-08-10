@@ -89,8 +89,6 @@
                :after (progn
                         (add-hook 'before-save-hook #'gofmt-before-save)
                         (add-hook 'go-mode-hook (lambda () (local-set-key (kbd "C-c C-d") #'godoc-at-point)))))
-        (:name go-snippets
-               :type elpa)
         (:name hlinum
                :after (hlinum-activate))
         (:name hungry-delete
@@ -151,20 +149,15 @@
                         (define-key yafolding-mode-map (kbd "<C-return>") nil)
                         (define-key yafolding-mode-map (kbd "C-c <C-S-return>") 'yafolding-toggle-all)
                         (define-key yafolding-mode-map (kbd "C-c <C-return>") 'yafolding-toggle-element)))
-        (:name yasnippet
-               :after (yas-global-mode t))
         ))
 
 ;; packages -- autoremove/cleanup: (el-get-cleanup my:el-get-packages)
 (setq my:el-get-packages '(ace-jump-mode
                            ag
                            auto-complete
-                           back-button ;;maybe
-                           bookmark+ ;; maybe
                            cmake-mode
-                           diff-hl ;; maybe
+                           diff-hl
                            dired+
-                           dired-filetype-face ;; maybe
                            drag-stuff
                            emmet-mode
                            expand-region
@@ -180,7 +173,6 @@
                            go-mode
                            go-oracle
                            go-projectile
-                           go-snippets
                            go-test
                            hlinum
                            hungry-delete
@@ -204,7 +196,6 @@
                            volatile-highlights
                            web-mode
                            yafolding
-                           yasnippet
                            ))
 (el-get 'sync my:el-get-packages)
 
