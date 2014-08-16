@@ -255,7 +255,7 @@
   (require 'epa)
   (setq epa-file-name-regexp "\\.\\(gpg\\|asc\\)$")
   (epa-file-name-regexp-update))
-(setq browse-url-generic-program (executable-find (getenv "BROWSER")) browse-url-browser-function 'browse-url-generic)
+(setq browse-url-generic-program (executable-find "google-chrome-stable") browse-url-browser-function 'browse-url-generic)
 (blink-cursor-mode -1)
 (show-paren-mode t)
 (setq inhibit-startup-message t
