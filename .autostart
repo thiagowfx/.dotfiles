@@ -1,11 +1,8 @@
 # -*- sh -*-
-autocutsel -fork &
-autocutsel -selection PRIMARY -fork &
 dunst &
 emacs --daemon &
 dropbox start &
 nm-applet &
 parcellite &
-pcmanfm -d &
 redshift &
 sh "$HOME/.fehbg" &

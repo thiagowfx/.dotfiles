@@ -6,7 +6,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
- '(custom-safe-themes (quote ("3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" "b8714d3e17ae1b52e42ceb8ddeb41f49cd635cb38efc48ee05bf070c10a3268f" "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "60f04e478dedc16397353fb9f33f0d895ea3dab4f581307fbf0aa2f07e658a40" default)))
+ '(custom-safe-themes (quote ("dd43c9f997208c61ce0f4855932cc20a57ae2f37fe2ced218dace5c8c321d1e8" "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" "b8714d3e17ae1b52e42ceb8ddeb41f49cd635cb38efc48ee05bf070c10a3268f" "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "60f04e478dedc16397353fb9f33f0d895ea3dab4f581307fbf0aa2f07e658a40" default)))
  '(magit-use-overlays nil)
  '(safe-local-variable-values (quote ((eval setq-default gac-automatically-push-p t) (eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook" (add-hook (quote write-contents-functions) (lambda nil (delete-trailing-whitespace) nil)) (require (quote whitespace)) "Sometimes the mode needs to be toggled off and on." (whitespace-mode 0) (whitespace-mode 1)) (whitespace-line-column . 80) (whitespace-style face tabs trailing lines-tail) (require-final-newline . t))))
  '(send-mail-function (quote mailclient-send-it)))
@@ -57,18 +57,11 @@
                :after (progn
                         (add-hook 'after-init-hook 'global-company-mode)
                         (global-set-key (kbd "C-x TAB") 'company-complete)
-                        (setq company-tooltip-limit 20) ;; bigger popup window
-                        (setq company-idle-delay .3) ;; decrease delay before autocompletion popup shows
-                        (setq company-echo-delay 0.0) ;; remove annoying blinking
-                        ))
+                        (setq company-tooltip-limit 20)))
         (:name diff-hl
                :after (global-diff-hl-mode t))
         (:name drag-stuff
-               :after (progn
-                        (drag-stuff-global-mode)
-                        (add-hook 'org-mode-hook '(lambda () (smartparens-mode -1)))
-                        (add-hook 'org-mode-hook '(lambda () (auto-fill-mode t)))
-                        (add-hook 'org-mode-hook '(lambda () (drag-stuff-mode -1)))))
+               :after (drag-stuff-global-mode))
         (:name emmet-mode
                :after (progn
                         (add-hook 'sgml-mode-hook 'emmet-mode)
@@ -84,8 +77,6 @@
                :after (progn
                         (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
                         (add-hook 'after-init-hook #'global-flycheck-mode)))
-        (:name git-auto-commit-mode
-               :type elpa)
         (:name go-mode
                :after (progn
                         (add-hook 'before-save-hook #'gofmt-before-save)
@@ -99,7 +90,6 @@
         (:name magit
                :after (global-set-key (kbd "C-c g") 'magit-status))
         (:name mode-icons
-               :type elpa
                :after (mode-icons-mode))
         (:name monokai-theme
                :after (load-theme 'monokai))
@@ -120,7 +110,10 @@
                         (require 'org-crypt)
                         (org-crypt-use-before-save-magic)
                         (setq org-tags-exclude-from-inheritance '("crypt"))
-                        (setq org-crypt-key "A905373C")))
+                        (setq org-crypt-key "A905373C")
+                        (add-hook 'org-mode-hook '(lambda () (auto-fill-mode t)))
+                        (add-hook 'org-mode-hook '(lambda () (drag-stuff-mode -1)))
+                        (add-hook 'org-mode-hook '(lambda () (smartparens-mode -1)))))
         (:name org2blog
                :after (progn
                         (require 'org2blog-autoloads)
@@ -268,7 +261,7 @@
 (setq inhibit-startup-message t
       inhibit-startup-echo-area-message t
       initial-scratch-message "")
-(set-frame-font "Terminus-9")
+(set-frame-font "Source Code Pro 9")
 (setq frame-title-format (concat "%b - " (message "%s@emacs" (replace-regexp-in-string "\n$" "" (shell-command-to-string "whoami")))))
 
 (defun cleanup-buffer ()

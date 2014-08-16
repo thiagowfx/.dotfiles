@@ -1,6 +1,7 @@
 # -*- shell-script -*-
 
 # environment variables
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 export ALTERNATE_EDITOR=""
 export BROWSER="google-chrome-stable"
 export EDITOR="mg"
@@ -26,7 +27,6 @@ alias df='df -h'
 alias diff="colordiff -uN"
 alias dmesg="dmesg -H"
 alias du="du -h"
-alias em="emacs"
 alias free="free -m"
 alias gdb="gdb -q"
 alias grep="grep --color=always"
@@ -61,8 +61,9 @@ alias wget-t-pdf="wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
 alias wget-t-spider="wget -e robots=off --wait=2 --random-wait --recursive --span-hosts --spider --timestamping --tries=5 --dns-timeout=30 --connect-timeout=5 --read-timeout=5 --level=10 --"
 alias winetricks-t-install="winetricks corefonts flash vcrun2005 vcrun2008 vb6run"
 alias world="sudo pacman -Syu"
-alias world-t-pacaur="pacaur -Syua --noedit"
+alias world-t-apt="sudo apt-get update -y && sudo apt-get upgrade -y"
 alias world-t-gentoo='su -c "emerge --sync && emerge -avuDN --with-bdeps y --keep-going @world && emerge -v --depclean && revdep-rebuild -v && dispatch-conf && etc-update && eclean -d distfiles"'
+alias world-t-pacaur="pacaur -Syua --noedit"
 alias xrandr-t-hdmi-connect="xrandr --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1"
 alias xrandr-t-hdmi-disconnect="xrandr --output HDMI1 --off"
 alias xrandr-t-hdmi-mirror="xrandr --output LVDS1 --primary --auto --output HDMI1 --auto --same-as LVDS1"
@@ -71,10 +72,17 @@ alias youtube-dl-t-mp3="youtube-dl --continue --title --restrict-filenames --ext
 alias youtube-dl-t-video="youtube-dl --continue --title --restrict-filenames"
 
 # helper functions
+function em {
+    emacs "$@" &
+}
+
 function adbsync {
     if [[ ! -d "$1" ]]; then
-	echo "Usage: adbsync <path to localdir>\nExample usage: adbsync $HOME/tvseries"
-	return 0
+        cat <<EOF
+Usage: adbsync <localdir>
+Example: adbsync $HOME/tvseries
+EOF
+        return 0
     fi
     local TARGET_DIR="/storage/sdcard1/adbsync"
     adb wait-for-device
@@ -93,11 +101,14 @@ function gentoo-chroot {
 }
 
 # gitignore.io
-function gi() { curl "http://www.gitignore.io/api/$@" ;} 
+function gi() { curl "http://www.gitignore.io/api/$@" ;}
 
 function qkkdiff-file {
     if [[ "$1" == "" ]]; then
-        echo "Usage: qkkdiff-file <file>\nExample usage: qkkdiff-file /etc/pacman.conf"
+        cat <<EOF
+Usage: qkkdiff-file <file>
+Example: qkkdiff-file /etc/pacman.conf"
+EOF
     elif [[ -f "$1" ]]; then
         pkg="$(pacman -Qo $1 | awk '//{printf "%s-%s", $(NF-1), $NF;}')"
         bsdtar -xOf /var/cache/pacman/pkg/${pkg}-$(uname -m).pkg.tar.xz "${1/\//}" | diff - "$1"
@@ -110,7 +121,10 @@ function qkkdiff-file {
 
 function qkkdiff-pkg {
     if [[ "$1" == "" ]]; then
-        echo "Usage: qkkdiff <package>\nExample usage: qkkdiff pacman"
+        echo <<EOF
+Usage: qkkdiff <package>
+Example: qkkdiff pacman
+EOF
     elif ! pacman -Q "$1"; then
         return 1
     else
