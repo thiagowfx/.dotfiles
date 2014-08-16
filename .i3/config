@@ -6,7 +6,7 @@ set $Win Mod4
 set $mod Mod4
 set $i3lock i3lock-wrapper
 floating_modifier $mod
-font pango:Terminus 9.0
+font pango:Source Code Pro 9.0
 
 bindsym $mod+Return       exec --no-startup-id i3-sensible-terminal
 bindsym $mod+Shift+Return exec --no-startup-id emacs
