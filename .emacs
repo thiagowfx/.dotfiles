@@ -6,7 +6,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
- '(custom-safe-themes (quote ("dd43c9f997208c61ce0f4855932cc20a57ae2f37fe2ced218dace5c8c321d1e8" "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" "b8714d3e17ae1b52e42ceb8ddeb41f49cd635cb38efc48ee05bf070c10a3268f" "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "60f04e478dedc16397353fb9f33f0d895ea3dab4f581307fbf0aa2f07e658a40" default)))
+ '(custom-safe-themes (quote ("dd43c9f997208c61ce0f4855932cc20a57ae2f37fe2ced218dace5c8c321d1e8" default)))
  '(magit-use-overlays nil)
  '(safe-local-variable-values (quote ((eval setq-default gac-automatically-push-p t) (eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook" (add-hook (quote write-contents-functions) (lambda nil (delete-trailing-whitespace) nil)) (require (quote whitespace)) "Sometimes the mode needs to be toggled off and on." (whitespace-mode 0) (whitespace-mode 1)) (whitespace-line-column . 80) (whitespace-style face tabs trailing lines-tail) (require-final-newline . t))))
  '(send-mail-function (quote mailclient-send-it)))
@@ -43,9 +43,7 @@
 ;; common themes: monokai (sublime text), solarized (light/dark), wombat
 ;; extra recipes for packages yet unknown to el-get
 (setq el-get-sources
-      '((:name ace-jump-mode
-               :after (global-set-key (kbd "C-z") 'ace-jump-mode))
-        (:name auto-complete
+      '((:name auto-complete
                :after (progn			
                         (require 'auto-complete-config)
                         (ac-config-default)
@@ -53,11 +51,6 @@
                         (ac-set-trigger-key "TAB")
                         (global-set-key (kbd "C-x TAB") 'auto-complete)
                         (defun ac-common-setup () (setq ac-sources (append ac-sources '(ac-source-filename ac-source-files-in-current-dir ac-source-imenu ac-source-words-in-buffer))))))
-        (:name company-mode
-               :after (progn
-                        (add-hook 'after-init-hook 'global-company-mode)
-                        (global-set-key (kbd "C-x TAB") 'company-complete)
-                        (setq company-tooltip-limit 20)))
         (:name diff-hl
                :after (global-diff-hl-mode t))
         (:name drag-stuff
@@ -67,8 +60,6 @@
                         (add-hook 'sgml-mode-hook 'emmet-mode)
                         (add-hook 'css-mode-hook  'emmet-mode)
                         (setq emmet-move-cursor-between-quotes t)))
-        (:name expand-region
-               :after (global-set-key (kbd "C-=") 'er/expand-region))
         (:name fixmee
                :after (progn
                         (global-fixmee-mode t)
@@ -121,10 +112,6 @@
                         (require 'wordpress-credentials)))
         (:name projectile
                :after (projectile-global-mode))
-        (:name smart-mode-line
-               :after (progn
-                        (sml/setup)
-                        (sml/apply-theme 'dark)))
         (:name smartparens
                :after (smartparens-global-mode))
         (:name smex
@@ -136,18 +123,10 @@
                         (global-set-key (kbd "C-+") 'undo-tree-redo)))
         (:name volatile-highlights
                :after (volatile-highlights-mode t))
-        (:name yafolding
-               :after (progn
-                        (add-hook 'prog-mode-hook (lambda () (yafolding-mode t)))
-                        (define-key yafolding-mode-map (kbd "<C-S-return>") nil)
-                        (define-key yafolding-mode-map (kbd "<C-return>") nil)
-                        (define-key yafolding-mode-map (kbd "C-c <C-S-return>") 'yafolding-toggle-all)
-                        (define-key yafolding-mode-map (kbd "C-c <C-return>") 'yafolding-toggle-element)))
         ))
 
 ;; packages -- autoremove/cleanup: (el-get-cleanup my:el-get-packages)
-(setq my:el-get-packages '(ace-jump-mode
-                           ag
+(setq my:el-get-packages '(ag
                            auto-complete
 			   bookmark+
                            cmake-mode
@@ -155,22 +134,14 @@
                            dired+
                            drag-stuff
                            emmet-mode
-                           expand-region
                            fixmee
                            flycheck
                            git-auto-commit-mode
                            go-autocomplete
                            go-mode
                            go-eldoc
-                           go-errcheck-el
-                           go-imports
-                           go-lint
-                           go-mode
-                           go-oracle
                            go-projectile
-                           go-test
                            hlinum
-                           hungry-delete
                            js2-mode
                            json-mode
                            magit
@@ -178,19 +149,18 @@
                            mode-icons
                            monokai-theme
                            multiple-cursors
-                           org-mode
+			   org-mode
                            org2blog
                            pkgbuild-mode
                            projectile
+			   projectile-rails
+			   ruby-mode
                            smartparens
-                           smart-mode-line
                            smex
-                           smooth-scroll
-                           smooth-scrolling
                            undo-tree
                            volatile-highlights
                            web-mode
-                           yafolding
+			   yaml-mode
                            ))
 (el-get 'sync my:el-get-packages)
 

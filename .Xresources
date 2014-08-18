@@ -15,7 +15,7 @@ URxvt*termName: rxvt-unicode
 URxvt*background: #000000
 URxvt*foreground: #ffffff
 URxvt.scrollBar: false
-URxvt*font: xft:Source Code Pro:size=9:antialias=true
+URxvt*font: xft:Terminus:size=10:antialias=true
 URxvt.iso14755: false
 URxvt.iso14755_52: false
 URxvt.perl-ext-common: default,clipboard,matcher,selection-to-clipboard,tabbed
