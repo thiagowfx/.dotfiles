@@ -1,4 +1,4 @@
-;; -*- lisp -*-
+;; -*- emacs-lisp -*-
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -40,19 +40,21 @@
 
 (package-initialize)
 
-;; common themes: monokai (sublime text), solarized (light/dark), wombat
 ;; extra recipes for packages yet unknown to el-get
 (setq el-get-sources
-      '((:name auto-complete
-               :after (progn			
+      '((:name anzu
+               :after (progn
+                        (global-anzu-mode t)
+                        (global-set-key (kbd "M-%") 'anzu-query-replace)
+                        (global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)))
+        (:name auto-complete
+               :after (progn
                         (require 'auto-complete-config)
                         (ac-config-default)
                         (global-auto-complete-mode t)
                         (ac-set-trigger-key "TAB")
                         (global-set-key (kbd "C-x TAB") 'auto-complete)
                         (defun ac-common-setup () (setq ac-sources (append ac-sources '(ac-source-filename ac-source-files-in-current-dir ac-source-imenu ac-source-words-in-buffer))))))
-        (:name diff-hl
-               :after (global-diff-hl-mode t))
         (:name drag-stuff
                :after (drag-stuff-global-mode))
         (:name emmet-mode
@@ -60,24 +62,30 @@
                         (add-hook 'sgml-mode-hook 'emmet-mode)
                         (add-hook 'css-mode-hook  'emmet-mode)
                         (setq emmet-move-cursor-between-quotes t)))
-        (:name fixmee
+        (:name expand-region
+               :after (global-set-key (kbd "C-=") 'er/expand-region))
+        (:name fic-mode
                :after (progn
-                        (global-fixmee-mode t)
-                        (global-set-key (kbd "C-c f") 'fixmee-goto-nextmost-urgent)))
+                        (require 'fic-mode)
+                        (add-hook 'prog-mode-hook '(lambda () (fic-mode t)))))
         (:name flycheck
                :after (progn
                         (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
                         (add-hook 'after-init-hook #'global-flycheck-mode)))
+	(:name git-gutter
+	       :after (progn
+			(global-git-gutter-mode t)
+			(git-gutter:linum-setup)))
         (:name go-mode
                :after (progn
                         (add-hook 'before-save-hook #'gofmt-before-save)
                         (add-hook 'go-mode-hook (lambda () (local-set-key (kbd "C-c C-d") #'godoc-at-point)))))
+	(:name help+
+	       :after (require 'help+))
         (:name hlinum
                :after (hlinum-activate))
-        (:name hungry-delete
-               :after (progn
-                        (require 'hungry-delete)
-                        (global-hungry-delete-mode)))
+	(:name init-eldoc
+	       :after (require 'init-eldoc))
         (:name magit
                :after (global-set-key (kbd "C-c g") 'magit-status))
         (:name mode-icons
@@ -93,6 +101,7 @@
                         (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)))
         (:name org-mode
                :after (progn
+                        (setq-default major-mode 'org-mode)
                         (setq org-src-fontify-natively t)
                         (setq org-confirm-babel-evaluate nil)
                         (setq org-directory (concat (getenv "HOME") "/Dropbox/org"))
@@ -110,6 +119,8 @@
                         (require 'org2blog-autoloads)
                         (add-to-list 'load-path (concat user-emacs-directory "credentials"))
                         (require 'wordpress-credentials)))
+        (:name paradox
+               :type elpa)
         (:name projectile
                :after (projectile-global-mode))
         (:name smartparens
@@ -122,26 +133,30 @@
                         (global-set-key (kbd "C-_") 'undo-tree-undo)
                         (global-set-key (kbd "C-+") 'undo-tree-redo)))
         (:name volatile-highlights
-               :after (volatile-highlights-mode t))
-        ))
+               :after (volatile-highlights-mode t))))
 
 ;; packages -- autoremove/cleanup: (el-get-cleanup my:el-get-packages)
 (setq my:el-get-packages '(ag
+                           anzu
                            auto-complete
-			   bookmark+
+                           bookmark+
                            cmake-mode
-                           diff-hl
                            dired+
                            drag-stuff
                            emmet-mode
-                           fixmee
+                           expand-region
+                           fic-mode
                            flycheck
                            git-auto-commit-mode
+			   git-gutter
                            go-autocomplete
                            go-mode
                            go-eldoc
                            go-projectile
+			   help+
                            hlinum
+                           icomplete+
+			   init-eldoc
                            js2-mode
                            json-mode
                            magit
@@ -149,24 +164,23 @@
                            mode-icons
                            monokai-theme
                            multiple-cursors
-			   org-mode
+                           org-mode
                            org2blog
+                           paradox
                            pkgbuild-mode
                            projectile
-			   projectile-rails
-			   ruby-mode
+                           projectile-rails
+                           ruby-mode
                            smartparens
                            smex
                            undo-tree
                            volatile-highlights
                            web-mode
-			   yaml-mode
-                           ))
+                           yaml-mode))
 (el-get 'sync my:el-get-packages)
 
 (setq user-full-name "Thiago Perrotta"
       user-mail-address "thiagoperrotta95@gmail.com")
-(setq-default major-mode 'org-mode)
 (setq case-fold-search t)
 (setq x-select-enable-primary t
       save-interprogram-paste-before-kill t
@@ -262,10 +276,7 @@
 (add-to-list 'auto-mode-alist '("\\.php?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
 
-(add-hook 'c++-mode-hook
-          (lambda ()
-            (setq compile-command
-                  (format "g++ %s %s -o %s"
-                          "-g -O2 -Wall"
-                          (buffer-file-name)
-                          (file-name-sans-extension buffer-file-name)))))
+(add-hook 'c++-mode-hook (lambda () (setq compile-command (format "g++ %s %s -o %s"
+                                                                  "-g -O2 -Wall"
+                                                                  (buffer-file-name)
+                                                                  (file-name-sans-extension buffer-file-name)))))
