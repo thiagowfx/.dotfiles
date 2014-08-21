@@ -8,16 +8,15 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
+[[ -f "$HOME/.Xmodmap" ]] && xmodmap "$HOME/.Xmodmap"
+[[ -f "$HOME/.Xresources" ]] && xrdb -merge "$HOME/.Xresources"
+
 eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
 export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
 
-[[ -f "$HOME/.Xmodmap" ]] && xmodmap "$HOME/.Xmodmap"
-[[ -f "$HOME/.Xresources" ]] && xrdb -merge "$HOME/.Xresources"
-[[ -f "$HOME/.autostart" ]] && sh "$HOME/.autostart"
-
 # xinit <window_manager>
 case $1 in
-    awesome           ) exec awesome;;
+    awesome|awesomewm ) exec awesome;;
     bspwm             ) exec bspwm;;
     catwm             ) exec catwm;;
     cinnamon          ) exec cinnamon-session;;

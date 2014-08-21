@@ -24,8 +24,8 @@ URxvt.keysym.Control-Shift-V: perl:clipboard:paste
 URxvt.url-launcher: xdg-open
 URxvt.matcher.button: 1
 
-! Better urxvt colors. For more, see http://xcolors.net
-! This is felixonmars style @ http://felixc.at/URxvt
+! better urxvt colors. For more, see http://xcolors.net
+! this is felixonmars style @ http://felixc.at/URxvt
 urxvt.color1:  #cc0000
 urxvt.color2:  #4e9a06
 urxvt.color3:  #c4a000
