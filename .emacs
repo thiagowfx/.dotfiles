@@ -59,15 +59,13 @@
                :after (drag-stuff-global-mode))
         (:name emmet-mode
                :after (progn
-                        (add-hook 'sgml-mode-hook 'emmet-mode)
                         (add-hook 'css-mode-hook  'emmet-mode)
+                        (add-hook 'sgml-mode-hook 'emmet-mode)
                         (setq emmet-move-cursor-between-quotes t)))
         (:name expand-region
                :after (global-set-key (kbd "C-=") 'er/expand-region))
         (:name fic-mode
-               :after (progn
-                        (require 'fic-mode)
-                        (add-hook 'prog-mode-hook '(lambda () (fic-mode t)))))
+               :after (add-hook 'prog-mode-hook '(lambda () (fic-mode t))))
         (:name flycheck
                :after (progn
                         (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
@@ -136,43 +134,42 @@
                :after (volatile-highlights-mode t))))
 
 ;; packages -- autoremove/cleanup: (el-get-cleanup my:el-get-packages)
-(setq my:el-get-packages '(ag
-                           anzu
+(setq my:el-get-packages '(anzu ;; ok
                            auto-complete
-                           bookmark+
-                           cmake-mode
-                           dired+
-                           drag-stuff
+                           bookmark+ ;; ok
+                           cmake-mode ;; ok
+                           dired+ ;; ok
+                           drag-stuff ;; ok
                            emmet-mode
-                           expand-region
+			   Enhanced-Ruby-Mode
+                           expand-region ;; ok
                            fic-mode
-                           flycheck
+                           flycheck ;; ok
                            git-auto-commit-mode
-			   git-gutter
+			   git-gutter ;; ok
                            go-autocomplete
-                           go-mode
-                           go-eldoc
+                           go-mode ;; ok
+                           go-eldoc ;; ok
                            go-projectile
 			   help+
                            hlinum
-                           icomplete+
-			   init-eldoc
+                           icomplete+ ;; ok
+			   init-eldoc ;; ok
                            js2-mode
                            json-mode
-                           magit
-                           markdown-mode
-                           mode-icons
-                           monokai-theme
-                           multiple-cursors
-                           org-mode
-                           org2blog
-                           paradox
-                           pkgbuild-mode
-                           projectile
+                           magit ;; ok
+                           markdown-mode ;; ok
+                           mode-icons ;; ok
+                           monokai-theme ;; ok
+                           multiple-cursors ;; ok
+                           org-mode ;; ok
+                           org2blog ;; ok
+                           paradox ;; ok
+                           pkgbuild-mode ;; ok
+                           projectile ;; ok
                            projectile-rails
-                           ruby-mode
                            smartparens
-                           smex
+                           smex ;; ok
                            undo-tree
                            volatile-highlights
                            web-mode
@@ -199,12 +196,12 @@
 (setq-default fill-column 72)
 (fset 'yes-or-no-p 'y-or-n-p)
 (prefer-coding-system 'utf-8)
-(icomplete-mode t)
 (savehist-mode t)
 (winner-mode t)
 (global-auto-revert-mode t)
 (global-subword-mode t)
 (global-linum-mode t)
+(icomplete-mode t)
 (windmove-default-keybindings)
 (setq windmove-wrap-around t)
 (remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)
