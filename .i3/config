@@ -9,13 +9,13 @@ floating_modifier $mod
 font pango:Source Code Pro 9.0
 
 bindsym $mod+Return       exec --no-startup-id i3-sensible-terminal
-bindsym $mod+Shift+Return exec --no-startup-id emacs
+bindsym $mod+Shift+Return exec --no-startup-id emacsclient -c
 bindsym $mod+c            exec --no-startup-id google-chrome-stable
 bindsym $mod+d            exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+Shift+d      exec --no-startup-id dmenu_run
 bindsym $mod+Escape       exec --no-startup-id i3-sensible-terminal -e htop
 bindsym $mod+Shift+Escape exec --no-startup-id i3-sensible-terminal -e ncmpcpp
-bindsym $mod+BackSpace    exec --no-startup-id pcmanfm
+bindsym $mod+BackSpace    exec --no-startup-id nemo --no-desktop
 
 bindsym $mod+o move scratchpad
 bindsym $mod+m scratchpad show
@@ -39,9 +39,9 @@ bindsym $mod+h split h
 bindsym $mod+v split v
 bindsym $mod+f fullscreen
 
-bindsym $mod+s       layout stacking
-bindsym $mod+w       layout tabbed
-bindsym $mod+e       layout toggle split
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
 bindsym $mod+Shift+e layout toggle all
 
 bindsym $mod+Shift+space floating toggle
@@ -50,8 +50,9 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 bindsym $mod+b focus child
 
-bindsym $mod+i       move workspace to output HDMI1
+bindsym $mod+i move workspace to output HDMI1
 bindsym $mod+Shift+i move workspace to output LVDS1
+bindsym $mod+z exec i3-input -F 'rename workspace to "%s"' -P 'New name for workspace: '
 workspace 1 output LVDS1
 workspace 2 output LVDS1
 workspace 3 output LVDS1
@@ -60,10 +61,8 @@ workspace 5 output LVDS1
 workspace 6 output LVDS1
 workspace 7 output LVDS1
 workspace 8 output LVDS1
-workspace 9 output HDMI1
-
-bindsym $mod+z exec i3-input -F 'rename workspace to "%s"' -P 'New name for workspace: '
-bindsym $mod+x exec quickswitch.py
+workspace 9 output LVDS1
+workspace 10 output HDMI1
 
 bindsym $mod+p workspace prev
 bindsym $mod+n workspace next
@@ -76,7 +75,7 @@ bindsym $mod+6 workspace number 6
 bindsym $mod+7 workspace number 7
 bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
-bindsym $mod+0 workspace number 0
+bindsym $mod+0 workspace number 10
 
 bindsym $mod+Shift+p move container to workspace prev
 bindsym $mod+Shift+n move container to workspace next
@@ -89,7 +88,7 @@ bindsym $mod+Shift+6 move container to workspace number 6
 bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
-bindsym $mod+Shift+0 move container to workspace number 0
+bindsym $mod+Shift+0 move container to workspace number 10
 
 mode "resize" {
   set $step 10
@@ -140,7 +139,6 @@ workspace_auto_back_and_forth  no
 workspace_layout               default
 
 # xprop to learn class strings
-for_window [window_role="pop-up"] floating enable, move absolute center
+for_window [window_role="pop-up"] floating enable
 for_window [class="Firefox|^Emacs$|Zathura|URxvt|Calibre|Google-chrome-stable|Spotify"] border 1pixel
 for_window [class="Arandr|Epsxe|feh|Galculator|gimp|Java|Lxappearance|MPlayer|Viewnior|qtraytracer"] floating enable
-# assign [class="^Chromium$|Firefox|dwb"] 2
