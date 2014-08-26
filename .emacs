@@ -6,7 +6,8 @@
  ;; If there is more than one, they won't work right.
  '(auto-revert-check-vc-info t)
  '(auto-save-default nil)
- '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks-file")
+ '(backup-inhibited t t)
+ '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
  '(browse-url-browser-function (quote browse-url-generic))
  '(browse-url-generic-program "/usr/bin/google-chrome-stable")
  '(compilation-always-kill t)
@@ -187,7 +188,7 @@
                :after (yas-global-mode t))))
 
 (setq wanted-packages '(anzu ;; ok
-                        bookmark+ ;; ok
+                        bookmark+
                         cmake-mode ;; ok
                         company-mode
                         dired+ ;; ok
@@ -197,10 +198,14 @@
                         flycheck ;; ok
                         git-auto-commit-mode
                         git-gutter ;; ok
+                        go-company
+                        go-def
                         go-mode ;; ok
                         go-eldoc ;; ok
+                        go-imports
+                        go-lint
                         go-projectile
-                        help+
+                        help+ ;; ok
                         icomplete+ ;; ok
                         idle-highlight-mode
                         ido-hacks
@@ -227,14 +232,28 @@
                         sublimity
                         switch-window
                         volatile-highlights
-                        web-mode
+                        wc-mode
+                        web-mode ;; ok
                         yaml-mode
                         yasnippet
                         yasnippet-snippets))
 (el-get-cleanup wanted-packages)
 (el-get 'sync wanted-packages)
 
-(setq backup-inhibited t)
+(progn
+  (require 'semantic)
+  (global-semantic-decoration-mode t)
+  (global-semantic-highlight-edits-mode t)
+  (global-semantic-highlight-func-mode t)
+  (global-semantic-mru-bookmark-mode t)
+  (global-semantic-show-parser-state-mode)
+  (global-semantic-show-unmatched-syntax-mode t)
+  (global-semantic-stickyfunc-mode t)
+  (global-semantic-idle-completions-mode)
+  (global-semantic-idle-local-symbol-highlight-mode)
+  (global-semantic-idle-scheduler-mode t)
+  (global-semantic-idle-summary-mode t))
+
 (fset 'yes-or-no-p 'y-or-n-p)
 (set-language-environment 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -271,6 +290,8 @@
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
+(define-key comint-mode-map (kbd "<up>") 'comint-previous-input)
+(define-key comint-mode-map (kbd "<down>") 'comint-next-input)
 (global-unset-key "\C-\M-h")
 
 (add-to-list 'auto-mode-alist '(".bashrc" . shell-script-mode))
@@ -282,7 +303,7 @@
 (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.ru\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.gemspec\\'" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . rhtml-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))

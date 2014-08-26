@@ -27,7 +27,6 @@ alias df='df -h'
 alias diff="colordiff -uN"
 alias dmesg="dmesg -H"
 alias du="du -h"
-alias emq="emacsclient -c"
 alias free="free -m"
 alias gdb="gdb -q"
 alias grep="grep --color=always"
@@ -61,7 +60,7 @@ alias systemd-t-nspawn="systemd-nspawn -bD"
 alias wget-t-pdf="wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
 alias wget-t-spider="wget -e robots=off --wait=2 --random-wait --recursive --span-hosts --spider --timestamping --tries=5 --dns-timeout=30 --connect-timeout=5 --read-timeout=5 --level=10 --"
 alias winetricks-t-install="winetricks corefonts flash vcrun2005 vcrun2008 vb6run"
-alias world="sudo pacman -Syu"
+alias world="sudo pacman -Syu && cower -u"
 alias world-t-apt="sudo apt-get update -y && sudo apt-get upgrade -y"
 alias world-t-gentoo='su -c "emerge --sync && emerge -avuDN --with-bdeps y --keep-going @world && emerge -v --depclean && revdep-rebuild -v && dispatch-conf && etc-update && eclean -d distfiles"'
 alias world-t-pacaur="pacaur -Syua --noedit"
@@ -73,8 +72,8 @@ alias youtube-dl-t-mp3="youtube-dl --continue --title --restrict-filenames --ext
 alias youtube-dl-t-video="youtube-dl --continue --title --restrict-filenames"
 
 # helper functions
-function em {
-    emacs "$@" &
+function emq {
+   emacsclient -c "$@" &
 }
 
 function adbsync {
