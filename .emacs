@@ -80,6 +80,8 @@
  )
 (fset 'yes-or-no-p 'y-or-n-p)
 (windmove-default-keybindings)
+(prefer-coding-system 'utf-8)
+(require 'iso-transl)
 (defun cleanup-buffer ()
   "Buffer cleaning, performing a bunch of operations on the whitespace content of it."
   (interactive)
