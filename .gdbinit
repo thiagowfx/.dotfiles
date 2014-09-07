@@ -1,1 +1,0 @@
-alias exit = quit

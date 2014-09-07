@@ -1,9 +1,9 @@
 # -*- sh -*-
 
-[[ -f ~/.aliases ]] && . $HOME/.aliases
-
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
+
+[[ -f ~/.aliases ]] && . $HOME/.aliases
 
 # System bashrc
 [[ -f /etc/bashrc ]] && . /etc/bashrc
