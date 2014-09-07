@@ -18,6 +18,7 @@
  '(epa-file-name-regexp "\\.\\(gpg\\|asc\\)$")
  '(fill-column 72)
  '(global-auto-revert-mode t)
+ '(global-git-gutter-mode t)
  '(global-linum-mode t)
  '(global-subword-mode t)
  '(icomplete-mode t)
@@ -110,13 +111,9 @@
       '((:name color-theme-almost-monokai
                :after (color-theme-almost-monokai))
         (:name flycheck
-               :after (progn
-                        (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
-                        (add-hook 'after-init-hook #'global-flycheck-mode)))
+               :after (add-hook 'after-init-hook #'global-flycheck-mode))
         (:name git-gutter
-               :after (progn
-                        (global-git-gutter-mode t)
-                        (git-gutter:linum-setup)))
+               :after (git-gutter:linum-setup))
         (:name ido-vertical-mode
                :after (ido-vertical-mode))
         (:name init-eldoc
@@ -126,14 +123,13 @@
                         (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
                         (global-set-key (kbd "C->") 'mc/mark-next-like-this)
                         (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-                        (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+                        (global-set-key (kbd "C-S-c C-<") 'mc/mark-all-like-this)
                         (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)))
         (:name org2blog
                :after (progn
                         (require 'org2blog-autoloads)
                         (add-to-list 'load-path (concat user-emacs-directory "credentials"))
-                        ;; (require 'wordpress-credentials)
-))
+                        (require 'wordpress-credentials)))
         (:name powerline
                :after (powerline-default-theme))
         (:name projectile
@@ -146,6 +142,6 @@
                :after (smartparens-global-mode))
         (:name smex
                :after (global-set-key (kbd "M-x") 'smex))))
-(setq mine/wanted-packages '(bookmark+ cmake-mode color-theme-almost-monokai dired+ flycheck git-gutter icomplete+ ido-vertical-mode init-eldoc markdown-mode multiple-cursors org-mode org2blog pkgbuild-mode powerline projectile redo+ smartparens smex))
+(setq mine/wanted-packages '(bookmark+ cmake-mode color-theme-almost-monokai dired+ flycheck git-gutter icomplete+ ido-vertical-mode init-eldoc markdown-mode multiple-cursors org2blog pkgbuild-mode powerline projectile redo+ smartparens smex))
 (el-get-cleanup mine/wanted-packages)
 (el-get 'sync mine/wanted-packages)
