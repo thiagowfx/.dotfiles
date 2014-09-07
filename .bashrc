@@ -4,6 +4,7 @@
 [[ $- != *i* ]] && return
 
 [[ -f $HOME/.aliases ]] && . $HOME/.aliases
+[[ -d $HOME/Downloads/apps/bin ]] && PATH="$HOME/Downloads/apps/bin:$PATH"
 
 # System bashrc
 [[ -f /etc/bashrc ]] && . /etc/bashrc
