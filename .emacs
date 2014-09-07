@@ -73,6 +73,24 @@
  ;; If there is more than one, they won't work right.
  )
 (fset 'yes-or-no-p 'y-or-n-p)
+(windmove-default-keybindings)
+(defun cleanup-buffer ()
+  "Buffer cleaning, performing a bunch of operations on the whitespace content of it."
+  (interactive)
+  (save-excursion
+    (whitespace-cleanup)
+    (delete-trailing-whitespace)
+    (indent-region (point-min) (point-max))
+    (untabify (point-min) (point-max))))
+(global-set-key [C-tab] 'cleanup-buffer)
+(global-set-key (kbd "RET") 'newline-and-indent)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "M-/") 'hippie-expand)
+(global-set-key (kbd "C-x g") 'goto-line)
+(global-set-key (kbd "C-x c") 'save-buffers-kill-terminal)
+(define-key comint-mode-map (kbd "<up>") 'comint-previous-input)
+(define-key comint-mode-map (kbd "<down>") 'comint-next-input)
+(global-unset-key (kbd ("C-z"))
 
 (add-to-list 'load-path (concat user-emacs-directory "el-get/el-get"))
 (unless (require 'el-get nil 'noerror)
@@ -154,22 +172,3 @@
 (setq wanted-packages '(anzu bookmark+ cmake-mode dired+ drag-stuff flycheck git-auto-commit-mode git-gutter icomplete+ ido-hacks ido-vertical-mode init-eldoc json-mode magit markdown-mode mode-icons monokai-theme multiple-cursors org-mode org2blog pkgbuild-mode powerline projectile redo+ smartparens smex web-mode))
 (el-get-cleanup wanted-packages)
 (el-get 'sync wanted-packages)
-(windmove-default-keybindings)
-
-(defun cleanup-buffer ()
-  "Buffer cleaning, performing a bunch of operations on the whitespace content of it."
-  (interactive)
-  (save-excursion
-    (whitespace-cleanup)
-    (delete-trailing-whitespace)
-    (indent-region (point-min) (point-max))
-    (untabify (point-min) (point-max))))
-(global-set-key [C-tab] 'cleanup-buffer)
-(global-set-key (kbd "RET") 'newline-and-indent)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "M-/") 'hippie-expand)
-(global-set-key (kbd "C-x g") 'goto-line)
-(global-set-key (kbd "C-x c") 'save-buffers-kill-terminal)
-(define-key comint-mode-map (kbd "<up>") 'comint-previous-input)
-(define-key comint-mode-map (kbd "<down>") 'comint-next-input)
-(global-unset-key (kbd ("C-z"))
