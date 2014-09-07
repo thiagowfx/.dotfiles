@@ -3,7 +3,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-[[ -f ~/.aliases ]] && . $HOME/.aliases
+[[ -f $HOME/.aliases ]] && . $HOME/.aliases
 
 # System bashrc
 [[ -f /etc/bashrc ]] && . /etc/bashrc
