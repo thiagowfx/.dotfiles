@@ -7,9 +7,11 @@
  '(auto-revert-check-vc-info t)
  '(auto-save-default nil)
  '(backup-inhibited t t)
+ '(blink-cursor-mode nil)
  '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
  '(browse-url-browser-function (quote browse-url-generic))
  '(browse-url-generic-program "/usr/bin/google-chrome-stable")
+ '(column-number-mode t)
  '(compilation-always-kill t)
  '(custom-safe-themes (quote ("dd43c9f997208c61ce0f4855932cc20a57ae2f37fe2ced218dace5c8c321d1e8" default)))
  '(echo-keystrokes 0.1)
@@ -35,6 +37,7 @@
  '(magit-use-overlays nil)
  '(major-mode (quote org-mode))
  '(make-backup-files nil)
+ '(menu-bar-mode nil)
  '(org-confirm-babel-evaluate nil)
  '(org-tags-exclude-from-inheritance (quote ("crypt")))
  '(read-buffer-completion-ignore-case t)
@@ -46,11 +49,13 @@
  '(save-place t nil (saveplace))
  '(save-place-file "~/.emacs.d/save-places-file")
  '(savehist-mode t)
+ '(scroll-bar-mode nil)
  '(send-mail-function (quote mailclient-send-it))
  '(show-paren-mode t)
  '(smex-save-file "~/.emacs.d/smex-items")
  '(standard-indent 2)
  '(tab-width 2)
+ '(tool-bar-mode nil)
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
  '(uniquify-separator "/")
  '(user-full-name "Thiago Barroso Perrotta")
@@ -67,19 +72,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(fset 'yes-or-no-p 'y-or-n-p)
 
-(progn
-  (put 'upcase-region 'disabled nil)
-  (put 'downcase-region 'disabled nil)
-  (put 'narrow-to-region 'disabled nil)
-  (menu-bar-mode -1)
-  (scroll-bar-mode -1)
-  (tool-bar-mode -1)
-  (column-number-mode t)
-  (line-number-mode t)
-  (blink-cursor-mode -1))
-
-;; el-get bootstrapping
 (add-to-list 'load-path (concat user-emacs-directory "el-get/el-get"))
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
@@ -95,19 +89,8 @@
                         (global-anzu-mode t)
                         (global-set-key (kbd "M-%") 'anzu-query-replace)
                         (global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)))
-        (:name company-mode
-               :after (progn
-                        (global-company-mode t)
-                        (global-set-key (kbd "C-x TAB") 'company-complete)))
         (:name drag-stuff
                :after (drag-stuff-global-mode))
-        (:name emmet-mode
-               :after (progn
-                        (add-hook 'css-mode-hook  'emmet-mode)
-                        (add-hook 'sgml-mode-hook 'emmet-mode)
-                        (setq emmet-move-cursor-between-quotes t)))
-        (:name expand-region
-               :after (global-set-key (kbd "C-=") 'er/expand-region))
         (:name flycheck
                :after (progn
                         (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
@@ -120,10 +103,6 @@
                :after (progn
                         (add-hook 'before-save-hook #'gofmt-before-save)
                         (add-hook 'go-mode-hook (lambda () (local-set-key (kbd "C-c C-d") #'godoc-at-point)))))
-        (:name help+
-               :after (require 'help+))
-        (:name idle-highlight-mode
-               (add-hook 'prog-mode-hook (lambda () (idle-hightlight-mode t))))
         (:name ido-vertical-mode
                :after (ido-vertical-mode))
         (:name ido-hacks
@@ -160,8 +139,6 @@
                         (require 'org2blog-autoloads)
                         (add-to-list 'load-path (concat user-emacs-directory "credentials"))
                         (require 'wordpress-credentials)))
-        (:name paradox
-               :type elpa)
         (:name powerline
                :after (powerline-default-theme))
         (:name projectile
@@ -173,97 +150,11 @@
         (:name smartparens
                :after (smartparens-global-mode))
         (:name smex
-               :after (global-set-key (kbd "M-x") 'smex))
-        (:name switch-window
-               :after (global-set-key (kbd "C-x o") 'switch-window))
-        (:name sublimity
-               :type elpa
-               :after (progn
-                        (require 'sublimity)
-                        (require 'sublimity-scroll)
-                        (sublimity-mode t)))
-        (:name volatile-highlights
-               :after (volatile-highlights-mode t))
-        (:name yasnippet
-               :after (yas-global-mode t))))
-
-(setq wanted-packages '(anzu ;; ok
-                        bookmark+
-                        cmake-mode ;; ok
-                        company-mode
-                        dired+ ;; ok
-                        drag-stuff ;; ok
-                        emmet-mode
-                        expand-region ;; ok
-                        flycheck ;; ok
-                        git-auto-commit-mode
-                        git-gutter ;; ok
-                        go-company
-                        go-def
-                        go-mode ;; ok
-                        go-eldoc ;; ok
-                        go-imports
-                        go-lint
-                        go-projectile
-                        help+ ;; ok
-                        icomplete+ ;; ok
-                        idle-highlight-mode
-                        ido-hacks
-                        ido-vertical-mode ;; ok
-                        init-eldoc ;; ok
-                        js3-mode
-                        json-mode
-                        magit ;; ok
-                        markdown-mode ;; ok
-                        mode-icons ;; ok
-                        monokai-theme ;; ok
-                        multiple-cursors ;; ok
-                        org-mode ;; ok
-                        org2blog ;; ok
-                        paradox ;; ok
-                        pkgbuild-mode ;; ok
-                        powerline ;; ok
-                        projectile ;; ok
-                        projectile-rails
-                        redo+ ;; ok
-                        ruby-mode ;; ok
-                        smartparens ;; ok
-                        smex ;; ok
-                        sublimity
-                        switch-window
-                        volatile-highlights
-                        wc-mode
-                        web-mode ;; ok
-                        yaml-mode
-                        yasnippet
-                        yasnippet-snippets))
+               :after (global-set-key (kbd "M-x") 'smex))))
+(setq wanted-packages '(anzu bookmark+ cmake-mode dired+ drag-stuff flycheck git-auto-commit-mode git-gutter icomplete+ ido-hacks ido-vertical-mode init-eldoc json-mode magit markdown-mode mode-icons monokai-theme multiple-cursors org-mode org2blog pkgbuild-mode powerline projectile redo+ smartparens smex web-mode))
 (el-get-cleanup wanted-packages)
 (el-get 'sync wanted-packages)
-
-(progn
-  (require 'semantic)
-  (global-semantic-decoration-mode t)
-  (global-semantic-highlight-edits-mode t)
-  (global-semantic-highlight-func-mode t)
-  (global-semantic-mru-bookmark-mode t)
-  (global-semantic-show-parser-state-mode)
-  (global-semantic-show-unmatched-syntax-mode t)
-  (global-semantic-stickyfunc-mode t)
-  (global-semantic-idle-completions-mode)
-  (global-semantic-idle-local-symbol-highlight-mode)
-  (global-semantic-idle-scheduler-mode t)
-  (global-semantic-idle-summary-mode t))
-
-(fset 'yes-or-no-p 'y-or-n-p)
-(set-language-environment 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(setq locale-coding-system 'utf-8)
-(set-default-coding-systems 'utf-8)
-(set-selection-coding-system 'utf-8)
-(prefer-coding-system 'utf-8)
 (windmove-default-keybindings)
-(set-frame-font "Source Code Pro 9")
-(setq frame-title-format (concat "%b - " (message "%s@emacs" (replace-regexp-in-string "\n$" "" (shell-command-to-string "whoami")))))
 
 (defun cleanup-buffer ()
   "Buffer cleaning, performing a bunch of operations on the whitespace content of it."
@@ -273,45 +164,12 @@
     (delete-trailing-whitespace)
     (indent-region (point-min) (point-max))
     (untabify (point-min) (point-max))))
-(add-hook 'before-save-hook 'whitespace-cleanup)
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-(remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)
-
-(global-set-key (kbd "C-S-n") (lambda() (interactive) (ignore-errors (next-line 5))))
-(global-set-key (kbd "C-S-p") (lambda() (interactive) (ignore-errors (previous-line 5))))
-
 (global-set-key [C-tab] 'cleanup-buffer)
-(global-set-key (kbd "RET")     'newline-and-indent)
+(global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "M-/")     'hippie-expand)
-(global-set-key (kbd "C-x g")   'goto-line)
-(global-set-key (kbd "C-x c")   'save-buffers-kill-terminal)
-(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
-(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
-(global-set-key (kbd "S-C-<down>") 'shrink-window)
-(global-set-key (kbd "S-C-<up>") 'enlarge-window)
+(global-set-key (kbd "M-/") 'hippie-expand)
+(global-set-key (kbd "C-x g") 'goto-line)
+(global-set-key (kbd "C-x c") 'save-buffers-kill-terminal)
 (define-key comint-mode-map (kbd "<up>") 'comint-previous-input)
 (define-key comint-mode-map (kbd "<down>") 'comint-next-input)
-(global-unset-key "\C-\M-h")
-
-(add-to-list 'auto-mode-alist '(".bashrc" . shell-script-mode))
-(add-to-list 'auto-mode-alist '(".zshrc" . shell-script-mode))
-(add-to-list 'auto-mode-alist '("\\.zsh\\'" . shell-script-mode))
-(add-to-list 'auto-mode-alist '(".gnus" . lisp-mode))
-(add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Rakefile" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.ru\\'" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.gemspec\\'" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
-(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
-(add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
-(add-to-list 'auto-mode-alist '("\\.js$" . js3-mode))
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.php?\\'" . web-mode))
-
-(add-hook 'c++-mode-hook (lambda () (setq compile-command (format "g++ %s %s -o %s"
-                                                                  "-g -O2 -Wall"
-                                                                  (buffer-file-name)
-                                                                  (file-name-sans-extension buffer-file-name)))))
+(global-unset-key (kbd ("C-z"))
