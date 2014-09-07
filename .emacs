@@ -42,7 +42,6 @@
  '(org-confirm-babel-evaluate nil)
  '(org-crypt-key "A905373C")
  '(org-directory "/home/thiago/Dropbox/org")
- '(org-mode-hook (quote ((lambda nil (smartparens-mode -1)) (lambda nil (auto-fill-mode t)) #[nil "\300\301\302\303\304$\207" [org-add-hook before-save-hook org-encrypt-entries nil t] 5] #[nil "\300\301\302\303\304$\207" [org-add-hook change-major-mode-hook org-show-block-all append local] 5] #[nil "\300\301\302\303\304$\207" [org-add-hook change-major-mode-hook org-babel-show-result-all append local] 5] org-babel-result-hide-spec org-babel-hide-all-hashes (lambda nil (progn (require (quote eldoc)) (require (quote eldoc-extension)) (setq eldoc-idle-delay 0) (setq eldoc-argument-case (quote eldoc-argument-list)) (turn-on-eldoc-mode))))))
  '(org-tags-exclude-from-inheritance (quote ("crypt")))
  '(org-todo-keyword-faces (quote (("TODO" . "turquoise") ("PROGRESS" . "slate blue") ("TROUBLE" . "dark red") ("DONE" . "forest green"))))
  '(org-todo-keywords (quote ((sequence "TODO" "PROGRESS" "TROUBLE" "|" "DONE"))))
@@ -127,6 +126,10 @@
                         (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
                         (global-set-key (kbd "C-S-c C-<") 'mc/mark-all-like-this)
                         (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)))
+        (:name org-mode
+               :after (progn
+                        (add-hook 'org-mode-hook (lambda () (auto-fill-mode t)))
+                        (add-hook 'org-mode-hook (lambda () (smartparens-mode -1)))))
         (:name org2blog
                :after (progn
                         (require 'org2blog-autoloads)
@@ -144,6 +147,6 @@
                :after (smartparens-global-mode))
         (:name smex
                :after (global-set-key (kbd "M-x") 'smex))))
-(setq mine/wanted-packages '(bookmark+ cmake-mode color-theme-almost-monokai dired+ flycheck git-gutter icomplete+ ido-vertical-mode init-eldoc markdown-mode multiple-cursors org2blog pkgbuild-mode powerline projectile redo+ smartparens smex))
+(setq mine/wanted-packages '(bookmark+ cmake-mode color-theme-almost-monokai dired+ flycheck git-gutter go-mode icomplete+ ido-vertical-mode init-eldoc markdown-mode multiple-cursors org2blog pkgbuild-mode powerline projectile redo+ smartparens smex))
 (el-get-cleanup mine/wanted-packages)
 (el-get 'sync mine/wanted-packages)
