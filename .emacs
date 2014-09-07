@@ -39,7 +39,12 @@
  '(make-backup-files nil)
  '(menu-bar-mode nil)
  '(org-confirm-babel-evaluate nil)
+ '(org-crypt-key "A905373C")
+ '(org-directory "/home/thiago/Dropbox/org")
+ '(org-mode-hook (quote ((lambda nil (smartparens-mode -1)) (lambda nil (auto-fill-mode t)) #[nil "\300\301\302\303\304$\207" [org-add-hook before-save-hook org-encrypt-entries nil t] 5] #[nil "\300\301\302\303\304$\207" [org-add-hook change-major-mode-hook org-show-block-all append local] 5] #[nil "\300\301\302\303\304$\207" [org-add-hook change-major-mode-hook org-babel-show-result-all append local] 5] org-babel-result-hide-spec org-babel-hide-all-hashes (lambda nil (progn (require (quote eldoc)) (require (quote eldoc-extension)) (setq eldoc-idle-delay 0) (setq eldoc-argument-case (quote eldoc-argument-list)) (turn-on-eldoc-mode))))))
  '(org-tags-exclude-from-inheritance (quote ("crypt")))
+ '(org-todo-keyword-faces (quote (("TODO" . "turquoise") ("PROGRESS" . "slate blue") ("TROUBLE" . "dark red") ("DONE" . "forest green"))))
+ '(org-todo-keywords (quote ((sequence "TODO" "PROGRESS" "TROUBLE" "|" "DONE"))))
  '(read-buffer-completion-ignore-case t)
  '(recentf-mode t)
  '(recentf-save-file "~/.emacs.d/recentf-file")
@@ -88,9 +93,10 @@
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "C-x g") 'goto-line)
 (global-set-key (kbd "C-x c") 'save-buffers-kill-terminal)
+(require 'comint)
 (define-key comint-mode-map (kbd "<up>") 'comint-previous-input)
 (define-key comint-mode-map (kbd "<down>") 'comint-next-input)
-(global-unset-key (kbd ("C-z"))
+(global-unset-key (kbd "C-z"))
 
 (add-to-list 'load-path (concat user-emacs-directory "el-get/el-get"))
 (unless (require 'el-get nil 'noerror)
@@ -99,16 +105,10 @@
        "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
     (goto-char (point-max))
     (eval-print-last-sexp)))
-(package-initialize)
 
 (setq el-get-sources
-      '((:name anzu
-               :after (progn
-                        (global-anzu-mode t)
-                        (global-set-key (kbd "M-%") 'anzu-query-replace)
-                        (global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)))
-        (:name drag-stuff
-               :after (drag-stuff-global-mode))
+      '((:name color-theme-almost-monokai
+               :after (color-theme-almost-monokai))
         (:name flycheck
                :after (progn
                         (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
@@ -117,22 +117,10 @@
                :after (progn
                         (global-git-gutter-mode t)
                         (git-gutter:linum-setup)))
-        (:name go-mode
-               :after (progn
-                        (add-hook 'before-save-hook #'gofmt-before-save)
-                        (add-hook 'go-mode-hook (lambda () (local-set-key (kbd "C-c C-d") #'godoc-at-point)))))
         (:name ido-vertical-mode
                :after (ido-vertical-mode))
-        (:name ido-hacks
-               :after (ido-hacks-mode))
         (:name init-eldoc
                :after (require 'init-eldoc))
-        (:name magit
-               :after (global-set-key (kbd "C-c g") 'magit-status))
-        (:name mode-icons
-               :after (mode-icons-mode))
-        (:name monokai-theme
-               :after (load-theme 'monokai))
         (:name multiple-cursors
                :after (progn
                         (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
@@ -140,23 +128,12 @@
                         (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
                         (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
                         (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)))
-        (:name org-mode
-               :after (progn
-                        (setq org-directory (concat (getenv "HOME") "/Dropbox/org"))
-                        (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "TROUBLE" "|" "DONE")))
-                        (setq org-todo-keyword-faces '(("TODO" . "turquoise") ("PROGRESS" . "slate blue") ("TROUBLE" . "dark red") ("DONE" . "forest green")))
-                        (require 'epa)
-                        (require 'org-crypt)
-                        (org-crypt-use-before-save-magic)
-                        (setq org-crypt-key "A905373C")
-                        (add-hook 'org-mode-hook '(lambda () (auto-fill-mode t)))
-                        (add-hook 'org-mode-hook '(lambda () (drag-stuff-mode -1)))
-                        (add-hook 'org-mode-hook '(lambda () (smartparens-mode -1)))))
         (:name org2blog
                :after (progn
                         (require 'org2blog-autoloads)
                         (add-to-list 'load-path (concat user-emacs-directory "credentials"))
-                        (require 'wordpress-credentials)))
+                        ;; (require 'wordpress-credentials)
+))
         (:name powerline
                :after (powerline-default-theme))
         (:name projectile
@@ -169,6 +146,6 @@
                :after (smartparens-global-mode))
         (:name smex
                :after (global-set-key (kbd "M-x") 'smex))))
-(setq wanted-packages '(anzu bookmark+ cmake-mode dired+ drag-stuff flycheck git-auto-commit-mode git-gutter icomplete+ ido-hacks ido-vertical-mode init-eldoc json-mode magit markdown-mode mode-icons monokai-theme multiple-cursors org-mode org2blog pkgbuild-mode powerline projectile redo+ smartparens smex web-mode))
-(el-get-cleanup wanted-packages)
-(el-get 'sync wanted-packages)
+(setq mine/wanted-packages '(bookmark+ cmake-mode color-theme-almost-monokai dired+ flycheck git-gutter icomplete+ ido-vertical-mode init-eldoc markdown-mode multiple-cursors org-mode org2blog pkgbuild-mode powerline projectile redo+ smartparens smex))
+(el-get-cleanup mine/wanted-packages)
+(el-get 'sync mine/wanted-packages)
