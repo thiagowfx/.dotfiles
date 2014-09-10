@@ -135,8 +135,6 @@
                         (require 'org2blog-autoloads)
                         (add-to-list 'load-path (concat user-emacs-directory "credentials"))
                         (require 'wordpress-credentials)))
-        (:name powerline
-               :after (powerline-default-theme))
         (:name projectile
                :after (projectile-global-mode))
         (:name redo+
@@ -147,6 +145,6 @@
                :after (smartparens-global-mode))
         (:name smex
                :after (global-set-key (kbd "M-x") 'smex))))
-(setq mine/wanted-packages '(bookmark+ cmake-mode color-theme-almost-monokai dired+ flycheck git-gutter go-mode icomplete+ ido-vertical-mode init-eldoc markdown-mode multiple-cursors org2blog pkgbuild-mode powerline projectile redo+ smartparens smex))
+(defvar mine/wanted-packages '(bookmark+ cmake-mode color-theme-almost-monokai dired+ flycheck git-gutter go-mode icomplete+ ido-vertical-mode init-eldoc markdown-mode multiple-cursors org2blog pkgbuild-mode projectile redo+ smartparens smex))
 (el-get-cleanup mine/wanted-packages)
 (el-get 'sync mine/wanted-packages)
