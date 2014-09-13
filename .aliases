@@ -61,7 +61,7 @@ alias wget-t-pdf="wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
 alias wget-t-spider="wget -e robots=off --wait=2 --random-wait --recursive --span-hosts --spider --timestamping --tries=5 --dns-timeout=30 --connect-timeout=5 --read-timeout=5 --level=10 --"
 alias winetricks-t-install="winetricks corefonts flash vcrun2005 vcrun2008 vb6run"
 alias world="sudo pacman -Syu && cower -u"
-alias world-t-apt="sudo apt-get update -y && sudo apt-get upgrade -y"
+alias world-t-apt="sudo aptitude update && sudo aptitude upgrade"
 alias world-t-gentoo='su -c "emerge --sync && emerge -avuDN --with-bdeps y --keep-going @world && emerge -v --depclean && revdep-rebuild -v && dispatch-conf && etc-update && eclean -d distfiles"'
 alias world-t-pacaur="pacaur -Syua --noedit"
 alias xrandr-t-hdmi-connect="xrandr --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1"
