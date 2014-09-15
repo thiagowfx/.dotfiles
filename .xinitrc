@@ -21,6 +21,7 @@ case $1 in
     catwm             ) exec catwm;;
     cinnamon          ) exec cinnamon-session;;
     dwm               ) exec dwm;;
+    dwm.winkey        ) exec dwm.winkey;;
     enlightenment     ) exec enlightenment_start;;
     ede               ) exec startede;;
     fluxbox           ) exec startfluxbox;;

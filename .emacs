@@ -128,13 +128,15 @@
                         (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)))
         (:name org-mode
                :after (progn
-                        (add-hook 'org-mode-hook (lambda () (auto-fill-mode t)))
-                        (add-hook 'org-mode-hook (lambda () (smartparens-mode -1)))))
-        (:name org2blog
-               :after (progn
-                        (require 'org2blog-autoloads)
-                        (add-to-list 'load-path (concat user-emacs-directory "credentials"))
-                        (require 'wordpress-credentials)))
+                        (setq org2blog/wp-blog-alist
+                            '(("everyday serendipity"
+                               :url "http://thiagoperrotta.wordpress.com/xmlrpc.php"
+                               :username "thiagowfx"
+                               :default-title ""
+                               :default-categories ("")
+                               :tags-as-categories nil)))
+                        (add-hook 'org-mode-hook (lambda () (smartparens-mode -1)))
+                        (add-hook 'org-mode-hook (lambda () (auto-fill-mode t)))))
         (:name projectile
                :after (projectile-global-mode))
         (:name redo+
@@ -145,6 +147,8 @@
                :after (smartparens-global-mode))
         (:name smex
                :after (global-set-key (kbd "M-x") 'smex))))
-(defvar mine/wanted-packages '(bookmark+ cmake-mode color-theme-almost-monokai dired+ flycheck git-gutter go-mode icomplete+ ido-vertical-mode init-eldoc markdown-mode multiple-cursors org2blog pkgbuild-mode projectile redo+ smartparens smex))
+(defvar mine/wanted-packages '(bookmark+ cmake-mode color-theme-almost-monokai dired+ flycheck git-gutter go-mode icomplete+ ido-vertical-mode init-eldoc magit markdown-mode multiple-cursors org2blog pkgbuild-mode projectile redo+ smartparens smex))
 (el-get-cleanup mine/wanted-packages)
 (el-get 'sync mine/wanted-packages)
+
+;; auto-complete KISS, semantic and tags. Org. DONE.
