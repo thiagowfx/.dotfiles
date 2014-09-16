@@ -128,6 +128,8 @@
                         (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)))
         (:name org-mode
                :after (progn
+                        (require 'org-crypt)
+                        (org-crypt-use-before-save-magic)
                         (setq org2blog/wp-blog-alist
                             '(("everyday serendipity"
                                :url "http://thiagoperrotta.wordpress.com/xmlrpc.php"
