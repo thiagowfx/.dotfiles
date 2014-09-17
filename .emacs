@@ -4,6 +4,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ac-auto-show-menu 0.2)
+ '(ac-comphist-file "/home/thiago/.emacs.d/ac-comphist-file.dat")
+ '(ac-delay 0.05)
+ '(ac-quick-help-delay 1.0)
+ '(ac-quick-help-height 25)
  '(auto-revert-check-vc-info t)
  '(auto-save-default nil)
  '(backup-inhibited t t)
@@ -13,6 +18,8 @@
  '(browse-url-generic-program "/usr/bin/google-chrome-stable")
  '(column-number-mode t)
  '(compilation-always-kill t)
+ '(compilation-auto-jump-to-first-error t)
+ '(custom-enabled-themes (quote (tango)))
  '(custom-safe-themes (quote ("dd43c9f997208c61ce0f4855932cc20a57ae2f37fe2ced218dace5c8c321d1e8" default)))
  '(echo-keystrokes 0.1)
  '(epa-file-name-regexp "\\.\\(gpg\\|asc\\)$")
@@ -20,6 +27,10 @@
  '(global-auto-revert-mode t)
  '(global-git-gutter-mode t)
  '(global-linum-mode t)
+ '(global-semantic-highlight-func-mode t)
+ '(global-semantic-idle-scheduler-mode t)
+ '(global-semantic-stickyfunc-mode t)
+ '(global-semanticdb-minor-mode t)
  '(global-subword-mode t)
  '(icomplete-mode t)
  '(ido-default-buffer-method (quote selected-window))
@@ -55,6 +66,7 @@
  '(save-place-file "~/.emacs.d/save-places-file")
  '(savehist-mode t)
  '(scroll-bar-mode nil)
+ '(semantic-mode t)
  '(send-mail-function (quote mailclient-send-it))
  '(show-paren-mode t)
  '(smex-save-file "~/.emacs.d/smex-items")
@@ -78,8 +90,9 @@
  ;; If there is more than one, they won't work right.
  )
 (fset 'yes-or-no-p 'y-or-n-p)
-(windmove-default-keybindings)
 (prefer-coding-system 'utf-8)
+(windmove-default-keybindings)
+(require 'comint)
 (require 'iso-transl)
 (defun cleanup-buffer ()
   "Buffer cleaning, performing a bunch of operations on the whitespace content of it."
@@ -93,12 +106,9 @@
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "M-/") 'hippie-expand)
-(global-set-key (kbd "C-x g") 'goto-line)
-(global-set-key (kbd "C-x c") 'save-buffers-kill-terminal)
-(require 'comint)
+(global-unset-key (kbd "C-z"))
 (define-key comint-mode-map (kbd "<up>") 'comint-previous-input)
 (define-key comint-mode-map (kbd "<down>") 'comint-next-input)
-(global-unset-key (kbd "C-z"))
 
 (add-to-list 'load-path (concat user-emacs-directory "el-get/el-get"))
 (unless (require 'el-get nil 'noerror)
@@ -109,16 +119,8 @@
     (eval-print-last-sexp)))
 
 (setq el-get-sources
-      '((:name color-theme-almost-monokai
-               :after (color-theme-almost-monokai))
-        (:name flycheck
+      '((:name flycheck
                :after (add-hook 'after-init-hook #'global-flycheck-mode))
-        (:name git-gutter
-               :after (git-gutter:linum-setup))
-        (:name ido-vertical-mode
-               :after (ido-vertical-mode))
-        (:name init-eldoc
-               :after (require 'init-eldoc))
         (:name multiple-cursors
                :after (progn
                         (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
@@ -149,8 +151,6 @@
                :after (smartparens-global-mode))
         (:name smex
                :after (global-set-key (kbd "M-x") 'smex))))
-(defvar mine/wanted-packages '(bookmark+ cmake-mode color-theme-almost-monokai dired+ flycheck git-gutter go-mode icomplete+ ido-vertical-mode init-eldoc magit markdown-mode multiple-cursors org2blog pkgbuild-mode projectile redo+ smartparens smex))
+(defvar mine/wanted-packages '(auto-complete cmake-mode dired+ evil flycheck go-mode icomplete+ magit markdown-mode multiple-cursors org2blog pkgbuild-mode projectile redo+ smartparens smex))
 (el-get-cleanup mine/wanted-packages)
 (el-get 'sync mine/wanted-packages)
-
-;; auto-complete KISS, semantic and tags. Org. DONE.

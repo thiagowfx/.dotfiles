@@ -4,12 +4,13 @@
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 export ALTERNATE_EDITOR=""
 export BROWSER="google-chrome-stable"
+export DEBFULLNAME="Thiago Perrotta"
+export DEBEMAIL="thiagoperrotta95@gmail.com"
 export EDITOR="mg"
 export GOPATH="$HOME/go"
 export GTEST_COLOR="YES"
 export HISTCONTROL=ignoreboth
 export RAMDISK="$HOME/ramdisk"
-# export PATH="/usr/lib/ccache/bin:$HOME/.gem/ruby/2.1.0/bin:$HOME/go/bin:$PATH"
 export VISUAL="emacs"
 export WINEARCH="win32"
 export WINEDEBUG="fixme-all"
@@ -72,11 +73,6 @@ alias xrandr-t-reset="xrandr --output LVDS1 --primary --mode 1366x768"
 alias youtube-dl-t-mp3="youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3"
 alias youtube-dl-t-video="youtube-dl --continue --title --restrict-filenames"
 
-# helper functions
-function emq {
-   emacsclient -c "$@" &
-}
-
 function adbsync {
     if [[ ! -d "$1" ]]; then
         cat <<EOF
@@ -101,7 +97,6 @@ function gentoo-chroot {
     sudo chroot "$1/" /bin/env -i TERM=$TERM /bin/bash
 }
 
-# gitignore.io
 function gi() { curl "http://www.gitignore.io/api/$@" ;}
 
 function qkkdiff-file {
