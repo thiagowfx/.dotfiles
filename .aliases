@@ -1,7 +1,7 @@
 # -*- shell-script -*-
 
 # environment variables
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 export ALTERNATE_EDITOR=""
 export BROWSER="google-chrome-stable"
 export DEBFULLNAME="Thiago Perrotta"
@@ -27,7 +27,6 @@ alias cp="cp -v"
 alias curl="curl -v -L"
 alias df='df -h'
 alias diff="colordiff -uN"
-alias dmesg="dmesg -H"
 alias du="du -h"
 alias free="free -m"
 alias gdb="gdb -q"

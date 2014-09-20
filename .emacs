@@ -4,10 +4,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ac-auto-show-menu 0.2)
+ '(ac-auto-show-menu 0.1)
  '(ac-comphist-file "/home/thiago/.emacs.d/ac-comphist-file.dat")
- '(ac-delay 0.05)
- '(ac-quick-help-delay 1.0)
+ '(ac-delay 0.01)
+ '(ac-quick-help-delay 0.5)
  '(ac-quick-help-height 25)
  '(auto-revert-check-vc-info t)
  '(auto-save-default nil)
@@ -27,8 +27,11 @@
  '(global-auto-revert-mode t)
  '(global-git-gutter-mode t)
  '(global-linum-mode t)
+ '(global-semantic-decoration-mode t)
  '(global-semantic-highlight-func-mode t)
+ '(global-semantic-idle-breadcrumbs-mode t nil (semantic/idle))
  '(global-semantic-idle-scheduler-mode t)
+ '(global-semantic-show-unmatched-syntax-mode t)
  '(global-semantic-stickyfunc-mode t)
  '(global-semanticdb-minor-mode t)
  '(global-subword-mode t)
@@ -45,6 +48,7 @@
  '(inhibit-startup-echo-area-message "thiago")
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
+ '(keyboard-coding-system (quote utf-8-unix))
  '(kill-whole-line t)
  '(magit-use-overlays nil)
  '(major-mode (quote org-mode))
@@ -90,7 +94,6 @@
  ;; If there is more than one, they won't work right.
  )
 (fset 'yes-or-no-p 'y-or-n-p)
-(prefer-coding-system 'utf-8)
 (windmove-default-keybindings)
 (require 'comint)
 (require 'iso-transl)
@@ -103,6 +106,8 @@
     (indent-region (point-min) (point-max))
     (untabify (point-min) (point-max))))
 (global-set-key [C-tab] 'cleanup-buffer)
+(global-set-key (kbd "C-x TAB") 'auto-complete)
+(global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "M-/") 'hippie-expand)
@@ -132,25 +137,23 @@
                :after (progn
                         (require 'org-crypt)
                         (org-crypt-use-before-save-magic)
-                        (setq org2blog/wp-blog-alist
-                            '(("everyday serendipity"
+                        (defvar org2blog/wp-blog-alist
+                            '(("Everyday Serendipity"
                                :url "http://thiagoperrotta.wordpress.com/xmlrpc.php"
                                :username "thiagowfx"
-                               :default-title ""
+                               :default-title "Title"
                                :default-categories ("")
                                :tags-as-categories nil)))
-                        (add-hook 'org-mode-hook (lambda () (smartparens-mode -1)))
-                        (add-hook 'org-mode-hook (lambda () (auto-fill-mode t)))))
+                        (add-hook 'org-mode-hook (lambda () (auto-fill-mode -1)))
+                        (add-hook 'org-mode-hook (lambda () (smartparens-mode t)))))
         (:name projectile
                :after (projectile-global-mode))
         (:name redo+
-               :after (progn
-                        (require 'redo+)
-                        (global-set-key (kbd "C-+") 'redo)))
+               :after (global-set-key (kbd "C-+") 'redo))
         (:name smartparens
                :after (smartparens-global-mode))
         (:name smex
                :after (global-set-key (kbd "M-x") 'smex))))
-(defvar mine/wanted-packages '(auto-complete cmake-mode dired+ evil flycheck go-mode icomplete+ magit markdown-mode multiple-cursors org2blog pkgbuild-mode projectile redo+ smartparens smex))
-(el-get-cleanup mine/wanted-packages)
-(el-get 'sync mine/wanted-packages)
+(defvar mine/el-get-wanted-packages '(auto-complete cmake-mode dired+ evil flycheck go-mode icomplete+ magit markdown-mode multiple-cursors org2blog pkgbuild-mode projectile redo+ smartparens smex))
+(el-get-cleanup mine/el-get-wanted-packages)
+(el-get 'sync mine/el-get-wanted-packages)
