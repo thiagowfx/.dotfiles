@@ -3459,8 +3459,6 @@ zrclocal
 ### example: split functions-search 8,16,24,32
 #@# split functions-search 8
 
-[[ -f .zshrc.mine ]] && source .zshrc.mine
-
 ## END OF FILE #################################################################
 # vim:filetype=zsh foldmethod=marker autoindent expandtab shiftwidth=4
 # Local variables:
