@@ -10,6 +10,7 @@ export EDITOR="mg"
 export GOPATH="$HOME/go"
 export GTEST_COLOR="YES"
 export HISTCONTROL=ignoreboth
+export PATH="$HOME/Local/bin:$PATH"
 export RAMDISK="$HOME/ramdisk"
 export VISUAL="emacs"
 export WINEARCH="win32"
