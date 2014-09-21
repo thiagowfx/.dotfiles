@@ -138,14 +138,14 @@
                         (require 'org-crypt)
                         (org-crypt-use-before-save-magic)
                         (defvar org2blog/wp-blog-alist
-                            '(("Everyday Serendipity"
-                               :url "http://thiagoperrotta.wordpress.com/xmlrpc.php"
-                               :username "thiagowfx"
-                               :default-title "Title"
-                               :default-categories ("")
-                               :tags-as-categories nil)))
-                        (add-hook 'org-mode-hook (lambda () (auto-fill-mode -1)))
-                        (add-hook 'org-mode-hook (lambda () (smartparens-mode t)))))
+                          '(("Everyday Serendipity"
+                             :url "http://thiagoperrotta.wordpress.com/xmlrpc.php"
+                             :username "thiagowfx"
+                             :default-title "Title"
+                             :default-categories ("")
+                             :tags-as-categories nil)))
+                        (add-hook 'org-mode-hook (lambda () (auto-fill-mode t)))
+                        (add-hook 'org-mode-hook (lambda () (smartparens-mode -1)))))
         (:name projectile
                :after (projectile-global-mode))
         (:name redo+
