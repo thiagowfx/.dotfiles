@@ -157,3 +157,4 @@
 (defvar mine/el-get-wanted-packages '(auto-complete cmake-mode dired+ evil flycheck go-mode icomplete+ magit markdown-mode multiple-cursors org2blog pkgbuild-mode projectile redo+ smartparens smex))
 (el-get-cleanup mine/el-get-wanted-packages)
 (el-get 'sync mine/el-get-wanted-packages)
+(put 'narrow-to-region 'disabled nil)
