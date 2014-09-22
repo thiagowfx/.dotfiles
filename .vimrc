@@ -11,6 +11,10 @@ if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
 endif
+if has ("gui_running")
+  map <S-Insert> <MiddleMouse>
+  map! <S-Insert> <MiddleMouse>
+endif
 if has("autocmd")
   filetype plugin indent on
   augroup vimrcEx
