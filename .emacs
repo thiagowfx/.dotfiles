@@ -1,4 +1,3 @@
-;; -*- emacs-lisp -*-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -93,10 +92,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(fset 'yes-or-no-p 'y-or-n-p)
-(windmove-default-keybindings)
 (require 'comint)
 (require 'iso-transl)
+(fset 'yes-or-no-p 'y-or-n-p)
+(windmove-default-keybindings)
 (defun cleanup-buffer ()
   "Buffer cleaning, performing a bunch of operations on the whitespace content of it."
   (interactive)
@@ -114,7 +113,6 @@
 (global-unset-key (kbd "C-z"))
 (define-key comint-mode-map (kbd "<up>") 'comint-previous-input)
 (define-key comint-mode-map (kbd "<down>") 'comint-next-input)
-
 (add-to-list 'load-path (concat user-emacs-directory "el-get/el-get"))
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
@@ -122,7 +120,8 @@
        "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
     (goto-char (point-max))
     (eval-print-last-sexp)))
-
+(add-to-list 'el-get-recipe-path (concat user-emacs-directory "el-get-user/recipes"))
+(el-get 'sync)
 (setq el-get-sources
       '((:name flycheck
                :after (add-hook 'after-init-hook #'global-flycheck-mode))
@@ -146,15 +145,36 @@
                              :tags-as-categories nil)))
                         (add-hook 'org-mode-hook (lambda () (auto-fill-mode t)))
                         (add-hook 'org-mode-hook (lambda () (smartparens-mode -1)))))
+        (:name powerline
+               :after (powerline-vim-theme))
         (:name projectile
                :after (projectile-global-mode))
-        (:name redo+
-               :after (global-set-key (kbd "C-+") 'redo))
         (:name smartparens
                :after (smartparens-global-mode))
         (:name smex
-               :after (global-set-key (kbd "M-x") 'smex))))
-(defvar mine/el-get-wanted-packages '(auto-complete cmake-mode dired+ evil flycheck go-mode icomplete+ magit markdown-mode multiple-cursors org2blog pkgbuild-mode projectile redo+ smartparens smex))
-(el-get-cleanup mine/el-get-wanted-packages)
-(el-get 'sync mine/el-get-wanted-packages)
+               :after (global-set-key (kbd "M-x") 'smex))
+        (:name undo-tree
+               :after (global-set-key (kbd "C-+") 'undo-tree-redo))))
+(defvar el-get-wanted-packages
+  '(auto-complete
+    cmake-mode
+    evil
+    flycheck
+    go-mode
+    magit
+    markdown-mode
+    multiple-cursors
+    org2blog
+    pkgbuild-mode
+    powerline
+    projectile
+    redo+
+    smartparens
+    smex
+    undo-tree
+    ))
+(el-get 'sync el-get-wanted-packages)
+(el-get-cleanup el-get-wanted-packages)
 (put 'narrow-to-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
