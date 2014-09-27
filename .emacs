@@ -48,7 +48,6 @@
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
  '(keyboard-coding-system (quote utf-8-unix))
- '(kill-whole-line t)
  '(magit-use-overlays nil)
  '(major-mode (quote org-mode))
  '(make-backup-files nil)

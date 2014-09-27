@@ -28,7 +28,3 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt nomatch
 setopt printexitvalue
-
-if which tmux >/dev/null 2>&1; then
-	[[ $TERM != "screen" && -z "$TMUX" ]] && exec tmux
-fi

@@ -11,9 +11,6 @@ fi
 [[ -f "$HOME/.Xmodmap" ]] && xmodmap "$HOME/.Xmodmap"
 [[ -f "$HOME/.Xresources" ]] && xrdb -merge "$HOME/.Xresources"
 
-eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
-export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
-
 # xinit <window_manager>
 case $1 in
     awesome|awesomewm ) exec awesome;;
@@ -21,7 +18,6 @@ case $1 in
     catwm             ) exec catwm;;
     cinnamon          ) exec cinnamon-session;;
     dwm               ) exec dwm;;
-    dwm.winkey        ) exec dwm.winkey;;
     enlightenment     ) exec enlightenment_start;;
     ede               ) exec startede;;
     fluxbox           ) exec startfluxbox;;
@@ -31,6 +27,7 @@ case $1 in
     icewm             ) exec icewm-session;;
     jwm               ) exec jwm;;
     kde               ) exec startkde;;
+    lxde              ) exec startlxde;;
     mate              ) exec mate-session;;
     monster|monsterwm ) exec monsterwm;;
     notion            ) exec notion;;
