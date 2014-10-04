@@ -142,14 +142,9 @@
                              :default-title "Title"
                              :default-categories ("")
                              :tags-as-categories nil)))
-                        (add-hook 'org-mode-hook (lambda () (auto-fill-mode t)))
-                        (add-hook 'org-mode-hook (lambda () (smartparens-mode -1)))))
-        (:name powerline
-               :after (powerline-vim-theme))
+                        (add-hook 'org-mode-hook (lambda () (auto-fill-mode t)))))
         (:name projectile
                :after (projectile-global-mode))
-        (:name smartparens
-               :after (smartparens-global-mode))
         (:name smex
                :after (global-set-key (kbd "M-x") 'smex))
         (:name undo-tree
@@ -167,8 +162,6 @@
     pkgbuild-mode
     powerline
     projectile
-    redo+
-    smartparens
     smex
     undo-tree
     ))
