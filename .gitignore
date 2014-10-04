@@ -1,4 +1,4 @@
-# Created by http://www.gitignore.io
+# Created by https://www.gitignore.io
 
 ### Emacs ###
 # -*- mode: gitignore; -*-
@@ -30,4 +30,13 @@ tramp
 
 # AUCTeX auto folder
 /auto/
+
+
+### vim ###
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
 
