@@ -6,7 +6,7 @@
 [credential]
 	helper = store
 [alias]
-	lazy = commit -a -m "update"
+	l = commit -a -m "update"
 	log1 = log --graph --decorate --oneline --pretty=format:\"%h %ad | %s%d [%an]\" --date=short
 	log2 = log --graph --decorate --oneline --all
 	puhs = push
