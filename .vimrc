@@ -1,21 +1,12 @@
-" Vundle
 set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-Plugin 'ack.vim'
-Plugin 'ag.vim'
-Plugin 'ctrlp.vim'
-Plugin 'minibufexpl.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-fugitive'
-call vundle#end()
-filetype plugin indent on
+execute pathogen#infect()
 
-" Mine
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
 colorscheme murphy
-set ai
+filetype plugin indent on
+map <S-Insert> <MiddleMouse>
+map! <S-Insert> <MiddleMouse>
 set backspace=indent,eol,start
 set history=200
 set hlsearch
@@ -33,10 +24,6 @@ set smartcase
 set wildmenu
 set wildmode=full
 syntax on
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
-map <S-Insert> <MiddleMouse>
-map! <S-Insert> <MiddleMouse>
 if has("autocmd")
   augroup vimrcEx
   au!
