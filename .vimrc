@@ -1,5 +1,6 @@
 set nocompatible
 execute pathogen#infect()
+let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
 cnoremap <C-n> <Down>
@@ -27,7 +28,7 @@ set showmatch
 set showmode
 set smartcase
 set wildmenu
-set wildmode=full
+set wildmode=longest,list:longest
 syntax on
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
