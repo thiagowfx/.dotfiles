@@ -1,6 +1,8 @@
 set nocompatible
 execute pathogen#infect()
 
+cnoreabbrev W! w!
+cnoreabbrev Q! q!
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 colorscheme murphy
@@ -8,6 +10,10 @@ filetype plugin indent on
 map <S-Insert> <MiddleMouse>
 map! <S-Insert> <MiddleMouse>
 set backspace=indent,eol,start
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+set gcr=a:blinkon0
 set history=200
 set hlsearch
 set ignorecase
