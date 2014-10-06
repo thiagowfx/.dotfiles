@@ -52,6 +52,7 @@
  '(major-mode (quote org-mode))
  '(make-backup-files nil)
  '(menu-bar-mode nil)
+ '(org-agenda-files (quote ("~/Desktop/Git/raytracer-foo/todo.org")))
  '(org-confirm-babel-evaluate nil)
  '(org-crypt-key "A905373C")
  '(org-directory "/home/thiago/Dropbox/org")
@@ -137,7 +138,7 @@
                :after (progn
                         (require 'org-crypt)
                         (org-crypt-use-before-save-magic)
-                        (defvar org2blog/wp-blog-alist
+                        (setq org2blog/wp-blog-alist
                           '(("Everyday Serendipity"
                              :url "http://thiagoperrotta.wordpress.com/xmlrpc.php"
                              :username "thiagowfx"

@@ -12,6 +12,7 @@ export GTEST_COLOR="YES"
 export HISTCONTROL=ignoreboth
 export PATH="$HOME/Local/bin:$PATH"
 export RAMDISK="$HOME/Ramdisk"
+export TERM="rxvt-256color"
 export VISUAL="gvim"
 export WINEARCH="win32"
 export WINEDEBUG="fixme-all"
