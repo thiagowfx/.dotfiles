@@ -1,14 +1,13 @@
 set nocompatible
 execute pathogen#infect()
-
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
-cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 colorscheme murphy
 filetype plugin indent on
 map <S-Insert> <MiddleMouse>
 map! <S-Insert> <MiddleMouse>
+set autoindent
 set backspace=indent,eol,start
 set encoding=utf-8
 set fileencoding=utf-8
@@ -30,19 +29,10 @@ set smartcase
 set wildmenu
 set wildmode=full
 syntax on
-if has("autocmd")
-  augroup vimrcEx
-  au!
-  autocmd FileType text setlocal textwidth=72
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
-  augroup END
-else
-  set autoindent
-endif
 if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
+endif
+if has("autocmd")
+  au FileType text setlocal textwidth=72
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
