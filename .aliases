@@ -13,7 +13,7 @@ export HISTCONTROL=ignoreboth
 export PATH="$HOME/Local/bin:$PATH"
 export RAMDISK="$HOME/Ramdisk"
 export TERM="rxvt-256color"
-export VISUAL="gvim"
+export VISUAL="vim"
 export WINEARCH="win32"
 export WINEDEBUG="fixme-all"
 export WINEDLLOVERRIDES="winemenubuilder.exe=d"
