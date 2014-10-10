@@ -3,7 +3,10 @@ execute pathogen#infect()
 let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
-cnoremap <C-n> <Down>
+cnoreabbrev Wq! wq!
+cnoreabbrev wQ! wq!
+cnoreabbrev WQ! wq!
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 colorscheme murphy
 filetype plugin indent on
 map <S-Insert> <MiddleMouse>
@@ -21,7 +24,6 @@ set incsearch
 set nobackup
 set number
 set ruler
-set paste
 set scrolloff=3
 set showcmd
 set showmatch
