@@ -135,6 +135,7 @@
         (:name org-mode
                :after (progn
                         (require 'org-crypt)
+                        (global-set-key (kbd "C-c a") 'org-agenda)
                         (org-crypt-use-before-save-magic)
                         (setq org2blog/wp-blog-alist
                           '(("Everyday Serendipity"

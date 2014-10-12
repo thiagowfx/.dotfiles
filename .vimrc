@@ -1,6 +1,8 @@
 set nocompatible
 execute pathogen#infect()
-let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
+let g:easytags_async=1
+let g:easytags_dynamic_files=1
+let g:ycm_path_to_python_interpreter='/usr/bin/python2'
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
 cnoreabbrev Wq! wq!
@@ -13,24 +15,19 @@ map <S-Insert> <MiddleMouse>
 map! <S-Insert> <MiddleMouse>
 set autoindent
 set backspace=indent,eol,start
-set encoding=utf-8
-set fileencoding=utf-8
-set fileencodings=utf-8
+set encoding=utf-8 fileencoding=utf-8 fileencodings=utf-8
 set gcr=a:blinkon0
-set history=200
-set hlsearch
-set ignorecase
-set incsearch
+set history=1000
+set ignorecase smartcase
+set incsearch hlsearch showmatch
+set laststatus=2
 set nobackup
 set number
-set ruler
+set ruler showcmd showmode
 set scrolloff=3
-set showcmd
-set showmatch
-set showmode
-set smartcase
-set wildmenu
-set wildmode=longest,list:longest
+" set smarttab
+set ttimeout ttimeoutlen=100
+set wildmenu wildmode=longest,list:longest
 syntax on
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
