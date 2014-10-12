@@ -123,9 +123,7 @@
 (add-to-list 'el-get-recipe-path (concat user-emacs-directory "el-get-user/recipes"))
 (el-get 'sync)
 (setq el-get-sources
-      '((:name evil
-               :after (evil-mode))
-        (:name flycheck
+      '((:name flycheck
                :after (add-hook 'after-init-hook #'global-flycheck-mode))
         (:name multiple-cursors
                :after (progn
