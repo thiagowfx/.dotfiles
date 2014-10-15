@@ -17,8 +17,8 @@ cnoreabbrev wQ! wq!
 cnoreabbrev WQ! wq!
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 nnoremap / /\v
-nnoremap ? ?\v
 vnoremap / /\v
+nnoremap ? ?\v
 vnoremap ? ?\v
 set autoindent
 set backspace=indent,eol,start
@@ -26,7 +26,7 @@ set colorcolumn=80
 set encoding=utf-8 fileencoding=utf-8 fileencodings=utf-8
 set history=1000
 set ignorecase smartcase
-set gdefault incsearch hlsearch showmatch
+set incsearch hlsearch showmatch
 set laststatus=2
 set number relativenumber ruler showcmd showmode
 set scrolloff=3
