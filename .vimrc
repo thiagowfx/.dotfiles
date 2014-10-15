@@ -17,7 +17,9 @@ cnoreabbrev wQ! wq!
 cnoreabbrev WQ! wq!
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 nnoremap / /\v
+nnoremap ? ?\v
 vnoremap / /\v
+vnoremap ? ?\v
 set autoindent
 set backspace=indent,eol,start
 set colorcolumn=80
