@@ -9,7 +9,6 @@ export DEBEMAIL="thiagoperrotta95@gmail.com"
 export EDITOR="vim"
 export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
-gocd () { cd `go list -f '{{.Dir}}' $1` }
 export GTEST_COLOR="YES"
 export HISTCONTROL=ignoreboth
 export PATH="$HOME/Local/bin:$PATH"
@@ -35,6 +34,7 @@ alias free="free -h"
 alias gdb="gdb -q"
 alias grep="grep --color=always"
 alias hexdump="hexdump -C"
+alias less="less -R"
 alias ln="ln -v"
 alias lspci="lspci -v"
 alias lsusb="lsusb -t"
@@ -77,7 +77,7 @@ alias xrandr-t-reset="xrandr --output LVDS1 --primary --mode 1366x768"
 alias youtube-dl-t-mp3="youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3"
 alias youtube-dl-t-video="youtube-dl --continue --title --restrict-filenames"
 
-function adbsync {
+adbsync() {
     if [[ ! -d "$1" ]]; then
         cat <<EOF
 Usage: adbsync <localdir>
@@ -91,7 +91,7 @@ EOF
     adb push "$1" "$TARGET_DIR/$(basename $1)" && echo "Files successfully copied."
 }
 
-function gentoo-chroot {
+gentoo-chroot() {
     [[ "$1" == "" ]] && echo "Example usage:\ngentoo-chroot /mnt/gentoo" && return 0
     [[ ! -d "$1"  ]] && echo "Your specified path $1 doesn't exist" && return 1
     sudo cp -L /etc/resolv.conf "$1"/etc/resolv.conf
@@ -101,9 +101,10 @@ function gentoo-chroot {
     sudo chroot "$1/" /bin/env -i TERM=$TERM /bin/bash
 }
 
-function gi() { curl "http://www.gitignore.io/api/$@" ;}
+gi() { curl "http://www.gitignore.io/api/$@" ;}
+gocd () { cd `go list -f '{{.Dir}}' $1` }
 
-function qkkdiff-file {
+qkkdiff-file() {
     if [[ "$1" == "" ]]; then
         cat <<EOF
 Usage: qkkdiff-file <file>
@@ -119,7 +120,7 @@ EOF
     fi
 }
 
-function qkkdiff-pkg {
+qkkdiff-pkg() {
     if [[ "$1" == "" ]]; then
         echo <<EOF
 Usage: qkkdiff <package>

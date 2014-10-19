@@ -40,7 +40,7 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 endif
 if has("autocmd")
-  au FileType text setlocal textwidth=79
-  au FocusLost * :wa
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+  au FileType text setlocal textwidth=80
+  au FocusLost * :wa
 endif
