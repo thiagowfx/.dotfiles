@@ -7,7 +7,9 @@ export BROWSER="google-chrome-stable"
 export DEBFULLNAME="Thiago Perrotta"
 export DEBEMAIL="thiagoperrotta95@gmail.com"
 export EDITOR="vim"
-export GOPATH="$HOME/Go"
+export GOPATH="$HOME/.go"
+export PATH="$GOPATH/bin:$PATH"
+gocd () { cd `go list -f '{{.Dir}}' $1` }
 export GTEST_COLOR="YES"
 export HISTCONTROL=ignoreboth
 export PATH="$HOME/Local/bin:$PATH"
