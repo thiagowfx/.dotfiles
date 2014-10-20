@@ -52,7 +52,7 @@
  '(major-mode (quote org-mode))
  '(make-backup-files nil)
  '(menu-bar-mode nil)
- '(org-agenda-files (quote ("~/Desktop/Git/raytracer-foo/todo.org")))
+ '(org-agenda-files (quote ("~/Dropbox/org/csf-next.org")))
  '(org-confirm-babel-evaluate nil)
  '(org-crypt-key "A905373C")
  '(org-directory "/home/thiago/Dropbox/org")
@@ -156,13 +156,11 @@
     cmake-mode
     evil
     flycheck
-    go-mode
     magit
     markdown-mode
     multiple-cursors
     org2blog
     pkgbuild-mode
-    powerline
     projectile
     smex
     undo-tree
