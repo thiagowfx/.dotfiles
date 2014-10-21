@@ -12,8 +12,9 @@
 set $mod Mod4
 set $Alt Mod1
 set $Win Mod4
-set $I3lock i3lock
+set $I3lock i3lock-wrapper
 set $Editor gvim
+set $FileManager dolphin
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -35,7 +36,10 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+Return exec i3-sensible-terminal -e $Editor
 
 # start a file manager
-bindsym $mod+BackSpace exec pcmanfm
+bindsym $mod+BackSpace exec $FileManager
+
+# lock screen
+bindsym $mod+l exec $I3lock
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -50,10 +54,8 @@ bindsym $mod+Shift+d exec i3-dmenu-desktop
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+ccedilla focus right
+bindsym $mod+j focus down
+bindsym $mod+k focus up
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -100,6 +102,8 @@ bindsym $mod+a focus parent
 bindsym $mod+b focus child
 
 # switch to workspace
+bindsym $mod+n workspace next
+bindsym $mod+p workspace prev
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
