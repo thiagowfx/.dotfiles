@@ -38,9 +38,6 @@ bindsym $mod+Shift+Return exec i3-sensible-terminal -e $Editor
 # start a file manager
 bindsym $mod+BackSpace exec $FileManager
 
-# lock screen
-bindsym $mod+l exec $I3lock
-
 # kill focused window
 bindsym $mod+Shift+q kill
 bindsym $Alt+F4      kill
@@ -54,8 +51,10 @@ bindsym $mod+Shift+d exec i3-dmenu-desktop
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus down
-bindsym $mod+k focus up
+bindsym $mod+j focus left
+bindsym $mod+k focus down 
+bindsym $mod+l focus up
+bindsym $mod+ccedilla focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left

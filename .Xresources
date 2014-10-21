@@ -3,7 +3,7 @@ Xft.autohint: true
 Xft*antialias: true
 Xft*hinting: true
 Xft.hintstyle: hintslight
-Xft*dpi: 100
+Xft*dpi: 96
 Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 
@@ -12,7 +12,7 @@ URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 URxvt*termName: rxvt-unicode
-URxvt*background: #000000
+URxvt*background: #080808
 URxvt*foreground: #ffffff
 URxvt.scrollBar: false
 URxvt*font: xft:Terminus:size=10:antialias=true
@@ -23,7 +23,7 @@ URxvt.keysym.Control-Shift-V: perl:clipboard:paste
 URxvt.url-launcher: xdg-open
 URxvt.matcher.button: 1
 
-! better urxvt colors. For more, see http://xcolors.net
+! better urxvt colors. For more, see http://www.xcolors.net/
 ! this is felixonmars style @ http://felixc.at/URxvt
 urxvt.color1:  #cc0000
 urxvt.color2:  #4e9a06
