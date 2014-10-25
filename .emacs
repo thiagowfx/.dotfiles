@@ -110,6 +110,13 @@
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "M-/") 'hippie-expand)
+(defun load-my-packages ()
+  "Load el-get packages."
+  (interactive)
+  (el-get 'sync el-get-wanted-packages)
+  (el-get-cleanup el-get-wanted-packages)
+  (message "Packages loaded!"))
+(global-set-key (kbd "<f2>") 'load-my-packages)
 (global-unset-key (kbd "C-z"))
 (define-key comint-mode-map (kbd "<up>") 'comint-previous-input)
 (define-key comint-mode-map (kbd "<down>") 'comint-next-input)
@@ -165,8 +172,6 @@
     smex
     undo-tree
     ))
-(el-get 'sync el-get-wanted-packages)
-(el-get-cleanup el-get-wanted-packages)
 (put 'narrow-to-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)

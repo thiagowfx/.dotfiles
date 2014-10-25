@@ -30,17 +30,10 @@ set laststatus=2
 set number relativenumber ruler showcmd showmode
 set scrolloff=3
 set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+set textwidth=80
 set ttimeout ttimeoutlen=100
 set ttyfast
 set visualbell
 set wildmenu wildmode=longest,list:longest
 set undofile nobackup
 syntax on
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
-endif
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-  au FileType text setlocal textwidth=80
-  au FocusLost * :wa
-endif
