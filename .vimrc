@@ -28,9 +28,7 @@ set ignorecase infercase smartcase
 set incsearch hlsearch showmatch
 set laststatus=2
 set number relativenumber ruler showcmd showmode
-set scrolloff=3
-set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
-set textwidth=80
+set scrolloff=2 tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 set ttimeout ttimeoutlen=100
 set ttyfast
 set visualbell

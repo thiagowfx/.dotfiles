@@ -10,6 +10,7 @@ fi
 
 [[ -f "$HOME/.Xmodmap" ]] && xmodmap "$HOME/.Xmodmap"
 [[ -f "$HOME/.Xresources" ]] && xrdb -merge "$HOME/.Xresources"
+[[ -f "$HOME/.xprofile" ]] && sh "$HOME/.xprofile"
 
 # xinit <window_manager>
 case $1 in
