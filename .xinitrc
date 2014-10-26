@@ -1,5 +1,5 @@
 #!/bin/sh
-# startx / xinit
+# startx / xinit <window_manager>
 
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
   for f in /etc/X11/xinit/xinitrc.d/*; do
@@ -9,10 +9,9 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 fi
 
 [[ -f "$HOME/.Xmodmap" ]] && xmodmap "$HOME/.Xmodmap"
-[[ -f "$HOME/.Xresources" ]] && xrdb -merge "$HOME/.Xresources"
 [[ -f "$HOME/.xprofile" ]] && sh "$HOME/.xprofile"
+[[ -f "$HOME/.Xresources" ]] && xrdb -merge "$HOME/.Xresources"
 
-# xinit <window_manager>
 case $1 in
     awesome|awesomewm ) exec awesome;;
     bspwm             ) exec bspwm;;
