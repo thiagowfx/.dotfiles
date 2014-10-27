@@ -1,4 +1,9 @@
-dex -a &
-eval $(cat $HOME/.fehbg) &
+#!/bin/sh
+
 eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh) &
 export GPG_AGENT_INFO SSH_AUTH_SOCK &
+
+[[ -f "$HOME/.fehbg" ]] && eval $(cat $HOME/.fehbg)
+[[ -f "$HOME/.Xmodmap" ]] && xmodmap "$HOME/.Xmodmap"
+[[ -f "$HOME/.Xresources" ]] && xrdb -merge "$HOME/.Xresources"
+which dex &>/dev/null && dex -a

@@ -8,9 +8,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
-[[ -f "$HOME/.Xmodmap" ]] && xmodmap "$HOME/.Xmodmap"
 [[ -f "$HOME/.xprofile" ]] && sh "$HOME/.xprofile"
-[[ -f "$HOME/.Xresources" ]] && xrdb -merge "$HOME/.Xresources"
 
 case $1 in
     awesome|awesomewm ) exec awesome;;
@@ -23,7 +21,6 @@ case $1 in
     fluxbox           ) exec startfluxbox;;
     gnome             ) exec gnome-session;;
     hawaii            ) exec hawaii;;
-    i3|i3wm           ) exec i3;;
     icewm             ) exec icewm-session;;
     jwm               ) exec jwm;;
     kde               ) exec startkde;;
@@ -35,5 +32,5 @@ case $1 in
     unity             ) exec unity;;
     xfce|xfce4        ) exec startxfce4;;
     xmonad            ) exec xmonad;;
-    *                 ) exec i3;;
+    i3|i3wm|*         ) exec i3;;
 esac
