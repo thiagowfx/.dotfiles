@@ -161,6 +161,7 @@
   '(auto-complete
     cmake-mode
     evil
+    fic-mode
     flycheck
     magit
     markdown-mode
