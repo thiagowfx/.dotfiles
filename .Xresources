@@ -15,6 +15,7 @@ URxvt*termName: rxvt-unicode
 URxvt*background: #080808
 URxvt*foreground: #ffffff
 URxvt.scrollBar: false
+URxvt.letterSpace: -1
 !bitmap font
 !URxvt*font: xft:Terminus:size=10:antialias=true
 !scalable font

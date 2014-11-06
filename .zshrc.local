@@ -17,6 +17,7 @@ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f
 
 [[ -f /usr/share/doc/pkgfile/command-not-found.zsh ]] && . /usr/share/doc/pkgfile/command-not-found.zsh
 [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -f /usr/lib/z.sh ]] && . /usr/lib/z.sh
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 if [ -n "$DESKTOP_SESSION" ];then
     eval $(gnome-keyring-daemon --start --components=ssh,gpg)

@@ -28,7 +28,6 @@ set encoding=utf-8 fileencoding=utf-8 fileencodings=utf-8
 set history=10000
 set ignorecase infercase smartcase
 set incsearch hlsearch showmatch
-set foldmethod=indent
 set laststatus=2
 set number relativenumber ruler showcmd showmode
 set scrolloff=3 tabstop=2 shiftwidth=2 softtabstop=2 expandtab smarttab smartindent
