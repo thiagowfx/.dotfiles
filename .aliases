@@ -26,6 +26,7 @@ alias chown="chown -v"
 alias colordiff="colordiff -uN"
 alias cower="cower --color=always --sort=votes --target=$HOME/.aur"
 alias cp="cp -v"
+alias ctest="ctest -V"
 alias curl="curl -v -L"
 alias df='df -h'
 alias diff="colordiff -uN"
@@ -36,6 +37,7 @@ alias free="free -h"
 alias gdb="gdb -q"
 alias grep="grep --color=always"
 alias hexdump="hexdump -C"
+which inxi &>/dev/null && alias inxi="inxi -F -M"
 alias less="less -R"
 alias ln="ln -v"
 alias lspci="lspci -v"
@@ -43,7 +45,8 @@ alias lsusb="lsusb -t"
 alias make="make -j$(nproc) -l$(nproc)"
 alias mkdir="mkdir -p"
 alias mv="mv -v"
-alias pacaur="pacaur --noedit"
+alias netstat="netstat -pln"
+which pacaur &>/dev/null && alias pacaur="pacaur --noconfirm --noedit"
 alias pacma="pacman"
 alias pgrep="pgrep -afl"
 alias pingg="ping google.com"
@@ -59,9 +62,7 @@ alias android-emulator-t-kill="adb emu kill"
 alias android-emulator-t-start="emulator -avd "Intel-10-480x800" -qemu --enable-kvm -dns-server 8.8.8.8,8.8.4.4"
 alias docker-t-pa="sudo docker run -v /dev/dri:/dev/dri:rw -v /tmp/.X11-unix/X0:/tmp/.X11-unix/X0:rw -t -i --privileged thiagowfx/portable-arch /bin/bash"
 alias ffmpeg-t-screencast="ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -qscale 0 ${RAMDISK}/out.mpg"
-alias inxi-t="inxi -F -M"
 alias jekyll-t-serve="jekyll serve --baseurl='' --watch"
-alias netstat-t="netstat -pln"
 alias pacman-t-extrapkgs="comm -23 <(pacman -Qeq|sort) <(pacman -Qgq base base-devel|sort)"
 alias qemu-t-iso="qemu-system-x86_64 --enable-kvm -m 512M -cdrom"
 alias systemd-t-nspawn="systemd-nspawn -bD"
@@ -71,7 +72,7 @@ alias winetricks-t-install="winetricks corefonts flash vcrun2005 vcrun2008 vb6ru
 alias world="sudo pacman -Syu && echo 'Checking updates for AUR packages...' && cower -u"
 alias world-t-apt="sudo aptitude update && sudo aptitude upgrade && sudo aptitude full-upgrade"
 alias world-t-gentoo='su -c "emerge --sync && emerge -avuDN --with-bdeps y --keep-going @world && emerge -v --depclean && revdep-rebuild -v && dispatch-conf && etc-update && eclean -d distfiles"'
-alias world-t-pacaur="pacaur -Syua --noedit"
+alias world-t-aur="pacaur -Syua --noedit"
 alias xrandr-t-hdmi-connect="xrandr --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1"
 alias xrandr-t-hdmi-disconnect="xrandr --output HDMI1 --off"
 alias xrandr-t-hdmi-mirror="xrandr --output LVDS1 --primary --auto --output HDMI1 --auto --same-as LVDS1"
@@ -102,7 +103,6 @@ gentoo-chroot() {
     sudo mount --rbind /sys  "$1"/sys
     sudo chroot "$1/" /bin/env -i TERM=$TERM /bin/bash
 }
-
 gi() { curl "http://www.gitignore.io/api/$@" ;}
 gocd () { cd `go list -f '{{.Dir}}' $1` }
 

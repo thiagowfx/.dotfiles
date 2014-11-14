@@ -77,7 +77,7 @@
  '(tool-bar-mode nil)
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
  '(uniquify-separator "/")
- '(user-full-name "Thiago Barroso Perrotta")
+ '(user-full-name "Thiago Perrotta")
  '(user-mail-address "thiagoperrotta95@gmail.com")
  '(vc-follow-symlinks t)
  '(visible-bell t)

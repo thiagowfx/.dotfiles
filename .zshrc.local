@@ -18,6 +18,7 @@ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f
 [[ -f /usr/share/doc/pkgfile/command-not-found.zsh ]] && . /usr/share/doc/pkgfile/command-not-found.zsh
 [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [[ -f /usr/lib/z.sh ]] && . /usr/lib/z.sh
+
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 if [ -n "$DESKTOP_SESSION" ];then
     eval $(gnome-keyring-daemon --start --components=ssh,gpg)
@@ -25,7 +26,6 @@ if [ -n "$DESKTOP_SESSION" ];then
 fi
 
 setopt appendhistory
-setopt autocd
 setopt beep
 setopt emacs
 setopt extendedglob
@@ -33,3 +33,12 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt nomatch
 setopt printexitvalue
+
+# oh-my-zsh support
+if [[ -d /usr/share/oh-my-zsh ]];
+then
+  ZSH=/usr/share/oh-my-zsh
+  DISABLE_AUTO_UPDATE="true"
+  plugins=(tmuxinator)
+  source $ZSH/oh-my-zsh.sh
+fi

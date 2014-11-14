@@ -102,6 +102,7 @@ bindsym $mod+b focus child
 
 # switch to workspace
 bindsym $mod+n workspace next
+bindsym $mod+Shift+n workspace prev
 bindsym $mod+p workspace prev
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -155,7 +156,7 @@ mode "$mode_system" {
   bindsym l exec $I3lock, mode "default"
   bindsym e exec i3-msg exit
   bindsym s exec $I3lock && systemctl suspend, mode "default"
-  bindsym h exec systemctl hibernate, mode "default"
+  bindsym h exec $I3LOCK && systemctl hibernate, mode "default"
   bindsym r exec systemctl reboot
   bindsym Shift+s exec systemctl poweroff
   bindsym Return mode "default"

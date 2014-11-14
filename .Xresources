@@ -16,9 +16,6 @@ URxvt*background: #080808
 URxvt*foreground: #ffffff
 URxvt.scrollBar: false
 URxvt.letterSpace: -1
-!bitmap font
-!URxvt*font: xft:Terminus:size=10:antialias=true
-!scalable font
 URxvt*font: xft:Source Code Pro:size=10:antialias=false
 URxvt.iso14755: false
 URxvt.iso14755_52: false
@@ -27,7 +24,7 @@ URxvt.keysym.Control-Shift-V: perl:clipboard:paste
 URxvt.url-launcher: xdg-open
 URxvt.matcher.button: 1
 
-! better urxvt colors. For more, see http://www.xcolors.net/
+! better urxvt colors. For more: http://www.xcolors.net/
 ! this is felixonmars style @ http://felixc.at/URxvt
 urxvt.color1:  #cc0000
 urxvt.color2:  #4e9a06
