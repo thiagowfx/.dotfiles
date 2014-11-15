@@ -6,6 +6,7 @@ let g:easytags_async=1
 let g:easytags_dynamic_files=1
 let g:molokai_original=1
 let g:ycm_path_to_python_interpreter='/usr/bin/python2'
+let NERDTreeShowHidden=1
 let mapleader=","
 map <Leader>m :make<CR>
 colorscheme molokai
@@ -35,7 +36,7 @@ set ttimeout ttimeoutlen=100
 set ttyfast visualbell
 set whichwrap=b,s,<,>,[,]
 set wildmenu wildmode=longest,list:longest
-set undofile nobackup
+set undofile nobackup noswapfile
 syntax on
 function! ResCur()
   if line("'\"") <= line("$")
