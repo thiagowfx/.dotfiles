@@ -104,7 +104,11 @@ gentoo-chroot() {
     sudo chroot "$1/" /bin/env -i TERM=$TERM /bin/bash
 }
 gi() { curl "http://www.gitignore.io/api/$@"; }
-gocd () { cd `go list -f '{{.Dir}}' $1`; }
+gocd() { cd `go list -f '{{.Dir}}' $1`; }
+gobootstrap() {
+  go get github.com/nsf/gocode
+  go get github.com/golang/lint
+}
 
 qkkdiff-file() {
     if [[ "$1" == "" ]]; then
