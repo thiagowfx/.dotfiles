@@ -103,8 +103,8 @@ gentoo-chroot() {
     sudo mount --rbind /sys  "$1"/sys
     sudo chroot "$1/" /bin/env -i TERM=$TERM /bin/bash
 }
-gi() { curl "http://www.gitignore.io/api/$@" ;}
-gocd () { cd `go list -f '{{.Dir}}' $1` }
+gi() { curl "http://www.gitignore.io/api/$@"; }
+gocd () { cd `go list -f '{{.Dir}}' $1`; }
 
 qkkdiff-file() {
     if [[ "$1" == "" ]]; then
