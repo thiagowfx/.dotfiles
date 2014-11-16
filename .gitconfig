@@ -6,11 +6,12 @@
 [credential]
 	helper = store
 [alias]
-	l = commit -a -m "update"
-  p = push
 	puhs = push
 	log1 = log --graph --decorate --oneline --pretty=format:\"%h %ad | %s%d [%an]\" --date=short
 	log2 = log --graph --decorate --oneline --all
+	l = commit -a -m "update"
+  p = push
+  s = status
 	st = status
 [core]
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
