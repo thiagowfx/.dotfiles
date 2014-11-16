@@ -13,6 +13,7 @@ colorscheme molokai
 filetype plugin indent on
 command W w
 command Q q
+command Wq wq
 command WQ wq
 inoremap jj <ESC>
 map <S-Insert> <MiddleMouse>
