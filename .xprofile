@@ -7,5 +7,14 @@ export GPG_AGENT_INFO SSH_AUTH_SOCK
 [[ -f "$HOME/.Xmodmap" ]] && xmodmap "$HOME/.Xmodmap"
 [[ -f "$HOME/.Xresources" ]] && xrdb -merge "$HOME/.Xresources"
 
-which dex &>/dev/null && dex -a
-# which volumeicon &>/dev/null && volumeicon &
+# Autostarter.
+which dex &>/dev/null && dex -a &
+
+# No touchpad clicking while typing.
+which syndaemon &>/dev/null && syndaemon -t -k -d &
+
+# Monitor color temperature management.
+which xflux &>/dev/null && xflux -l 23 -g 43 &
+
+# Hide the mouse when idle.
+which unclutter &>/dev/null && unclutter &

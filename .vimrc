@@ -8,7 +8,9 @@ let g:molokai_original=1
 let g:ycm_path_to_python_interpreter='/usr/bin/python2'
 let NERDTreeShowHidden=1
 let mapleader=","
+map <Leader>a ggVG
 map <Leader>m :make<CR>
+map <Leader>s :sort<CR>
 colorscheme molokai
 filetype plugin indent on
 command W w
@@ -25,14 +27,16 @@ nnoremap / /\v
 nnoremap ? ?\v
 vnoremap / /\v
 vnoremap ? ?\v
+set autoread autowrite
 set backspace=indent,eol,start
 set encoding=utf-8 fileencoding=utf-8 fileencodings=utf-8
+set nofoldenable foldmethod=indent
 set history=10000 laststatus=2
 set ignorecase infercase smartcase
 set incsearch hlsearch showmatch wrapscan
 set mouse=a ttymouse=xterm2
-set number ruler showcmd showmode
-set scrolloff=3 tabstop=2 shiftwidth=2 softtabstop=2 expandtab smarttab smartindent
+set number ruler showcmd showmode scrolloff=5
+set shiftwidth=2 shiftround tabstop=2 softtabstop=2 expandtab smarttab smartindent
 set ttimeout ttimeoutlen=100
 set ttyfast visualbell
 set whichwrap=b,s,<,>,[,]
