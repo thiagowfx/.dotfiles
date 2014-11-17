@@ -8,4 +8,4 @@ export GPG_AGENT_INFO SSH_AUTH_SOCK
 [[ -f "$HOME/.Xresources" ]] && xrdb -merge "$HOME/.Xresources"
 
 which dex &>/dev/null && dex -a
-which volumeicon &>/dev/null && volumeicon &
+# which volumeicon &>/dev/null && volumeicon &
