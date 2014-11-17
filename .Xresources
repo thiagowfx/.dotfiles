@@ -7,12 +7,16 @@ Xft*dpi: 96
 Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 
+! xterm settings
+xterm*background: #000000
+xterm*foreground: #ffffff
+
 ! better urxvt settings
 URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 URxvt*termName: rxvt-unicode
-URxvt*background: #080808
+URxvt*background: #000000
 URxvt*foreground: #ffffff
 URxvt.scrollBar: false
 URxvt.letterSpace: -1
