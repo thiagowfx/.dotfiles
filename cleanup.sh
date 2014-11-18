@@ -11,5 +11,5 @@ paccache -r
 msg "Running fstrim on the SSD"
 sudo fstrim -v /
 
-msg "Removing orphan packages."
-sudo pacman -Rns $(pacman -Qdtq)
+# msg "Removing orphan packages."
+# sudo pacman -Rns $(pacman -Qdtq)

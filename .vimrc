@@ -4,7 +4,6 @@ let g:ctrlp_dotfiles=0
 let g:ctrlp_match_window_reversed=0
 let g:easytags_async=1
 let g:easytags_dynamic_files=1
-let g:molokai_original=1
 let g:ycm_path_to_python_interpreter='/usr/bin/python2'
 let NERDTreeShowHidden=1
 let mapleader=","
