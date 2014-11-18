@@ -11,7 +11,7 @@ export GPG_AGENT_INFO SSH_AUTH_SOCK
 which dex &>/dev/null && dex -a &
 
 # No touchpad clicking while typing.
-which syndaemon &>/dev/null && syndaemon -t -k -d &
+which syndaemon &>/dev/null && syndaemon -i 1 -t -k -d &
 
 # Monitor color temperature management.
 which xflux &>/dev/null && xflux -l 23 -g 43 &
