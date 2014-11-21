@@ -37,6 +37,7 @@ set incsearch hlsearch showmatch wrapscan
 set mouse=a ttymouse=xterm2
 set cursorline number ruler showcmd showmode scrolloff=5
 set shiftwidth=2 shiftround tabstop=2 softtabstop=2 expandtab smarttab smartindent
+set t_Co=256
 set ttimeout ttimeoutlen=100 ttyfast visualbell
 set whichwrap=b,s,<,>,[,]
 set wildmenu wildmode=longest,list:longest
