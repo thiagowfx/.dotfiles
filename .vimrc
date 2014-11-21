@@ -6,7 +6,6 @@ let g:easytags_async=1
 let g:easytags_dynamic_files=1
 let g:ycm_path_to_python_interpreter='/usr/bin/python2'
 let NERDTreeShowHidden=1
-let mapleader=","
 map <Leader>a ggVG
 map <Leader>m :make<CR>
 map <Leader>s :sort<CR>
