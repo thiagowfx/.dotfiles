@@ -20,7 +20,6 @@ export WINEDEBUG="fixme-all"
 export WINEDLLOVERRIDES="winemenubuilder.exe=d"
 export WINEPREFIX="$HOME/.wine"
 
-# common commands
 alias chmod="chmod -v"
 alias chown="chown -v"
 alias colordiff="colordiff -uN"
@@ -106,8 +105,8 @@ gentoo-chroot() {
 gi() { curl "http://www.gitignore.io/api/$@"; }
 gocd() { cd `go list -f '{{.Dir}}' $1`; }
 gobootstrap() {
-  go get github.com/nsf/gocode
   go get github.com/golang/lint
+  go get github.com/nsf/gocode
 }
 
 qkkdiff-file() {

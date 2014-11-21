@@ -3,12 +3,12 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-[[ -f $HOME/.aliases ]] && . $HOME/.aliases
+[[ -f $HOME/.aliases ]] && source $HOME/.aliases
 
 # System bashrc
-[[ -f /etc/bashrc ]] && . /etc/bashrc
-[[ -f /etc/bash_completion ]] && . /etc/bash_completion && complete -cf sudo
-[[ -f /usr/share/doc/pkgfile/command-not-found.bash ]] && . /usr/share/doc/pkgfile/command-not-found.bash
+[[ -f /etc/bashrc ]] && source /etc/bashrc
+[[ -f /etc/bash_completion ]] && source /etc/bash_completion && complete -cf sudo
+[[ -f /usr/share/doc/pkgfile/command-not-found.bash ]] && source /usr/share/doc/pkgfile/command-not-found.bash
 
 # prompt
 PS1='\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]\[\033[1;32m\] \$\[\033[m\] '
