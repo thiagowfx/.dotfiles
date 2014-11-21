@@ -13,7 +13,6 @@ export GTEST_COLOR="YES"
 export HISTCONTROL=ignoreboth
 export PATH="$HOME/bin:$PATH"
 export RAMDISK="$HOME/Ramdisk"
-export TERM="screen-256color"
 export VISUAL="vim"
 export WINEARCH="win32"
 export WINEDEBUG="fixme-all"
@@ -55,6 +54,7 @@ alias rsync="rsync --progress"
 alias sl="ls"
 alias smem="smem -k"
 alias strace="strace -t"
+alias tmux="tmux -2"
 
 # common templates
 alias android-emulator-t-kill="adb emu kill"
