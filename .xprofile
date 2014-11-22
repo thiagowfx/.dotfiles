@@ -4,10 +4,13 @@
 [[ -f "$HOME/.Xmodmap" ]] && xmodmap "$HOME/.Xmodmap"
 [[ -f "$HOME/.Xresources" ]] && xrdb -merge "$HOME/.Xresources"
 
-# Autostarter.
-# which dex &>/dev/null && dex -a &
-
 export TERMINAL="terminator"
+
+# wicd system tray.
+which wicd-gtk &> wicd-gtk --tray &
+
+# Clipboard manager.
+which clipit &>/dev/null && clipit &
 
 # No touchpad clicking while typing.
 which syndaemon &>/dev/null && syndaemon -i 1 -t -k -d &
