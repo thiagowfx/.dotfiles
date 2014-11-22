@@ -28,12 +28,3 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt nomatch
 setopt printexitvalue
-
-# oh-my-zsh support
-if [[ -d /usr/share/oh-my-zsh ]];
-then
-  ZSH=/usr/share/oh-my-zsh
-  DISABLE_AUTO_UPDATE="true"
-  plugins=(tmuxinator)
-  source $ZSH/oh-my-zsh.sh
-fi
