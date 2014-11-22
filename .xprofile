@@ -7,7 +7,7 @@
 export TERMINAL="terminator"
 
 # wicd system tray.
-which wicd-gtk &> wicd-gtk --tray &
+which wicd-gtk &>/dev/null && wicd-gtk --tray &
 
 # Clipboard manager.
 which clipit &>/dev/null && clipit &
