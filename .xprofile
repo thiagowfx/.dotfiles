@@ -5,7 +5,9 @@
 [[ -f "$HOME/.Xresources" ]] && xrdb -merge "$HOME/.Xresources"
 
 # Autostarter.
-which dex &>/dev/null && dex -a &
+# which dex &>/dev/null && dex -a &
+
+export TERMINAL="terminator"
 
 # No touchpad clicking while typing.
 which syndaemon &>/dev/null && syndaemon -i 1 -t -k -d &
