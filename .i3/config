@@ -13,7 +13,6 @@ set $mod Mod4
 set $Alt Mod1
 set $Win Mod4
 set $I3lock i3lock-wrapper
-set $Editor gvim
 set $FileManager dolphin
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -33,7 +32,8 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 
 # start a text editor
-bindsym $mod+Shift+Return exec i3-sensible-terminal -e $Editor
+bindsym $mod+t exec emacsclient -c
+bindsym $mod+Shift+t exec gvim
 
 # start a file manager
 bindsym $mod+BackSpace exec $FileManager
@@ -82,6 +82,7 @@ bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
+bindsym $mod+F11 fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -156,7 +157,7 @@ mode "$mode_system" {
   bindsym l exec $I3lock, mode "default"
   bindsym e exec i3-msg exit
   bindsym s exec $I3lock && systemctl suspend, mode "default"
-  bindsym h exec $I3LOCK && systemctl hibernate, mode "default"
+  bindsym h exec $I3lock && systemctl hibernate, mode "default"
   bindsym r exec systemctl reboot
   bindsym Shift+s exec systemctl poweroff
   bindsym Return mode "default"
@@ -210,4 +211,6 @@ client.focused_inactive	#565656 #444444 #ffffff #666666
 client.unfocused 	#373737 #222222 #888888 #444444
 client.urgent           #ec7ea4 #eb709b #ffffff #eb709b
 
-exec_always --no-startup-id sh ~/.fehbg
+# $i3-background
+exec_always --no-startup-id xsetroot -solid '#000000'
+
