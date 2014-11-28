@@ -10,7 +10,7 @@ export TERMINAL="terminator"
 which wicd-gtk &>/dev/null && wicd-gtk --tray &
 
 # Clipboard manager.
-which clipit &>/dev/null && clipit &
+which clipit &>/dev/null && clipit -d &
 
 # No touchpad clicking while typing.
 which syndaemon &>/dev/null && syndaemon -i 1 -t -k -d &

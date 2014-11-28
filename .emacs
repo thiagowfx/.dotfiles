@@ -19,7 +19,9 @@
  '(compilation-always-kill t)
  '(compilation-auto-jump-to-first-error t)
  '(custom-enabled-themes (quote (wombat)))
- '(custom-safe-themes (quote ("dd43c9f997208c61ce0f4855932cc20a57ae2f37fe2ced218dace5c8c321d1e8" default)))
+ '(custom-safe-themes
+   (quote
+    ("dd43c9f997208c61ce0f4855932cc20a57ae2f37fe2ced218dace5c8c321d1e8" default)))
  '(echo-keystrokes 0.1)
  '(epa-file-name-regexp "\\.\\(gpg\\|asc\\)$")
  '(fill-column 72)
@@ -56,13 +58,34 @@
  '(org-crypt-key "A905373C")
  '(org-directory "/home/thiago/Dropbox/org")
  '(org-tags-exclude-from-inheritance (quote ("crypt")))
- '(org-todo-keyword-faces (quote (("TODO" . "turquoise") ("PROGRESS" . "slate blue") ("TROUBLE" . "dark red") ("DONE" . "forest green"))))
+ '(org-todo-keyword-faces
+   (quote
+    (("TODO" . "turquoise")
+     ("PROGRESS" . "slate blue")
+     ("TROUBLE" . "dark red")
+     ("DONE" . "forest green"))))
  '(org-todo-keywords (quote ((sequence "TODO" "PROGRESS" "TROUBLE" "|" "DONE"))))
  '(read-buffer-completion-ignore-case t)
  '(recentf-mode t)
  '(recentf-save-file "~/.emacs.d/recentf-file")
  '(require-final-newline t)
- '(safe-local-variable-values (quote ((eval setq-default gac-automatically-push-p t) (eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook" (add-hook (quote write-contents-functions) (lambda nil (delete-trailing-whitespace) nil)) (require (quote whitespace)) "Sometimes the mode needs to be toggled off and on." (whitespace-mode 0) (whitespace-mode 1)) (whitespace-line-column . 80) (whitespace-style face tabs trailing lines-tail) (require-final-newline . t))))
+ '(safe-local-variable-values
+   (quote
+    ((eval setq-default gac-automatically-push-p t)
+     (eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook"
+           (add-hook
+            (quote write-contents-functions)
+            (lambda nil
+              (delete-trailing-whitespace)
+              nil))
+           (require
+            (quote whitespace))
+           "Sometimes the mode needs to be toggled off and on."
+           (whitespace-mode 0)
+           (whitespace-mode 1))
+     (whitespace-line-column . 80)
+     (whitespace-style face tabs trailing lines-tail)
+     (require-final-newline . t))))
  '(save-interprogram-paste-before-kill t)
  '(save-place t nil (saveplace))
  '(save-place-file "~/.emacs.d/save-places-file")
@@ -75,6 +98,7 @@
  '(standard-indent 2)
  '(tab-width 2)
  '(tool-bar-mode nil)
+ '(undo-tree-auto-save-history t)
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
  '(uniquify-separator "/")
  '(user-full-name "Thiago Perrotta")
@@ -129,7 +153,9 @@
 (add-to-list 'el-get-recipe-path (concat user-emacs-directory "el-get-user/recipes"))
 (el-get 'sync)
 (setq el-get-sources
-      '((:name flycheck
+      '((:name color-theme-almost-monokai
+               :after (color-theme-almost-monokai))
+        (:name flycheck
                :after (add-hook 'after-init-hook #'global-flycheck-mode))
         (:name multiple-cursors
                :after (progn
@@ -160,6 +186,7 @@
 (defvar el-get-wanted-packages
   '(auto-complete
     cmake-mode
+    color-theme-almost-monokai
     evil
     fic-mode
     flycheck
