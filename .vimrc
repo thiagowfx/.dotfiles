@@ -40,7 +40,7 @@ set t_Co=256
 set ttimeout ttimeoutlen=100 ttyfast visualbell
 set whichwrap=b,s,<,>,[,]
 set wildmenu wildmode=longest,list:longest
-set undofile nobackup noswapfile
+set undofile nobackup 
 syntax on
 function! ResCur()
   if line("'\"") <= line("$")
