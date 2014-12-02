@@ -189,9 +189,9 @@ for_window [window_role="pop-up"] floating enable
 bindsym Print exec scrot '%Y-%m-%d_%H%M%S_$wx$h_scrot.png' -e 'mv $f ~/Ramdisk/' && notify-send 'Took a SS'
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5 -time 0
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5 -time 0
-bindsym XF86AudioLowerVolume exec pulseaudio-ctl down
-bindsym XF86AudioRaiseVolume exec pulseaudio-ctl up
-bindsym XF86AudioMute exec pulseaudio-ctl mute
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+bindsym XF86AudioMute exec amixer -q set Master toggle
 bindsym Shift+XF86AudioLowerVolume exec playerctl previous
 bindsym Shift+XF86AudioRaiseVolume exec playerctl next
 bindsym Shift+XF86AudioMute exec playerctl play-pause
