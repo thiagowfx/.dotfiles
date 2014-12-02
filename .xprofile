@@ -1,22 +1,14 @@
 #!/bin/sh
 
-[[ -f "$HOME/.fehbg" ]] && eval $(cat $HOME/.fehbg)
-[[ -f "$HOME/.Xmodmap" ]] && xmodmap "$HOME/.Xmodmap"
-[[ -f "$HOME/.Xresources" ]] && xrdb -merge "$HOME/.Xresources"
-
 export TERMINAL="terminator"
 
-# wicd system tray.
-which wicd-gtk &>/dev/null && wicd-gtk --tray &
+[[ -f "$HOME/.fehbg" ]] && sh "$HOME/.fehbg" &
 
 # Clipboard manager.
 which clipit &>/dev/null && clipit -d &
 
 # No touchpad clicking while typing.
 which syndaemon &>/dev/null && syndaemon -i 1 -t -k -d &
-
-# Monitor color temperature management.
-which xflux &>/dev/null && xflux -l 23 -g 43 &
 
 # Hide the mouse when idle.
 which unclutter &>/dev/null && unclutter &
