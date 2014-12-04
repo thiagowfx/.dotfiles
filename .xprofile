@@ -2,10 +2,16 @@
 
 export TERMINAL="terminator"
 
-[[ -f "$HOME/.fehbg" ]] && sh "$HOME/.fehbg" &
+[[ -f "/home/thiago/.fehbg" ]] && sh "/home/thiago/.fehbg" &
+
+# Redshift
+which redshift &>/dev/null && redshift -l -23:-43 &
+
+# network manager
+which nm-applet &>/dev/null && nm-applet &
 
 # Clipboard manager.
-which clipit &>/dev/null && clipit -d &
+which clipit &>/dev/null && clipit &
 
 # No touchpad clicking while typing.
 which syndaemon &>/dev/null && syndaemon -i 1 -t -k -d &
