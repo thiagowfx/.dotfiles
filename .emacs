@@ -15,6 +15,7 @@
  '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
  '(browse-url-browser-function (quote browse-url-generic))
  '(browse-url-generic-program "/usr/bin/chromium")
+ '(c-echo-syntactic-information-p t)
  '(column-number-mode t)
  '(compilation-always-kill t)
  '(compilation-auto-jump-to-first-error t)
@@ -65,6 +66,12 @@
      ("TROUBLE" . "dark red")
      ("DONE" . "forest green"))))
  '(org-todo-keywords (quote ((sequence "TODO" "PROGRESS" "TROUBLE" "|" "DONE"))))
+ '(package-archives
+   (quote
+    (("gnu" . "http://elpa.gnu.org/packages/")
+     ("melpa" . "http://melpa.milkbox.net/packages/")
+     ("org" . "http://orgmode.org/elpa/")
+     ("marmalade" . "http://marmalade-repo.org/packages/"))))
  '(read-buffer-completion-ignore-case t)
  '(recentf-mode t)
  '(recentf-save-file "~/.emacs.d/recentf-file")
@@ -115,10 +122,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
 (require 'comint)
 (require 'iso-transl)
-(fset 'yes-or-no-p 'y-or-n-p)
-(windmove-default-keybindings)
+
 (defun cleanup-buffer ()
   "Buffer cleaning, performing a bunch of operations on the whitespace content of it."
   (interactive)
@@ -127,22 +134,30 @@
     (delete-trailing-whitespace)
     (indent-region (point-min) (point-max))
     (untabify (point-min) (point-max))))
-(global-set-key [C-tab] 'cleanup-buffer)
-(global-set-key (kbd "C-x TAB") 'auto-complete)
-(global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "RET") 'newline-and-indent)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "M-/") 'hippie-expand)
+
 (defun load-my-packages ()
   "Load el-get packages."
   (interactive)
   (el-get 'sync el-get-wanted-packages)
   (el-get-cleanup el-get-wanted-packages)
   (message "Packages loaded!"))
+
+;; function mappings
+(global-set-key [C-tab] 'cleanup-buffer)
 (global-set-key (kbd "<f2>") 'load-my-packages)
-(global-unset-key (kbd "C-z"))
+
+;; native mappings
+(global-set-key (kbd "C-x TAB") 'auto-complete)
+(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "RET") 'newline-and-indent)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "M-/") 'hippie-expand)
 (define-key comint-mode-map (kbd "<up>") 'comint-previous-input)
 (define-key comint-mode-map (kbd "<down>") 'comint-next-input)
+
+;; annoying maps
+(global-unset-key (kbd "C-z"))
+
 (add-to-list 'load-path (concat user-emacs-directory "el-get/el-get"))
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
@@ -151,7 +166,9 @@
     (goto-char (point-max))
     (eval-print-last-sexp)))
 (add-to-list 'el-get-recipe-path (concat user-emacs-directory "el-get-user/recipes"))
+
 (el-get 'sync)
+
 (setq el-get-sources
       '((:name color-theme-almost-monokai
                :after (color-theme-almost-monokai))
@@ -183,22 +200,31 @@
                :after (global-set-key (kbd "M-x") 'smex))
         (:name undo-tree
                :after (global-set-key (kbd "C-+") 'undo-tree-redo))))
+
 (defvar el-get-wanted-packages
-  '(auto-complete
-    cmake-mode
+  '(
+    ;; default
     color-theme-almost-monokai
     evil
-    fic-mode
     flycheck
     magit
-    markdown-mode
     multiple-cursors
-    org2blog
-    pkgbuild-mode
+    org-mode
     projectile
     smex
     undo-tree
+    
+    ;; extras
+    auto-complete
+    cmake-mode
+    fic-mode
+    markdown-mode
+    org2blog
+    pkgbuild-mode
     ))
+
+(fset 'yes-or-no-p 'y-or-n-p)
+(windmove-default-keybindings)
 (put 'narrow-to-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)

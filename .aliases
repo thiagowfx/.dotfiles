@@ -1,11 +1,9 @@
 # -*- shell-script -*-
 
 # environment variables
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
-export ALTERNATE_EDITOR=""
-export BROWSER="google-chrome-stable"
-export DEBFULLNAME="Thiago Perrotta"
-export DEBEMAIL="thiagoperrotta95@gmail.com"
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd'
+export DEBFULLNAME="$($HOME/_scripts/packager name)"
+export DEBEMAIL="$($HOME/_scripts/packager mail)"
 export EDITOR="vim"
 export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
@@ -13,7 +11,6 @@ export GTEST_COLOR="YES"
 export HISTCONTROL=ignoreboth
 export PATH="$HOME/bin:$PATH"
 export RAMDISK="$HOME/Ramdisk"
-export TERM="xterm-256color"
 export VISUAL="vim"
 export WINEARCH="win32"
 export WINEDEBUG="fixme-all"
@@ -22,13 +19,13 @@ export WINEPREFIX="$HOME/.wine"
 
 alias chmod="chmod -v"
 alias chown="chown -v"
-alias colordiff="colordiff -uN"
-alias cower="cower --color=always --sort=votes --target=$HOME/.aur"
+which colordiff &>/dev/null && alias colordiff="colordiff -uN"
+which colordiff &>/dev/null && alias diff="colordiff -uN"
+which cower     &>/dev/null && alias cower="cower --color=always --sort=votes --target=$HOME/.aur"
 alias cp="cp -v"
 alias ctest="ctest -V"
 alias curl="curl -v -L"
 alias df='df -h'
-alias diff="colordiff -uN"
 alias du="du -h"
 alias em="emacsclient -t"
 alias emq="emacsclient -c"
@@ -41,12 +38,12 @@ alias less="less -R"
 alias ln="ln -v"
 alias lspci="lspci -v"
 alias lsusb="lsusb -t"
-alias make="make -j$(nproc) -l$(nproc)"
+alias make="time make -j$(nproc) -l$(nproc)"
 alias mkdir="mkdir -p"
 alias mv="mv -v"
 alias netstat="netstat -pln"
 which pacaur &>/dev/null && alias pacaur="pacaur --noconfirm --noedit"
-alias pacma="pacman"
+which pacman &>/dev/null && alias pacma="pacman"
 alias pgrep="pgrep -afl"
 alias pingg="ping google.com"
 alias pythonn="python -i -c 'from math import *'"
@@ -55,24 +52,21 @@ alias rsync="rsync --progress"
 alias sl="ls"
 alias smem="smem -k"
 alias strace="strace -t"
-alias tmux="tmux -2"
 
-# common templates
-alias android-emulator-t-kill="adb emu kill"
+# templates
 alias android-emulator-t-start="emulator -avd "Intel-10-480x800" -qemu --enable-kvm -dns-server 8.8.8.8,8.8.4.4"
 alias docker-t-pa="sudo docker run -v /dev/dri:/dev/dri:rw -v /tmp/.X11-unix/X0:/tmp/.X11-unix/X0:rw -t -i --privileged thiagowfx/portable-arch /bin/bash"
 alias ffmpeg-t-screencast="ffmpeg -f x11grab -s wxga -r 30 -i :0.0 -qscale 0 ${RAMDISK}/out.mpg"
 alias jekyll-t-serve="jekyll serve --baseurl='' --watch"
 alias pacman-t-extrapkgs="comm -23 <(pacman -Qeq|sort) <(pacman -Qgq base base-devel|sort)"
 alias qemu-t-iso="qemu-system-x86_64 --enable-kvm -m 512M -cdrom"
-alias systemd-t-nspawn="systemd-nspawn -bD"
 alias wget-t-pdf="wget -e robots=off -A pdf -mpEkK -np -t inf -T 60 --"
 alias wget-t-spider="wget -e robots=off --wait=2 --random-wait --recursive --span-hosts --spider --timestamping --tries=5 --dns-timeout=30 --connect-timeout=5 --read-timeout=5 --level=10 --"
 alias winetricks-t-install="winetricks corefonts flash vcrun2005 vcrun2008 vb6run"
+alias waur="pacaur -Syua --noedit"
 alias world="sudo pacman -Syu"
-alias world-t-aur="pacaur -Syua --noedit"
 alias world-t-apt="sudo aptitude update && sudo aptitude upgrade && sudo aptitude full-upgrade"
-alias world-t-gentoo='su -c "emerge --sync && emerge -avuDN --with-bdeps y --keep-going @world && emerge -v --depclean && revdep-rebuild -v && dispatch-conf && etc-update && eclean -d distfiles"'
+alias world-t-portage='su -c "emerge --sync && emerge -avuDN --with-bdeps y --keep-going @world && emerge -v --depclean && revdep-rebuild -v && dispatch-conf && etc-update && eclean -d distfiles"'
 alias xrandr-t-hdmi-on="xrandr --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1"
 alias xrandr-t-hdmi-off="xrandr --output HDMI1 --off"
 alias xrandr-t-hdmi-mirror="xrandr --output LVDS1 --primary --auto --output HDMI1 --auto --same-as LVDS1"
@@ -103,17 +97,23 @@ gentoo-chroot() {
     sudo mount --rbind /sys  "$1"/sys
     sudo chroot "$1/" /bin/env -i TERM=$TERM /bin/bash
 }
+
+# gitignore
+# Example usage: gi emacs,vim,c
 gi() { curl "http://www.gitignore.io/api/$@"; }
+
 gocd() { cd `go list -f '{{.Dir}}' $1`; }
+
 gobootstrap() {
   go get github.com/golang/lint
   go get github.com/nsf/gocode
 }
 
-qkkdiff-file() {
+pacman-qkkdiff-file() {
     if [[ "$1" == "" ]]; then
         cat <<EOF
 Usage: qkkdiff-file <file>
+Purpose: get the changes between this file now and in the upstream package
 Example: qkkdiff-file /etc/pacman.conf"
 EOF
     elif [[ -f "$1" ]]; then
@@ -126,10 +126,11 @@ EOF
     fi
 }
 
-qkkdiff-pkg() {
+pacman-qkkdiff-pkg() {
     if [[ "$1" == "" ]]; then
         echo <<EOF
 Usage: qkkdiff <package>
+Purpose: get the changes between the upstream package and the files on the filesystem
 Example: qkkdiff pacman
 EOF
     elif ! pacman -Q "$1"; then
