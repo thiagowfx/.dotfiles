@@ -130,21 +130,24 @@
   "Buffer cleaning, performing a bunch of operations on the whitespace content of it."
   (interactive)
   (save-excursion
+    (message "Cleaning buffer...")
     (whitespace-cleanup)
     (delete-trailing-whitespace)
     (indent-region (point-min) (point-max))
-    (untabify (point-min) (point-max))))
+    (untabify (point-min) (point-max))
+    (message "Buffer cleaned!")))
 
 (defun load-my-packages ()
   "Load el-get packages."
   (interactive)
+  (message "Loading packages...")
   (el-get 'sync el-get-wanted-packages)
   (el-get-cleanup el-get-wanted-packages)
   (message "Packages loaded!"))
 
 ;; function mappings
-(global-set-key [C-tab] 'cleanup-buffer)
 (global-set-key (kbd "<f2>") 'load-my-packages)
+(global-set-key (kbd "<f3>") 'cleanup-buffer)
 
 ;; native mappings
 (global-set-key (kbd "C-x TAB") 'auto-complete)
@@ -170,40 +173,71 @@
 (el-get 'sync)
 
 (setq el-get-sources
-      '((:name color-theme-almost-monokai
+      '(
+
+        ;; default
+        (:name color-theme-almost-monokai
                :after (color-theme-almost-monokai))
+
         (:name flycheck
                :after (add-hook 'after-init-hook #'global-flycheck-mode))
+
         (:name multiple-cursors
                :after (progn
                         (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
                         (global-set-key (kbd "C->") 'mc/mark-next-like-this)
                         (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
                         (global-set-key (kbd "C-S-c C-<") 'mc/mark-all-like-this)
-                        (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)))
+                        (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
+                        ))
+
         (:name org-mode
                :after (progn
                         (require 'org-crypt)
                         (global-set-key (kbd "C-c a") 'org-agenda)
                         (org-crypt-use-before-save-magic)
                         (setq org2blog/wp-blog-alist
-                          '(("Everyday Serendipity"
-                             :url "http://thiagoperrotta.wordpress.com/xmlrpc.php"
-                             :username "thiagowfx"
-                             :default-title "Title"
-                             :default-categories ("")
-                             :tags-as-categories nil)))
-                        (add-hook 'org-mode-hook (lambda () (auto-fill-mode t)))))
+                              '(("Everyday Serendipity"
+                                 :url "http://thiagoperrotta.wordpress.com/xmlrpc.php"
+                                 :username "thiagowfx"
+                                 :default-title "Title"
+                                 :default-categories ("")
+                                 :tags-as-categories nil)))
+                        (add-hook 'org-mode-hook (lambda () (auto-fill-mode t)))
+                        ))
+
         (:name projectile
                :after (projectile-global-mode))
+
         (:name smex
                :after (global-set-key (kbd "M-x") 'smex))
+
         (:name undo-tree
-               :after (global-set-key (kbd "C-+") 'undo-tree-redo))))
+               :after (global-set-key (kbd "C-+") 'undo-tree-redo))
+
+
+        ;; extras
+
+
+        ;; more extras
+
+
+        ;; more extras -- C++
+        (:name function-args
+               :after (progn
+                        (require 'function-args)
+                        (fa-config-default)
+                        (define-key c-mode-map  [(control tab)] 'moo-complete)
+                        (define-key c++-mode-map  [(control tab)] 'moo-complete)
+                        (define-key c-mode-map (kbd "M-o")  'fa-show)
+                        (define-key c++-mode-map (kbd "M-o")  'fa-show)
+                        ))
+        ))
 
 (defvar el-get-wanted-packages
   '(
     ;; default
+    auto-complete
     color-theme-almost-monokai
     evil
     flycheck
@@ -215,12 +249,16 @@
     undo-tree
     
     ;; extras
-    auto-complete
     cmake-mode
     fic-mode
     markdown-mode
     org2blog
     pkgbuild-mode
+
+    ;; more extras -- general
+
+    ;; more extras -- C++
+    function-args
     ))
 
 (fset 'yes-or-no-p 'y-or-n-p)
