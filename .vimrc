@@ -5,16 +5,30 @@ set nocompatible
 execute pathogen#infect()
 
 " plug-in settings
+let g:airline_theme='luna'
+let g:airline_powerline_fonts=1
+
 let g:ctrlp_dotfiles=0
 let g:ctrlp_match_window_reversed=0
+
 let g:easytags_async=1
 let g:easytags_dynamic_files=1
-let g:ycm_path_to_python_interpreter='/usr/bin/python2'
+
 let NERDTreeShowHidden=1
 
+let g:syntastic_cpp_compiler_options='-std=c++11'
+
+let g:ycm_path_to_python_interpreter='/usr/bin/python2'
+
+" colorscheme
 colorscheme molokai
+
+" syntax highlighting
 filetype plugin indent on
 syntax on
+
+" set the leader key
+let mapleader=","
 
 " user mappings with the leader key
 map <Leader>a ggVG
@@ -43,7 +57,7 @@ vnoremap ? ?\v
 " user settings
 set autoread autowrite
 set backspace=indent,eol,start
-set encoding=utf-8 fileencoding=utf-8 fileencodings=utf-8
+set encoding=utf-8 fileencoding=utf-8 fileencodings=utf-8 termencoding=utf-8
 set nofoldenable foldmethod=indent
 set history=10000 laststatus=2 modelines=0
 set ignorecase infercase smartcase
@@ -52,7 +66,8 @@ set mouse=a ttymouse=xterm2
 set cursorline number ruler showcmd showmode scrolloff=5
 set shiftwidth=2 shiftround tabstop=2 softtabstop=2 expandtab smarttab smartindent
 set t_Co=256
-set ttimeout ttimeoutlen=100 ttyfast visualbell
+set ttimeout ttimeoutlen=100 visualbell
+set ttyfast lazyredraw
 set wildmenu wildmode=longest,list:longest
 set undofile nobackup 
 
