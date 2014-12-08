@@ -6,7 +6,7 @@ execute pathogen#infect()
 
 " plug-in settings
 let g:airline_theme='luna'
-let g:airline_powerline_fonts=1
+"let g:airline_powerline_fonts=1
 
 let g:ctrlp_dotfiles=0
 let g:ctrlp_match_window_reversed=0

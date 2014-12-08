@@ -7,7 +7,7 @@ export TERMINAL="terminator"
 # Redshift
 which redshift &>/dev/null && redshift -l -23:-43 &
 
-# network manager
+# Network manager.
 which nm-applet &>/dev/null && nm-applet &
 
 # Clipboard manager.

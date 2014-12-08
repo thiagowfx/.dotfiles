@@ -75,6 +75,7 @@ alias xrandr-t-reset="xrandr --output LVDS1 --primary --mode 1366x768"
 alias youtube-dl-t-mp3="youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3"
 alias youtube-dl-t-video="youtube-dl --continue --title --restrict-filenames"
 
+# adbsync for android
 adbsync() {
     if [[ ! -d "$1" ]]; then
         cat <<EOF
@@ -89,6 +90,7 @@ EOF
     adb push "$1" "$TARGET_DIR/$(basename $1)" && echo "Files successfully copied."
 }
 
+# chroot gentoo style
 gentoo-chroot() {
     [[ "$1" == "" ]] && echo "Example usage:\ngentoo-chroot /mnt/gentoo" && return 0
     [[ ! -d "$1"  ]] && echo "Your specified path $1 doesn't exist" && return 1
@@ -105,11 +107,13 @@ gi() { curl "http://www.gitignore.io/api/$@"; }
 
 gocd() { cd `go list -f '{{.Dir}}' $1`; }
 
+# golang bootstrapping
 gobootstrap() {
   go get github.com/golang/lint
   go get github.com/nsf/gocode
 }
 
+# pacman qkkdiffs
 pacman-qkkdiff-file() {
     if [[ "$1" == "" ]]; then
         cat <<EOF
@@ -141,4 +145,50 @@ EOF
         pacman -Qkkq "$1" | while read package file; do echo $file; bsdtar -xOf /var/cache/pacman/pkg/${package}-${ver}-$(uname -m).pkg.tar.xz ${file/\//} | diff - $file  ; done
         return 0
     fi
+}
+
+# proxy
+function proxy_on() {
+    export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
+
+    if (( $# > 0 )); then
+        valid=$(echo $@ | sed -n 's/\([0-9]\{1,3\}.\)\{4\}:\([0-9]\+\)/&/p')
+        if [[ $valid != $@ ]]; then
+            >&2 echo "Invalid address"
+            return 1
+        fi
+
+        export http_proxy="http://$1/"
+        export https_proxy=$http_proxy
+        export ftp_proxy=$http_proxy
+        export rsync_proxy=$http_proxy
+        export HTTP_PROXY=$http_proxy
+        export HTTTS_PROXY=$http_proxy
+        export FTP_PROXY=$http_proxy
+        export RSYNC_PROXY=$http_proxy
+        echo "Proxy environment variable set."
+        return 0
+    fi
+
+    echo -n "username: "; read username
+    if [[ $username != "" ]]; then
+        echo -n "password: "
+        read -es password
+        local pre="$username:$password@"
+    fi
+
+    echo -n "server: "; read server
+    echo -n "port: "; read port
+    export http_proxy="http://$pre$server:$port/"
+    export https_proxy=$http_proxy
+    export ftp_proxy=$http_proxy
+    export rsync_proxy=$http_proxy
+}
+
+function proxy_off(){
+    unset http_proxy
+    unset https_proxy
+    unset ftp_proxy
+    unset rsync_proxy
+    echo -e "Proxy environment variable removed."
 }

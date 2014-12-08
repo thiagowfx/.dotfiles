@@ -63,7 +63,6 @@
    (quote
     (("TODO" . "turquoise")
      ("PROGRESS" . "slate blue")
-     ("TROUBLE" . "dark red")
      ("DONE" . "forest green"))))
  '(org-todo-keywords (quote ((sequence "TODO" "PROGRESS" "TROUBLE" "|" "DONE"))))
  '(package-archives
@@ -227,10 +226,8 @@
                :after (progn
                         (require 'function-args)
                         (fa-config-default)
-                        (define-key c-mode-map  [(control tab)] 'moo-complete)
-                        (define-key c++-mode-map  [(control tab)] 'moo-complete)
-                        (define-key c-mode-map (kbd "M-o")  'fa-show)
-                        (define-key c++-mode-map (kbd "M-o")  'fa-show)
+                        (define-key c-mode-map (kbd "M-n")  'fa-show)
+                        (define-key c++-mode-map (kbd "M-n")  'fa-show)
                         ))
         ))
 
