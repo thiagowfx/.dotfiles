@@ -1,5 +1,7 @@
 # -*- shell-script -*-
 
+alias en="emacsclient -a '' -nw $HOME/_org/next.org"
+
 # environment variables
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd'
 export DEBFULLNAME="$($HOME/_scripts/packager name)"
@@ -40,6 +42,7 @@ alias ln="ln -v"
 alias lspci="lspci -v"
 alias lsusb="lsusb -t"
 alias make="time make -j$(nproc) -l$(nproc)"
+alias matlab="matlab -nosplash"
 alias mkdir="mkdir -p"
 alias mv="mv -v"
 alias netstat="netstat -pln"
@@ -111,6 +114,7 @@ gocd() { cd `go list -f '{{.Dir}}' $1`; }
 gobootstrap() {
   go get github.com/golang/lint
   go get github.com/nsf/gocode
+  go get github.com/tj/go-search
 }
 
 # pacman qkkdiffs

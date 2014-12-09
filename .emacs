@@ -54,17 +54,17 @@
  '(major-mode (quote org-mode))
  '(make-backup-files nil)
  '(menu-bar-mode nil)
- '(org-agenda-files (quote ("~/Dropbox/org/csf-next.org")))
+ '(org-agenda-files nil)
  '(org-confirm-babel-evaluate nil)
  '(org-crypt-key "A905373C")
- '(org-directory "/home/thiago/Dropbox/org")
+ '(org-directory "/home/thiago/_org")
  '(org-tags-exclude-from-inheritance (quote ("crypt")))
  '(org-todo-keyword-faces
    (quote
     (("TODO" . "turquoise")
      ("PROGRESS" . "slate blue")
      ("DONE" . "forest green"))))
- '(org-todo-keywords (quote ((sequence "TODO" "PROGRESS" "TROUBLE" "|" "DONE"))))
+ '(org-todo-keywords (quote ((sequence "TODO" "PROGRESS" "|" "DONE"))))
  '(package-archives
    (quote
     (("gnu" . "http://elpa.gnu.org/packages/")
@@ -75,23 +75,7 @@
  '(recentf-mode t)
  '(recentf-save-file "~/.emacs.d/recentf-file")
  '(require-final-newline t)
- '(safe-local-variable-values
-   (quote
-    ((eval setq-default gac-automatically-push-p t)
-     (eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook"
-           (add-hook
-            (quote write-contents-functions)
-            (lambda nil
-              (delete-trailing-whitespace)
-              nil))
-           (require
-            (quote whitespace))
-           "Sometimes the mode needs to be toggled off and on."
-           (whitespace-mode 0)
-           (whitespace-mode 1))
-     (whitespace-line-column . 80)
-     (whitespace-style face tabs trailing lines-tail)
-     (require-final-newline . t))))
+ '(safe-local-variable-values nil)
  '(save-interprogram-paste-before-kill t)
  '(save-place t nil (saveplace))
  '(save-place-file "~/.emacs.d/save-places-file")
