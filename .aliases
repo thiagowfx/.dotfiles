@@ -4,8 +4,8 @@ alias en="emacsclient -a '' -nw $HOME/_org/next.org"
 
 # environment variables
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd'
-export DEBFULLNAME="$($HOME/_scripts/packager name)"
-export DEBEMAIL="$($HOME/_scripts/packager mail)"
+[[ -f $HOME/_scripts/packager ]] && export DEBFULLNAME="$($HOME/_scripts/packager name)"
+[[ -f $HOME/_scripts/packager ]] && export DEBEMAIL="$($HOME/_scripts/packager mail)"
 export EDITOR="vim"
 export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
