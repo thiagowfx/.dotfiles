@@ -10,7 +10,7 @@ if [ -z "$BLOCK_INSTANCE" ]
 fi
 
 if ! [ -e "/sys/class/net/${BLOCK_INSTANCE}/operstate" ] || ! [ "`cat /sys/class/net/${BLOCK_INSTANCE}/operstate`" = "up" ]
-  then echo ""
+  then echo " "
   exit 0
 fi
 
