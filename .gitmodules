@@ -1,0 +1,3 @@
+[submodule "grml-etc-core"]
+	path = grml-etc-core
+	url = https://github.com/grml/grml-etc-core
