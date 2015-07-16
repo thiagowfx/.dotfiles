@@ -1,0 +1,92 @@
+# Basic configs
+source /etc/Muttrc.gpg.dist
+set pgp_sign_as = A905373C
+set crypt_use_gpgme = yes
+set quit
+set pager_index_lines = 8
+set pager_context = 5
+set pager_stop
+set menu_scroll
+set smart_wrap
+set tilde
+set sort = threads
+set sort_aux = reverse-last-date-received
+
+#
+# Receiving e-mails
+#
+# Native IMAP
+#
+set header_cache = "~/.cache/mutt"
+set imap_user = "perrotta.thiago@poli.ufrj.br"
+set my_polimail_password = `gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/.msmtp.polimail.gpg`
+set imap_pass = $my_polimail_password
+set folder = "imaps://imap.gmail.com:993/"
+set spoolfile = "+INBOX"
+unset imap_passive
+set imap_keepalive = 300
+set mail_check = 60       # check for new mail in your inboxes
+set timeout = 60          # IMAP: check new mail
+#
+# Choose either one of those.
+#
+mailboxes "+INBOX" "=[Gmail]/Sent Mail"
+# set imap_check_subscribed # check all subscribed folders from IMAP
+
+#
+# Sending / composing e-mails
+#
+set sendmail= "/usr/bin/msmtp"
+set forward_format = "Fwd: %s"
+set include
+set forward_quote
+set edit_headers
+set sig_dashes
+set fast_reply
+set postponed = "+[Gmail]/Drafts"
+set realname = "Thiago Perrotta"
+set send_charset = "us-ascii:utf-8"
+set from = "perrotta.thiago@poli.ufrj.br"
+set envelope_from
+unset record # gmail does this already
+
+#
+# This theme is from H. D. Lee
+#
+# This colors file was originally taken from Rosenfeld's
+# Modified slightly.
+# Running aterm with:
+#  aterm +sb -geometry 80x60 -bg papayawhip -fg darkgreen -e mutt
+#
+# color terminals: # (default, white, black, green, magenta, blue, cyan, yellow, red)
+# (bright...)
+# (color1,color2,...,colorN-1)
+#
+#     object     foreground     background
+#
+color normal     default        default # normal text
+color indicator  brightcyan     black   # actual message
+color tree       brightmagenta  default # thread arrows
+color status     cyan           black   # status line
+color error      brightcyan     default # errors
+color message    cyan           default # info messages
+color signature  red            default # signature
+color attachment green          default # MIME attachments
+color search     brightyellow   red     # search matches
+color tilde      brightmagenta  default # ~ at bottom of msg
+color markers    red            default # + at beginning of wrapped lines
+color hdrdefault blue           default # default header lines
+color bold       red            default # hiliting bold patterns in body
+color underline  green          default # hiliting underlined patterns in body
+color quoted     cyan           default # quoted text
+color quoted1    green          default
+color quoted2    red            default
+color quoted3    magenta        default
+color quoted4    blue           default
+color quoted5    blue           default
+color header     red            default  "^(from|subject):"
+uncolor index *                                 # unset all color index entries
+color index      green      default  ~F         # Flagged
+color index      red        default  ~N         # New
+color index      magenta    default  ~T         # Tagged
+color index      yellow     default  ~D         # Deleted
