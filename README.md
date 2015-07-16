@@ -8,3 +8,4 @@ Inspirations
 
 - https://github.com/madbence/dotfiles
 - https://github.com/jfrazelle/dotfiles
+- http://grml.org/
