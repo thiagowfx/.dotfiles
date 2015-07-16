@@ -15,6 +15,8 @@ set $Alt Mod1
 set $I3lock i3lock-wrapper -l
 set $FileManager pcmanfm
 
+new_window pixel 2
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -222,7 +224,6 @@ bindsym $mod+m scratchpad show
 #
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
-for_window [window_role="disposable"] floating enable # this is non-standard
 
 # no border in those windows
 for_window [class="Chromium"] border 1pixel
@@ -234,20 +235,18 @@ for_window [class="Lxappearance"] floating enable
 for_window [class="System.config.printer.py"] floating enable
 
 # programs with specific workspaces
-assign [window_role="browser"] $W01
+assign [class="Chromium"] $W01
+assign [class="Firefox"] $W01
 assign [class="Hexchat"] $W09
 assign [class="Telegram"] $W09
 assign [class="Audacious"] $W10
 assign [class="Spotify"] $W10
 
-# autostart some programs (for specific workspaces) --> it is better to use .xinitrc for that
-# exec --no-startup-id hexchat
-
 #
 # custom hotkeys
 #
 # bindsym Print exec --no-startup-id gnome-screenshot --file=$HOME/Pictures/$(date "+%Y-%m-%d_%H.%M.%S.png") && notify-send 'Took a SS'
-bindsym Print exec --no-startup-id scrot '%F_%H-%M-%S_$wx$h.png' -e 'mv $f ~/Pictures' && notify-send 'Took a SS'
+bindsym Print exec --no-startup-id scrot '%F_%H-%M-%S_$wx$h.png' -e 'mv $f ~/Pictures' && notify-send 'Took a screenshot'
 bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 5 -time 0
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 -time 0
 
