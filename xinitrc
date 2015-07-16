@@ -57,7 +57,7 @@ _tiling_f() {
     startprog "xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55" xcompmgr
 
     # redshift (color temperature adjustment)
-    startprog "redshift -l -23:-43" redshift
+    startprog "redshift" redshift "$HOME/.config/redshift.conf"
 
     # network manager applet
     startprog "nm-applet" nm-applet
