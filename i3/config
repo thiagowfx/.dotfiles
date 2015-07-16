@@ -192,14 +192,24 @@ bar {
         position bottom
         mode dock
 
+# olive theme
+        #colors {
+            #separator  #888888
+            #background #333333
+            #statusline #FFFFFF
+            #focused_workspace  #4E9C00 #4E9C00 #FFFFFF
+            #active_workspace   #333333 #333333 #FFFFFF
+            #inactive_workspace #333333 #333333 #888888
+            #urgent_workspace   #C20000 #C20000 #FFFFFF
+        #}
+
         colors {
-            separator  #888888
-            background #333333
-            statusline #FFFFFF
-            focused_workspace  #4E9C00 #4E9C00 #FFFFFF
-            active_workspace   #333333 #333333 #FFFFFF
-            inactive_workspace #333333 #333333 #888888
-            urgent_workspace   #C20000 #C20000 #FFFFFF
+            statusline  #ECF0F1
+            background  #2C3E50
+            focused_workspace  #3498DB #2C3E50 #f5f5f5
+            active_workspace   #1ABC9C #2C3E50 #BDC3C7
+            inactive_workspace #2C3E50 #2C3E50 #BDC3C7
+            urgent_workspace   #f92672 #2C3E50 #BDC3C7
         }
 }
 
@@ -265,7 +275,14 @@ bindsym Shift+XF86AudioMute exec playerctl play-pause && pkill -RTMIN+2 '^i3bloc
 # To modify colors, use j4-make-config (third-party tool).
 #
 # class                 border  backgr. text    indicator
-client.focused          #4E9C00 #4E9C00 #FFFFFF #FFFFFF
-client.focused_inactive #1B3600 #1B3600 #888888 #FFFFFF
-client.unfocused        #333333 #333333 #888888 #FFFFFF
-client.urgent           #C20000 #C20000 #FFFFFF #FFFFFF
+
+# olive theme
+#client.focused          #4E9C00 #4E9C00 #FFFFFF #FFFFFF
+#client.focused_inactive #1B3600 #1B3600 #888888 #FFFFFF
+#client.unfocused        #333333 #333333 #888888 #FFFFFF
+#client.urgent           #C20000 #C20000 #FFFFFF #FFFFFF
+
+client.focused          #3498DB #3498DB #ECF0F1 #2ECC71
+client.unfocused        #3498DB #2C3E50 #ECF0F1 #2C3E50
+client.focused_inactive #3498DB #2C3E50 #ECF0F1 #2C3E50
+client.urgent           #3498DB #2C3E50 #ECF0F1 #2C3E50
