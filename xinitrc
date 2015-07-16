@@ -66,7 +66,7 @@ _tiling_f() {
     startprog "xmodmap $HOME/.xmodmap" xmodmap "$HOME/.xmodmap"
 
     # feh: set desktop background
-    startprog "sh $HOME/.fehbg" feh "$HOME/.fehbg"
+    startprog "feh --bg-scale $HOME/.wallpaper.png --no-fehbg" feh "$HOME/.wallpaper.png"
 }
 
 bspwm_f() {
