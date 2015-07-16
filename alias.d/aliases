@@ -1,3 +1,18 @@
+# This function creates an alias iff the specified program and/or a given file
+# exists on the system.
+#
+# Arguments:
+#  $1: the alias
+#  $2: its value
+#  $3: a program (e.g. vim or /usr/bin/vim)
+#  $4: a file (e.g. $HOME/directory)
+#
+addalias() {
+  [[ "x$3" != "x" ]] && ! command -v "$3" &>/dev/null && return
+  [[ "x$4" != "x" ]] && [ ! -e "$4" ] && return
+  alias "$1"="$2"
+}
+
 # misc
 addalias make "time make -j$(($(nproc)+1)) -l$(($(nproc)+1))" make
 addalias cower "cower --color=always --domain aur4.archlinux.org --sort=votes --target=$HOME/.aur" cower "$HOME/.aur"

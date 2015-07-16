@@ -1,3 +1,18 @@
+# This function sets an environment variable iff its correlated program
+# is installed and/or if a given file exists on the system.
+#
+# Arguments:
+#  $1: the environment variable (e.g. EDITOR)
+#  $2: its value
+#  $3: a program (e.g. vim or /usr/bin/vim)
+#  $4: a file (e.g. $HOME/directory)
+#
+addenv() {
+    [[ "x$3" != "x" ]] && ! command -v "$3" &>/dev/null && return
+    [[ "x$4" != "x" ]] && [ ! -e "$4" ] && return
+    export "$1"="$2"
+}
+
 # editor
 addenv EDITOR "vim" vim
 addenv VISUAL "$EDITOR"

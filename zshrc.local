@@ -8,10 +8,7 @@ source_if_exists() {
 }
 
 # aliases
-source_if_exists ".alias"
-
-# colors
-source_if_exists ".base16-atelierlakeside.dark.sh"
+source_if_exists ".common.sh"
 
 # zsh: commands beginning with blank spaces don't go to the history
 export HIST_IGNORE_SPACE

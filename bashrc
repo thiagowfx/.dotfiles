@@ -8,7 +8,7 @@ source_if_exists() {
 }
 
 # aliases
-source_if_exists ".alias"
+source_if_exists ".common.sh"
 
 export HISTCONTROL="ignoreboth" # ignorespace and ignoredups
 export HISTSIZE=50000000
@@ -28,9 +28,6 @@ complete -cf sudo
 
 # command-not-found hook: arch
 source_if_exists "/usr/share/doc/pkgfile/command-not-found.bash"
-
-# colors
-source_if_exists ".base16-atelierlakeside.dark.sh"
 
 # prompt
 git_branch() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'; }
