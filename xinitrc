@@ -34,6 +34,9 @@ _tiling_f() {
     # X keymap: can be permanently set with `localectl set-x11-keymap` (part of systemd)
     startprog "setxkbmap br; setxkbmap -option terminate:ctrl_alt_bksp" setxkbmap
 
+    # set X cursor
+    startprog "xsetroot -cursor_name left_ptr" xsetroot
+
     # syndaemon: no touchpad clicking while typing
     startprog "syndaemon -i 1 -t -k -d" syndaemon
 
