@@ -1,0 +1,28 @@
+[user]
+	name = Thiago Perrotta
+	email = perrotta.thiago@poli.ufrj.br
+[credential]
+	helper = store
+[push]
+	default = simple
+[alias]
+    c = commit -m
+    l = commit -a -m
+	d = diff
+	p = push
+	st = status
+[core]
+	autocrlf = input
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	grep = auto
+	interactive = auto
+	showbranch = auto
+	ui = auto
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
