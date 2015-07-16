@@ -1,0 +1,18 @@
+# adbsync for android
+_adbsync() {
+    if [[ ! -d "$1" ]]; then
+        cat <<EOF
+  Purpose: to sync a directory in your computer with one in your android. For now, it is just an one-way sync (computer -> android). TODO: full, efficient rsync-like sync
+  Usage: adbsync <localdir>
+  Example: adbsync $HOME/toAndroid
+  Remember connecting your device first:
+    adb connect 192.168.0.*
+EOF
+        return 0
+    fi
+    local TARGET_DIR="/storage/sdcard1/adbsync"
+    adb wait-for-device
+    adb shell "[[ ! -d ${TARGET_DIR} ]] && mkdir -p ${TARGET_DIR}"
+    adb push "$1" "${TARGET_DIR}/$(basename $1)" && echo "Files successfully copied."
+}
+addtemplate adbsync adb

@@ -1,0 +1,11 @@
+# chroot: gentoo style
+_gentoo-chroot() {
+    [[ "$1" == "" ]] && echo "Example usage:\ngentoo-chroot /mnt/gentoo" && return 0
+    [[ ! -d "$1"  ]] && echo "Your specified path $1 doesn't exist" && return 1
+    sudo cp -L /etc/resolv.conf "$1/etc/resolv.conf"
+    sudo mount -o bind /proc "$1/proc"
+    sudo mount --rbind /dev  "$1/dev"
+    sudo mount --rbind /sys  "$1/sys"
+    sudo chroot "$1/" /bin/env -i TERM=$TERM /bin/bash
+}
+addtemplate gentoo-chroot chroot

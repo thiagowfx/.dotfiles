@@ -1,0 +1,19 @@
+# xrandr turn on/off hdmi for laptop
+_xrandr-laptop-hdmi() {
+    ([[ "$1" == "1" ]] || [[ "$1" == "ON" ]]) && \
+    xrandr --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1 || \
+    xrandr --output HDMI1 --off
+}
+addtemplate xrandr-laptop-hdmi xrandr
+
+# xrandr mirror displays (hdmi) for laptop
+_xrandr-laptop-hdmi-mirror() {
+    xrandr --output LVDS1 --primary --auto --output HDMI1 --auto --same-as LVDS1
+}
+addtemplate xrandr-laptop-hdmi-mirror xrandr
+
+# xrandr reset resolution for laptop
+_xrandr-laptop-reset() {
+    xrandr --output LVDS1 --primary --mode 1366x768
+}
+addtemplate xrandr-laptop-reset xrandr

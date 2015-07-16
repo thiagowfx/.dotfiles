@@ -1,0 +1,11 @@
+# youtube-dl: download video as mp3
+_ytdl-mp3() {
+    youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3 "$@"
+}
+addtemplate ytdl-mp3 youtube-dl
+
+# youtube-dl: download video
+_ytdl-video() {
+    youtube-dl --continue --title --restrict-filenames "$@"
+}
+addtemplate ytdl-video youtube-dl

@@ -1,0 +1,11 @@
+# ffmpeg x11 screencasting
+_ffmpeg-screencast() {
+    ffmpeg -f x11grab -s $(xdpyinfo | awk '/dimensions:/ {print $2}') -r 25 -i :0.0 -qscale 0 ffmpeg-out-$(date '+%Y-%m-%d-%H-%M-%S').mkv
+}
+addtemplate ffmpeg-screencast ffmpeg
+
+# ffmpeg x11 screencasting with audio
+_ffmpeg-screencast-audio() {
+    ffmpeg -f alsa -i pulse -acodec pcm_s16le -f x11grab -s $(xdpyinfo | awk '/dimensions:/ {print $2}') -r 25 -i :0.0 -qscale 0 ffmpeg-out-$(date '+%Y-%m-%d-%H-%M-%S').mkv
+}
+addtemplate ffmpeg-screencast-audio ffmpeg

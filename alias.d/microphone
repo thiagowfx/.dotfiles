@@ -1,0 +1,6 @@
+# test if your microphone is working
+_microphone-test() {
+    arecord -vvv -f dat /dev/null
+}
+addtemplate microphone-test arecord
+

@@ -1,0 +1,50 @@
+# pacman: given a specific full-path file, get a diff between he
+# current one on the system and the one in its respective package
+_pacman-diff-file() {
+    if [[ "$1" == "" ]]; then
+        cat <<EOF
+          Purpose: get the changes between this file now and in the upstream package
+          Usage: qkkdiff-file <file>
+          Example: qkkdiff-file /etc/pacman.conf"
+EOF
+    elif [[ -f "$1" ]]; then
+        pkg="$(pacman -Qo $1 | awk '//{printf "%s-%s", $(NF-1), $NF;}')"
+        bsdtar -xOf /var/cache/pacman/pkg/${pkg}-$(uname -m).pkg.tar.xz "${1/\//}" | diff - "$1"
+        return 0
+    else
+        echo "The provided file \e[0;31m${1}\e[0m does not exist."
+        return 1
+    fi
+}
+addtemplate pacman-diff-file pacman
+
+# pacman: given a package name, get differences between the files it contain
+# and the ones in the system
+_pacman-diff-pkg() {
+    if [[ "$1" == "" ]]; then
+        echo <<EOF
+          Purpose: get the changes between the upstream package and the files on the filesystem
+          Usage: qkkdiff <package>
+          Example: qkkdiff pacman
+EOF
+    elif ! pacman -Q "$1"; then
+        return 1
+    else
+        ver=$(pacman -Q "$1" | cut -f2 -d' ')
+        pacman -Qkkq "$1" | while read package file; do echo $file; bsdtar -xOf /var/cache/pacman/pkg/${package}-${ver}-$(uname -m).pkg.tar.xz ${file/\//} | diff - $file  ; done
+        return 0
+    fi
+}
+addtemplate pacman-diff-pkg pacman
+
+# get extra packages installed on the pacman-based system
+_pacman-extrapkgs() {
+    comm -23 <(pacman -Qeq | sort) <(pacman -Qgq base base-devel | sort)
+}
+addtemplate pacman-extrapkgs pacman
+
+# apt-get like build-dep
+_pacman-build-dep() {
+    sudo pacman -S $(expac -S "%E" "$@")
+}
+addtemplate pacman-build-dep pacman

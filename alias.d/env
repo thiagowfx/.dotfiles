@@ -1,0 +1,34 @@
+# editor
+addenv EDITOR "vim" vim
+addenv VISUAL "$EDITOR"
+
+# less: with colors
+addenv LESS "-R" less
+
+# man: don't clear the screen
+addenv MANPAGER "less -X" less
+
+# google test: use colors
+addenv GTEST_COLOR "YES"
+
+# asp (https://github.com/falconindy/asp) for Arch Linux
+addenv ASPROOT "$HOME/.asp" asp
+
+# paths
+addpath() {
+    addenv PATH "$1:$PATH" "$2" "${3:-$1}"
+}
+
+addpath "$HOME/.bin" ""
+addpath "/usr/lib/ccache/bin" ccache
+addpath "$(ruby -rubygems -e "puts Gem.user_dir")/bin" ruby
+
+# wine
+addwine() {
+    addenv "$1" "$2" wine
+}
+
+addwine WINEARCH "win32"
+addwine WINEDEBUG "fixme-all"
+addwine WINEDLLOVERRIDES "winemenubuilder.exe=d"
+addwine WINEPREFIX "$HOME/.winepref"

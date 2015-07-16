@@ -1,0 +1,12 @@
+# upgrade a Unix system
+_world() {
+    [[ -e /etc/arch-release ]] && sudo pacman -Syu "$@" && return
+    [[ -e /etc/gentoo-release ]] &&  su -c "emerge --sync && emerge -avuDN --with-bdeps y --keep-going @world && emerge -v --depclean && revdep-rebuild -v && etc-update && eclean -d distfiles" && return
+    [[ -e /etc/debian_version ]] && sudo apt update && sudo apt full-upgrade && return
+}
+addtemplate world
+
+_world-aur() {
+    command -v apacman &>/dev/null && apacman --noconfirm -Syu "$@" && return
+}
+addtemplate world-aur

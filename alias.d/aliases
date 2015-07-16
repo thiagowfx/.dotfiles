@@ -1,0 +1,29 @@
+# misc
+addalias make "time make -j$(($(nproc)+1)) -l$(($(nproc)+1))" make
+addalias cower "cower --color=always --domain aur4.archlinux.org --sort=votes --target=$HOME/.aur" cower "$HOME/.aur"
+addalias alsamixer "alsamixer -c 0" alsamixer
+addalias xclip "xclip -selection clipboard" xclip
+addalias g "git" git
+
+# verbose / output
+alias cp="cp -v"
+alias ln="ln -v"
+alias mv="mv -v"
+addalias chmod "chmod -v" chmod
+addalias chown "chown -v" chown
+addalias curl "curl -v -L" curl
+addalias df "df -h" df
+addalias du "du -h" du
+addalias pstree "pstree -p" pstree
+addalias hexdump "hexdump -C" hexdump
+addalias grep "grep --color=always" grep
+addalias free "free -h" free
+addalias diff "diff -uN" diff
+addalias diff "colordiff -uN" colordiff
+addalias colordiff "colordiff -uN" colordiff
+addalias netstat "netstat -pln" netstat
+addalias pgrep "pgrep -fl" pgrep
+addalias ls "ls -F --color=always" ls
+
+# typos
+alias sl="ls"
