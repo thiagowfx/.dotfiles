@@ -5,8 +5,7 @@ source_if_exists "$HOME/.base16-atelierlakeside.dark.sh"
 source_if_exists "/etc/profile.d/vte.sh"
 
 if [[ $TERM == xterm-termite ]]; then
-      . /etc/profile.d/vte.sh
-        __vte_prompt_command
+      source_if_exists "/etc/profile.d/vte.sh" && __vte_prompt_command
 fi
 
 # Templates are functions/snippets for general use.
