@@ -8,7 +8,7 @@ source_if_exists() {
 }
 
 # aliases
-source_if_exists ".common.sh"
+source_if_exists "$HOME/.common.sh"
 
 export HISTCONTROL="ignoreboth" # ignorespace and ignoredups
 export HISTSIZE=50000000
@@ -32,7 +32,7 @@ source_if_exists "/usr/share/doc/pkgfile/command-not-found.bash"
 # prompt
 git_branch() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'; }
 PS1="\[\e[0;32m\]\$(git_branch)\[\e[m\]\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]\[\033[1;32m\] \$\[\033[m\] "
-source_if_exists ".bash_prompt"
+source_if_exists "$HOME/.bash_prompt"
 
 # shell options
 set -o emacs

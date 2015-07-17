@@ -1,8 +1,13 @@
 # colors
-source_if_exists ".base16-atelierlakeside.dark.sh"
+source_if_exists "$HOME/.base16-atelierlakeside.dark.sh"
 
 # termite
 source_if_exists "/etc/profile.d/vte.sh"
+
+if [[ $TERM == xterm-termite ]]; then
+      . /etc/profile.d/vte.sh
+        __vte_prompt_command
+fi
 
 # Templates are functions/snippets for general use.
 # They are aliased preceded with "t-".
@@ -26,7 +31,7 @@ addtemplate() {
   alias "t-$1"="_$1"
 }
 
-for f in .alias.d/*
+for f in "$HOME"/.alias.d/*
 do
 	source $f
 done

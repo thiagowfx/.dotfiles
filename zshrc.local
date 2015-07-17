@@ -8,13 +8,13 @@ source_if_exists() {
 }
 
 # aliases
-source_if_exists ".common.sh"
+source_if_exists "$HOME/.common.sh"
 
 # zsh: commands beginning with blank spaces don't go to the history
 export HIST_IGNORE_SPACE
 
 # additional zsh completions
-fpath=(~/.zsh-completions/src $fpath)
+fpath=("$HOME/.zsh-completions/src" $fpath)
 
 # autoloads
 autoload -U bashcompinit && bashcompinit
@@ -36,8 +36,8 @@ source_if_exists "/usr/share/doc/pkgfile/command-not-found.zsh"
 source_if_exists "/etc/zsh_command_not_found"
 
 # zsh syntax highlighting
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
-source_if_exists ".zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+ZSH_HIGHLIGHT_HIGHLIGHTERS=('main' 'brackets' 'pattern')
+source_if_exists "$HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # enable some options
 setopt appendhistory
