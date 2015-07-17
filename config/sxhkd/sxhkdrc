@@ -14,7 +14,7 @@ XF86AudioNext
     playerctl next && pkill -RTMIN+2 '^i3blocks'
 
 XF86AudioMute
-     amixer -q set Master toggle && pkill -RTMIN+1 '^i3blocks'
+    pulseaudio-ctl mute && pkill -RTMIN+1 '^i3blocks'
 
 XF86AudioRaiseVolume
     pulseaudio-ctl up && pkill -RTMIN+1 '^i3blocks'
