@@ -102,7 +102,6 @@ bindsym $mod+b focus child
 #
 # focus_follows_mouse no
 hide_edge_borders vertical
-# floating_maximum_size 1024 x 768
 workspace_auto_back_and_forth yes
 
 # switch to next workspace
@@ -112,16 +111,16 @@ bindsym $mod+n workspace next
 bindsym $mod+Shift+n workspace prev
 bindsym $mod+p workspace prev
 
+# quickswitch windows
 bindsym $mod+apostrophe exec --no-startup-id quickswitch.py
 bindsym $mod+Tab exec --no-startup-id quickswitch.py
 bindsym $Alt+Tab exec --no-startup-id quickswitch.py
 
-#
 # named workspaces
 # 
-set $W01 01:www
-set $W09 09:IRC
-set $W10 10:Music ♪
+set $W01 01:web
+set $W09 09:msg
+set $W10 10:music ♪
 
 # switch to workspace
 bindsym $mod+1 workspace $W01
@@ -194,17 +193,6 @@ bar {
         position bottom
         mode dock
 
-# olive theme
-        #colors {
-            #separator  #888888
-            #background #333333
-            #statusline #FFFFFF
-            #focused_workspace  #4E9C00 #4E9C00 #FFFFFF
-            #active_workspace   #333333 #333333 #FFFFFF
-            #inactive_workspace #333333 #333333 #888888
-            #urgent_workspace   #C20000 #C20000 #FFFFFF
-        #}
-
         colors {
             statusline  #ECF0F1
             background  #2C3E50
@@ -219,18 +207,9 @@ bar {
 bindsym $mod+o move scratchpad
 bindsym $mod+m scratchpad show
 
-#
-# window rules
-#
+# windows that should always float
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
-
-# no border in those windows
-for_window [class="Chromium"] border 1pixel
-for_window [class="Emacs"] border 1pixel
-for_window [class="URxvt"] border 1pixel
-
-# windows that should always float
 for_window [class="Lxappearance"] floating enable
 for_window [class="System.config.printer.py"] floating enable
 
@@ -242,45 +221,8 @@ assign [class="Telegram"] $W09
 assign [class="Audacious"] $W10
 assign [class="Spotify"] $W10
 
-#
-# custom hotkeys
-#
-# bindsym Print exec --no-startup-id gnome-screenshot --file=$HOME/Pictures/$(date "+%Y-%m-%d_%H.%M.%S.png") && notify-send 'Took a SS'
-bindsym Print exec --no-startup-id scrot '%F_%H-%M-%S_$wx$h.png' -e 'mv $f ~/Pictures' && notify-send 'Took a screenshot'
-bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 5 -time 0
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 -time 0
-
-#
-# Hotkeys to modify the system volume.
-#
-# For AlsaMixer
-# bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 2dB+ unmute && pkill -RTMIN+1 '^i3blocks'
-# bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 2dB- unmute && pkill -RTMIN+1 '^i3blocks'
-#
-# For PulseAudio
-# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 -- +5% && pkill -RTMIN+1 '^i3blocks'
-# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -- -5% && pkill -RTMIN+1 '^i3blocks'
-#
-# For PulseAudio: an alternative, using Graysky's pulseaudio-ctl
-bindsym XF86AudioRaiseVolume exec --no-startup-id pulseaudio-ctl up && pkill -RTMIN+1 '^i3blocks'
-bindsym XF86AudioLowerVolume exec --no-startup-id pulseaudio-ctl down && pkill -RTMIN+1 '^i3blocks'
-
-bindsym XF86AudioMute exec amixer -q set Master toggle && pkill -RTMIN+1 '^i3blocks'
-bindsym Shift+XF86AudioLowerVolume exec playerctl previous && pkill -RTMIN+2 '^i3blocks'
-bindsym Shift+XF86AudioRaiseVolume exec playerctl next && pkill -RTMIN+2 '^i3blocks'
-bindsym Shift+XF86AudioMute exec playerctl play-pause && pkill -RTMIN+2 '^i3blocks'
-
-#
-# To modify colors, use j4-make-config (third-party tool).
-#
+# colors
 # class                 border  backgr. text    indicator
-
-# olive theme
-#client.focused          #4E9C00 #4E9C00 #FFFFFF #FFFFFF
-#client.focused_inactive #1B3600 #1B3600 #888888 #FFFFFF
-#client.unfocused        #333333 #333333 #888888 #FFFFFF
-#client.urgent           #C20000 #C20000 #FFFFFF #FFFFFF
-
 client.focused          #3498DB #3498DB #ECF0F1 #2ECC71
 client.unfocused        #3498DB #2C3E50 #ECF0F1 #2C3E50
 client.focused_inactive #3498DB #2C3E50 #ECF0F1 #2C3E50

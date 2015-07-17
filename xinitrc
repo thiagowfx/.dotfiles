@@ -67,17 +67,9 @@ _tiling_f() {
 
     # feh: set desktop background
     startprog "feh --bg-scale $HOME/.wallpaper.png --no-fehbg" feh "$HOME/.wallpaper.png"
-}
 
-bspwm_f() {
     # bind keys
     startprog "sxhkd" sxhkd
-
-    _tiling_f
-}
-
-i3wm_f() {
-    _tiling_f
 }
 
 # WM: The window manager to be started.
@@ -85,13 +77,13 @@ WM=${WM:-i3}
 
 case $WM in
     awesome           ) exec awesome;;
-    bspwm             ) bspwm_f; exec bspwm;;
+    bspwm             ) exec bspwm;;
     cinnamon          ) exec cinnamon-session;;
     dwm               ) exec dwm;;
     e17|enlightenment ) exec enlightenment_start;;
     fluxbox           ) exec startfluxbox;;
     gnome             ) exec gnome-session;;
-    i3|i3wm           ) i3wm_f; exec i3;;
+    i3|i3wm           ) _tiling_f; exec i3;;
     kde               ) exec startkde;;
     lxde              ) exec startlxde;;
     mate              ) exec mate-session;;
