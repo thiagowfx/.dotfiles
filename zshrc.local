@@ -13,6 +13,9 @@ source_if_exists ".common.sh"
 # zsh: commands beginning with blank spaces don't go to the history
 export HIST_IGNORE_SPACE
 
+# additional zsh completions
+fpath=(~/.zsh-completions/src $fpath)
+
 # autoloads
 autoload -U bashcompinit && bashcompinit
 autoload -U colors && colors
