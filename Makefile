@@ -13,4 +13,4 @@ uninstall:
 clean:
 	make -C i3blocks clean
 
-.PHONY: all
+.PHONY: all upgrade install uninstall clean
