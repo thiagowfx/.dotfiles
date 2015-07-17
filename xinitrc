@@ -54,7 +54,7 @@ _tiling_f() {
     startprog "start-pulseaudio-x11" start-pulseaudio-x11
 
     # compositing manager
-    startprog "xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55" xcompmgr
+    startprog "compton" compton
 
     # redshift (color temperature adjustment)
     startprog "redshift" redshift "$HOME/.config/redshift.conf"
