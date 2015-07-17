@@ -25,7 +25,7 @@ cursor_shape = underline
 foreground = #cccccc
 foreground_bold = #ffffff
 #foreground_dim = #888888
-background = rgba(63, 63, 63, 0.8)
+background = rgba(63, 63, 63, 0.85)
 cursor = #999999
 
 # vim: ft=dosini
