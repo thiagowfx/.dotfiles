@@ -9,7 +9,7 @@ helper = store
 default = simple
 
 [alias]
-c = commit -m
+c = commit
 l = commit -a -m
 d = diff
 p = push
