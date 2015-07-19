@@ -1,6 +1,6 @@
 # xrandr turn on/off hdmi for laptop
 _xrandr-laptop-hdmi() {
-    ([[ "$1" == "1" ]] || [[ "$1" == "ON" ]]) && \
+    [[ "$1" == "1" ]] && \
     xrandr --output LVDS1 --primary --output HDMI1 --auto --left-of LVDS1 || \
     xrandr --output HDMI1 --off
 }

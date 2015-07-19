@@ -1,11 +1,24 @@
 # ffmpeg x11 screencasting
-_ffmpeg-screencast() {
+_ffmpeg-screencast-classic() {
+    [[ "$1" == "1" ]] && \
+    ffmpeg -f alsa -i pulse -acodec pcm_s16le -f x11grab -s $(xdpyinfo | awk '/dimensions:/ {print $2}') -r 25 -i :0.0 -qscale 0 ffmpeg-out-$(date '+%Y-%m-%d-%H-%M-%S').mkv || \
     ffmpeg -f x11grab -s $(xdpyinfo | awk '/dimensions:/ {print $2}') -r 25 -i :0.0 -qscale 0 ffmpeg-out-$(date '+%Y-%m-%d-%H-%M-%S').mkv
 }
-addtemplate ffmpeg-screencast ffmpeg
+addtemplate ffmpeg-screencast-classic ffmpeg
 
-# ffmpeg x11 screencasting with audio
-_ffmpeg-screencast-audio() {
-    ffmpeg -f alsa -i pulse -acodec pcm_s16le -f x11grab -s $(xdpyinfo | awk '/dimensions:/ {print $2}') -r 25 -i :0.0 -qscale 0 ffmpeg-out-$(date '+%Y-%m-%d-%H-%M-%S').mkv
+_ffmpeg-screencast-1() {
+    [[ "$1" == "1" ]] && \
+    ffmpeg -f alsa -i pulse -acodec pcm_s16le -f x11grab -s $(xdpyinfo | awk '/dimensions:/ {print $2}') -i :0.0 -c:v libx264 -preset ultrafast -crf 0 ffmpeg-out-$(date '+%Y-%m-%d-%H-%M-%S').mkv || \
+    ffmpeg -f x11grab -s $(xdpyinfo | awk '/dimensions:/ {print $2}') -i :0.0 -c:v libx264 -preset ultrafast -crf 0 ffmpeg-out-$(date '+%Y-%m-%d-%H-%M-%S').mkv
 }
-addtemplate ffmpeg-screencast-audio ffmpeg
+addtemplate ffmpeg-screencast-1 ffmpeg
+
+_ffmpeg-screencast-2() {
+    D="$(date '+%Y-%m-%d-%H-%M-%S').avi"
+    [[ "$1" == "1" ]] && \
+    ffmpeg -f alsa -i pulse -acodec pcm_s16le -f x11grab -s $(xdpyinfo | awk '/dimensions:/ {print $2}') -r 25 -i :0.0 -qscale 0 -vcodec huffyuv ffmpeg-out-"$D" || \
+    ffmpeg -f x11grab -s $(xdpyinfo | awk '/dimensions:/ {print $2}') -r 30 -i :0.0 -qscale 0 -vcodec huffyuv ffmpeg-out-"$D"
+    echo 'Compressing video...'
+    ffmpeg -i "$D".avi "$D".mkv
+}
+addtemplate ffmpeg-screencast-2 ffmpeg
