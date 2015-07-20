@@ -8,7 +8,7 @@ url="https://github.com/thiagowfx/dotfiles/"
 license=('GPL')
 depends=(
         'git' 'mercurial' 
-        'i3-wm' 'i3lock-wrapper' 'quickswitch-i3'
+        'i3-wm' 'i3lock-wrapper' 'rofi'
         'python' 'r'
         'bash' 'zsh'
         'firefox' 'termite'
@@ -23,8 +23,7 @@ depends=(
         'sxhkd'
         'mutt' 'msmtp' 'msmtp-mta'
         )
-makedepends=()
-optdepends=()
+makedepends=('gcc')
 
 package() {
     :
