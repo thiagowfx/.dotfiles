@@ -19,6 +19,7 @@ addalias cower "cower --color=always --domain aur4.archlinux.org --sort=votes --
 addalias alsamixer "alsamixer -c 0" alsamixer
 addalias xclip "xclip -selection clipboard" xclip
 addalias g "git" git
+addalias x-terminal-emulator "$TERMINAL" "$TERMINAL"
 
 # verbose / output
 alias cp="cp -v"
