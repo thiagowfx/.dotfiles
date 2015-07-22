@@ -50,14 +50,8 @@ _tiling_f() {
     # startprog "autocutsel -fork; autocutsel -selection PRIMARY -fork" autocutsel
     startprog "parcellite" parcellite
 
-    # pulseaudio
-    startprog "start-pulseaudio-x11" start-pulseaudio-x11
-
     # compositing manager
     startprog "compton" compton
-
-    # redshift (color temperature adjustment)
-    startprog "redshift" redshift "$HOME/.config/redshift.conf"
 
     # network manager applet
     startprog "nm-applet" nm-applet
