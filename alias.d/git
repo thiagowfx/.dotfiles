@@ -3,3 +3,8 @@ _gi() {
     curl "http://www.gitignore.io/api/$@"
 }
 addtemplate gi curl
+
+_git-cleanup() {
+    git remote prune origin
+}
+addtemplate git-cleanup git
