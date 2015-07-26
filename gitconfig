@@ -9,9 +9,6 @@ helper = store
 default = simple
 
 [alias]
-c = commit
-l = commit -a -m
-d = diff
 p = push
 st = status
 

@@ -18,7 +18,6 @@ addalias make "time make -j$(($(nproc)+1)) -l$(($(nproc)+1))" make
 addalias cower "cower --color=always --domain aur4.archlinux.org --sort=votes --target=$HOME/.aur" cower "$HOME/.aur"
 addalias alsamixer "alsamixer -c 0" alsamixer
 addalias xclip "xclip -selection clipboard" xclip
-addalias g "git" git
 addalias x-terminal-emulator "$TERMINAL" "$TERMINAL"
 
 # verbose / output
