@@ -48,3 +48,9 @@ _pacman-build-dep() {
     sudo pacman -S $(expac -S "%E" "$@")
 }
 addtemplate pacman-build-dep pacman
+
+_pacman-cleanup() {
+    sudo pacman -Rnsc $(pacman -Qdtq)
+    sudo paccache -r
+}
+addtemplate pacman-cleanup pacman
