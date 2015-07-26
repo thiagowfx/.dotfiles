@@ -29,6 +29,9 @@ addenv GTEST_COLOR "YES"
 # asp (https://github.com/falconindy/asp) for Arch Linux
 addenv ASPROOT "$HOME/.asp" asp
 
+# ledger
+addenv LEDGER_FILE "$HOME/Dropbox/.account.ledger" ledger
+
 # paths
 addpath() {
     addenv PATH "$1:$PATH" "$2" "${3:-$1}"
