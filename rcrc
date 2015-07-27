@@ -1,2 +1,2 @@
 EXCLUDES="README.md LICENSE PKGBUILD Makefile"
-SYMLINK_DIRS="fonts grml-etc-core zsh-syntax-highlighting zsh-completions i3 i3blocks vim password-store"
+SYMLINK_DIRS="fonts grml-etc-core zsh-syntax-highlighting zsh-completions i3 i3blocks vim"
