@@ -40,6 +40,9 @@ _tiling_f() {
     # syndaemon: no touchpad clicking while typing
     startprog "syndaemon -i 1 -t -k -d" syndaemon
 
+    # redshift doesn't play well with systemd for some reason
+    startprog "redshift" redshift
+
     # unclutter: hide the mouse when it gets idle for a while
     startprog "unclutter" unclutter
 
