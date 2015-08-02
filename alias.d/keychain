@@ -1,4 +1,4 @@
-_keychain-aur() {
+_keychain-ssh-ids() {
     eval $(keychain --agents ssh --eval -Q --quiet id_dsa id_rsa id_rsa-aur)
 }
 addtemplate keychain-ssh-ids keychain
