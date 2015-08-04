@@ -49,3 +49,5 @@ setopt hist_ignore_space
 setopt nohashdirs
 setopt nomatch
 setopt printexitvalue
+
+prompt fire red magenta blue white white white
