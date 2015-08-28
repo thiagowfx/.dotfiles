@@ -14,6 +14,7 @@ st = status
 
 [core]
 autocrlf = input
+editor = vim
 
 [color]
 diff = auto
