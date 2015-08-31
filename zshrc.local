@@ -27,9 +27,10 @@ autoload -U zutil
 # completions
 zstyle ':completion:*' rehash true
 
-# autojump for debian and arch
+# autojump for debian, arch and OS X
 source_if_exists "/usr/share/autojump/autojump.zsh"
 source_if_exists "/etc/profile.d/autojump.zsh"
+[[ -d "/usr/local/Cellar/autojump" ]] && source /usr/local/Cellar/autojump/*/etc/autojump.sh
 
 # command-not-found hook for debian and arch
 source_if_exists "/usr/share/doc/pkgfile/command-not-found.zsh"

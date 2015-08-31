@@ -15,9 +15,10 @@ export HISTSIZE=50000000
 export HISTFILESIZE="$HISTSIZE"
 export HISTIGNORE="ls:cd:cd -:cd ~:pwd:exit:date:* --help"
 
-# autojump for debian and arch
+# autojump for debian, arch and OS X
 source_if_exists "/usr/share/autojump/autojump.bash"
 source_if_exists "/etc/profile.d/autojump.bash"
+[[ -d "/usr/local/Cellar/autojump" ]] && source /usr/local/Cellar/autojump/*/etc/autojump.sh
 
 # system bash configs
 source_if_exists "/etc/bashrc"
