@@ -13,3 +13,6 @@
 [submodule "zsh-completions"]
 	path = zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
+[submodule "emacs.d"]
+	path = emacs.d
+	url = https://github.com/thiagowfx/emacs
