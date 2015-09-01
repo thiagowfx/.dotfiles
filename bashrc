@@ -23,6 +23,7 @@ source_if_exists "$(brew --prefix autojump)/etc/autojump.sh"
 # system bash configs
 source_if_exists "/etc/bashrc"
 source_if_exists "/etc/bash_completion"
+source_if_exists "$(brew --prefix)/share/bash-completion/bash_completion"
 
 # completion for sudo
 complete -cf sudo
