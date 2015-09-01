@@ -23,23 +23,27 @@ addenv LESS "-R" less
 # man: don't clear the screen
 addenv MANPAGER "less -X" less
 
+# manpage paths
+addmanpath() {
+    addenv MANPATH "$1:$MANPATH" "$2" "${3:-$1}"
+}
+addmanpath "$(brew --prefix coreutils)/libexec/gnuman" brew
+
 # google test: use colors
 addenv GTEST_COLOR "YES"
 
 # asp (https://github.com/falconindy/asp) for Arch Linux
 addenv ASPROOT "$HOME/.asp" asp
 
-# ledger
-addenv LEDGER_FILE "$HOME/Dropbox/.account.ledger" ledger
-
 # paths
 addpath() {
     addenv PATH "$1:$PATH" "$2" "${3:-$1}"
 }
 
-addpath "$HOME/.bin" ""
+addpath "$HOME/.bin"
 addpath "/usr/lib/ccache/bin" ccache
 addpath "$(ruby -rubygems -e "puts Gem.user_dir")/bin" ruby
+addpath "$(brew --prefix coreutils)/libexec/gnubin" brew "$(brew --prefix coreutils)/libexec/gnubin"
 
 # wine
 addwine() {
