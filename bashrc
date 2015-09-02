@@ -18,12 +18,12 @@ export HISTIGNORE="ls:cd:cd -:cd ~:pwd:exit:date:* --help"
 # autojump for debian, arch and OS X
 source_if_exists "/usr/share/autojump/autojump.bash"
 source_if_exists "/etc/profile.d/autojump.bash"
-source_if_exists "$(brew --prefix autojump)/etc/autojump.sh"
+command -v brew &>/dev/null && source_if_exists "$(brew --prefix autojump)/etc/autojump.sh"
 
 # system bash configs
 source_if_exists "/etc/bashrc"
 source_if_exists "/etc/bash_completion"
-source_if_exists "$(brew --prefix)/share/bash-completion/bash_completion"
+command -v brew &>/dev/null && source_if_exists "$(brew --prefix)/share/bash-completion/bash_completion"
 
 # completion for sudo
 complete -cf sudo
