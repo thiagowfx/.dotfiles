@@ -9,11 +9,6 @@ Instructions
 
 See [this](https://thiagoperrotta.wordpress.com/2015/07/17/portable-really-dotfiles/) blog post.
 
-Dependencies
-------------
-
-For Arch Linux, see `PKGBUILD`.
-
 Inspirations
 ------------
 
