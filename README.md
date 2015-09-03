@@ -2,6 +2,7 @@ dotfiles
 ========
 
 Optimized for **Arch Linux** and **i3wm**.
+Also compatible with **OS X**.
 
 Instructions
 ------------
