@@ -27,7 +27,7 @@ addenv MANPAGER "less -X" less
 addmanpath() {
     addenv MANPATH "$1:$MANPATH" "$2" "${3:-$1}"
 }
-command -v brew &>/dev/null && addmanpath "$(brew --prefix coreutils)/libexec/gnuman" brew
+# command -v brew &>/dev/null && addmanpath "$(brew --prefix coreutils)/libexec/gnuman" brew
 
 # google test: use colors
 addenv GTEST_COLOR "YES"
@@ -43,7 +43,7 @@ addpath() {
 addpath "$HOME/.bin"
 addpath "/usr/lib/ccache/bin" ccache
 addpath "$(ruby -rubygems -e "puts Gem.user_dir")/bin" ruby
-command -v brew &>/dev/null && addpath "$(brew --prefix coreutils)/libexec/gnubin" brew
+# command -v brew &>/dev/null && addpath "$(brew --prefix coreutils)/libexec/gnubin" brew
 
 # wine
 addwine() {
