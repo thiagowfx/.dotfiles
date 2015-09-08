@@ -44,6 +44,7 @@ addpath "$HOME/.bin"
 addpath "/usr/lib/ccache/bin" ccache
 addpath "$(ruby -rubygems -e "puts Gem.user_dir")/bin" ruby
 # command -v brew &>/dev/null && addpath "$(brew --prefix coreutils)/libexec/gnubin" brew
+addpath "/usr/local/sbin"
 
 # wine
 addwine() {
