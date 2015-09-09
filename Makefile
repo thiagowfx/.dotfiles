@@ -1,8 +1,5 @@
-all: upgrade
-
-upgrade:
+all:
 	git pull --recurse-submodules
-	make -C i3blocks
 
 install:
 	rcup -v
@@ -13,4 +10,7 @@ uninstall:
 clean:
 	make -C i3blocks clean
 
-.PHONY: all upgrade install uninstall clean
+i3blocks:
+	make -C i3blocks
+
+.PHONY: all install uninstall clean
