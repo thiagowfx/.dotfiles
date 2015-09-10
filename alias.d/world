@@ -5,6 +5,6 @@ _world() {
     [[ -e /etc/arch-release ]] && sudo pacman -Syu "$@" && return
     [[ -e /etc/gentoo-release ]] &&  su -c "emerge --sync && emerge -avuDN --with-bdeps y --keep-going @world && emerge -v --depclean && revdep-rebuild -v && etc-update && eclean -d distfiles" && return
     [[ -e /etc/debian_version ]] && sudo apt update && sudo apt full-upgrade && return
-    [[ "$(uname)" == "Darwin" ]] && brew update && brew upgrade --all && return
+    [[ "$(uname)" == "Darwin" ]] && brew update && brew upgrade --all && brew cleanup && return
 }
 addtemplate world
