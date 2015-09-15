@@ -7,10 +7,4 @@ install:
 uninstall:
 	rcdn -v
 
-clean:
-	make -C i3blocks clean
-
-i3blocks:
-	make -C i3blocks
-
-.PHONY: all install uninstall clean
+.PHONY: all install uninstall

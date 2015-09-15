@@ -4,15 +4,9 @@
 [submodule "zsh-syntax-highlighting"]
 	path = zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
-[submodule "i3blocks"]
-	path = i3blocks
-	url = https://github.com/vivien/i3blocks
 [submodule "vim"]
 	path = vim
 	url = https://github.com/thiagowfx/vim
 [submodule "zsh-completions"]
 	path = zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
-[submodule "emacs.d"]
-	path = emacs.d
-	url = https://github.com/thiagowfx/emacs
