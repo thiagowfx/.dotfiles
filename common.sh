@@ -1,6 +1,3 @@
-# colors
-source_if_exists "$HOME/.base16-atelierlakeside.dark.sh"
-
 # termite
 source_if_exists "/etc/profile.d/vte.sh"
 
