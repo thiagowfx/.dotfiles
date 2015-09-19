@@ -1,5 +1,6 @@
 # termite
 source_if_exists "/etc/profile.d/vte.sh"
+source_if_exists "/usr/local/github_homebrew_token"
 
 if [[ $TERM == xterm-termite ]]; then
       source_if_exists "/etc/profile.d/vte.sh"
