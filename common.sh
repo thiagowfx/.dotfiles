@@ -6,6 +6,8 @@ if [[ $TERM == xterm-termite ]]; then
       source_if_exists "/etc/profile.d/vte.sh"
 fi
 
+command -v thefuck &>/dev/null && eval "$(thefuck --alias)"
+
 # Templates are functions/snippets for general use.
 # They are aliased preceded with "t-".
 #
