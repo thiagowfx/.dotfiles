@@ -20,9 +20,6 @@ addalias alsamixer "alsamixer -c 0" alsamixer
 addalias xclip "xclip -selection clipboard" xclip
 addalias x-terminal-emulator "$TERMINAL" "$TERMINAL"
 
-# Workaround to make tmux start in 256-color mode.
-addalias tmux "tmux -c $SHELL"
-
 # verbose / output
 alias cp="cp -v"
 alias ln="ln -v"
