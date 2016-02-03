@@ -7,6 +7,8 @@ Also compatible with **OS X**.
 Instructions
 ------------
 
+**TL;DR**: create `~/.rcrc` then run `rcup -v`.
+
 See [this](https://thiagoperrotta.wordpress.com/2015/07/17/portable-really-dotfiles/) blog post.
 
 Inspirations
