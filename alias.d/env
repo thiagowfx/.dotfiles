@@ -40,6 +40,7 @@ addpath() {
     addenv PATH "$1:$PATH" "$2" "${3:-$1}"
 }
 
+addpath "$HOME/bin"
 addpath "$HOME/.bin"
 addpath "/usr/lib/ccache/bin" ccache
 command -v ruby &>/dev/null && addpath "$(ruby -rubygems -e "puts Gem.user_dir")/bin" ruby
