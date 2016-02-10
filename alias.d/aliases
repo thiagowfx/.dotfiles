@@ -14,7 +14,7 @@ addalias() {
 }
 
 # misc
-addalias make "make -j"
+addalias make "make -j$(nproc)"
 addalias cower "cower --color=always --sort=votes --target=$HOME/.aur" cower "$HOME/.aur"
 addalias alsamixer "alsamixer -c 0" alsamixer
 addalias xclip "xclip -selection clipboard" xclip
