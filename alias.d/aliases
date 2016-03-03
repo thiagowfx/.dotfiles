@@ -20,10 +20,10 @@ addalias alsamixer "alsamixer -c 0" alsamixer
 addalias xclip "xclip -selection clipboard" xclip
 addalias x-terminal-emulator "$TERMINAL" "$TERMINAL"
 
-# verbose / output
-alias cp="cp -v"
-alias ln="ln -v"
-alias mv="mv -v"
+# verbose / output / more user-friendly
+addalias cp "cp -v" cp
+addalias ln "ln -v" ln
+addalias mv "mv -v" mv
 addalias chmod "chmod -v" chmod
 addalias chown "chown -v" chown
 addalias curl "curl -v -L" curl
@@ -39,6 +39,7 @@ addalias colordiff "colordiff -uN" colordiff
 addalias netstat "netstat -pln" netstat
 addalias pgrep "pgrep -fl" pgrep
 addalias ls "ls -F" ls
+addalias l "ls -F -l" ls
 
-# typos
+# common typos
 alias sl="ls"

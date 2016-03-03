@@ -1,6 +1,6 @@
 # cmake clean build directory
 _cmake-clean() {
-    [[ -d ../build ]] && cd ..
+    [[ -d ../build ]] && cd .. || return
     rm -rf build && mkdir build && cd build
 }
 addtemplate cmake-clean cmake
