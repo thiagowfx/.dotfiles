@@ -18,6 +18,7 @@ export HISTIGNORE="ls:cd:cd -:cd ~:pwd:exit:date:* --help"
 # autojump for debian, arch and OS X
 source_if_exists "/usr/share/autojump/autojump.bash"
 source_if_exists "/etc/profile.d/autojump.bash"
+source_if_exists "/opt/local/etc/profile.d/autojump.sh"
 command -v brew &>/dev/null && source_if_exists "$(brew --prefix autojump)/etc/autojump.sh"
 
 # system bash configs

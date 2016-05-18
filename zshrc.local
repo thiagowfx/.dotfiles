@@ -9,6 +9,7 @@ source_if_exists() {
 
 # aliases
 source_if_exists "$HOME/.common.sh"
+source_if_exists "/opt/local/etc/profile.d/autojump.sh"
 
 # zsh: commands beginning with blank spaces don't go to the history
 export HIST_IGNORE_SPACE
