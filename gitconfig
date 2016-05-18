@@ -11,6 +11,7 @@ default = simple
 [alias]
 p = push
 st = status
+d = diff --ignore-space-at-eol
 
 [core]
 autocrlf = input
