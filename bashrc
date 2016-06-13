@@ -39,15 +39,12 @@ source_if_exists "$HOME/.bash_prompt"
 
 # shell options
 set -o emacs
-shopt -s autocd
 shopt -s checkwinsize
 shopt -s cdspell
 shopt -s cmdhist
-shopt -s checkjobs
 shopt -s dotglob
 shopt -s expand_aliases
 shopt -s extglob
-shopt -s globstar
 shopt -s histappend
 shopt -s hostcomplete
 shopt -s nocaseglob
