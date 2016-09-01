@@ -1,0 +1,32 @@
+[options]
+allow_bold = true
+audible_bell = true
+clickable_url = true
+dynamic_title = true
+filter_unmatched_urls = true
+font = Inconsolata 10
+font = CamingoCode 10
+icon_name = terminal
+mouse_autohide = true
+resize_grip = false
+scroll_on_keystroke = true
+scroll_on_output = false
+scrollback_lines = 10000
+search_wrap = true
+urgent_on_bell = true
+visible_bell = true
+ 
+# system, on, off
+cursor_blink = system
+ 
+# block, underline, ibeam
+cursor_shape = underline
+ 
+[colors]
+background = rgba(63, 63, 63, 0.85)
+cursor = #999999
+foreground = #cccccc
+foreground_bold = #ffffff
+foreground_dim = #888888
+
+# vim: ft=dosini
