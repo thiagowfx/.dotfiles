@@ -1,4 +1,3 @@
-! font rendering
 Xft.autohint: true
 Xft*antialias: true
 Xft*hinting: true
@@ -7,29 +6,7 @@ Xft*dpi: 96
 Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 
-! urxvt settings
-URxvt.font: xft:CamingoCode:size=10:antialias=true
-URxvt*.transparent: true
-URxvt*.shading: 10
-URxvt.depth: 32
-URxvt.scrollstyle: plain
-URxvt*scrollTtyOutput: false
-URxvt*scrollWithBuffer: true
-URxvt*scrollTtyKeypress: true
-URxvt.urgentOnBell: true
-URxvt.scrollBar: false
-URxvt.iso14755: false
-URxvt.iso14755_52: false
-URxvt.perl-ext-common: clipboard,confirm-paste,default,tabbed,url-select
-URxvt.keysym.Control-Shift-C: perl:clipboard:copy
-URxvt.keysym.Control-Shift-V: perl:clipboard:paste
-URxvt.clipboard.autocopy: true
-URxvt.url-select.button: 1
-URxvt.url-select.launcher: xdg-open
-URxvt.url-select.underline: true
-
-! Base16 Atelier Lakeside
-! Scheme: Bram de Haan (http://atelierbram.github.io/syntax-highlighting/atelier-schemes/lakeside/)
+! Base16 Atelier Lakeside - scheme: Bram de Haan (http://atelierbram.github.io/syntax-highlighting/atelier-schemes/lakeside/)
 #define base00 #161b1d
 #define base01 #1f292e
 #define base02 #516d7b
@@ -50,7 +27,6 @@ URxvt.url-select.underline: true
 *.foreground:   base05
 *.background:   base00
 *.cursorColor:  base05
-
 *.color0:       base00
 *.color1:       base08
 *.color2:       base0B
@@ -59,7 +35,6 @@ URxvt.url-select.underline: true
 *.color5:       base0E
 *.color6:       base0C
 *.color7:       base05
-
 *.color8:       base03
 *.color9:       base09
 *.color10:      base01
@@ -68,4 +43,3 @@ URxvt.url-select.underline: true
 *.color13:      base06
 *.color14:      base0F
 *.color15:      base07
-
