@@ -2,10 +2,12 @@
 allow_bold = true
 audible_bell = true
 clickable_url = true
+cursor_blink = system
+cursor_shape = underline
 dynamic_title = true
 filter_unmatched_urls = true
-font = Inconsolata 10
 font = CamingoCode 10
+font = Inconsolata 10
 icon_name = terminal
 mouse_autohide = true
 resize_grip = false
@@ -15,12 +17,6 @@ scrollback_lines = 10000
 search_wrap = true
 urgent_on_bell = true
 visible_bell = true
- 
-# system, on, off
-cursor_blink = system
- 
-# block, underline, ibeam
-cursor_shape = underline
  
 [colors]
 background = rgba(63, 63, 63, 0.85)
