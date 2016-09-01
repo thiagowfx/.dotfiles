@@ -1,0 +1,28 @@
+Source: grml-etc-core
+Section: grml
+Priority: optional
+Maintainer: Michael Prokop <mika@grml.org>
+Build-Depends: debhelper (>= 5),
+               txt2tags
+Standards-Version: 3.9.6
+Homepage: http://git.grml.org/?p=grml-etc-core.git
+Vcs-git: git://git.grml.org/grml-etc-core.git
+Vcs-Browser: http://git.grml.org/?p=grml-etc-core.git
+Origin: Grml
+Bugs: mailto:bugs@grml.org
+
+Package: grml-etc-core
+Architecture: all
+Conflicts: grml-autoconfig (<< 0.5-7),
+           grml-etc (<< 0.8-11),
+           grml-scripts (<< 0.8-27)
+Replaces: vim-common
+Depends: vim | nvi | editor
+Recommends: grml-scripts-core
+Pre-Depends: zsh
+Description: core etcetera files for the Grml system
+ This package includes some /etc files for the
+ Grml system. Whereas the main grml-etc package is
+ meant for use on Grml systems this package can be
+ used on plain Debian (stable/testing/unstable)
+ systems as well.

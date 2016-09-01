@@ -1,6 +1,6 @@
 [user]
 name = Thiago Perrotta
-email = perrotta.thiago@poli.ufrj.br
+email = tbperrotta@gmail.com
 
 [credential]
 helper = store
@@ -9,9 +9,9 @@ helper = store
 default = simple
 
 [alias]
+d = diff --ignore-space-at-eol
 p = push
 st = status
-d = diff --ignore-space-at-eol
 
 [core]
 autocrlf = input
