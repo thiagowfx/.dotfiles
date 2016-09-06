@@ -1,8 +1,0 @@
-[ui]
-username = Thiago Perrotta <perrotta.thiago@poli.ufrj.br>
-verbose = True
-
-[extensions]
-color=
-hgk=
-progress=

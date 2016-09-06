@@ -1,0 +1,8 @@
+[ui]
+username = Thiago Perrotta <tbperrotta@gmail.com>
+verbose = True
+
+[extensions]
+color=
+hgk=
+progress=

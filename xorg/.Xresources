@@ -6,7 +6,7 @@ Xft*dpi: 96
 Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 
-! Base16 Atelier Lakeside - scheme: Bram de Haan (http://atelierbram.github.io/syntax-highlighting/atelier-schemes/lakeside/)
+! Base16 Atelier Lakeside - scheme: Bram de Haan (upstream: http://atelierbram.github.io/syntax-highlighting/atelier-schemes/lakeside/)
 #define base00 #161b1d
 #define base01 #1f292e
 #define base02 #516d7b
