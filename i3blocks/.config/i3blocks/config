@@ -1,0 +1,28 @@
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+
+# Global properties
+separator_block_width=10
+
+[disk]
+command=/usr/lib/i3blocks/disk
+interval=300
+
+[netspeed]
+command=$HOME/.config/i3/netspeed
+instance=wlan0
+interval=3
+
+[load_average]
+command=/usr/lib/i3blocks/load_average
+interval=10
+
+[battery]
+command=/usr/lib/i3blocks/battery
+interval=60
+
+[time]
+command=date '+%Y-%m-%d %H:%M kW%V'
+interval=5
