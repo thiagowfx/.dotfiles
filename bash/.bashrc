@@ -8,7 +8,7 @@
 # past this point for scp and rcp, and it's important to refrain from
 # outputting anything in those cases.
 if [[ $- != *i* ]] ; then
-  # Shell is non-interactive.  Be done now!
+  # Shell is non-interactive. Be done now!
   return
 fi
 
@@ -39,6 +39,7 @@ export HISTFILESIZE="$HISTSIZE"
 
 source_if_exists "/etc/bashrc"
 source_if_exists "/etc/bash_completion"
+source_if_exists "/opt/local/etc/profile.d/bash_completion.sh"
 complete -cf sudo
 source_if_exists "/usr/share/doc/pkgfile/command-not-found.bash"
 

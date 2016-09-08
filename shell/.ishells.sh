@@ -1,6 +1,6 @@
 # -*- shell-script -*-
 # 
-# ASSUMES: it is sourced from a shell where source_if_exists has been defined.
+# ASSUMES: sourced from a shell where source_if_exists has been defined.
 #
 
 if [[ $TERM == xterm-termite ]]; then
@@ -84,6 +84,8 @@ addalias mv "mv -v" mv
 addalias netstat "netstat -pln" netstat
 addalias pgrep "pgrep -fl" pgrep
 addalias pstree "pstree -p" pstree
+
+addalias g "git" git
 
 addalias ls "ls -F" ls
 addalias sl "ls" ls
