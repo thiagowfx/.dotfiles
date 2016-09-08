@@ -59,7 +59,7 @@ addenv() {
     export "$1"="$2"
 }
 addpath() {
-    addenv PATH "$1:$PATH" "$2" "${3:-$1}"
+    addenv PATH "$1:$PATH"
 }
 addwine() {
     addenv "$1" "$2" wine
@@ -101,9 +101,9 @@ addenv GTEST_COLOR "YES"
 
 addpath "$HOME/bin"
 addpath "$HOME/.bin"
-addpath "/usr/lib/ccache/bin" ccache
-addpath "/opt/local/bin" port
-addpath "/opt/local/sbin" port
+addpath "/usr/lib/ccache/bin"
+addpath "/opt/local/bin"
+addpath "/opt/local/sbin"
 addpath "/usr/local/sbin"
 command -v ruby &>/dev/null && addpath "$(ruby -rubygems -e "puts Gem.user_dir")/bin"
 
