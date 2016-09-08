@@ -85,7 +85,7 @@ addalias netstat "netstat -pln" netstat
 addalias pgrep "pgrep -fl" pgrep
 addalias pstree "pstree -p" pstree
 
-addalias ls "ls --color=always -F" ls
+addalias ls "ls -F" ls
 addalias sl "ls" ls
 addalias l "ls -l" ls
 addalias ll "l" ls
