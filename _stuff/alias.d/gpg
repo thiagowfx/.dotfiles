@@ -1,5 +1,0 @@
-_gpg-encrypt-simmetrically() {
-    # optionally: add --sign too
-    gpg -o "$1".gpg --symmetric "$1"
-}
-addtemplate gpg-encrypt-simmetrically gpg

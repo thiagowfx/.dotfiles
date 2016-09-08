@@ -212,5 +212,3 @@ client.focused          #3498DB #3498DB #ECF0F1 #2ECC71
 client.unfocused        #3498DB #2C3E50 #ECF0F1 #2C3E50
 client.focused_inactive #3498DB #2C3E50 #ECF0F1 #2C3E50
 client.urgent           #3498DB #2C3E50 #ECF0F1 #2C3E50
-
-# font, color

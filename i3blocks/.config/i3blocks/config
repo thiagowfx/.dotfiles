@@ -13,7 +13,7 @@ interval=300
 [netspeed]
 command=$HOME/.config/i3/netspeed
 instance=wlan0
-interval=3
+interval=2
 
 [load_average]
 command=/usr/lib/i3blocks/load_average

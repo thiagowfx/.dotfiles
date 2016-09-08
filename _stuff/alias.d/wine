@@ -1,5 +1,0 @@
-# enhance a wine's WINEPREFIX by bootstrapping some programs with winetricks
-_winetricks-bootstrap() {
-    winetricks corefonts d3dx10 flash vcrun2005 vcrun2008 vcrun2010 vb6run "$@"
-}
-addtemplate winetricks-bootstrap winetricks

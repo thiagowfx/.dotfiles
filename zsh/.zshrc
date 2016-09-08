@@ -1,0 +1,42 @@
+# -*- shell-script -*-
+
+# if not running interactively, don't do anything
+[[ -z "$PS1" ]] && return
+
+source_if_exists() {
+    [[ -f "$@" ]] && source "$@"
+}
+
+source_if_exists "$HOME/.ishells.sh"
+
+source_if_exists "/usr/share/autojump/autojump.zsh"
+source_if_exists "/etc/profile.d/autojump.zsh"
+source_if_exists "/opt/local/etc/profile.d/autojump.sh"
+
+setopt appendhistory
+setopt beep
+setopt emacs
+setopt extendedglob
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt nohashdirs
+setopt nomatch
+setopt printexitvalue
+
+# zsh: commands beginning with blank spaces don't go to the history
+export HIST_IGNORE_SPACE
+
+autoload -U bashcompinit && bashcompinit
+autoload -U colors && colors
+autoload -U compinit && compinit
+autoload -U complist
+autoload -U promptinit && promptinit
+autoload -U zutil
+
+zstyle ':completion:*' rehash true
+source_if_exists "/usr/share/doc/pkgfile/command-not-found.zsh"
+source_if_exists "/etc/zsh_command_not_found"
+
+# zsh syntax highlighting
+ZSH_HIGHLIGHT_HIGHLIGHTERS=('main' 'brackets' 'pattern')
+source_if_exists "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
