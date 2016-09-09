@@ -116,10 +116,10 @@ addwine WINEDLLOVERRIDES "winemenubuilder.exe=d"
 
 # upgrade an Unix / Linux system
 _world() {
-    [[ "$(uname)" == "Darwin" ]] && command -v brew &>/dev/null && brew update && brew upgrade --all && brew cleanup && return
+    [[ "$(uname)" == "Darwin" ]] && command -v brew &>/dev/null && brew update && brew upgrade --all && brew doctor && brew cleanup && return
     [[ "$(uname)" == "Darwin" ]] && command -v port &>/dev/null && sudo port selfupdate && sudo port upgrade outdated && return
 
-    [[ -e /etc/arch-release ]] && sudo pacman -Syu "$@" && return
+    [[ -e /etc/arch-release ]] && sudo pacman -Syu "$@" && sudo pacman -Rnsc $(pacman -Qdtq) && sudo paccache -r && return
     [[ -e /etc/debian_version ]] && sudo apt update && sudo apt full-upgrade && return
     [[ -e /etc/gentoo-release ]] &&  su -c "emerge --sync && emerge -avuDN --with-bdeps y --keep-going @world && emerge -v --depclean && revdep-rebuild -v && etc-update && eclean -d distfiles" && return
 }
@@ -254,14 +254,6 @@ _pacman-build-dep() {
     sudo pacman -S $(expac -S "%E" "$@")
 }
 addtemplate pacman-build-dep pacman
-
-# pacman: clean-up
-_pacman-clean() {
-    sudo pacman -Rnsc $(pacman -Qdtq)
-    sudo paccache -r
-}
-addtemplate pacman-clean pacman
-
 
 _ffmpeg-screencast-0() {
     [[ "$1" == "1" ]] && \

@@ -33,13 +33,14 @@ shopt -s histappend
 shopt -s hostcomplete
 shopt -s nocaseglob
 
-export HISTCONTROL="ignoreboth" # ignorespace and ignoredups
-export HISTSIZE=100000
-export HISTFILESIZE="$HISTSIZE"
+HISTCONTROL="ignoreboth" # ignorespace and ignoredups
+HISTSIZE=100000
+HISTFILESIZE="$HISTSIZE"
 
 source_if_exists "/etc/bashrc"
 source_if_exists "/etc/bash_completion"
 source_if_exists "/opt/local/etc/profile.d/bash_completion.sh"
+[[ -d "/usr/local/etc/bash_completion.d/" ]] && source /usr/local/etc/bash_completion.d/*
 complete -cf sudo
 source_if_exists "/usr/share/doc/pkgfile/command-not-found.bash"
 
