@@ -15,5 +15,4 @@ startprog() {
     eval "$1" &
 }
 
-startprog "parcellite" parcellite
 startprog "feh --bg-scale $HOME/.wallpaper.png" feh $HOME/.wallpaper.png
