@@ -7,6 +7,9 @@ if [[ $TERM == xterm-termite ]]; then
       source_if_exists "/etc/profile.d/vte.sh"
 fi
 
+# autojump
+command -v brew &>/dev/null && source_if_exists "$(brew --prefix)/etc/profile.d/autojump.sh"
+
 # Templates are functions/snippets for general use.
 # They are aliased preceded with "t-".
 #

@@ -56,5 +56,5 @@ source_if_exists "/etc/zsh_command_not_found"
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 # zsh syntax highlighting
-ZSH_HIGHLIGHT_HIGHLIGHTERS=('main' 'brackets' 'pattern')
 source_if_exists "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+command -v brew &>/dev/null && source_if_exists "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" && ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
