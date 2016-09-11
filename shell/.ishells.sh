@@ -155,13 +155,6 @@ _ip() {
 addtemplate ip dig
 
 
-# ping google.com
-_pingg() {
-    ping "${1:-google.com}"
-}
-addtemplate pingg ping
-
-
 # makepkg: clean out build leftovers
 _makepkg-clean() {
   echo "--> Cleaning up makepkg files..."
@@ -186,12 +179,6 @@ _git-clean() {
     git remote prune origin
 }
 addtemplate git-clean git
-
-
-_gpg-encrypt-simm() {
-    gpg -o "$1".gpg --symmetric "$1"
-}
-addtemplate gpg-encrypt-simm gpg
 
 
 # youtube-dl: download video as mp3
@@ -257,26 +244,3 @@ _pacman-build-dep() {
     sudo pacman -S $(expac -S "%E" "$@")
 }
 addtemplate pacman-build-dep pacman
-
-_ffmpeg-screencast-0() {
-    [[ "$1" == "1" ]] && \
-    ffmpeg -f alsa -i pulse -acodec pcm_s16le -f x11grab -s $(xdpyinfo | awk '/dimensions:/ {print $2}') -r 25 -i :0.0 -qscale 0 ffmpeg-out-$(date '+%Y-%m-%d-%H-%M-%S').mkv || \
-    ffmpeg -f x11grab -s $(xdpyinfo | awk '/dimensions:/ {print $2}') -r 25 -i :0.0 -qscale 0 ffmpeg-out-$(date '+%Y-%m-%d-%H-%M-%S').mkv
-}
-_ffmpeg-screencast-1() {
-    D="ffmpeg-out-$(date '+%Y-%m-%d-%H-%M-%S').mkv"
-    [[ "$1" == "1" ]] && \
-    ffmpeg -f alsa -i pulse -acodec pcm_s16le -f x11grab -s $(xdpyinfo | awk '/dimensions:/ {print $2}') -i :0.0 -c:v libx264 -preset ultrafast -crf 0 "$D" || \
-    ffmpeg -f x11grab -s $(xdpyinfo | awk '/dimensions:/ {print $2}') -i :0.0 -c:v libx264 -preset ultrafast -crf 0 "$D"
-}
-_ffmpeg-screencast-2() {
-    D="ffmpeg-out-$(date '+%Y-%m-%d-%H-%M-%S').avi"
-    [[ "$1" == "1" ]] && \
-    ffmpeg -f alsa -i pulse -acodec pcm_s16le -f x11grab -s $(xdpyinfo | awk '/dimensions:/ {print $2}') -r 25 -i :0.0 -qscale 0 -vcodec huffyuv "$D" || \
-    ffmpeg -f x11grab -s $(xdpyinfo | awk '/dimensions:/ {print $2}') -r 30 -i :0.0 -qscale 0 -vcodec huffyuv "$D"
-    echo 'Compressing video (avi -> mkv)...'
-    ffmpeg -i "$D" "${D/avi/mkv}" && rm "$D"
-}
-addtemplate ffmpeg-screencast-0 ffmpeg
-addtemplate ffmpeg-screencast-1 ffmpeg
-addtemplate ffmpeg-screencast-2 ffmpeg
