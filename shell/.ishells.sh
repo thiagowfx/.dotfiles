@@ -119,7 +119,7 @@ addwine WINEDLLOVERRIDES "winemenubuilder.exe=d"
 
 # upgrade an Unix / Linux system
 _world() {
-    [[ "$(uname)" == "Darwin" ]] && command -v brew &>/dev/null && brew update && brew upgrade --all && brew doctor && brew cleanup && return
+    [[ "$(uname)" == "Darwin" ]] && command -v brew &>/dev/null && brew update && brew upgrade --all && brew cleanup && brew doctor && return
     [[ "$(uname)" == "Darwin" ]] && command -v port &>/dev/null && sudo port selfupdate && sudo port upgrade outdated && return
 
     [[ -e /etc/arch-release ]] && sudo pacman -Syu "$@" && sudo pacman -Rnsc $(pacman -Qdtq) && sudo paccache -r && return
