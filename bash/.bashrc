@@ -40,9 +40,14 @@ HISTFILESIZE="$HISTSIZE"
 source_if_exists "/etc/bashrc"
 source_if_exists "/etc/bash_completion"
 source_if_exists "/opt/local/etc/profile.d/bash_completion.sh"
-[[ -d "/usr/local/etc/bash_completion.d/" ]] && source /usr/local/etc/bash_completion.d/*
 complete -cf sudo
 source_if_exists "/usr/share/doc/pkgfile/command-not-found.bash"
+
+if [[ -d "/usr/local/etc/bash_completion.d/" ]]; then
+	for f in /usr/local/etc/bash_completion.d/*; do
+		source $f
+	done
+fi
 
 source_if_exists "$HOME/.bash_prompt"
 
