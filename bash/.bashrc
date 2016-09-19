@@ -8,19 +8,18 @@
 # past this point for scp and rcp, and it's important to refrain from
 # outputting anything in those cases.
 if [[ $- != *i* ]] ; then
-  # Shell is non-interactive. Be done now!
-  return
+	# Shell is non-interactive. Be done now!
+	return
 fi
 
 source_if_exists() {
-    [[ -f "$@" ]] && source "$@"
+	[[ -f "$@" ]] && source "$@"
 }
 
-source_if_exists "$HOME/.ishells.sh"
+export LC_ALL=en_US.UTF-8  
+export LANG=en_US.UTF-8
 
-source_if_exists "/usr/share/autojump/autojump.bash"
-source_if_exists "/etc/profile.d/autojump.bash"
-source_if_exists "/opt/local/etc/profile.d/autojump.sh"
+source_if_exists "$HOME/.ishells.sh"
 
 set -o emacs
 shopt -s checkwinsize
@@ -37,28 +36,31 @@ HISTCONTROL="ignoreboth" # ignorespace and ignoredups
 HISTSIZE=100000
 HISTFILESIZE="$HISTSIZE"
 
+complete -cf sudo
 source_if_exists "/etc/bashrc"
+
 source_if_exists "/etc/bash_completion"
 source_if_exists "/opt/local/etc/profile.d/bash_completion.sh"
-complete -cf sudo
+for f in /usr/local/etc/bash_completion.d/*; do
+	source $f
+done
+
 source_if_exists "/usr/share/doc/pkgfile/command-not-found.bash"
 
-if [[ -d "/usr/local/etc/bash_completion.d/" ]]; then
-	for f in /usr/local/etc/bash_completion.d/*; do
-		source $f
-	done
-fi
+source_if_exists "/usr/share/autojump/autojump.bash"
+source_if_exists "/etc/profile.d/autojump.bash"
+source_if_exists "/opt/local/etc/profile.d/autojump.sh"
 
 source_if_exists "$HOME/.bash_prompt"
 
 # colored man pages
 man() {
-    env LESS_TERMCAP_mb=$'\E[01;31m' \
-        LESS_TERMCAP_md=$'\E[01;38;5;74m' \
-        LESS_TERMCAP_me=$'\E[0m' \
-        LESS_TERMCAP_se=$'\E[0m' \
-        LESS_TERMCAP_so=$'\E[38;5;246m' \
-        LESS_TERMCAP_ue=$'\E[0m' \
-        LESS_TERMCAP_us=$'\E[04;38;5;146m' \
-        man "$@"
+	env LESS_TERMCAP_mb=$'\E[01;31m' \
+		LESS_TERMCAP_md=$'\E[01;38;5;74m' \
+		LESS_TERMCAP_me=$'\E[0m' \
+		LESS_TERMCAP_se=$'\E[0m' \
+		LESS_TERMCAP_so=$'\E[38;5;246m' \
+		LESS_TERMCAP_ue=$'\E[0m' \
+		LESS_TERMCAP_us=$'\E[04;38;5;146m' \
+		man "$@"
 }
