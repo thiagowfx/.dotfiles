@@ -229,7 +229,6 @@ _source_backpack_2() {
 	addalias chown "chown -v" chown
 	addalias cp "cp -v" cp
 	addalias curl "curl -v -L" curl
-	addalias df "df -h" df
 	addalias du "du -h" du
 	addalias free "free -h" free
 	addalias grep "grep --color=always" grep
