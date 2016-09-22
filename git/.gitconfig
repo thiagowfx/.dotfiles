@@ -12,6 +12,8 @@ default = simple
 d = diff --ignore-space-at-eol
 p = push
 st = status
+ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
+world = "!world() { git gc; git remote prune origin ;}; world"
 
 [core]
 autocrlf = input

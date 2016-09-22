@@ -1,0 +1,5 @@
+#!/bin/sh
+# Get Public IP address.
+#
+
+dig +short myip.opendns.com @resolver1.opendns.com

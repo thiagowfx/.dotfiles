@@ -1,0 +1,21 @@
+#!/bin/sh
+# Chroot: gentoo-style.
+#
+
+if [[ "x$@" == "x" ]]; then
+	echo "USAGE: $0 /mnt/gentoo"
+	exit 1
+fi
+
+if [[ ! -d "$@"  ]]; then
+	echo "The specified path doesn't exist: $@"
+	exit 1
+fi
+
+set -x
+
+sudo cp -L /etc/resolv.conf "$@/etc/resolv.conf"
+sudo mount -o bind /proc "$@/proc"
+sudo mount --rbind /dev  "$@/dev"
+sudo mount --rbind /sys  "$@/sys"
+sudo chroot "$@/" /bin/env -i TERM=$TERM /bin/bash
