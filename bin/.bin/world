@@ -50,6 +50,7 @@ fi
 if [[ -e /etc/debian_version ]] && command -v apt &>/dev/null; then
 	_start
 	sudo apt update
+	sudo apt upgrade
 	sudo apt full-upgrade
 	sudo apt autoremove
 	exit
