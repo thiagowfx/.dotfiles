@@ -49,104 +49,6 @@ sofd() {
 
 # Fix R-lang start-up.
 export LANG=${LANG:-en_US.UTF-8}
-
-# Define a few colors.
-_set_colors() {
-	if command -v tput &>/dev/null && tput setaf 1 &>/dev/null; then
-		tput sgr0; # reset colors
-		bold=$(tput bold);
-		reset=$(tput sgr0);
-		# Solarized colors, taken from http://git.io/solarized-colors.
-		black=$(tput setaf 0);
-		blue=$(tput setaf 33);
-		cyan=$(tput setaf 37);
-		green=$(tput setaf 64);
-		orange=$(tput setaf 166);
-		purple=$(tput setaf 125);
-		red=$(tput setaf 124);
-		violet=$(tput setaf 61);
-		white=$(tput setaf 15);
-		yellow=$(tput setaf 136);
-	else
-		bold='';
-		reset="\e[0m";
-		black="\e[1;30m";
-		blue="\e[1;34m";
-		cyan="\e[1;36m";
-		green="\e[1;32m";
-		orange="\e[1;33m";
-		purple="\e[1;35m";
-		red="\e[1;31m";
-		violet="\e[1;35m";
-		white="\e[1;37m";
-		yellow="\e[1;33m";
-	fi;
-}
-_set_colors
-
-# Return the git prompt.
-_prompt_git() {
-	local s='';
-	local branchName='';
-
-	# Check if the current directory is in a Git repository.
-	if [ $(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == '0' ]; then
-		# check if the current directory is in .git before running git checks
-		if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == 'false' ]; then
-
-			# Ensure the index is up to date.
-			git update-index --really-refresh -q &>/dev/null;
-
-			# Check for uncommitted changes in the index.
-			if ! $(git diff --quiet --ignore-submodules --cached); then
-				s+='+';
-			fi;
-
-			# Check for unstaged changes.
-			if ! $(git diff-files --quiet --ignore-submodules --); then
-				s+='!';
-			fi;
-
-			# Check for untracked files.
-			if [ -n "$(git ls-files --others --exclude-standard)" ]; then
-				s+='?';
-			fi;
-
-			# Check for stashed files.
-			if $(git rev-parse --verify refs/stash &>/dev/null); then
-				s+='$';
-			fi;
-
-		fi;
-
-		# Get the short symbolic ref.
-		# If HEAD isn’t a symbolic ref, get the short SHA for the latest commit
-		# Otherwise, just give up.
-		branchName="$(git symbolic-ref --quiet --short HEAD 2> /dev/null || \
-			git rev-parse --short HEAD 2> /dev/null || \
-			echo '(unknown)')";
-
-		[ -n "${s}" ] && s=" [${s}]";
-
-		echo -e "${1}${branchName}${yellow}${s}";
-	else
-		return;
-	fi;
-}
-
-# Set both prompts.
-PS1="\[\033]0;\w\007\]"
-PS1+="\[${bold}\]"
-PS1+="\[${orange}\]\u" # username
-PS1+="\[${white}\] at "
-PS1+="\[${yellow}\]\h" # host
-PS1+="\[${white}\] in "
-PS1+="\[${green}\]\w" # working directory
-PS1+="\$(_prompt_git \"${white} on ${violet}\")"; # Git repository details
-PS1+="\n";
-PS1+="\[${white}\]\$ \[${reset}\]"; # `$` (and reset color)
-PS2="\[${yellow}\]→ \[${reset}\]";
-
 # Add colors to man pages.
 man() {
 	env LESS_TERMCAP_mb=$'\E[01;31m' \
@@ -166,6 +68,9 @@ _source_backpack() {
 	sofe "/etc/bash_completion"
 	sofe "/opt/local/etc/profile.d/bash_completion.sh"
 	sofd "/usr/local/etc/bash_completion.d"
+
+	# Git prompt.
+	sofe "$HOME/.git-prompt.sh"
 
 	# Command-not-found hooks.
 	sofe "/usr/share/doc/pkgfile/command-not-found.bash"
@@ -270,3 +175,50 @@ _source_backpack_2() {
 	addpath "/usr/lib/ccache/bin"
 }
 _source_backpack_2
+
+# Define a few colors.
+_set_colors() {
+	if command -v tput &>/dev/null && tput setaf 1 &>/dev/null; then
+		tput sgr0; # reset colors
+		bold=$(tput bold);
+		reset=$(tput sgr0);
+		# Solarized colors, taken from http://git.io/solarized-colors.
+		black=$(tput setaf 0);
+		blue=$(tput setaf 33);
+		cyan=$(tput setaf 37);
+		green=$(tput setaf 64);
+		orange=$(tput setaf 166);
+		purple=$(tput setaf 125);
+		red=$(tput setaf 124);
+		violet=$(tput setaf 61);
+		white=$(tput setaf 15);
+		yellow=$(tput setaf 136);
+	else
+		bold='';
+		reset="\e[0m";
+		black="\e[1;30m";
+		blue="\e[1;34m";
+		cyan="\e[1;36m";
+		green="\e[1;32m";
+		orange="\e[1;33m";
+		purple="\e[1;35m";
+		red="\e[1;31m";
+		violet="\e[1;35m";
+		white="\e[1;37m";
+		yellow="\e[1;33m";
+	fi;
+}
+_set_colors
+
+# Set both prompts.
+PS1="\[\033]0;\w\007\]"
+PS1+="\[${bold}\]"
+PS1+="\[${orange}\]\u" # username
+PS1+="\[${white}\] at "
+PS1+="\[${yellow}\]\h" # host
+PS1+="\[${white}\] in "
+PS1+="\[${green}\]\w" # working directory
+PS1+="${violet}\$(__git_ps1)"
+PS1+="\n";
+PS1+="\[${white}\]\$ \[${reset}\]"; # `$` (and reset color)
+PS2="\[${yellow}\]→ \[${reset}\]";
