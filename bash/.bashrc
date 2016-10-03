@@ -67,6 +67,7 @@ _source_backpack() {
 	# Bash completion.
 	sofe "/etc/bash_completion"
 	sofe "/opt/local/etc/profile.d/bash_completion.sh"
+	sofd "/opt/local/share/bash-completion/completions"
 	sofd "/usr/local/etc/bash_completion.d"
 
 	# Git prompt.
