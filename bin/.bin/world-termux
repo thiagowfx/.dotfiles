@@ -1,3 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-set -x
-apt update && apt upgrade && apt full-upgrade && apt autoremove && apt-get clean
