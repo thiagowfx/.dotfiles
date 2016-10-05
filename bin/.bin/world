@@ -22,6 +22,7 @@ if [[ "$(uname)" == "Darwin" ]] && command -v port &>/dev/null; then
 	_start
 	sudo port selfupdate
 	sudo port upgrade outdated
+	sudo port uninstall leaves
 	exit
 fi
 
