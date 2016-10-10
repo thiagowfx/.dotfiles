@@ -18,6 +18,10 @@ HISTCONTROL="ignoreboth"
 HISTSIZE=100000
 HISTFILESIZE="${HISTSIZE}"
 
+# Bash History: work with multiple sessions
+# Upstream: http://askubuntu.com/questions/80371/bash-history-handling-with-multiple-terminals
+export PROMPT_COMMAND="history -a ; $PROMPT_COMMAND"
+
 # Enable completion for sudo.
 complete -cf sudo
 
