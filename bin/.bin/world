@@ -2,18 +2,24 @@
 # Upgrade and clean an Unix system.
 #
 
+# Exit immediately upon receiving C-c.
+trap ctrl_c INT
+function ctrl_c	(){
+	exit
+}
+
+# Ask for password upfront.
+sudo -v
+
 # MyRepos
 if command -v mr &>/dev/null; then
-	set +x
 	pushd .
 	cd $HOME && mr update
 	popd
-	set -x
 fi
 
 # OS X: homebrew
 if [[ "$(uname)" == "Darwin" ]] && command -v brew &>/dev/null; then
-	set +x
 	brew update
 	brew upgrade --all
 	brew cleanup
@@ -22,9 +28,8 @@ if [[ "$(uname)" == "Darwin" ]] && command -v brew &>/dev/null; then
 	exit
 fi
 
-# OS X: Mac Ports
+# OS X: MacPorts
 if [[ "$(uname)" == "Darwin" ]] && command -v port &>/dev/null; then
-	set +x
 	sudo port selfupdate
 	sudo port upgrade outdated
 	sudo port uninstall leaves
@@ -33,7 +38,6 @@ fi
 
 # Arch Linux
 if [[ -e /etc/arch-release ]] && command -v pacman &>/dev/null; then
-	set +x
 	sudo pacman -Syu
 	sudo pacman -Rnsc $(pacman -Qdtq)
 	sudo paccache -r
@@ -42,7 +46,6 @@ fi
 
 # Gentoo Linux
 if [[ -e /etc/gentoo-release ]] && command -v emerge &>/dev/null; then
-	set +x
 	sudo emerge --sync
 	sudo emerge -auDN --with-bdeps y --keep-going @world
 	sudo emerge -v --depclean
@@ -54,7 +57,6 @@ fi
 
 # Debian-based Linux
 if [[ -e /etc/debian_version ]] && command -v apt &>/dev/null; then
-	set +x
 	sudo apt update
 	sudo apt upgrade
 	sudo apt full-upgrade
