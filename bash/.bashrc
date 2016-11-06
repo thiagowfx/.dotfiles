@@ -177,7 +177,7 @@ _source_backpack_2() {
 
 	command -v ruby &>/dev/null && addpath "$(ruby -rubygems -e "puts Gem.user_dir")/bin"
 
-	addpath "/usr/lib/ccache/bin"
+	# addpath "/usr/lib/ccache/bin"
 }
 _source_backpack_2
 
