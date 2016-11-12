@@ -135,6 +135,8 @@ _source_backpack_2() {
 
 	addalias cower "cower --color=always --sort=votes" cower
 
+	addalias .. "cd .." cd
+	addalias ... "cd ..." cd
 	addalias chmod "chmod -v" chmod
 	addalias chown "chown -v" chown
 	addalias cp "cp -v" cp
@@ -176,8 +178,6 @@ _source_backpack_2() {
 	addpath "/usr/local/sbin"
 
 	command -v ruby &>/dev/null && addpath "$(ruby -rubygems -e "puts Gem.user_dir")/bin"
-
-	# addpath "/usr/lib/ccache/bin"
 }
 _source_backpack_2
 
