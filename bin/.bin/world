@@ -18,22 +18,25 @@ if command -v mr &>/dev/null; then
 	popd
 fi
 
-# OS X: homebrew
-if [[ "$(uname)" == "Darwin" ]] && command -v brew &>/dev/null; then
-	brew update
-	brew upgrade --all
-	brew cleanup
-	brew prune
-	brew doctor
-	exit
-fi
+# OS X: system
+if [[ "$(uname)" == "Darwin" ]]; then
+	sudo softwareupdate -i -a
 
-# OS X: MacPorts
-if [[ "$(uname)" == "Darwin" ]] && command -v port &>/dev/null; then
-	sudo port selfupdate
-	sudo port upgrade outdated
-	sudo port uninstall leaves
-	exit
+	# OS X: homebrew
+	if command -v brew &>/dev/null; then
+		brew update
+		brew upgrade --all
+		brew cleanup
+		brew prune
+		brew doctor
+	fi
+
+	# OS X: MacPorts
+	if command -v port &>/dev/null; then
+		sudo port selfupdate
+		sudo port upgrade outdated
+		sudo port uninstall leaves
+	fi
 fi
 
 # Arch Linux
@@ -41,7 +44,6 @@ if [[ -e /etc/arch-release ]] && command -v pacman &>/dev/null; then
 	sudo pacman -Syu
 	sudo pacman -Rnsc $(pacman -Qdtq)
 	sudo paccache -r
-	exit
 fi
 
 # Gentoo Linux
@@ -52,7 +54,6 @@ if [[ -e /etc/gentoo-release ]] && command -v emerge &>/dev/null; then
 	sudo revdep-rebuild -v
 	sudo etc-update
 	sudo eclean -d distfiles
-	exit
 fi
 
 # Debian-based Linux
@@ -60,8 +61,7 @@ if [[ -e /etc/debian_version ]] && command -v apt &>/dev/null; then
 	sudo apt update
 	sudo apt upgrade
 	sudo apt full-upgrade
-	sudo apt autoremove
-	exit
+	sudo apt-get autoremove
 fi
 
 echo "ERROR: your system could not be identified." && exit 1
