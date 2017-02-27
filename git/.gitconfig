@@ -42,7 +42,15 @@
 	trustExitCode = true
 
 [submodule]
-	fetchJobs = 0 # see https://github.com/blog/2188-git-2-9-has-been-released
+	fetchJobs = 0
 
 [diff]
-	compactionHeuristic = 1 # see https://github.com/blog/2188-git-2-9-has-been-released
+	compactionHeuristic = 1
+
+[interactive]
+	diffFilter = diff-highlight
+
+[pager]
+	log = diff-highlight | less
+	show = diff-highlight | less
+	diff = diff-highlight | less
