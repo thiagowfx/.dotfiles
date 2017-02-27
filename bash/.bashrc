@@ -134,6 +134,7 @@ _source_backpack_2() {
 	addalias xclip "xclip -selection clipboard" xclip
 
 	addalias cower "cower --color=always --sort=votes" cower
+	addalias pacman "pacapt" pacapt
 
 	addalias .. "cd .." cd
 	addalias ... "cd ..." cd
