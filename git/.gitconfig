@@ -42,4 +42,7 @@
 	trustExitCode = true
 
 [submodule]
-	fetchJobs = 0
+	fetchJobs = 0 # see https://github.com/blog/2188-git-2-9-has-been-released
+
+[diff]
+	compactionHeuristic = 1 # see https://github.com/blog/2188-git-2-9-has-been-released
