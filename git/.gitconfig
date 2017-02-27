@@ -1,36 +1,45 @@
 [user]
-name = Thiago Perrotta
-email = tbperrotta@gmail.com
+	name = Thiago Perrotta
+	email = tbperrotta@gmail.com
 
 [credential]
-helper = store
+	helper = store
 
 [push]
-default = simple
+	default = simple
 
 [alias]
-d = diff --ignore-space-at-eol
-p = push
-st = status
-ignore = "!ignore() { curl -L -s https://www.gitignore.io/api/$@; }; ignore"
-world = "!world() { git gc; git remote prune origin; }; world"
+	d = diff --ignore-space-at-eol
+	l = log
+	p = push
+	st = status
+	ignore = "!ignore() { curl -L -s https://www.gitignore.io/api/$@; }; ignore"
+	world = "!world() { git gc; git remote prune origin; }; world"
 
 [core]
-autocrlf = input
-editor = vim
+	autocrlf = input
+	editor = vim
+	excludesfile = ~/.gitignore_global
 
 [color]
-diff = auto
-status = auto
-branch = auto
-grep = auto
-interactive = auto
-showbranch = auto
-ui = auto
+	diff = auto
+	status = auto
+	branch = auto
+	grep = auto
+	interactive = auto
+	showbranch = auto
+	ui = auto
 
 [merge]
-tool = vimdiff
-conflictstyle = diff3
+	tool = vimdiff
+	conflictstyle = diff3
 
 [mergetool]
-prompt = false
+	prompt = true
+
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+
+[submodule]
+	fetchJobs = 0
