@@ -1,5 +1,6 @@
 # -*- shell-script -*-
 
+# Interactive {{{
 # This file is sourced by all *interactive* bash shells on startup,
 # including some apparently interactive shells such as scp and rcp
 # that can't tolerate any output.  So make sure this doesn't display
@@ -11,21 +12,20 @@ if [[ $- != *i* ]] ; then
 	# Shell is non-interactive. Be done now!
 	return
 fi
+# }}}
 
-# Set history.
+# History {{{
 # Ignore space and ignore duplicates.
 HISTCONTROL="ignoreboth"
 HISTSIZE=100000
 HISTFILESIZE="${HISTSIZE}"
 
-# Bash History: work with multiple sessions
+# History: work with multiple sessions
 # Upstream: http://askubuntu.com/questions/80371/bash-history-handling-with-multiple-terminals
 export PROMPT_COMMAND="history -a ; $PROMPT_COMMAND"
+# }}}
 
-# Enable completion for sudo.
-complete -cf sudo
-
-# Set shell options.
+# Shell options {{{
 set -o emacs
 shopt -s checkwinsize
 shopt -s cdspell
@@ -36,24 +36,64 @@ shopt -s extglob
 shopt -s histappend
 shopt -s hostcomplete
 shopt -s nocaseglob
+# }}}
 
-# HELPER: source the given file if it exists.
-sofe() {
-	[[ -f "$@" ]] && source "$@"
+# Helper functions {{{
+# HELPER: source the given file(s) if it exists.
+src_file() {
+	for f in "$@"; do
+		[[ -f "$f" ]] && source "$f"
+	done
 }
 
-# HELPER: source the given directory if it exists.
-sofd() {
-	if [[ -d "$@" ]]; then
-		for f in "$@"/*; do
-			source "$f"
-		done
-	fi
+# HELPER: source the given directory(ies) if it exists.
+src_dir() {
+	for d in "$@"; do
+		if [[ -d "$d" ]]; then
+			src_file $d/*
+		fi
+	done
 }
 
-# Fix R-lang start-up.
-export LANG=${LANG:-en_US.UTF-8}
-# Add colors to man pages.
+# HELPER: Creates an alias iff the specified program and/or the given file
+# exists on the system.
+#
+# Arguments:
+#  $1 (mandatory): the alias
+#  $2 (mandatory): its value
+#  $3 (optional): a program (e.g. vim or /usr/bin/vim)
+#  $4 (optional): a file (e.g. $HOME/directory)
+#
+add_alias() {
+	[[ "x$3" != "x" ]] && ! command -v "$3" &>/dev/null && return
+	[[ "x$4" != "x" ]] && [ ! -e "$4" ] && return
+	alias "$1"="$2"
+}
+
+# HELPER: Sets an environment variable iff its correlated program
+# is installed and/or if the given file exists on the system.
+#
+# Arguments:
+#  $1 (mandatory): the environment variable (e.g. EDITOR)
+#  $2 (mandatory): its value
+#  $3 (optional): a program (e.g. vim or /usr/bin/vim)
+#  $4 (optional): a file (e.g. $HOME/directory)
+#
+add_env() {
+	[[ "x$3" != "x" ]] && ! command -v "$3" &>/dev/null && return
+	[[ "x$4" != "x" ]] && [ ! -e "$4" ] && return
+	export "$1"="$2"
+}
+
+# HELPER: Prepend the given argument(s) to the PATH variable.
+add_path() {
+	for d in "$@"; do
+		add_env PATH "$d:$PATH" "" "$d"
+	done
+}
+# }}}
+
+# Colored man pages {{{
 man() {
 	env LESS_TERMCAP_mb=$'\E[01;31m' \
 		LESS_TERMCAP_md=$'\E[01;38;5;74m' \
@@ -64,159 +104,140 @@ man() {
 		LESS_TERMCAP_us=$'\E[04;38;5;146m' \
 		man "$@"
 }
+# }}}
 
-# Source utilities.
-# DEPENDS: sofd, sofe
-_source_backpack() {
-	# Bash completion.
-	sofe "/etc/bash_completion"
-	sofe "/opt/local/etc/profile.d/bash_completion.sh"
-	sofd "/opt/local/share/bash-completion/completions"
-	sofd "/usr/local/etc/bash_completion.d"
+# Bash completion {{{
+# Enable completion for sudo.
+complete -cf sudo
 
-	# Git prompt.
-	sofe "$HOME/.git-prompt.sh"
+src_file "/etc/bash_completion"
 
-	# Command-not-found hooks.
-	sofe "/usr/share/doc/pkgfile/command-not-found.bash"
+# MacPorts bash completion
+src_file "/opt/local/etc/profile.d/bash_completion.sh"
+src_dir "/opt/local/share/bash-completion/completions"
 
-	# Autojump (j).
-	sofe "/etc/profile.d/autojump.bash"
-	sofe "/opt/local/etc/profile.d/autojump.sh"
-	sofe "/usr/share/autojump/autojump.bash"
-	command -v brew &>/dev/null && sofe "$(brew --prefix)/etc/profile.d/autojump.sh"
+# HomeBrew bash completion
+src_dir "/usr/local/etc/bash_completion.d"
+# }}}
 
-	# Termite.
-	[[ $TERM == xterm-termite ]] && sofe "/etc/profile.d/vte.sh"
-}
-_source_backpack
+# Command-not-found hooks {{{
+# Pkgfile (for pacman)
+src_file "/usr/share/doc/pkgfile/command-not-found.bash"
 
-# Creates an alias iff the specified program and/or the given file
-# exists on the system.
-#
-# Arguments:
-#  $1 (mandatory): the alias
-#  $2 (mandatory): its value
-#  $3: a program (e.g. vim or /usr/bin/vim)
-#  $4: a file (e.g. $HOME/directory)
-#
-addalias() {
-	[[ "x$3" != "x" ]] && ! command -v "$3" &>/dev/null && return
-	[[ "x$4" != "x" ]] && [ ! -e "$4" ] && return
-	alias "$1"="$2"
-}
+# HomeBrew
+if brew command command-not-found-init >/dev/null 2>&1; then
+	eval "$(brew command-not-found-init)"
+fi
+# }}}
 
-# Sets an environment variable iff its correlated program
-# is installed and/or if the given file exists on the system.
-#
-# Arguments:
-#  $1 (mandatory): the environment variable (e.g. EDITOR)
-#  $2 (mandatory): its value
-#  $3: a program (e.g. vim or /usr/bin/vim)
-#  $4: a file (e.g. $HOME/directory)
-#
-addenv() {
-	[[ "x$3" != "x" ]] && ! command -v "$3" &>/dev/null && return
-	[[ "x$4" != "x" ]] && [ ! -e "$4" ] && return
-	export "$1"="$2"
-}
+# Autojump (j) {{{
+src_file "/etc/profile.d/autojump.bash"
+src_file "/usr/share/autojump/autojump.bash"
 
-# Add the given argument to PATH.
-addpath() {
-	addenv PATH "$1:$PATH"
-}
+# MacPorts
+src_file "/opt/local/etc/profile.d/autojump.sh"
 
-# Source more utilities.
-# DEPENDS: addalias, addenv
-_source_backpack_2() {
-	addalias make "make -j"
-	addalias tmux "tmux -2" tmux
-	addalias xclip "xclip -selection clipboard" xclip
+# HomeBrew
+src_file "/usr/local/etc/profile.d/autojump.sh"
+# }}}
 
-	addalias cower "cower --color=always --sort=votes" cower
-	addalias pacman "pacapt" pacapt
+add_alias make "make -j"
+add_alias tmux "tmux -2" tmux
+add_alias xclip "xclip -selection clipboard" xclip
 
-	addalias .. "cd .." cd
-	addalias ... "cd ..." cd
-	addalias chmod "chmod -v" chmod
-	addalias chown "chown -v" chown
-	addalias cp "cp -v" cp
-	addalias curl "curl -v -L" curl
-	addalias du "du -h" du
-	addalias free "free -h" free
-	addalias grep "grep --color=always" grep
-	addalias hexdump "hexdump -C" hexdump
-	addalias ln "ln -v" ln
-	addalias mv "mv -v" mv
-	addalias netstat "netstat -pln" netstat
-	addalias pgrep "pgrep -fl" pgrep
-	addalias pstree "pstree -p" pstree
+add_alias cower "cower --color=always --sort=votes" cower
+add_alias pacman "pacapt" pacapt
 
-	addalias ls "ls -F" ls
-	addalias sl "ls" ls
-	addalias l "ls -l" ls
-	addalias ll "l" ls
+add_alias .. "cd .." cd
+add_alias ... "cd ..." cd
+add_alias chmod "chmod -v" chmod
+add_alias chown "chown -v" chown
+add_alias cp "cp -v" cp
+add_alias curl "curl -v -L" curl
+add_alias du "du -h" du
+add_alias free "free -h" free
+add_alias grep "grep --color=always" grep
+add_alias hexdump "hexdump -C" hexdump
+add_alias ln "ln -v" ln
+add_alias mv "mv -v" mv
+add_alias netstat "netstat -pln" netstat
+add_alias pgrep "pgrep -fl" pgrep
+add_alias pstree "pstree -p" pstree
 
-	addalias g "git" git
+add_alias ls "ls -F" ls
+add_alias sl "ls" ls
+add_alias l "ls -l" ls
+add_alias ll "l" ls
 
-	addalias diff "diff -uN" diff
-	addalias diff "colordiff -uN" colordiff
-	addalias colordiff "colordiff -uN" colordiff
+add_alias g "git" git
 
-	addalias youtube-dl-mp3 "youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3"
-	addalias youtube-dl-video "youtube-dl --continue --title --restrict-filenames"
+# diff {{{
+add_alias colordiff "colordiff -uN" colordiff
+add_alias diff "diff -uN" diff
+add_alias diff "colordiff -uN" colordiff
+# }}}
 
-	addenv EDITOR "vim" vim
-	addenv VISUAL "$EDITOR"
-	addenv LESS "-R" less
-	addenv GTEST_COLOR "YES"
+# youtube-dl {{{
+add_alias youtube-dl-mp3   "youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3" youtube-dl
+add_alias youtube-dl-video "youtube-dl --continue --title --restrict-filenames" youtube-dl
+# }}}
 
-	addpath "$HOME/bin"
-	addpath "$HOME/.bin"
+# Unix variables {{{
+add_env EDITOR "vim" vim
+add_env VISUAL "$EDITOR" "$EDITOR"
+add_env LESS "-R" less
+# }}}
 
-	addpath "/opt/local/bin"
-	addpath "/opt/local/sbin"
-	addpath "/usr/local/sbin"
+add_env GTEST_COLOR "YES"
 
-	command -v ruby &>/dev/null && addpath "$(ruby -rubygems -e "puts Gem.user_dir")/bin"
-}
-_source_backpack_2
+command -v ruby &>/dev/null && add_path "$(ruby -rubygems -e "puts Gem.user_dir")/bin"
 
-# Define a few colors.
-_set_colors() {
-	if command -v tput &>/dev/null && tput setaf 1 &>/dev/null; then
-		tput sgr0; # reset colors
-		bold=$(tput bold);
-		reset=$(tput sgr0);
-		# Solarized colors, taken from http://git.io/solarized-colors.
-		black=$(tput setaf 0);
-		blue=$(tput setaf 33);
-		cyan=$(tput setaf 37);
-		green=$(tput setaf 64);
-		orange=$(tput setaf 166);
-		purple=$(tput setaf 125);
-		red=$(tput setaf 124);
-		violet=$(tput setaf 61);
-		white=$(tput setaf 15);
-		yellow=$(tput setaf 136);
-	else
-		bold='';
-		reset="\e[0m";
-		black="\e[1;30m";
-		blue="\e[1;34m";
-		cyan="\e[1;36m";
-		green="\e[1;32m";
-		orange="\e[1;33m";
-		purple="\e[1;35m";
-		red="\e[1;31m";
-		violet="\e[1;35m";
-		white="\e[1;37m";
-		yellow="\e[1;33m";
-	fi;
-}
-_set_colors
+# PATH {{{
+add_path "$HOME/bin" "$HOME/.bin"
 
-# Set both prompts.
+# MacPorts
+add_path "/opt/local/bin" "/opt/local/sbin"
+
+# HomeBrew
+add_path "/usr/local/sbin"
+# }}}
+
+# Prompts {{{
+# Git prompt.
+src_file "$HOME/.git-prompt.sh"
+
+# Set colors.
+if command -v tput &>/dev/null && tput setaf 1 &>/dev/null; then
+	tput sgr0; # reset colors
+	bold=$(tput bold);
+	reset=$(tput sgr0);
+	# Solarized colors, taken from http://git.io/solarized-colors.
+	black=$(tput setaf 0);
+	blue=$(tput setaf 33);
+	cyan=$(tput setaf 37);
+	green=$(tput setaf 64);
+	orange=$(tput setaf 166);
+	purple=$(tput setaf 125);
+	red=$(tput setaf 124);
+	violet=$(tput setaf 61);
+	white=$(tput setaf 15);
+	yellow=$(tput setaf 136);
+else
+	bold='';
+	reset="\e[0m";
+	black="\e[1;30m";
+	blue="\e[1;34m";
+	cyan="\e[1;36m";
+	green="\e[1;32m";
+	orange="\e[1;33m";
+	purple="\e[1;35m";
+	red="\e[1;31m";
+	violet="\e[1;35m";
+	white="\e[1;37m";
+	yellow="\e[1;33m";
+fi;
+
+# Set PS1.
 PS1="\[\033]0;\w\007\]"
 PS1+="\[${bold}\]"
 PS1+="\[${orange}\]\u" # username
@@ -227,4 +248,9 @@ PS1+="\[${green}\]\w" # working directory
 PS1+="${violet}\$(__git_ps1)"
 PS1+="\n";
 PS1+="\[${white}\]\$ \[${reset}\]"; # `$` (and reset color)
+
+# Set PS2.
 PS2="\[${yellow}\]→ \[${reset}\]";
+# }}}
+
+# vim: fdm=marker
