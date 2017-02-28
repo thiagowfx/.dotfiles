@@ -9,3 +9,8 @@ Managed with GNU stow. Quick setup:
     git clone https://github.com/thiagowfx/dotfiles .dotfiles
     cd .dotfiles
     stow bash git tmux [... other directories ... ]
+
+To unstow:
+
+    cd $HOME/.dotfiles
+    stow -D bash git tmux [...]
