@@ -1,4 +1,5 @@
 #!/bin/sh
+#
 # Upgrade and clean an Unix system.
 #
 
@@ -11,31 +12,33 @@ function ctrl_c	(){
 # Ask for password upfront.
 sudo -v
 
-# MyRepos
-if command -v mr &>/dev/null; then
-	pushd .
-	cd $HOME && mr update
-	popd
+# One pseudo package manager to rule them all.
+if command -v pacapt &>/dev/null; then
+	pacapt -Syu
+	pacapt -Sccc
+	return
 fi
 
-# OS X: system
+# macOS: system
 if [[ "$(uname)" == "Darwin" ]]; then
 	sudo softwareupdate -i -a
 
-	# OS X: homebrew
+	# macOS: homebrew
 	if command -v brew &>/dev/null; then
 		brew update
 		brew upgrade --all
 		brew cleanup
 		brew prune
 		brew doctor
+		return
 	fi
 
-	# OS X: MacPorts
+	# macOS: MacPorts
 	if command -v port &>/dev/null; then
 		sudo port selfupdate
 		sudo port upgrade outdated
 		sudo port uninstall leaves
+		return
 	fi
 fi
 
@@ -44,6 +47,7 @@ if [[ -e /etc/arch-release ]] && command -v pacman &>/dev/null; then
 	sudo pacman -Syu
 	sudo pacman -Rnsc $(pacman -Qdtq)
 	sudo paccache -r
+	return
 fi
 
 # Gentoo Linux
@@ -54,14 +58,16 @@ if [[ -e /etc/gentoo-release ]] && command -v emerge &>/dev/null; then
 	sudo revdep-rebuild -v
 	sudo etc-update
 	sudo eclean -d distfiles
+	return
 fi
 
 # Debian-based Linux
 if [[ -e /etc/debian_version ]] && command -v apt &>/dev/null; then
 	sudo apt update
 	sudo apt upgrade
-	sudo apt full-upgrade
+	sudo apt-get dist-upgrade
 	sudo apt-get autoremove
+	return
 fi
 
-echo "ERROR: your system could not be identified." && exit 1
+echo "ERROR: your system / package manager could not be identified."
