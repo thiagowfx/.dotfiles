@@ -16,6 +16,10 @@ src_file() {
 
 # zsh completion {{{
 zstyle ':completion:*' rehash true
+
+# show completion menu when number of options is at least 2
+zstyle ':completion:*' menu select=2
+
 src_file "$HOME/.zsh-completions/zsh-completions.plugin.zsh"
 # }}}
 
