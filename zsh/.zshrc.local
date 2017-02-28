@@ -14,6 +14,15 @@ src_file() {
 }
 # }}}
 
+# zsh completion {{{
+zstyle ':completion:*' rehash true
+src_file "$HOME/.zsh-completions/zsh-completions.plugin.zsh"
+# }}}
+
+# zsh syntax highlighting {{{
+src_file "$HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
+# }}}
+
 # Shell options {{{
 setopt appendhistory
 setopt beep
@@ -40,15 +49,6 @@ autoload -U complist
 autoload -Uz promptinit && promptinit
 autoload -Uz vcs_info
 autoload -U zutil
-# }}}
-
-# zsh completion {{{
-zstyle ':completion:*' rehash true
-src_file "$HOME/.zsh-completions/zsh-completions.plugin.zsh"
-# }}}
-
-# zsh syntax highlighting {{{
-src_file "$HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
 # }}}
 
 # vim: fdm=marker
