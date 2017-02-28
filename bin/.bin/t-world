@@ -6,7 +6,7 @@
 # Exit immediately upon receiving C-c.
 trap ctrl_c INT
 function ctrl_c	(){
-	exit
+	exit 1
 }
 
 # Ask for password upfront.
@@ -16,7 +16,7 @@ sudo -v
 if command -v pacapt &>/dev/null; then
 	pacapt -Syu
 	pacapt -Sccc
-	return
+	exit
 fi
 
 # macOS: system
@@ -30,7 +30,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
 		brew cleanup
 		brew prune
 		brew doctor
-		return
+		exit
 	fi
 
 	# macOS: MacPorts
@@ -38,7 +38,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
 		sudo port selfupdate
 		sudo port upgrade outdated
 		sudo port uninstall leaves
-		return
+		exit
 	fi
 fi
 
@@ -47,7 +47,7 @@ if [[ -e /etc/arch-release ]] && command -v pacman &>/dev/null; then
 	sudo pacman -Syu
 	sudo pacman -Rnsc $(pacman -Qdtq)
 	sudo paccache -r
-	return
+	exit
 fi
 
 # Gentoo Linux
@@ -58,7 +58,7 @@ if [[ -e /etc/gentoo-release ]] && command -v emerge &>/dev/null; then
 	sudo revdep-rebuild -v
 	sudo etc-update
 	sudo eclean -d distfiles
-	return
+	exit
 fi
 
 # Debian-based Linux
@@ -67,7 +67,8 @@ if [[ -e /etc/debian_version ]] && command -v apt &>/dev/null; then
 	sudo apt upgrade
 	sudo apt-get dist-upgrade
 	sudo apt-get autoremove
-	return
+	exit
 fi
 
 echo "ERROR: your system / package manager could not be identified."
+exit 1
