@@ -129,7 +129,7 @@ command -v thefuck &>/dev/null && eval "$(thefuck --alias)"
 src_file "/usr/share/doc/pkgfile/command-not-found.bash"
 
 # HomeBrew
-if brew command command-not-found-init >/dev/null 2>&1; then
+if command -v brew &>/dev/null && brew command command-not-found-init >/dev/null 2>&1; then
 	eval "$(brew command-not-found-init)"
 fi
 # }}}
@@ -272,6 +272,12 @@ PS1+="\[${white}\]\$ \[${reset}\]"; # `$` (and reset color)
 
 # Set PS2.
 PS2="\[${yellow}\]→ \[${reset}\]";
+# }}}
+
+# python: virtualenvwrapper {{{
+# HomeBrew
+add_env WORKON_HOME "$HOME/.virtualenvs" virtualenvwrapper.sh "/usr/local/bin/virtualenvwrapper.sh"
+src_file "/usr/local/bin/virtualenvwrapper.sh"
 # }}}
 
 # vim: fdm=marker
