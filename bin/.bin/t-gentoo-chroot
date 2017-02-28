@@ -4,12 +4,12 @@
 #
 
 if [[ "x$1" == "x" ]]; then
-	echo "USAGE: $0 /mnt/gentoo"
+	echo "usage: $0 /path/to/chroot" >&2
 	exit 1
 fi
 
-if [[ ! -d "$1"  ]]; then
-	echo "The specified path doesn't exist: $1"
+if [[ ! -d "$1" ]]; then
+	echo "error: the specified path doesn't exist: $1" >&2
 	exit 1
 fi
 
@@ -20,3 +20,5 @@ sudo mount -o bind /proc "$1/proc"
 sudo mount --rbind /dev  "$1/dev"
 sudo mount --rbind /sys  "$1/sys"
 sudo chroot "$1/" /bin/env -i TERM=$TERM /bin/bash
+
+set +x
