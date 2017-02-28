@@ -2,3 +2,7 @@
 	path = third-party/git
 	url = https://github.com/git/git
 	shallow = true
+[submodule "dwm/dwm"]
+	path = dwm/dwm
+	url = git://git.suckless.org/dwm
+	shallow = true
