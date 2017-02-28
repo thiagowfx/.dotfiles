@@ -142,7 +142,11 @@ src_file "/usr/local/etc/profile.d/autojump.sh"
 # }}}
 
 # change command behavior {{{
-add_alias make "make -j" make
+command -v nproc &>/dev/null && NPROC=$(nproc)
+command -v sysctl &>/dev/null && NPROC=$(sysctl -n hw.ncpu)
+NPROC=${NPROC:-1}
+
+add_alias make "make -j${NPROC} -l${NPROC}" make
 add_alias xclip "xclip -selection clipboard" xclip
 # }}}
 
