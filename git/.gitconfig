@@ -10,6 +10,7 @@
 
 [alias]
 	d = diff --ignore-space-at-eol
+	dc = diff --cached
 	l = log
 	p = push
 	st = status
