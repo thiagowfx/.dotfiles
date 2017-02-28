@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Quickly update / upgrade all dotfiles.
+# Quickly pull the whole git repository, including all its submodules.
 #
 
 git pull --recurse-submodules
