@@ -120,6 +120,10 @@ src_dir "/opt/local/share/bash-completion/completions"
 src_dir "/usr/local/etc/bash_completion.d"
 # }}}
 
+# thefuck {{{
+command -v thefuck &>/dev/null && eval "$(thefuck --alias)"
+# }}}
+
 # Command-not-found hooks {{{
 # Pkgfile (for pacman)
 src_file "/usr/share/doc/pkgfile/command-not-found.bash"
