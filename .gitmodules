@@ -3,6 +3,18 @@
 	url = https://github.com/git/git
 	shallow = true
 [submodule "dwm/dwm"]
-	path = dwm/dwm
+	path = third-party/dwm
 	url = git://git.suckless.org/dwm
+	shallow = true
+[submodule "third-party/zsh-completions"]
+	path = third-party/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions
+	shallow = true
+[submodule "third-party/zsh-syntax-highlighting"]
+	path = third-party/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+	shallow = true
+[submodule "third-party/grml-etc-core"]
+	path = third-party/grml-etc-core
+	url = git://git.grml.org/grml-etc-core.git
 	shallow = true

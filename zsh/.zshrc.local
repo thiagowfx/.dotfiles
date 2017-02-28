@@ -1,0 +1,54 @@
+# -*- shell-script -*-
+
+# Interactive {{{
+# if not running interactively, don't do anything
+[[ -z "$PS1" ]] && return
+# }}}
+
+# Helper functions {{{
+# HELPER: source the given file(s) if it exists.
+src_file() {
+	for f in "$@"; do
+		[[ -f "$f" ]] && source "$f"
+	done
+}
+# }}}
+
+# Shell options {{{
+setopt appendhistory
+setopt beep
+setopt emacs
+setopt extendedglob
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt nohashdirs
+setopt nomatch
+setopt printexitvalue
+setopt prompt_subst
+# }}}
+
+# History {{{
+# zsh: commands beginning with blank spaces don't go to the history
+export HIST_IGNORE_SPACE
+# }}}
+
+# Autoloads {{{
+autoload -U bashcompinit && bashcompinit
+autoload -U colors && colors
+autoload -U compinit && compinit
+autoload -U complist
+autoload -Uz promptinit && promptinit
+autoload -Uz vcs_info
+autoload -U zutil
+# }}}
+
+# zsh completion {{{
+zstyle ':completion:*' rehash true
+src_file "$HOME/.zsh-completions/zsh-completions.plugin.zsh"
+# }}}
+
+# zsh syntax highlighting {{{
+src_file "$HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
+# }}}
+
+# vim: fdm=marker

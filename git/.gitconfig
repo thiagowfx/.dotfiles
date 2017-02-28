@@ -47,6 +47,10 @@
 [diff]
 	compactionHeuristic = 1
 
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+
 [interactive]
 	diffFilter = diff-highlight
 

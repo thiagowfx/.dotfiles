@@ -176,8 +176,9 @@ add_alias l "ls -l -F" ls
 add_alias ll "l" ls
 # }}}
 
-# command abbreviation {{{
+# command abbreviation / alternatives {{{
 add_alias g "git" git
+add_alias unstow "stow -D" stow
 # }}}
 
 # diff {{{
