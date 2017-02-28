@@ -1,0 +1,13 @@
+! Xft font rendering {{{
+Xft.autohint: true
+Xft*antialias: true
+Xft*hinting: true
+Xft.hintstyle: hintslight
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
+
+! 96 for LCD, 192 for Retina display
+Xft*dpi: 192
+! }}}
+
+# vim: ft=xdefaults fdm=marker
