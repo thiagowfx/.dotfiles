@@ -141,18 +141,22 @@ src_file "/opt/local/etc/profile.d/autojump.sh"
 src_file "/usr/local/etc/profile.d/autojump.sh"
 # }}}
 
-add_alias make "make -j"
-add_alias tmux "tmux -2" tmux
+# change command behavior {{{
+add_alias make "make -j" make
 add_alias xclip "xclip -selection clipboard" xclip
+# }}}
 
-add_alias cower "cower --color=always --sort=votes" cower
-add_alias pacman "pacapt" pacapt
-
+# cd {{{
 add_alias .. "cd .." cd
 add_alias ... "cd ..." cd
+# }}}
+
+# verbosity / human-friendliness {{{
 add_alias chmod "chmod -v" chmod
 add_alias chown "chown -v" chown
 add_alias cp "cp -v" cp
+
+add_alias cower "cower --color=always --sort=votes" cower
 add_alias curl "curl -v -L" curl
 add_alias du "du -h" du
 add_alias free "free -h" free
@@ -163,13 +167,18 @@ add_alias mv "mv -v" mv
 add_alias netstat "netstat -pln" netstat
 add_alias pgrep "pgrep -fl" pgrep
 add_alias pstree "pstree -p" pstree
+# }}}
 
+# {{{ ls
 add_alias ls "ls -F" ls
 add_alias sl "ls" ls
-add_alias l "ls -l" ls
+add_alias l "ls -l -F" ls
 add_alias ll "l" ls
+# }}}
 
+# command abbreviation {{{
 add_alias g "git" git
+# }}}
 
 # diff {{{
 add_alias colordiff "colordiff -uN" colordiff
@@ -188,9 +197,9 @@ add_env VISUAL "$EDITOR" "$EDITOR"
 add_env LESS "-R" less
 # }}}
 
+# environment variables {{{
 add_env GTEST_COLOR "YES"
-
-command -v ruby &>/dev/null && add_path "$(ruby -rubygems -e "puts Gem.user_dir")/bin"
+# }}}
 
 # PATH {{{
 add_path "$HOME/bin" "$HOME/.bin"
@@ -200,6 +209,9 @@ add_path "/opt/local/bin" "/opt/local/sbin"
 
 # HomeBrew
 add_path "/usr/local/sbin"
+
+# RubyGems
+command -v ruby &>/dev/null && add_path "$(ruby -rubygems -e "puts Gem.user_dir")/bin"
 # }}}
 
 # Prompts {{{

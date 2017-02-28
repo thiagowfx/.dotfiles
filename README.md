@@ -13,4 +13,4 @@ Managed with GNU stow. Quick **stow**:
 To **unstow**:
 
     cd $HOME/.dotfiles
-    stow -D bash git tmux [...]
+    stow -D bash git tmux [... other directories ...]
