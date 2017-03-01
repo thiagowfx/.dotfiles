@@ -193,6 +193,7 @@ add_alias ll "l" ls
 add_alias ack "ack-grep" ack-grep
 add_alias cmakee "cmake --warn-uninitialized --warn-unused-vars --check-system-vars -Wno-dev" cmake
 add_alias g "git" git
+add_alias gi "git" git
 add_alias i3lock "i3lock -c 777777" i3lock
 add_alias pingg "ping google.com" ping
 add_alias xclip "xclip -selection clipboard" xclip
