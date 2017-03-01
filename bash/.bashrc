@@ -222,6 +222,10 @@ add_alias youtube-dl-video "youtube-dl --continue --title --restrict-filenames" 
 add_env EDITOR "vim" vim
 add_env VISUAL "$EDITOR" "$EDITOR"
 add_env LESS "-R" less
+
+if test "$(uname -s)" = Linux; then
+	add_env TERM "screen-256color"
+fi
 # }}}
 
 # environment variables {{{
