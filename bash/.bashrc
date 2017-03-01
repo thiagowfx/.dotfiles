@@ -111,6 +111,7 @@ man() {
 complete -cf sudo
 
 src_file "/etc/bash_completion"
+src_file "~/.bash_completion.d"
 
 # MacPorts bash completion
 src_file "/opt/local/etc/profile.d/bash_completion.sh"
@@ -146,9 +147,13 @@ src_file "/usr/local/etc/profile.d/autojump.sh"
 # }}}
 
 # change command behavior {{{
-command -v nproc &>/dev/null && NPROC=$(nproc)
-command -v sysctl &>/dev/null && NPROC=$(sysctl -n hw.ncpu)
-NPROC=${NPROC:-1}
+if command -v nproc &>/dev/null; then
+	NPROC=$(nproc)
+elif command -v sysctl &>/dev/null; then
+	NPROC=$(sysctl -n hw.ncpu)
+else
+	NPROC=${NPROC:-1}
+fi
 
 add_alias make "make -j${NPROC} -l${NPROC}" make
 add_alias xclip "xclip -selection clipboard" xclip
@@ -185,8 +190,21 @@ add_alias ll "l" ls
 # }}}
 
 # command abbreviation / alternatives {{{
+add_alias ack "ack-grep" ack
+add_alias cmakee "cmake --warn-uninitialized --warn-unused-vars --check-system-vars -Wno-dev" cmake
 add_alias g "git" git
+add_alias i3lock "i3lock -c 777777" i3lock
+add_alias pingg "ping google.com" ping
+add_alias tmux "tmux -2" tmux
+add_alias xclip "xclip -selection clipboard" xclip
 add_alias unstow "stow -D" stow
+
+t-cmake-clean() {
+       local BUILD=$(basename $(pwd))
+       cd ..
+       rm -rf $BUILD
+       mkdir $BUILD && cd $BUILD
+}
 # }}}
 
 # diff {{{
