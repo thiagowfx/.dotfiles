@@ -190,7 +190,7 @@ add_alias ll "l" ls
 # }}}
 
 # command abbreviation / alternatives {{{
-add_alias ack "ack-grep" ack
+add_alias ack "ack-grep" ack-grep
 add_alias cmakee "cmake --warn-uninitialized --warn-unused-vars --check-system-vars -Wno-dev" cmake
 add_alias g "git" git
 add_alias i3lock "i3lock -c 777777" i3lock
