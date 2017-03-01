@@ -18,3 +18,7 @@
 	path = third-party/grml-etc-core
 	url = git://git.grml.org/grml-etc-core.git
 	shallow = true
+[submodule "third-party/dwm-statusbar"]
+	path = third-party/dwm-statusbar
+	url = https://github.com/snobb/dwm-statusbar
+	shallow = true
