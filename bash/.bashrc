@@ -195,7 +195,6 @@ add_alias cmakee "cmake --warn-uninitialized --warn-unused-vars --check-system-v
 add_alias g "git" git
 add_alias i3lock "i3lock -c 777777" i3lock
 add_alias pingg "ping google.com" ping
-add_alias tmux "tmux -2" tmux
 add_alias xclip "xclip -selection clipboard" xclip
 add_alias unstow "stow -D" stow
 
