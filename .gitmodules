@@ -22,3 +22,7 @@
 	path = third-party/dwm-statusbar
 	url = https://github.com/snobb/dwm-statusbar
 	shallow = true
+[submodule "third-party/tpm"]
+	path = third-party/tpm
+	url = https://github.com/tmux-plugins/tpm
+	shallow = true
