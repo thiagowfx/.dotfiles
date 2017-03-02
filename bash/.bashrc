@@ -180,6 +180,7 @@ add_alias mv "mv -v" mv
 add_alias netstat "netstat -pln" netstat
 add_alias pgrep "pgrep -fl" pgrep
 add_alias pstree "pstree -p" pstree
+add_alias tree "tree -C" tree
 # }}}
 
 # {{{ ls
