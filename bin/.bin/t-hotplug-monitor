@@ -9,3 +9,5 @@ elif [ "${dmode}" = connected ]; then
 else
 	/usr/bin/xrandr --auto
 fi
+
+[ -e ~/.fehbg ] && command -v feh &>/dev/null && eval $(cat ~/.fehbg)
