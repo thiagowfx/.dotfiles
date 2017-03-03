@@ -118,7 +118,8 @@ src_file "/opt/local/etc/profile.d/bash_completion.sh"
 src_dir "/opt/local/share/bash-completion/completions"
 
 # HomeBrew bash completion
-src_dir "/usr/local/etc/bash_completion.d"
+# src_file "/usr/local/etc/bash_completion"
+# src_dir "/usr/local/etc/bash_completion.d"
 # }}}
 
 # thefuck {{{
