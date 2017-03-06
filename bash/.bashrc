@@ -27,9 +27,11 @@ export PROMPT_COMMAND="history -a ; $PROMPT_COMMAND"
 
 # Shell options {{{
 set -o emacs
+shopt -s cdable_vars
 shopt -s checkwinsize
 shopt -s cdspell
 shopt -s cmdhist
+shopt -s direxpand
 shopt -s dotglob
 shopt -s expand_aliases
 shopt -s extglob
