@@ -1,0 +1,8 @@
+[.vim]
+checkout = git clone --recursive --depth=1 'git@github.com:thiagowfx/vim' '.vim'
+
+[.emacs.d]
+checkout = git clone --recursive --depth=1 'git@github.com:thiagowfx/.emacs.d' '.emacs.d'
+
+[.dotfiles]
+checkout = git clone --recursive --depth=1 'git@github.com:thiagowfx/dotfiles' '.dotfiles'
