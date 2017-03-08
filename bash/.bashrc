@@ -86,7 +86,7 @@ add_env() {
 }
 
 # HELPER: Prepend the given argument(s) to the PATH variable.
-add_path() {
+add_paths() {
 	for d in "$@"; do
 		add_env PATH "$d:$PATH" "" "$d"
 	done
@@ -185,9 +185,9 @@ add_alias tree "tree -C" tree
 # }}}
 
 # {{{ ls
-add_alias ls "ls -F" ls
+add_alias ls "ls --color=always -F" ls
 add_alias sl "ls" ls
-add_alias l "ls -l -F" ls
+add_alias l "ls -l" ls
 add_alias ll "l" ls
 # }}}
 
@@ -212,7 +212,7 @@ t-cmake-clean() {
 # diff {{{
 add_alias colordiff "colordiff -uN" colordiff
 add_alias diff "diff -uN" diff
-add_alias diff "colordiff -uN" colordiff
+add_alias diff "colordiff" colordiff
 # }}}
 
 # youtube-dl {{{
@@ -231,16 +231,16 @@ add_env GTEST_COLOR "YES"
 # }}}
 
 # PATH {{{
-add_path "$HOME/bin" "$HOME/.bin"
+add_paths "$HOME/bin" "$HOME/.bin"
 
 # MacPorts
-add_path "/opt/local/bin" "/opt/local/sbin"
+add_paths "/opt/local/bin" "/opt/local/sbin"
 
 # HomeBrew
-add_path "/usr/local/sbin"
+add_paths "/usr/local/sbin"
 
 # RubyGems
-command -v ruby &>/dev/null && add_path "$(ruby -rubygems -e "puts Gem.user_dir")/bin"
+command -v ruby &>/dev/null && add_paths "$(ruby -rubygems -e "puts Gem.user_dir")/bin"
 # }}}
 
 # Prompts {{{
