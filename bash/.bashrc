@@ -111,15 +111,17 @@ man() {
 complete -cf sudo
 
 src_file "/etc/bash_completion"
-src_file "~/.bash_completion.d"
+src_dir "~/.bash_completion.d"
 
 # MacPorts bash completion
 src_file "/opt/local/etc/profile.d/bash_completion.sh"
 src_dir "/opt/local/share/bash-completion/completions"
 
 # HomeBrew bash completion
-# src_file "/usr/local/etc/bash_completion"
-# src_dir "/usr/local/etc/bash_completion.d"
+src_file "/usr/local/etc/bash_completion"
+src_file "/usr/local/share/bash-completion/bash_completion"
+src_dir "/usr/local/etc/bash_completion.d"
+
 # }}}
 
 # thefuck {{{
