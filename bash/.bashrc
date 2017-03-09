@@ -187,7 +187,7 @@ add_alias tree "tree -C" tree
 # }}}
 
 # {{{ ls
-add_alias ls "ls --color=always -F" ls
+add_alias ls "ls -F" ls
 add_alias sl "ls" ls
 add_alias l "ls -l" ls
 add_alias ll "l" ls
