@@ -2,12 +2,10 @@
 
 dmode="$(cat /sys/class/drm/card0-VGA-1/status)"
 
-if [ "${dmode}" = disconnected ]; then
-	/usr/bin/xrandr --auto
-elif [ "${dmode}" = connected ]; then
-	/usr/bin/xrandr --output VGA1 --auto --above eDP1
+if [ "${dmode}" = connected ]; then
+	xrandr --output VGA1 --auto --above eDP1
 else
-	/usr/bin/xrandr --auto
+	xrandr --auto
 fi
 
 [ -e ~/.fehbg ] && command -v feh &>/dev/null && eval $(cat ~/.fehbg)
