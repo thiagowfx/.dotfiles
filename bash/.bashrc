@@ -29,9 +29,15 @@ export PROMPT_COMMAND="history -a ; $PROMPT_COMMAND"
 # vim-mode
 set -o vi
 bind -m vi-insert "\C-a":beginning-of-line
+bind -m vi-insert "\C-d":delete-char
 bind -m vi-insert "\C-e":end-of-line
 bind -m vi-insert "\C-k":kill-line
 bind -m vi-insert "\C-l":clear-screen
+
+# vi, vi-command, vi-move
+bind -m vi-command "\C-a":beginning-of-line
+bind -m vi-command "\C-d":delete-char
+bind -m vi-command "\C-e":end-of-line
 
 shopt -s checkwinsize
 shopt -s cdspell
