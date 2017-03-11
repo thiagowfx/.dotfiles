@@ -26,7 +26,13 @@ export PROMPT_COMMAND="history -a ; $PROMPT_COMMAND"
 # }}}
 
 # Shell options {{{
-set -o emacs
+# vim-mode
+set -o vi
+bind -m vi-insert "\C-a":beginning-of-line
+bind -m vi-insert "\C-e":end-of-line
+bind -m vi-insert "\C-k":kill-line
+bind -m vi-insert "\C-l":clear-screen
+
 shopt -s checkwinsize
 shopt -s cdspell
 shopt -s cmdhist
