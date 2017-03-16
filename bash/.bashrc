@@ -26,7 +26,19 @@ export PROMPT_COMMAND="history -a ; $PROMPT_COMMAND"
 # }}}
 
 # Shell options {{{
-set -o emacs
+# vim-mode
+set -o vi
+bind -m vi-insert "\C-a":beginning-of-line
+bind -m vi-insert "\C-d":delete-char
+bind -m vi-insert "\C-e":end-of-line
+bind -m vi-insert "\C-k":kill-line
+bind -m vi-insert "\C-l":clear-screen
+
+# vi, vi-command, vi-move
+bind -m vi-command "\C-a":beginning-of-line
+bind -m vi-command "\C-d":delete-char
+bind -m vi-command "\C-e":end-of-line
+
 shopt -s checkwinsize
 shopt -s cdspell
 shopt -s cmdhist
@@ -111,15 +123,17 @@ man() {
 complete -cf sudo
 
 src_file "/etc/bash_completion"
-src_file "~/.bash_completion.d"
+src_dir "~/.bash_completion.d"
 
 # MacPorts bash completion
 src_file "/opt/local/etc/profile.d/bash_completion.sh"
 src_dir "/opt/local/share/bash-completion/completions"
 
 # HomeBrew bash completion
-# src_file "/usr/local/etc/bash_completion"
-# src_dir "/usr/local/etc/bash_completion.d"
+src_file "/usr/local/etc/bash_completion"
+src_file "/usr/local/share/bash-completion/bash_completion"
+src_dir "/usr/local/etc/bash_completion.d"
+
 # }}}
 
 # thefuck {{{
@@ -185,7 +199,7 @@ add_alias tree "tree -C" tree
 # }}}
 
 # {{{ ls
-add_alias ls "ls --color=always -F" ls
+add_alias ls "ls -F" ls
 add_alias sl "ls" ls
 add_alias l "ls -l" ls
 add_alias ll "l" ls

@@ -3,7 +3,7 @@
 # Quickly stows the most popular stows.
 #
 
-stows=(bash bin git hg tmux zsh)
+stows=(bash bin git hg mr tmux zsh)
 
 while getopts ":u" opt; do
 	case $opt in
