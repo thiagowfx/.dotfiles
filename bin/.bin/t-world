@@ -9,15 +9,11 @@ function ctrl_c	(){
 	exit 1
 }
 
+# mr update
+command -v mr &>/dev/null && (cd ~ && mr update)
+
 # Ask for sudo password upfront.
 sudo -v
-
-# One pseudo package manager to rule them all.
-if command -v pacapt &>/dev/null; then
-	pacapt -Syu
-	pacapt -Sccc
-	exit
-fi
 
 # macOS: system
 if [[ "$(uname)" == "Darwin" ]]; then
@@ -33,7 +29,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
 		exit
 	fi
 
-	# macOS: MacPorts
+	# macOS: macports
 	if command -v port &>/dev/null; then
 		sudo port selfupdate
 		sudo port upgrade outdated
@@ -67,6 +63,13 @@ if [[ -e /etc/debian_version ]] && command -v apt &>/dev/null; then
 	sudo apt upgrade
 	sudo apt-get dist-upgrade
 	sudo apt-get autoremove
+	exit
+fi
+
+# One pseudo package manager to rule them all.
+if command -v pacapt &>/dev/null; then
+	pacapt -Syu
+	pacapt -Sccc
 	exit
 fi
 

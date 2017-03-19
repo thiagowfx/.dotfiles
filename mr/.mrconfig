@@ -1,11 +1,11 @@
 [.vim]
 checkout = git clone --recursive --depth=1 'git@github.com:thiagowfx/vim' '.vim'
-update = git pull --recurse-submodules && git submodule update --recursive --remote
+update = git pull --depth=1 --recurse-submodules && git submodule update --depth=1 --recursive --remote
 
 [.emacs.d]
 checkout = git clone --recursive --depth=1 'git@github.com:thiagowfx/.emacs.d' '.emacs.d'
-update = git pull --recurse-submodules && git submodule update --recursive --remote
+update = git pull --depth=1 --recurse-submodules && git submodule update --depth=1 --recursive --remote
 
 [.dotfiles]
 checkout = git clone --recursive --depth=1 'git@github.com:thiagowfx/dotfiles' '.dotfiles'
-update = git pull --recurse-submodules && git submodule update --recursive --remote
+update = git pull --depth=1 --recurse-submodules && git submodule update --depth=1 --recursive --remote
