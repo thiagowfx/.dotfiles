@@ -225,13 +225,12 @@ add_alias youtube-dl-mp3   "youtube-dl --continue --title --restrict-filenames -
 add_alias youtube-dl-video "youtube-dl --continue --title --restrict-filenames" youtube-dl
 # }}}
 
-# Unix variables {{{
+# Environment variables {{{
+add_env CLICOLOR "1" ls
+add_env LSCOLORS "GxFxCxDxBxegedabagaced" ls
 add_env EDITOR "vim" vim
 add_env VISUAL "$EDITOR" "$EDITOR"
 add_env LESS "-R" less
-# }}}
-
-# environment variables {{{
 add_env GTEST_COLOR "YES"
 # }}}
 
