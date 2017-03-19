@@ -1,4 +1,4 @@
-# -*- shell-script -*-
+ -*- shell-script -*-
 
 # Interactive {{{
 # This file is sourced by all *interactive* bash shells on startup,
@@ -172,6 +172,7 @@ else
 fi
 
 add_alias make "make -j${NPROC} -l${NPROC}" make
+add_alias tmux "tmux -2" tmux
 add_alias xclip "xclip -selection clipboard" xclip
 # }}}
 
