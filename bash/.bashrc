@@ -1,4 +1,4 @@
- -*- shell-script -*-
+ # -*- shell-script -*-
 
 # Interactive {{{
 # This file is sourced by all *interactive* bash shells on startup,
