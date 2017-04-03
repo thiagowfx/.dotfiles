@@ -27,6 +27,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
 		brew cleanup
 		brew prune
 		brew doctor
+		# brew cu
 		exit
 	fi
 
