@@ -9,6 +9,7 @@
 	default = simple
 
 [alias]
+	b = branch
 	c = commit
 	d = diff --ignore-space-at-eol
 	dc = diff --ignore-space-at-eol --cached
