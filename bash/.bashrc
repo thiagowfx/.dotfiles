@@ -195,6 +195,7 @@ add_alias tree "tree -C" tree
 add_alias sl "ls" ls
 add_alias l "ls -l" ls
 add_alias ll "l" ls
+add_alias la "ls -al" ls
 # }}}
 
 # command abbreviation / alternatives {{{
