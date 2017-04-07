@@ -31,7 +31,6 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+Return exec i3-sensible-terminal
 
 # kill focused window
-# bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c kill
 
 # start dmenu (a program launcher)
@@ -44,10 +43,10 @@ bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+Shift+p exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+ccedilla focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -56,10 +55,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+ccedilla move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -68,7 +67,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+Shift+v split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -78,7 +77,7 @@ bindsym $mod+f fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -117,6 +116,14 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+# move to previous workspace
+bindsym $mod+Shift+Tab workspace previous
+bindsym $mod+Shift+n workspace previous
+
+# move to next workspace
+bindsym $mod+Tab workspace next
+bindsym $mod+n workspace next
+
 # reload the configuration file
 # bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -154,5 +161,13 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+        font pango:PT Sans 9
+
+        status_command ~/.i3blocks/i3blocks
+        position top
 }
+
+# bar {
+        # status_command i3status
+        # position top
+# }
