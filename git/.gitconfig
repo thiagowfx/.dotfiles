@@ -7,6 +7,7 @@
 
 [push]
 	default = simple
+	followTags = true
 
 [alias]
 	b = branch
@@ -15,8 +16,12 @@
 	dc = diff --ignore-space-at-eol --cached
 	ignore = "!ignore() { curl -L -s https://www.gitignore.io/api/$@; }; ignore"
 	l = log
+	logg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 	p = push
+	prune = fetch --prune
 	st = status
+	stash-all = stash save --include-untracked
+	undo = reset --soft HEAD^
 	world = "!world() { git gc; git remote prune origin; }; world"
 
 [core]
@@ -34,6 +39,7 @@
 	ui = auto
 
 [merge]
+	ff = only
 	tool = vimdiff
 	conflictstyle = diff3
 
@@ -47,6 +53,13 @@
 
 [diff]
 	compactionHeuristic = 1
+	tool = opendiff
+
+[difftool]
+	prompt = false
+
+[difftool "icdiff"]
+	cmd = icdiff --line-numbers \"$LOCAL\" \"$REMOTE\"
 
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
@@ -65,3 +78,9 @@
 
 [help]
 	autocorrect = 1
+
+[status]
+	showUntrackedFiles = all
+
+[transfer]
+	fsckobjects = true
