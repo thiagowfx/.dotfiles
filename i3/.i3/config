@@ -117,8 +117,8 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # move to previous workspace
-bindsym $mod+Shift+Tab workspace previous
-bindsym $mod+Shift+n workspace previous
+bindsym $mod+Shift+Tab workspace prev
+bindsym $mod+Shift+n workspace prev
 
 # move to next workspace
 bindsym $mod+Tab workspace next
