@@ -12,36 +12,6 @@ function ctrl_c	(){
 # Ask for sudo password upfront.
 sudo -v
 
-# macOS: system
-if [[ "$(uname)" == "Darwin" ]]; then
-	sudo softwareupdate -i -a
-
-	# macOS: homebrew
-	if command -v brew &>/dev/null; then
-		brew update
-		brew upgrade
-		brew cleanup
-		brew prune
-		brew doctor
-
-		# casks upgrade
-		brew cu
-
-		# homebrew backup
-		brew bundle dump --global
-
-		exit
-	fi
-
-	# macOS: macports
-	if command -v port &>/dev/null; then
-		sudo port selfupdate
-		sudo port upgrade outdated
-		sudo port uninstall leaves
-		exit
-	fi
-fi
-
 # Arch Linux
 if [[ -e /etc/arch-release ]] && command -v pacman &>/dev/null; then
 	sudo pacman -Syu
