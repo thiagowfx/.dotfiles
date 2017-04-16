@@ -20,7 +20,6 @@ if [[ "$(uname)" == "Darwin" ]]; then
 	if command -v brew &>/dev/null; then
 		brew update
 		brew upgrade
-		brew linkapps
 		brew cleanup
 		brew prune
 		brew doctor
