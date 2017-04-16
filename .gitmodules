@@ -21,3 +21,6 @@
 [submodule "third-party/i3blocks"]
 	path = i3/.i3blocks
 	url = https://github.com/vivien/i3blocks
+[submodule "fish/oh-my-fish"]
+	path = fish/.local/share/omf
+	url = https://github.com/oh-my-fish/oh-my-fish
