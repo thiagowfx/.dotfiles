@@ -3,11 +3,11 @@
 	url = https://github.com/git/git
 	shallow = true
 [submodule "third-party/zsh-completions"]
-	path = third-party/zsh-completions
+	path = zsh/.zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
 	shallow = true
 [submodule "third-party/zsh-syntax-highlighting"]
-	path = third-party/zsh-syntax-highlighting
+	path = zsh/.zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
 	shallow = true
 [submodule "third-party/grml-etc-core"]
@@ -15,9 +15,9 @@
 	url = git://git.grml.org/grml-etc-core.git
 	shallow = true
 [submodule "third-party/tpm"]
-	path = third-party/tpm
+	path = tmux/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
 	shallow = true
 [submodule "third-party/i3blocks"]
-	path = third-party/i3blocks
+	path = i3/.i3blocks
 	url = https://github.com/vivien/i3blocks
