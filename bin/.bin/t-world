@@ -9,9 +9,6 @@ function ctrl_c	(){
 	exit 1
 }
 
-# mr update
-command -v mr &>/dev/null && (cd ~ && mr update)
-
 # Ask for sudo password upfront.
 sudo -v
 
@@ -28,8 +25,11 @@ if [[ "$(uname)" == "Darwin" ]]; then
 		brew prune
 		brew doctor
 
-		# Casks
+		# casks upgrade
 		brew cu
+
+		# homebrew backup
+		brew bundle dump --global
 
 		exit
 	fi
