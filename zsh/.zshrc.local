@@ -14,7 +14,7 @@ src_file() {
 }
 # }}}
 
-# zsh completion {{{
+# zsh completions {{{
 zstyle ':completion:*' rehash true
 
 # show completion menu when number of options is at least 2
