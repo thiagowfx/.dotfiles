@@ -12,6 +12,7 @@
 [alias]
 	b = branch
 	c = commit
+	cm = commit -m
 	cam = commit -a -m
 	d = diff --ignore-space-at-eol
 	dc = diff --ignore-space-at-eol --cached
@@ -22,6 +23,8 @@
 	prune = fetch --prune
 	st = status
 	stash-all = stash save --include-untracked
+	submodule-sync = submodule update --init --recursive
+	submodule-update = submodule update --remote --recursive
 	undo = reset --soft HEAD^
 	world = "!world() { git gc; git remote prune origin; }; world"
 
