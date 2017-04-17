@@ -21,7 +21,7 @@ set $mod Mod1
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
 # font pango:DejaVu Sans Mono 10
-font pango:PT Mono for Powerline 10
+font pango:PT Sans 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -162,15 +162,11 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        font pango:PT Sans 9
-
         status_command ~/.i3blocks/i3blocks
-        position top
-}
-
-# bar {
         # status_command i3status
-        # position top
-# }
+
+        position top
+        font pango:PT Sans 9
+}
 
 workspace_auto_back_and_forth yes
