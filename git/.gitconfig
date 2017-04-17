@@ -57,7 +57,7 @@
 	tool = opendiff
 
 [difftool]
-	prompt = false
+	prompt = true
 
 [difftool "icdiff"]
 	cmd = icdiff --line-numbers \"$LOCAL\" \"$REMOTE\"
