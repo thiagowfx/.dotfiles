@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Upgrade and clean an Unix system.
 #
