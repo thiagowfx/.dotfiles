@@ -1,4 +1,3 @@
-package brew
 package homebrew-command-not-found
 package thefuck
 theme clearance
