@@ -95,8 +95,6 @@ src_file "/usr/local/etc/profile.d/autojump.sh"
 # }}}
 
 # Prompts {{{
-# Git prompt.
-src_file "$HOME/.git-prompt.sh"
 
 # Set colors.
 if command -v tput &>/dev/null && tput setaf 1 &>/dev/null; then
@@ -129,20 +127,57 @@ else
 	yellow="\e[1;33m";
 fi;
 
-# Set PS1.
-PS1="\[\033]0;\w\007\]"
-PS1+="\[${bold}\]"
-PS1+="\[${orange}\]\u" # username
-PS1+="\[${white}\] at "
-PS1+="\[${yellow}\]\h" # host
-PS1+="\[${white}\] in "
-PS1+="\[${green}\]\w" # working directory
-PS1+="${violet}\$(__git_ps1)"
-PS1+="\n";
-PS1+="\[${white}\]\$ \[${reset}\]"; # `$` (and reset color)
+prompt_symbol="❯"
+prompt_clean_symbol="☀ "
+prompt_dirty_symbol="☂ "
+prompt_venv_symbol="☁ "
 
-# Set PS2.
-PS2="\[${yellow}\]→ \[${reset}\]";
+function prompt_command() {
+	# Git branch name and work tree status (only when we are inside Git working tree)
+	local git_prompt=
+	if [[ "true" = "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ]]; then
+		# Branch name
+		local branch="$(git symbolic-ref HEAD 2>/dev/null)"
+		branch="${branch##refs/heads/}"
+
+		# Working tree status (red when dirty)
+		local dirty=
+		# Modified files
+		git diff --no-ext-diff --quiet --exit-code --ignore-submodules 2>/dev/null || dirty=1
+		# Untracked files
+		[ -z "$dirty" ] && test -n "$(git status --porcelain)" && dirty=1
+
+		# Format Git info
+		if [ -n "$dirty" ]; then
+			git_prompt=" ${red}$prompt_dirty_symbol$branch${reset}"
+		else
+			git_prompt=" ${green}$prompt_clean_symbol$branch${reset}"
+		fi
+	fi
+
+	# Virtualenv
+	local venv_prompt=
+	if [ -n "$VIRTUAL_ENV" ]; then
+	    venv_prompt=" ${blue}$prompt_venv_symbol$(basename $VIRTUAL_ENV)${reset}"
+	fi
+
+	# Set PS1.
+	PS1="\[\033]0;\w\007\]"
+	PS1+="\[${bold}\]"
+	PS1+="\[${orange}\]\u" # username
+	PS1+="\[${white}\] at "
+	PS1+="\[${yellow}\]\h" # host
+	PS1+="\[${white}\] in "
+	PS1+="\[${green}\]\w" # working directory
+	command -v virtualenvwrapper.sh >/dev/null 2>&1 && PS1+=$venv_prompt
+	command -v git >/dev/null 2>&1 && PS1+=$git_prompt
+	PS1+="\n";
+	PS1+="\[${white}\]$prompt_symbol \[${reset}\]"; # `$` (and reset color)
+	# Set PS2.
+	PS2="\[${yellow}\]→ \[${reset}\]";
+}
+
+PROMPT_COMMAND=prompt_command
 # }}}
 
 
