@@ -67,7 +67,6 @@
 
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
 
 [submodule]
 	fetchJobs = 0
@@ -85,6 +84,3 @@
 
 [status]
 	showUntrackedFiles = all
-
-; [transfer]
-	; fsckobjects = true

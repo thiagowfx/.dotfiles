@@ -1,1 +1,1 @@
-../third-party/grml-etc-core/etc/zsh/zshrc
+.grml-etc-core/etc/zsh/zshrc

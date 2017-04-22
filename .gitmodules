@@ -1,5 +1,5 @@
 [submodule "third-party/git"]
-	path = third-party/git
+	path = git/.git
 	url = https://github.com/git/git
 	shallow = true
 [submodule "third-party/zsh-completions"]
@@ -11,7 +11,7 @@
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
 	shallow = true
 [submodule "third-party/grml-etc-core"]
-	path = third-party/grml-etc-core
+	path = zsh/.grml-etc-core
 	url = git://git.grml.org/grml-etc-core.git
 	shallow = true
 [submodule "third-party/tpm"]

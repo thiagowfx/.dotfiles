@@ -1,7 +1,0 @@
-#!/bin/sh
-#
-# Quickly pull the whole git repository in $PWD, including all its submodules.
-#
-
-git pull --recurse-submodules
-git submodule update --recursive --remote

@@ -1,18 +1,11 @@
 # -*- shell-script -*-
 
-# Interactive {{{
+# Interactive
 # if not running interactively, don't do anything
 [[ -z "$PS1" ]] && return
-# }}}
 
-# Helper functions {{{
-# HELPER: source the given file(s) if it exists.
-src_file() {
-	for f in "$@"; do
-		[[ -f "$f" ]] && source "$f"
-	done
-}
-# }}}
+# Source aliases
+[[ -f ~/.aliases ]] && source ~/.aliases
 
 # zsh completions {{{
 zstyle ':completion:*' rehash true
@@ -20,12 +13,12 @@ zstyle ':completion:*' rehash true
 # show completion menu when number of options is at least 2
 zstyle ':completion:*' menu select=2
 
+# zsh completions plugin
 src_file "$HOME/.zsh-completions/zsh-completions.plugin.zsh"
 # }}}
 
-# zsh syntax highlighting {{{
+# zsh syntax highlighting plugin
 src_file "$HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
-# }}}
 
 # Shell options {{{
 setopt appendhistory
@@ -40,10 +33,8 @@ setopt printexitvalue
 setopt prompt_subst
 # }}}
 
-# History {{{
 # zsh: commands beginning with blank spaces don't go to the history
 export HIST_IGNORE_SPACE
-# }}}
 
 # Autoloads {{{
 autoload -U bashcompinit && bashcompinit

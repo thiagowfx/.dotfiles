@@ -14,7 +14,10 @@ if [[ $- != *i* ]] ; then
 fi
 # }}}
 
-# History {{{
+# Source aliases
+[[ -f ~/.aliases ]] && source ~/.aliases
+
+# Bash History {{{
 # Ignore space and ignore duplicates.
 HISTCONTROL="ignoreboth"
 HISTSIZE=100000
@@ -22,7 +25,7 @@ HISTFILESIZE="${HISTSIZE}"
 
 # History: work with multiple sessions
 # Upstream: http://askubuntu.com/questions/80371/bash-history-handling-with-multiple-terminals
-export PROMPT_COMMAND="history -a ; $PROMPT_COMMAND"
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 # }}}
 
 # Shell options {{{
@@ -40,62 +43,7 @@ shopt -s hostcomplete
 shopt -s nocaseglob
 # }}}
 
-# Helper functions {{{
-# HELPER: source the given file(s) if it exists.
-src_file() {
-	for f in "$@"; do
-		[[ -f "$f" ]] && source "$f"
-	done
-}
-
-# HELPER: source the given directory(ies) if it exists.
-src_dir() {
-	for d in "$@"; do
-		if [[ -d "$d" ]]; then
-			src_file $d/*
-		fi
-	done
-}
-
-# HELPER: Creates an alias iff the specified program and/or the given file
-# exists on the system.
-#
-# Arguments:
-#  $1 (mandatory): the alias
-#  $2 (mandatory): its value
-#  $3 (optional): a program (e.g. vim or /usr/bin/vim)
-#  $4 (optional): a file (e.g. $HOME/directory)
-#
-add_alias() {
-	[[ "x$3" != "x" ]] && ! command -v "$3" &>/dev/null && return
-	[[ "x$4" != "x" ]] && [ ! -e "$4" ] && return
-	alias "$1"="$2"
-}
-
-# HELPER: Sets an environment variable iff its correlated program
-# is installed and/or if the given file exists on the system.
-#
-# Arguments:
-#  $1 (mandatory): the environment variable (e.g. EDITOR)
-#  $2 (mandatory): its value
-#  $3 (optional): a program (e.g. vim or /usr/bin/vim)
-#  $4 (optional): a file (e.g. $HOME/directory)
-#
-add_env() {
-	[[ "x$3" != "x" ]] && ! command -v "$3" &>/dev/null && return
-	[[ "x$4" != "x" ]] && [ ! -e "$4" ] && return
-	export "$1"="$2"
-}
-
-# HELPER: Prepend the given argument(s) to the PATH variable.
-add_paths() {
-	for d in "$@"; do
-		add_env PATH "$d:$PATH" "" "$d"
-	done
-}
-# }}}
-
-# Colored man pages {{{
+# Bash colored man pages {{{
 man() {
 	env LESS_TERMCAP_mb=$'\E[01;31m' \
 		LESS_TERMCAP_md=$'\E[01;38;5;74m' \
@@ -123,11 +71,6 @@ src_dir "/opt/local/share/bash-completion/completions"
 src_file "/usr/local/etc/bash_completion"
 src_dir  "/usr/local/etc/bash_completion.d"
 src_file "/usr/local/share/bash-completion/bash_completion"
-
-# }}}
-
-# thefuck {{{
-command -v thefuck &>/dev/null && eval "$(thefuck --alias)"
 # }}}
 
 # Command-not-found hooks {{{
@@ -149,104 +92,6 @@ src_file "/opt/local/etc/profile.d/autojump.sh"
 
 # HomeBrew
 src_file "/usr/local/etc/profile.d/autojump.sh"
-# }}}
-
-# change command behavior {{{
-if command -v nproc &>/dev/null; then
-	NPROC=$(nproc)
-elif command -v sysctl &>/dev/null; then
-	NPROC=$(sysctl -n hw.ncpu)
-else
-	NPROC=${NPROC:-1}
-fi
-
-add_alias make "make -j${NPROC} -l${NPROC}" make
-add_alias ninja "ninja -v"
-add_alias tmux "tmux -2" tmux
-add_alias xclip "xclip -selection clipboard" xclip
-# }}}
-
-# cd {{{
-add_alias .. "cd .." cd
-add_alias ... "cd ..." cd
-# }}}
-
-# verbosity / human-friendliness {{{
-add_alias chmod "chmod -v" chmod
-add_alias chown "chown -v" chown
-add_alias cp "cp -v" cp
-
-add_alias cower "cower --color=always --sort=votes" cower
-add_alias curl "curl -v -L" curl
-add_alias du "du -h" du
-add_alias free "free -h" free
-add_alias grep "grep --color=always" grep
-add_alias hexdump "hexdump -C" hexdump
-add_alias ln "ln -v" ln
-add_alias mv "mv -v" mv
-add_alias netstat "netstat -pln" netstat
-add_alias pgrep "pgrep -fl" pgrep
-add_alias pstree "pstree -p" pstree
-add_alias tree "tree -C" tree
-# }}}
-
-# {{{ ls
-[[ $(uname) = "Darwin" ]] && add_alias ls "ls -F" ls || add_alias ls "ls --color=always" ls
-add_alias sl "ls" ls
-add_alias l "ls -l" ls
-add_alias ll "l" ls
-add_alias la "ls -al" ls
-# }}}
-
-# command abbreviation / alternatives {{{
-add_alias ack "ack-grep" ack-grep
-add_alias cmakee "cmake --warn-uninitialized --warn-unused-vars --check-system-vars -Wno-dev" cmake
-add_alias g "git" git
-add_alias gi "git" git
-add_alias i3lock "i3lock -c 777777" i3lock
-add_alias pingg "ping google.com" ping
-add_alias xclip "xclip -selection clipboard" xclip
-add_alias unstow "stow -D" stow
-
-t-cmake-clean() {
-       local BUILD=$(basename $(pwd))
-       cd ..
-       rm -rf $BUILD
-       mkdir $BUILD && cd $BUILD
-}
-# }}}
-
-# diff {{{
-add_alias colordiff "colordiff -uN" colordiff
-add_alias diff "diff -uN" diff
-add_alias diff "colordiff" colordiff
-# }}}
-
-# youtube-dl {{{
-add_alias youtube-dl-mp3   "youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3" youtube-dl
-add_alias youtube-dl-video "youtube-dl --continue --title --restrict-filenames" youtube-dl
-# }}}
-
-# Environment variables {{{
-add_env CLICOLOR "1" ls
-add_env LSCOLORS "GxFxCxDxBxegedabagaced" ls
-add_env EDITOR "vim" vim
-add_env VISUAL "$EDITOR" "$EDITOR"
-add_env LESS "-R" less
-add_env GTEST_COLOR "YES"
-# }}}
-
-# PATH {{{
-add_paths "$HOME/bin" "$HOME/.bin"
-
-# MacPorts
-add_paths "/opt/local/bin" "/opt/local/sbin"
-
-# HomeBrew
-add_paths "/usr/local/sbin"
-
-# RubyGems
-command -v ruby &>/dev/null && add_paths "$(ruby -rubygems -e "puts Gem.user_dir")/bin"
 # }}}
 
 # Prompts {{{
@@ -300,10 +145,4 @@ PS1+="\[${white}\]\$ \[${reset}\]"; # `$` (and reset color)
 PS2="\[${yellow}\]→ \[${reset}\]";
 # }}}
 
-# python: virtualenvwrapper {{{
-# HomeBrew
-add_env WORKON_HOME "$HOME/.virtualenvs" virtualenvwrapper.sh "/usr/local/bin/virtualenvwrapper.sh"
-src_file "/usr/local/bin/virtualenvwrapper.sh"
-# }}}
-
-# vim: fdm=marker
+# vim: fdm=marker ft=sh
