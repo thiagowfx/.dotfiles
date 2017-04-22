@@ -151,7 +151,7 @@ function prompt_command() {
 		if [ -n "$dirty" ]; then
 			git_prompt=" ${red}$prompt_dirty_symbol$branch${reset}"
 		else
-			git_prompt=" ${green}$prompt_clean_symbol$branch${reset}"
+			git_prompt=" ${violet}$prompt_clean_symbol$branch${reset}"
 		fi
 	fi
 
