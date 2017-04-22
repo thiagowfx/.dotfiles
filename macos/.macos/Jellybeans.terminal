@@ -163,8 +163,19 @@
 	AQgRGiMtMjc7QUhOW2KAgoSJlJ2lqLHDxssAAAAAAAABAQAAAAAAAAAZAAAAAAAAAAAA
 	AAAAAAAAzQ==
 	</data>
+	<key>Font</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGGBlYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU2l6ZVhOU2ZGbGFnc1ZOU05hbWVWJGNs
+	YXNzI0AmAAAAAAAAEBCAAoADXxAaUFRNb25vRm9yUG93ZXJsaW5lLVJlZ3VsYXLSExQV
+	FlokY2xhc3NuYW1lWCRjbGFzc2VzVk5TRm9udKIVF1hOU09iamVjdF8QD05TS2V5ZWRB
+	cmNoaXZlctEaG1Ryb290gAEIERojLTI3PEJLUltiaXJ0dniVmqWutbjB09bbAAAAAAAA
+	AQEAAAAAAAAAHAAAAAAAAAAAAAAAAAAAAN0=
+	</data>
+	<key>FontAntialias</key>
+	<true/>
 	<key>ProfileCurrentVersion</key>
-	<real>2.04</real>
+	<real>2.0499999999999998</real>
 	<key>SelectionColor</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGFRZYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
@@ -174,6 +185,8 @@
 	ZXLRFxhUcm9vdIABCBEaIy0yNztBSE5bYouNj5SfqLCzvM7R1gAAAAAAAAEBAAAAAAAA
 	ABkAAAAAAAAAAAAAAAAAAADY
 	</data>
+	<key>ShowWindowSettingsNameInTitle</key>
+	<false/>
 	<key>TextBoldColor</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGFRZYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
@@ -197,6 +210,8 @@
 	<string>Jellybeans</string>
 	<key>rowCount</key>
 	<integer>50</integer>
+	<key>shellExitAction</key>
+	<integer>2</integer>
 	<key>type</key>
 	<string>Window Settings</string>
 </dict>
