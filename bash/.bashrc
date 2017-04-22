@@ -145,4 +145,6 @@ PS1+="\[${white}\]\$ \[${reset}\]"; # `$` (and reset color)
 PS2="\[${yellow}\]→ \[${reset}\]";
 # }}}
 
+
+
 # vim: fdm=marker ft=sh

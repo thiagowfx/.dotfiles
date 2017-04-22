@@ -1,0 +1,20 @@
+Host example
+    HostName example.com
+    User root
+    IdentityFile ~/.ssh/id_rsa
+
+Host *
+    ServerAliveInterval 60
+    ServerAliveCountMax 300
+
+    Compression yes
+    CompressionLevel 6
+
+    # https://github.com/jirsbek/SSH-keys-in-macOS-Sierra-keychain
+    AddKeysToAgent yes
+    UseKeychain yes
+
+    IdentityFile ~/.ssh/id_rsa
+    IdentityFile ~/.ssh/id_ed25519
+
+# vim: fdm=marker sw=4 ts=4 et
