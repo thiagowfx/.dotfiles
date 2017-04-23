@@ -85,7 +85,6 @@ add_alias cower "cower --color=always --sort=votes" cower
 add_alias curl "curl -v -L" curl
 add_alias du "du -h" du
 add_alias free "free -h" free
-add_alias grep "grep --color=always" grep
 add_alias hexdump "hexdump -C" hexdump
 add_alias ln "ln -v" ln
 add_alias mv "mv -v" mv
@@ -125,6 +124,7 @@ t-cmake-clean() {
 
 # Environment variables {{{
 add_env CLICOLOR "1" ls
+add_env GREP_OPTIONS '--color=auto' grep
 add_env LSCOLORS "GxFxCxDxBxegedabagaced" ls
 add_env EDITOR "vim" vim
 add_env VISUAL "$EDITOR" "$EDITOR"
