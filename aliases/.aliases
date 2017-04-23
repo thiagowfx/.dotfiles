@@ -133,7 +133,7 @@ add_env GTEST_COLOR "YES"
 # }}}
 
 # PATH {{{
-add_paths "$HOME/bin" "$HOME/.bin"
+add_paths "$HOME/bin" "$HOME/.bin" "$HOME/.local/bin"
 
 # MacPorts
 add_paths "/opt/local/bin" "/opt/local/sbin"
