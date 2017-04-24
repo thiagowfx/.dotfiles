@@ -56,14 +56,14 @@ add_paths() {
 command -v thefuck &>/dev/null && eval "$(thefuck --alias)"
 
 # change command behavior {{{
-if command -v nproc &>/dev/null; then
-	NPROC=$(nproc)
-	add_alias make "make -j${NPROC} -l${NPROC}" make
-elif command -v sysctl &>/dev/null; then
-	NPROC=$(sysctl -n hw.ncpu)
-	add_alias make "make -j${NPROC} -l${NPROC}" make
-fi
-unset NPROC
+#if command -v nproc &>/dev/null; then
+	#NPROC=$(nproc)
+	#add_alias make "make -j${NPROC} -l${NPROC}" make
+#elif command -v sysctl &>/dev/null; then
+	#NPROC=$(sysctl -n hw.ncpu)
+	#add_alias make "make -j${NPROC} -l${NPROC}" make
+#fi
+#unset NPROC
 
 add_alias .. "cd .." cd
 add_alias ... "cd ..." cd
