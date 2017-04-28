@@ -31,16 +31,9 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 # Shell options {{{
 set -o emacs
 
-shopt -s autocd
-shopt -s checkwinsize
-shopt -s cdspell
-shopt -s cmdhist
-shopt -s dotglob
-shopt -s expand_aliases
-shopt -s extglob
-shopt -s histappend
-shopt -s hostcomplete
-shopt -s nocaseglob
+for option in autocd checkwinsize cdspell cmdhist dotglob expand_aliases extglob histappend hostcomplete nocaseglob; do
+	shopt -s $option &>/dev/null
+done
 # }}}
 
 # Bash colored man pages {{{
