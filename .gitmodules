@@ -1,7 +1,3 @@
-[submodule "third-party/git"]
-	path = git/.git
-	url = https://github.com/git/git
-	shallow = true
 [submodule "third-party/zsh-completions"]
 	path = zsh/.zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
@@ -24,3 +20,6 @@
 [submodule "fish/oh-my-fish"]
 	path = fish/.local/share/omf
 	url = https://github.com/oh-my-fish/oh-my-fish
+[submodule "git/.gitgit"]
+	path = git/.gitgit
+	url = https://github.com/git/git
