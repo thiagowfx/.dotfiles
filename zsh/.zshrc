@@ -46,7 +46,7 @@ zplug "zsh-users/zsh-syntax-highlighting" && zplug "zsh-users/zsh-history-substr
 
 # oh-my-zsh
 zplug "lib/history", from:oh-my-zsh
-zplug "plugins/docker", from:oh-my-zsh
+zplug "plugins/docker", from:oh-my-zsh, if:"hash &>/dev/null docker"
 
 # plug-ins
 zplug "rupa/z", use:"z.sh"
