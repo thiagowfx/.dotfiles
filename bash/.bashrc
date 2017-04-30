@@ -22,10 +22,7 @@ fi
 HISTCONTROL="ignoreboth"
 HISTSIZE=100000
 HISTFILESIZE="${HISTSIZE}"
-
-# History: work with multiple sessions
-# Upstream: http://askubuntu.com/questions/80371/bash-history-handling-with-multiple-terminals
-export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+HISTIGNORE="ls:la:ll:l:vdir:history:exit"
 # }}}
 
 # Shell options {{{
@@ -154,7 +151,8 @@ function prompt_command() {
 	PS2="\[${yellow}\]→ \[${reset}\]";
 }
 
-PROMPT_COMMAND=prompt_command
+# Upstream: http://askubuntu.com/questions/80371/bash-history-handling-with-multiple-terminals
+PROMPT_COMMAND="history -a; prompt_command"
 # }}}
 
 
