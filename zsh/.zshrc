@@ -39,6 +39,7 @@ src_file "$HOME/.zplug/init.zsh"
 zplug "sindresorhus/pure", use:"{pure,async}.zsh"
 
 # core
+zplug "zsh-users/zaw" # C-x ;
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting" && zplug "zsh-users/zsh-history-substring-search"
@@ -49,10 +50,6 @@ zplug "plugins/docker", from:oh-my-zsh
 
 # plug-ins
 zplug "rupa/z", use:"z.sh"
-
-# commands
-zplug "k4rthik/git-cal", as:command, use:git-cal
-zplug "rupa/v", as:command, use:v
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -82,4 +79,4 @@ autoload -Uz vcs_info
 autoload -U zutil
 # }}}
 
-# vim: fdm=marker
+# vim: fdm=marker ft=zplug
