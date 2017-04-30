@@ -55,23 +55,6 @@ add_paths() {
 
 command -v thefuck &>/dev/null && eval "$(thefuck --alias)"
 
-# change command behavior {{{
-#if command -v nproc &>/dev/null; then
-	#NPROC=$(nproc)
-	#add_alias make "make -j${NPROC} -l${NPROC}" make
-#elif command -v sysctl &>/dev/null; then
-	#NPROC=$(sysctl -n hw.ncpu)
-	#add_alias make "make -j${NPROC} -l${NPROC}" make
-#fi
-#unset NPROC
-
-add_alias .. "cd .." cd
-add_alias ... "cd ..." cd
-add_alias ninja "ninja -v"
-add_alias tmux "tmux -2" tmux
-add_alias xclip "xclip -selection clipboard" xclip
-# }}}
-
 # verbosity / human-friendliness {{{
 add_alias colordiff "colordiff -uN" colordiff
 add_alias diff "diff -uN" diff
@@ -106,13 +89,29 @@ add_alias la "ls -al" ls
 # }}}
 
 # command abbreviation / alternatives {{{
+
+# parallel make
+#if command -v nproc &>/dev/null; then
+	#NPROC=$(nproc)
+	#add_alias make "make -j${NPROC} -l${NPROC}" make
+#elif command -v sysctl &>/dev/null; then
+	#NPROC=$(sysctl -n hw.ncpu)
+	#add_alias make "make -j${NPROC} -l${NPROC}" make
+#fi
+#unset NPROC
+
+add_alias .. "cd .." cd
+add_alias ... "cd ..." cd
 add_alias ack "ack-grep" ack-grep
 add_alias g "git" git
 add_alias gi "git" git
 add_alias i3lock "i3lock -c 777777" i3lock
+add_alias ninja "ninja -v"
 add_alias pingg "ping google.com" ping
-add_alias xclip "xclip -selection clipboard" xclip
+add_alias tmux "tmux -2" tmux
 add_alias unstow "stow -D" stow
+VIMRUNTIME=$(vim -e -T dumb --cmd 'exe "se t_cm=\<C-M>"|ec $VIMRUNTIME|q' | tr -d '\015') && add_alias vimpager "$VIMRUNTIME/macros/less.sh" vim "$VIMRUNTIME/macros/less.sh"
+add_alias xclip "xclip -selection clipboard" xclip
 
 t-cmake-clean() {
        local BUILD=$(basename $(pwd))

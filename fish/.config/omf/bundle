@@ -1,6 +1,4 @@
-package autojump
 package homebrew-command-not-found
-package https://github.com/wfscheper/plugin-docker
 package thefuck
 theme clearance
 theme default
