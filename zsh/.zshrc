@@ -39,7 +39,6 @@ src_file "$HOME/.zplug/init.zsh"
 zplug "sindresorhus/pure", use:"{pure,async}.zsh"
 
 # core
-zplug "zsh-users/zaw" # C-x ;
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting" && zplug "zsh-users/zsh-history-substring-search"
@@ -49,6 +48,8 @@ zplug "lib/history", from:oh-my-zsh
 zplug "plugins/docker", from:oh-my-zsh, if:"hash &>/dev/null docker"
 
 # plug-ins
+zplug "gentoo/gentoo-zsh-completions", if:"[ -f /etc/gentoo-release ]"
+zplug "mollifier/cd-gitroot" && zplug "peterhurford/up.zsh", use:"up.plugin.zsh"
 zplug "rupa/z", use:"z.sh"
 
 # Install plugins if there are plugins that have not been installed
