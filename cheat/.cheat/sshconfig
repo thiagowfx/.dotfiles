@@ -17,4 +17,4 @@ Host *
     IdentityFile ~/.ssh/id_rsa
     IdentityFile ~/.ssh/id_ed25519
 
-# vim: fdm=marker sw=4 ts=4 et
+# vim: ft=sshconfig fdm=marker sw=4 ts=4 et
