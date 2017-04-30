@@ -123,13 +123,15 @@ t-cmake-clean() {
 # }}}
 
 # Environment variables {{{
+add_env CHEATCOLORS "true" cheat
 add_env CLICOLOR "1" ls
-add_env GREP_OPTIONS '--color=auto' grep
+add_env GREP_OPTIONS '--color=always' grep
+add_env GTEST_COLOR "YES"
+add_env LESS "-R" less
 add_env LSCOLORS "GxFxCxDxBxegedabagaced" ls
+
 add_env EDITOR "vim" vim
 add_env VISUAL "$EDITOR" "$EDITOR"
-add_env LESS "-R" less
-add_env GTEST_COLOR "YES"
 # }}}
 
 # PATH {{{
