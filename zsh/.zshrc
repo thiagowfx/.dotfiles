@@ -7,6 +7,9 @@
 # Source aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 
+# homebrew: command-not-found
+src_file "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
+
 # Shell options {{{
 setopt autocd
 setopt auto_list
