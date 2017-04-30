@@ -127,7 +127,6 @@ t-cmake-clean() {
 # }}}
 
 # Environment variables {{{
-add_env CHEATCOLORS "true" cheat
 add_env CLICOLOR "1" ls
 add_env GREP_OPTIONS '--color=always' grep
 add_env GTEST_COLOR "YES"

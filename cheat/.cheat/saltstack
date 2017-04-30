@@ -33,5 +33,5 @@ Salt
 salt '*' test.ping
 ```
 
-
-# vim ft=rst
+<!-- vim: ft=markdown
+-->
