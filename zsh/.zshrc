@@ -32,17 +32,27 @@ zstyle ':completion:*' menu select=2
 src_file "$HOME/.zplug/init.zsh"
 
 # let zplug manage itself
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+# Comment it out for now, as it breaks commands. See https://github.com/zplug/zplug/pull/372
+# zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+
+# prompt
+zplug "sindresorhus/pure", use:"{pure,async}.zsh"
+
+# core
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-syntax-highlighting" && zplug "zsh-users/zsh-history-substring-search"
 
 # oh-my-zsh
 zplug "lib/history", from:oh-my-zsh
 zplug "plugins/docker", from:oh-my-zsh
 
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-syntax-highlighting"
-
+# plug-ins
 zplug "rupa/z", use:"z.sh"
-zplug "sindresorhus/pure", use:"{pure,async}.zsh"
+
+# commands
+zplug "k4rthik/git-cal", as:command, use:git-cal
+zplug "rupa/v", as:command, use:v
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -51,6 +61,15 @@ fi
 
 # Then, source plugins and add commands to $PATH
 zplug load --verbose
+# }}}
+
+# Keyboard shortcuts {{{
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey -M emacs '^P' history-substring-search-up
+bindkey -M emacs '^N' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 # }}}
 
 # Autoloads {{{
