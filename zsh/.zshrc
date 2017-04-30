@@ -7,33 +7,42 @@
 # Source aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 
-# zsh: commands beginning with blank spaces don't go to the history
-export HIST_IGNORE_SPACE
-
 # Shell options {{{
-setopt appendhistory
+setopt autocd
+setopt auto_list
+setopt autopushd
 setopt beep
+setopt correctall
 setopt emacs
 setopt extendedglob
-setopt hist_ignore_all_dups
-setopt hist_ignore_space
 setopt nohashdirs
 setopt nomatch
+setopt notify
 setopt printexitvalue
 setopt prompt_subst
-# }}}
 
-# rehash
+# rehash new executables
 zstyle ':completion:*' rehash true
 
 # show completion menu when number of options is at least 2
 zstyle ':completion:*' menu select=2
+# }}}
 
 # Plug-ins {{{
 src_file "$HOME/.zplug/init.zsh"
 
+# let zplug manage itself
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+
+# oh-my-zsh
+zplug "lib/history", from:oh-my-zsh
+zplug "plugins/docker", from:oh-my-zsh
+
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting"
+
+zplug "rupa/z", use:"z.sh"
+zplug "sindresorhus/pure", use:"{pure,async}.zsh"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then

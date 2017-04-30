@@ -1,8 +1,8 @@
-[submodule "third-party/tpm"]
+[submodule "tmux/.tmux/plugins/tpm"]
 	path = tmux/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
 	shallow = true
-[submodule "third-party/i3blocks"]
+[submodule "i3/.i3blocks"]
 	path = i3/.i3blocks
 	url = https://github.com/vivien/i3blocks
 [submodule "git/.gitgit"]
@@ -11,3 +11,4 @@
 [submodule "zsh/.zplug"]
 	path = zsh/.zplug
 	url = https://github.com/zplug/zplug
+	ignore = dirty

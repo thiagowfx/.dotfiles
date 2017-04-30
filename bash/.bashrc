@@ -76,17 +76,6 @@ if command -v brew &>/dev/null && brew command command-not-found-init >/dev/null
 fi
 # }}}
 
-# Autojump (j) {{{
-src_file "/etc/profile.d/autojump.bash"
-src_file "/usr/share/autojump/autojump.bash"
-
-# MacPorts
-src_file "/opt/local/etc/profile.d/autojump.sh"
-
-# HomeBrew
-src_file "/usr/local/etc/profile.d/autojump.sh"
-# }}}
-
 # Prompts {{{
 
 # Set colors.
