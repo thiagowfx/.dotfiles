@@ -69,11 +69,6 @@ src_file "/usr/local/share/bash-completion/bash_completion"
 # Command-not-found hooks {{{
 # Pkgfile (for pacman)
 src_file "/usr/share/doc/pkgfile/command-not-found.bash"
-
-# HomeBrew
-if command -v brew &>/dev/null && brew command command-not-found-init >/dev/null 2>&1; then
-	eval "$(brew command-not-found-init)"
-fi
 # }}}
 
 # Prompts {{{

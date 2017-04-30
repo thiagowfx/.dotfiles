@@ -55,6 +55,11 @@ add_paths() {
 
 command -v thefuck &>/dev/null && eval "$(thefuck --alias)"
 
+# HomeBrew
+if command -v brew &>/dev/null && brew command command-not-found-init >/dev/null 2>&1; then
+	eval "$(brew command-not-found-init)"
+fi
+
 # verbosity / human-friendliness {{{
 add_alias colordiff "colordiff -uN" colordiff
 add_alias diff "diff -uN" diff
