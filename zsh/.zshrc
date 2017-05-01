@@ -56,12 +56,14 @@ zplug "mollifier/cd-gitroot" && zplug "peterhurford/up.zsh", use:"up.plugin.zsh"
 zplug "rupa/z", use:"z.sh"
 
 # Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
+# if ! zplug check --verbose; then
+if ! zplug check; then
 	zplug install
 fi
 
 # Then, source plugins and add commands to $PATH
-zplug load # --verbose
+# zplug load --verbose
+zplug load
 # }}}
 
 # Keyboard shortcuts {{{
