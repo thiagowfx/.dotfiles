@@ -10,8 +10,9 @@
 # Shell options {{{
 setopt autocd
 setopt auto_list
-setopt autopushd
+setopt auto_pushd
 setopt beep
+setopt cdable_vars
 setopt correctall
 setopt emacs
 setopt extendedglob
@@ -20,6 +21,8 @@ setopt nomatch
 setopt notify
 setopt printexitvalue
 setopt prompt_subst
+setopt pushd_ignore_dups
+setopt pushd_silent
 
 # rehash new executables
 zstyle ':completion:*' rehash true
