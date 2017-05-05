@@ -22,25 +22,15 @@ fi
 HISTCONTROL="ignoreboth"
 HISTSIZE=100000
 HISTFILESIZE="${HISTSIZE}"
-
-# History: work with multiple sessions
-# Upstream: http://askubuntu.com/questions/80371/bash-history-handling-with-multiple-terminals
-export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+HISTIGNORE="ls:la:ll:l:vdir:history:exit"
 # }}}
 
 # Shell options {{{
 set -o emacs
 
-shopt -s autocd
-shopt -s checkwinsize
-shopt -s cdspell
-shopt -s cmdhist
-shopt -s dotglob
-shopt -s expand_aliases
-shopt -s extglob
-shopt -s histappend
-shopt -s hostcomplete
-shopt -s nocaseglob
+for option in autocd checkwinsize cdspell cmdhist dotglob expand_aliases extglob histappend hostcomplete nocaseglob; do
+	shopt -s $option &>/dev/null
+done
 # }}}
 
 # Bash colored man pages {{{
@@ -76,22 +66,6 @@ src_file "/usr/local/share/bash-completion/bash_completion"
 # Command-not-found hooks {{{
 # Pkgfile (for pacman)
 src_file "/usr/share/doc/pkgfile/command-not-found.bash"
-
-# HomeBrew
-if command -v brew &>/dev/null && brew command command-not-found-init >/dev/null 2>&1; then
-	eval "$(brew command-not-found-init)"
-fi
-# }}}
-
-# Autojump (j) {{{
-src_file "/etc/profile.d/autojump.bash"
-src_file "/usr/share/autojump/autojump.bash"
-
-# MacPorts
-src_file "/opt/local/etc/profile.d/autojump.sh"
-
-# HomeBrew
-src_file "/usr/local/etc/profile.d/autojump.sh"
 # }}}
 
 # Prompts {{{
@@ -177,7 +151,8 @@ function prompt_command() {
 	PS2="\[${yellow}\]→ \[${reset}\]";
 }
 
-PROMPT_COMMAND=prompt_command
+# Upstream: http://askubuntu.com/questions/80371/bash-history-handling-with-multiple-terminals
+PROMPT_COMMAND="history -a; prompt_command"
 # }}}
 
 

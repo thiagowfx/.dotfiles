@@ -1,25 +1,14 @@
-[submodule "third-party/zsh-completions"]
-	path = zsh/.zsh-completions
-	url = https://github.com/zsh-users/zsh-completions
-	shallow = true
-[submodule "third-party/zsh-syntax-highlighting"]
-	path = zsh/.zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting
-	shallow = true
-[submodule "third-party/grml-etc-core"]
-	path = zsh/.grml-etc-core
-	url = git://git.grml.org/grml-etc-core.git
-	shallow = true
-[submodule "third-party/tpm"]
+[submodule "tmux/.tmux/plugins/tpm"]
 	path = tmux/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
 	shallow = true
-[submodule "third-party/i3blocks"]
+[submodule "i3/.i3blocks"]
 	path = i3/.i3blocks
 	url = https://github.com/vivien/i3blocks
-[submodule "fish/oh-my-fish"]
-	path = fish/.local/share/omf
-	url = https://github.com/oh-my-fish/oh-my-fish
 [submodule "git/.gitgit"]
 	path = git/.gitgit
 	url = https://github.com/git/git
+[submodule "zsh/.zplug"]
+	path = zsh/.zplug
+	url = https://github.com/zplug/zplug
+	ignore = dirty

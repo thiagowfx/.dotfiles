@@ -1,0 +1,37 @@
+Salt Master and Salt Minion
+---------------------------
+
+* Minions connect to master, the reverse does not happen
+* Ports 4505 and 4506 must be open on the master
+* Convention over configuration: default master address in minions is `salt`
+* Python-based
+* Master salt usually contains its own minion too
+* Several minions might optionally run in the same machine, however only one is usually enough
+
+Salt-key
+--------
+
+Master commands:
+
+```bash
+salt-key: prints (i) accepted, (ii) unaccepted, and (iii) rejected keys
+salt-key -f <minion>: shows the fingerprint of the given key
+salt-key -d <minion>: deletes the given key
+salt-key -a <minion>: accepts the given key
+```
+
+Minion commands:
+
+```bash
+salt-call --local key.finger: prints the fingerprint of the local key
+```
+
+Salt
+----
+
+```bash
+salt '*' test.ping
+```
+
+<!-- vim: ft=markdown
+-->
