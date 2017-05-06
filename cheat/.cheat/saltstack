@@ -1,5 +1,8 @@
-Salt Master and Salt Minion
----------------------------
+<!-- vim: ft=markdown
+-->
+
+Salt Master and Salt Minion Concepts
+------------------------------------
 
 * Minions connect to master, the reverse does not happen
 * Ports 4505 and 4506 must be open on the master
@@ -8,10 +11,8 @@ Salt Master and Salt Minion
 * Master salt usually contains its own minion too
 * Several minions might optionally run in the same machine, however only one is usually enough
 
-Salt-key
---------
-
-Master commands:
+Salt-key master commands (salt-key)
+-----------------------------------
 
 ```bash
 salt-key: prints (i) accepted, (ii) unaccepted, and (iii) rejected keys
@@ -20,18 +21,26 @@ salt-key -d <minion>: deletes the given key
 salt-key -a <minion>: accepts the given key
 ```
 
-Minion commands:
+Salt minion commands (salt-call)
+--------------------------------
+
+* `--local` forces the minion to operate completely locally, without the master
 
 ```bash
 salt-call --local key.finger: prints the fingerprint of the local key
+salt-call test.ping
+salt-call test.fib 10
 ```
 
-Salt
-----
+Salt introspection
+------------------
+
+* The `sys` module is important.
 
 ```bash
 salt '*' test.ping
+salt '*' sys.list_functions test
+salt '*' sys.doc test.fib
+salt '*' sys.doc test
+salt '*' sys.list_functions sys
 ```
-
-<!-- vim: ft=markdown
--->
