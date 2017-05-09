@@ -14,33 +14,166 @@ Salt Master and Salt Minion Concepts
 Salt-key master commands (salt-key)
 -----------------------------------
 
+To manage which minions are going to be connected to the master.
+
 ```bash
 salt-key: prints (i) accepted, (ii) unaccepted, and (iii) rejected keys
+salt-key -A: accepts all pending (unaccepted) keys
 salt-key -f <minion>: shows the fingerprint of the given key
 salt-key -d <minion>: deletes the given key
 salt-key -a <minion>: accepts the given key
 ```
 
+Salt minion commands (salt-minion)
+----------------------------------
+
+* To kick off the minion.
+* It is usually started / managed by an init system, such as systemd.
+
 Salt minion commands (salt-call)
 --------------------------------
 
-* `--local` forces the minion to operate completely locally, without the master
+* `--local` forces the minion to operate completely locally, without the master: it won't need internet connection this way; in particular, it won't need to ping the master (salt).
 
 ```bash
-salt-call --local key.finger: prints the fingerprint of the local key
+salt-call --local key.finger: prints the fingerprint of the local minion key
 salt-call test.ping
 salt-call test.fib 10
 ```
 
+**Note**: test.ping is not a real ping. It just states whether the master can communicate with its respective minion.
+
 Salt introspection
 ------------------
 
-* The `sys` module is important.
+* The `sys` module is **very important** for introspection purposes.
 
 ```bash
 salt '*' test.ping
-salt '*' sys.list_functions test
 salt '*' sys.doc test.fib
 salt '*' sys.doc test
+salt '*' sys.list_functions test
 salt '*' sys.list_functions sys
+```
+
+The salt command
+----------------
+
+```bash
+salt '*' test.ping
+
+Usage: salt [options] '<target>'  <function> [arguments]
+```
+
+Outputters (command-line options) for salt (--out)
+--------------------------------------------------
+
+* nested output (default): --out=nested
+
+```bash
+myminion:
+    ----------
+    pid:
+        14020
+    retcode:
+        0
+    stderr:
+
+    stdout:
+        HELLO
+``
+
+* --out=raw
+
+```bash
+{'myminion': {'pid': 14468, 'retcode': 0, 'stderr': '', 'stdout': 'HELLO'}}
+```
+
+* --out=json
+
+```bash
+{
+	"myminion": {
+		"pid": 14506,
+		"retcode": 0,
+		"stderr": "",
+		"stdout": "HELLO"
+	}
+}
+```
+
+* --out=yaml
+
+```bash
+myminion:
+  pid: 14585
+  retcode: 0
+  stderr: ''
+  stdout: HELLO
+```
+
+Misc (command-line options) for salt
+------------------------------------
+
+* `--async`: won't wait for completion of commands in minions
+* `-t TIMEOUT`
+* `--versions-report`: for bug reports
+* `-v | --verbose`
+* `--summary`: good for debugging:
+
+```bash
+-------------------------------------------
+Summary
+-------------------------------------------
+# of minions targeted: 29
+# of minions returned: 18
+# of minions that did not return: 11
+# of minions with errors: 0
+-------------------------------------------
+```
+
+Targeting strings for interactive salt
+--------------------------------------
+
+* `''` --> no matches
+* `'*'` --> matches everything
+
+And then:
+
+* Glob matching: like bash, zsh, etc. We have \ast (asterisks) and ? (question marks).
+  * \ast: any number of characters
+  * ?: exactly one character
+  * Native: for e.g.: `salt 'hell? w*'`
+  * There's also: '[a-m]'
+* PCRE (Perl's) matching: -E | --pcre flag
+  * Example: `salt -E '.*' test.ping` --> matches everything
+  * `salt -E '^myminion$' test.ping`
+* List matching: -L | --list
+  * Example: `salt -L 'minion1,minion2' test.ping`
+* Grains matching: -G | --grain
+  * Example: `salt -G 'os_family:Debian' test.ping`
+  * Note: grain matching is *not* case sensitive
+
+Grains
+------
+
+Key-value data store, static data describing a minion.
+
+Examples:
+
+* `os_family`: Debian, RedHat
+* `os`
+* `osfinger`
+* `cpu_model`
+* `cpuarch`
+* `id`
+* `ipv4`
+
+Useful commands for interactive
+-------------------------------
+
+```bash
+salt '*' cmd.run_all 'echo Hello World'
+salt '*' grains.item os_family
+salt '*' grains.items
 ```
