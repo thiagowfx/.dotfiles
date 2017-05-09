@@ -81,7 +81,7 @@ myminion:
 
     stdout:
         HELLO
-``
+```
 
 * --out=raw
 
