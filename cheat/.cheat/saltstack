@@ -182,3 +182,14 @@ salt '*' cmd.run_all 'echo Hello World'
 salt '*' grains.item os_family
 salt '*' grains.items
 ```
+
+Workflow for module and function discoverability
+------------------------------------------------
+
+```bash
+salt '*' sys.list_modules
+salt '*' sys.list_functions <module>
+salt '*' sys.doc <module>
+salt '*' sys.doc <module>.<function>
+salt '*' <module>.<function> [args]
+```
