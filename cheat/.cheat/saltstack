@@ -54,7 +54,10 @@ salt '*' sys.doc test.fib
 salt '*' sys.doc test
 salt '*' sys.list_functions test
 salt '*' sys.list_functions sys
+salt '*' sys.list_modules
 ```
+
+Rationale: `<module>.<function>`
 
 The salt command
 ----------------
@@ -173,6 +176,8 @@ Useful commands for interactive
 -------------------------------
 
 ```bash
+salt '*' cmd 'echo Hello World'
+salt '*' cmd.run_stdout 'echo Hello World'
 salt '*' cmd.run_all 'echo Hello World'
 salt '*' grains.item os_family
 salt '*' grains.items
