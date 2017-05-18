@@ -13,7 +13,7 @@ setopt auto_list
 setopt auto_pushd
 setopt beep
 setopt cdable_vars
-setopt correctall
+setopt correct
 setopt emacs
 setopt extendedglob
 setopt nohashdirs
