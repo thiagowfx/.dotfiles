@@ -5,10 +5,13 @@
 [submodule "i3/.i3blocks"]
 	path = i3/.i3blocks
 	url = https://github.com/vivien/i3blocks
+	shallow = true
 [submodule "git/.gitgit"]
 	path = git/.gitgit
 	url = https://github.com/git/git
+	shallow = true
 [submodule "zsh/.zplug"]
 	path = zsh/.zplug
 	url = https://github.com/zplug/zplug
 	ignore = dirty
+	shallow = true
