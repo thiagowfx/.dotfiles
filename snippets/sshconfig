@@ -10,11 +10,10 @@ Host *
     Compression yes
     CompressionLevel 6
 
-    # https://github.com/jirsbek/SSH-keys-in-macOS-Sierra-keychain
-    AddKeysToAgent yes
-    UseKeychain yes
+    # AddKeysToAgent yes
+    # UseKeychain yes
 
-    IdentityFile ~/.ssh/id_rsa
-    IdentityFile ~/.ssh/id_ed25519
+    # IdentityFile ~/.ssh/id_rsa
+    # IdentityFile ~/.ssh/id_ed25519
 
 # vim: ft=sshconfig fdm=marker sw=4 ts=4 et
