@@ -45,6 +45,7 @@
 [merge]
 	tool = vimdiff
 	conflictstyle = diff3
+	ff = false
 
 [mergetool]
 	prompt = true
@@ -83,3 +84,6 @@
 
 [status]
 	showUntrackedFiles = all
+
+[pull]
+	ff = only

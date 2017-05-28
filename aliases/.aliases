@@ -94,7 +94,6 @@ hash port &>/dev/null && add_paths "/opt/local/bin" "/opt/local/sbin"
 hash python &>/dev/null && add_env WORKON_HOME "$HOME/.virtualenvs" virtualenvwrapper.sh && src_file "$(which virtualenvwrapper.sh)"
 hash ruby &>/dev/null && add_paths "$(ruby -rubygems -e "puts Gem.user_dir")/bin"
 hash thefuck &>/dev/null && eval "$(thefuck --alias)"
-hash vim &>/dev/null && VIMRUNTIME=$(vim -e -T dumb --cmd 'exe "se t_cm=\<C-M>"|ec $VIMRUNTIME|q' | tr -d '\015') && add_alias vimpager "$VIMRUNTIME/macros/less.sh" vim "$VIMRUNTIME/macros/less.sh"
 # }}}
 
 # Environment variables {{{
