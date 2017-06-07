@@ -1,15 +1,12 @@
 #!/bin/bash
-#
-# see: https://raw.githubusercontent.com/tmux/tmux/master/CHANGES
-# version 2.1 breaks compatibility
-#
+# https://raw.githubusercontent.com/tmux/tmux/master/CHANGES, v2.1 breaks compat
 
-tmux_version="$(tmux -V | cut -c 6-)"
+version="$(tmux -V | cut -c 6-)"
 
-if [[ $(echo "$tmux_version >= 2.1" | bc) -eq 1 || $tmux_version == "master" ]]; then
-	tmux source-file "$HOME/.tmux/tmux_2.1_up.conf"
+if [[ $(echo "$version >= 2.1" | bc) -eq 1 || $version == "master" ]]; then
+	tmux source-file "$HOME/.tmux/tmux2.1_up.conf"
 else
-	tmux source-file "$HOME/.tmux/tmux_2.1_down.conf"
+	tmux source-file "$HOME/.tmux/tmux2.1_down.conf"
 fi
 
 # vim: fdm=marker ft=sh

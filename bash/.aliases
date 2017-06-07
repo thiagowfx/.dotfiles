@@ -88,8 +88,6 @@ hash ls &>/dev/null && add_alias sl "ls" ls && add_alias l "ls -l" ls && add_ali
 hash ls &>/dev/null && hash uname &>/dev/null && [[ $(uname) = "Darwin" ]] && add_alias ls "ls -F" ls || add_alias ls "ls --color=always" ls
 
 hash brew &>/dev/null && add_paths "/usr/local/sbin" && brew command command-not-found-init >/dev/null 2>&1 && eval "$(brew command-not-found-init)"
-hash cmake &>/dev/null && cmake-clean() { local BUILD=$(basename $(pwd)) && cd .. && rm -rf $BUILD && mkdir $BUILD && cd $BUILD
-	}
 hash port &>/dev/null && add_paths "/opt/local/bin" "/opt/local/sbin"
 hash python &>/dev/null && add_env WORKON_HOME "$HOME/.virtualenvs" virtualenvwrapper.sh && src_file "$(which virtualenvwrapper.sh)"
 hash ruby &>/dev/null && add_paths "$(ruby -rubygems -e "puts Gem.user_dir")/bin"
