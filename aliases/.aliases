@@ -101,7 +101,7 @@ add_env CLICOLOR "1" ls && add_env LSCOLORS "GxFxCxDxBxegedabagaced" ls
 add_env EDITOR "vim" vim && add_env VISUAL "$EDITOR" "$EDITOR"
 add_env GTEST_COLOR "YES"
 add_env LESS "-R" less && add_env LESSOPEN "| src-hilite-lesspipe.sh %s" src-hilite-lesspipe.sh
-add_paths "$HOME/bin" "$HOME/.bin" "$HOME/.local/bin"
+add_paths "$HOME/bin" "$HOME/.bin" "$HOME/.local/bin" "$HOME/.scripts"
 # }}}
 
 # vim: fdm=marker ft=sh
