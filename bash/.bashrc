@@ -107,6 +107,9 @@ prompt_dirty_symbol="☂ "
 prompt_venv_symbol="☁ "
 
 function prompt_command() {
+	local EXIT="$?"
+	history -a
+
 	# Git branch name and work tree status (only when we are inside Git working tree)
 	local git_prompt=
 	if [[ "true" = "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ]]; then
@@ -138,6 +141,7 @@ function prompt_command() {
 	# Set PS1.
 	PS1="\[\033]0;\w\007\]"
 	PS1+="\[${bold}\]"
+	[ $EXIT != 0 ] && PS1+="\[${red}\]$EXIT "
 	PS1+="\[${orange}\]\u" # username
 	PS1+="\[${white}\] at "
 	PS1+="\[${yellow}\]\h" # host
@@ -152,7 +156,7 @@ function prompt_command() {
 }
 
 # Upstream: http://askubuntu.com/questions/80371/bash-history-handling-with-multiple-terminals
-PROMPT_COMMAND="history -a; prompt_command"
+PROMPT_COMMAND="prompt_command"
 # }}}
 
 
