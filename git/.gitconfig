@@ -14,6 +14,7 @@
 	c = commit
 	cm = commit -m
 	cam = commit -a -m
+	cane = commit --amend --no-edit
 	d = diff --ignore-space-at-eol
 	dc = diff --ignore-space-at-eol --cached
 	ignore = "!ignore() { curl -L -s https://www.gitignore.io/api/$@; }; ignore"
