@@ -1,5 +1,12 @@
 term screen-256color
 startup_message off
-
+escape ^Bb
+defscrollback 10000
+altscreen on
 hardstatus alwayslastline
-hardstatus string '%?%-Lw%?%{=b kR}(%{W}%n*%f %t%?(%u)%?%{=b kR})'
+hardstatus alwayslastline "%{=}%-w%{+b w}%n %t%{-b w}%+w %=%c"
+bind = resize =
+bind + resize +1
+bind - resize -1
+defutf8 on
+autodetach on
