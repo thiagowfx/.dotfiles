@@ -1,0 +1,5 @@
+term screen-256color
+startup_message off
+
+hardstatus alwayslastline
+hardstatus string '%?%-Lw%?%{=b kR}(%{W}%n*%f %t%?(%u)%?%{=b kR})'
