@@ -3,7 +3,7 @@
 	email = tbperrotta@gmail.com
 
 [credential]
-	helper = store
+	helper = cache
 
 [push]
 	default = simple
