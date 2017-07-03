@@ -1,26 +1,16 @@
  # -*- shell-script -*-
 
-# Interactive {{{
-# This file is sourced by all *interactive* bash shells on startup,
-# including some apparently interactive shells such as scp and rcp
-# that can't tolerate any output.  So make sure this doesn't display
-# anything or bad things will happen!
-# Test for an interactive shell.  There is no need to set anything
-# past this point for scp and rcp, and it's important to refrain from
-# outputting anything in those cases.
 if [[ $- != *i* ]] ; then
 	# Shell is non-interactive. Be done now!
 	return
 fi
-# }}}
 
-# Source aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 
 # Bash History {{{
 # Ignore space and ignore duplicates.
 HISTCONTROL="ignoreboth"
-HISTSIZE=100000
+HISTSIZE=10000
 HISTFILESIZE="${HISTSIZE}"
 HISTIGNORE="ls:la:ll:l:vdir:history:exit"
 # }}}
@@ -51,7 +41,7 @@ man() {
 complete -cf sudo
 
 src_file "/etc/bash_completion"
-src_dir "~/.bash_completion.d"
+src_dir "$HOME/.bash_completion.d"
 
 # MacPorts bash completion
 src_file "/opt/local/etc/profile.d/bash_completion.sh"
@@ -104,7 +94,6 @@ fi;
 prompt_symbol="❯"
 prompt_clean_symbol="☀ "
 prompt_dirty_symbol="☂ "
-prompt_venv_symbol="☁ "
 
 function prompt_command() {
 	local EXIT="$?"
@@ -114,7 +103,8 @@ function prompt_command() {
 	local git_prompt=
 	if [[ "true" = "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ]]; then
 		# Branch name
-		local branch="$(git symbolic-ref HEAD 2>/dev/null)"
+		local branch
+		branch="$(git symbolic-ref HEAD 2>/dev/null)"
 		branch="${branch##refs/heads/}"
 
 		# Working tree status (red when dirty)
@@ -132,12 +122,6 @@ function prompt_command() {
 		fi
 	fi
 
-	# Virtualenv
-	local venv_prompt=
-	if [ -n "$VIRTUAL_ENV" ]; then
-	    venv_prompt=" ${blue}$prompt_venv_symbol$(basename $VIRTUAL_ENV)${reset}"
-	fi
-
 	# Set PS1.
 	PS1="\[\033]0;\w\007\]"
 	PS1+="\[${bold}\]"
@@ -147,7 +131,6 @@ function prompt_command() {
 	PS1+="\[${yellow}\]\h" # host
 	PS1+="\[${white}\] in "
 	PS1+="\[${green}\]\w" # working directory
-	command -v virtualenvwrapper.sh >/dev/null 2>&1 && PS1+=$venv_prompt
 	command -v git >/dev/null 2>&1 && PS1+=$git_prompt
 	PS1+="\n";
 	PS1+="\[${white}\]$prompt_symbol \[${reset}\]"; # `$` (and reset color)
@@ -158,7 +141,5 @@ function prompt_command() {
 # Upstream: http://askubuntu.com/questions/80371/bash-history-handling-with-multiple-terminals
 PROMPT_COMMAND="prompt_command"
 # }}}
-
-
 
 # vim: fdm=marker ft=sh

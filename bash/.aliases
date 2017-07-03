@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Helper functions {{{
 # HELPER: source the given file(s) if it exists.
 src_file() {
@@ -89,9 +91,6 @@ hash ls &>/dev/null && hash uname &>/dev/null && [[ $(uname) = "Darwin" ]] && ad
 
 hash brew &>/dev/null && add_paths "/usr/local/sbin" && brew command command-not-found-init >/dev/null 2>&1 && eval "$(brew command-not-found-init)"
 hash port &>/dev/null && add_paths "/opt/local/bin" "/opt/local/sbin"
-hash python &>/dev/null && add_env WORKON_HOME "$HOME/.virtualenvs" virtualenvwrapper.sh && src_file "$(which virtualenvwrapper.sh)"
-hash ruby &>/dev/null && add_paths "$(ruby -rubygems -e "puts Gem.user_dir")/bin"
-hash thefuck &>/dev/null && eval "$(thefuck --alias)"
 # }}}
 
 # Environment variables {{{
