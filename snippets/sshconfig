@@ -1,0 +1,18 @@
+Host example
+    HostName example.com
+    User root
+    IdentityFile ~/.ssh/id_rsa
+
+Host *
+    ServerAliveInterval 60
+    ServerAliveCountMax 300
+
+    Compression yes
+    CompressionLevel 6
+
+    AddKeysToAgent yes
+
+    # macOS keychain
+    # UseKeychain yes
+
+# vim: ft=sshconfig fdm=marker sw=4 ts=4 et
