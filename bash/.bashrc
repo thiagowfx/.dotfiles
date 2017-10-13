@@ -7,15 +7,15 @@ fi
 
 [[ -f ~/.aliases ]] && source ~/.aliases
 
-# Bash History {{{
+# Bash history {{{
 # Ignore space and ignore duplicates.
 HISTCONTROL="ignoreboth"
-HISTSIZE=10000
+HISTSIZE=50000
 HISTFILESIZE="${HISTSIZE}"
 HISTIGNORE="ls:la:ll:l:vdir:history:exit"
 # }}}
 
-# Shell options {{{
+# Bash shell options {{{
 set -o emacs
 
 for option in autocd checkwinsize cdspell cmdhist dotglob expand_aliases extglob histappend hostcomplete nocaseglob; do
@@ -43,10 +43,6 @@ complete -cf sudo
 src_file "/etc/bash_completion"
 src_dir "$HOME/.bash_completion.d"
 
-# MacPorts bash completion
-src_file "/opt/local/etc/profile.d/bash_completion.sh"
-src_dir "/opt/local/share/bash-completion/completions"
-
 # HomeBrew bash completion
 src_file "/usr/local/etc/bash_completion"
 src_dir  "/usr/local/etc/bash_completion.d"
@@ -54,7 +50,7 @@ src_file "/usr/local/share/bash-completion/bash_completion"
 # }}}
 
 # Command-not-found hooks {{{
-# Pkgfile (for pacman)
+# Pacman pkgfile
 src_file "/usr/share/doc/pkgfile/command-not-found.bash"
 # }}}
 

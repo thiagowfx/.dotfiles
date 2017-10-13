@@ -5,7 +5,7 @@ dotfiles
 
 Managed with GNU stow. **Quick setup**:
 
-    git clone --depth=1 https://github.com/thiagowfx/dotfiles $HOME/.dotfiles
+    git clone --depth=1 https://github.com/thiagowfx/.dotfiles $HOME/.dotfiles
 
 To **stow**:
 
