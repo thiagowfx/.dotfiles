@@ -2,6 +2,7 @@
 	path = tmux/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
 	shallow = true
+	ignore = dirty
 [submodule "i3/.i3blocks"]
 	path = i3/.i3blocks
 	url = https://github.com/vivien/i3blocks
