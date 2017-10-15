@@ -11,6 +11,8 @@ Host *
     CompressionLevel 6
 
     AddKeysToAgent yes
-    UseKeychain yes # macOS keychain
+
+    # macOS keychain
+    UseKeychain yes
 
 # vim: ft=sshconfig fdm=marker sw=4 ts=4 et
