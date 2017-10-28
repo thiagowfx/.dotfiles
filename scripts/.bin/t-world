@@ -8,16 +8,14 @@ function ctrl_c	(){
 }
 
 # vim-plug
-if [[ -d "$HOME/.vim/vim-plug" ]]; then
+if [[ -d "$HOME/.vim/vim-plug" ]] && hash vim &>/dev/null; then
 	vim +PlugInstall +PlugClean! +qall
 fi
 
 # dotfiles repos
 for repo in .dotfiles .emacs.d .vim; do
 	repodir="$HOME/$repo"
-	if [[ ! -d "$repodir" ]]; then
-		git clone --recursive --depth=1 "https://github.com/thiagowfx/$repo" "$repodir"
-	else
+	if [[ -d "$repodir" ]]; then
 		(cd "$repodir" && git pull --recurse-submodules)
 	fi
 done
