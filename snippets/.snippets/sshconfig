@@ -8,11 +8,11 @@ Host *
     ServerAliveCountMax 300
 
     Compression yes
-    CompressionLevel 6
-
     AddKeysToAgent yes
 
     # macOS keychain
     UseKeychain yes
+
+    # IdentityFile ~/.ssh/id_rsa
 
 # vim: ft=sshconfig fdm=marker sw=4 ts=4 et
