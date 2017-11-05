@@ -12,7 +12,7 @@ fi
 HISTCONTROL="ignoreboth"
 HISTSIZE=50000
 HISTFILESIZE="${HISTSIZE}"
-HISTIGNORE="ls:la:ll:l:vdir:history:exit"
+HISTIGNORE="ls:la:ll:l:vdir:tree:history:exit"
 # }}}
 
 # Bash shell options {{{
@@ -41,7 +41,6 @@ man() {
 complete -cf sudo
 
 src_file "/etc/bash_completion"
-src_dir "$HOME/.bash_completion.d"
 
 # HomeBrew bash completion
 src_file "/usr/local/etc/bash_completion"
@@ -54,9 +53,7 @@ src_file "/usr/local/share/bash-completion/bash_completion"
 src_file "/usr/share/doc/pkgfile/command-not-found.bash"
 # }}}
 
-# Prompts {{{
-
-# Set colors.
+# Colors {{{
 if command -v tput &>/dev/null && tput setaf 1 &>/dev/null; then
 	tput sgr0; # reset colors
 	bold=$(tput bold);
@@ -86,35 +83,39 @@ else
 	white="\e[1;37m";
 	yellow="\e[1;33m";
 fi;
+# }}}
 
-prompt_symbol="❯"
-prompt_clean_symbol="☀ "
-prompt_dirty_symbol="☂ "
-
+# Prompts {{{
 function prompt_command() {
 	local EXIT="$?"
 	history -a
 
+	local prompt_symbol="❯"
+	local prompt_clean_symbol="☀ "
+	local prompt_dirty_symbol="☂ "
+
 	# Git branch name and work tree status (only when we are inside Git working tree)
-	local git_prompt=
-	if [[ "true" = "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ]]; then
-		# Branch name
-		local branch
-		branch="$(git symbolic-ref HEAD 2>/dev/null)"
-		branch="${branch##refs/heads/}"
+	if command -v git >/dev/null 2>&1; then
+		local git_prompt=
+		if [[ "true" = "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ]]; then
+			# Branch name
+			local branch
+			branch="$(git symbolic-ref HEAD 2>/dev/null)"
+			branch="${branch##refs/heads/}"
 
-		# Working tree status (red when dirty)
-		local dirty=
-		# Modified files
-		git diff --no-ext-diff --quiet --exit-code --ignore-submodules 2>/dev/null || dirty=1
-		# Untracked files
-		[ -z "$dirty" ] && test -n "$(git status --porcelain)" && dirty=1
+			# Working tree status (red when dirty)
+			local dirty=
+			# Modified files
+			git diff --no-ext-diff --quiet --exit-code --ignore-submodules 2>/dev/null || dirty=1
+			# Untracked files
+			[ -z "$dirty" ] && test -n "$(git status --porcelain)" && dirty=1
 
-		# Format Git info
-		if [ -n "$dirty" ]; then
-			git_prompt=" ${red}$prompt_dirty_symbol$branch${reset}"
-		else
-			git_prompt=" ${violet}$prompt_clean_symbol$branch${reset}"
+			# Format Git info
+			if [ -n "$dirty" ]; then
+				git_prompt=" ${red}$prompt_dirty_symbol$branch${reset}"
+			else
+				git_prompt=" ${violet}$prompt_clean_symbol$branch${reset}"
+			fi
 		fi
 	fi
 
@@ -123,18 +124,18 @@ function prompt_command() {
 	PS1+="\[${bold}\]"
 	[ $EXIT != 0 ] && PS1+="\[${red}\]$EXIT "
 	PS1+="\[${orange}\]\u" # username
-	PS1+="\[${white}\] at "
+	PS1+="\[${white}\] at " # at
 	PS1+="\[${yellow}\]\h" # host
-	PS1+="\[${white}\] in "
+	PS1+="\[${white}\] in " # in
 	PS1+="\[${green}\]\w" # working directory
-	command -v git >/dev/null 2>&1 && PS1+=$git_prompt
+	command -v git >/dev/null 2>&1 && PS1+=$git_prompt # git
 	PS1+="\n";
 	PS1+="\[${white}\]$prompt_symbol \[${reset}\]"; # `$` (and reset color)
 	# Set PS2.
 	PS2="\[${yellow}\]→ \[${reset}\]";
 }
 
-# Upstream: http://askubuntu.com/questions/80371/bash-history-handling-with-multiple-terminals
+# http://askubuntu.com/questions/80371/bash-history-handling-with-multiple-terminals
 PROMPT_COMMAND="prompt_command"
 # }}}
 
