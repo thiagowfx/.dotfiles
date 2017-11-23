@@ -1,7 +1,0 @@
-term screen-256color
-startup_message off
-escape ^Bb
-defscrollback 10000
-altscreen on
-defutf8 on
-autodetach on
