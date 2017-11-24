@@ -69,14 +69,12 @@ add_alias free "free -h" free
 add_alias grep "grep --color=always" grep
 add_alias hexdump "hexdump -C" hexdump
 add_alias pingg "ping google.com" ping
-add_alias pstree "pstree -p" pstree
 add_alias tmux "tmux -2" tmux
 add_alias unstow "stow -D" stow
 hash ls &>/dev/null && add_alias sl "ls" ls && add_alias l "ls -l" ls && add_alias ll "l" ls && add_alias la "ls -al" ls
 hash ls &>/dev/null && hash uname &>/dev/null && [[ $(uname) = "Darwin" ]] && add_alias ls "ls -F" ls || add_alias ls "ls --color=always" ls
 
 hash brew &>/dev/null && add_paths "/usr/local/sbin" && brew command command-not-found-init >/dev/null 2>&1 && eval "$(brew command-not-found-init)"
-hash port &>/dev/null && add_paths "/opt/local/bin" "/opt/local/sbin"
 # }}}
 
 # Environment variables {{{
