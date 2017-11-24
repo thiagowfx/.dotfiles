@@ -62,30 +62,16 @@ add_alias ack "ack-grep" ack-grep
 add_alias chmod "chmod -v" chmod
 add_alias chown "chown -v" chown
 add_alias colordiff "colordiff -uN" colordiff
-add_alias cower "cower --color=always --sort=votes" cower
-add_alias cp "cp -v" cp
 add_alias curl "curl -v -L" curl
 add_alias diff "diff -uN" diff
 add_alias du "du -h" du
 add_alias free "free -h" free
-add_alias g "git" git && add_alias gi "git" git
 add_alias grep "grep --color=always" grep
 add_alias hexdump "hexdump -C" hexdump
-add_alias i3lock "i3lock -c 777777" i3lock
-add_alias ln "ln -v" ln
-add_alias mv "mv -v" mv
-add_alias netstat "netstat -pln" netstat
-add_alias ninja "ninja -v" ninja
-add_alias pgrep "pgrep -fl" pgrep
 add_alias pingg "ping google.com" ping
 add_alias pstree "pstree -p" pstree
-add_alias shred "gshred" gshred
 add_alias tmux "tmux -2" tmux
-add_alias tree "tree -C" tree
 add_alias unstow "stow -D" stow
-add_alias xclip "xclip -selection clipboard" xclip
-add_alias youtube-dl-mp3   "youtube-dl --continue --title --restrict-filenames --extract-audio --audio-format mp3" youtube-dl
-add_alias youtube-dl-video "youtube-dl --continue --title --restrict-filenames" youtube-dl
 hash ls &>/dev/null && add_alias sl "ls" ls && add_alias l "ls -l" ls && add_alias ll "l" ls && add_alias la "ls -al" ls
 hash ls &>/dev/null && hash uname &>/dev/null && [[ $(uname) = "Darwin" ]] && add_alias ls "ls -F" ls || add_alias ls "ls --color=always" ls
 
@@ -98,7 +84,7 @@ add_env CLICOLOR "1" ls && add_env LSCOLORS "GxFxCxDxBxegedabagaced" ls
 add_env EDITOR "vim" vim && add_env VISUAL "$EDITOR" "$EDITOR"
 add_env GTEST_COLOR "YES"
 add_env LESS "-R" less && add_env LESSOPEN "| src-hilite-lesspipe.sh %s" src-hilite-lesspipe.sh
-add_paths "$HOME/bin" "$HOME/.bin" "$HOME/.local/bin" "$HOME/.scripts"
+add_paths "$HOME/bin" "$HOME/.bin"
 # }}}
 
 # vim: fdm=marker ft=sh
