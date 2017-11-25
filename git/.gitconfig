@@ -2,6 +2,10 @@
 	name = Thiago Perrotta
 	email = tbperrotta@gmail.com
 
+[core]
+	editor = vim
+	autocrlf = input
+
 [credential]
 	helper = cache
 
@@ -10,48 +14,21 @@
 	followTags = true
 
 [alias]
-	b = branch
-	c = commit
-	cm = commit -m
-	cam = commit -a -m
-	cane = commit --amend --no-edit
-	d = diff --ignore-space-at-eol
-	dc = diff --ignore-space-at-eol --cached
-	ignore = "!ignore() { curl -L -s https://www.gitignore.io/api/$@; }; ignore"
-	l = log
-	p = push
-	prune = fetch --prune
+	dc = diff --cached
+	ls = log --pretty=format:'%C(yellow)%h%C(white) %an <%ae> %>|(80)%ai%Creset%n%C(bold)%w(0,4,4)%s%C(reset)%n%+b'
 	st = status
+	xl = log --graph --decorate --all # [--oneline]
+
+	prune = fetch --prune
 	stash-all = stash save --include-untracked
-	submodule-sync = submodule update --init --recursive
-	submodule-update = submodule update --remote --recursive
 	undo = reset --soft HEAD^
+
+	ignore = "!ignore() { curl -L -s https://www.gitignore.io/api/$@; }; ignore"
 	world = "!world() { git gc; git remote prune origin; }; world"
 
-[core]
-	autocrlf = input
-	editor = vim
-	excludesfile = ~/.gitignore_global
-
-[color]
-	diff = auto
-	status = auto
-	branch = auto
-	grep = auto
-	interactive = auto
-	showbranch = auto
-	ui = auto
-
-[merge]
-	tool = vimdiff
-	conflictstyle = diff3
-
-[mergetool]
-	prompt = true
-	keepBackup = false
-
-[difftool]
-	prompt = true
+[branch]
+	autosetupmerge = always
+	autosetuprebase = always
 
 [submodule]
 	fetchJobs = 0
@@ -61,3 +38,23 @@
 
 [status]
 	showUntrackedFiles = all
+
+[diff]
+	tool = vimdiff
+	# tool = meld
+
+[difftool]
+	prompt = true
+
+[merge]
+	conflictstyle = diff3
+	defaultToUpstream = true
+	tool = vimdiff
+	# tool = meld
+
+[mergetool]
+	prompt = true
+
+[rerere]
+	enabled = true
+	autoupdate = true
