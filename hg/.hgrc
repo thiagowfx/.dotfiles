@@ -3,7 +3,12 @@ username = Thiago Perrotta <tbperrotta@gmail.com>
 
 [extensions]
 color=
+extdiff=
 hgk=
 progress=
+
+[extdiff]
+cmd.vimdiff = vimdiff
+cmd.meld = meld
 
 %include ~/.hgrc_corp
