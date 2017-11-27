@@ -5,14 +5,65 @@ if [[ $- != *i* ]] ; then
 	return
 fi
 
-[[ -f ~/.aliases ]] && source ~/.aliases
+# Aliases {{{
+src_files() {
+	for f in "$@"; do
+		[[ -f "$f" ]] && source "$f"
+	done
+}
+
+src_dirs() {
+	for d in "$@"; do
+		if [[ -d "$d" ]]; then
+			src_files $d/*
+		fi
+	done
+}
+
+add_alias() {
+	[[ "x$4" != "x" ]] && [ ! -e "$4" ] && return
+
+	if [[ "x$3" != "x" ]]; then
+		hash "$3" &>/dev/null && alias "$1"="$2"
+	else
+		hash "$2" &>/dev/null && alias "$1"="$2"
+	fi
+}
+
+add_env() {
+	[[ "x$3" != "x" ]] && ! hash "$3" &>/dev/null && return
+	[[ "x$4" != "x" ]] && [ ! -e "$4" ] && return
+	export "$1"="$2"
+}
+
+add_paths() {
+	for d in "$@"; do
+		add_env PATH "$d:$PATH" "" "$d"
+	done
+}
+
+add_alias .. "cd .." cd
+add_alias ack "ack-grep"
+add_alias l "ls -l" ls
+add_alias la "ls -al" ls
+add_alias sl "ls"
+add_alias tmux "tmux -2" tmux
+add_alias unstow "stow -D" stow
+
+add_env CLICOLOR "1"
+add_env EDITOR "vim" vim && add_env VISUAL "$EDITOR" "$EDITOR"
+
+add_paths "$HOME/.bin"
+
+hash brew &>/dev/null && add_paths "/usr/local/sbin"
+# }}}
 
 # Bash history {{{
 # Ignore space and ignore duplicates.
 HISTCONTROL="ignoreboth"
 HISTSIZE=50000
 HISTFILESIZE="${HISTSIZE}"
-HISTIGNORE="ls:la:ll:l:vdir:tree:history:exit"
+HISTIGNORE="ls:la:ll:l:ranger:tree:vdir:history:exit"
 # }}}
 
 # Bash shell options {{{
@@ -40,17 +91,17 @@ man() {
 # Enable completion for sudo.
 complete -cf sudo
 
-src_file "/etc/bash_completion"
+# Linux bash completion
+src_files "/etc/bash_completion" "/usr/share/bash-completion/bash_completion"
 
-# HomeBrew bash completion
-src_file "/usr/local/etc/bash_completion"
-src_dir  "/usr/local/etc/bash_completion.d"
-src_file "/usr/local/share/bash-completion/bash_completion"
+# Homebrew bash completion
+src_files "/usr/local/etc/bash_completion" "/usr/local/share/bash-completion/bash_completion"
+src_dirs  "/usr/local/etc/bash_completion.d"
 # }}}
 
 # Command-not-found hooks {{{
-# Pacman pkgfile
-src_file "/usr/share/doc/pkgfile/command-not-found.bash"
+hash brew &>/dev/null && brew command command-not-found-init >/dev/null 2>&1 && eval "$(brew command-not-found-init)"
+hash pacman &>/dev/null && src_files "/usr/share/doc/pkgfile/command-not-found.bash"
 # }}}
 
 # Colors {{{
