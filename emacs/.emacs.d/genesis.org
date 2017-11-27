@@ -1,7 +1,7 @@
 #+TITLE: thiagowfx's emacs configuration
 
-* DONE Package Management
-** DONE straight.el
+* Package Management
+** straight.el
 =straight.el= is a package manager for emacs:
 
 Upstream URL: https://github.com/raxod502/straight.el
@@ -21,7 +21,7 @@ Bootstrap =straight.el=:
   (load bootstrap-file nil 'nomessage))
 #+END_SRC
 
-** DONE use-package
+** use-package
 =use-package= helps getting and configuring emacs packages:
 
 Upstream URL: https://github.com/jwiegley/use-package
@@ -32,9 +32,9 @@ Activate =straight.el='s =use-package= integration:
 (straight-use-package 'use-package)
 (setq use-package-always-ensure t)
 #+END_SRC
-* DONE Extensions
+* Extensions
   CLOSED: [2017-10-28 Sat 02:44]
-** DONE ace-jump-mode
+** ace-jump-mode
 =ace-jump-mode= allows the user to jump anywhere. =C-.= is the key, literally:
 
 #+BEGIN_SRC emacs-lisp
@@ -44,7 +44,7 @@ Activate =straight.el='s =use-package= integration:
          ("C-c C-." . ace-jump-word-mode)
          ("C-c M-g" . ace-jump-line-mode)))
 #+END_SRC
-** DONE all-the-icons-dired
+** all-the-icons-dired
    CLOSED: [2017-10-26 Thu 02:52]
 =all-the-icons-dired= displays icons next to each file in =dired=:
 
@@ -53,14 +53,14 @@ Activate =straight.el='s =use-package= integration:
   :ensure t
   :config (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 #+END_SRC
-** DONE better-defaults
+** better-defaults
 =better-defaults= provides better defaults to emacs:
 
 #+BEGIN_SRC emacs-lisp
 (use-package better-defaults
   :ensure t)
 #+END_SRC
-** DONE bookmark
+** bookmark
 =bookmark= allows the user to quickly jump to bookmarks:
 
 - =C-x r l= to list bookmarks
@@ -70,7 +70,7 @@ Activate =straight.el='s =use-package= integration:
 (use-package bookmark
   :ensure t)
 #+END_SRC
-** DONE cmake-mode
+** cmake-mode
 =cmake-mode= is a mode to work with =*.cmake= files:
 
 #+BEGIN_SRC emacs-lisp
@@ -79,7 +79,7 @@ Activate =straight.el='s =use-package= integration:
   :defer-install t
   :mode "\\.cmake\\'")
 #+END_SRC
-** DONE [#A] company-mode
+** company-mode
    CLOSED: [2017-10-28 Sat 02:44]
 =company=, "complete anything", is a text completion framework for emacs:
 
@@ -88,7 +88,7 @@ Activate =straight.el='s =use-package= integration:
   :ensure t
   :config (global-company-mode t))
 #+END_SRC
-** DONE compile
+** compile
 =compile= enhances compilation features in emacs:
 
 #+BEGIN_SRC emacs-lisp
@@ -98,7 +98,7 @@ Activate =straight.el='s =use-package= integration:
   (setq compilation-always-kill t)
   (setq compilation-auto-jump-to-first-error t))
 #+END_SRC
-** DONE dockerfile-mode
+** dockerfile-mode
 =dockerfile-mode= is a mode to edit a =Dockerfile=:
 
 #+BEGIN_SRC 
@@ -107,7 +107,7 @@ Activate =straight.el='s =use-package= integration:
   :defer-install t
   :mode "Dockerfile.*\\'")
 #+END_SRC
-** DONE dracula-theme
+** dracula-theme
 =dracula-theme= is a dark theme for emacs:
 
 #+BEGIN_SRC emacs-lisp
@@ -115,9 +115,9 @@ Activate =straight.el='s =use-package= integration:
   :ensure t
   :config (load-theme 'dracula t))
 #+END_SRC
-** DONE [#A] evil
+** evil
    CLOSED: [2017-10-28 Sat 02:44]
-*** DONE evil-mode
+*** evil-mode
 =evil-mode= is an extensible vi layer for emacs:
 
 #+BEGIN_SRC emacs-lisp
@@ -157,7 +157,7 @@ Activate =straight.el='s =use-package= integration:
   (define-key evil-insert-state-map "\C-k" 'kill-line)
   (define-key evil-visual-state-map "\C-k" 'kill-line))
 #+END_SRC
-*** DONE evil-matchit
+*** evil-matchit
     CLOSED: [2017-10-27 Fri 02:33]
 =evil-matchit= is the port of =vim-matchit= to emacs. Press =%= to activate it:
 
@@ -166,7 +166,7 @@ Activate =straight.el='s =use-package= integration:
   :ensure t
   :config (global-evil-matchit-mode 1))
 #+END_SRC
-*** DONE evil-exchange
+*** evil-exchange
 =evil-exchange= is the port of =vim-exchange= to emacs. It allows the user to easily exchange text around:
 
 #+BEGIN_SRC emacs-lisp
@@ -174,12 +174,13 @@ Activate =straight.el='s =use-package= integration:
   :ensure t
   :config (evil-exchange-cx-install))
 #+END_SRC
-*** DONE evil-goggles
+*** evil-goggles
 =evil-goggles= displays a visual hint when editing with =evil=:
 
 #+BEGIN_SRC emacs-lisp
 (use-package evil-goggles
   :ensure t
+  :diminish evil-goggles-mode
   :config
   (evil-goggles-mode)
 
@@ -192,7 +193,7 @@ Activate =straight.el='s =use-package= integration:
   ;; to pulse the visual hint, rather than just show and hide it (experimental):
   (setq evil-goggles-pulse t))
 #+END_SRC
-** DONE exec-path-from-shell
+** exec-path-from-shell
 =exec-path-from-shell= ensures that environment variables inside emacs look the same as in the user's shell:
 
 #+BEGIN_SRC
@@ -201,7 +202,7 @@ Activate =straight.el='s =use-package= integration:
   :config (when (memq window-system '(mac ns x))
             (exec-path-from-shell-initialize)))
 #+END_SRC
-** DONE expand-region
+** expand-region
 =expand-region= increases the selected region by semantic units:
 
 #+BEGIN_SRC emacs-lisp
@@ -209,7 +210,7 @@ Activate =straight.el='s =use-package= integration:
   :ensure t
   :bind ("C-=" . er/expand-region))
 #+END_SRC
-** DONE idle-highlight-mode
+** idle-highlight-mode
 =idle-highlight-mode= sets an idle timer that highlights all occurences in the buffer of the word under the point:
 
 #+BEGIN_SRC emacs-lisp
@@ -217,8 +218,8 @@ Activate =straight.el='s =use-package= integration:
   :ensure t
   :config (add-hook 'prog-mode-hook (lambda () (idle-highlight-mode t))))
 #+END_SRC
-** DONE [#A] ido
-*** DONE ido-mode
+** ido
+*** ido-mode
 =ido-mode= enhances emacs completion in the minibuffer:
 
 #+BEGIN_SRC emacs-lisp
@@ -237,7 +238,7 @@ Activate =straight.el='s =use-package= integration:
   (ido-everywhere t)
   (setq ido-show-dot-for-dired t))
 #+END_SRC
-*** DONE ido-vertical-mode
+*** ido-vertical-mode
 =ido-vertical-mode= makes =ido-mode= display vertically:
 
 #+BEGIN_SRC emacs-lisp
@@ -260,7 +261,7 @@ Activate =straight.el='s =use-package= integration:
   (set-face-attribute 'ido-vertical-match-face nil
                       :foreground nil))
 #+END_SRC
-*** DONE flx-ido
+*** flx-ido
 =flx-ido= provides fuzzy matching for emacs:
 
 #+BEGIN_SRC emacs-lisp
@@ -270,7 +271,7 @@ Activate =straight.el='s =use-package= integration:
   (flx-ido-mode 1)
   (setq ido-enable-flex-matching t))
 #+END_SRC
-*** DONE ido-ubiquitous-mode
+*** ido-ubiquitous-mode
 =ido-ubiquitous-mode= enhances emacs completion everywhere:
 
 #+BEGIN_SRC emacs-lisp
@@ -278,7 +279,7 @@ Activate =straight.el='s =use-package= integration:
   :ensure t
   :config (ido-ubiquitous-mode t))
 #+END_SRC
-*** DONE icomplete-mode
+*** icomplete-mode
  =icomplete-mode= comes to the rescue whenever =ido= cannot be used:
 
 #+BEGIN_SRC emacs-lisp
@@ -286,7 +287,7 @@ Activate =straight.el='s =use-package= integration:
   :ensure t
   :config (icomplete-mode t))
 #+END_SRC
-** DONE find-file-in-project
+** find-file-in-project
 =find-file-in-project= allows the user to:
 
 - Find file / directory
@@ -297,7 +298,7 @@ Activate =straight.el='s =use-package= integration:
   :ensure t
   :commands (find-file-in-project))
 #+END_SRC
-** DONE [#A] flycheck
+** flycheck
    CLOSED: [2017-10-28 Sat 02:44]
 =flycheck= is a modern on-the-fly syntax checking extension:
 
@@ -306,7 +307,7 @@ Activate =straight.el='s =use-package= integration:
   :ensure t
   :config (add-hook 'after-init-hook #'global-flycheck-mode))
 #+END_SRC
-** DONE git-gutter
+** git-gutter
 =git-gutter= indicates VCS changes on the emacs gutter:
 
 #+BEGIN_SRC emacs-lisp
@@ -315,7 +316,7 @@ Activate =straight.el='s =use-package= integration:
   :diminish git-gutter-mode
   :config (global-git-gutter-mode t))
 #+END_SRC
-** DONE guide-key
+** guide-key
 =guide-key= displays the available key bindings automatically and dynamically:
 
 #+BEGIN_SRC emacs-lisp
@@ -327,7 +328,7 @@ Activate =straight.el='s =use-package= integration:
   (setq guide-key/idle-delay 2.0)
   (guide-key-mode t))
 #+END_SRC
-** DONE linum-mode
+** linum-mode
 =linum-mode= enables line numbers globally:
 
 #+BEGIN_SRC emacs-lisp
@@ -335,7 +336,7 @@ Activate =straight.el='s =use-package= integration:
   :ensure t
   :config (global-linum-mode t))
 #+END_SRC
-** DONE magit
+** magit
 =magit= is an emacs interface to the git VCS:
 
 #+BEGIN_SRC emacs-lisp
@@ -344,7 +345,7 @@ Activate =straight.el='s =use-package= integration:
   :config (setq magit-completing-read-function 'magit-ido-completing-read)
   :bind ("C-c m" . magit-status))
 #+END_SRC
-** DONE manage-minor-mode
+** manage-minor-mode
    CLOSED: [2017-10-26 Thu 03:05]
 =manage-minor-mode= helps keeping track of the available / enabled / disabled minor-modes on emacs:
 
@@ -353,7 +354,7 @@ Activate =straight.el='s =use-package= integration:
   :ensure t
   :commands (manage-minor-mode))
 #+END_SRC
-** DONE markdown-mode
+** markdown-mode
 =markdown-mode= is a mode to edit =*.markdown= files:
 
 #+BEGIN_SRC emacs-lisp
@@ -362,7 +363,7 @@ Activate =straight.el='s =use-package= integration:
   :defer-install t
   :mode ("\\.markdown\\'" "\\.md\\'"))
 #+END_SRC
-** DONE multiple-cursors
+** multiple-cursors
 =multiple-cursors= support for emacs:
 
 #+BEGIN_SRC emacs-lisp
@@ -373,8 +374,8 @@ Activate =straight.el='s =use-package= integration:
          ("C-c C-<" . mc/mark-all-like-this)
          ("C-S-<mouse-1>" . mc/add-cursor-on-click)))
 #+END_SRC
-** DONE [#A] org-mode
-   CLOSED: [2017-10-28 Sat 02:44]
+** org-mode
+   CLOSED: [2017-11-27 Mon 01:28]
 =org-mode= is for keeping notes, maintaining TODO lists, planning projects, and authoring documents with a fast and effective plain-text system:
 
 #+BEGIN_SRC emacs-lisp
@@ -399,7 +400,7 @@ Activate =straight.el='s =use-package= integration:
   (add-hook 'org-shiftdown-final-hook 'windmove-down)
   (add-hook 'org-shiftright-final-hook 'windmove-right))
 #+END_SRC
-** DONE persistent-scratch
+** persistent-scratch
 =persistent-scratch= makes emacs preserve the state of scratch buffers across sessions:
 
 #+BEGIN_SRC emacs-lisp
@@ -409,7 +410,7 @@ Activate =straight.el='s =use-package= integration:
   :config
   (persistent-scratch-setup-default))
 #+END_SRC
-** DONE pkgbuild-mode
+** pkgbuild-mode
 =pkgbuild-mode= is a mode to edit a =PKGBUILD= for Arch Linux:
 
 #+BEGIN_SRC emacs-lisp
@@ -418,20 +419,16 @@ Activate =straight.el='s =use-package= integration:
     :defer-install t
     :mode "PKGBUILD")
 #+END_SRC
-** DONE projectile
+** projectile
 =projectile= is a simple project management extension:
 
 #+BEGIN_SRC emacs-lisp
 (use-package projectile
   :ensure t
   :config
-  ;; fix performance issues: https://github.com/bbatsov/projectile/issues/1183
-  (setq projectile-mode-line
-          '(:eval (format " Projectile[%s]"
-                          (projectile-project-name))))
   (projectile-global-mode t))
 #+END_SRC
-** DONE rainbow-delimiters
+** rainbow-delimiters
 =rainbow-delimiters= is a "rainbow parentheses"-like mode which highlights delimiters such as parentheses, brackets or braces according to their depth:
 
 #+BEGIN_SRC emacs-lisp
@@ -449,7 +446,7 @@ Activate =straight.el='s =use-package= integration:
   (add-hook 'scheme-mode-hook #'rainbow-delimiters-mode))
 #+END_SRC
 
-** DONE recentf
+** recentf
 =recentf= keeps track of recently opened files:
 
 #+BEGIN_SRC emacs-lisp
@@ -459,7 +456,7 @@ Activate =straight.el='s =use-package= integration:
   (recentf-mode t)
   (setq recentf-max-saved-items 100))
 #+END_SRC
-** DONE savehist
+** savehist
 =savehist= saves minibuffer histories between sessions:
 
 #+BEGIN_SRC emacs-lisp
@@ -472,7 +469,7 @@ Activate =straight.el='s =use-package= integration:
   ;; save additional variables
   (setq savehist-additional-variables '(kill-ring search-ring regexp-search-ring)))
 #+END_SRC
-** DONE saveplace
+** saveplace
 =saveplace='s purpose is to make the point go to the last place where it was at the last time a file was opened:
 
 #+BEGIN_SRC emacs-lisp
@@ -483,15 +480,16 @@ Activate =straight.el='s =use-package= integration:
     (setq-default save-place t)
     (save-place-mode t)))
 #+END_SRC
-** DONE smartparens
+** smartparens
 =smartparens= is a minor mode for dealing with pairs in emacs:
 
 #+BEGIN_SRC emacs-lisp
 (use-package smartparens
   :ensure t
-  :config (smartparens-global-mode t))
+  :config (smartparens-global-mode t)
+  :diminish smartparens-mode)
 #+END_SRC
-** DONE smex
+** smex
 =smex= is a smart replacement for =M-x=:
 
 #+BEGIN_SRC emacs-lisp
@@ -502,7 +500,7 @@ Activate =straight.el='s =use-package= integration:
          ("M-X" . smex-major-mode-commands)
          ("C-c M-x" . execute-extended-command)))
 #+END_SRC
-** DONE undo-tree
+** undo-tree
 =undo-tree= improves the emacs undo system:
 
 - =C-_= for =undo-tree-undo=
@@ -516,7 +514,7 @@ Activate =straight.el='s =use-package= integration:
   :bind ("C-+" . undo-tree-redo))
 #+END_SRC
 
-** DONE web-mode
+** web-mode
 =web-mode= is an autonomous emacs major-mode for editing web templates:
 
 #+BEGIN_SRC emacs-lisp
@@ -534,7 +532,7 @@ Activate =straight.el='s =use-package= integration:
  ;; enable web-mode for plain HTML files
  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
 #+END_SRC
-** DONE windmove
+** windmove
 =windmove= lets the user move easily through windows:
 
 - =S-Left=
@@ -549,7 +547,7 @@ Activate =straight.el='s =use-package= integration:
   (setq windmove-wrap-around t)
   (windmove-default-keybindings))
 #+END_SRC
-** DONE winner-mode
+** winner-mode
 =winner-mode= lets the user move easily through window layouts:
 
 - =C-c left=
@@ -560,17 +558,17 @@ Activate =straight.el='s =use-package= integration:
   :ensure t
   :config (winner-mode t))
 #+END_SRC
-** DONE ws-butler-mode
+** ws-butler-mode
    CLOSED: [2017-10-26 Thu 02:45]
 =ws-butler-mode= is an unobtrusive way to trim spaces from end of line:
 
 #+BEGIN_SRC emacs-lisp
 (use-package ws-butler 
   :ensure t
-  :config
-  (ws-butler-global-mode t))
+  :config (ws-butler-global-mode t)
+  :diminish ws-butler-mode)
 #+END_SRC
-** DONE yaml-mode
+** yaml-mode
 =yaml-mode= is a mode to work with =*.yaml= files:
 
 #+BEGIN_SRC emacs-lisp
@@ -579,7 +577,7 @@ Activate =straight.el='s =use-package= integration:
   :defer-install t
   :mode ("\\.yaml\\'" "\\.yml\\'"))
 #+END_SRC
-** DONE [#A] yasnippets
+** yasnippets
    CLOSED: [2017-10-28 Sat 02:44]
 =yasnippet= is a template system for emacs; expansions and snippets:
 
@@ -590,9 +588,9 @@ Activate =straight.el='s =use-package= integration:
   (yas-reload-all)
   (add-hook 'prog-mode-hook #'yas-minor-mode))
 #+END_SRC
-* DONE Customizations
-** DONE backups
-Inhibit all backup files. I don't like extra files lying around.
+* Customizations
+** backups
+Inhibit all backup files.
 
 #+BEGIN_SRC emacs-lisp
 (setq backup-inhibited t)
@@ -601,7 +599,7 @@ Inhibit all backup files. I don't like extra files lying around.
 (setq auto-save-default nil)
 (setq create-lockfiles nil)
 #+END_SRC
-** DONE comint
+** comint
 =comint= is a package that defines a general command-interpreter-in-a-buffer:
 
 #+BEGIN_SRC emacs-lisp
@@ -609,14 +607,14 @@ Inhibit all backup files. I don't like extra files lying around.
            ("<up>" . comint-previous-input)
            ("<down>" . comint-next-input))
 #+END_SRC
-** DONE uniquify
+** uniquify
 =uniquify= overrides Emacs’ default mechanism for making buffer names unique:
 
 #+BEGIN_SRC emacs-lisp
 (require 'uniquify)
 (setq uniquify-separator "/")
 #+END_SRC
-** DONE GUI
+** GUI
 Disable fancy GUI stuff:
 
 #+BEGIN_SRC emacs-lisp
@@ -638,14 +636,14 @@ Disable fancy GUI stuff:
 
   (setq-default indicate-empty-lines t))
 #+END_SRC
-** DONE initialization messages
+** initialization messages
 Suppress all initialization messages:
 
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message nil)
 #+END_SRC
-** DONE miscellaneous tweaks
+** miscellaneous tweaks
 A bag for all non-categorized tweaks:
 
 #+BEGIN_SRC emacs-lisp
@@ -662,9 +660,8 @@ A bag for all non-categorized tweaks:
 (setq save-interprogram-paste-before-kill t)
 (setq select-enable-primary t)
 (setq vc-follow-symlinks t)
-;; (setq confirm-kill-emacs 'y-or-n-p)
 #+END_SRC
-** DONE minibuffer
+** minibuffer
 Provide better defaults for the minibuffer:
 
 #+BEGIN_SRC emacs-lisp
@@ -672,61 +669,47 @@ Provide better defaults for the minibuffer:
 (setq resize-mini-windows t)
 (setq echo-keystrokes 0.1)
 #+END_SRC
-** DONE modeline
+** modeline
 Improve modeline information:
 
 #+BEGIN_SRC emacs-lisp
 (column-number-mode t)
 (which-function-mode t)
 #+END_SRC
-** DONE user-defined functions
+** user-defined functions
 #+BEGIN_SRC emacs-lisp
-(defun insert-newline-before ()
-  "Inserts a line prior to the cursor."
-  ;; Taken from: http://www.howardism.org/Technical/Emacs/why-emacs.html
-  (interactive)
-  (let ((current-spot (point)))
-    (move-beginning-of-line 1)
-    (newline)
-    (goto-char current-spot)
-    (forward-char)))
-
-(defun cleanup-buffer ()
-  "Buffer cleaning, performing a bunch of operations on the whitespace content of it."
+(defun cleanup-whitespace ()
+  "Cleanup the buffer whitespace"
   (interactive)
   (save-excursion
-    (message "Cleaning buffer...")
+    (message "Cleaning whitespace...")
     (whitespace-cleanup)
     (delete-trailing-whitespace)
-    (message "Buffer cleaned!")))
+    (message "Cleaning whitespace...DONE")))
 
 (defun settings ()
-  "Edits genesis.org file"
+  "Edit the genesis.org file"
   (interactive)
   (find-file "~/.emacs.d/genesis.org"))
 
 (defun unfill-paragraph ()
-  "Takes a multi-line paragraph and makes it into a single line of text."
+  "Take a multi-line paragraph and makes it into a single line of text."
   ;; Taken from: http://github.com/howardabrams/dot-files.git
   (interactive)
   (let ((fill-column (point-max)))
     (fill-paragraph nil)))
 #+END_SRC
-** DONE user-defined information
+** user-defined information
 Hi there!
 
 #+BEGIN_SRC emacs-lisp
 (setq user-full-name "Thiago Perrotta")
 (setq user-mail-address "tbperrotta@gmail.com")
 #+END_SRC
-** DONE user-defined keybindings
+** user-defined keybindings
 Add personal keybindings:
 
 #+BEGIN_SRC emacs-lisp
 (bind-key "C-;" 'comment-dwim)
 (bind-key "RET" 'newline-and-indent)
-(bind-key "C-S-o" 'insert-newline-before)
 #+END_SRC
-* DONE References
-  CLOSED: [2017-10-28 Sat 02:44]
-- [X] https://github.com/jacktasia/beautiful-emacs/blob/master/init.org
