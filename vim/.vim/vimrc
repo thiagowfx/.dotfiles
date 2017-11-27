@@ -59,7 +59,7 @@ if has('persistent_undo')
         set undofile undodir=~/.vim/undo
 endif
 
-set history=50000 undolevels=50000 undoreload=50000
+set history=10000 undolevels=50000 undoreload=50000
 " }}}
 
 " customizations {{{
