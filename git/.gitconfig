@@ -60,4 +60,4 @@
 	autoupdate = true
 
 [include]
-	path = gitconfig_corp
+	path = .gitconfig_corp
