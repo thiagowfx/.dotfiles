@@ -137,52 +137,57 @@ fi;
 # }}}
 
 # Prompts {{{
+hg_dirty() {
+	hg status --no-color 2> /dev/null \
+		| awk '$1 == "?" { print "?" } $1 != "?" { print "!" }' \
+		| sort | uniq | head -c1
+}
+
 function prompt_command() {
 	local EXIT="$?"
 	history -a
 
 	local prompt_symbol="❯"
-	local prompt_clean_symbol="☀ "
-	local prompt_dirty_symbol="☂ "
 
 	# Git branch name and work tree status (only when we are inside Git working tree)
 	if command -v git >/dev/null 2>&1; then
-		local git_prompt=
 		if [[ "true" = "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ]]; then
 			# Branch name
-			local branch
-			branch="$(git symbolic-ref HEAD 2>/dev/null)"
-			branch="${branch##refs/heads/}"
+			local branch="$(git symbolic-ref HEAD 2>/dev/null)"; branch="${branch##refs/heads/}"
 
-			# Working tree status (red when dirty)
-			local dirty=
 			# Modified files
-			git diff --no-ext-diff --quiet --exit-code --ignore-submodules 2>/dev/null || dirty=1
+			git diff --no-ext-diff --quiet --exit-code --ignore-submodules 2>/dev/null || local dirty="!"
+
 			# Untracked files
-			[ -z "$dirty" ] && test -n "$(git status --porcelain)" && dirty=1
+			[ -z "${dirty}" ] && test -n "$(git status --porcelain)" && local dirty="!"
 
 			# Format Git info
-			if [ -n "$dirty" ]; then
-				git_prompt=" ${red}$prompt_dirty_symbol$branch${reset}"
-			else
-				git_prompt=" ${violet}$prompt_clean_symbol$branch${reset}"
-			fi
+			local git_prompt="${white} on ${red}${branch}${green}${dirty}${reset}"
 		fi
 	fi
 
-	# Set PS1.
+	# Hg branch name and work tree status (only when we are inside Hg working tree)
+	if command -v hg >/dev/null 2>&1; then
+		if hg branch >/dev/null 2>&1; then
+			local hg_prompt="${white} on ${red}$(hg branch 2> /dev/null)${green}$(hg_dirty)${reset}"
+		fi
+	fi
+
+	# Set PS1
 	PS1="\[\033]0;\w\007\]"
 	PS1+="\[${bold}\]"
-	[ $EXIT != 0 ] && PS1+="\[${red}\]$EXIT "
+	[ $EXIT != 0 ] && PS1+="\[${red}\]$EXIT " # exit code
 	PS1+="\[${orange}\]\u" # username
 	PS1+="\[${white}\] at " # at
 	PS1+="\[${yellow}\]\h" # host
 	PS1+="\[${white}\] in " # in
 	PS1+="\[${green}\]\w" # working directory
-	command -v git >/dev/null 2>&1 && PS1+=$git_prompt # git
-	PS1+="\n";
-	PS1+="\[${white}\]$prompt_symbol \[${reset}\]"; # `$` (and reset color)
-	# Set PS2.
+	PS1+="${git_prompt}" # git
+	PS1+="${hg_prompt}" # hg
+	PS1+="\n"; # newline
+	PS1+="\[${white}\]$prompt_symbol \[${reset}\]"; # `$` and reset color
+
+	# Set PS2
 	PS2="\[${yellow}\]→ \[${reset}\]";
 }
 
