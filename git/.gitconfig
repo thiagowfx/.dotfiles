@@ -41,19 +41,17 @@
 
 [diff]
 	tool = vimdiff
-	# tool = meld
 
 [difftool]
-	prompt = true
+	prompt = false
 
 [merge]
 	conflictstyle = diff3
 	defaultToUpstream = true
 	tool = vimdiff
-	# tool = meld
 
 [mergetool]
-	prompt = true
+	prompt = false
 
 [rerere]
 	enabled = true
