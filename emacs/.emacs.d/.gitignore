@@ -9,6 +9,7 @@ genesis.el
 history
 ido-file
 ido.last
+network-security.data
 projectile-*
 recentf
 recentf-file
