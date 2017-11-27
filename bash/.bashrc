@@ -190,4 +190,6 @@ function prompt_command() {
 PROMPT_COMMAND="prompt_command"
 # }}}
 
+src_files "$HOME/.bashrc_corp"
+
 # vim: fdm=marker ft=sh
