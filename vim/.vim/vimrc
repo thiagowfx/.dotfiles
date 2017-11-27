@@ -84,4 +84,6 @@ if has('mouse')
 endif
 " }}}
 
+execute "silent! source ~/.vim/vimrc_corp"
+
 " vim: fdm=marker et
