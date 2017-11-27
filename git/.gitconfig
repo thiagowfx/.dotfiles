@@ -58,3 +58,6 @@
 [rerere]
 	enabled = true
 	autoupdate = true
+
+[include]
+	path = gitconfig_corp
