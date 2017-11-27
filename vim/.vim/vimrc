@@ -1,0 +1,87 @@
+set nocompatible
+
+let mapleader=","
+inoremap jj <ESC>
+
+" vim-plug {{{
+call plug#begin('~/.vim/plugged')
+
+Plug 'tpope/vim-sensible' " better defaults
+Plug 'dracula/vim'
+Plug 'itchyny/lightline.vim' | let g:lightline = {'colorscheme': 'Dracula'}
+
+Plug 'bling/vim-bufferline'
+Plug 'dietsche/vim-lastplace'
+Plug 'mhinz/vim-signify'
+Plug 'vim-scripts/set_utf8.vim'
+Plug 'tpope/vim-sleuth'      " automatically infers tabs and spaces settings
+Plug 'sheerun/vim-polyglot'  " multiple lazily-loaded language packs
+Plug 'tpope/vim-endwise'
+Plug 'docunext/closetag.vim' " automatically closes HTML tags </
+Plug 'editorconfig/editorconfig-vim'
+Plug 'Yggdroot/indentLine'
+Plug 'sickill/vim-pasta'
+Plug 'w0rp/ale'
+
+Plug 'maxbrunsfeld/vim-yankstack' | nmap <leader>p <Plug>yankstack_substitute_older_paste | nmap <leader>P <Plug>yankstack_substitute_newer_paste
+Plug 'terryma/vim-expand-region' | map <leader>e <Plug>(expand_region_expand) | map <leader>E <Plug>(expand_region_shrink)
+Plug 'tommcdo/vim-exchange'                         " cxx, cxc, X
+Plug 'tpope/vim-commentary'                         " gcc, <VISUAL> gc
+Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat' " ds', cs'<
+Plug 'vim-scripts/matchit.zip'                      " %
+Plug 'tpope/vim-vinegar'                            " -
+Plug 'maralla/completor.vim'                        " C-n, C-p, C-y
+
+Plug 'chrisbra/csv.vim',      {'for': 'csv'}
+Plug 'skammer/vim-css-color', {'for': 'css'}
+
+Plug 'junegunn/fzf',                    { 'on': 'FZF', 'do': './install --bin'}
+Plug 'junegunn/vim-easy-align',         { 'on': 'EasyAlign'}
+Plug 'mileszs/ack.vim',                 { 'on': ['Ack', 'Ag']}
+Plug 'tpope/vim-abolish',               { 'on': 'Subvert'} " :Subvert/apple{,s}/orange{,s}/g
+Plug 'tpope/vim-eunuch',                { 'on': ['Rename', 'Remove', 'SudoEdit', 'SudoWrite']}
+Plug 'bronson/vim-trailing-whitespace', { 'on': 'FixWhitespace'}
+
+call plug#end()
+" }}}
+
+" colorscheme {{{
+if &t_Co >= 256 || has("gui_running")
+        colorscheme dracula
+        hi ColorColumn ctermbg=yellow
+        hi Normal ctermbg=none
+        hi NonText ctermbg=none
+endif
+" }}}
+
+" undo {{{
+if has('persistent_undo')
+        set undofile undodir=~/.vim/undo
+endif
+
+set history=10000 undolevels=10000 undoreload=10000
+" }}}
+
+" customizations {{{
+let &showbreak = '> '
+set autochdir autoread
+set backspace=indent,eol,start
+set cursorline
+set foldmethod=syntax foldlevel=0 foldnestmax=2 " folding
+set incsearch hlsearch wrapscan ignorecase " searching
+set infercase smartcase
+set noswapfile nobackup nowb " backups and swapfile
+set number
+set shortmess=atI
+set showcmd showmatch showmode
+set smartindent
+set splitbelow splitright " split
+set visualbell errorbells " bells and whistles
+set wildmode=list:longest
+
+if has('mouse')
+        set mouse=a
+endif
+" }}}
+
+" vim: fdm=marker et
