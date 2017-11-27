@@ -7,8 +7,8 @@ inoremap jj <ESC>
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible' " better defaults
-Plug 'dracula/vim'
-Plug 'itchyny/lightline.vim' | let g:lightline = {'colorscheme': 'Dracula'}
+Plug 'nanotech/jellybeans.vim'
+Plug 'itchyny/lightline.vim' | let g:lightline = {'colorscheme': 'jellybeans'}
 
 Plug 'bling/vim-bufferline'
 Plug 'dietsche/vim-lastplace'
@@ -19,18 +19,18 @@ Plug 'sheerun/vim-polyglot'  " multiple lazily-loaded language packs
 Plug 'tpope/vim-endwise'
 Plug 'docunext/closetag.vim' " automatically closes HTML tags </
 Plug 'editorconfig/editorconfig-vim'
-Plug 'Yggdroot/indentLine'
-Plug 'sickill/vim-pasta'
-Plug 'w0rp/ale'
+Plug 'Yggdroot/indentLine'   " displays indention levels with thin vertical lines
+Plug 'w0rp/ale'              " async syntax checker
+" Plug 'vim-syntastic/syntastic' " sync syntax checker
 
 Plug 'maxbrunsfeld/vim-yankstack' | nmap <leader>p <Plug>yankstack_substitute_older_paste | nmap <leader>P <Plug>yankstack_substitute_newer_paste
 Plug 'terryma/vim-expand-region' | map <leader>e <Plug>(expand_region_expand) | map <leader>E <Plug>(expand_region_shrink)
 Plug 'tommcdo/vim-exchange'                         " cxx, cxc, X
-Plug 'tpope/vim-commentary'                         " gcc, <VISUAL> gc
+Plug 'tpope/vim-commentary' | nmap <leader>c<space> <Plug>CommentaryLine | vmap <leader>c<space> <Plug>Commentary " gcc, <VISUAL>gc
 Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat' " ds', cs'<
 Plug 'vim-scripts/matchit.zip'                      " %
-Plug 'tpope/vim-vinegar'                            " -
-Plug 'maralla/completor.vim'                        " C-n, C-p, C-y
+Plug 'tpope/vim-vinegar'                            " -, file manager
+Plug 'maralla/completor.vim'                      " C-n, C-p, C-y, completion
 
 Plug 'chrisbra/csv.vim',      {'for': 'csv'}
 Plug 'skammer/vim-css-color', {'for': 'css'}
@@ -47,7 +47,7 @@ call plug#end()
 
 " colorscheme {{{
 if &t_Co >= 256 || has("gui_running")
-        colorscheme dracula
+        colorscheme jellybeans
         hi ColorColumn ctermbg=yellow
         hi Normal ctermbg=none
         hi NonText ctermbg=none
@@ -59,7 +59,7 @@ if has('persistent_undo')
         set undofile undodir=~/.vim/undo
 endif
 
-set history=10000 undolevels=10000 undoreload=10000
+set history=50000 undolevels=50000 undoreload=50000
 " }}}
 
 " customizations {{{
