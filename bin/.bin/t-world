@@ -1,5 +1,5 @@
 #!/bin/bash
-# housekeeping for an unix desktop system
+# emerge an unix system
 
 # exit immediately upon receiving C-c
 trap ctrl_c INT
