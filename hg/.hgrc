@@ -6,4 +6,4 @@ color=
 hgk=
 progress=
 
-%include ~/.figrc
+%include ~/.hgrc_corp
