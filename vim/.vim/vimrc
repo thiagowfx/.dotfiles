@@ -23,8 +23,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'Yggdroot/indentLine'   " displays indention levels with thin vertical lines
 Plug 'vim-syntastic/syntastic' " syntax checking
 
-Plug 'maxbrunsfeld/vim-yankstack' | nmap <leader>p <Plug>yankstack_substitute_older_paste | nmap <leader>P <Plug>yankstack_substitute_newer_paste
-Plug 'terryma/vim-expand-region' | map <leader>e <Plug>(expand_region_expand) | map <leader>E <Plug>(expand_region_shrink)
+Plug 'maxbrunsfeld/vim-yankstack' | nmap <leader><leader> <Plug>yankstack_substitute_older_paste
 Plug 'tommcdo/vim-exchange'                         " cxx, cxc, X
 Plug 'tpope/vim-commentary' | nmap <leader>c<space> <Plug>CommentaryLine | vmap <leader>c<space> <Plug>Commentary " gcc, <VISUAL>gc
 Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat' " ds', cs'<
@@ -34,12 +33,12 @@ Plug 'tpope/vim-vinegar'                            " -, file manager
 Plug 'chrisbra/csv.vim',      {'for': 'csv'}
 Plug 'skammer/vim-css-color', {'for': 'css'}
 
-Plug 'junegunn/fzf',                    { 'on': 'FZF', 'do': './install --bin'}
-Plug 'junegunn/vim-easy-align',         { 'on': 'EasyAlign'}
-Plug 'mileszs/ack.vim',                 { 'on': ['Ack', 'Ag']}
-Plug 'tpope/vim-abolish',               { 'on': 'Subvert'} " :Subvert/apple{,s}/orange{,s}/g
-Plug 'tpope/vim-eunuch',                { 'on': ['Rename', 'Remove', 'SudoEdit', 'SudoWrite']}
-Plug 'bronson/vim-trailing-whitespace', { 'on': 'FixWhitespace'}
+Plug 'junegunn/fzf',                    {'on': 'FZF', 'do': './install --bin'}
+Plug 'junegunn/vim-easy-align',         {'on': 'EasyAlign'}
+Plug 'mileszs/ack.vim',                 {'on': ['Ack', 'Ag']}
+Plug 'tpope/vim-abolish',               {'on': 'Subvert'} " :Subvert/apple{,s}/orange{,s}/g
+Plug 'tpope/vim-eunuch',                {'on': ['Rename', 'Remove', 'SudoEdit', 'SudoWrite']}
+Plug 'bronson/vim-trailing-whitespace', {'on': 'FixWhitespace'}
 
 call plug#end()
 " }}}
