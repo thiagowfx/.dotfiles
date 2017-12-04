@@ -3,10 +3,6 @@
 	url = https://github.com/tmux-plugins/tpm
 	shallow = true
 	ignore = dirty
-[submodule "i3/.i3blocks"]
-	path = i3/.i3blocks
-	url = https://github.com/vivien/i3blocks
-	shallow = true
 [submodule "vim/.vim/vim-plug"]
 	path = vim/.vim/vim-plug
 	url = https://github.com/junegunn/vim-plug
