@@ -1,6 +1,7 @@
 set nocompatible
 
 let mapleader=","
+let g:mapleader=","
 inoremap jj <ESC>
 
 " vim-plug {{{
@@ -13,32 +14,34 @@ Plug 'itchyny/lightline.vim' | let g:lightline = {'colorscheme': 'jellybeans'}
 Plug 'bling/vim-bufferline'
 Plug 'dietsche/vim-lastplace'
 Plug 'mhinz/vim-signify'
-Plug 'vim-scripts/set_utf8.vim'
-Plug 'tpope/vim-sleuth'      " automatically infers tabs and spaces settings
-Plug 'sheerun/vim-polyglot'  " multiple lazily-loaded language packs
-Plug 'tpope/vim-endwise'
-Plug 'docunext/closetag.vim' " automatically closes HTML tags </
+Plug 'docunext/closetag.vim'           " automatically closes HTML tags </
 Plug 'ConradIrwin/vim-bracketed-paste' " automatically detects pastes
-Plug 'editorconfig/editorconfig-vim'
-Plug 'Yggdroot/indentLine'   " displays indention levels with thin vertical lines
-Plug 'vim-syntastic/syntastic' " syntax checking
-
+Plug 'Yggdroot/indentLine'             " displays indention levels with thin vertical lines
+Plug 'vim-syntastic/syntastic'         " syntax checking
 Plug 'maxbrunsfeld/vim-yankstack' | nmap <leader><leader> <Plug>yankstack_substitute_older_paste
-Plug 'tommcdo/vim-exchange'                         " cxx, cxc, X
-Plug 'tpope/vim-commentary' | nmap <leader>c<space> <Plug>CommentaryLine | vmap <leader>c<space> <Plug>Commentary " gcc, <VISUAL>gc
-Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat' " ds', cs'<
-Plug 'vim-scripts/matchit.zip'                      " %
-Plug 'tpope/vim-vinegar'                            " -, file manager
+Plug 'tommcdo/vim-exchange'            " cxx, cxc, X
 
 Plug 'chrisbra/csv.vim',      {'for': 'csv'}
+Plug 'editorconfig/editorconfig-vim'
+Plug 'sheerun/vim-polyglot'  " multiple lazily-loaded language packs
 Plug 'skammer/vim-css-color', {'for': 'css'}
 
 Plug 'junegunn/fzf',                    {'on': 'FZF', 'do': './install --bin'}
 Plug 'junegunn/vim-easy-align',         {'on': 'EasyAlign'}
-Plug 'mileszs/ack.vim',                 {'on': ['Ack', 'Ag']}
+Plug 'junegunn/goyo.vim',               {'on': 'Goyo'}
 Plug 'tpope/vim-abolish',               {'on': 'Subvert'} " :Subvert/apple{,s}/orange{,s}/g
+Plug 'tpope/vim-commentary'             " gcc, <visual>gc
+Plug 'tpope/vim-endwise'                " automatically adds end, fi, etc
 Plug 'tpope/vim-eunuch',                {'on': ['Rename', 'Remove', 'SudoEdit', 'SudoWrite']}
-Plug 'bronson/vim-trailing-whitespace', {'on': 'FixWhitespace'}
+Plug 'tpope/vim-sleuth'                 " automatically infers tabs and spaces settings
+Plug 'tpope/vim-surround'               " ds', cs'<
+Plug 'tpope/vim-repeat'                 " .
+Plug 'tpope/vim-vinegar'                " -, file manager
+Plug 'mileszs/ack.vim',                 {'on': ['Ack', 'Ag']}
+Plug 'bronson/vim-trailing-whitespace', " :FixWhitespace
+Plug 'vim-scripts/matchit.zip'          " %
+Plug 'vim-scripts/mru.vim'              " :MRU
+Plug 'vim-scripts/set_utf8.vim'
 
 call plug#end()
 " }}}
@@ -46,7 +49,6 @@ call plug#end()
 " colorscheme {{{
 if &t_Co >= 256 || has("gui_running")
         colorscheme jellybeans
-        hi ColorColumn ctermbg=yellow
         hi Normal ctermbg=none
         hi NonText ctermbg=none
 endif
@@ -65,21 +67,22 @@ let &showbreak = '> '
 set autochdir autoread
 set backspace=indent,eol,start
 set cursorline
-set foldmethod=syntax foldlevel=0 foldnestmax=2 " folding
-set incsearch hlsearch wrapscan ignorecase " searching
-set infercase smartcase
+set foldmethod=syntax foldlevel=0 foldnestmax=2 nofoldenable " folding
+set incsearch hlsearch wrapscan ignorecase infercase smartcase smartindent
+set lazyredraw ttyfast
 set noswapfile nobackup nowb " backups and swapfile
-set number
-set shortmess=atI
+set number scrolloff=5 shortmess=atI
 set showcmd showmatch showmode
-set smartindent
-set splitbelow splitright " split
+set splitbelow splitright swb=useopen
 set visualbell errorbells " bells and whistles
-set wildmode=list:longest
+set wildmode=list:longest wildignore+=*/.git,*/.hg,*/.svn,*/.DS_Store
 
 if has('mouse')
         set mouse=a
 endif
+
+" toggle paste mode
+nnoremap <leader>p :se invpaste paste?<return>
 " }}}
 
 execute "silent! source ~/.vim/vimrc_corp"
