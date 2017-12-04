@@ -2,73 +2,24 @@
 #
 # Please see man i3blocks for a complete reference!
 # The man page is also hosted at http://vivien.github.io/i3blocks
-#
-# List of valid properties:
-#
-# align
-# color
-# background
-# border
-# command
-# full_text
-# instance
-# interval
-# label
-# min_width
-# name
-# separator
-# separator_block_width
-# short_text
-# signal
-# urgent
-
-# Global properties
-#
-# The top properties below are applied to every block, but can be overridden.
-# Each block command defaults to the script name to avoid boilerplate.
-# command=$SCRIPT_DIR/$BLOCK_NAME
-command=~/.i3blocks/scripts/$BLOCK_NAME
-separator_block_width=10
+command=/usr/share/i3blocks/$BLOCK_NAME
+separator_block_width=15
 markup=none
 
-[volume 5 pulse]
-label=♪
+[volume]
+label=VOL
 instance=Master
 interval=5
-signal=10
 
-[memory]
-label=MEM
-interval=30
-
-[memory]
-label=SWAP
-instance=swap
-interval=30
-
-[disk]
-label=HOME
-interval=30
-
-[iface]
-color=#00FF00
-interval=10
-separator=false
-
-[wifi]
-instance=wlan1
-interval=10
-separator=false
-
-[bandwidth -i ↓ -o ↑]
-instance=wlan1
-interval=2
+[bandwidth]
+instance=eth0
+interval=5
 
 [load_average]
 interval=10
 
 [battery]
-label=⚡
+label=BAT
 interval=30
 
 [time]
