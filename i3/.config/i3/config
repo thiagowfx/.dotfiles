@@ -176,6 +176,7 @@ bindsym $mod+n workspace next
 
 # float pop-up windows
 for_window [window_role="pop-up"] floating enable
+for_window [class="^google-chrome$"] border none
 
 workspace_auto_back_and_forth yes
 
