@@ -1,0 +1,21 @@
+general {
+	colors = true
+	interval = 5
+}
+
+order += "ethernet eth0"
+order += "load"
+order += "tztime local"
+
+ethernet eth0 {
+	format_up = "E: %ip (%speed)"
+	format_down = "E: down"
+}
+
+load {
+	format = "%5min"
+}
+
+tztime local {
+	format = "%Y-%m-%d %H:%M:%S"
+}
