@@ -18,7 +18,7 @@ Plug 'docunext/closetag.vim'           " automatically closes HTML tags </
 Plug 'ConradIrwin/vim-bracketed-paste' " automatically detects pastes
 Plug 'Yggdroot/indentLine'             " displays indention levels with thin vertical lines
 Plug 'vim-syntastic/syntastic'         " syntax checking
-Plug 'maxbrunsfeld/vim-yankstack' | nmap <leader><leader> <Plug>yankstack_substitute_older_paste
+Plug 'maxbrunsfeld/vim-yankstack' | nmap <leader>p <Plug>yankstack_substitute_older_paste
 Plug 'tommcdo/vim-exchange'            " cxx, cxc, X
 
 Plug 'chrisbra/csv.vim',      {'for': 'csv'}
@@ -80,9 +80,6 @@ set wildmode=list:longest wildignore+=*/.git,*/.hg,*/.svn,*/.DS_Store
 if has('mouse')
         set mouse=a
 endif
-
-" toggle paste mode
-nnoremap <leader>p :se invpaste paste?<return>
 " }}}
 
 execute "silent! source ~/.vim/vimrc_corp"
