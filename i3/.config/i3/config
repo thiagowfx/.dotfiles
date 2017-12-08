@@ -41,14 +41,14 @@ bindsym Ctrl+Mod1+t exec i3-sensible-terminal
 bindsym $mod+Shift+c kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
-bindsym $mod+p exec dmenu_run
+bindsym $mod+d exec hash rofi &>/dev/null && rofi -show run || dmenu_run
+bindsym $mod+p exec hash rofi &>/dev/null && rofi -show run || dmenu_run
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+Shift+p exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+Shift+d exec hash rofi &>/dev/null && rofi -show drun || i3-dmenu-desktop
+bindsym $mod+Shift+p exec hash rofi &>/dev/null && rofi -show drun || i3-dmenu-desktop
 
 # change focus
 bindsym $mod+h focus left
@@ -176,7 +176,7 @@ bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+n workspace next
 
 # lock screen
-bindsym Ctrl+Mod1+l exec i3lock --color=cccccc
+bindsym Ctrl+Mod1+l exec hash cinnamon-screensaver-command && cinnamon-screensaver-command --lock || i3lock
 
 # float pop-up windows
 for_window [window_role="pop-up"] floating enable
