@@ -26,21 +26,21 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'sheerun/vim-polyglot'  " multiple lazily-loaded language packs
 Plug 'skammer/vim-css-color', {'for': 'css'}
 
-Plug 'junegunn/fzf',                    {'on': 'FZF', 'do': './install --bin'}
-Plug 'junegunn/vim-easy-align',         {'on': 'EasyAlign'}
-Plug 'junegunn/goyo.vim',               {'on': 'Goyo'}
-Plug 'tpope/vim-abolish',               {'on': 'Subvert'} " :Subvert/apple{,s}/orange{,s}/g
-Plug 'tpope/vim-commentary'             " gcc, <visual>gc
-Plug 'tpope/vim-endwise'                " automatically adds end, fi, etc
-Plug 'tpope/vim-eunuch',                {'on': ['Rename', 'Remove', 'SudoEdit', 'SudoWrite']}
-Plug 'tpope/vim-sleuth'                 " automatically infers tabs and spaces settings
-Plug 'tpope/vim-surround'               " ds', cs'<
-Plug 'tpope/vim-repeat'                 " .
-Plug 'tpope/vim-vinegar'                " -, file manager
-Plug 'mileszs/ack.vim',                 {'on': ['Ack', 'Ag']}
-Plug 'bronson/vim-trailing-whitespace', " :FixWhitespace
-Plug 'vim-scripts/matchit.zip'          " %
-Plug 'vim-scripts/mru.vim'              " :MRU
+Plug 'junegunn/fzf',            {'on': 'FZF', 'do': './install --bin'}
+Plug 'junegunn/vim-easy-align', {'on': 'EasyAlign'}
+Plug 'junegunn/goyo.vim',       {'on': 'Goyo'}
+Plug 'tpope/vim-abolish',       {'on': 'Subvert'} " :Subvert/apple{,s}/orange{,s}/g
+Plug 'tpope/vim-commentary'     " gcc, <visual>gc
+Plug 'tpope/vim-endwise'        " automatically adds end, fi, etc
+Plug 'tpope/vim-eunuch',        {'on': ['Rename', 'Remove', 'SudoEdit', 'SudoWrite']}
+Plug 'tpope/vim-sleuth'         " automatically infers tabs and spaces settings
+Plug 'tpope/vim-surround'       " ds', cs'<
+Plug 'tpope/vim-repeat'         " .
+Plug 'tpope/vim-vinegar'        " -, file manager
+Plug 'mileszs/ack.vim',         {'on': ['Ack', 'Ag']}
+Plug 'bronson/vim-trailing-whitespace',                        " :FixWhitespace
+Plug 'vim-scripts/matchit.zip'                                 " %
+Plug 'vim-scripts/mru.vim' | let MRU_File = '~/.vim_mru_files' " :MRU
 Plug 'vim-scripts/set_utf8.vim'
 
 call plug#end()

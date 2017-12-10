@@ -3,25 +3,22 @@
 
 # exit immediately upon receiving C-c
 trap ctrl_c INT
-function ctrl_c	(){
+function ctrl_c {
 	exit 1
 }
+
+# ask for sudo password upfront
+sudo -v
 
 # vim-plug
 if [[ -d "$HOME/.vim/vim-plug" ]] && hash vim &>/dev/null; then
 	vim +PlugInstall +PlugClean! +qall
 fi
 
-# dotfiles repos
-for repo in .dotfiles .emacs.d .vim; do
-	repodir="$HOME/$repo"
-	if [[ -d "$repodir" ]]; then
-		(cd "$repodir" && git pull --recurse-submodules)
-	fi
-done
-
-# ask for sudo password upfront
-sudo -v
+# dotfiles
+if [[ -d "$HOME/.dotfiles" ]]; then
+	(cd "$HOME/.dotfiles" && git pull --recurse-submodules)
+fi
 
 # macOS
 if [[ "$(uname)" == "Darwin" ]]; then
@@ -49,6 +46,11 @@ if [[ "$(uname)" == "Darwin" ]]; then
 		sudo port uninstall leaves
 	fi
 
+	# mac app store cmdline
+	if command -v mas &>/dev/null; then
+		mas upgrade
+	fi
+
 	exit
 fi
 
@@ -56,6 +58,8 @@ fi
 if [[ "$(uname)" == "FreeBSD" ]] && command -v pkg &>/dev/null; then
 	sudo pkg update
 	sudo pkg upgrade
+
+	exit
 fi
 
 # Arch Linux
