@@ -191,7 +191,6 @@ function prompt_command() {
 	PS2="\[${yellow}\]→ \[${reset}\]";
 }
 
-# http://askubuntu.com/questions/80371/bash-history-handling-with-multiple-terminals
 PROMPT_COMMAND="prompt_command"
 # }}}
 
