@@ -3,13 +3,7 @@ general {
 	interval = 10
 }
 
-order += "ethernet eth0"
 order += "tztime local"
-
-ethernet eth0 {
-	format_up = "E: up"
-	format_down = "E: down"
-}
 
 tztime local {
 	format = "%Y-%m-%d %H:%M"
