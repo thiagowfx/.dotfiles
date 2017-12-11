@@ -38,9 +38,9 @@ Plug 'tpope/vim-surround'       " ds', cs'<
 Plug 'tpope/vim-repeat'         " .
 Plug 'tpope/vim-vinegar'        " -, file manager
 Plug 'mileszs/ack.vim',         {'on': ['Ack', 'Ag']}
-Plug 'bronson/vim-trailing-whitespace',                        " :FixWhitespace
-Plug 'vim-scripts/matchit.zip'                                 " %
-Plug 'vim-scripts/mru.vim' | let MRU_File = '~/.vim_mru_files' " :MRU
+Plug 'bronson/vim-trailing-whitespace', " :FixWhitespace
+Plug 'vim-scripts/matchit.zip'  " %
+Plug 'vim-scripts/mru.vim' | let MRU_File = '$HOME/.vim/vim_mru_files' " :MRU
 Plug 'vim-scripts/set_utf8.vim'
 
 call plug#end()
