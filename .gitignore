@@ -1,3 +1,5 @@
+*.target.wants
+
 # Created by https://www.gitignore.io/api/vim,emacs,osx,git
 
 ### Emacs ###
