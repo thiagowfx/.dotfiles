@@ -104,6 +104,11 @@ hash brew &>/dev/null && brew command command-not-found-init >/dev/null 2>&1 && 
 hash pacman &>/dev/null && src_files "/usr/share/doc/pkgfile/command-not-found.bash"
 # }}}
 
+# add-ons {{{
+# fuzzy file finder (FZF)
+source "$HOME/.fzf.bash"
+# }}}
+
 # Colors {{{
 if command -v tput &>/dev/null && tput setaf 1 &>/dev/null; then
 	tput sgr0; # reset colors
