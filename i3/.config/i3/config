@@ -9,8 +9,11 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-# Mod1 = Alt
-# Mod4 = Super / Win
+# special keys
+set $Alt Mod1
+set $Super Mod4
+
+# modifier key
 set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -34,21 +37,23 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+Return exec i3-sensible-terminal
-bindsym Ctrl+Mod1+t exec i3-sensible-terminal
+bindsym Ctrl+$Alt+t exec i3-sensible-terminal
 
 # kill focused window
 # bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec hash rofi &>/dev/null && rofi -show run || dmenu_run
-bindsym $mod+p exec hash rofi &>/dev/null && rofi -show run || dmenu_run
+set $i3rofi_run "exec hash rofi &>/dev/null && rofi -show run || dmenu_run"
+bindsym $mod+d $i3rofi_run
+bindsym $mod+p $i3rofi_run
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+Shift+d exec hash rofi &>/dev/null && rofi -show drun || i3-dmenu-desktop
-bindsym $mod+Shift+p exec hash rofi &>/dev/null && rofi -show drun || i3-dmenu-desktop
+set $i3rofi_desktop "exec hash rofi &>/dev/null && rofi -show drun || i3-dmenu-desktop"
+bindsym $mod+Shift+d $i3rofi_desktop
+bindsym $mod+Shift+p $i3rofi_desktop
 
 # change focus
 bindsym $mod+h focus left
@@ -131,8 +136,9 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
+set $i3exit "i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+q exec $i3exit
+bindsym $mod+Shift+e exec $i3exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -176,15 +182,16 @@ bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+n workspace next
 
 # lock screen
-bindsym Ctrl+Mod1+l exec hash cinnamon-screensaver-command && cinnamon-screensaver-command --lock || i3lock
+bindsym Ctrl+$Alt+l exec hash cinnamon-screensaver-command && cinnamon-screensaver-command --lock || i3lock
 
 # float pop-up windows
-for_window [window_role="pop-up"] floating enable
+for_window [window_role="pop-up"] floating disable
 
 # no border
 for_window [class="^Google-chrome$"] border none
-for_window [class="^Gnome-terminal$"] border none
+for_window [class="^Gnome-terminal$|^Terminator$"] border none
 
+# i3 settings
 workspace_auto_back_and_forth yes
 
 # vim: fdm=marker
