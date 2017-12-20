@@ -189,6 +189,7 @@ for_window [window_role="pop-up"] floating disable
 
 # no border
 for_window [class="^Google-chrome$"] border none
+for_window [class="^Zathura$"] border none
 for_window [class="^Gnome-terminal$|^Terminator$"] border none
 
 # i3 settings
