@@ -5,7 +5,6 @@ if [[ $- != *i* ]] ; then
 	return
 fi
 
-# Aliases {{{
 src_files() {
 	for f in "$@"; do
 		[[ -f "$f" ]] && source "$f"
@@ -20,16 +19,6 @@ src_dirs() {
 	done
 }
 
-add_alias() {
-	[[ "x$4" != "x" ]] && [ ! -e "$4" ] && return
-
-	if [[ "x$3" != "x" ]]; then
-		hash "$3" &>/dev/null && alias "$1"="$2"
-	else
-		hash "$2" &>/dev/null && alias "$1"="$2"
-	fi
-}
-
 add_env() {
 	[[ "x$3" != "x" ]] && ! hash "$3" &>/dev/null && return
 	[[ "x$4" != "x" ]] && [ ! -e "$4" ] && return
@@ -40,6 +29,17 @@ add_paths() {
 	for d in "$@"; do
 		add_env PATH "$d:$PATH" "" "$d"
 	done
+}
+
+# Aliases {{{
+add_alias() {
+	[[ "x$4" != "x" ]] && [ ! -e "$4" ] && return
+
+	if [[ "x$3" != "x" ]]; then
+		hash "$3" &>/dev/null && alias "$1"="$2"
+	else
+		hash "$2" &>/dev/null && alias "$1"="$2"
+	fi
 }
 
 add_alias .. "cd .." cd
@@ -142,12 +142,6 @@ fi;
 # }}}
 
 # Prompts {{{
-hg_dirty() {
-	hg status --no-color 2> /dev/null \
-		| awk '$1 == "?" { print "?" } $1 != "?" { print "!" }' \
-		| sort | uniq | head -c1
-}
-
 function prompt_command() {
 	local EXIT="$?"
 	history -a
@@ -174,7 +168,7 @@ function prompt_command() {
 	# Hg branch name and work tree status (only when we are inside Hg working tree)
 	if command -v hg >/dev/null 2>&1; then
 		if hg branch >/dev/null 2>&1; then
-			local hg_prompt="${white} on ${red}$(hg branch 2> /dev/null)${green}$(hg_dirty)${reset}"
+			local hg_prompt="${white} on ${red}$(hg branch 2> /dev/null)${reset}"
 		fi
 	fi
 
