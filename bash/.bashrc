@@ -184,7 +184,7 @@ function prompt_command() {
 	[ $EXIT != 0 ] && PS1+="\[${red}\]$EXIT " # exit code
 	PS1+="\[${orange}\]\u" # username
 	PS1+="\[${white}\] at " # at
-	PS1+="\[${yellow}\]\h" # host
+	PS1+="\[${yellow}\]\H" # host
 	PS1+="\[${white}\] in " # in
 	PS1+="\[${green}\]\w" # working directory
 	PS1+="${git_prompt}" # git
