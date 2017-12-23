@@ -106,7 +106,7 @@ hash pacman &>/dev/null && src_files "/usr/share/doc/pkgfile/command-not-found.b
 
 # add-ons {{{
 # fuzzy file finder (FZF)
-source "$HOME/.fzf.bash"
+src_files "$HOME/.fzf.bash"
 # }}}
 
 # Colors {{{
