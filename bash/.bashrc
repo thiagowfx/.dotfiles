@@ -44,6 +44,7 @@ add_alias() {
 
 add_alias .. "cd .." cd
 add_alias ack "ack-grep"
+add_alias chrome "google-chrome"
 add_alias l "ls -l" ls
 add_alias la "ls -al" ls
 add_alias sl "ls"
@@ -53,7 +54,8 @@ add_alias unstow "stow -D" stow
 add_env CLICOLOR "1"
 add_env EDITOR "vim" vim && add_env VISUAL "$EDITOR" "$EDITOR"
 
-add_paths "$HOME/.bin"
+add_paths "$HOME/.bin" "$HOME/bin" # user scripts
+add_paths "$HOME/.local/bin" # python pip
 
 hash brew &>/dev/null && add_paths "/usr/local/sbin"
 # }}}

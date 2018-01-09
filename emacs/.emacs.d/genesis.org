@@ -86,6 +86,7 @@ Activate =straight.el='s =use-package= integration:
 #+BEGIN_SRC emacs-lisp
 (use-package company
   :ensure t
+  :diminish company-mode
   :config (global-company-mode t))
 #+END_SRC
 ** compile
@@ -380,7 +381,6 @@ Activate =straight.el='s =use-package= integration:
 
 #+BEGIN_SRC emacs-lisp
 (use-package org
-  :ensure t
   :bind ("C-c a" . org-agenda)
   :config
   (setq org-todo-keywords '((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d)")))

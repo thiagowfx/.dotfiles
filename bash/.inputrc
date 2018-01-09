@@ -1,0 +1,2 @@
+# bash: display suggestions with just a single <TAB> instead of two
+set show-all-if-ambiguous
