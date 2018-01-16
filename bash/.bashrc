@@ -43,7 +43,6 @@ add_alias() {
 }
 
 add_alias .. "cd .." cd
-add_alias ack "ack-grep"
 add_alias chrome "google-chrome"
 add_alias l "ls -l" ls
 add_alias la "ls -al" ls
@@ -193,6 +192,14 @@ function prompt_command() {
 }
 
 PROMPT_COMMAND="prompt_command"
+# }}}
+
+# user-defined functions {{{
+up() {
+	for n in $(seq $1); do
+		cd ..
+	done
+}
 # }}}
 
 src_files "$HOME/.bashrc_corp"

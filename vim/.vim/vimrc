@@ -26,6 +26,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'sheerun/vim-polyglot'  " multiple lazily-loaded language packs
 Plug 'skammer/vim-css-color', {'for': 'css'}
 
+Plug 'scrooloose/nerdtree',     {'on': 'NERDTree'} | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/fzf',            {'on': 'FZF', 'do': './install --bin'}
 Plug 'junegunn/vim-easy-align', {'on': 'EasyAlign'}
 Plug 'junegunn/goyo.vim',       {'on': 'Goyo'}
@@ -40,7 +41,6 @@ Plug 'tpope/vim-vinegar'        " -, file manager
 Plug 'mileszs/ack.vim',         {'on': ['Ack', 'Ag']}
 Plug 'bronson/vim-trailing-whitespace', " :FixWhitespace
 Plug 'vim-scripts/matchit.zip'  " %
-Plug 'vim-scripts/set_utf8.vim'
 
 call plug#end()
 " }}}
@@ -66,6 +66,7 @@ let &showbreak = '> '
 set autochdir autoread
 set backspace=indent,eol,start
 set cursorline
+set encoding=utf-8
 set foldmethod=syntax foldlevel=0 foldnestmax=2 nofoldenable " folding
 set incsearch hlsearch wrapscan ignorecase infercase smartcase smartindent
 set lazyredraw ttyfast
