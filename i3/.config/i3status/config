@@ -1,5 +1,5 @@
 general {
-	colors = true
+	colors = false
 	interval = 10
 }
 
