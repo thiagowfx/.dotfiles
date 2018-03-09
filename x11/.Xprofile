@@ -1,9 +1,15 @@
-Xft.autohint: true
-Xft*antialias: true
-Xft*hinting: true
-Xft.hintstyle: hintslight
-Xft.rgba: rgb
+! x11 fonts {{{
+Xft.dpi: 192
+Xft.autohint: 0
 Xft.lcdfilter: lcddefault
-Xft*dpi: 96
+Xft.hintstyle: hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+! }}}
 
-# vim: ft=xdefaults
+! rofi {{{
+rofi.dpi: 192
+! }}}
+
+! vim: ft=xdefaults fdm=marker
