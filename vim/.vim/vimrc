@@ -26,7 +26,6 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'sheerun/vim-polyglot'  " multiple lazily-loaded language packs
 Plug 'skammer/vim-css-color', {'for': 'css'}
 
-Plug 'scrooloose/nerdtree',     {'on': 'NERDTree'} | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/fzf',            {'on': 'FZF', 'do': './install --bin'}
 Plug 'junegunn/vim-easy-align', {'on': 'EasyAlign'}
 Plug 'junegunn/goyo.vim',       {'on': 'Goyo'}
