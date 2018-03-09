@@ -13,47 +13,41 @@
 set $Alt Mod1
 set $Super Mod4
 
-# modifier key
+# modifier key, cannot be set recursively to $Alt
 set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 9
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
+font pango:monospace 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
+
+# start a terminal - compatibility with other tiling window managers
 bindsym $mod+Shift+Return exec i3-sensible-terminal
+
+# start a terminal - compatibility with cinnamon/gnome/ubuntu
 bindsym Ctrl+$Alt+t exec i3-sensible-terminal
 
 # kill focused window
-# bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c kill
 
-# start dmenu (a program launcher)
-set $i3binlaunch "exec hash rofi &>/dev/null && rofi -show run || dmenu_run"
-bindsym $mod+d $i3binlaunch
-bindsym $mod+p $i3binlaunch
+# start dmenu/rofi (a program launcher)
+set $i3action_launch "exec rofi -show run || dmenu_run"
+bindsym $mod+d $i3action_launch
+# compatibility with dwm
+bindsym $mod+p $i3action_launch
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-set $i3desktoplaunch "exec hash rofi &>/dev/null && rofi -show drun || i3-dmenu-desktop"
-bindsym $mod+Shift+d $i3desktoplaunch
-bindsym $mod+Shift+p $i3desktoplaunch
+set $i3action_launch_desktop "exec rofi -show drun || i3-dmenu-desktop"
+bindsym $mod+Shift+d $i3action_launch_desktop
+# compatibility with dwm
+bindsym $mod+Shift+p $i3action_launch_desktop
 
 # change focus
 bindsym $mod+h focus left
@@ -79,19 +73,15 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
-bindsym $mod+Shift+v split h
-
-# split in vertical orientation
-bindsym $mod+v split v
+# split toggle: vertical/horizontal
+bindsym $mod+v split toggle
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+w layout toggle stacking tabbed
+bindsym $mod+e layout toggle splith splitv
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -102,20 +92,20 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-# focus the child container
+# focus the child (baby) container
 bindsym $mod+b focus child
 
 # workspace names
-set $workspace1 "1:I"
-set $workspace2 "2:II"
-set $workspace3 "3:III"
-set $workspace4 "4:IV"
-set $workspace5 "5:V"
-set $workspace6 "6:VI"
-set $workspace7 "7:VVI"
-set $workspace8 "8:VIII"
-set $workspace9 "9:IX"
-set $workspace10 "10:X"
+set $workspace1 "1"
+set $workspace2 "2"
+set $workspace3 "3"
+set $workspace4 "4"
+set $workspace5 "5"
+set $workspace6 "6"
+set $workspace7 "7"
+set $workspace8 "8"
+set $workspace9 "9"
+set $workspace10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace number $workspace1
@@ -141,19 +131,15 @@ bindsym $mod+Shift+8 move container to workspace number $workspace8
 bindsym $mod+Shift+9 move container to workspace number $workspace9
 bindsym $mod+Shift+0 move container to workspace number $workspace10
 
-# reload the configuration file
-# bindsym $mod+Shift+c reload
-
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-set $i3exit "i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+q exec $i3exit
-bindsym $mod+Shift+e exec $i3exit
+set $i3action_exit "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes' 'i3-msg exit'"
+bindsym $mod+Shift+e exec $i3action_exit
 
 # resize window (you can also use the mouse for that)
-set $step 10
+set $i3resize_step 10
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
@@ -161,22 +147,21 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h resize shrink width $step px or $step ppt
-        bindsym j resize grow height $step px or $step ppt
-        bindsym k resize shrink height $step px or $step ppt
-        bindsym l resize grow width $step px or $step ppt
+        bindsym h resize shrink width $i3resize_step px or $i3resize_step ppt
+        bindsym j resize grow height $i3resize_step px or $i3resize_step ppt
+        bindsym k resize shrink height $i3resize_step px or $i3resize_step ppt
+        bindsym l resize grow width $i3resize_step px or $i3resize_step ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width $step px or $step ppt
-        bindsym Down resize grow height $step px or $step ppt
-        bindsym Up resize shrink height $step px or $step ppt
-        bindsym Right resize grow width $step px or $step ppt
+        bindsym Left resize shrink width $i3resize_step px or $i3resize_step ppt
+        bindsym Down resize grow height $i3resize_step px or $i3resize_step ppt
+        bindsym Up resize shrink height $i3resize_step px or $i3resize_step ppt
+        bindsym Right resize grow width $i3resize_step px or $i3resize_step ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
 bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -184,36 +169,49 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
         position top
-        strip_workspace_numbers yes
+        strip_workspace_numbers no
 }
 
-# move to previous workspace
-bindsym $mod+Shift+Tab workspace back_and_forth
-bindsym $mod+Shift+n workspace prev
+# move to previous workspace on same display
+bindsym $mod+Shift+n workspace prev_on_output
 
-# move to next workspace
+# move to next workspace on same display
+bindsym $mod+n workspace next_on_output
+
+# move back and forth between workspaces
 bindsym $mod+Tab workspace back_and_forth
-bindsym $mod+n workspace next
+bindsym $mod+Shift+Tab workspace back_and_forth
 
 # rename current workspace on-the-fly
-bindsym $mod+c exec i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace: '
+# caveat: use the following naming scheme for consistency: 1-*
+bindsym $mod+x exec i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace: '
 
 # lock screen
-bindsym Ctrl+$Alt+l exec hash cinnamon-screensaver-command && cinnamon-screensaver-command --lock || i3lock
+set $i3action_lockscreen "hash ~/.tags/i3lock-fancy/lock && ~/.tags/i3lock-fancy/lock -g -p || i3lock -c 222222"
+bindsym Ctrl+$Alt+l exec --no-startup-id $i3action_lockscreen
+exec --no-startup-id xss-lock -l -- $i3action_lockscreen
 
-# floating behavior for pop-up windows
+# disable floating behavior for pop-up windows
 for_window [window_role="pop-up"] floating disable
 
-# no border
-for_window [class="^Gnome-terminal$"] border none
-for_window [class="^Google-chrome$"] border none
-for_window [class="^Zathura$"] border none
+# window border
+set $i3border_size 2
+new_window normal $i3border_size
+
+# disable window title for specific apps
+for_window [class="^Gnome-terminal$|^X-terminal-emulator$"] border pixel $i3border_size
+for_window [class="^Zathura$"] border pixel $i3border_size
 
 # i3 settings
 workspace_auto_back_and_forth yes
 
-# autostart programs
-exec hash dex && dex --autostart --environment CINNAMON
-exec hash cinnamon-screensaver && hash xautolock && xautolock -detectsleep -time 10 -locker "cinnamon-screensaver-command --lock" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"
+# autostart desktop files
+exec --no-startup-id dex --autostart --environment x-cinnamon
+
+# multimedia keys
+set $i3action_volume "exec i3-sensible-terminal -e alsamixer"
+bindsym XF86AudioRaiseVolume $i3action_volume
+bindsym XF86AudioLowerVolume $i3action_volume
+bindsym XF86AudioMute $i3action_volume
 
 # vim: fdm=marker
