@@ -7,14 +7,14 @@ fi
 
 src_files() {
 	for f in "$@"; do
-		[[ -f "$f" ]] && source "$f"
+		[[ -f "$f" ]] && source "$f" || true
 	done
 }
 
 src_dirs() {
 	for d in "$@"; do
 		if [[ -d "$d" ]]; then
-			src_files $d/*
+			src_files $d/* || true
 		fi
 	done
 }
@@ -192,14 +192,6 @@ function prompt_command() {
 }
 
 PROMPT_COMMAND="prompt_command"
-# }}}
-
-# user-defined functions {{{
-up() {
-	for n in $(seq $1); do
-		cd ..
-	done
-}
 # }}}
 
 src_files "$HOME/.bashrc_corp"
