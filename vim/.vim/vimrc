@@ -29,7 +29,6 @@ Plug 'skammer/vim-css-color', {'for': 'css'}
 Plug 'junegunn/fzf',            {'on': 'FZF', 'do': './install --bin'}
 Plug 'junegunn/vim-easy-align', {'on': 'EasyAlign'}
 Plug 'junegunn/goyo.vim',       {'on': 'Goyo'}
-Plug 'tpope/vim-abolish',       {'on': 'Subvert'} " :Subvert/apple{,s}/orange{,s}/g
 Plug 'tpope/vim-commentary'     " gcc, <visual>gc
 Plug 'tpope/vim-endwise'        " automatically adds end, fi, etc
 Plug 'tpope/vim-eunuch',        {'on': ['Rename', 'Remove', 'SudoEdit', 'SudoWrite']}
