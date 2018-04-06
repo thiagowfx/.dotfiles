@@ -50,31 +50,20 @@ bindsym $mod+Shift+d $i3action_launch_desktop
 bindsym $mod+Shift+p $i3action_launch_desktop
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split toggle: vertical/horizontal
-bindsym $mod+v split toggle
+# split
+bindsym $mod+v split vertical
+bindsym $mod+h split horizontal
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -201,6 +190,7 @@ new_window normal $i3border_size
 # disable window title for specific apps
 for_window [class="^Gnome-terminal$|^X-terminal-emulator$"] border pixel $i3border_size
 for_window [class="^Zathura$"] border pixel $i3border_size
+for_window [class="^Google-chrome$"] border pixel $i3border_size
 
 # i3 settings
 workspace_auto_back_and_forth yes
