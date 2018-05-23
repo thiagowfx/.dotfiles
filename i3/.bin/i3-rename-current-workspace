@@ -1,0 +1,11 @@
+#!/bin/bash
+WS_NUMBER=`python3 -c "import json; print(next(filter(lambda w: w['focused'], json.loads('$(i3-msg -t get_workspaces)')))['num'])"`
+WS_NAME=`python3 -c "import json; print(next(filter(lambda w: w['focused'], json.loads('$(i3-msg -t get_workspaces)')))['name'])" | cut -d ':' -f 2`
+
+if [[ "$1" == "--number_only" ]]; then
+  i3-input -F "rename workspace to %s:${WS_NAME}" -P "New number: "
+elif [[ "$1" == "" ]]; then
+  i3-input -F "rename workspace to ${WS_NUMBER}:%s" -P "New name: ${WS_NUMBER}:"
+else
+  i3-msg "rename workspace to ${WS_NUMBER}:$1"
+fi

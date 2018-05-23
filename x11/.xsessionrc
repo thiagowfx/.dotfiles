@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# necessary to make chrome pick up the proxy settings stored in gconf
+export DESKTOP_SESSION=gnome
+
+# for java applications
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+# hidpi settings for gtk3+
+export GDK_SCALE=1.5
+
+# hidpi settings for qt
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+
+# vim: ft=sh

@@ -43,10 +43,11 @@ add_alias() {
 }
 
 add_alias .. "cd .." cd
-add_alias chrome "google-chrome"
+add_alias chrome "google-chrome" google-chrome
 add_alias l "ls -l" ls
 add_alias la "ls -al" ls
-add_alias sl "ls"
+add_alias screen "screen -U" screen
+add_alias sl "ls" ls
 add_alias tmux "tmux -2" tmux
 add_alias unstow "stow -D" stow
 
@@ -54,9 +55,6 @@ add_env CLICOLOR "1"
 add_env EDITOR "vim" vim && add_env VISUAL "$EDITOR" "$EDITOR"
 
 add_paths "$HOME/.bin" "$HOME/bin" # user scripts
-add_paths "$HOME/.local/bin" # python pip
-
-hash brew &>/dev/null && add_paths "/usr/local/sbin"
 # }}}
 
 # Bash history {{{
@@ -106,7 +104,6 @@ hash pacman &>/dev/null && src_files "/usr/share/doc/pkgfile/command-not-found.b
 # }}}
 
 # add-ons {{{
-# fuzzy file finder (FZF)
 src_files "$HOME/.fzf.bash"
 # }}}
 

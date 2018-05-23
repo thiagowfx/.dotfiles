@@ -168,29 +168,10 @@ bar {
         status_command i3status
         position top
         strip_workspace_numbers no
-colors {
-	# <bar>
-	background #47172c
-	separator  #f37320
-	statusline #aea79f
-
-	# <workclass>	    <border> <backgr.> <text>
-	focused_workspace   #f47f31 #f37320 #ffffff
-	active_workspace    #6c2e55 #61194a #ffffff
-	inactive_workspace  #542937 #47172c #aea79f
-	urgent_workspace    #f0be50 #efb73e #ffffff
-}
+# $i3-theme-bar
 }
 
-# <clientclass>         <border> <backgr.> <text> <indicator>
-client.focused          #f47f31 #f37320 #ffffff #f58c46
-client.focused_inactive #6c2e55 #61194a #ffffff #774060
-client.unfocused        #542937 #47172c #aea79f #603944
-client.urgent           #f0be50 #efb73e #ffffff #efb73e
-
-# $i3-background
-exec_always --no-startup-id xsetroot -solid '#542937'
-
+# $i3-theme-window
 # $i3-status
 
 # move to previous workspace on same display

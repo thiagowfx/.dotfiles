@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# necessary to make chrome pick up the proxy settings stored in gconf
+export DESKTOP_SESSION=gnome
+
+# for java applications
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+# start i3 window manager without autostarting apps
+exec /usr/bin/i3 -a
+
+# vim: ft=sh

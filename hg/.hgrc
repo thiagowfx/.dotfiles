@@ -3,19 +3,7 @@ username = Thiago Perrotta <tbperrotta@gmail.com>
 
 [extensions]
 color=
-extdiff=
 hgk=
 progress=
-
-[extdiff]
-cmd.vimdiff = vimdiff
-cmd.meld = meld
-
-[ui]
-merge = vimdiff
-
-[merge-tools]
-vimdiff.executable = vim
-vimdiff.args = -d -c "wincmd J" "$output" "$local" "$other" "$base"
 
 %include ~/.hgrc_corp

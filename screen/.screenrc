@@ -1,0 +1,9 @@
+startup_message off
+
+hardstatus on
+hardstatus alwayslastline
+hardstatus string '%{= kG}%{C}%S: %{c}%{= kG}[%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{C} %Y-%m-%d %{W}%c %{g}] %H'
+
+# mouse scrolling
+defscrollback 100000
+termcapinfo xterm* ti@:te@

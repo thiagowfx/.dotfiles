@@ -14,14 +14,12 @@
 	followTags = true
 
 [alias]
-	cp = cherry-pick
 	dc = diff --cached
 	ls = log --pretty=format:'%C(yellow)%h%C(white) %an <%ae> %>|(80)%ai%Creset%n%C(bold)%w(0,4,4)%s%C(reset)%n%+b'
 	st = status
 	xl = log --graph --decorate --all # [--oneline]
 
 	prune = fetch --prune
-	stash-all = stash save --include-untracked
 	undo = reset --soft HEAD^
 
 	ignore = "!ignore() { curl -L -s https://www.gitignore.io/api/$@; }; ignore"
@@ -39,20 +37,6 @@
 
 [status]
 	showUntrackedFiles = all
-
-[diff]
-	tool = vimdiff
-
-[difftool]
-	prompt = false
-
-[merge]
-	conflictstyle = diff3
-	defaultToUpstream = true
-	tool = vimdiff
-
-[mergetool]
-	prompt = false
 
 [rerere]
 	enabled = true

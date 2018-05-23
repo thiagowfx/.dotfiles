@@ -1,7 +1,6 @@
-dotfiles
-========
+# dotfiles
 
-"Do one thing, and do it well" **dotfiles**.
+> Do one thing, and do it well...
 
 Managed with GNU stow. **Quick setup**:
 
