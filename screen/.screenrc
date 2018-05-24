@@ -4,6 +4,7 @@ hardstatus on
 hardstatus alwayslastline
 hardstatus string '%{= kG}%{C}%S: %{c}%{= kG}[%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{C} %Y-%m-%d %{W}%c %{g}] %H'
 
-# mouse scrolling
+# mouse
 defscrollback 100000
+mousetrack on
 termcapinfo xterm* ti@:te@
