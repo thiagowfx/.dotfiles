@@ -2,9 +2,15 @@ startup_message off
 
 hardstatus on
 hardstatus alwayslastline
-hardstatus string '%{= kG}%{C}%S: %{c}%{= kG}[%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{C} %Y-%m-%d %{W}%c %{g}]'
+hardstatus string '%{= kG}%{C}%S: %{c}%{= kG}[%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%h]'
 
 # mouse
 defscrollback 100000
 mousetrack on
 termcapinfo xterm* ti@:te@
+
+# get rid of white bars
+rendition so =00
+
+# fix residual text (vim, nano)
+altscreen on
