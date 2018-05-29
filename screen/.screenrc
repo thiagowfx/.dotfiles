@@ -14,3 +14,7 @@ rendition so =00
 
 # fix residual text (vim, nano)
 altscreen on
+
+# automatically spawn a terminal on split
+bindkey | eval "split -v" "focus" "screen"
+bindkey S eval "split" "focus" "screen"
