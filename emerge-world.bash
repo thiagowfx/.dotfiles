@@ -3,7 +3,7 @@
 
 # exit immediately upon receiving C-c
 trap ctrl_c INT
-function ctrl_c {
+ctrl_c() {
 	exit 1
 }
 
