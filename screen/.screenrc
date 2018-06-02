@@ -14,3 +14,5 @@ rendition so =00
 
 # fix residual text (vim, nano)
 altscreen on
+
+# -oCompression=yes -oCheckHostIP=no -oServerAliveInterval=60 -t -- /bin/sh -c "prodcertstatus || prodaccess ; screen -D -R -S laptop"
