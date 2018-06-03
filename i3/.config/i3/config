@@ -14,7 +14,7 @@ set $Alt Mod1
 set $Super Mod4
 
 # modifier key, cannot be set recursively to $Alt
-set $mod Mod1
+set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -49,7 +49,7 @@ bindsym $mod+d $i3action_launch
 # compatibility with dwm
 bindsym $mod+p $i3action_launch
 
-# There also is the (new) i3-dmenu-desktop which only displays applications
+# There also is the (new) i3-dmenu-desk which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 set $i3action_launch_desktop "exec rofi -show drun || i3-dmenu-desktop"
