@@ -14,7 +14,7 @@ set $Alt Mod1
 set $Super Mod4
 
 # modifier key, cannot be set recursively to $Alt
-set $mod Mod1
+set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
