@@ -220,6 +220,7 @@ bindsym $mod+Shift+G exec google-chrome --profile-directory="Profile 1"
 # autostart
 exec --no-startup-id dex --autostart --environment x-cinnamon
 exec --no-startup-id xset s 1200 5 && xss-lock -n /usr/lib/xsecurelock/dimmer -l -- $i3action_lockscreen
+exec --no-startup-id setxkbmap -option altwin:swap_alt_win # swap left win and left alt
 exec_always --no-startup-id [[ -f ~/.wallpaper ]] && feh --bg-scale ~/.wallpaper
 exec_always --no-startup-id xrdb -merge ~/.Xresources
 
