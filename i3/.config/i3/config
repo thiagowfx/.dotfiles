@@ -13,8 +13,12 @@
 set $Alt Mod1
 set $Super Mod4
 
-# modifier key, cannot be set recursively to $Alt
+# modifier key, cannot be recursively set to $Alt
 set $mod Mod4
+
+# if xmodmap is enabled to swap left super and left alt, then this should be the left super key.
+# otherwise, this should be the left alt key.
+set $mod_nemesis Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -209,7 +213,8 @@ bindsym $mod+x exec ~/.bin/i3-rename-current-workspace
 
 # lock screen
 set $i3action_lockscreen "/usr/share/goobuntu-desktop-files/xsecurelock.sh"
-bindsym Ctrl+$Alt+l exec --no-startup-id $i3action_lockscreen
+bindsym Ctrl+$mod_nemesis+l exec --no-startup-id $i3action_lockscreen
+bindsym $mod+l exec --no-startup-id $i3action_lockscreen
 
 # disable floating behavior for pop-up windows
 for_window [window_role="pop-up"] floating disable
@@ -238,8 +243,8 @@ bindsym $mod+Shift+G exec google-chrome --profile-directory="Profile 1"
 
 # autostart
 exec --no-startup-id dex --autostart --environment x-cinnamon
-exec --no-startup-id xset s 1200 5 && xss-lock -n /usr/lib/xsecurelock/dimmer -l -- $i3action_lockscreen
-exec --no-startup-id setxkbmap -option altwin:swap_alt_win # swap left win and left alt
+exec --no-startup-id xset s 600 5 && xss-lock -n /usr/lib/xsecurelock/dimmer -l -- $i3action_lockscreen
+exec_always --no-startup-id setxkbmap -option altwin:swap_alt_win # swap left win and left alt
 exec_always --no-startup-id [[ -f ~/.wallpaper ]] && feh --bg-scale ~/.wallpaper
 exec_always --no-startup-id xrdb -merge ~/.Xresources
 
