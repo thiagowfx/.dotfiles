@@ -15,4 +15,5 @@ rendition so =00
 # fix residual text (vim, nano)
 altscreen on
 
+# for chrome secure shell app
 # -oCompression=yes -oCheckHostIP=no -oServerAliveInterval=60 -t -- /bin/sh -c "prodcertstatus || prodaccess ; screen -D -R -S laptop"
