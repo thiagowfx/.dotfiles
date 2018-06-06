@@ -4,6 +4,3 @@
 [submodule "i3/.config/i3/j4-make-config"]
 	path = i3/.config/i3/j4-make-config
 	url = https://github.com/okraits/j4-make-config
-[submodule "zsh/.zsh/grml-etc-core"]
-	path = zsh/.zsh/grml-etc-core
-	url = https://github.com/grml/grml-etc-core.git

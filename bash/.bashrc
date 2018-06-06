@@ -105,6 +105,7 @@ hash pacman &>/dev/null && src_files "/usr/share/doc/pkgfile/command-not-found.b
 
 # add-ons {{{
 src_files "$HOME/.fzf.bash"
+src_files "/usr/share/autojump/autojump.bash"
 # }}}
 
 # Colors {{{
