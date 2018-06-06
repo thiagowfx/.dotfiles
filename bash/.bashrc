@@ -189,7 +189,7 @@ function prompt_command() {
 	PS2="\[${yellow}\]→ \[${reset}\]";
 }
 
-PROMPT_COMMAND="prompt_command"
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ;} prompt_command"
 # }}}
 
 src_files "$HOME/.bashrc_corp"
