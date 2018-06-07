@@ -222,11 +222,17 @@ bindsym XF86AudioMute $i3action_volume
 bindsym $mod+g exec google-chrome --profile-directory="Default"
 bindsym $mod+Shift+G exec google-chrome --profile-directory="Profile 1"
 
-# autostart
+# exec {{{
+# autostart apps
 exec --no-startup-id dex --autostart --environment x-cinnamon
+# autolock screen
 exec --no-startup-id xset s 600 5 && xss-lock -n /usr/lib/xsecurelock/dimmer -l -- $i3action_lockscreen
-exec_always --no-startup-id setxkbmap -option altwin:swap_alt_win # swap left win and left alt
+# set keyboard layout
+exec_always --no-startup-id setxkbmap -option altwin:swap_alt_win us # swap left win and left alt
+# set desktop wallpaper
 exec_always --no-startup-id [[ -f ~/.wallpaper ]] && feh --bg-scale ~/.wallpaper
+# update Xresources
 exec_always --no-startup-id xrdb -merge ~/.Xresources
+# }}}
 
 # vim: fdm=marker ft=i3
