@@ -1,5 +1,5 @@
 ! x11 fonts {{{
-Xft.dpi: 144
+Xft.dpi: 120
 Xft.autohint: 1
 Xft.lcdfilter: lcddefault
 Xft.hintstyle: hintfull
@@ -9,7 +9,7 @@ Xft.rgba: rgb
 ! }}}
 
 ! rofi {{{
-rofi.dpi: 144
+rofi.dpi: 120
 ! }}}
 
 ! vim: ft=xdefaults fdm=marker

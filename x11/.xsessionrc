@@ -7,9 +7,24 @@ export DESKTOP_SESSION=gnome
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # hidpi settings for gtk3+
-export GDK_SCALE=1.5
+export GDK_SCALE=1.25
 
 # hidpi settings for qt
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
+
+# autostart apps
+hash dex &>/dev/null && dex --autostart --environment i3 &
+
+# autostart lockscreen autolocker
+hash xset &>/dev/null && hash xss-lock &>/dev/null && xset s 600 5 && xss-lock -n /usr/lib/xsecurelock/dimmer -l -- /usr/share/goobuntu-desktop-files/xsecurelock.sh &
+
+# set wallpaper
+[[ -f ~/.wallpaper ]] && hash feh &>/dev/null && feh --bg-scale ~/.wallpaper &
+
+# swap left win and left alt
+hash setxkbmap &>/dev/null && setxkbmap -option altwin:swap_alt_win us &
+
+# update Xresources
+[[ -f ~/.Xresources ]] && hash xrdb &>/dev/null && xrdb -merge ~/.Xresources &
 
 # vim: ft=sh
