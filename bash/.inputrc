@@ -1,2 +1,18 @@
-# bash: display suggestions with just a single <TAB> instead of two
-set show-all-if-ambiguous
+# bash: display suggestions with a single <TAB>, instead of two
+set show-all-if-ambiguous on
+
+# Turn smart quotes into normal quotes.
+"\xE2\x80\x9C": "\""
+"\xE2\x80\x9D": "\""
+"\xE2\x80\x98": "'"
+"\xE2\x80\x99": "'"
+
+# Turn non-breaking space into a normal space.
+"\xC2\xA0": " "
+
+# Minus and em-dash into plain dashes.
+"\xE2\x80\x93": "-"
+"\xE2\x80\x94": "--"
+
+# Ellipsis...
+"\xE2\x80\xA6": "..."

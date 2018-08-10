@@ -6,11 +6,17 @@ export DESKTOP_SESSION=gnome
 # for java applications
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-# set wallpaper
-[[ -f ~/.wallpaper ]] && hash feh &>/dev/null && feh --bg-scale ~/.wallpaper &
+# set x11 cursor
+xsetroot -cursor_name left_ptr &
 
-# swap left win and left alt
-hash setxkbmap &>/dev/null && setxkbmap -option altwin:swap_alt_win us &
+# set wallpaper
+feh --bg-scale ~/.wallpaper &
+
+# swap left win and left alt (conditional on the physical keyboard)
+setxkbmap -option altwin:swap_alt_win us &
+
+# update Xresources
+xrdb -merge ~/.Xresources &
 
 # start i3 window manager without autostarting apps
 exec /usr/bin/i3 -a

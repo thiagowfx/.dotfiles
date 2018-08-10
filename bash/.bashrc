@@ -1,20 +1,16 @@
  # -*- shell-script -*-
 
 if [[ $- != *i* ]] ; then
-	# Shell is non-interactive. Be done now!
+	# shell is non-interactive; be done now!
 	return
 fi
 
 src_files() {
 	for f in "$@"; do
-		[[ -f "$f" ]] && source "$f" || true
-	done
-}
-
-src_dirs() {
-	for d in "$@"; do
-		if [[ -d "$d" ]]; then
-			src_files $d/* || true
+		if [[ -d "$f" ]]; then
+			src_files "$f"/* || true
+		elif [[ -f "$f" ]]; then
+			source "$f" || true
 		fi
 	done
 }
@@ -31,7 +27,6 @@ add_paths() {
 	done
 }
 
-# Aliases {{{
 add_alias() {
 	[[ "x$4" != "x" ]] && [ ! -e "$4" ] && return
 
@@ -55,25 +50,20 @@ add_env CLICOLOR "1"
 add_env EDITOR "vim" vim && add_env VISUAL "$EDITOR" "$EDITOR"
 
 add_paths "$HOME/.bin" "$HOME/bin" # user scripts
-# }}}
 
-# Bash history {{{
-# Ignore space and ignore duplicates.
+# ignore space and ignore duplicates
 HISTCONTROL="ignoreboth"
 HISTSIZE=50000
 HISTFILESIZE="${HISTSIZE}"
-HISTIGNORE="ls:la:ll:l:ranger:tree:vdir:history:exit"
-# }}}
+HISTIGNORE="ls:la:ll:l:tree:vdir:history:exit:prodaccess"
 
-# Bash shell options {{{
+# bash shell options
 set -o emacs
-
 for option in autocd checkwinsize cdspell cmdhist dotglob expand_aliases extglob histappend hostcomplete nocaseglob; do
 	shopt -s $option &>/dev/null
 done
-# }}}
 
-# Bash colored man pages {{{
+# bash colored man pages
 man() {
 	env LESS_TERMCAP_mb=$'\E[01;31m' \
 		LESS_TERMCAP_md=$'\E[01;38;5;74m' \
@@ -84,114 +74,58 @@ man() {
 		LESS_TERMCAP_us=$'\E[04;38;5;146m' \
 		man "$@"
 }
-# }}}
 
-# Bash completion {{{
-# Enable completion for sudo.
+# enable bash completion for sudo
 complete -cf sudo
 
-# Linux bash completion
+# linux bash completion
 src_files "/etc/bash_completion" "/usr/share/bash-completion/bash_completion"
 
-# Homebrew bash completion
-src_files "/usr/local/etc/bash_completion" "/usr/local/share/bash-completion/bash_completion"
-src_dirs  "/usr/local/etc/bash_completion.d"
-# }}}
+# homebrew bash completion
+src_files "/usr/local/etc/bash_completion" "/usr/local/share/bash-completion/bash_completion" "/usr/local/etc/bash_completion.d"
 
-# Command-not-found hooks {{{
+# homebrew command-not-found hook
 hash brew &>/dev/null && brew command command-not-found-init >/dev/null 2>&1 && eval "$(brew command-not-found-init)"
+
+# pacman command-not-found hook
 hash pacman &>/dev/null && src_files "/usr/share/doc/pkgfile/command-not-found.bash"
-# }}}
 
-# add-ons {{{
+# vte.sh
+src_files "/etc/profile.d/vte.sh"
+
+# fzf
 src_files "$HOME/.fzf.bash"
+
+# autojump
 src_files "/usr/share/autojump/autojump.bash"
-# }}}
 
-# Colors {{{
-if command -v tput &>/dev/null && tput setaf 1 &>/dev/null; then
-	tput sgr0; # reset colors
-	bold=$(tput bold);
-	reset=$(tput sgr0);
-	# Solarized colors, taken from http://git.io/solarized-colors.
-	black=$(tput setaf 0);
-	blue=$(tput setaf 33);
-	cyan=$(tput setaf 37);
-	green=$(tput setaf 64);
-	orange=$(tput setaf 166);
-	purple=$(tput setaf 125);
-	red=$(tput setaf 124);
-	violet=$(tput setaf 61);
-	white=$(tput setaf 15);
-	yellow=$(tput setaf 136);
-else
-	bold='';
-	reset="\e[0m";
-	black="\e[1;30m";
-	blue="\e[1;34m";
-	cyan="\e[1;36m";
-	green="\e[1;32m";
-	orange="\e[1;33m";
-	purple="\e[1;35m";
-	red="\e[1;31m";
-	violet="\e[1;35m";
-	white="\e[1;37m";
-	yellow="\e[1;33m";
-fi;
-# }}}
+LBLUE=$'\e[36;40m'
+PURPLE=$'\e[35;40m'
+GREEN=$'\e[32;40m'
+ORANGE=$'\e[33;40m'
+YELLOW=$'\e[37;40m'
+PINK=$'\e[31;40m'
 
-# Prompts {{{
-function prompt_command() {
+# upstream: https://gist.github.com/lucaslafuga/1766c27ecda6270b9d08
+prompt_command() {
 	local EXIT="$?"
 	history -a
 
-	local prompt_symbol="❯"
+	PS1=""
 
-	# Git branch name and work tree status (only when we are inside Git working tree)
-	if command -v git >/dev/null 2>&1; then
-		if [[ "true" = "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ]]; then
-			# Branch name
-			local branch="$(git symbolic-ref HEAD 2>/dev/null)"; branch="${branch##refs/heads/}"
+	case "$TERM" in
+	  # https://stackoverflow.com/questions/2068806/gnu-screen-can-you-automatically-name-a-window-after-the-last-invoked-program
+	  screen*) PS1='\[\033k\033\\\]'
+	esac
 
-			# Modified files
-			git diff --no-ext-diff --quiet --exit-code --ignore-submodules 2>/dev/null || local dirty="!"
-
-			# Untracked files
-			[ -z "${dirty}" ] && test -n "$(git status --porcelain)" && local dirty="!"
-
-			# Format Git info
-			local git_prompt="${white} on ${red}${branch}${green}${dirty}${reset}"
-		fi
-	fi
-
-	# Hg branch name and work tree status (only when we are inside Hg working tree)
-	if command -v hg >/dev/null 2>&1; then
-		if hg branch >/dev/null 2>&1; then
-			local hg_prompt="${white} on ${red}$(hg branch 2> /dev/null)${reset}"
-		fi
-	fi
-
-	# Set PS1
-	PS1="\[\033]0;\w\007\]"
-	PS1+="\[${bold}\]"
-	[ $EXIT != 0 ] && PS1+="\[${red}\]$EXIT " # exit code
-	PS1+="\[${orange}\]\u" # username
-	PS1+="\[${white}\] at " # at
-	PS1+="\[${yellow}\]\H" # host
-	PS1+="\[${white}\] in " # in
-	PS1+="\[${green}\]\w" # working directory
-	PS1+="${git_prompt}" # git
-	PS1+="${hg_prompt}" # hg
-	PS1+="\n"; # newline
-	PS1+="\[${white}\]$prompt_symbol \[${reset}\]"; # `$` and reset color
-
-	# Set PS2
-	PS2="\[${yellow}\]→ \[${reset}\]";
+	[ $EXIT != 0 ] && PS1+="\[$ORANGE\]$EXIT "
+	PS1+='\[$PINK\]\u \[$LBLUE\]at \[$PURPLE\]\h \[$LBLUE\]in '
+	PS1+='\[$GREEN\]\w'
+	PS1+='\n\[$GREEN\]>> \[$YELLOW\]'
 }
 
-PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ;} prompt_command"
-# }}}
+PROMPT_COMMAND="prompt_command"
 
 src_files "$HOME/.bashrc_corp"
 
-# vim: fdm=marker ft=sh
+# vim: ft=sh

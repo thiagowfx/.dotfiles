@@ -12,19 +12,22 @@ export GDK_SCALE=1.25
 # hidpi settings for qt
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 
-# autostart apps
-hash dex &>/dev/null && dex --autostart --environment i3 &
+# set x11 cursor
+xsetroot -cursor_name left_ptr &
 
-# autostart lockscreen autolocker
-hash xset &>/dev/null && hash xss-lock &>/dev/null && xset s 600 5 && xss-lock -n /usr/lib/xsecurelock/dimmer -l -- /usr/share/goobuntu-desktop-files/xsecurelock.sh &
+# autostart apps
+dex --autostart --environment tilingwm &
+
+# start lockscreen autolocker
+xset s 600 5 && xss-lock -n /usr/lib/xsecurelock/dimmer -l -- /usr/share/goobuntu-desktop-files/xsecurelock.sh &
 
 # set wallpaper
-[[ -f ~/.wallpaper ]] && hash feh &>/dev/null && feh --bg-scale ~/.wallpaper &
+feh --bg-scale ~/.wallpaper &
 
 # swap left win and left alt
-hash setxkbmap &>/dev/null && setxkbmap -option altwin:swap_alt_win us &
+setxkbmap -option altwin:swap_alt_win us &
 
 # update Xresources
-[[ -f ~/.Xresources ]] && hash xrdb &>/dev/null && xrdb -merge ~/.Xresources &
+xrdb -merge ~/.Xresources &
 
 # vim: ft=sh

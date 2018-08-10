@@ -1,0 +1,9 @@
+#!/bin/bash
+
+get_actions() {
+  ls -1 "$HOME/.config/autokey/data/Main/" | sed -e 's/.py//'
+}
+
+ACTION=$(get_actions | rofi -dmenu -p "Select action:")
+
+autokey-run -s "${ACTION}"
