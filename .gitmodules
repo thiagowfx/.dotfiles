@@ -1,6 +1,0 @@
-[submodule "vim/.vim/vim-plug"]
-	path = vim/.vim/vim-plug
-	url = https://github.com/junegunn/vim-plug
-[submodule "i3/.config/i3/j4-make-config"]
-	path = i3/.config/i3/j4-make-config
-	url = https://github.com/okraits/j4-make-config

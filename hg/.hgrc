@@ -1,9 +1,0 @@
-[ui]
-username = Thiago Perrotta <tbperrotta@gmail.com>
-
-[extensions]
-color=
-hgk=
-progress=
-
-%include ~/.hgrc_corp
