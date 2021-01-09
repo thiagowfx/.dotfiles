@@ -1,0 +1,68 @@
+[user]
+	name = Thiago Perrotta
+	email = tbperrotta@gmail.com
+
+[alias]
+	amend = commit --amend
+	dc = diff --cached
+	ignore = "! curl -L -s https://www.gitignore.io/api/$@"
+	shelve = stash
+	st = status
+	undo = reset --soft HEAD^
+
+	# log
+	ls = log --pretty=format:'%C(yellow)%h%C(white) %an <%ae> %>|(80)%ai%Creset%n%C(bold)%w(0,4,4)%s%C(reset)%n%+b'
+	xl = log --graph --decorate --all # [--oneline]
+
+[branch]
+	autosetupmerge = always
+	autosetuprebase = always
+
+[core]
+	# Auto-converts CRLF line endings into LF when you add a file to the index, and vice versa when it checks out code onto your filesystem.
+	# Needed for a transparent experience when developing from Windows.
+	autocrlf = input
+	editor = vim
+
+[credential]
+	# Cache credentials in memory for a short period of time. See git-credential-cache[1] for details.
+	helper = cache
+
+[fetch]
+	prune = true
+
+[help]
+	autocorrect = 1
+
+[merge]
+	tool = vimdiffconflicts
+	prompt = false
+
+[mergetool]
+	keepBackup = false
+
+# 2-way vimdiff: https://github.com/whiteinge/diffconflicts
+[mergetool "vimdiffconflicts"]
+	cmd = vim -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
+	trustExitCode = true
+
+[push]
+	default = simple
+	followTags = true
+
+# https://git-scm.com/docs/git-rerere
+[rerere]
+	enabled = true
+	autoupdate = true
+
+[status]
+	# Also shows individual files in untracked directories.
+	showUntrackedFiles = all
+
+[submodule]
+	# Clone new submodules in parallel with as many jobs.
+	fetchJobs = 0
+
+# import corp configs if any
+[include]
+	path = .gitconfig_corp

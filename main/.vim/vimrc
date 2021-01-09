@@ -1,0 +1,198 @@
+" Vim config file
+"
+" Reload with:
+"   :so %
+"   :so $MYVIMRC
+"
+" Load without config:
+"   $ vim -u NONE
+"   $ vim --clean
+
+" The default vimrc file.
+" It is not loaded automatically if a vimrc file was found so we load it
+" explicitly here.
+source $VIMRUNTIME/defaults.vim
+
+" Set leader key. Default is '\'.
+let mapleader=","
+
+" Initialize plugin manager: vim-plug
+call plug#begin('~/.vim/plugged')
+
+" Better defaults
+Plug 'tpope/vim-sensible'
+
+" Cursor shape change in insert and replace mode
+" Improved mouse support
+" Focus reporting: plays well with tmux and terminal
+" Bracketed Paste mode: automatically handles :set paste
+Plug 'wincent/terminus'
+
+" Highlight trailing whitespace.
+"
+" Fix all occurrences:
+"   :FixWhitespace
+Plug 'bronson/vim-trailing-whitespace'
+
+" Color theme / scheme
+Plug 'crusoexia/vim-monokai'
+
+" Minimalist statusline / tabline.
+" The colorscheme of lightline is independent of the editor colorscheme.
+Plug 'itchyny/lightline.vim'
+
+" Display thin vertical lines at each indentation level for code indented with spaces.
+"   :IndentLinesToggle
+Plug 'Yggdroot/indentLine'
+
+" Async VCS info: git, hg, etc
+Plug 'mhinz/vim-signify'
+
+" A better vimdiff mergetool: 2-way diff
+Plug 'whiteinge/diffconflicts'
+
+" Single-line <-> multi-line statements.
+"   gS: split
+"   gJ: join
+Plug 'AndrewRadev/splitjoin.vim'
+
+" Asynchronous Lint Engine:
+"   Syntax checking and semantic errors
+"   Language Server Protocol (LSP) client
+"
+" Apply linter fixes:
+"   :ALEFix
+Plug 'dense-analysis/ale'
+
+" (lazily loaded) Multiple language packs
+Plug 'sheerun/vim-polyglot'
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
+
+" Comment stuff out
+"   gcc to comment out the current line
+"   gc to comment out in visual mode or the target of a motion
+"   gcgc uncomments a set of adjacent lines
+Plug 'tpope/vim-commentary'
+
+" Automatically adds `end`, `fi`, etc.
+Plug 'tpope/vim-endwise'
+
+" Helpers for UNIX
+Plug 'tpope/vim-eunuch', {'on': ['Delete', 'Remove', 'SudoWrite']}
+
+" Git integration, with symlink support.
+Plug 'tpope/vim-fugitive' | Plug 'aymericbeaumet/vim-symlink'
+
+" Smarter '.' repeat
+Plug 'tpope/vim-repeat'
+
+" Heuristically infers tabs and spaces settings, so that there's no need to
+" specify them in ~/.vimrc.
+Plug 'tpope/vim-sleuth'
+
+" Complimentary pairs of mappings.
+"   ]n and [n to jump between SCM conflict markers.
+Plug 'tpope/vim-unimpaired'
+
+" Improved file manager. Activate with '-' (hyphen) key.
+Plug 'tpope/vim-vinegar'
+
+" Alignment plugin.
+"   :EasyAlign <delimiter>
+"
+" E.g.
+"   Visual selection mode + :EasyAlign #
+Plug 'junegunn/vim-easy-align', {'on': 'EasyAlign'}
+
+" OSC52 for clipboard copy integration:
+"   C-c to copy to system clipboard
+Plug 'fcpg/vim-osc52'
+vmap <C-c> y:Oscyank<cr>
+
+call plug#end()
+
+" Better %
+runtime! macros/matchit.vim
+
+" :Man man
+source $VIMRUNTIME/ftplugin/man.vim
+
+" Set color theme
+if &t_Co >= 256
+	" ignore colorscheme if it is not found
+	silent! colorscheme monokai
+	hi Normal ctermbg=none
+	hi NonText ctermbg=none
+endif
+
+" :wq misspellings
+command W w
+command WQ wq
+command Wq wq
+
+" copy until the end of the line
+nnoremap Y y$
+
+" Add horizontal cursor line.
+set cursorline
+
+" Always use vertical diffs.
+set diffopt+=vertical
+
+" Set folding method and do not fold by default.
+set foldmethod=indent foldlevel=99
+
+" Highlight search pattern matches.
+set hlsearch
+
+" https://stackoverflow.com/q/2287440
+set ignorecase smartcase
+
+" Use one space, not two, after punctuation.
+set nojoinspaces
+
+" Do not redraw the screen while executing macros. To force, use :redraw.
+set lazyredraw
+
+" Display tab characters
+" https://vi.stackexchange.com/questions/422/displaying-tabs-as-characters
+set list lcs=tab:\|\ 
+
+" --INSERT-- is not necessary because lightline already displays it.
+set noshowmode
+
+" Disable backups and swapfile, use persistent undo instead
+set noswapfile nowritebackup
+
+" Show line numbers.
+set number
+
+" Simplify some display messages.
+set shortmess=atI
+
+" Display indicators for lines that have been wrapped.
+let &showbreak = '> '
+
+" Show matching brackets, briefly jump to the matched one.
+set showmatch
+
+" Smart autoindent when starting a new line.
+set smartindent
+
+" Better splits.
+set splitbelow splitright switchbuf=useopen
+
+" Shorter update time (default: 4s) when vim supports async.
+set updatetime=1000
+
+" Enable persistent undo file.
+if has('persistent_undo')
+	set undofile undodir=~/.vim/undo
+endif
+
+" Set completion mode.
+set wildmode=list:longest
+
+" Load corp config if any.
+execute "silent! source ~/.vim/vimrc_corp"

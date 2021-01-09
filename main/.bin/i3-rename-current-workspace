@@ -1,0 +1,30 @@
+#!/bin/bash
+
+workspace_name() {
+  python3 -c "import json; print(next(filter(lambda w: w['focused'], json.loads('$(i3-msg -t get_workspaces)')))['name'])" | cut -d ':' -f 2
+}
+
+workspace_number() {
+  python3 -c "import json; print(next(filter(lambda w: w['focused'], json.loads('$(i3-msg -t get_workspaces)')))['num'])"
+}
+
+case "$1" in
+  --number)
+    readonly input="$(workspace_number | rofi -dmenu -l 1 -p "New number:")"
+    if [[ -n "$input" ]]; then
+      i3-msg "rename workspace to ${input}:$(workspace_name)"
+    fi
+    ;;
+
+  --name)
+    readonly input="$(rofi -dmenu -l 0 -p "New name:")"
+    if [[ -n "$input" ]]; then
+      i3-msg "rename workspace to $(workspace_number):${input}"
+    fi
+    ;;
+
+  *)
+    i3-msg "rename workspace to $(workspace_number):$1"
+    ;;
+esac
+

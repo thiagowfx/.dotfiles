@@ -1,0 +1,4 @@
+# Load ~/.Xresources while chromoting.
+exec /etc/X11/Xsession "/usr/bin/i3 -a"
+
+# vim: ft=sh

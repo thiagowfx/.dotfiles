@@ -1,0 +1,16 @@
+[ui]
+username = Thiago Perrotta <tbperrotta@gmail.com>
+merge = vimdiff
+
+[merge-tools]
+vimdiff.executable = vim
+vimdiff.args = -d $base $local $output $other +close +close
+
+[extensions]
+color =
+histedit =
+progress =
+purge =
+
+# import corp configs if any
+%include .hgrc_corp

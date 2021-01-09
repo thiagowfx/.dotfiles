@@ -1,0 +1,69 @@
+# This file controls the behaviour of line input editing for
+# programs that use the GNU readline(3) library.
+# Existing programs include FTP, Bash, and GDB.
+#
+# You can re-read the inputrc file with C-x C-r.
+#
+# This config is vi centric but it also supports emacs hybridly.
+
+# First, include any system-wide bindings and variable assignments from /etc/inputrc
+$include /etc/inputrc
+
+# If set to ‘on’, Readline attempts to briefly move the cursor to an opening parenthesis when a closing parenthesis is inserted. The default is ‘off’.
+set blink-matching-paren on
+
+# If set to ‘on’ (the default), Readline attempts to bind the control characters treated specially by the kernel’s terminal driver to their Readline equivalents.
+# This is necessary so that C-w works in vi mode as expected:
+#   cannot-delete|'
+# https://unix.stackexchange.com/q/303631/41858
+set bind-tty-special-chars off
+
+# If set to ‘on’, when listing completions, Readline displays the common prefix of the set of possible completions using a different color. The color definitions are taken from the value of the LS_COLORS environment variable. The default is ‘off’.
+set colored-completion-prefix on
+
+# If set to ‘on’, Readline displays possible completions using different colors to indicate their file type. The color definitions are taken from the value of the LS_COLORS environment variable. The default is ‘off’.
+set colored-stats on
+
+# If set to ‘on’, Readline performs filename matching and completion in a case-insensitive fashion. The default value is ‘off’.
+set completion-ignore-case on
+
+# If set to ‘on’, and completion-ignore-case is enabled, Readline treats hyphens (‘-’) and underscores (‘_’) as equivalent when performing case-insensitive filename matching and completion. The default value is ‘off’.
+set completion-map-case on
+
+# When set to ‘on’, Readline will configure the terminal in a way that will enable it to insert each paste into the editing buffer as a single string of characters, instead of treating each character as if it had been read from the keyboard. This can prevent pasted characters from being interpreted as editing commands. The default is ‘off’.
+set enable-bracketed-paste on
+
+# If set to ‘on’, completed names which are symbolic links to directories have a slash appended (subject to the value of mark-directories). The default is ‘off’.
+set mark-symlinked-directories on
+
+# This alters the default behavior of the completion functions. If set to ‘on’, words which have more than one possible completion cause the matches to be listed immediately instead of ringing the bell. The default value is ‘off’. Display suggestions with a single <TAB>, instead of two.
+set show-all-if-ambiguous on
+
+# This alters the default behavior of the completion functions in a fashion similar to show-all-if-ambiguous. If set to ‘on’, words which have more than one possible completion without any possible partial completion (the possible completions don’t share a common prefix) cause the matches to be listed immediately instead of ringing the bell. The default value is ‘off’.
+set show-all-if-unmodified on
+
+# If set to ‘on’, this alters the default completion behavior when inserting a single match into the line. It’s only active when performing completion in the middle of a word. If enabled, readline does not insert characters from the completion that match characters after point in the word being completed, so portions of the word following the cursor are not duplicated. For instance, if this is enabled, attempting completion when the cursor is after the ‘e’ in ‘Makefile’ will result in ‘Makefile’ rather than ‘Makefilefile’, assuming there is a single possible completion. The default value is ‘off’.
+set skip-completed-text on
+
+# If set to ‘on’, a character denoting a file’s type is appended to the filename when listing possible completions. The default is ‘off’.
+set visible-stats on
+
+# Turn smart quotes into normal quotes.
+"\xE2\x80\x9C": "\""
+"\xE2\x80\x9D": "\""
+"\xE2\x80\x98": "'"
+"\xE2\x80\x99": "'"
+
+# Turn non-breaking space into a normal space.
+"\xC2\xA0": " "
+
+# Turn minus and em-dash into plain dashes.
+"\xE2\x80\x93": "-"
+"\xE2\x80\x94": "--"
+
+# Turn ellipsis into three dots.
+"\xE2\x80\xA6": "..."
+
+# This allows you to search through your history using the up and down arrows … i.e. type "cd" and press the up arrow and you'll search through everything in your history that starts with "cd".
+"\e[A": history-search-backward
+"\e[B": history-search-forward

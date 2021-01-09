@@ -1,0 +1,62 @@
+# don't display lengthy license and version information on startup
+startup_message off
+
+# automatically detach on terminal hangup (so that one can attach again and continue working)
+autodetach on
+
+# ignore case on searches in copy-mode
+ignorecase on
+
+# assume UTF-8 encoding
+defutf8 on
+
+# erase background with current bg color
+defbce on
+
+# status
+hardstatus alwayslastline '%{= kG}%S: %{c}%{= kG}|%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}'
+
+# use bigger scrollback buffer
+defscrollback 50000
+termcapinfo xterm* ti@:te@
+
+# suppress trailing blank lines when scrolling up text into the history buffer
+compacthist on
+
+# enable mouse (e.g. for split windows)
+mousetrack on
+
+# cyan background, black foreground
+rendition so = ck
+
+# fix residual text (vim, nano), enable alternative screen
+altscreen on
+
+# split focus
+bind o focus next
+bind S eval 'split' 'focus down' 'screen'
+bind - eval 'split' 'focus down' 'screen'
+bind | eval 'split -v' 'focus right' 'screen'
+
+# kill window
+bind "^K" kill
+
+# reload configuration file
+bind r source ~/.screenrc
+
+# disable C-a s, which freezes the screen
+# alternatively could be resolved with C-a q
+bind s
+
+# disable prefix ^X which locks the screen, bind it to remove
+bind ^X remove
+bind x remove
+
+# navigate regions with arrow keys
+bindkey "^A^[OA" focus up
+bindkey "^A^[OB" focus down
+bindkey "^A^[OD" focus left
+bindkey "^A^[OC" focus right
+
+# load corp config if any
+source ~/.screenrc_corp
