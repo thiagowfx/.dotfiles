@@ -41,7 +41,6 @@ bindsym $mod+Shift+c kill
 # start rofi / dmenu
 bindsym $mod+d $action_launch_apps
 bindsym $mod+p $action_launch_apps
-bindsym $mod+Shift+p $action_launch_apps
 
 # change focus
 bindsym $mod+Left focus left
@@ -61,9 +60,6 @@ bindsym $mod+h split horizontal
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-
-# Toggle between hide state and show state
-bindsym $mod+Shift+f bar mode toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+w layout toggle stacking tabbed
@@ -175,18 +171,12 @@ bindsym $mod+n workspace next_on_output
 
 # move back and forth between workspaces
 bindsym $mod+Tab workspace back_and_forth
-bindsym $mod+Shift+Tab workspace back_and_forth
 
 # rename current workspace on-the-fly
-bindsym $mod+Shift+x exec ~/.bin/i3-rename-current-workspace --number
-bindsym $mod+x exec ~/.bin/i3-rename-current-workspace --name
+bindsym $mod+x exec i3-msg \"rename workspace to \\\"$(rofi -dmenu -p rename)\\\"\"
 
 # lock screen
 bindsym Ctrl+$mod+l exec --no-startup-id $action_lockscreen
-
-# scratchpad
-bindsym $mod+o move scratchpad
-bindsym $mod+Shift+o scratchpad show
 
 # automatic back-and-forth when switching to the current workspace
 workspace_auto_back_and_forth yes
@@ -201,8 +191,7 @@ default_floating_border pixel 3
 for_window [window_role="pop-up"] floating disable
 
 # custom keybindings for google chrome
-bindsym $mod+g exec --no-startup-id google-chrome --profile-directory="Default"
-bindsym $mod+Shift+g exec --no-startup-id google-chrome --profile-directory="Alternate"
+bindsym $mod+g exec --no-startup-id google-chrome
 
 # multimedia volume keys
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && killall -SIGUSR1 i3status
