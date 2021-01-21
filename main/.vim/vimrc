@@ -81,8 +81,8 @@ Plug 'tpope/vim-endwise'
 " Helpers for UNIX
 Plug 'tpope/vim-eunuch', {'on': ['Delete', 'Remove', 'SudoWrite']}
 
-" Git integration, with symlink support.
-Plug 'tpope/vim-fugitive' | Plug 'aymericbeaumet/vim-symlink'
+" Automatically follow symlinks.
+Plug 'aymericbeaumet/vim-symlink'
 
 " Smarter '.' repeat
 Plug 'tpope/vim-repeat'
