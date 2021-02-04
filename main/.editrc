@@ -1,7 +1,0 @@
-# This file controls the behaviour of the line input editing for
-# programs that use the libedit (editline(3)) library.
-
-# By default, up/down move to the previous/next history item.
-# This sets partial searches based on current text input.
-bind ^[[A ed-search-prev-history
-bind ^[[B ed-search-next-history
