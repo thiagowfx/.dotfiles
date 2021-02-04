@@ -9,7 +9,6 @@ alias ip="ip --color=auto"
 
 # file listing
 alias ls="ls -Fh --color=auto"
-alias la="ls -Al"
 
 # typos
 alias gi="git"
