@@ -17,10 +17,6 @@ HISTFILESIZE=
 # %T equivalent to %H:%M:%S (24-hours format)
 HISTTIMEFORMAT='[%F %T] '
 
-# History: Set eternal history file.
-# Uncomment this line to use the ~/.bash_history default.
-HISTFILE="$HOME/.bash_eternal_history"
-
 # History: Default commands not to record.
 HISTIGNORE="dirs:ls:tree:vdir:clear:history:pwd"
 
