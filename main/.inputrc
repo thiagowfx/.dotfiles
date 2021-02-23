@@ -2,7 +2,7 @@
 # programs that use the GNU readline(3) library.
 # Existing programs include FTP, Bash, and GDB.
 #
-# You can re-read the inputrc file with C-x C-r.
+# You can re-read this inputrc file with C-x C-r or `bind -f ~/.inputrc`.
 #
 # This config is vi centric but it also supports emacs hybridly.
 
@@ -64,6 +64,10 @@ set visible-stats on
 # Turn ellipsis into three dots.
 "\xE2\x80\xA6": "..."
 
-# This allows you to search through your history using the up and down arrows … i.e. type "cd" and press the up arrow and you'll search through everything in your history that starts with "cd".
+# This allows you to search through your history using the up and down arrows i.e. type "cd" and press the up arrow and you'll search through everything in your history that starts with "cd".
 "\e[A": history-search-backward
 "\e[B": history-search-forward
+
+# Navigate back and forward through whitespace.
+"\e\C-b":vi-bWord
+"\e\C-f":vi-fWord
