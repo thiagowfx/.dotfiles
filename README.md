@@ -9,7 +9,7 @@ git clone --recurse-submodules "https://github.com/thiagowfx/.dotfiles" "$HOME/.
 (cd "$HOME/.dotfiles" && stow --restow main corp)
 ```
 
-Symlink all dotfiles *and* perform all installation steps (package management, etc):
+Symlink all dotfiles *and* perform all installation steps:
 
 ```
 git clone --recurse-submodules "https://github.com/thiagowfx/.dotfiles" "$HOME/.dotfiles"
