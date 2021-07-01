@@ -1,23 +1,19 @@
-#!/bin/bash
-#
-# Installs the dotfiles environment locally to ~/.dotfiles.
+#!/bin/bash -u
+# Script to install the dotfiles environment locally.
 
-set -xeuo pipefail
+# Full path to the dotfiles directory.
+readonly DOTFILESDIR=$(dirname "$(readlink -f "$0")")
 
-# Full path to this script directory.
-readonly SCRIPTDIR=$(dirname "$(readlink -f "$0")")
+# Check out latest git submodules, in case the repository was not recursively cloned.
+git -C "$DOTFILESDIR" submodule update --init
 
-# Checks out latest git submodules, in case the repository was not recursively cloned.
-(cd "$SCRIPTDIR" && git submodule update --init)
+# Run stow.
+for package in main corp; do
+	stow -t "$HOME" -d "$DOTFILESDIR" --verbose --restow "$package"
+done
 
-# Runs stow.
-(cd "$SCRIPTDIR" && stow -t "$HOME" -d "$SCRIPTDIR" --verbose=2 --restow main corp)
-
-# Installs ranger configs.
-ranger --copy-config=all
-
-# Installs tmux plug-ins.
+# Install tmux plug-ins.
 "$HOME/.tmux/plugins/tpm/bin/install_plugins"
 
-# Installs vim plug-ins.
+# Install vim plug-ins.
 vim +PlugClean! +PlugInstall +qall
