@@ -11,8 +11,12 @@
 	undo = reset --soft HEAD^
 
 	# log
-	ls = log --pretty=format:'%C(yellow)%h%C(white) %an <%ae> %>|(80)%ai%Creset%n%C(bold)%w(0,4,4)%s%C(reset)%n%+b'
-	xl = log --graph --decorate --all # [--oneline]
+	l = log --graph --pretty=oneline --abbrev-commit
+	xl = log --graph --decorate --all
+
+[apply]
+	# Detect whitespace errors when applying a patch.
+	whitespace = fix
 
 [branch]
 	autosetupmerge = always
@@ -35,8 +39,8 @@
 	autocorrect = 1
 
 [merge]
-	tool = vimdiffconflicts
 	prompt = false
+	tool = vimdiffconflicts
 
 [mergetool]
 	keepBackup = false
@@ -52,8 +56,8 @@
 
 # https://git-scm.com/docs/git-rerere
 [rerere]
-	enabled = true
 	autoupdate = true
+	enabled = true
 
 [status]
 	# Also shows individual files in untracked directories.
@@ -62,6 +66,11 @@
 [submodule]
 	# Clone new submodules in parallel with as many jobs.
 	fetchJobs = 0
+
+# Always use SSH with Github.
+[url "git@github.com:"]
+	insteadOf = "gh:"
+	pushInsteadOf = "https://github.com/"
 
 # import corp configs if any
 [include]
