@@ -1,17 +1,13 @@
-# dotfiles
+# Dotfiles
 
-This repository is managed with GNU `stow`.
+This repository is managed with GNU [`stow`][1].
 
-Symlink all dotfiles:
+## Workflow
 
-```
-git clone --recurse-submodules "https://github.com/thiagowfx/.dotfiles" "$HOME/.dotfiles"
-(cd "$HOME/.dotfiles" && stow --restow main corp)
-```
-
-Symlink all dotfiles *and* perform all installation steps:
+### Install all dotfiles
 
 ```
-git clone --recurse-submodules "https://github.com/thiagowfx/.dotfiles" "$HOME/.dotfiles"
-"$HOME/.dotfiles/install.sh"
+git clone https://github.com/thiagowfx/.dotfiles && .dotfiles/install.sh
 ```
+
+[1]: https://www.gnu.org/software/stow/

@@ -9,7 +9,7 @@ git -C "$DOTFILESDIR" submodule update --init
 
 # Run stow.
 for package in main corp; do
-	stow -t "$HOME" -d "$DOTFILESDIR" --verbose --restow "$package"
+	stow -t "$HOME" -d "$DOTFILESDIR" -R "$package"
 done
 
 # Install tmux plug-ins.
