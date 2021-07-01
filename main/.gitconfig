@@ -9,6 +9,7 @@
 	shelve = stash
 	st = status
 	undo = reset --soft HEAD^
+	unshelve = stash apply
 
 	# log
 	l = log --graph --pretty=oneline --abbrev-commit
