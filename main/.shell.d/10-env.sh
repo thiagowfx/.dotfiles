@@ -7,8 +7,8 @@ add_env CLICOLOR 1
 add_env EDITOR "vim" vim
 add_env VISUAL "vim" vim
 
-# Add color support to less: --raw-control-chars
-add_env LESS "-R" less
+# sensible defaults for less: --raw-control-chars --ignore-case
+add_env LESS "-R -i" less
 
 # Colored man pages.
 # https://wiki.archlinux.org/index.php/Color_output_in_console#man
