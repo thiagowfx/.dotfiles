@@ -1,3 +1,7 @@
+# DEPRECATED:
+#   Prefer tmux over screen.
+#   This file is preserved for historical purposes as it provides sensible GNU screen defaults.
+
 # don't display lengthy license and version information on startup
 startup_message off
 
@@ -58,5 +62,5 @@ bindkey "^A^[OB" focus down
 bindkey "^A^[OD" focus left
 bindkey "^A^[OC" focus right
 
-# load corp config if any
+# load corp configs if any
 source ~/.screenrc_corp
