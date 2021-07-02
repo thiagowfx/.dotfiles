@@ -184,9 +184,7 @@ set splitbelow splitright switchbuf=useopen
 set updatetime=1000
 
 " Enable persistent undo file.
-if has('persistent_undo')
-	set undofile undodir=~/.vim/undo
-endif
+set undofile
 
 " Set completion mode.
 set wildmode=list:longest
