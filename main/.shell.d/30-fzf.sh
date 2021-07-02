@@ -1,9 +1,6 @@
 # fzf: Fuzzy File Finder
 
 if hash fzf >/dev/null 2>&1; then
-	# fzf default config
-	src_files "/usr/share/doc/fzf/examples/key-bindings.bash"
-
 	# fzf cd: M-c
 	add_env FZF_ALT_C_OPTS "--preview 'tree -C {} | head -100'" fzf
 

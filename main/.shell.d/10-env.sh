@@ -1,4 +1,3 @@
-#!/bin/bash
 # Custom user environment variables
 
 # Colorize CLI output when supported.
