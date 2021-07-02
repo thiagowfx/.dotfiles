@@ -53,7 +53,8 @@ shopt -s histreedit
 # Instead, the resulting line is loaded into the Readline editing buffer, allowing further modification.
 shopt -s histverify
 
-# Sources base shell functions.
+# Source base shell functions.
+# shellcheck source=/dev/null
 [ -r ~/.shellrc ] && . ~/.shellrc
 
 # Load user scripts and functions if existing. Order is important.
