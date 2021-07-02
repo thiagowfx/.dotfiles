@@ -1,7 +1,6 @@
-# This file is sourced by bash for login shells.
-
-# The following line runs your .bashrc and is recommended by the bash info pages.
-# http://mywiki.wooledge.org/DotFiles
+# This file is sourced by bash for login shells (`bash -l`, `-/bin/bash`).
+#
+# The following line sources .bashrc and is recommended by http://mywiki.wooledge.org/DotFiles
 #
 # shellcheck source=/dev/null
 [ -r ~/.bashrc ] && . ~/.bashrc
