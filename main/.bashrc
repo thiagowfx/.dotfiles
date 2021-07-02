@@ -1,41 +1,34 @@
 #!/bin/bash
 
-# bash startup file
-
-# shell is non-interactive; be done now!
+# abort on non-interactive shells
 [[ $- != *i* ]] && return
 
 # History: Ignore space and ignore duplicates.
 HISTCONTROL="ignoreboth"
 
-# History: Set unlimited size. Otherwise set to 50000.
+# History: Set unlimited size. Otherwise manually set to 50000.
 HISTSIZE=
 HISTFILESIZE=
 
 # History: Use standard ISO 8601 timestamp.
-# %F equivalent to %Y-%m-%d
-# %T equivalent to %H:%M:%S (24-hours format)
+#   %F is equivalent to %Y-%m-%d
+#   %T is equivalent to %H:%M:%S (24-hours format)
 HISTTIMEFORMAT='[%F %T] '
 
 # History: Default commands not to record.
-HISTIGNORE="dirs:ls:tree:vdir:clear:history:pwd"
-
-# Prevent file overwrite on stdout redirection.
-# Use `>|` to force redirection to an existing file.
-# Only applies to interactive shells.
-set -o noclobber
+HISTIGNORE="clear:history:ls:pwd:tree"
 
 # Make C-r followed by C-s work in reverse history search.
 stty -ixon
 
 # Complete filenames after flag arguments.
-# https://stackoverflow.com/a/33740951/1745064
+#   https://stackoverflow.com/a/33740951/1745064
 #
 #   $ foo --config=$HOME/.b| <TAB> would expand .bashrc.
 complete -D -o default
 
 # Enable history expansion with space.
-# Typing !!<SPC> will replace the !! with the last command.
+#   Typing !!<SPC> will replace !! with the last command.
 bind Space:magic-space
 
 # Prepend cd to directory names automatically.
@@ -74,13 +67,13 @@ src_files() {
 	done
 }
 
-# Load user scripts and functions if any.
-# Order is important.
+# Load user scripts and functions if any, in alphabetical order.
 src_files "$HOME/.bashrc.d"
+src_files "$HOME/.shell.d"
 
-# add user scripts to $PATH
+# Add user scripts to $PATH.
 pathmunge "$HOME/.bin"
 pathmunge "$HOME/bin"
 
-# Load corp config if any.
+# Load corp configs if any.
 src_files "$HOME/.bashrc_corp"
