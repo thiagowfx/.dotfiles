@@ -62,7 +62,6 @@ xterm.vt100.translations: #override \n\
 *color5:       base0E
 *color6:       base0C
 *color7:       base05
-
 *color8:       base03
 *color9:       base09
 *color10:      base01
