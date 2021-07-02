@@ -1,16 +1,15 @@
 " Vim config file
 "
-" Reload with:
+" Reload vimrc:
 "   :so %
 "   :so $MYVIMRC
 "
-" Load without config:
+" Open vim without vimrc:
 "   $ vim -u NONE
 "   $ vim --clean
 
 " The default vimrc file.
-" It is not loaded automatically if a vimrc file was found so we load it
-" explicitly here.
+" Not loaded automatically if a vimrc file was found, so we load it explicitly.
 source $VIMRUNTIME/defaults.vim
 
 " Set leader key. Default is '\'.
@@ -25,7 +24,7 @@ Plug 'tpope/vim-sensible'
 " Cursor shape change in insert and replace mode
 " Improved mouse support
 " Focus reporting: plays well with tmux and terminal
-" Bracketed Paste mode: automatically handles :set paste
+" Bracketed paste: automatically handles :set paste
 Plug 'wincent/terminus'
 
 " Highlight trailing whitespace.
@@ -48,15 +47,16 @@ Plug 'Yggdroot/indentLine'
 " Async VCS info: git, hg, etc
 Plug 'mhinz/vim-signify'
 
-" A better vimdiff mergetool: 2-way diff
+" A better vimdiff mergetool: 2-way diff.
+"   ~/.gitconfig is set up to use this plugin.
 Plug 'whiteinge/diffconflicts'
 
 " Single-line <-> multi-line statements.
-"   gS: split
-"   gJ: join
+"   gS to split
+"   gJ to join
 Plug 'AndrewRadev/splitjoin.vim'
 
-" Asynchronous Lint Engine:
+" ALE: Asynchronous Lint Engine:
 "   Syntax checking and semantic errors
 "   Language Server Protocol (LSP) client
 "
@@ -64,21 +64,21 @@ Plug 'AndrewRadev/splitjoin.vim'
 "   :ALEFix
 Plug 'dense-analysis/ale'
 
-" (lazily loaded) Multiple language packs
+" Multiple language packs lazily loaded
 Plug 'sheerun/vim-polyglot'
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
 
-" Comment stuff out
+" Toggle comment blocks.
 "   gcc to comment out the current line
 "   gc to comment out in visual mode or the target of a motion
-"   gcgc uncomments a set of adjacent lines
+"   gcgc to uncomment a set of adjacent lines
 Plug 'tpope/vim-commentary'
 
 " Automatically adds `end`, `fi`, etc.
 Plug 'tpope/vim-endwise'
 
-" Helpers for UNIX
+" Helpers for unix
 Plug 'tpope/vim-eunuch', {'on': ['Delete', 'Remove', 'SudoWrite']}
 
 " Smarter '.' repeat
@@ -92,18 +92,19 @@ Plug 'tpope/vim-sleuth'
 "   ]n and [n to jump between SCM conflict markers.
 Plug 'tpope/vim-unimpaired'
 
-" Improved file manager. Activate with '-' (hyphen) key.
+" Improved file manager.
+"   Activate with '-' (hyphen) key.
 Plug 'tpope/vim-vinegar'
 
-" Alignment plugin.
+" Comment alignment plugin.
 "   :EasyAlign <delimiter>
 "
 " E.g.
-"   Visual selection mode + :EasyAlign #
+"   Visual selection mode, :EasyAlign #
 Plug 'junegunn/vim-easy-align', {'on': 'EasyAlign'}
 
-" OSC52 for clipboard copy integration:
-"   C-c to copy to system clipboard
+" OSC52 integration for system clipboard.
+"   C-c to copy to system clipboard.
 Plug 'fcpg/vim-osc52'
 vmap <C-c> y:Oscyank<cr>
 
@@ -114,19 +115,19 @@ runtime! macros/matchit.vim
 
 " :Man man
 source $VIMRUNTIME/ftplugin/man.vim
+cnoreabbrev man Man
 
-" Set color theme
+" Set color theme / scheme
 if &t_Co >= 256
-	" ignore colorscheme if it is not found
 	silent! colorscheme monokai
-	hi Normal ctermbg=none
 	hi NonText ctermbg=none
+	hi Normal ctermbg=none
 endif
 
-" :wq misspellings
-command W w
-command WQ wq
-command Wq wq
+" :w misspellings
+cnoreabbrev W w
+cnoreabbrev WQ wq
+cnoreabbrev Wq wq
 
 " copy until the end of the line
 nnoremap Y y$
@@ -143,7 +144,7 @@ set foldmethod=indent foldlevel=99
 " Highlight search pattern matches.
 set hlsearch
 
-" https://stackoverflow.com/q/2287440
+" https://stackoverflow.com/a/2288438/1745064
 set ignorecase smartcase
 
 " Use one space, not two, after punctuation.
@@ -152,14 +153,16 @@ set nojoinspaces
 " Do not redraw the screen while executing macros. To force, use :redraw.
 set lazyredraw
 
-" Display tab characters
+" Display tab characters.
 " https://vi.stackexchange.com/questions/422/displaying-tabs-as-characters
 set list lcs=tab:\|\ 
 
-" --INSERT-- is not necessary because lightline already displays it.
+" --INSERT-- is not necessary because
+"   - Cursor shape changes,
+"   - Lightline already displays it.
 set noshowmode
 
-" Disable backups and swapfile, use persistent undo instead
+" Disable backups and swapfile, use persistent undo instead.
 set noswapfile nowritebackup
 
 " Show line numbers.
@@ -180,7 +183,7 @@ set smartindent
 " Better splits.
 set splitbelow splitright switchbuf=useopen
 
-" Shorter update time (default: 4s) when vim supports async.
+" Shorter update time (default: 4s) for async vim operations.
 set updatetime=1000
 
 " Enable persistent undo file.
@@ -189,5 +192,5 @@ set undofile
 " Set completion mode.
 set wildmode=list:longest
 
-" Load corp config if any.
+" Load corp configs if any.
 execute "silent! source ~/.vim/vimrc_corp"
