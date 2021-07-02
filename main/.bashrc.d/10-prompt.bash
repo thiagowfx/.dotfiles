@@ -1,6 +1,5 @@
 #!/bin/bash
-#
-# Bash prompt
+# Set bash prompt.
 
 BLUE=$'\e[34;49m'
 GREEN=$'\e[32;49m'
@@ -27,7 +26,7 @@ prompt_command() {
 	PS1+='\[$GREEN\]\u@\h \[$BLUE\]\w'
 
 	# add git prompt
-	PS1+="\\[$PURPLE\\]\$(__git_ps1)"
+	# PS1+="\\[$PURPLE\\]\$(__git_ps1)"
 
 	# add prompt
 	PS1+='\n\[$ORANGE\]>> \[$RESET\]'

@@ -1,3 +1,4 @@
+#!/bin/bash
 # Arch Linux: pacman
 
 if hash pacman >/dev/null 2>&1; then

@@ -1,4 +1,4 @@
-# FZF: Fuzzy File Finder
+# fzf: Fuzzy File Finder
 
 if hash fzf >/dev/null 2>&1; then
 	# fzf default config

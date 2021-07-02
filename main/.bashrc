@@ -53,27 +53,11 @@ shopt -s histreedit
 # Instead, the resulting line is loaded into the Readline editing buffer, allowing further modification.
 shopt -s histverify
 
-# Sources the given files and directories (recursively) if they exist.
-src_files() {
-	for f in "$@"; do
-		# Source directories recursively
-		if [ -d "$f" ]; then
-			src_files "$f"/* || true
-		# Source files
-		elif [ -f "$f" ]; then
-			# shellcheck source=/dev/null
-			. "$f" || true
-		fi
-	done
-}
+# Sources base shell functions.
+[ -r ~/.shellrc ] && . ~/.shellrc
 
-# Load user scripts and functions if any, in alphabetical order.
-src_files "$HOME/.bashrc.d"
-src_files "$HOME/.shell.d"
-
-# Add user scripts to $PATH.
-pathmunge "$HOME/.bin"
-pathmunge "$HOME/bin"
+# Load user scripts and functions if existing. Order is important.
+src_files "$HOME/.shell.d" "$HOME/.bashrc.d"
 
 # Load corp configs if any.
 src_files "$HOME/.bashrc_corp"

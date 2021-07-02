@@ -1,5 +1,4 @@
 #!/bin/bash
-#
 # Custom aliases
 
 # colors
@@ -9,8 +8,12 @@ alias ip="ip --color=auto"
 
 # file listing
 alias ls="ls -Fh --color=auto"
+hash exa >/dev/null 2>&1 && alias ls="exa"
 
-# typos
+# memorization
+alias unstow="stow -D"
+
+# misspellings
 alias gi="git"
 alias gt="git"
 alias sl="ls"
