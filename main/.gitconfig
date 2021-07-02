@@ -6,14 +6,15 @@
 	amend = commit --amend
 	dc = diff --cached
 	ignore = "! curl -L -s https://www.gitignore.io/api/$@"
-	shelve = stash
 	st = status
-	undo = reset --soft HEAD^
-	unshelve = stash apply
 
 	# log
 	l = log --graph --pretty=oneline --abbrev-commit
 	xl = log --graph --decorate --all
+
+	# shelve
+	shelve = stash
+	unshelve = stash apply
 
 [apply]
 	# Detect whitespace errors when applying a patch.
@@ -24,8 +25,8 @@
 	autosetuprebase = always
 
 [core]
-	# Auto-converts CRLF line endings into LF when you add a file to the index, and vice versa when it checks out code onto your filesystem.
-	# Needed for a transparent experience when developing from Windows.
+	# Auto-convert CRLF into LF when adding a file to the index, and vice-versa, when checking out code.
+	# Yields a transparent experience in Windows.
 	autocrlf = input
 	editor = vim
 
@@ -61,18 +62,18 @@
 	enabled = true
 
 [status]
-	# Also shows individual files in untracked directories.
+	# Show individual files in untracked directories.
 	showUntrackedFiles = all
 
 [submodule]
 	# Clone new submodules in parallel with as many jobs.
 	fetchJobs = 0
 
-# Always use SSH with Github.
+# Use SSH with Github.
 [url "git@github.com:"]
 	insteadOf = "gh:"
 	pushInsteadOf = "https://github.com/"
 
-# import corp configs if any
+# Import corp configs if any.
 [include]
 	path = .gitconfig_corp
