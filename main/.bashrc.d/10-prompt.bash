@@ -25,13 +25,13 @@ prompt_command() {
 	# add user, hostname and directory
 	PS1+='\[$GREEN\]\u@\h \[$BLUE\]\w'
 
-	# add git prompt
-	# PS1+="\\[$PURPLE\\]\$(__git_ps1)"
+	# add upstream git prompt if existing
+	hash __git_ps1 &>/dev/null && PS1+="\\[$PURPLE\\]\$(__git_ps1)"
 
 	# add prompt
 	PS1+='\n\[$ORANGE\]>> \[$RESET\]'
 
-	# support OSC7
+	# support OSC7 for VTE-based terminals if existing
 	hash __vte_osc7 &>/dev/null && __vte_osc7
 }
 
