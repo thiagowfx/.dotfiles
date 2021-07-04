@@ -8,7 +8,6 @@ PURPLE=$'\e[35;49m'
 RED=$'\e[31;49m'
 RESET=$'\e[0m'
 
-# https://gist.github.com/lucaslafuga/1766c27ecda6270b9d08
 prompt_command() {
 	# this must be the first line
 	local EXIT="$?"
@@ -25,7 +24,7 @@ prompt_command() {
 	# add user, hostname and directory
 	PS1+='\[$GREEN\]\u@\h \[$BLUE\]\w'
 
-	# add upstream git prompt if existing
+	# add vanilla git prompt if existing
 	hash __git_ps1 &>/dev/null && PS1+="\\[$PURPLE\\]\$(__git_ps1)"
 
 	# add prompt

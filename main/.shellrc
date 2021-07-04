@@ -1,5 +1,5 @@
 #!/bin/bash
-# Base shell functions.
+# Base shell functions for bash and zsh.
 
 # Exports a shell environment variable.
 #   $1 What environment variable to export.

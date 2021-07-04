@@ -1,4 +1,4 @@
-# Custom aliases
+# Custom command defaults
 
 # colors
 alias diff="diff --color=auto"
@@ -16,3 +16,5 @@ alias unstow="stow -D"
 alias gi="git"
 alias gt="git"
 alias sl="ls"
+
+alias dtrx="dtrx -n"
