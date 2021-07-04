@@ -47,6 +47,10 @@ Plug 'Yggdroot/indentLine'
 " Async VCS info: git, hg, etc
 Plug 'mhinz/vim-signify'
 
+" Git wrapper
+Plug 'tpope/vim-fugitive'
+cnoreabbrev Gadd Gwrite
+
 " A better vimdiff mergetool: 2-way diff.
 "   ~/.gitconfig is set up to use this plugin.
 Plug 'whiteinge/diffconflicts'
