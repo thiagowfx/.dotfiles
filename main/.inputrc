@@ -3,8 +3,6 @@
 # Existing programs include FTP, Bash, and GDB.
 #
 # You can re-read this inputrc file with C-x C-r or `bind -f ~/.inputrc`.
-#
-# This config is vi centric but it also supports emacs hybridly.
 
 # First, include any system-wide bindings and variable assignments from /etc/inputrc
 $include /etc/inputrc
