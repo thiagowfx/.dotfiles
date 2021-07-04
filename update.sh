@@ -8,7 +8,7 @@ DOTFILESDIR=$(dirname "$(readlink -f "$0")")
 git -C "$DOTFILESDIR" submodule update --recursive --remote
 
 # Update all tmux plug-ins.
-"$HOME/.tmux/plugins/tpm/bin/update_plugins"
+"$HOME/.tmux/plugins/tpm/bin/update_plugins" all
 
 # Update all vim plug-ins.
 vim +PlugUpgrade +PlugUpdate +qall
