@@ -1,5 +1,8 @@
 ! Dump all properties: `xrdb -q`.
 
+! HiDPI
+*.dpi: 192
+
 ! one of: lcddefault, lcdlight, lcdlegacy, lcdnone
 Xft.lcdfilter: lcddefault
 
@@ -54,21 +57,11 @@ Xft.rgba: rgb
 *.color7:       #f8f8f2
 *.color15:      #f9f8f5
 
-! xterm settings
-xterm.termName: xterm-256color
-xterm.vt100.translations: #override \n\
-        Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
-        Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
-
 ! xcursor
 Xcursor.theme: Breeze_Snow
 Xcursor.size: 64
 
-! font config
-*.faceName: Hermit
-*.faceSize: 10
-
-! HiDPI
-*.dpi: 192
+#include ".Xresources.d/urxvt"
+#include ".Xresources.d/xterm"
 
 ! vim: ft=xdefaults

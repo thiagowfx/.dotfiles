@@ -1,0 +1,5 @@
+! urxvt settings
+urxvt.font: xft:hermit:size=10
+urxvt.scrollBar: false
+
+! vim: ft=xdefaults
