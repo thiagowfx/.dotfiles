@@ -2,4 +2,12 @@
 urxvt.font: xft:hermit:size=10
 urxvt.scrollBar: false
 
+urxvt.perl-ext-common: default,clipboard
+urxvt.iso14755: false
+urxvt.iso14755_52: false
+urxvt.keysym.Control-Meta-c: builtin-string:
+urxvt.keysym.Control-Meta-v: builtin-string:
+urxvt.keysym.Control-Shift-C: eval:selection_to_clipboard
+urxvt.keysym.Control-Shift-V: eval:paste_clipboard
+
 ! vim: ft=xdefaults
