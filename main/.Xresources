@@ -1,7 +1,4 @@
-*.dpi: 144
-
-*.faceName: Hermit
-*.faceSize: 10
+! Dump all properties: `xrdb -q`.
 
 ! one of: lcddefault, lcdlight, lcdlegacy, lcdnone
 Xft.lcdfilter: lcddefault
@@ -17,13 +14,6 @@ Xft.antialias: true
 
 ! text subpixel rendering, one of: none, rgb, bgr, vrgb, vbgr
 Xft.rgba: rgb
-
-! xterm settings
-*loginshell: true
-xterm.termName: xterm-256color
-xterm.vt100.translations: #override \n\
-    Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
-    Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
 
 ! /base16/monokai.dark: https://terminal.sexy/
 
@@ -63,5 +53,22 @@ xterm.vt100.translations: #override \n\
 ! white
 *.color7:       #f8f8f2
 *.color15:      #f9f8f5
+
+! xterm settings
+xterm.termName: xterm-256color
+xterm.vt100.translations: #override \n\
+        Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+        Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
+
+! xcursor
+Xcursor.theme: Breeze_Snow
+Xcursor.size: 64
+
+! font config
+*.faceName: Hermit
+*.faceSize: 10
+
+! HiDPI
+*.dpi: 192
 
 ! vim: ft=xdefaults
