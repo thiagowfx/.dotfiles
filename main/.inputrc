@@ -46,25 +46,12 @@ set skip-completed-text on
 # If set to ‘on’, a character denoting a file’s type is appended to the filename when listing possible completions. The default is ‘off’.
 set visible-stats on
 
-# Turn smart quotes into normal quotes.
-"\xE2\x80\x9C": "\""
-"\xE2\x80\x9D": "\""
-"\xE2\x80\x98": "'"
-"\xE2\x80\x99": "'"
-
-# Turn non-breaking space into a normal space.
-"\xC2\xA0": " "
-
-# Turn minus and em-dash into plain dashes.
-"\xE2\x80\x93": "-"
-"\xE2\x80\x94": "--"
-
-# Turn ellipsis into three dots.
-"\xE2\x80\xA6": "..."
-
-# This allows you to search through your history using the up and down arrows i.e. type "cd" and press the up arrow and you'll search through everything in your history that starts with "cd".
+# This allows you to search through your history using the up and down arrows, or C-p and C-n
+# e.g. type "cd " and press the corresponding key
 "\e[A": history-search-backward
 "\e[B": history-search-forward
+"\C-p": history-search-backward
+"\C-n": history-search-forward
 
 # Navigate back and forward through whitespace.
 "\e\C-b":vi-bWord
