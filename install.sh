@@ -8,9 +8,7 @@ DOTFILESDIR=$(dirname "$(readlink -f "$0")")
 git -C "$DOTFILESDIR" submodule update --init
 
 # Run stow.
-for package in main corp; do
-	stow -t "$HOME" -d "$DOTFILESDIR" -R "$package"
-done
+stow -t "$HOME" -d "$DOTFILESDIR" -R main
 
 # Install all tmux plug-ins.
 "$HOME/.tmux/plugins/tpm/bin/install_plugins"
