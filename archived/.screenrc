@@ -1,7 +1,3 @@
-# DEPRECATED:
-#   Prefer tmux over screen.
-#   This file is preserved for historical purposes as it provides sensible GNU screen defaults.
-
 # don't display lengthy license and version information on startup
 startup_message off
 
