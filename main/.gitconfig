@@ -40,15 +40,18 @@
 [help]
 	autocorrect = 1
 
+[init]
+	defaultBranch = main
+
 [merge]
 	prompt = false
-	tool = vimdiffconflicts
+	tool = diffconflicts
 
 [mergetool]
 	keepBackup = false
 
-# 2-way vimdiff: https://github.com/whiteinge/diffconflicts
-[mergetool "vimdiffconflicts"]
+# https://github.com/whiteinge/diffconflicts
+[mergetool "diffconflicts"]
 	cmd = vim -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
 	trustExitCode = true
 
@@ -72,7 +75,7 @@
 # Use SSH with Github.
 [url "git@github.com:"]
 	insteadOf = "gh:"
-	pushInsteadOf = "https://github.com/"
+	insteadOf = "https://github.com/"
 
 # Import corp configs if any.
 [include]

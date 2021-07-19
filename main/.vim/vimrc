@@ -21,6 +21,11 @@ call plug#begin('~/.vim/plugged')
 " Better defaults
 Plug 'tpope/vim-sensible'
 
+" Automatically follow symlinks
+"   vim-bbye: optional dependency to consistenly wipe buffers without impacting the windows order
+Plug 'moll/vim-bbye'
+Plug 'aymericbeaumet/vim-symlink'
+
 " Cursor shape change in insert and replace mode
 " Improved mouse support
 " Focus reporting: plays well with tmux and terminal
@@ -53,7 +58,8 @@ cnoreabbrev Gadd Gwrite
 
 " A better vimdiff mergetool: 2-way diff.
 "   ~/.gitconfig is set up to use this plugin.
-Plug 'whiteinge/diffconflicts'
+"   :DiffConflicts
+Plug 'whiteinge/diffconflicts', {'on': 'DiffConflicts'}
 
 " Single-line <-> multi-line statements.
 "   gS to split
@@ -67,11 +73,6 @@ Plug 'AndrewRadev/splitjoin.vim'
 " Apply linter fixes:
 "   :ALEFix
 Plug 'dense-analysis/ale'
-
-" Multiple language packs lazily loaded
-Plug 'sheerun/vim-polyglot'
-let g:vim_markdown_conceal = 0
-let g:vim_markdown_conceal_code_blocks = 0
 
 " Toggle comment blocks.
 "   gcc to comment out the current line

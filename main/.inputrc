@@ -7,6 +7,9 @@
 # First, include any system-wide bindings and variable assignments from /etc/inputrc
 $include /etc/inputrc
 
+# Controls what happens when Readline wants to ring the terminal bell. If set to 'none', Readline never rings the bell. If set to 'visible', Readline uses a visible bell if one is available. If set to 'audible' (the default), Readline attempts to ring the terminal's bell.
+set bell-style none
+
 # If set to ‘on’, Readline attempts to briefly move the cursor to an opening parenthesis when a closing parenthesis is inserted. The default is ‘off’.
 set blink-matching-paren on
 
@@ -53,6 +56,6 @@ set visible-stats on
 "\C-p": history-search-backward
 "\C-n": history-search-forward
 
-# Navigate back and forward through whitespace.
+# Navigate back and forward through whitespace with ESC C-b / C-f.
 "\e\C-b":vi-bWord
 "\e\C-f":vi-fWord
