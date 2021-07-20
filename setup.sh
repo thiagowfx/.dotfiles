@@ -1,4 +1,4 @@
-#!/bin/bash -u
+#!/bin/bash
 # Script to manage the dotfiles environment.
 
 # Full path to the dotfiles directory.

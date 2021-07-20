@@ -6,7 +6,7 @@ font:
   normal:
     family: Hermit
 
-# /base16/monokai.dark: https://terminal.sexy/
+# /base16/monokai.dark from https://terminal.sexy/
 colors:
   # Default colors
   primary:
@@ -34,3 +34,6 @@ colors:
     magenta: '0xae81ff'
     cyan:    '0xa1efe4'
     white:   '0xf9f8f5'
+
+key_bindings:
+  - { key: T, mods: Control|Shift, action: SpawnNewInstance }

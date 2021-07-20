@@ -7,13 +7,13 @@ This repository is managed with GNU [`stow`][1].
 ### 1) Install all dotfiles
 
 ```
-git clone --recurse https://github.com/thiagowfx/.dotfiles && .dotfiles/setup.sh --install
+git clone --recurse https://github.com/thiagowfx/.dotfiles ~/.dotfiles && ~/.dotfiles/setup.sh --install
 ```
 
 ### 2) Update all dotfiles
 
 ```
-.dotfiles/setup.sh --update
+~/.dotfiles/setup.sh --update
 ```
 
 [1]: https://www.gnu.org/software/stow/

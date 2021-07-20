@@ -1,4 +1,5 @@
 #!/bin/zsh
+# zsh uses its own ZLE (Zsh Line Editor) instead of readline (~/.inputrc).
 
 # Prepend cd to directory names automatically.
 setopt autocd
@@ -38,7 +39,7 @@ autoload -Uz compinit && compinit
 # Saving and quitting $EDITOR returns to command prompt with the edited command
 # inserted, but does not execute it until ENTER is pressed.
 # https://unix.stackexchange.com/q/6620
-autoload -U edit-command-line
+autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^x^e' edit-command-line
 
@@ -56,6 +57,17 @@ zle -N down-line-or-beginning-search
 # Asssitant functions for help command.
 # E.g. git commit <Esc h> will open the man page of `git commit` instead of `git`.
 autoload -Uz run-help-git run-help-p4
+
+# bindkey '^[[A' history-substring-search-up
+# bindkey '^[[B' history-substring-search-down
+# bindkey -M emacs '^P' history-substring-search-up
+# bindkey -M emacs '^N' history-substring-search-down
+# autoload -U bashcompinit && bashcompinit
+# autoload -U colors && colors
+# autoload -U complist
+# autoload -Uz vcs_info
+# autoload -U zutil
+
 # Source base shell functions.
 [ -r ~/.shellrc ] && . ~/.shellrc
 

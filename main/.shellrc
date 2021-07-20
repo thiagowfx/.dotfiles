@@ -1,11 +1,24 @@
 #!/bin/bash
 # Base shell functions for bash and zsh.
 
+# Adds an alias.
+#  $1 What alias to create.
+#  $2 The value to alias to.
+#  $3 Optional. If provided will only alias if the program exists.
+#  $4 Optional. If provided will only alias if the file exists.
+add_alias() {
+        [ -n "$3" ] && ! hash "$3" >/dev/null 2>&1 && return
+        [ -n "$4" ] && [ ! -e "$4" ] && return
+
+        # shellcheck disable=SC2139
+        alias "$1"="$2"
+}
+
 # Exports a shell environment variable.
 #   $1 What environment variable to export.
 #   $2 The value to export.
-#   $3 Optional. If provided will only export the variable if the program exists.
-#   $4 Optional. If provided will only export the variable if the file exists.
+#   $3 Optional. If provided will only export if the program exists.
+#   $4 Optional. If provided will only export if the file exists.
 add_env() {
         [ -n "$3" ] && ! hash "$3" >/dev/null 2>&1 && return
         [ -n "$4" ] && [ ! -e "$4" ] && return
