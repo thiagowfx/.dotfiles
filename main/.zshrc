@@ -13,8 +13,7 @@ setopt nobeep
 # Try to correct the spelling of commands.
 setopt correct
 
-# Use emacs keybindings.
-#   List all keybindings with `bindkey`.
+# Use emacs keybindings. List all keybindings with `bindkey`.
 setopt emacs
 
 # When this option is set and the default zsh-style globbing is in effect,
@@ -48,25 +47,27 @@ bindkey '^x^e' edit-command-line
 #   prompt -p to preview all themes.
 autoload -Uz promptinit && promptinit
 
+# This allows you to search through your history using the up and down arrows, or C-p and C-n
+# e.g. type "cd " and press the corresponding key
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 [[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
 [[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
+bindkey -- "^P" up-line-or-beginning-search
+bindkey -- "^N" down-line-or-beginning-search
 
 # Asssitant functions for help command.
 # E.g. git commit <Esc h> will open the man page of `git commit` instead of `git`.
 autoload -Uz run-help-git run-help-p4
 
-# bindkey '^[[A' history-substring-search-up
-# bindkey '^[[B' history-substring-search-down
-# bindkey -M emacs '^P' history-substring-search-up
-# bindkey -M emacs '^N' history-substring-search-down
-# autoload -U bashcompinit && bashcompinit
-# autoload -U colors && colors
-# autoload -U complist
+# bindkey '^[[A' history-substring-search-up # up arrow
+# bindkey '^[[B' history-substring-search-down # down arrow
+# autoload -Uz bashcompinit && bashcompinit
+# autoload -Uz colors && colors
+# autoload -Uz complist
 # autoload -Uz vcs_info
-# autoload -U zutil
+# autoload -Uz zutil
 
 # Source base shell functions.
 [ -r ~/.shellrc ] && . ~/.shellrc

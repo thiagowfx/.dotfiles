@@ -34,7 +34,7 @@ install() {
 update() {
 	# Update all git submodules to their latest tips.
 	report "git submodules update"
-	git -C "$DOTFILESDIR" submodule update --recursive --remote
+	git -C "$DOTFILESDIR" submodule update --remote
 
 	# Re-run stow, symlinking dotfiles.
 	report "stow update"

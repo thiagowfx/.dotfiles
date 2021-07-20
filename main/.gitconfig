@@ -59,6 +59,10 @@
 	default = simple
 	followTags = true
 
+# https://git-scm.com/docs/git-rebase
+[rebase]
+	autosquash = true
+
 # https://git-scm.com/docs/git-rerere
 [rerere]
 	autoupdate = true

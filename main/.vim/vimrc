@@ -55,6 +55,7 @@ Plug 'mhinz/vim-signify'
 " Git wrapper
 Plug 'tpope/vim-fugitive'
 cnoreabbrev Gadd Gwrite
+cnoreabbrev Gdiff Gdiffsplit
 
 " A better vimdiff mergetool: 2-way diff.
 "   ~/.gitconfig is set up to use this plugin.
@@ -192,10 +193,13 @@ set splitbelow splitright switchbuf=useopen
 set updatetime=1000
 
 " Enable persistent undo file.
-set undofile
+set undofile undodir=~/.cache/vim/undo/
 
 " Set completion mode.
 set wildmode=list:longest
+
+" https://thoughtbot.com/blog/5-useful-tips-for-a-better-commit-message
+autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " Load corp configs if any.
 execute "silent! source ~/.vim/vimrc_corp"

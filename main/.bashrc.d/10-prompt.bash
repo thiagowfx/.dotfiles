@@ -14,6 +14,9 @@ PINK=$'\e[31;49m'
 PURPLE=$'\e[35;49m'
 YELLOW=$'\e[37;49m'
 
+# git prompt customization: https://wiki.archlinux.org/title/Git
+GIT_PS1_SHOWDIRTYSTATE=1
+
 prompt_command() {
 	# this must be the first line
 	local EXIT="$?"
@@ -39,5 +42,4 @@ prompt_command() {
 	# support OSC7 for VTE-based terminals if existing
 	hash __vte_osc7 &>/dev/null && __vte_osc7
 }
-
 PROMPT_COMMAND="prompt_command"
