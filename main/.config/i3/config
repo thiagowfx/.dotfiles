@@ -158,7 +158,7 @@ bar {
         strip_workspace_numbers no
         mode dock
         modifier $mod
-        font pango:Hermit 10
+        font pango:Hermit 9
 # $i3-theme-bar
 }
 

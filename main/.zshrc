@@ -73,7 +73,7 @@ autoload -Uz run-help-git run-help-p4
 [ -r ~/.shellrc ] && . ~/.shellrc
 
 # Load user scripts and functions if existing. Order is important.
-src_files "$HOME/.shell.d" "$HOME/.zshrc.d"
+src_files "$HOME/.profile.d" "$HOME/.zshrc.d"
 
 # Load corp configs if any.
 src_files "$HOME/.zshrc_corp"
