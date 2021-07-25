@@ -54,8 +54,9 @@ Plug 'mhinz/vim-signify'
 
 " Git wrapper
 Plug 'tpope/vim-fugitive'
-cnoreabbrev Gadd Gwrite
-cnoreabbrev Gdiff Gdiffsplit
+command Gadd Gwrite
+command Gdiff Gdiffsplit
+command GDiff Gdiffsplit
 
 " A better vimdiff mergetool: 2-way diff.
 "   ~/.gitconfig is set up to use this plugin.
@@ -121,7 +122,6 @@ runtime! macros/matchit.vim
 
 " :Man man
 source $VIMRUNTIME/ftplugin/man.vim
-cnoreabbrev man Man
 
 " Set color theme / scheme
 if &t_Co >= 256
@@ -131,9 +131,9 @@ if &t_Co >= 256
 endif
 
 " :w misspellings
-cnoreabbrev W w
-cnoreabbrev WQ wq
-cnoreabbrev Wq wq
+command W w
+command WQ wq
+command Wq wq
 
 " copy until the end of the line
 nnoremap Y y$

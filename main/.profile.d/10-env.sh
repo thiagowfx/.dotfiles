@@ -1,5 +1,9 @@
 # Custom user environment variables
 
+# Sensible $PATH
+pathmunge "$HOME/.bin"
+pathmunge "$HOME/bin"
+
 # Colorize CLI output when supported.
 add_env CLICOLOR 1
 

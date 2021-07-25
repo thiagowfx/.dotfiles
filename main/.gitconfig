@@ -34,6 +34,15 @@
 	# Cache credentials in memory for a short period of time. See git-credential-cache[1] for details.
 	helper = cache
 
+# https://git-scm.com/docs/diff-config
+[diff]
+	# i/ = index, w/ = working copy, instead of default a/ and b/
+	mnemonicprefix = true
+	# Detect copies in addition to renames
+	renames = copies
+	# A la `git submodule summary`
+	submodule = log
+
 [fetch]
 	prune = true
 
@@ -41,6 +50,7 @@
 	autocorrect = 1
 
 [init]
+	# Previously, master
 	defaultBranch = main
 
 [merge]
@@ -56,7 +66,7 @@
 	trustExitCode = true
 
 [push]
-	default = simple
+	default = current
 	followTags = true
 
 # https://git-scm.com/docs/git-rebase
@@ -71,15 +81,12 @@
 [status]
 	# Show individual files in untracked directories.
 	showUntrackedFiles = all
+	# Show summary of commits for modified submodules
+	submoduleSummary = true
 
 [submodule]
 	# Clone new submodules in parallel with as many jobs.
 	fetchJobs = 0
-
-# Use SSH with Github.
-[url "git@github.com:"]
-	insteadOf = "gh:"
-	insteadOf = "https://github.com/"
 
 # Import corp configs if any.
 [include]

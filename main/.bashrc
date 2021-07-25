@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# abort on non-interactive shells
+# Abort on non-interactive shells.
+# This must be the first entry because it is sourced from ~/.bash_profile.
 [[ $- != *i* ]] && return
 
 # History: Ignore space and ignore duplicates.

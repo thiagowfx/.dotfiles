@@ -10,43 +10,43 @@ $include /etc/inputrc
 # Controls what happens when Readline wants to ring the terminal bell. If set to 'none', Readline never rings the bell. If set to 'visible', Readline uses a visible bell if one is available. If set to 'audible' (the default), Readline attempts to ring the terminal's bell.
 set bell-style none
 
-# If set to ‘on’, Readline attempts to briefly move the cursor to an opening parenthesis when a closing parenthesis is inserted. The default is ‘off’.
+# If set to 'on', Readline attempts to briefly move the cursor to an opening parenthesis when a closing parenthesis is inserted. The default is 'off'.
 set blink-matching-paren on
 
-# If set to ‘on’ (the default), Readline attempts to bind the control characters treated specially by the kernel’s terminal driver to their Readline equivalents.
+# If set to 'on' (the default), Readline attempts to bind the control characters treated specially by the kernel's terminal driver to their Readline equivalents.
 # This is necessary so that C-w works in vi mode as expected:
 #   cannot-delete|'
 # https://unix.stackexchange.com/q/303631/41858
 set bind-tty-special-chars off
 
-# If set to ‘on’, when listing completions, Readline displays the common prefix of the set of possible completions using a different color. The color definitions are taken from the value of the LS_COLORS environment variable. The default is ‘off’.
+# If set to 'on', when listing completions, Readline displays the common prefix of the set of possible completions using a different color. The color definitions are taken from the value of the LS_COLORS environment variable. The default is 'off'.
 set colored-completion-prefix on
 
-# If set to ‘on’, Readline displays possible completions using different colors to indicate their file type. The color definitions are taken from the value of the LS_COLORS environment variable. The default is ‘off’.
+# If set to 'on', Readline displays possible completions using different colors to indicate their file type. The color definitions are taken from the value of the LS_COLORS environment variable. The default is 'off'.
 set colored-stats on
 
-# If set to ‘on’, Readline performs filename matching and completion in a case-insensitive fashion. The default value is ‘off’.
+# If set to 'on', Readline performs filename matching and completion in a case-insensitive fashion. The default value is 'off'.
 set completion-ignore-case on
 
-# If set to ‘on’, and completion-ignore-case is enabled, Readline treats hyphens (‘-’) and underscores (‘_’) as equivalent when performing case-insensitive filename matching and completion. The default value is ‘off’.
+# If set to 'on', and completion-ignore-case is enabled, Readline treats hyphens ('-') and underscores ('_') as equivalent when performing case-insensitive filename matching and completion. The default value is 'off'.
 set completion-map-case on
 
-# When set to ‘on’, Readline will configure the terminal in a way that will enable it to insert each paste into the editing buffer as a single string of characters, instead of treating each character as if it had been read from the keyboard. This can prevent pasted characters from being interpreted as editing commands. The default is ‘off’.
+# When set to 'on', Readline will configure the terminal in a way that will enable it to insert each paste into the editing buffer as a single string of characters, instead of treating each character as if it had been read from the keyboard. This can prevent pasted characters from being interpreted as editing commands. The default is 'off'.
 set enable-bracketed-paste on
 
-# If set to ‘on’, completed names which are symbolic links to directories have a slash appended (subject to the value of mark-directories). The default is ‘off’.
+# If set to 'on', completed names which are symbolic links to directories have a slash appended (subject to the value of mark-directories). The default is 'off'.
 set mark-symlinked-directories on
 
-# This alters the default behavior of the completion functions. If set to ‘on’, words which have more than one possible completion cause the matches to be listed immediately instead of ringing the bell. The default value is ‘off’. Display suggestions with a single <TAB>, instead of two.
+# This alters the default behavior of the completion functions. If set to 'on', words which have more than one possible completion cause the matches to be listed immediately instead of ringing the bell. The default value is 'off'. Display suggestions with a single <TAB>, instead of two.
 set show-all-if-ambiguous on
 
-# This alters the default behavior of the completion functions in a fashion similar to show-all-if-ambiguous. If set to ‘on’, words which have more than one possible completion without any possible partial completion (the possible completions don’t share a common prefix) cause the matches to be listed immediately instead of ringing the bell. The default value is ‘off’.
+# This alters the default behavior of the completion functions in a fashion similar to show-all-if-ambiguous. If set to 'on', words which have more than one possible completion without any possible partial completion (the possible completions don't share a common prefix) cause the matches to be listed immediately instead of ringing the bell. The default value is 'off'.
 set show-all-if-unmodified on
 
-# If set to ‘on’, this alters the default completion behavior when inserting a single match into the line. It’s only active when performing completion in the middle of a word. If enabled, readline does not insert characters from the completion that match characters after point in the word being completed, so portions of the word following the cursor are not duplicated. For instance, if this is enabled, attempting completion when the cursor is after the ‘e’ in ‘Makefile’ will result in ‘Makefile’ rather than ‘Makefilefile’, assuming there is a single possible completion. The default value is ‘off’.
+# If set to 'on', this alters the default completion behavior when inserting a single match into the line. It's only active when performing completion in the middle of a word. If enabled, readline does not insert characters from the completion that match characters after point in the word being completed, so portions of the word following the cursor are not duplicated. For instance, if this is enabled, attempting completion when the cursor is after the 'e' in 'Makefile' will result in 'Makefile' rather than 'Makefilefile', assuming there is a single possible completion. The default value is 'off'.
 set skip-completed-text on
 
-# If set to ‘on’, a character denoting a file’s type is appended to the filename when listing possible completions. The default is ‘off’.
+# If set to 'on', a character denoting a file's type is appended to the filename when listing possible completions. The default is 'off'.
 set visible-stats on
 
 # This allows you to search through your history using the up and down arrows, or C-p and C-n
@@ -55,7 +55,3 @@ set visible-stats on
 "\e[B": history-search-forward
 "\C-p": history-search-backward
 "\C-n": history-search-forward
-
-# Navigate back and forward through whitespace with ESC C-b / C-f.
-"\e\C-b":vi-bWord
-"\e\C-f":vi-fWord
