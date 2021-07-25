@@ -1,6 +1,12 @@
 [submodule "main/.tmux/plugins/tpm"]
 	path = main/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+	shallow = true
 [submodule "main/.vim/vim-plug"]
 	path = main/.vim/vim-plug
 	url = https://github.com/junegunn/vim-plug
+	shallow = true
+[submodule "vendor/grml-etc-core"]
+	path = vendor/grml-etc-core
+	url = https://github.com/grml/grml-etc-core
+	shallow = true
