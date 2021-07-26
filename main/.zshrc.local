@@ -22,6 +22,24 @@ setopt auto_list
 # treated as the unabbreviated form.
 setopt glob_star_short
 
+# History: Ignore entries that start with space and ignore duplicates.
+setopt hist_ignore_space hist_ignore_all_dups
+
+# Append to the history file immediately.
+setopt inc_append_history
+
+# Skip duplicates when looking up history entries.
+setopt hist_find_no_dups
+
+# Increase maximum number of entries in memory and in the history file, respectively.
+HISTSIZE=50000
+SAVEHIST=50000
+
+# History: Use standard ISO 8601 timestamp.
+#   %F is equivalent to %Y-%m-%d
+#   %T is equivalent to %H:%M:%S (24-hours format)
+HISTTIMEFORMAT='[%F %T] '
+
 # Use `C-x C-e` to edit current command in $EDITOR with multi-line support.
 # Saving and quitting $EDITOR returns to command prompt with the edited command
 # inserted, but does not execute it until ENTER is pressed.

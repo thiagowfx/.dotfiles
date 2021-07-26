@@ -4,7 +4,7 @@
 # This must be the first entry because it is sourced from ~/.bash_profile.
 [[ $- != *i* ]] && return
 
-# History: Ignore space and ignore duplicates.
+# History: Ignore entries that start with space and ignore duplicates.
 HISTCONTROL="ignoreboth"
 
 # History: Set unlimited size. Otherwise manually set to 50000.
