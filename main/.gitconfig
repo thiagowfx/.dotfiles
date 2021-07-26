@@ -22,7 +22,6 @@
 
 [branch]
 	autosetupmerge = always
-	autosetuprebase = always
 
 [core]
 	# Auto-convert CRLF into LF when adding a file to the index, and vice-versa, when checking out code.
@@ -50,11 +49,10 @@
 	autocorrect = 1
 
 [init]
-	# Previously, master
-	defaultBranch = main
+	defaultBranch = master
 
 [merge]
-	prompt = false
+	prompt = true
 	tool = diffconflicts
 
 [mergetool]
@@ -64,6 +62,9 @@
 [mergetool "diffconflicts"]
 	cmd = vim -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
 	trustExitCode = true
+
+[pull]
+	rebase = true
 
 [push]
 	default = current
@@ -91,3 +92,11 @@
 # Import corp configs if any.
 [include]
 	path = .gitconfig_corp
+
+# https://git-scm.com/docs/git-send-email
+[sendemail]
+	smtpEncryption = tls
+	smtpServer = smtp.gmail.com
+	smtpUser = tbperrotta@gmail.com
+	smtpServerPort = 587
+	annotate = yes
