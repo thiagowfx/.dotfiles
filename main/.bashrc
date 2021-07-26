@@ -59,7 +59,5 @@ shopt -s histverify
 [ -r ~/.shellrc ] && . ~/.shellrc
 
 # Load user scripts and functions if existing. Order is important.
+# Corp config is handled as part of .bashrc.d.
 src_files "$HOME/.profile.d" "$HOME/.bashrc.d"
-
-# Load corp configs if any.
-src_files "$HOME/.bashrc_corp"
