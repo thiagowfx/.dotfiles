@@ -16,7 +16,11 @@ add_env LESS "-R -i" less
 
 # Colored man pages: https://wiki.archlinux.org/title/Color_output_in_console#man
 # Display progress percentage in man pages: https://unix.stackexchange.com/a/329092/41858
-add_env MANPAGER "less -R --use-color -Dd+r -Du+b -s -M +Gg" less
+if hash less >/dev/null 2>&1 && [ "$(less -V | head -n 1 | cut -f2 -d' ')" -ge 580 ]; then
+	add_env MANPAGER "less -R --use-color -Dd+r -Du+b -s -M +Gg"
+else
+	add_env MANPAGER "less -R -s -M +Gg" less
+fi
 
 if hash fzf >/dev/null 2>&1; then
 	# fzf history: C-r
