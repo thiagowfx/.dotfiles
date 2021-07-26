@@ -144,8 +144,8 @@ set cursorline
 " Always use vertical diffs.
 set diffopt+=vertical
 
-" Set folding method and do not fold by default.
-set foldmethod=indent foldlevel=99
+" Disable fold.
+set nofoldenable
 
 " Highlight search pattern matches.
 set hlsearch
