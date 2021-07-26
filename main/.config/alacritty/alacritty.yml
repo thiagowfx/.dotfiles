@@ -6,7 +6,7 @@ font:
   normal:
     family: Hermit
 
-# /base16/monokai.dark from https://terminal.sexy/
+# Theme: /base16/monokai.dark from https://terminal.love/
 colors:
   # Default colors
   primary:

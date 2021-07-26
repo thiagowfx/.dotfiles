@@ -1,6 +1,8 @@
 # Dotfiles
 
-This repository is managed with GNU [`stow`][1].
+This repository is managed with GNU [`stow`][stow].
+
+[stow]: https://www.gnu.org/software/stow/
 
 ## Workflow
 
@@ -16,12 +18,4 @@ git clone --recurse https://github.com/thiagowfx/.dotfiles ~/.dotfiles && ~/.dot
 ~/.dotfiles/setup.sh --update
 ```
 
-[1]: https://www.gnu.org/software/stow/
-
-## `archived/`
-
-Preserved for historical purposes, providing sensible defaults.
-
-### GNU screen
-
-- Prefer tmux over GNU screen.
+Note: `archived/` is preserved for historical purposes.

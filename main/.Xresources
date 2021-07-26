@@ -18,7 +18,7 @@ Xft.antialias: true
 ! text subpixel rendering, one of: none, rgb, bgr, vrgb, vbgr
 Xft.rgba: rgb
 
-! /base16/monokai.dark from https://terminal.sexy/
+! Theme: /base16/monokai.dark from https://terminal.love/
 
 ! special
 *.background:   #272822
