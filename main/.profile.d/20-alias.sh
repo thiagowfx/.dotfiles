@@ -1,9 +1,12 @@
 # Sensible command defaults
 
 # color on
-add_alias diff "diff --color=auto" diff
 add_alias grep "grep --color=auto" grep
 add_alias ip "ip --color=auto" ip
+
+# diff
+add_alias diff "diff --color=auto" diff
+add_alias diff colordiff colordiff
 
 # file listing
 add_alias ls "ls -Fh --color=auto"

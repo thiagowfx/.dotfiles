@@ -2,6 +2,14 @@
 	name = Thiago Perrotta
 	email = tbperrotta@gmail.com
 
+# https://git-scm.com/docs/git-send-email
+[sendemail]
+	annotate = yes
+	smtpEncryption = tls
+	smtpServer = smtp.gmail.com
+	smtpServerPort = 587
+	smtpUser = tbperrotta@gmail.com
+
 [alias]
 	amend = commit --amend
 	dc = diff --cached
@@ -92,11 +100,3 @@
 # Import corp configs if any.
 [include]
 	path = .gitconfig_corp
-
-# https://git-scm.com/docs/git-send-email
-[sendemail]
-	smtpEncryption = tls
-	smtpServer = smtp.gmail.com
-	smtpUser = tbperrotta@gmail.com
-	smtpServerPort = 587
-	annotate = yes

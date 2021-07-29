@@ -11,15 +11,15 @@ add_env CLICOLOR 1
 add_env EDITOR "vim" vim
 add_env VISUAL "vim" vim
 
-# Sensible defaults for less: --RAW-CONTROL-CHARS --ignore-case
+# Sensible defaults for less: --raw-control-chars --ignore-case
 add_env LESS "-R -i" less
 
-# Colored man pages: https://wiki.archlinux.org/title/Color_output_in_console#man
 # Display progress percentage in man pages: https://unix.stackexchange.com/a/329092/41858
+add_env MANPAGER "less -R -s -M +Gg" less
+
+# Colored man pages: https://wiki.archlinux.org/title/Color_output_in_console#man
 if hash less >/dev/null 2>&1 && [ "$(less -V | head -n 1 | cut -f2 -d' ')" -ge 580 ]; then
-	add_env MANPAGER "less -R --use-color -Dd+r -Du+b -s -M +Gg"
-else
-	add_env MANPAGER "less -R -s -M +Gg" less
+	add_env MANPAGER "less -R -s -M +Gg --use-color -Dd+r -Du+b" less
 fi
 
 if hash fzf >/dev/null 2>&1; then
@@ -27,7 +27,7 @@ if hash fzf >/dev/null 2>&1; then
 	add_env FZF_CTRL_R_OPTS "--preview-window up:2:wrap --preview 'echo {}'"
 
 	# fzf select: C-t
-	add_env FZF_CTRL_T_OPTS "--preview '(highlight -O ansi {} 2>/dev/null || cat {} || tree -C {}) 2>/dev/null | head -100'"
+	add_env FZF_CTRL_T_OPTS "--preview '(highlight -O ansi {} 2>/dev/null || cat {} || tree -C {}) 2>/dev/null | head -50'"
 
 	# fzf cd: M-c
 	add_env FZF_ALT_C_OPTS "--preview 'tree -C {} | head -100'"
