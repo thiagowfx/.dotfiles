@@ -22,7 +22,7 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=1
 xrdb -merge ~/.Xresources
 
 # Autostart applications.
-dex --autostart --environment tilingwm &
+dex --autostart --environment X-Tiling &
 
 if [ -z "$CHROME_REMOTE_DESKTOP_SESSION" ]; then
 	# Apply screen layout.
