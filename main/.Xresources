@@ -61,7 +61,22 @@ Xft.rgba: rgb
 Xcursor.theme: Breeze_Snow
 Xcursor.size: 64
 
-#include ".Xresources.d/urxvt"
-#include ".Xresources.d/xterm"
+! urxvt settings
+urxvt.font: xft:hermit:size=9
+urxvt.scrollBar: false
+urxvt.perl-ext-common: default,clipboard
+urxvt.iso14755: false
+urxvt.iso14755_52: false
+urxvt.keysym.Control-Meta-c: builtin-string:
+urxvt.keysym.Control-Meta-v: builtin-string:
+urxvt.keysym.Control-Shift-C: eval:selection_to_clipboard
+urxvt.keysym.Control-Shift-V: eval:paste_clipboard
+
+! xterm settings
+xterm.termName: xterm-256color
+xterm.vt100.faceName: hermit:size=9
+xterm.vt100.translations: #override \n\
+		Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+		Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
 
 ! vim: ft=xdefaults
