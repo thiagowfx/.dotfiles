@@ -29,7 +29,7 @@ add_env() {
 # Adds a path to $PATH if it exists.
 #   $1 The path to add.
 #   $2 Optional. If "--after", appends instead of prepending.
-pathmunge() {
+path_munge() {
         if [ -e "$1" ]; then
                 if ! echo "$PATH" | grep -E -q "(^|:)$1($|:)"; then
                         if [ "$2" = "--after" ]; then
