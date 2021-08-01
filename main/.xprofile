@@ -1,0 +1,49 @@
+#!/bin/sh
+#
+# Sourced from most display managers.
+# ~/.xinitrc is configured to source it as well.
+#
+# https://wiki.archlinux.org/title/Xprofile
+
+# Make Chrome pick up proxy settings stored in gconf.
+export DESKTOP_SESSION=gnome
+
+# Fix decoration for java applications for tiling window managers.
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+# Set HiDPI settings for GTK3+.
+export GDK_SCALE=2
+export GDK_DPI_SCALE=0.5
+
+# Set HiDPI settings for QT.
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
+export QT_SCALE_FACTOR=2
+
+# Set preferred terminal emulator.
+for f in alacritty tilix urxvt; do
+	hash "$f" >/dev/null 2>&1 && export TERMINAL="$f" && break
+done
+unset f
+
+# Set wallpaper.
+[ -x ~/.fehbg ] && ~/.fehbg
+
+# Start misc applications.
+numlockx
+udiskie --smart-tray &
+unclutter --fork
+
+# Set up screensaver and auto lockscreen.
+xset s 1200  # 20min
+if hash xscreensaver >/dev/null 2>&1; then
+	# Start xscreensaver daemon.
+	xscreensaver -no-splash &
+	~/.bin/xscreensaver-watch-hook &
+	xss-lock -l -- xscreensaver-command -lock &
+elif hash xsecurelock >/dev/null 2>&1; then
+	xss-lock -l -n /usr/lib/xsecurelock/dimmer -- xsecurelock &
+fi
+
+# Autostart XDG applications (.desktop files).
+# https://wiki.archlinux.org/title/XDG_Autostart
+dex --autostart --environment X-Tiling &
