@@ -1,8 +1,0 @@
-#!/bin/sh
-
-# Debian-specific: Load ~/.Xresources and the specified WM / session while chromoting.
-if hash i3 >/dev/null 2>&1; then
-	exec /etc/X11/Xsession "/usr/bin/i3 -a"
-fi
-
-# vim: ft=sh
