@@ -30,6 +30,7 @@
 
 [branch]
 	autosetupmerge = always
+	autosetuprebase = always
 
 [core]
 	# Auto-convert CRLF into LF when adding a file to the index, and vice-versa, when checking out code.

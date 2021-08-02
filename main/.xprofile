@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Sourced from most display managers.
+# Sourced by most display managers.
 # ~/.xinitrc is configured to source it as well.
 #
 # https://wiki.archlinux.org/title/Xprofile

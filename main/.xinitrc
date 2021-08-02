@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# startx(1), xinit(1)
+# Sourced by startx(1), xinit(1).
 #
 # https://wiki.archlinux.org/title/Xinit
 
@@ -28,7 +28,7 @@ for f in /etc/xprofile ~/.xprofile; do
 done
 unset f
 
-# Start window manager.
+# Start window manager / session.
 #   startx (default WM)
 #   startx ~/.xinitrc <wm> (custom WM)
 case ${1:-i3} in
