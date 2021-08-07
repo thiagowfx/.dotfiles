@@ -7,6 +7,10 @@
 " Open vim without vimrc:
 "   $ vim -u NONE
 "   $ vim --clean
+"
+" List all keybind mappings:
+"   :map, :nmap, :vmap, :imap
+"   :verbose <map>
 
 " The default vimrc file.
 " Not loaded automatically if a vimrc file was found, so we load it explicitly.
@@ -21,15 +25,16 @@ call plug#begin('~/.vim/plugged')
 " Better defaults
 Plug 'tpope/vim-sensible'
 
-" Automatically follow symlinks
+" Automatically follow symlinks, helpful for ~/.dotfiles
 "   vim-bbye: optional dependency to consistenly wipe buffers without impacting the windows order
 Plug 'moll/vim-bbye'
 Plug 'aymericbeaumet/vim-symlink'
 
-" Cursor shape change in insert and replace mode
-" Improved mouse support
-" Focus reporting: plays well with tmux and terminal
-" Bracketed paste: automatically handles :set paste
+" Miscellaneous features:
+"   Cursor shape change in insert and replace mode
+"   Improved mouse support
+"   Focus reporting: plays well with tmux and terminal
+"   Bracketed paste: automatically handles :set paste
 Plug 'wincent/terminus'
 
 " Highlight trailing whitespace.
@@ -42,8 +47,13 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'crusoexia/vim-monokai'
 
 " Minimalist statusline / tabline.
-" The colorscheme of lightline is independent of the editor colorscheme.
 Plug 'itchyny/lightline.vim'
+
+" The colorscheme of lightline is independent of the editor colorscheme.
+"   'One' provides sensible defaults and works in 8-color mode (Linux TTY).
+let g:lightline = {
+      \ 'colorscheme': 'one',
+      \ }
 
 " Display thin vertical lines at each indentation level for code indented with spaces.
 "   :IndentLinesToggle
@@ -135,7 +145,7 @@ command W w
 command WQ wq
 command Wq wq
 
-" copy until the end of the line
+" copy until the end of the line, default behavior copies the entire line
 nnoremap Y y$
 
 " Add horizontal cursor line.
