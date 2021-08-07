@@ -56,6 +56,10 @@
 [fetch]
 	prune = true
 
+[format]
+	# Automatically sign-off patches when using format-patch.
+	signoff = true
+
 [help]
 	autocorrect = 1
 
