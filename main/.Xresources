@@ -76,7 +76,7 @@ urxvt.keysym.Control-Shift-V: eval:paste_clipboard
 xterm.termName: xterm-256color
 xterm.vt100.faceName: hermit:size=9
 xterm.vt100.translations: #override \n\
-		Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
-		Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
+	Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+	Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
 
 ! vim: ft=xdefaults

@@ -35,6 +35,9 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+Return exec i3-sensible-terminal
 
+# start a web browser
+bindsym $mod+g exec gtk-launch "$(xdg-settings get default-web-browser)"
+
 # kill focused window
 bindsym $mod+Shift+c kill
 
@@ -189,9 +192,6 @@ default_floating_border pixel 3
 
 # disable floating for pop-ups
 for_window [window_role="pop-up"] floating disable
-
-# custom keybindings for google chrome
-bindsym $mod+g exec --no-startup-id google-chrome
 
 # multimedia volume keys
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && killall -SIGUSR1 i3status

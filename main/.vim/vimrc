@@ -11,10 +11,15 @@
 " List all keybind mappings:
 "   :map, :nmap, :vmap, :imap
 "   :verbose <map>
+"
+" Open command history:
+"   :<C-f>
 
 " The default vimrc file.
 " Not loaded automatically if a vimrc file was found, so we load it explicitly.
-source $VIMRUNTIME/defaults.vim
+if filereadable(expand("$VIMRUNTIME/defaults.vim"))
+  source $VIMRUNTIME/defaults.vim
+endif
 
 " Set leader key. Default is '\'.
 let mapleader=","
@@ -203,7 +208,9 @@ set splitbelow splitright switchbuf=useopen
 set updatetime=1000
 
 " Enable persistent undo file.
-set undofile undodir=~/.cache/vim/undo/
+if has('persistent_undo')
+  set undofile undodir=~/.cache/vim/undo/
+endif
 
 " Set completion mode.
 set wildmode=list:longest
