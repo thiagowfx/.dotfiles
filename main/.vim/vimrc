@@ -125,6 +125,9 @@ Plug 'tpope/vim-vinegar'
 "   Visual selection mode, :EasyAlign #
 Plug 'junegunn/vim-easy-align', {'on': 'EasyAlign'}
 
+" :FZF for vim.
+Plug 'junegunn/fzf.vim', {'on': 'FZF'}
+
 " OSC52 integration for system clipboard.
 "   C-c to copy to system clipboard.
 Plug 'fcpg/vim-osc52'
@@ -139,10 +142,10 @@ runtime! macros/matchit.vim
 source $VIMRUNTIME/ftplugin/man.vim
 
 " Set color theme / scheme
-if &t_Co >= 256
-	silent! colorscheme monokai
-	hi NonText ctermbg=none
-	hi Normal ctermbg=none
+if &term =~ '256color'
+	colorscheme monokai
+else
+  colorscheme slate
 endif
 
 " :w misspellings
