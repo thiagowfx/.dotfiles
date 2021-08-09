@@ -40,11 +40,11 @@
         "#f9f8f5"
       ],
       "enable-blink": false,
-      "font-family": "\"PT Mono\", \"DejaVu Sans Mono\", \"Noto Sans Mono\", \"Everson Mono\", FreeMono, Menlo, Terminal, monospace",
+      "font-family": "\"Fira Code\", \"PT Mono\", \"DejaVu Sans Mono\", \"Noto Sans Mono\", \"Everson Mono\", FreeMono, Menlo, Terminal, monospace",
       "font-size": "12",
       "foreground-color": "rgba(197, 200, 198, 1)",
       "scroll-on-output": true,
-      "user-css-text": "@font-face{\n    font-family: 'Fira Code';\n    src: url('https://raw.githubusercontent.com/tonsky/FiraCode/master/distr/eot/FiraCode-Regular.eot') format('embedded-opentype'),\n         url('https://raw.githubusercontent.com/tonsky/FiraCode/master/distr/woff2/FiraCode-Regular.woff2') format('woff2'),\n         url('https://raw.githubusercontent.com/tonsky/FiraCode/master/distr/woff/FiraCode-Regular.woff') format('woff'),\n         url('https://raw.githubusercontent.com/tonsky/FiraCode/master/distr/ttf/FiraCode-Regular.ttf') format('truetype');\n    font-weight: normal;\n    font-style: normal;\n}\n\n* {\n    // -webkit-font-feature-settings: \"liga\" on, \"calt\" on; \n    -webkit-font-smoothing: antialiased;\n    text-rendering: optimizeLegibility; \n    font-family: 'Fira Code';\n}"
+      "user-css-text": "@font-face{\n    font-family: 'Fira Code';\n    src: url('https://raw.githubusercontent.com/tonsky/FiraCode/5.2/distr/woff2/FiraCode-Regular.woff2') format('woff2'),\n         url('https://raw.githubusercontent.com/tonsky/FiraCode/5.2/distr/woff/FiraCode-Regular.woff') format('woff'),\n         url('https://raw.githubusercontent.com/tonsky/FiraCode/5.2/distr/ttf/FiraCode-Regular.ttf') format('truetype');\n    font-weight: normal;\n    font-style: normal;\n}\n\n* {\n    -webkit-font-feature-settings: \"liga\" on, \"calt\" on;\n    -webkit-font-smoothing: antialiased;\n    text-rendering: optimizeLegibility;\n    font-family: \"Fira Code\", \"PT Mono\", \"DejaVu Sans Mono\", \"Noto Sans Mono\", \"Everson Mono\", FreeMono, Menlo, Terminal, monospace;\n}"
     }
   }
 }
