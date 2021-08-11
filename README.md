@@ -1,7 +1,8 @@
 # Dotfiles
 
-This repository is managed with GNU [`stow`][stow].
+This repository is managed with GNU [`stow`][stow] and GNU [`make`][make].
 
+[make]: https://www.gnu.org/software/make/
 [stow]: https://www.gnu.org/software/stow/
 
 ## Workflow
@@ -9,13 +10,15 @@ This repository is managed with GNU [`stow`][stow].
 ### 1) Install all dotfiles
 
 ```
-git clone --recurse https://github.com/thiagowfx/.dotfiles ~/.dotfiles && ~/.dotfiles/setup.sh --install
+git clone --recurse https://github.com/thiagowfx/.dotfiles ~/.dotfiles && make -C ~/.dotfiles install
 ```
 
 ### 2) Update all dotfiles
 
 ```
-~/.dotfiles/setup.sh --update
+make -C ~/.dotfiles update
 ```
 
-Note: `archived/` is preserved for historical purposes.
+## Notes
+
+- `archived/` is not supported, it is preserved for historical purposes only.
