@@ -6,9 +6,6 @@
       {
         "id": "b44c",
         "json": {
-          "description": "user@host",
-          "username": "user",
-          "hostname": "host",
           "argstr": "-t -- tmux new -A -s main"
         }
       }
