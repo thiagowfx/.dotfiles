@@ -1,9 +1,5 @@
 #!/bin/zsh
 
-# Disable unneeded features from grml-zsh-config.
-# https://grml.org/zsh/grmlzshrc.html
-MAILCHECK=0
-
 # Fish shell-like syntax highlighting for Zsh.
 src_files "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 

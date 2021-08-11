@@ -51,6 +51,13 @@ bindkey '^x^e' edit-command-line
 # Compatibility with bash completion.
 autoload -Uz bashcompinit && bashcompinit
 
+# Disable unneeded features from grml-zsh-config.
+# https://grml.org/zsh/grmlzshrc.html
+MAILCHECK=0
+
+# Customize grml prompt.
+zstyle ':prompt:grml:left:setup' items rc change-root user at host path vcs newline percent
+
 # Source base shell functions.
 [ -r ~/.shellrc ] && . ~/.shellrc
 
