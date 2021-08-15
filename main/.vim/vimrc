@@ -4,6 +4,9 @@
 "   :so %
 "   :so $MYVIMRC
 "
+" Idempotent vim reload:
+"   if has('vim_starting') ...
+"
 " Open vim without vimrc:
 "   $ vim -u NONE
 "   $ vim --clean
@@ -15,11 +18,10 @@
 " Open command history:
 "   :<C-f>
 
-" The default vimrc file.
-" Not loaded automatically if a vimrc file was found, so we load it explicitly.
-if filereadable(expand("$VIMRUNTIME/defaults.vim"))
-  source $VIMRUNTIME/defaults.vim
-endif
+" Load vim defaults.
+" :h skip_defaults_vim
+unlet! skip_defaults_vim
+source $VIMRUNTIME/defaults.vim
 
 " Set leader key. Default is '\'.
 let mapleader=","
@@ -69,9 +71,9 @@ Plug 'mhinz/vim-signify'
 
 " Git wrapper
 Plug 'tpope/vim-fugitive'
-command Gadd Gwrite
-command Gdiff Gdiffsplit
-command GDiff Gdiffsplit
+command! Gadd Gwrite
+command! Gdiff Gdiffsplit
+command! GDiff Gdiffsplit
 
 " A better vimdiff mergetool: 2-way diff.
 "   ~/.gitconfig is set up to use this plugin.
@@ -133,6 +135,9 @@ Plug 'junegunn/fzf.vim', {'on': 'FZF'}
 Plug 'fcpg/vim-osc52'
 vmap <C-c> y:Oscyank<cr>
 
+" Open file.ext:line:col at the appropriate line and col.
+Plug 'wsdjeg/vim-fetch'
+
 call plug#end()
 
 " Better %
@@ -142,16 +147,17 @@ runtime! macros/matchit.vim
 source $VIMRUNTIME/ftplugin/man.vim
 
 " Set color theme / scheme
+" Inspect $TERM instad of t_Co as it works in neovim as well
 if &term =~ '256color'
-	colorscheme monokai
+  colorscheme monokai
 else
   colorscheme slate
 endif
 
 " :w misspellings
-command W w
-command WQ wq
-command Wq wq
+command! W w
+command! WQ wq
+command! Wq wq
 
 " copy until the end of the line, default behavior copies the entire line
 nnoremap Y y$
@@ -191,6 +197,7 @@ set noswapfile nowritebackup
 
 " Show line numbers.
 set number
+set relativenumber
 
 " Simplify some display messages.
 set shortmess=atI
@@ -222,4 +229,4 @@ set wildmode=list:longest
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " Load corp configs if any.
-execute "silent! source ~/.vim/vimrc_corp"
+silent! source ~/.vim/vimrc_corp
