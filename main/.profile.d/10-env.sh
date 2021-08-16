@@ -30,7 +30,7 @@ if hash fzf >/dev/null 2>&1; then
 	add_env FZF_CTRL_T_OPTS "--preview '(highlight -O ansi {} 2>/dev/null || cat {} || tree -C {}) 2>/dev/null | head -50'"
 
 	# fzf cd: M-c
-	add_env FZF_ALT_C_OPTS "--preview 'tree -C {} | head -100'"
+	add_env FZF_ALT_C_OPTS "--preview 'tree -C {} | head -50'"
 fi
 
 # Set linux console theme
