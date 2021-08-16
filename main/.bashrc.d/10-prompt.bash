@@ -39,7 +39,7 @@ prompt_command() {
 	[ $EXIT != 0 ] && PS1+="\\[$RED\\]$EXIT "
 
 	# add user, hostname and directory
-	PS1+='\[$BLUE\]\u\[$RESET\]@\h \[$BOLD\]\w\[$RESET\]'
+	PS1+='\[$BOLD\]\[$BLUE\]\u\[$RESET\]@\h \[$BOLD\]\w\[$RESET\]'
 
 	# add vanilla git prompt if existing
 	hash __git_ps1 &>/dev/null && PS1+="\\[$GREEN\\]\$(__git_ps1)"
