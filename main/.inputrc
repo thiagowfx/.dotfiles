@@ -13,12 +13,6 @@ set bell-style none
 # If set to 'on', Readline attempts to briefly move the cursor to an opening parenthesis when a closing parenthesis is inserted. The default is 'off'.
 set blink-matching-paren on
 
-# If set to 'on' (the default), Readline attempts to bind the control characters treated specially by the kernel's terminal driver to their Readline equivalents.
-# This is necessary so that C-w works in vi mode as expected:
-#   cannot-delete|'
-# https://unix.stackexchange.com/q/303631/41858
-set bind-tty-special-chars off
-
 # If set to 'on', when listing completions, Readline displays the common prefix of the set of possible completions using a different color. The color definitions are taken from the value of the LS_COLORS environment variable. The default is 'off'.
 set colored-completion-prefix on
 
