@@ -3,8 +3,20 @@ general {
 	interval = 10
 }
 
+order += "memory"
+order += "wireless _first_"
 order += "tztime local"
+
+memory {
+	format = "%used"
+	threshold_degraded = "15%"
+}
 
 tztime local {
 	format = "%Y-%m-%d %H:%M"
+}
+
+wireless _first_ {
+	format_up = "%essid %ip"
+	format_down = "wifi down"
 }
