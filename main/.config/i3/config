@@ -9,10 +9,6 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $action_exit "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes' 'i3-msg exit'"
-set $action_launch_apps "exec rofi -show drun -sidebar-mode || i3-dmenu-desktop"
-set $action_lockscreen "xscreensaver-command -lock || xsecurelock"
-
 # special keys
 set $Alt Mod1
 set $Super Mod4
@@ -35,15 +31,14 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+Return exec i3-sensible-terminal
 
-# start a web browser
+# start the default web browser
 bindsym $mod+g exec gtk-launch "$(xdg-settings get default-web-browser)"
 
 # kill focused window
 bindsym $mod+Shift+c kill
 
 # start rofi / dmenu
-bindsym $mod+d $action_launch_apps
-bindsym $mod+p $action_launch_apps
+bindsym $mod+p exec rofi -show-icons -modi window#run#drun -show drun -sidebar-mode
 
 # change focus
 bindsym $mod+Left focus left
@@ -125,7 +120,7 @@ bindsym $mod+Shift+bracketright move workspace to output right
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec $action_exit
+bindsym $mod+Shift+e exec i3-nagbar -t warning -m 'Exit i3?' -b 'Yes' 'i3-msg exit'
 
 # resize window (you can also use the mouse for that)
 set $i3resize_step 10
@@ -176,10 +171,10 @@ bindsym $mod+n workspace next_on_output
 bindsym $mod+Tab workspace back_and_forth
 
 # rename current workspace on-the-fly
-bindsym $mod+x exec i3-msg \"rename workspace to \\\"$(rofi -dmenu -p rename)\\\"\"
+bindsym $mod+x exec i3-input -F "rename workspace to %s" -P "rename: "
 
 # lock screen
-bindsym Ctrl+$mod+l exec --no-startup-id $action_lockscreen
+bindsym Ctrl+$Alt+l exec --no-startup-id xscreensaver-command -lock || xsecurelock
 
 # automatic back-and-forth when switching to the current workspace
 workspace_auto_back_and_forth yes
