@@ -151,6 +151,7 @@ bindsym $mod+r mode "resize"
 bar {
     status_command i3status
     position top
+    workspace_min_width 25
 
     # https://github.com/altdesktop/i3-style
     # i3-style -o ~/.config/i3/config -r mate
@@ -181,7 +182,7 @@ bindsym $mod+Tab workspace back_and_forth
 workspace_auto_back_and_forth yes
 
 # rename current workspace on-the-fly
-bindsym $mod+x exec i3-input -F "rename workspace to %s" -P "rename: "
+bindsym $mod+x exec i3-input -F "rename workspace to %s" -P "New name: "
 
 # lock screen
 bindsym Ctrl+Mod1+l exec xscreensaver-command -lock || xsecurelock
