@@ -192,6 +192,12 @@ default_border normal 2
 # set default border for floating windows
 default_floating_border pixel 2
 
+# hide container borders adjacent to the screen edges
+hide_edge_borders smart
+
+# set window title's text alignment
+title_align center
+
 # multimedia volume keys
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && killall -SIGUSR1 i3status
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && killall -SIGUSR1 i3status
