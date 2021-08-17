@@ -58,7 +58,7 @@ Xft.rgba: rgb
 *.color15:      #f9f8f5
 
 ! xcursor
-Xcursor.theme: Breeze_Snow
+Xcursor.theme: capitaine-cursors
 Xcursor.size: 64
 
 ! urxvt settings
