@@ -188,10 +188,10 @@ bindsym $mod+x exec i3-input -F "rename workspace to %s" -P "New name: "
 bindsym Ctrl+Mod1+l exec xscreensaver-command -lock || xsecurelock
 
 # set default border
-default_border normal 2
+default_border normal 3
 
 # set default border for floating windows
-default_floating_border pixel 2
+default_floating_border pixel 3
 
 # hide container borders adjacent to the screen edges
 hide_edge_borders smart
