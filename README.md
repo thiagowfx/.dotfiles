@@ -7,18 +7,14 @@ This repository is managed with GNU [`stow`][stow] and GNU [`make`][make].
 
 ## Workflow
 
-### 1) Install all dotfiles
+### 1) Install
 
 ```
 git clone --recurse https://github.com/thiagowfx/.dotfiles ~/.dotfiles && make -C ~/.dotfiles install
 ```
 
-### 2) Update all dotfiles
+### 2) Update
 
 ```
 make -C ~/.dotfiles update
 ```
-
-## Notes
-
-- `archived/` is not supported, it is preserved for historical purposes only.
