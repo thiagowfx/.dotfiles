@@ -1,8 +1,7 @@
 # Config file for GNU screen(1).
 #
 # Reload screen config:
-#   C-a r, or
-#   C-a R
+#   C-a r
 #
 # List all keybindings:
 #   C-a ?
@@ -45,7 +44,6 @@ rendition so = ck
 
 # split focus
 bind o focus next
-bind S eval 'split' 'focus down' 'screen'
 bind - eval 'split' 'focus down' 'screen'
 bind | eval 'split -v' 'focus right' 'screen'
 
@@ -54,10 +52,8 @@ bind "^K" kill
 
 # reload configuration file
 bind r source ~/.screenrc
-bind R source ~/.screenrc
 
-# disable C-a s, which freezes the screen
-# alternatively could be resolved with C-a q
+# disable C-a s, which freezes the screen otherwise it needs C-a q to unfreeze.
 bind s
 
 # disable prefix ^X which locks the screen, bind it to remove
@@ -70,8 +66,7 @@ bindkey "^A^[OB" focus down
 bindkey "^A^[OD" focus left
 bindkey "^A^[OC" focus right
 
-# Enable true (24-bit) colors instead of 256 colors (8-bit) if supported.
-# Supported on GNU Screen v5 onwards.
+# v5.0+: enable true (24-bit) colors instead of 256 colors (8-bit) if supported.
 truecolor on
 
 # load corp configs if any
