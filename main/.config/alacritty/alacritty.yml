@@ -1,3 +1,5 @@
+# Full config: https://github.com/alacritty/alacritty/blob/master/alacritty.yml
+
 env:
   TERM: xterm-256color
 

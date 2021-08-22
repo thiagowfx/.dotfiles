@@ -232,8 +232,11 @@ endif
 " Set completion mode.
 set wildmode=list:longest
 
-" https://thoughtbot.com/blog/5-useful-tips-for-a-better-commit-message
-autocmd Filetype gitcommit setlocal spell textwidth=72
+" https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+augroup git
+  autocmd!
+  autocmd Filetype gitcommit setlocal spell textwidth=72
+augroup end
 
 " Load corp configs if any.
 silent! source ~/.vim/vimrc_corp

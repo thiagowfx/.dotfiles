@@ -58,7 +58,7 @@ Xft.rgba: rgb
 *.color15:      #f9f8f5
 
 ! xcursor
-Xcursor.theme: capitaine-cursors
+Xcursor.theme: capitaine-cursors-light
 Xcursor.size: 64
 
 ! urxvt settings
