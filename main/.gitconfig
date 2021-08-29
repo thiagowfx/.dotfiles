@@ -46,8 +46,6 @@
 [diff]
 	# Make it easier to distinguish moved snippets of code within the same file.
 	colorMoved = default
-	# i/ = index, w/ = working copy, instead of default a/ and b/
-	mnemonicprefix = true
 	# Detect copies in addition to renames
 	renames = copies
 	# A la `git submodule summary`
