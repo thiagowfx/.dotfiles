@@ -15,7 +15,7 @@ colors:
     background: '0x272822'
     foreground: '0xf8f8f2'
 
-    # Normal colors
+  # Normal colors
   normal:
     black:   '0x272822'
     red:     '0xf92672'
@@ -26,7 +26,7 @@ colors:
     cyan:    '0xa1efe4'
     white:   '0xf8f8f2'
 
-    # Bright colors
+  # Bright colors
   bright:
     black:   '0x75715e'
     red:     '0xf92672'
@@ -41,4 +41,10 @@ key_bindings:
   - { key: T, mods: Control|Shift, action: SpawnNewInstance }
 
 mouse:
+  # X11 unclutter-like behavior
   hide_when_typing: true
+
+selection:
+  # ChromeOS hterm-like behavior
+  # Both Shift+Insert / Middle-Click and <C-v> paste the selection.
+  save_to_clipboard: true
