@@ -61,17 +61,6 @@ Xft.rgba: rgb
 Xcursor.theme: capitaine-cursors-light
 Xcursor.size: 64
 
-! urxvt settings
-urxvt.font: xft:hermit:size=9
-urxvt.scrollBar: false
-urxvt.perl-ext-common: default,clipboard
-urxvt.iso14755: false
-urxvt.iso14755_52: false
-urxvt.keysym.Control-Meta-c: builtin-string:
-urxvt.keysym.Control-Meta-v: builtin-string:
-urxvt.keysym.Control-Shift-C: eval:selection_to_clipboard
-urxvt.keysym.Control-Shift-V: eval:paste_clipboard
-
 ! xterm settings
 xterm.termName: xterm-256color
 xterm.vt100.faceName: hermit:size=9
