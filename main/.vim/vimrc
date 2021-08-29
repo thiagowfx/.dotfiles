@@ -103,7 +103,10 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 
 " Helpers for unix
-Plug 'tpope/vim-eunuch', {'on': ['Delete', 'Mkdir', 'Remove', 'SudoWrite']}
+Plug 'tpope/vim-eunuch', {'on': ['Delete', 'Remove', 'SudoWrite']}
+
+" Automatically create any non-existent directories before writing the buffer.
+Plug 'pbrisbin/vim-mkdir'
 
 " Smarter '.' repeat
 Plug 'tpope/vim-repeat'
@@ -192,7 +195,7 @@ set lazyredraw
 
 " Display tab characters.
 " https://vi.stackexchange.com/questions/422/displaying-tabs-as-characters
-set list lcs=tab:\|\ 
+set list lcs=tab:\|\ ,trail:·,nbsp:·
 
 " --INSERT-- is not necessary because
 "   - Cursor shape changes,
@@ -239,4 +242,6 @@ augroup git
 augroup end
 
 " Load corp configs if any.
-silent! source ~/.vim/vimrc_corp
+if filereadable($HOME . "/.vim/vimrc_corp")
+  source ~/.vim/vimrc_corp
+endif
