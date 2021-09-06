@@ -54,13 +54,15 @@ autoload -Uz bashcompinit && bashcompinit
 # Disable unneeded features from grml-zsh-config.
 # https://grml.org/zsh/grmlzshrc.html
 MAILCHECK=0
+set noshare_history
 
 # Customize grml prompt.
+#   Make it 2-line instead of one
 zstyle ':prompt:grml:left:setup' items rc change-root user at host path vcs newline percent
 
 # Source base shell functions.
 [ -r ~/.shellrc ] && . ~/.shellrc
 
 # Load user scripts and functions if existing. Order is important.
-# Corp config is handled as part of .bashrc.d.
+# Corp config is handled as part of .zshrc.d.
 src_files "$HOME/.profile.d" "$HOME/.zshrc.d"
