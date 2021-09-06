@@ -7,12 +7,8 @@
 # this file and re-run i3-config-wizard(1).
 #
 # See https://i3wm.org/docs/userguide.html for a complete reference!
-#
-# Special keys
-#   Mod1: Alt
-#   Mod4: Super
 
-# Modifier key.
+# Modifier key (Mod1: Alt, Mod4: Super/Win)
 set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -162,6 +158,7 @@ bar {
         separator #aaaaaa
         background #3c3b37
         statusline #ffffff
+
         focused_workspace #526532 #526532 #ffffff #282828
         active_workspace #aea79f #aea79f #3c3b37 #928374
         inactive_workspace #3c3b37 #3c3b37 #aea79f #928374
@@ -169,6 +166,7 @@ bar {
     }
 }
 
+# Theme colors
 client.focused #526532 #526532 #ffffff #a4cb64
 client.focused_inactive #aea79f #aea79f #3c3b37 #aea79f
 client.unfocused #3c3b37 #3c3b37 #aea79f #3c3b37
