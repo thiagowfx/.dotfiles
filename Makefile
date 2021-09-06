@@ -1,7 +1,7 @@
 # Manage the dotfiles environment.
 
 # List of modules to install.
-MODULES := main screen
+MODULES := main screen x11
 
 # Abort if stow is not installed.
 ifeq (, $(shell which stow))
