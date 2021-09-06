@@ -1,15 +1,18 @@
 # Manage the dotfiles environment.
 
-DOTFILESDIR := $(shell dirname "$(readlink -f "$0")")
-MODULES := main
+# List of modules to install.
+MODULES := main screen
 
+# Abort if stow is not installed.
 ifeq (, $(shell which stow))
-  $(error "No stow in $(PATH), run apt install stow first")
+  $(error "No stow in $$PATH, install stow first")
 endif
+
+DOTFILESDIR := $(shell dirname "$(readlink -f "$0")")
 
 all: install update
 
-install: submodules-install stow tmux-install vim-install
+install: submodules stow tmux vim
 
 uninstall: unstow
 
@@ -23,29 +26,29 @@ stow:
 unstow:
 	stow -t ~ -d $(DOTFILESDIR) --delete $(MODULES)
 
-submodules-install:
+submodules:
 	git -C $(DOTFILESDIR) submodule update --init
 
-submodules-update: submodules-install
+submodules-update: submodules
 	git -C $(DOTFILESDIR) submodule update --remote
 
 tmux-clean:
 	~/.tmux/plugins/tpm/bin/clean_plugins
 
-tmux-install:
+tmux:
 	~/.tmux/plugins/tpm/bin/install_plugins
 
-tmux-update: tmux-install
+tmux-update: tmux
 	~/.tmux/plugins/tpm/bin/update_plugins all
 
 vim-clean:
 	vim +PlugClean! +qall
 
-vim-install:
+vim:
 	vim +PlugInstall +qall
 
-vim-update: vim-install
+vim-update: vim
 	vim +PlugUpgrade +PlugUpdate +qall
 
 .NOTPARALLEL:
-.PHONY: all install uninstall update clean
+.PHONY: all install uninstall update clean stow unstow submodules submodules-update tmux-clean tmux tmux-update vim-clean vim vim-update

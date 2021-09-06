@@ -10,8 +10,23 @@ main/.ssh/config.d/*
 #
 #   git ignore <topic>,<topic2> >> .gitignore
 #
-# Created by https://www.toptal.com/developers/gitignore/api/vim
-# Edit at https://www.toptal.com/developers/gitignore?templates=vim
+# Created by https://www.toptal.com/developers/gitignore/api/archlinuxpackages,vim
+# Edit at https://www.toptal.com/developers/gitignore?templates=archlinuxpackages,vim
+
+### ArchLinuxPackages ###
+*.tar
+*.tar.*
+*.jar
+*.exe
+*.msi
+*.zip
+*.tgz
+*.log
+*.log.*
+*.sig
+
+pkg/
+src/
 
 ### Vim ###
 # Swap
@@ -34,4 +49,4 @@ tags
 # Persistent undo
 [._]*.un~
 
-# End of https://www.toptal.com/developers/gitignore/api/vim
+# End of https://www.toptal.com/developers/gitignore/api/archlinuxpackages,vim
