@@ -20,6 +20,12 @@ update: submodules-update stow tmux-update vim-update
 
 clean: tmux-clean vim-clean
 
+archlinux:
+	makepkg -sirc
+
+archlinux-uninstall:
+	sudo pacman -Rnsc thiagowfx-dotfiles-meta
+
 stow:
 	stow -t ~ -d $(DOTFILESDIR) --restow $(MODULES)
 
@@ -51,4 +57,4 @@ vim-update: vim
 	vim +PlugUpgrade +PlugUpdate +qall
 
 .NOTPARALLEL:
-.PHONY: all install uninstall update clean stow unstow submodules submodules-update tmux-clean tmux tmux-update vim-clean vim vim-update
+.PHONY: all install uninstall update clean archlinux archlinux-uninstall stow unstow submodules submodules-update tmux-clean tmux tmux-update vim-clean vim vim-update
