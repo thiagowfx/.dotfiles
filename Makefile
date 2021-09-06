@@ -3,9 +3,14 @@
 # List of modules to install.
 MODULES := main screen x11
 
+# Abort if git is not installed.
+ifeq (, $(shell which git))
+  $(error "No git in $$PATH, install it first")
+endif
+
 # Abort if stow is not installed.
 ifeq (, $(shell which stow))
-  $(error "No stow in $$PATH, install stow first")
+  $(error "No stow in $$PATH, install it first")
 endif
 
 DOTFILESDIR := $(shell dirname "$(readlink -f "$0")")
