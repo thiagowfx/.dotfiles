@@ -45,7 +45,7 @@ prompt_command() {
 	hash __git_ps1 &>/dev/null && PS1+="\\[$GREEN\\]\$(__git_ps1)"
 
 	# add prompt
-	PS1+='\n\[$ORANGE\]>> \[$RESET\]'
+	PS1+='\n\[$ORANGE\]❯ \[$RESET\]'
 
 	# support OSC7 for VTE-based terminals if existing
 	hash __vte_osc7 &>/dev/null && __vte_osc7
