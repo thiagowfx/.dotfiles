@@ -36,7 +36,7 @@ fi
 # Set linux console theme
 # /base16/monokai.dark from https://terminal.love/
 if [ "$TERM" = "linux" ]; then
-	/bin/echo -e "
+	echo -e "
 	\e]P0272822
 	\e]P1f92672
 	\e]P2a6e22e
