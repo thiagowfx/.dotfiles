@@ -36,7 +36,7 @@ prompt_command() {
 	PS1="\\[$RESET\\]"
 
 	# add exit code from previous command if unsuccessful
-	[ $EXIT != 0 ] && PS1+="\\[$RED\\]$EXIT "
+	[ $EXIT != 0 ] && PS1+="\\[$BOLD\\]\\[$RED\\]$EXIT "
 
 	# add user, hostname and directory
 	PS1+='\[$BOLD\]\[$BLUE\]\u\[$RESET\]@\h \[$BOLD\]\w\[$RESET\]'
