@@ -78,9 +78,9 @@
 
 [pager]
 	# diff-highlight isn't usually in $PATH, fail gracefully
-	diff = "(diff-highlight 2>/dev/null || cat) | ${PAGER:-less -RFX}"
-	log  = "(diff-highlight 2>/dev/null || cat) | ${PAGER:-less -RFX}"
-	show = "(diff-highlight 2>/dev/null || cat) | ${PAGER:-less -RFX}"
+	diff = "(diff-highlight 2>/dev/null || cat) | ${PAGER:-less}"
+	log  = "(diff-highlight 2>/dev/null || cat) | ${PAGER:-less}"
+	show = "(diff-highlight 2>/dev/null || cat) | ${PAGER:-less}"
 
 [pull]
 	rebase = true
