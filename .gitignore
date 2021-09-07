@@ -1,4 +1,4 @@
-main/.ssh/config.d/*
+ssh/.ssh/config.d/*
 
 # Managed with gitignore.io
 #
