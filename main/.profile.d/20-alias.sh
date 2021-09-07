@@ -1,16 +1,12 @@
 # Sensible command defaults
 
 # color on
+add_alias diff "diff --color=auto" diff
 add_alias grep "grep --color=auto" grep
 add_alias ip "ip --color=auto" ip
 
-# diff
-add_alias diff "diff --color=auto" diff
-add_alias diff colordiff colordiff
-
-# file listing
-add_alias ls "ls -Fh --color=auto"
-add_alias ls exa exa
+# drop-in replacements
+add_alias ls "ls -Fh --color=auto" ls && add_alias ls "exa -F" exa
 
 # misspellings
 add_alias gi git git
@@ -21,7 +17,8 @@ add_alias sl ls
 add_alias unstow "stow -D" stow
 
 # sensible defaults
-add_alias dtrx "dtrx -n"
+add_alias dtrx "dtrx -n" dtrx
+add_alias fpp "fpp -ko" fpp
 
-# verbosity increased
+# verbosity++
 add_alias pkgfile "pkgfile -v" pkgfile
