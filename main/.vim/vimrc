@@ -136,7 +136,7 @@ Plug 'junegunn/fzf.vim', {'on': 'FZF'}
 " OSC52 integration for system clipboard.
 "   C-c to copy to system clipboard.
 Plug 'fcpg/vim-osc52'
-vmap <C-c> y:Oscyank<cr>
+vmap <C-c> y:Oscyank<cr>gv
 
 " Open file.ext:line:col at the appropriate line and col.
 Plug 'wsdjeg/vim-fetch'
