@@ -19,7 +19,7 @@ all: install update
 
 install: submodules stow tmux vim
 
-update: submodules-update stow tmux-update vim-update
+update: stow tmux-update vim-update
 
 clean: unstow tmux-clean vim-clean
 
@@ -38,7 +38,7 @@ unstow:
 submodules:
 	git -C $(DOTFILESDIR) submodule update --init
 
-submodules-update: submodules
+pull: submodules
 	git -C $(DOTFILESDIR) submodule update --remote
 
 tmux-clean:
@@ -60,4 +60,4 @@ vim-update: vim
 	vim +PlugUpgrade +PlugUpdate +qall
 
 .NOTPARALLEL:
-.PHONY: all install update clean archlinux archlinux-clean stow unstow submodules submodules-update tmux-clean tmux tmux-update vim-clean vim vim-update
+.PHONY: all install update clean archlinux archlinux-clean stow unstow submodules pull tmux-clean tmux tmux-update vim-clean vim vim-update
