@@ -19,16 +19,14 @@ all: install update
 
 install: submodules stow tmux vim
 
-uninstall: unstow
-
 update: submodules-update stow tmux-update vim-update
 
-clean: tmux-clean vim-clean
+clean: unstow tmux-clean vim-clean
 
 archlinux:
 	makepkg -sirc
 
-archlinux-uninstall:
+archlinux-clean:
 	sudo pacman -Rnsc thiagowfx-dotfiles-meta
 
 stow:
@@ -62,4 +60,4 @@ vim-update: vim
 	vim +PlugUpgrade +PlugUpdate +qall
 
 .NOTPARALLEL:
-.PHONY: all install uninstall update clean archlinux archlinux-uninstall stow unstow submodules submodules-update tmux-clean tmux tmux-update vim-clean vim vim-update
+.PHONY: all install update clean archlinux archlinux-clean stow unstow submodules submodules-update tmux-clean tmux tmux-update vim-clean vim vim-update
