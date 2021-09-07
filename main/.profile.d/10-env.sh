@@ -1,8 +1,10 @@
 # Custom user environment variables
 
 # Sensible $PATH
-path_munge "$HOME/.bin"
-path_munge "$HOME/bin"
+path_munge "$HOME/.bin" "$HOME/bin"
+
+# git-diff-highlight: Arch Linux, Debian
+path_munge "/usr/share/git/diff-highlight" "/usr/share/doc/git/contrib/diff-highlight"
 
 # Colorize CLI output when supported.
 add_env CLICOLOR 1
@@ -11,7 +13,8 @@ add_env CLICOLOR 1
 add_env EDITOR "vim" vim
 add_env VISUAL "vim" vim
 
-# Sensible defaults for less: --raw-control-chars --ignore-case
+# Sensible defaults for less
+#   --raw-control-chars --ignore-case
 add_env LESS "-R -i" less
 
 # Display progress percentage in man pages: https://unix.stackexchange.com/a/329092/41858

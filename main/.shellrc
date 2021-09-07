@@ -26,19 +26,21 @@ add_env() {
         export "$1"="$2"
 }
 
-# Adds a path to $PATH if it exists.
-#   $1 The path to add.
-#   $2 Optional. If "--after", appends instead of prepending.
+# Adds paths to $PATH if they exist.
+#   $1 Optional. If "--after", appends instead of prepending.
+#   $@ The paths to add.
 path_munge() {
-        if [ -e "$1" ]; then
-                if ! echo "$PATH" | grep -E -q "(^|:)$1($|:)"; then
-                        if [ "$2" = "--after" ]; then
-                                PATH="$PATH:$1"
+        [ "$1" = "--after" ] && local after=1 && shift
+
+        for d in "$@"; do
+                if [ -d "$d" ] && ! echo "$PATH" | grep -E -q "(^|:)$d($|:)"; then
+                        if [ -n "$after" ]; then
+                                PATH="$PATH:$d"
                         else
-                                PATH="$1:$PATH"
+                                PATH="$d:$PATH"
                         fi
                 fi
-        fi
+        done
 }
 
 # Sources the given files and directories (recursively) if they exist.
