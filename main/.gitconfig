@@ -13,7 +13,7 @@
 [alias]
 	amend = commit --amend
 	dc = diff --cached
-	ignore = "! curl -L -s https://www.gitignore.io/api/$@"
+	ignore = !curl -L -s https://www.gitignore.io/api/$@
 	st = status
 
 	# log
