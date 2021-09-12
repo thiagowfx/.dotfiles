@@ -1,5 +1,5 @@
-[submodule "main/.tmux/plugins/tpm"]
-	path = main/.tmux/plugins/tpm
+[submodule "tmux/.tmux/plugins/tpm"]
+	path = tmux/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
 	shallow = true
 [submodule "main/.vim/vim-plug"]

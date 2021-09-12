@@ -1,5 +1,5 @@
---ignore-directory=main/.tmux/plugins/tpm
+--ignore-directory=tmux/.tmux/plugins
 --ignore-directory=main/.vim/plugged
 --ignore-directory=main/.vim/vim-plug
---ignore-directory=main/.zsh/
---ignore-directory=vendor/
+--ignore-directory=main/.zsh
+--ignore-directory=vendor
