@@ -10,15 +10,15 @@
 	path = vendor/grml-etc-core
 	url = https://github.com/grml/grml-etc-core
 	shallow = true
-[submodule "main/.zsh/zsh-autosuggestions"]
-	path = main/.zsh/zsh-autosuggestions
+[submodule "zsh/.zsh/zsh-autosuggestions"]
+	path = zsh/.zsh/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
 	shallow = true
-[submodule "main/.zsh/zsh-history-substring-search"]
-	path = main/.zsh/zsh-history-substring-search
+[submodule "zsh/.zsh/zsh-history-substring-search"]
+	path = zsh/.zsh/zsh-history-substring-search
 	url = https://github.com/zsh-users/zsh-history-substring-search
 	shallow = true
-[submodule "main/.zsh/zsh-syntax-highlighting"]
-	path = main/.zsh/zsh-syntax-highlighting
+[submodule "zsh/.zsh/zsh-syntax-highlighting"]
+	path = zsh/.zsh/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
 	shallow = true
