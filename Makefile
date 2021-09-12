@@ -1,7 +1,7 @@
 # Manage the dotfiles environment.
 
 # List of modules to install.
-MODULES := bash main git hg i3 screen ssh tmux vim x11 zsh
+MODULES := bash main git hg i3 screen shell ssh tmux vim x11 zsh
 
 # Abort if git is not installed.
 ifeq (, $(shell which git))
