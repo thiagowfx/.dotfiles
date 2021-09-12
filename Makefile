@@ -1,7 +1,7 @@
 # Manage the dotfiles environment.
 
 # List of modules to install.
-MODULES := alacritty bash main git hg i3 ranger screen shell ssh tmux vim x11 zsh
+MODULES := alacritty bash main git hg i3 ranger screen shell ssh systemd tmux vim x11 zsh
 
 # Abort if git is not installed.
 ifeq (, $(shell which git))
