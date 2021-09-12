@@ -1,7 +1,7 @@
 # Manage the dotfiles environment.
 
 # List of modules to install.
-MODULES := main screen ssh tmux x11
+MODULES := main git screen ssh tmux x11
 
 # Abort if git is not installed.
 ifeq (, $(shell which git))
