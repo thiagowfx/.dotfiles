@@ -2,8 +2,8 @@
 	path = tmux/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
 	shallow = true
-[submodule "main/.vim/vim-plug"]
-	path = main/.vim/vim-plug
+[submodule "vim/.vim/vim-plug"]
+	path = vim/.vim/vim-plug
 	url = https://github.com/junegunn/vim-plug
 	shallow = true
 [submodule "vendor/grml-etc-core"]
