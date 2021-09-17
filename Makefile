@@ -30,7 +30,7 @@ archlinux-clean:
 	sudo pacman -Rnsc thiagowfx-dotfiles-meta
 
 stow:
-	stow --no-folding -t ~ -d $(DOTFILESDIR) --restow $(MODULES)
+	stow -t ~ -d $(DOTFILESDIR) --restow $(MODULES)
 
 unstow:
 	stow -t ~ -d $(DOTFILESDIR) --delete $(MODULES)
