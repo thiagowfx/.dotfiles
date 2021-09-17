@@ -1,6 +1,6 @@
 [ui]
 username = Thiago Perrotta <tbperrotta@gmail.com>
-merge = vimdiff
+merge = diffconflicts
 
 # https://github.com/whiteinge/diffconflicts
 [merge-tools]
