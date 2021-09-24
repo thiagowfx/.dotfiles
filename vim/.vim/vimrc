@@ -200,7 +200,6 @@ set noswapfile nowritebackup
 
 " Show line numbers.
 set number
-set relativenumber
 
 " Simplify some display messages.
 set shortmess=atI
