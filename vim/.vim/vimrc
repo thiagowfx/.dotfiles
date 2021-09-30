@@ -136,10 +136,13 @@ Plug 'junegunn/fzf.vim', {'on': 'FZF'}
 " OSC52 integration for system clipboard.
 "   C-c to copy to system clipboard.
 Plug 'fcpg/vim-osc52'
-vmap <C-c> y:Oscyank<cr>gv
+vnoremap <C-c> y:Oscyank<cr>gv
 
 " Open file.ext:line:col at the appropriate line and col.
 Plug 'wsdjeg/vim-fetch'
+
+" Preview colours in source code while editing
+Plug 'ap/vim-css-color'
 
 call plug#end()
 
@@ -153,6 +156,7 @@ source $VIMRUNTIME/ftplugin/man.vim
 " Inspect $TERM instad of t_Co as it works in neovim as well
 if &term =~ '256color'
   colorscheme monokai
+  highlight ColorColumn ctermbg=magenta
 else
   colorscheme slate
 endif
@@ -230,7 +234,7 @@ set wildmode=list:longest
 " https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
 augroup git
   autocmd!
-  autocmd Filetype gitcommit,hgcommit setlocal spell textwidth=72
+  autocmd Filetype gitcommit,hgcommit setlocal spell textwidth=72 colorcolumn=+1
 augroup end
 
 " Load corp configs if any.
