@@ -9,6 +9,7 @@
 	smtpServer = smtp.gmail.com
 	smtpServerPort = 587
 	smtpUser = tbperrotta@gmail.com
+	confirm = auto
 
 [alias]
 	amend = commit --amend

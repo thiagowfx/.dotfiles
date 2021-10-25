@@ -188,6 +188,9 @@ bindsym $mod+x exec i3-input -F "rename workspace to %s" -P "New name: "
 # lock screen
 bindsym Ctrl+Mod1+l exec xscreensaver-command -lock || xsecurelock
 
+# show window title icon
+for_window [all] title_window_icon on
+
 # set default border
 default_border normal 3
 

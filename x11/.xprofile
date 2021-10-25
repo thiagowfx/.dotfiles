@@ -55,7 +55,6 @@ arch_autostart() {
 	screensaver
 	wallpaper
 
-	numlockx
 	picom --daemon --backend glx
 	udiskie --smart-tray &
 
