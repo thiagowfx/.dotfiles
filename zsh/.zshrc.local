@@ -66,3 +66,6 @@ zstyle ':prompt:grml:left:setup' items rc change-root user at host path vcs newl
 # Load user scripts and functions if existing. Order is important.
 # Corp config is handled as part of .zshrc.d.
 src_files "$HOME/.profile.d" "$HOME/.zshrc.d"
+
+# Named directories
+hash -d dotfiles=~/.dotfiles
