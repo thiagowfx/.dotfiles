@@ -65,6 +65,7 @@ bindsym $mod+e layout toggle split
 
 # set floating windows
 for_window [window_role="About|bubble|pop-up|Preferences|task_dialog"] floating enable
+for_window [class="Blueman|Pavucontrol"] floating enable
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
