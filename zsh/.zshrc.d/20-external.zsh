@@ -2,11 +2,10 @@
 
 # fzf: Fuzzy File Finder
 if (( $+commands[fzf] )); then
-	# fzf config - arch
+	# arch
 	src_files /usr/share/fzf/{completion,key-bindings}.zsh
 
-	# fzf config - debian
-	# https://packages.debian.org/sid/amd64/fzf/filelist
+	# debian: https://packages.debian.org/sid/amd64/fzf/filelist
 	src_files /usr/share/doc/fzf/examples/{completion,key-bindings}.zsh
 fi
 

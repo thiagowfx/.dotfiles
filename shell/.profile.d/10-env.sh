@@ -3,7 +3,7 @@
 # Sensible $PATH
 path_munge "$HOME/.bin" "$HOME/bin"
 
-# git-diff-highlight: Arch Linux, Debian
+# git-diff-highlight: arch, debian
 path_munge "/usr/share/git/diff-highlight" "/usr/share/doc/git/contrib/diff-highlight"
 
 # Colorize CLI output when supported.
