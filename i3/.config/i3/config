@@ -67,6 +67,9 @@ bindsym $mod+e layout toggle split
 for_window [window_role="About|bubble|pop-up|Preferences|task_dialog"] floating enable
 for_window [class="Blueman|Pavucontrol"] floating enable
 
+# Spotify
+for_window [instance="crx_pjibgclleladliembfgfagdaldikeohf"] floating disable
+
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
