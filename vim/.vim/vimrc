@@ -73,11 +73,11 @@ Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
 command! Gadd Gwrite
 command! Gdiff Gdiffsplit
-command! GDiff Gdiffsplit
 
 " A better vimdiff mergetool: 2-way diff.
-"   ~/.gitconfig is set up to use this plugin.
+"   ~/.gitconfig and ~/.hgrc are set up to use this plugin.
 "   :DiffConflicts
+"   do for diffobtain (get), dp for diffput, [c and ]c to navigate diff hunks
 Plug 'whiteinge/diffconflicts', {'on': 'DiffConflicts'}
 
 " Single-line <-> multi-line statements.
@@ -85,17 +85,9 @@ Plug 'whiteinge/diffconflicts', {'on': 'DiffConflicts'}
 "   gJ to join
 Plug 'AndrewRadev/splitjoin.vim'
 
-" ALE: Asynchronous Lint Engine:
-"   Syntax checking and semantic errors
-"   Language Server Protocol (LSP) client
-"
-" Apply linter fixes:
-"   :ALEFix
-Plug 'dense-analysis/ale'
-
 " Toggle comment blocks.
-"   gcc to comment out the current line
 "   gc to comment out in visual mode or the target of a motion
+"   gcc to comment out the current line
 "   gcgc to uncomment a set of adjacent lines
 Plug 'tpope/vim-commentary'
 
@@ -125,31 +117,38 @@ Plug 'tpope/vim-vinegar'
 
 " Comment alignment plugin.
 "   :EasyAlign <delimiter>
-"
-" E.g.
-"   Visual selection mode, :EasyAlign #
+"   v for visual selection mode, then :EasyAlign #
 Plug 'junegunn/vim-easy-align', {'on': 'EasyAlign'}
 
-" :FZF for vim.
+" fzf for vim.
 Plug 'junegunn/fzf.vim', {'on': 'FZF'}
+command! Fzf FZF
 
 " OSC52 integration for system clipboard.
 "   C-c to copy to system clipboard.
+"   gv preserves selection
 Plug 'fcpg/vim-osc52'
 vnoremap <C-c> y:Oscyank<cr>gv
 
-" Open file.ext:line:col at the appropriate line and col.
+" Open file.ext:line:col at the appropriate line and column.
 Plug 'wsdjeg/vim-fetch'
 
-" Preview colours in source code while editing
+" Preview colours in source code while editing.
 Plug 'ap/vim-css-color'
+
+" ALE: Asynchronous Lint Engine:
+"   Syntax checking and semantic errors
+"   Language Server Protocol (LSP) client
+"   :ALEFix to apply linter fixes
+Plug 'dense-analysis/ale'
 
 call plug#end()
 
 " Better %
 runtime! macros/matchit.vim
 
-" :Man man
+" Browse manual pages within vim.
+"   :Man man
 source $VIMRUNTIME/ftplugin/man.vim
 
 " Set color theme / scheme
@@ -161,7 +160,7 @@ else
   colorscheme slate
 endif
 
-" :w misspellings
+" :w save misspellings
 command! W w
 command! WQ wq
 command! Wq wq
@@ -169,17 +168,18 @@ command! Wq wq
 " copy until the end of the line, default behavior copies the entire line
 nnoremap Y y$
 
-" Disable horizontal cursor line as it is very slow over ssh
+" Disable horizontal cursor line as it is very slow over ssh.
 " https://stackoverflow.com/q/307148/1745064
 set nocursorline
 
-" Always use vertical diffs.
+" Always use vertical diff splits.
 set diffopt+=vertical
 
 " Disable fold.
 set nofoldenable
 
 " Highlight search pattern matches.
+"   :noh to dismiss them
 set hlsearch
 
 " https://stackoverflow.com/a/2288438/1745064
@@ -188,16 +188,17 @@ set ignorecase smartcase
 " Use one space, not two, after punctuation.
 set nojoinspaces
 
-" Do not redraw the screen while executing macros. To force, use :redraw.
+" Do not redraw the screen while executing macros.
+"   :redraw to force
 set lazyredraw
 
-" Display tab characters.
-" https://vi.stackexchange.com/questions/422/displaying-tabs-as-characters
+" Display whitespace characters, including tabs.
+" https://vi.stackexchange.com/q/422/8211
 set list lcs=tab:\|\ ,trail:·,nbsp:·
 
-" --INSERT-- is not necessary because
-"   - Cursor shape changes,
-"   - Lightline already displays it.
+" Disable --INSERT-- which is not necessary, because:
+"   Cursor shape changes thanks to wincent/terminus.
+"   itchyny/lightline.vim already displays it.
 set noshowmode
 
 " Disable backups and swapfile, use persistent undo instead.
@@ -221,12 +222,13 @@ set smartindent
 " Better splits.
 set splitbelow splitright switchbuf=useopen
 
-" Shorter update time (default: 4s) for async vim operations.
-set updatetime=1000
+" Shorter update time than the 4000ms default, for async vim operations.
+set updatetime=2000
 
-" Enable persistent undo file.
+" Enable persistent undo.
 if has('persistent_undo')
-  set undofile undodir=~/.cache/vim/undo/
+  set undofile undodir=~/.cache/vim/undo
+  call mkdir(&undodir, "p", 0o700)
 endif
 
 " Set completion mode.
@@ -235,7 +237,7 @@ set wildmode=list:longest
 " https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
 augroup git
   autocmd!
-  autocmd Filetype gitcommit,hgcommit setlocal spell textwidth=72 colorcolumn=+1
+  autocmd Filetype gitcommit,hgcommit setlocal spell textwidth=72 cc=+1
 augroup end
 
 " Load corp configs if any.
