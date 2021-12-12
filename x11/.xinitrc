@@ -34,7 +34,7 @@ unset f
 case ${1:-i3} in
   cinnamon)
     exec cinnamon-session;;
-  i3|i3wm)
+  i3*)
     exec i3;;
   xfce|xfce4)
     exec startxfce4;;
