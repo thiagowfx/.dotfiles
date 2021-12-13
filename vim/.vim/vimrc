@@ -225,7 +225,7 @@ set updatetime=2000
 " Enable persistent undo.
 if has('persistent_undo')
   set undofile undodir=~/.cache/vim/undo
-  call mkdir(&undodir, "p", 0o700)
+  call mkdir(&undodir, "p", 0700)
 endif
 
 " Set completion mode.
