@@ -31,9 +31,6 @@ case ${1:-i3} in
     exec cinnamon-session;;
   i3*)
     exec i3;;
-  xfce|xfce4)
+  xfce*)
     exec startxfce4;;
-  *)
-    # No known window manager, try to run it as a command
-    exec "$@";;
 esac
