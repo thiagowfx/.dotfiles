@@ -18,7 +18,6 @@ add_alias unstow "stow -D" stow
 
 # sensible defaults
 add_alias dtrx "dtrx -n" dtrx
-add_alias fpp "fpp -ko" fpp
 
 # verbosity++
 add_alias pkgfile "pkgfile -v" pkgfile
