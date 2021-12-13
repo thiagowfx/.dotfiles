@@ -13,11 +13,8 @@ add_alias gi git git
 add_alias gt git git
 add_alias sl ls
 
-# remember more easily
+# easier to remember
 add_alias unstow "stow -D" stow
-
-# sensible defaults
-add_alias dtrx "dtrx -n" dtrx
 
 # verbosity++
 add_alias pkgfile "pkgfile -v" pkgfile

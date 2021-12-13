@@ -15,7 +15,7 @@ depends=(
 
 	# CLI/active
 	'ack'
-	'dtrx'
+	'atool'
 	'exa'
 	'fpp'
 	'fzf'
