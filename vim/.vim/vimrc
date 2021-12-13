@@ -51,15 +51,16 @@ Plug 'wincent/terminus'
 Plug 'bronson/vim-trailing-whitespace'
 
 " Color theme / scheme
-Plug 'crusoexia/vim-monokai'
+Plug 'crusoexia/vim-monokai' " monokai
+Plug 'joshdick/onedark.vim'  " onedark
 
 " Minimalist statusline / tabline.
 Plug 'itchyny/lightline.vim'
 
 " The colorscheme of lightline is independent of the editor colorscheme.
-"   'One' provides sensible defaults and works in 8-color mode (Linux TTY).
+"   'one' provides sensible defaults and works in 8-color mode (linux tty).
 let g:lightline = {
-      \ 'colorscheme': 'one',
+      \ 'colorscheme': 'onedark',
       \ }
 
 " Display thin vertical lines at each indentation level for code indented with spaces.
@@ -154,7 +155,8 @@ source $VIMRUNTIME/ftplugin/man.vim
 " Set color theme / scheme
 " Inspect $TERM instad of t_Co as it works in neovim as well
 if &term =~ '256color'
-  colorscheme monokai
+  " colorscheme monokai
+  colorscheme onedark
   highlight ColorColumn ctermbg=magenta
 else
   colorscheme slate
