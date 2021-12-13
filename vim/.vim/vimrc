@@ -153,14 +153,9 @@ runtime! macros/matchit.vim
 source $VIMRUNTIME/ftplugin/man.vim
 
 " Set color theme / scheme
-" Inspect $TERM instad of t_Co as it works in neovim as well
-if &term =~ '256color'
-  " colorscheme monokai
-  colorscheme onedark
-  highlight ColorColumn ctermbg=magenta
-else
-  colorscheme slate
-endif
+" colorscheme monokai
+colorscheme onedark
+highlight ColorColumn ctermbg=magenta
 
 " :w save misspellings
 command! W w
