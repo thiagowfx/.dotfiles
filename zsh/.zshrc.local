@@ -1,4 +1,5 @@
 #!/bin/zsh
+#
 # zsh uses its own ZLE (Zsh Line Editor) instead of readline (~/.inputrc).
 #
 # There's no need to introduce a ~/.zprofile as ~/.zshrc is always executed for
@@ -56,9 +57,15 @@ autoload -Uz bashcompinit && bashcompinit
 MAILCHECK=0
 set noshare_history
 
+# Python virtualenv token
+python_venv_prompt() {
+    REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
+}
+grml_theme_add_token python-venv -f python_venv_prompt '%F{magenta}' '%f'
+
 # Customize grml prompt.
 #   Make it 2-line instead of one
-zstyle ':prompt:grml:left:setup' items rc change-root user at host path vcs newline percent
+zstyle ':prompt:grml:left:setup' items rc change-root user at host path python-venv vcs newline percent
 
 # Source base shell functions.
 [ -r ~/.shellrc ] && . ~/.shellrc
