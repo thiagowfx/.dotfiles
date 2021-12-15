@@ -61,8 +61,6 @@ Plug 'itchyny/lightline.vim'
 "   'one' provides sensible defaults and works in 8-color mode (linux tty).
 let g:lightline = {
       \ 'colorscheme': 'onedark',
-      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
       \ }
 
 " Display thin vertical lines at each indentation level for code indented with spaces.
