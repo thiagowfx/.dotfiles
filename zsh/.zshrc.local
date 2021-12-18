@@ -65,7 +65,7 @@ grml_theme_add_token python-venv -f python_venv_prompt '%F{magenta}' '%f'
 
 # Customize grml prompt.
 #   Make it 2-line instead of one
-zstyle ':prompt:grml:left:setup' items rc change-root user at host path python-venv vcs newline percent
+zstyle ':prompt:grml:left:setup' items rc python-venv change-root user at host path vcs newline percent
 
 # Source base shell functions.
 [ -r ~/.shellrc ] && . ~/.shellrc
