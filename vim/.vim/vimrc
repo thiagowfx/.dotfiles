@@ -96,7 +96,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 
 " Helpers for unix
-Plug 'tpope/vim-eunuch', {'on': ['Delete', 'Remove', 'SudoWrite']}
+Plug 'tpope/vim-eunuch'
 
 " Automatically create any non-existent directories before writing the buffer.
 Plug 'pbrisbin/vim-mkdir'
