@@ -15,7 +15,7 @@ add_env VISUAL "vim" vim
 
 # Sensible defaults for less
 #   --raw-control-chars --ignore-case
-add_env LESS "-R -i" less
+add_env LESS "-R" less
 
 # Enhanced man pages
 #   Color: https://wiki.archlinux.org/title/Color_output_in_console#man
