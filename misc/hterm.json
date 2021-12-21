@@ -6,7 +6,7 @@
       {
         "id": "b44c",
         "json": {
-          "argstr": "-t -- tmux new -A -s main"
+          "argstr": "-t -- tmux -u new -A -s main"
         }
       }
     ]
