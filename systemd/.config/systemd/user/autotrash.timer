@@ -1,8 +1,8 @@
 [Unit]
-Description=Run autotrash weekly
+Description=Run autotrash monthly
 
 [Timer]
-OnCalendar=weekly
+OnCalendar=monthly
 Persistent=true
 
 [Install]
