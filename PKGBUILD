@@ -9,17 +9,22 @@ license=('BSD')
 groups=('thiagowfx')
 depends=(
 	# CLI/passive
+	'autotrash'
 	'highlight'
+	'keychain'
 	'lesspipe'
 	'shellcheck'
 
 	# CLI/active
 	'ack'
 	'atool'
+	'curl'
 	'exa'
+	'fd'
 	'fpp'
 	'fzf'
 	'moreutils'
+	'ranger'
 	'tmux'
 	'trash-cli'
 	'tree'
@@ -44,6 +49,7 @@ depends=(
 
 	# VCS
 	'git'
+	'mercurial'
 	'tig'
 
 	# X11
