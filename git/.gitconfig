@@ -3,13 +3,13 @@
 	email = tbperrotta@gmail.com
 
 # https://git-scm.com/docs/git-send-email
+# https://git-send-email.io/
 [sendemail]
 	annotate = yes
 	smtpEncryption = tls
 	smtpServer = smtp.gmail.com
 	smtpServerPort = 587
 	smtpUser = tbperrotta@gmail.com
-	confirm = auto
 
 [alias]
 	amend = commit --amend
@@ -17,11 +17,11 @@
 	ignore = !curl -L -s https://www.gitignore.io/api/$@
 	st = status
 
-	# log
+	# log; there's also gitk and tig
 	l = log --graph --pretty=oneline --abbrev-commit
 	xl = log --graph --decorate --all
 
-	# shelve
+	# shelve (hg compatibility)
 	shelve = stash
 	unshelve = stash apply
 
@@ -63,6 +63,7 @@
 	autocorrect = 1
 
 [init]
+	# some codebases use 'main' these days
 	defaultBranch = master
 
 [merge]
@@ -78,7 +79,7 @@
 	trustExitCode = true
 
 [pager]
-	# diff-highlight isn't usually in $PATH, fail gracefully
+	# if diff-highlight isn't in $PATH, fail gracefully
 	diff = "(diff-highlight 2>/dev/null || cat) | ${PAGER:-less}"
 	log  = "(diff-highlight 2>/dev/null || cat) | ${PAGER:-less}"
 	show = "(diff-highlight 2>/dev/null || cat) | ${PAGER:-less}"
