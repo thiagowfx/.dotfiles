@@ -143,6 +143,10 @@ Plug 'ap/vim-css-color'
 "   :ALEFix to apply linter fixes
 Plug 'dense-analysis/ale'
 
+" Distraction-free writing
+Plug 'junegunn/goyo.vim'
+Plug 'amix/vim-zenroom2'
+
 call plug#end()
 
 " Better %
