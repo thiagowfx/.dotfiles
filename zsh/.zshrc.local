@@ -32,6 +32,10 @@ setopt inc_append_history
 # Skip duplicates when looking up history entries.
 setopt hist_find_no_dups
 
+# Disable failure to match a globbing pattern causing an error.
+# So that 'git status 'HEAD^' works (caret).
+setopt no_nomatch
+
 # Increase maximum number of entries in memory and in the history file, respectively.
 HISTSIZE=50000
 SAVEHIST=50000
