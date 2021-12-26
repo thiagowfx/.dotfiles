@@ -1,5 +1,4 @@
 general {
-	colors = true
 	interval = 5
 }
 
@@ -11,6 +10,7 @@ order += "tztime local"
 memory {
 	format = "%used"
 	threshold_degraded = "15%"
+	format_degraded = "memory: < %available"
 }
 
 load {
