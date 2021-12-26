@@ -15,3 +15,7 @@ add_alias sl ls
 
 # verbosity++
 add_alias pkgfile "pkgfile -v" pkgfile
+
+# get interface public ipv4 address
+# https://major.io/icanhazip-com-faq/
+add_alias icanhazip "curl -4 https://icanhazip.com/" curl
