@@ -10,7 +10,7 @@ This repository is managed with GNU [`stow`][stow] and GNU [`make`][make].
 ### 1) Install
 
 ```
-git clone --recurse https://github.com/thiagowfx/.dotfiles ~/.dotfiles &&\
+git clone --recurse https://github.com/thiagowfx/.dotfiles ~/.dotfiles
 make -C ~/.dotfiles install
 ```
 
