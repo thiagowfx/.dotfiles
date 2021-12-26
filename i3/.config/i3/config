@@ -21,6 +21,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+Return exec i3-sensible-terminal
 
 # start the default web browser
+# https://github.com/i3/i3/issues/4468
 bindsym $mod+g exec gtk-launch "$(xdg-settings get default-web-browser)"
 
 # kill focused window
@@ -56,6 +57,7 @@ bindsym $mod+Shift+Right move right
 
 # split layout
 bindsym $mod+v split toggle
+bindsym $mod+Shift+v split toggle
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -64,11 +66,13 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+w layout toggle stacking tabbed
 bindsym $mod+e layout toggle split
 
-# set floating windows
+# set floating windows: generic
 for_window [window_role="About|bubble|pop-up|Preferences|task_dialog"] floating enable
+
+# set floating windows: linux
 for_window [class="Blueman|Pavucontrol"] floating enable
 
-# Spotify
+# unset floating windows: spotify
 for_window [instance="crx_pjibgclleladliembfgfagdaldikeohf"] floating disable
 
 # use Mouse+$mod to drag floating windows to their wanted position
@@ -83,8 +87,9 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-# focus the child (baby) container
+# focus the baby/child container
 bindsym $mod+b focus child
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -123,10 +128,12 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # move workspace to previous monitor
+# prior = page down
 bindsym $mod+Shift+Prior move workspace to output left
 bindsym $mod+Shift+bracketleft move workspace to output left
 
 # move workspace to next monitor
+# next = page up
 bindsym $mod+Shift+Next move to output right
 bindsym $mod+Shift+bracketright move workspace to output right
 
@@ -144,11 +151,12 @@ mode $mode_exit {
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
+        bindsym $mod+Shift+q mode "default"
 }
 bindsym $mod+Shift+q mode $mode_exit
 
 # resize window (you can also use the mouse for that)
-set $resize_step 2
+set $resize_step 5
 mode "resize" {
         bindsym h resize shrink width $resize_step px or $resize_step ppt
         bindsym j resize grow height $resize_step px or $resize_step ppt
@@ -162,6 +170,7 @@ mode "resize" {
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
 }
 bindsym $mod+r mode "resize"
 
@@ -169,7 +178,7 @@ bindsym $mod+r mode "resize"
 bar {
     status_command i3status
     position top
-    workspace_min_width 25
+    workspace_min_width 20
 
     # https://github.com/altdesktop/i3-style
     # i3-style -o ~/.config/i3/config -r mate
@@ -201,11 +210,11 @@ bindsym $mod+Tab workspace back_and_forth
 # automatic back-and-forth when switching to the current workspace
 workspace_auto_back_and_forth yes
 
-# rename current workspace on-the-fly
+# rename current workspace on-the-fly, cannot contain spaces
 bindsym $mod+x exec i3-input -F "rename workspace to %s" -P "New name: "
 
-# lock screen
-bindsym Ctrl+Mod1+l exec xscreensaver-command -lock || xsecurelock
+# lock screen, Ctrl+Alt+l
+bindsym Ctrl+Mod1+l exec xsecurelock
 
 # show window title icon
 for_window [all] title_window_icon on
@@ -219,14 +228,16 @@ default_floating_border pixel 3
 # hide container borders adjacent to the screen edges
 hide_edge_borders smart
 
-# multimedia volume keys
+# multimedia volume keys, pulseaudio/pipewire
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && killall -SIGUSR1 i3status
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && killall -SIGUSR1 i3status
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && killall -SIGUSR1 i3status
 
 # multimedia music player keys
 bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioPlayPause exec playerctl play-pause
 bindsym XF86AudioStop exec playerctl stop
 bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86AudioNext exec playerctl next
+
+# multimedia music player keys: i3 only, not compatible with sway
+bindsym XF86AudioPlayPause exec playerctl play-pause
