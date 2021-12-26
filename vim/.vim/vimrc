@@ -21,7 +21,7 @@
 " Load vim defaults.
 " :h skip_defaults_vim
 unlet! skip_defaults_vim
-source $VIMRUNTIME/defaults.vim
+silent! source $VIMRUNTIME/defaults.vim
 
 " Set leader key. Default is '\'.
 let mapleader=","
@@ -125,6 +125,11 @@ Plug 'junegunn/vim-easy-align', {'on': 'EasyAlign'}
 Plug 'junegunn/fzf.vim', {'on': 'FZF'}
 command! Fzf FZF
 
+" Miscellaneous features:
+"   Automatically clears search highlight when cursor is moved
+"   Improved star-search (visual-mode, highlighting without moving)
+Plug 'junegunn/vim-slash'
+
 " OSC52 integration for system clipboard.
 "   C-c to copy to system clipboard.
 "   gv preserves selection
@@ -183,7 +188,7 @@ set diffopt+=vertical
 set nofoldenable
 
 " Highlight search pattern matches.
-"   :noh to dismiss them
+"   :noh dismisses all highlights
 set hlsearch
 
 " https://stackoverflow.com/a/2288438/1745064
