@@ -1,5 +1,5 @@
-ssh/.ssh/*
-!ssh/.ssh/config
+ssh/.ssh/authorized_keys
+ssh/.ssh/known_hosts*
 
 # Managed with gitignore.io
 #
@@ -11,8 +11,8 @@ ssh/.ssh/*
 #
 #   git ignore <topic>,<topic2> >> .gitignore
 #
-# Created by https://www.toptal.com/developers/gitignore/api/archlinuxpackages,vim
-# Edit at https://www.toptal.com/developers/gitignore?templates=archlinuxpackages,vim
+# Created by https://www.toptal.com/developers/gitignore/api/archlinuxpackages,ssh,vim
+# Edit at https://www.toptal.com/developers/gitignore?templates=archlinuxpackages,ssh,vim
 
 ### ArchLinuxPackages ###
 *.tar
@@ -28,6 +28,11 @@ ssh/.ssh/*
 
 pkg/
 src/
+
+### SSH ###
+**/.ssh/id_*
+**/.ssh/*_id_*
+**/.ssh/known_hosts
 
 ### Vim ###
 # Swap
@@ -50,4 +55,4 @@ tags
 # Persistent undo
 [._]*.un~
 
-# End of https://www.toptal.com/developers/gitignore/api/archlinuxpackages,vim
+# End of https://www.toptal.com/developers/gitignore/api/archlinuxpackages,ssh,vim
