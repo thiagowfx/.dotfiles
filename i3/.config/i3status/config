@@ -4,6 +4,7 @@ general {
 }
 
 order += "memory"
+order += "load"
 order += "wireless _first_"
 order += "tztime local"
 
@@ -12,11 +13,15 @@ memory {
 	threshold_degraded = "15%"
 }
 
-tztime local {
-	format = "%Y-%m-%d %H:%M"
+load {
+	format = "%1min"
 }
 
 wireless _first_ {
 	format_up = "%essid %ip"
 	format_down = "wifi down"
+}
+
+tztime local {
+	format = "%Y-%m-%d %H:%M"
 }
