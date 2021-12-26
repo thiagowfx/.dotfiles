@@ -18,13 +18,6 @@ export GDK_DPI_SCALE=0.5
 # Set HiDPI settings for QT.
 export QT_FONT_DPI=192
 
-# Set preferred terminal emulator ($TERMINAL).
-terminal() {
-	for f in alacritty tilix xterm; do
-		hash "$f" >/dev/null 2>&1 && export TERMINAL="$f" && break
-	done
-}
-
 # Autostart XDG applications (.desktop files).
 xdg_autostart() {
 	# https://wiki.archlinux.org/title/XDG_Autostart
@@ -57,7 +50,6 @@ arch_autostart() {
 	picom --daemon --backend glx
 	udiskie --smart-tray &
 
-	terminal
 	xdg_autostart
 }
 
