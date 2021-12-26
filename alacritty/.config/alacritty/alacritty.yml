@@ -3,6 +3,8 @@
 # Hotkeys:
 #   <C-S-SPC>: vi mode (e.g. for scrollback)
 #   <C-S-u>: regex hints (e.g. URLs)
+#
+#   <C-S-t>: open new instance in PWD
 
 env:
   TERM: xterm-256color
@@ -42,6 +44,7 @@ colors:
     white:   '0xf9f8f5'
 
 key_bindings:
+  # open new instance in PWD
   - { key: T, mods: Control|Shift, action: SpawnNewInstance }
 
 mouse:
@@ -50,5 +53,5 @@ mouse:
 
 selection:
   # ChromeOS hterm-like behavior
-  # Both Shift+Insert / Middle-Click and <C-v> paste the selection.
+  # Both Shift+Insert / Middle-Click and <C-v> will paste the selection.
   save_to_clipboard: true
