@@ -23,14 +23,14 @@ setopt auto_list
 # treated as the unabbreviated form.
 setopt glob_star_short
 
+# Skip duplicates when looking up history entries.
+setopt hist_find_no_dups
+
 # History: Ignore entries that start with space and ignore duplicates.
 setopt hist_ignore_space hist_ignore_all_dups
 
 # Append to the history file immediately.
 setopt inc_append_history
-
-# Skip duplicates when looking up history entries.
-setopt hist_find_no_dups
 
 # Disable failure to match a globbing pattern causing an error.
 # So that 'git status 'HEAD^' works (caret).
@@ -56,7 +56,7 @@ bindkey '^x^e' edit-command-line
 # Compatibility with bash completion.
 autoload -Uz bashcompinit && bashcompinit
 
-# Disable unneeded features from grml-zsh-config.
+# Disable undesired grml-zsh-config features.
 # https://grml.org/zsh/grmlzshrc.html
 MAILCHECK=0
 set noshare_history
