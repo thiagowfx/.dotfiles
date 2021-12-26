@@ -1,14 +1,5 @@
 #!/bin/zsh
 
-# fzf: Fuzzy File Finder
-if (( $+commands[fzf] )); then
-	# arch
-	src_files /usr/share/fzf/{completion,key-bindings}.zsh
-
-	# debian: https://packages.debian.org/sid/amd64/fzf/filelist
-	src_files /usr/share/doc/fzf/examples/{completion,key-bindings}.zsh
-fi
-
 # pacman from Arch Linux
 if (( $+commands[pacman] )); then
 	# command-not-found hook
