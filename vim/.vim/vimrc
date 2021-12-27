@@ -137,8 +137,8 @@ Plug 'junegunn/vim-slash'
 " OSC52 integration for system clipboard.
 "   C-c to copy to system clipboard.
 "   gv preserves selection
-Plug 'fcpg/vim-osc52'
-vnoremap <C-c> y:Oscyank<CR>gv
+Plug 'ojroques/vim-oscyank'
+vnoremap <C-c> :OSCYank<CR>gv
 
 " Open file.ext:line:col at the appropriate line and column.
 Plug 'wsdjeg/vim-fetch'

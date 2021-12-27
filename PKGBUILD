@@ -10,6 +10,7 @@ groups=('thiagowfx')
 depends=(
 	# CLI/passive
 	'autotrash'
+	'direnv'
 	'highlight'
 	'keychain'
 	'lesspipe'

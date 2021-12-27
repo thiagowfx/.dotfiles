@@ -6,6 +6,7 @@ MODULES := \
 	alacritty \
 	apk \
 	bash \
+	direnv \
 	fzf \
 	git \
 	hg \
