@@ -70,7 +70,7 @@ bindsym $mod+e layout toggle split
 for_window [window_role="About|bubble|pop-up|Preferences|task_dialog"] floating enable
 
 # set floating windows: linux
-for_window [class="Blueman|Pavucontrol"] floating enable
+for_window [class="Blueman|Lxappearance|Pavucontrol"] floating enable
 
 # unset floating windows: spotify
 for_window [instance="crx_pjibgclleladliembfgfagdaldikeohf"] floating disable
