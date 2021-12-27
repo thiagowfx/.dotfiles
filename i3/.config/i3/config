@@ -146,7 +146,7 @@ bindsym $mod+Shift+e exit
 set $mode_exit "Exit: [e]xit [h]ibernate [p]oweroff [r]eboot"
 mode $mode_exit {
         bindsym e exit
-        bindsym h exec systemctl hibernate
+        bindsym h exec systemctl hibernate, mode "default"
         bindsym p exec poweroff
         bindsym r exec reboot
 
