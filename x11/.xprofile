@@ -42,7 +42,7 @@ arch_autostart() {
 	screensaver
 	wallpaper
 
-	picom --daemon --backend glx
+	picom -i 0.95 --daemon --backend glx
 	udiskie --smart-tray &
 
 	xdg_autostart
