@@ -27,12 +27,7 @@ xdg_autostart() {
 # Set up screensaver and auto lockscreen.
 screensaver() {
 	xset s 1200  # 20min
-	if hash xscreensaver >/dev/null 2>&1; then
-		# Start xscreensaver daemon.
-		xscreensaver -no-splash &
-		~/.bin/xscreensaver-watch-hook &
-		xss-lock -l -- xscreensaver-command -lock &
-	elif hash xsecurelock >/dev/null 2>&1; then
+	if hash xsecurelock >/dev/null 2>&1; then
 		XSECURELOCK_COMPOSITE_OBSCURER=0 xss-lock -l -n /usr/lib/xsecurelock/dimmer -- xsecurelock &
 	fi
 }
