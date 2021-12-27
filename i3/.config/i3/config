@@ -215,7 +215,7 @@ workspace_auto_back_and_forth yes
 bindsym $mod+x exec i3-input -F "rename workspace to %s" -P "New name: "
 
 # lock screen, Ctrl+Alt+l
-bindsym Ctrl+Mod1+l exec xsecurelock
+bindsym Ctrl+Mod1+l exec loginctl lock-session
 
 # show window title icon
 for_window [all] title_window_icon on
