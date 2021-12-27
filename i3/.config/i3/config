@@ -143,9 +143,10 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exit
 
-set $mode_exit "Exit: [e]xit [p]oweroff [r]eboot"
+set $mode_exit "Exit: [e]xit [h]ibernate [p]oweroff [r]eboot"
 mode $mode_exit {
         bindsym e exit
+        bindsym h exec systemctl hibernate
         bindsym p exec poweroff
         bindsym r exec reboot
 
