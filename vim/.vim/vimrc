@@ -155,6 +155,7 @@ Plug 'dense-analysis/ale'
 " Distraction-free writing
 Plug 'junegunn/goyo.vim'
 Plug 'amix/vim-zenroom2'
+nnoremap <leader>g :Goyo<CR>
 
 call plug#end()
 
