@@ -62,6 +62,8 @@ Xcursor.theme: capitaine-cursors-light
 Xcursor.size: 64
 
 ! xterm settings
+! osc-52 support
+*.allowWindowOps: true
 xterm.termName: xterm-256color
 xterm.vt100.faceName: hermit:size=9
 xterm.vt100.translations: #override \n\
