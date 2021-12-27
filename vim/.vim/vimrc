@@ -99,6 +99,9 @@ Plug 'tpope/vim-endwise'
 " Helpers for unix
 Plug 'tpope/vim-eunuch'
 
+" https://superuser.com/a/785016/165044
+command! DoasWrite execute 'silent! write !doas tee % >/dev/null' <bar> edit!
+
 " Automatically create any non-existent directories before writing the buffer.
 Plug 'pbrisbin/vim-mkdir'
 
