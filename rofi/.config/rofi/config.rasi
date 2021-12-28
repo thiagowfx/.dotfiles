@@ -1,3 +1,5 @@
+/* Get template config with rofi -dump-theme. */
+
 configuration {
 	dpi: 1;  /* auto detect */
 	modi: "drun";
