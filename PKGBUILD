@@ -30,6 +30,11 @@ depends=(
 	'trash-cli'
 	'tree'
 
+	# Fonts
+	'otf-fira-sans'
+	'otf-hermit'
+	'woff2-fira-code'
+
 	# Meta
 	'git'
 	'make'
