@@ -177,8 +177,8 @@ bindsym $mod+r mode "resize"
 
 set $bgcolor #526532
 set_from_resource $black i3.color0
+set_from_resource $red i3.color1
 set_from_resource $green i3.color2
-set_from_resource $red i3.color3
 set_from_resource $white i3.color7
 set_from_resource $gray i3.color8
 
