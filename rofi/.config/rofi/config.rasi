@@ -1,5 +1,7 @@
 configuration {
-	dpi: 192;
+	dpi: 1;  /* auto detect */
 	modi: "drun";
 	show-icons: true;
 }
+
+/* ft=css */
