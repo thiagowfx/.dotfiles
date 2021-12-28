@@ -1,0 +1,5 @@
+configuration {
+	dpi: 192;
+	modi: "drun";
+	show-icons: true;
+}

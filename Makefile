@@ -13,6 +13,7 @@ MODULES := \
 	i3 \
 	pacman \
 	ranger \
+	rofi \
 	screen \
 	shell \
 	ssh \

@@ -28,8 +28,8 @@ bindsym $mod+g exec gtk-launch "$(xdg-settings get default-web-browser)"
 bindsym $mod+Shift+c kill
 
 # start application launcher
-bindsym $mod+p exec rofi -show-icons -modi window#run#drun -show drun -sidebar-mode
-bindsym $mod+d exec rofi -show-icons -modi window#run#drun -show drun -sidebar-mode
+bindsym $mod+p exec rofi -show
+bindsym $mod+d exec rofi -show
 
 # change focus: vi keys
 bindsym $mod+h focus left
