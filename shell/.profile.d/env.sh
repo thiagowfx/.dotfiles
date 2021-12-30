@@ -9,6 +9,3 @@ export CLICOLOR=1
 # Set preferred text editor.
 set_env EDITOR vim
 set_env VISUAL vim
-
-# Set preferred terminal emulator.
-set_env TERMINAL alacritty tilix
