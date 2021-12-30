@@ -24,13 +24,4 @@ fi
 [ -r ~/.xprofile ] && . ~/.xprofile
 
 # Start window manager / session.
-#   startx (default WM)
-#   startx ~/.xinitrc <wm> (custom WM)
-case ${1:-i3} in
-  cinnamon)
-    exec cinnamon-session;;
-  i3*)
-    exec i3;;
-  xfce*)
-    exec startxfce4;;
-esac
+exec i3
