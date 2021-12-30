@@ -153,6 +153,7 @@ Plug 'ap/vim-css-color'
 "   Syntax checking and semantic errors
 "   Language Server Protocol (LSP) client
 "   :ALEFix to apply linter fixes
+"   :ALEInfo to debug/troubleshoot
 Plug 'dense-analysis/ale'
 
 " Distraction-free writing
