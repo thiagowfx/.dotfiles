@@ -32,25 +32,14 @@ path_munge() {
         done
 }
 
-# Sources the given files and directories (recursively) if they exist.
-#   $1 If "--shallow" is provided, directories will not be recursed.
+# Sources files and directories recursively if they exist.
 src_files() {
-        [ "$1" = "--shallow" ] && local shallow=1 && shift
-
+        local f
         for f in "$@"; do
-                # Source directories recursively if --shallow is not specified.
+                # Source directories.
                 if [ -d "$f" ]; then
-                        if [ -n "$shallow" ]; then
-                                # Use process substitution to avoid spawning a subshell.
-                                # https://stackoverflow.com/questions/13726764/while-loop-subshell-dilemma-in-bash
-                                while read -r -d $'\0' s; do
-                                        # shellcheck source=/dev/null
-                                        . "$s" || true
-                                done < <(find "$f" -maxdepth 1 -type f -print0)
-                        else
-                                src_files "$f"/* || true
-                        fi
-                        # Source files.
+                        src_files "$f"/* || true
+                # Source files.
                 elif [ -f "$f" ]; then
                         # shellcheck source=/dev/null
                         . "$f" || true
