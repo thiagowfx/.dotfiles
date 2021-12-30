@@ -23,18 +23,11 @@ set_env() {
 }
 
 # Adds paths to $PATH if they exist.
-#   $1 Optional. If "--after", appends instead of prepending.
-#   $@ The paths to add.
 path_munge() {
-        [ "$1" = "--after" ] && local after=1 && shift
-
-        for d in "$@"; do
-                if [ -d "$d" ] && ! echo "$PATH" | grep -E -q "(^|:)$d($|:)"; then
-                        if [ -n "$after" ]; then
-                                PATH="$PATH:$d"
-                        else
-                                PATH="$d:$PATH"
-                        fi
+        local f
+        for f in "$@"; do
+                if [ -d "$f" ] && ! grep -E -q "(^|:)$f($|:)" <<< "$PATH"; then
+                        PATH="$f:$PATH"
                 fi
         done
 }
