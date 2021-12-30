@@ -57,10 +57,6 @@ Xft.rgba: rgb
 *.color7:       #f8f8f2
 *.color15:      #f9f8f5
 
-! xcursor
-Xcursor.theme: capitaine-cursors-light
-Xcursor.size: 64
-
 ! xterm settings
 ! osc-52 support
 *.allowWindowOps: true
