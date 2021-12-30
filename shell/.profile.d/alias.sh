@@ -6,7 +6,6 @@ set_alias grep "grep --color=auto" grep
 set_alias ip "ip --color=auto" ip
 
 # drop-in replacements
-set_alias cat "bat" bat
 alias ls="ls -Fh --color=auto" && set_alias ls "exa -F" exa
 
 # misspellings
