@@ -35,6 +35,7 @@
 	# Auto-convert CRLF <-> LF. Yields a transparent experience in Windows.
 	autocrlf = input
 	editor = vim
+	pager = "(diff-highlight 2>/dev/null || cat) | ${PAGER:-less}"
 
 [credential]
 	# Cache credentials in memory for a while. See git-credential-cache(1).
@@ -74,12 +75,6 @@
 [mergetool "diffconflicts"]
 	cmd = vim -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
 	trustExitCode = true
-
-[pager]
-	# if diff-highlight isn't in $PATH, fail gracefully
-	diff = "(diff-highlight 2>/dev/null || cat) | ${PAGER:-less}"
-	log  = "(diff-highlight 2>/dev/null || cat) | ${PAGER:-less}"
-	show = "(diff-highlight 2>/dev/null || cat) | ${PAGER:-less}"
 
 [pull]
 	rebase = true
