@@ -14,17 +14,6 @@ PINK=$'\e[31;49m'
 PURPLE=$'\e[35;49m'
 YELLOW=$'\e[37;49m'
 
-# __git_ps1 prompt customization: https://wiki.archlinux.org/title/Git
-if hash git >/dev/null 2>&1; then
-	GIT_PS1_SHOWDIRTYSTATE=1
-
-	# arch
-	src_files "/usr/share/git/git-prompt.sh"
-
-	# debian: https://packages.debian.org/sid/amd64/git/filelist
-	src_files "/usr/lib/git-core/git-sh-prompt"
-fi
-
 prompt_command() {
 	# this must be the first line
 	local EXIT="$?"
@@ -54,7 +43,7 @@ prompt_command() {
 	# add prompt
 	PS1+='\n\[$ORANGE\]❯ \[$RESET\]'
 
-	# support OSC7 for VTE-based terminals if existing
+	# support OSC7 for VTE-based terminals (e.g. tilix) if existing
 	hash __vte_osc7 &>/dev/null && __vte_osc7
 }
 PROMPT_COMMAND="prompt_command"
