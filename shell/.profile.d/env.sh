@@ -4,12 +4,11 @@
 path_munge "$HOME/.bin" "$HOME/bin"
 
 # Colorize CLI output when supported.
-add_env CLICOLOR 1
+export CLICOLOR=1
 
 # Set preferred text editor.
-add_env EDITOR "vim" vim
-add_env VISUAL "vim" vim
+set_env EDITOR vim
+set_env VISUAL vim
 
-# Set preferred terminal emulator, most preferred ones come last.
-add_env TERMINAL "tilix" tilix
-add_env TERMINAL "alacritty" alacritty
+# Set preferred terminal emulator.
+set_env TERMINAL alacritty tilix

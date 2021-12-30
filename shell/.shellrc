@@ -14,16 +14,14 @@ add_alias() {
         alias "$1"="$2"
 }
 
-# Exports a shell environment variable.
-#   $1 What environment variable to export.
-#   $2 The value to export.
-#   $3 Optional. If provided will only export if the program exists.
-#   $4 Optional. If provided will only export if the file exists.
-add_env() {
-        [ -n "$3" ] && ! hash "$3" >/dev/null 2>&1 && return
-        [ -n "$4" ] && [ ! -e "$4" ] && return
-
-        export "$1"="$2"
+# Exports a shell environment variable ($1) to the first of the rest of the
+# arguments that exist.
+set_env() {
+        local f var="$1"; shift
+        for f in "$@"; do
+                hash "$f" >/dev/null 2>&1 && export "$var"="$f"
+                return
+        done
 }
 
 # Adds paths to $PATH if they exist.
