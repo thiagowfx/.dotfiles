@@ -1,4 +1,3 @@
-#!/bin/bash
 # Base shell functions for bash and zsh.
 
 # Adds an alias.
@@ -46,3 +45,5 @@ src_files() {
                 fi
         done
 }
+
+# vim:ft=sh
