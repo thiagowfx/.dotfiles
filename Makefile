@@ -1,7 +1,10 @@
 # Manage the dotfiles environment.
+#
+# Packages not included:
+#   misc/
+#   vendor/
 
 # List of packages to install.
-# Not included: misc/ vendor/
 PACKAGES := \
 	alacritty \
 	apk \
@@ -21,6 +24,7 @@ PACKAGES := \
 	x11 \
 	zsh
 
+# These packages have their own targets.
 ADVANCED_PACKAGES := \
 		tmux \
 		vim
