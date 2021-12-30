@@ -18,17 +18,15 @@ export GDK_DPI_SCALE=0.5
 # Set HiDPI settings for QT.
 export QT_FONT_DPI=192
 
+# Source base shell functions.
+# shellcheck source=/dev/null
+[ -r ~/.shellrc ] && . ~/.shellrc
+
 # Set preferred terminal emulator in order of preference for i3-sensible-terminal.
 set_env TERMINAL alacritty tilix
 
 # Set X11 wallpaper if existing.
 [ -x ~/.fehbg ] && ~/.fehbg
-
-# Autostart XDG applications (.desktop files).
-xdg_autostart() {
-	# https://wiki.archlinux.org/title/XDG_Autostart
-	dex --autostart --environment X-Tiling &
-}
 
 # Set up screensaver and auto lockscreen.
 screensaver() {
@@ -45,7 +43,9 @@ arch_autostart() {
 	picom -i 0.95 --daemon --backend glx
 	udiskie --smart-tray &
 
-	xdg_autostart
+	# Autostart XDG applications (.desktop files).
+	# https://wiki.archlinux.org/title/XDG_Autostart
+	dex --autostart --environment i3
 }
 
 [ -f "/etc/arch-release" ] && arch_autostart

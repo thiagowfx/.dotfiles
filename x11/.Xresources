@@ -1,7 +1,7 @@
 ! Dump all properties: `xrdb -q`.
 
 ! HiDPI
-*.dpi: 192
+*.dpi: 144
 
 ! one of: lcddefault, lcdlight, lcdlegacy, lcdnone
 Xft.lcdfilter: lcddefault
@@ -65,7 +65,7 @@ Xcursor.size: 64
 ! osc-52 support
 *.allowWindowOps: true
 xterm.termName: xterm-256color
-xterm.vt100.faceName: hermit:size=9
+xterm.vt100.faceName: hermit:size=11
 xterm.vt100.translations: #override \n\
 	Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
 	Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
