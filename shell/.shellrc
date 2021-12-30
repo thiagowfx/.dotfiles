@@ -1,14 +1,9 @@
 # Base shell functions for bash and zsh.
 
-# Adds an alias.
-#   $1 What alias to create.
-#   $2 The value to alias to.
-#   $3 Optional. If provided will only alias if the program exists.
-add_alias() {
-        [ -n "$3" ] && ! hash "$3" >/dev/null 2>&1 && return
-
+# Sets an alias ($1) to value ($2) if $3 exists.
+set_alias() {
         # shellcheck disable=SC2139
-        alias "$1"="$2"
+        hash "$3" >/dev/null 2>&1 && alias "$1"="$2"
 }
 
 # Exports a shell environment variable ($1) to the first of the rest of the
