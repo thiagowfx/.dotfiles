@@ -176,9 +176,6 @@ command! W w
 command! WQ wq
 command! Wq wq
 
-" copy until the end of the line, default behavior copies the entire line
-nnoremap Y y$
-
 " double tap esc to unset highlighting
 nnoremap <Esc><Esc> :noh<CR>
 
