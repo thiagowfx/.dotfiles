@@ -21,6 +21,7 @@ PACKAGES := \
 	shell \
 	ssh \
 	systemd \
+	tmux_auto_ssh \
 	x11 \
 	zsh
 
