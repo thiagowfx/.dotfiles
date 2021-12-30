@@ -72,8 +72,9 @@ for_window [window_role="About|bubble|pop-up|Preferences|task_dialog"] floating 
 # set floating windows: linux
 for_window [class="Blueman|Lxappearance|Pavucontrol"] floating enable
 
-# unset floating windows: spotify
+# spotify adjustments
 for_window [instance="crx_pjibgclleladliembfgfagdaldikeohf"] floating disable
+assign [instance="crx_pjibgclleladliembfgfagdaldikeohf"] → workspace number $ws9
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -100,7 +101,7 @@ set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
-set $ws9 "9"
+set $ws9 "9:music"
 set $ws10 "10"
 
 # switch to workspace
