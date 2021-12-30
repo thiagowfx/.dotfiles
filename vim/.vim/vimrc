@@ -160,6 +160,16 @@ Plug 'junegunn/goyo.vim'
 Plug 'amix/vim-zenroom2'
 nnoremap <leader>g :Goyo<CR>
 
+" Make Vim as powerful a tool for writers.
+Plug 'reedes/vim-pencil'
+augroup pencil
+  autocmd!
+  autocmd FileType markdown call pencil#init({'wrap': 'soft', 'autoformat': 1})
+augroup END
+
+" Format current paragraph
+nnoremap <silent> Q gqap
+
 call plug#end()
 
 " Better %
@@ -181,6 +191,9 @@ command! Wq wq
 
 " double tap esc to unset highlighting
 nnoremap <Esc><Esc> :noh<CR>
+
+" a la emacs just-one-space
+nnoremap <Esc><Space> ciw<Space>
 
 " Disable horizontal cursor line as it is very slow over ssh.
 " https://stackoverflow.com/q/307148/1745064
