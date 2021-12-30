@@ -1,5 +1,5 @@
 #!/bin/zsh
-# apk(8) from Alpine Linux command not found hook
+# apk(8) from Alpine Linux command not found hook for zsh
 
 command_not_found_handler() {
 	local cmd="$1"
