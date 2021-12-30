@@ -7,6 +7,6 @@
 # Escape hatch:
 #   ssh <host> -t -- NOTMUX=1 <shell>
 if [ -z "$NOTMUX" ] && [ -z "$TMUX" ] && [ -n "$SSH_TTY" ] && [[ $- =~ i ]]; then
-    tmux new -A -s main
+    tmux -u new -A -s main
     exit
 fi
