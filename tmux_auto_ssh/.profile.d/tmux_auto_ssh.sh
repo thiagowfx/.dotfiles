@@ -2,9 +2,10 @@
 # https://stackoverflow.com/a/43819740/1745064
 #
 # The session is called `main`.
-# To create a new session, do PREFIX :new
+# Create a session with PREFIX :new, rename with PREFIX $, toggle with PREFIX s.
 #
-# Use NOTMUX=1 as a escape hatch.
+# Escape hatch:
+#   ssh <host> -t -- NOTMUX=1 <shell>
 if [ -z "$NOTMUX" ] && [ -z "$TMUX" ] && [ -n "$SSH_TTY" ] && [[ $- =~ i ]]; then
     tmux new -A -s main
     exit
