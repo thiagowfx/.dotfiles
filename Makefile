@@ -58,7 +58,7 @@ all: install
 
 install: $(ALL_PACKAGES)
 	# Delete dangling symlinks
-	find $(TARGETDIR) -xtype l -delete -maxdepth 3
+	find -maxdepth 3 $(TARGETDIR) -xtype l -delete
 
 pull:
 	git -C $(DOTFILESDIR) submodule update --init --remote
