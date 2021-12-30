@@ -8,13 +8,13 @@
 PACKAGES := \
 	alacritty \
 	apk \
+	arch \
 	bash \
 	direnv \
 	fzf \
 	git \
 	hg \
 	i3 \
-	pacman \
 	ranger \
 	rofi \
 	screen \

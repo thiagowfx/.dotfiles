@@ -12,6 +12,3 @@ alias ls="ls -Fh --color=auto" && set_alias ls "exa -F" exa
 set_alias gi git git
 set_alias gt git git
 alias sl=ls
-
-# verbosity++
-set_alias pkgfile "pkgfile -v" pkgfile

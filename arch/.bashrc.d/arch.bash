@@ -6,3 +6,5 @@ if hash pacman >/dev/null 2>&1; then
 	src_files "/usr/share/doc/pkgfile/command-not-found.bash"
 fi
 
+# verbosity++
+set_alias pkgfile "pkgfile -v" pkgfile
