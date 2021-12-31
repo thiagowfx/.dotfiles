@@ -5,6 +5,3 @@ if (( $+commands[pacman] )); then
 	# command-not-found hook
 	src_files "/usr/share/doc/pkgfile/command-not-found.zsh"
 fi
-
-# verbosity++
-set_alias pkgfile "pkgfile -v" pkgfile
