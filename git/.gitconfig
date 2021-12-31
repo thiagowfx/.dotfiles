@@ -35,6 +35,7 @@
 	# Auto-convert CRLF <-> LF. Yields a transparent experience in Windows.
 	autocrlf = input
 	editor = vim
+	hooksPath = ~/.githooks
 	pager = "(diff-highlight 2>/dev/null || cat) | ${PAGER:-less}"
 
 [credential]
