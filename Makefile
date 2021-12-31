@@ -76,8 +76,6 @@ tmux:
 
 vim:
 	$(call stow,$@)
-	vim +PlugInstall +qall
-	vim +PlugUpgrade +PlugUpdate +qall
-	vim +PlugClean! +qall
+	vim +PlugClean! +PlugInstall +PlugUpgrade +PlugUpdate +qall
 
 .PHONY: all install pull uninstall $(ALL_PACKAGES)
