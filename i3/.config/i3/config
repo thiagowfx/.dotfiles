@@ -247,3 +247,7 @@ bindsym XF86AudioNext exec playerctl next
 
 # multimedia music player keys: i3 only, not compatible with sway
 bindsym XF86AudioPlayPause exec playerctl play-pause
+
+# automatic master stack layout a la dwm
+# https://git.goral.net.pl/mgoral/i3a
+exec_always i3a-master-stack --stack dwm
