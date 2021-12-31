@@ -38,6 +38,7 @@ prompt_command() {
 	PS1+='\[$RESET\]@\h \[$BOLD\]\w\[$RESET\]'
 
 	# add vanilla git prompt if existing
+	# __git_ps1 is provided by the git package
 	hash __git_ps1 &>/dev/null && PS1+="\\[$GREEN\\]\$(__git_ps1)"
 
 	# add prompt
