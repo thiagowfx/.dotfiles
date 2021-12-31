@@ -76,6 +76,9 @@ for_window [class="Blueman|Lxappearance|Pavucontrol"] floating enable
 for_window [instance="crx_pjibgclleladliembfgfagdaldikeohf"] floating disable
 assign [instance="crx_pjibgclleladliembfgfagdaldikeohf"] → workspace number $ws9
 
+# music apps
+assign [class="Clementine"] → workspace number $ws9
+
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
