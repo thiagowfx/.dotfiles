@@ -6,18 +6,12 @@
 #
 # https://wiki.archlinux.org/title/Xprofile
 
-# Make Chrome pick up proxy settings stored in gconf.
-export DESKTOP_SESSION=gnome
-
-# Fix decoration for java applications for tiling window managers.
-export _JAVA_AWT_WM_NONREPARENTING=1
-
-# Set HiDPI settings for GTK3+.
-export GDK_SCALE=2
-export GDK_DPI_SCALE=0.5
-
-# Set HiDPI settings for QT.
-export QT_FONT_DPI=192
+# Parse user session environment variables.
+# This file is shared with the systemd user instance.
+# Export all variables: https://stackoverflow.com/a/30969768/1745064
+set -a
+[ -r ~/.config/environment.d/graphical.conf ] && . ~/.config/environment.d/graphical.conf
+set +a
 
 # Source base shell functions.
 [ -r ~/.shellrc ] && . ~/.shellrc
