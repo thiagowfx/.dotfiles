@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck source=/dev/null
 
 # Abort on non-interactive shells.
 # This must be the first entry because it is sourced from ~/.bash_profile.
@@ -55,7 +56,6 @@ shopt -s histreedit
 shopt -s histverify
 
 # Source base shell functions.
-# shellcheck source=/dev/null
 [ -r ~/.shellrc ] && . ~/.shellrc
 
 # Load user scripts and functions if existing. Order is important.

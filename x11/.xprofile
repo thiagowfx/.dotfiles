@@ -1,4 +1,5 @@
 #!/bin/sh
+# shellcheck source=/dev/null
 #
 # Sourced by most display managers (GDM, LightDM, LXDM, SDDM, etc).
 # ~/.xinitrc is configured to source it as well.
@@ -19,7 +20,6 @@ export GDK_DPI_SCALE=0.5
 export QT_FONT_DPI=192
 
 # Source base shell functions.
-# shellcheck source=/dev/null
 [ -r ~/.shellrc ] && . ~/.shellrc
 
 # Set preferred terminal emulator in order of preference for i3-sensible-terminal.
