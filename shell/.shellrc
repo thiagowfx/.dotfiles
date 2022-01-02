@@ -3,6 +3,7 @@
 
 # Sets an alias ($1) to value ($2) if $3 exists.
 set_alias() {
+        # shellcheck disable=SC2139
         hash "$3" >/dev/null 2>&1 && alias "$1"="$2"
 }
 
