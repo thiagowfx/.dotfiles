@@ -204,9 +204,6 @@ nnoremap <Esc><Esc> :noh<CR>
 " a la emacs just-one-space
 nnoremap <Esc><Space> ciw<Space>
 
-" double tap tab tab to indent
-nnoremap <Tab><Tab> ==
-
 " Disable horizontal cursor line as it is very slow over ssh.
 " https://stackoverflow.com/q/307148/1745064
 set nocursorline
