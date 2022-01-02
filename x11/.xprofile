@@ -10,7 +10,7 @@
 # This file is shared with the systemd user instance.
 # Export all variables: https://stackoverflow.com/a/30969768/1745064
 set -a
-[ -r ~/.config/environment.d/graphical.conf ] && . ~/.config/environment.d/graphical.conf
+[ -r ~/.config/environment.d/user.conf ] && . ~/.config/environment.d/user.conf
 set +a
 
 # Source base shell functions.
