@@ -7,7 +7,7 @@ command_not_found_handler() {
 
 	if [[ -n "$pkgs" ]]; then
 		echo "$cmd may be found in the following packages:"
-		echo "  $pkgs[@]"
+		printf '  %s\n' "${pkgs[@]}"
 	else
 		echo "zsh: command not found: $cmd"
 	fi 1>&2
