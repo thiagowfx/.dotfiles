@@ -112,6 +112,10 @@ Plug 'tpope/vim-repeat'
 " specify them in ~/.vimrc.
 Plug 'tpope/vim-sleuth'
 
+" ysiw"
+" cs'"
+Plug 'tpope/vim-surround'
+
 " Complimentary pairs of mappings.
 "   ]n and [n to jump between SCM conflict markers.
 Plug 'tpope/vim-unimpaired'
