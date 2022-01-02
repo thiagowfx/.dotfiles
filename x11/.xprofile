@@ -28,10 +28,12 @@ arch_autostart() {
 	hash xsecurelock >/dev/null 2>&1 && XSECURELOCK_COMPOSITE_OBSCURER=0 xss-lock -l -n /usr/lib/xsecurelock/dimmer -- xsecurelock
 
 	picom -i 0.95 --daemon --backend glx
-	udiskie --smart-tray &
 
 	# Autostart XDG applications (.desktop files).
 	# https://wiki.archlinux.org/title/XDG_Autostart
+	#
+	# Troubleshooting:
+	#   dex -ade i3
 	dex --autostart --environment i3
 }
 
