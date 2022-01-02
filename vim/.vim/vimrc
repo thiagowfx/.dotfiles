@@ -112,8 +112,15 @@ Plug 'tpope/vim-repeat'
 " specify them in ~/.vimrc.
 Plug 'tpope/vim-sleuth'
 
-" ysiw"
-" cs'"
+" Native vim:
+"   di"  delete inside "quotes"
+"   da"  delete around "quotes"
+"   dip  delete inside paragraph
+"   dit  delete inside HTML tag
+"
+" Vim surround:
+"   ysiw"  insert quotes around word
+"   cs'"   replace single quotes with double quotes
 Plug 'tpope/vim-surround'
 
 " Complimentary pairs of mappings.
@@ -175,6 +182,9 @@ augroup pencil
   autocmd!
   autocmd FileType markdown call pencil#init({'wrap': 'soft', 'autoformat': 1})
 augroup END
+
+" built-in markdown: https://github.com/tpope/vim-markdown
+let g:markdown_syntax_conceal = 0
 
 " Format current paragraph
 nnoremap <silent> Q gqap
