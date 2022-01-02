@@ -253,4 +253,8 @@ bindsym XF86AudioPlayPause exec playerctl play-pause
 
 # automatic master stack layout a la dwm
 # https://git.goral.net.pl/mgoral/i3a
-exec_always i3a-master-stack --stack dwm
+#   --stack [i3|dwm]
+exec_always i3a-master-stack
+
+# automatic `devour`ing / swallowing of windows
+exec_always i3a-swallow
