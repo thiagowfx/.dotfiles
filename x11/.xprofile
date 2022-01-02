@@ -22,19 +22,14 @@ set_env TERMINAL alacritty tilix
 # Set X11 wallpaper if existing.
 [ -x ~/.fehbg ] && ~/.fehbg
 
-# Start misc applications for Arch Linux.
-arch_autostart() {
-	xset s 1200  # 20min
-	hash xsecurelock >/dev/null 2>&1 && XSECURELOCK_COMPOSITE_OBSCURER=0 xss-lock -l -n /usr/lib/xsecurelock/dimmer -- xsecurelock
+# xset s 1200  # 20min
+# hash xsecurelock >/dev/null 2>&1 && XSECURELOCK_COMPOSITE_OBSCURER=0 xss-lock -l -n /usr/lib/xsecurelock/dimmer -- xsecurelock
 
-	picom -i 0.95 --daemon --backend glx
+hash picom >/dev/null 2>&1 && picom -i 0.95 --daemon --backend glx
 
-	# Autostart XDG applications (.desktop files).
-	# https://wiki.archlinux.org/title/XDG_Autostart
-	#
-	# Troubleshooting:
-	#   dex -ade i3
-	dex --autostart --environment i3
-}
-
-[ -f "/etc/arch-release" ] && arch_autostart
+# Autostart XDG applications (.desktop files).
+# https://wiki.archlinux.org/title/XDG_Autostart
+#
+# Troubleshooting:
+#   dex -ade i3
+dex --autostart --environment i3
