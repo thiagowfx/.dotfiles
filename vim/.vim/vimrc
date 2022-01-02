@@ -159,6 +159,10 @@ Plug 'ap/vim-css-color'
 "   :ALEFix to apply linter fixes
 "   :ALEInfo to debug/troubleshoot
 Plug 'dense-analysis/ale'
+let g:ale_fixers = {
+      \    'python': ['autopep8'],
+      \}
+let g:ale_fix_on_save = 1
 
 " Distraction-free writing
 Plug 'junegunn/goyo.vim'
@@ -199,6 +203,9 @@ nnoremap <Esc><Esc> :noh<CR>
 
 " a la emacs just-one-space
 nnoremap <Esc><Space> ciw<Space>
+
+" double tap tab tab to indent
+nnoremap <Tab><Tab> ==
 
 " Disable horizontal cursor line as it is very slow over ssh.
 " https://stackoverflow.com/q/307148/1745064
