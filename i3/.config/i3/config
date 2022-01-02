@@ -67,7 +67,7 @@ bindsym $mod+w layout toggle stacking tabbed
 bindsym $mod+e layout toggle split
 
 # set floating windows: generic
-for_window [window_role="About|bubble|pop-up|Preferences|task_dialog"] floating enable
+for_window [window_role="About|browser-window|bubble|pop-up|Preferences|task_dialog"] floating enable
 
 # set floating windows: linux
 for_window [class="Blueman|Lxappearance|Pavucontrol"] floating enable
