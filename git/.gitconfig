@@ -31,6 +31,9 @@
 	autosetupmerge = always
 	autosetuprebase = always
 
+[commit]
+	template = ~/.git_commit_msg.txt
+
 [core]
 	# Auto-convert CRLF <-> LF. Yields a transparent experience in Windows.
 	autocrlf = input
