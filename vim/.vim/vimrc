@@ -66,6 +66,10 @@ let g:lightline = {
 " Display thin vertical lines at each indentation level for code indented with spaces.
 "   :IndentLinesToggle
 Plug 'Yggdroot/indentLine'
+" augroup indent_line
+"   autocmd!
+"   autocmd FileType man call let g:indentLine_enabled=0
+" augroup END
 
 " Async VCS info: git, hg, etc
 Plug 'mhinz/vim-signify'
@@ -178,7 +182,7 @@ nnoremap <leader>g :Goyo<CR>
 
 " Make Vim as powerful a tool for writers.
 Plug 'reedes/vim-pencil'
-augroup pencil
+augroup vim_pencil
   autocmd!
   autocmd FileType markdown call pencil#init({'wrap': 'soft', 'autoformat': 1})
 augroup END
@@ -281,7 +285,7 @@ endif
 set wildmode=list:longest
 
 " https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
-augroup git
+augroup vcs_commit_message
   autocmd!
   autocmd Filetype gitcommit,hgcommit setlocal spell textwidth=72 cc=+1
 augroup end
