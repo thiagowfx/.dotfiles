@@ -1,0 +1,7 @@
+{
+    "workbench.colorTheme": "One Dark Pro",
+    "terminal.integrated.sendKeybindingsToShell": true,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "editor.selectionClipboard": false
+}

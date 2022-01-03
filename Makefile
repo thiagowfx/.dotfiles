@@ -22,6 +22,7 @@ PACKAGES := \
 	ssh \
 	systemd \
 	tmux_auto_ssh \
+	vscode \
 	x11 \
 	zsh
 
