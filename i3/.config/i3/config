@@ -68,14 +68,16 @@ bindsym $mod+e layout toggle split
 # set floating windows: generic
 for_window [window_role="About|bubble|pop-up|Preferences|task_dialog"] floating enable
 
-# set floating windows: linux
+# set floating windows: linux desktop
 for_window [class="Blueman|Lxappearance|Pavucontrol"] floating enable
 
-# spotify adjustments
-for_window [instance="crx_pjibgclleladliembfgfagdaldikeohf"] floating disable
-assign [instance="crx_pjibgclleladliembfgfagdaldikeohf"] → workspace number 9
+# set floating windows: linux desktop
+# for_window [window_role="browser-window", class="*Password"] floating enable
 
-# music apps
+# set floating window + workspace assignment: music
+#   spotify | youtube music
+for_window [instance="crx_pjibgclleladliembfgfagdaldikeohf|crx_cinhimbnkkaeohfgghhklpknlkffjgod"] floating disable
+assign [instance="crx_pjibgclleladliembfgfagdaldikeohf|crx_cinhimbnkkaeohfgghhklpknlkffjgod"] → workspace number 9
 assign [class="Clementine"] → workspace number 9
 
 # use Mouse+$mod to drag floating windows to their wanted position
