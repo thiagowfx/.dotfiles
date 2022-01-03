@@ -4,7 +4,6 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
-
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
@@ -180,34 +179,6 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 set $bgcolor #526532
-set_from_resource $black i3.color0
-set_from_resource $red i3.color1
-set_from_resource $green i3.color2
-set_from_resource $white i3.color7
-set_from_resource $gray i3.color8
-
-# Start i3bar to display a workspace and status bar
-bar {
-    status_command i3status
-    position top
-    workspace_min_width 25
-
-    colors {
-        background $black
-        statusline $white
-
-        focused_workspace $bgcolor $bgcolor $white $black
-        active_workspace $gray $gray $black $gray
-        inactive_workspace $black $black $gray $gray
-        urgent_workspace $red $red $white $green
-    }
-}
-
-# Theme colors
-client.focused $bgcolor $bgcolor $white $green
-client.focused_inactive $gray $gray $black $gray
-client.unfocused $black $black $gray $black
-client.urgent $red $red $white $red
 
 # move to prev / next workspace on same display
 bindsym $mod+Shift+n workspace prev_on_output
@@ -224,9 +195,6 @@ bindsym $mod+x exec i3-input -F "rename workspace to %s" -P "New name: "
 
 # lock screen, Ctrl+Alt+l
 bindsym Ctrl+Mod1+l exec loginctl lock-session
-
-# show window title icon
-for_window [all] title_window_icon on
 
 # set default border
 default_border normal 3
@@ -248,9 +216,6 @@ bindsym XF86AudioStop exec playerctl stop
 bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86AudioNext exec playerctl next
 
-# multimedia music player keys: i3 only, not compatible with sway
-bindsym XF86AudioPlayPause exec playerctl play-pause
-
 # automatic master stack layout a la dwm
 # https://git.goral.net.pl/mgoral/i3a
 #   --stack [i3|dwm]
@@ -258,3 +223,5 @@ exec_always i3a-master-stack
 
 # automatic `devour`ing / swallowing of windows
 exec_always i3a-swallow
+
+include conf.d/i3.conf
