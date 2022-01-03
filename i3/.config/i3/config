@@ -66,7 +66,7 @@ bindsym $mod+w layout toggle stacking tabbed
 bindsym $mod+e layout toggle split
 
 # set floating windows: generic
-for_window [window_role="About|browser-window|bubble|pop-up|Preferences|task_dialog"] floating enable
+for_window [window_role="About|bubble|pop-up|Preferences|task_dialog"] floating enable
 
 # set floating windows: linux
 for_window [class="Blueman|Lxappearance|Pavucontrol"] floating enable
@@ -139,9 +139,6 @@ bindsym $mod+Shift+bracketleft move workspace to output left
 # next = page up
 bindsym $mod+Shift+Next move to output right
 bindsym $mod+Shift+bracketright move workspace to output right
-
-# restart i3 inplace (preserves layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exit
@@ -219,9 +216,9 @@ bindsym XF86AudioNext exec playerctl next
 # automatic master stack layout a la dwm
 # https://git.goral.net.pl/mgoral/i3a
 #   --stack [i3|dwm]
-exec_always i3a-master-stack
+exec --no-startup-id i3a-master-stack
 
 # automatic `devour`ing / swallowing of windows
-exec_always i3a-swallow
+exec --no-startup-id i3a-swallow
 
-include conf.d/i3.conf
+include conf.d/sway.conf
