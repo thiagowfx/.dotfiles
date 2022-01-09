@@ -78,7 +78,7 @@ for_window [class="Blueman|Lxappearance|Pavucontrol"] floating enable
 #   spotify | youtube music
 for_window [instance="crx_pjibgclleladliembfgfagdaldikeohf|crx_cinhimbnkkaeohfgghhklpknlkffjgod"] floating disable
 assign [instance="crx_pjibgclleladliembfgfagdaldikeohf|crx_cinhimbnkkaeohfgghhklpknlkffjgod"] → workspace number 9
-assign [class="Clementine|strawberry"] → workspace number 9
+assign [class="Clementine|strawberry"] → workspace number $ws9
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
