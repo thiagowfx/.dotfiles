@@ -175,13 +175,13 @@ let g:ale_fixers = {
       \}
 let g:ale_fix_on_save = 1
 
-" Distraction-free writing
+" Distraction-free writing, good for blogging.
+" Make Vim as powerful a tool for writers.
 Plug 'junegunn/goyo.vim'
 Plug 'amix/vim-zenroom2'
-nnoremap <leader>g :Goyo<CR>
-
-" Make Vim as powerful a tool for writers.
 Plug 'reedes/vim-pencil'
+nnoremap <leader>g :Goyo <bar> SoftPencil<CR>
+
 augroup vim_pencil
   autocmd!
   autocmd FileType markdown call pencil#init({'wrap': 'soft', 'autoformat': 1})
