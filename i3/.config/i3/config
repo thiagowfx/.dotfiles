@@ -223,4 +223,4 @@ exec --no-startup-id i3a-master-stack
 # automatic `devour`ing / swallowing of windows
 exec --no-startup-id i3a-swallow
 
-include conf.d/sway.conf
+include conf.d/i3.conf
