@@ -190,6 +190,9 @@ augroup END
 " built-in markdown: https://github.com/tpope/vim-markdown
 let g:markdown_syntax_conceal = 0
 
+" https://vimtricks.com/p/highlight-syntax-inside-markdown/
+let g:markdown_fenced_languages = ['python']
+
 " Format current paragraph
 nnoremap <silent> Q gqap
 
