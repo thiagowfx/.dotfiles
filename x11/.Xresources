@@ -1,4 +1,8 @@
-! Dump all properties: `xrdb -q`.
+! Dump all properties:
+!   xrdb -q
+!
+! Check if it is set:
+   xrdb -q | grep -i dpi
 
 ! HiDPI
 ! Common values:
@@ -61,7 +65,7 @@ Xft.rgba: rgb
 *.color7:       #f8f8f2
 *.color15:      #f9f8f5
 
-! xterm settings
+! xterm sensible defaults
 ! osc-52 support
 *.allowWindowOps: true
 xterm.termName: xterm-256color
