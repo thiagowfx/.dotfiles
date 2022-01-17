@@ -20,6 +20,7 @@ PACKAGES := \
 	screen \
 	shell \
 	ssh \
+	sway \
 	systemd \
 	tmux_auto_ssh \
 	vscode \
