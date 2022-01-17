@@ -14,34 +14,34 @@ font:
   normal:
     family: Hermit
 
-# Theme: /base16/monokai.dark from https://terminal.love/
+# Monokai dark theme from https://github.com/alacritty/alacritty/wiki/Color-schemes
 colors:
   # Default colors
   primary:
-    background: '0x272822'
-    foreground: '0xf8f8f2'
+    background: '#272822'
+    foreground: '#F8F8F2'
 
   # Normal colors
   normal:
-    black:   '0x272822'
-    red:     '0xf92672'
-    green:   '0xa6e22e'
-    yellow:  '0xf4bf75'
-    blue:    '0x66d9ef'
-    magenta: '0xae81ff'
-    cyan:    '0xa1efe4'
-    white:   '0xf8f8f2'
+    black:   '#272822'
+    red:     '#F92672'
+    green:   '#A6E22E'
+    yellow:  '#F4BF75'
+    blue:    '#66D9EF'
+    magenta: '#AE81FF'
+    cyan:    '#A1EFE4'
+    white:   '#F8F8F2'
 
   # Bright colors
   bright:
-    black:   '0x75715e'
-    red:     '0xf92672'
-    green:   '0xa6e22e'
-    yellow:  '0xf4bf75'
-    blue:    '0x66d9ef'
-    magenta: '0xae81ff'
-    cyan:    '0xa1efe4'
-    white:   '0xf9f8f5'
+    black:   '#75715E'
+    red:     '#F92672'
+    green:   '#A6E22E'
+    yellow:  '#F4BF75'
+    blue:    '#66D9EF'
+    magenta: '#AE81FF'
+    cyan:    '#A1EFE4'
+    white:   '#F9F8F5'
 
 key_bindings:
   # open new instance in PWD
