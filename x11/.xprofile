@@ -16,8 +16,9 @@ set +a
 # Source base shell functions.
 [ -r ~/.shellrc ] && . ~/.shellrc
 
-# Set preferred terminal emulator in order of preference for i3-sensible-terminal.
-set_env TERMINAL alacritty tilix
+# Set preferred terminal emulator in reverse order of preference for i3-sensible-terminal.
+hash tilix >/dev/null 2>&1 && export TERMINAL="tilix"
+hash alacritty >/dev/null 2>&1 && export TERMINAL="alacritty"
 
 # Set X11 wallpaper if existing.
 [ -x ~/.fehbg ] && ~/.fehbg

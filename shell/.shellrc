@@ -7,16 +7,6 @@ set_alias() {
         hash "$3" >/dev/null 2>&1 && alias "$1"="$2"
 }
 
-# Exports a shell environment variable ($1) to the first of the rest of the
-# arguments that exist.
-set_env() {
-        local f var="$1"; shift
-        for f in "$@"; do
-                hash "$f" >/dev/null 2>&1 && export "$var"="$f"
-                return
-        done
-}
-
 # Adds paths to $PATH if they exist.
 path_munge() {
         local f
