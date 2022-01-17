@@ -6,7 +6,7 @@ set_alias grep "grep --color=auto" grep
 set_alias ip "ip --color=auto" ip
 
 # drop-in replacements
-alias ls="ls -Fh --color=auto" && set_alias ls "exa -F" exa
+alias ls="ls -Fh --color=auto" && set_alias ls "exa -F --group-directories-first" exa
 
 # misspellings
 set_alias gi git git
