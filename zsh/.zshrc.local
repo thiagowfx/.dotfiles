@@ -1,4 +1,5 @@
 #!/bin/zsh
+# Extends grml-zsh-config(5).
 #
 # zsh uses its own ZLE (Zsh Line Editor) instead of readline (~/.inputrc).
 #
@@ -61,14 +62,17 @@ autoload -Uz bashcompinit && bashcompinit
 MAILCHECK=0
 set noshare_history
 
-# Python virtualenv token
+# Set python virtualenv token
 python_venv_prompt() {
     REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
 }
 grml_theme_add_token python-venv -f python_venv_prompt '%F{magenta}' '%f'
 
 # Customize grml prompt.
-#   Make it 2-line instead of one
+#   Make it two-line instead of one
+#
+# Additions:
+#   python virtualenv
 zstyle ':prompt:grml:left:setup' items rc python-venv change-root user at host path vcs newline percent
 
 # Source base shell functions.
