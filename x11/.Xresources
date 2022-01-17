@@ -1,6 +1,10 @@
 ! Dump all properties: `xrdb -q`.
 
 ! HiDPI
+! Common values:
+!   96  (x1.0, baseline)
+!   144 (x1.5)
+!   192 (x2.0, HiDPI)
 *.dpi: 144
 
 ! one of: lcddefault, lcdlight, lcdlegacy, lcdnone
