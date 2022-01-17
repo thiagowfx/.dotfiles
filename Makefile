@@ -7,7 +7,7 @@
 # List of packages to install.
 PACKAGES := \
 	alacritty \
-	apk \
+	alpine \
 	arch \
 	bash \
 	direnv \
