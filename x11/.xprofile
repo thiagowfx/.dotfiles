@@ -13,9 +13,6 @@ set -a
 [ -r ~/.config/environment.d/user.conf ] && . ~/.config/environment.d/user.conf
 set +a
 
-# Source base shell functions.
-[ -r ~/.shellrc ] && . ~/.shellrc
-
 # Set preferred terminal emulator in reverse order of preference for i3-sensible-terminal.
 hash tilix >/dev/null 2>&1 && export TERMINAL="tilix"
 hash alacritty >/dev/null 2>&1 && export TERMINAL="alacritty"
