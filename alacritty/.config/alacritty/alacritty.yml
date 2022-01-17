@@ -1,10 +1,10 @@
 # Default config: https://github.com/alacritty/alacritty/blob/master/alacritty.yml
 #
 # Hotkeys:
-#   <C-S-SPC>: vi mode (e.g. for scrollback)
-#   <C-S-u>: regex hints (e.g. URLs)
+#   <Ctrl-Shift-SPC>: vi mode (e.g. for scrollback)
+#   <Ctrl-Shift-u>: regex hints (e.g. URLs)
 #
-#   <C-S-t>: open new instance in PWD
+#   <Ctrl-Shift-t>: open new instance in PWD
 
 env:
   TERM: xterm-256color

@@ -40,7 +40,7 @@ set skip-completed-text on
 # If set to 'on', a character denoting a file's type is appended to the filename when listing possible completions. The default is 'off'.
 set visible-stats on
 
-# This allows you to search through your history using the up and down arrows, or C-p and C-n
+# This allows you to search through your history using the up and down arrow keys, or C-p and C-n
 # e.g. type "cd " and press the corresponding key
 "\e[A": history-search-backward
 "\e[B": history-search-forward
