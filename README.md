@@ -1,6 +1,6 @@
-# Dotfiles
+# thiagowfx's dotfiles
 
-This repository is managed with [`GNU stow`][stow] and [`GNU make`][make]:
+This dotfiles repository is managed with [`GNU stow`][stow] and [`GNU make`][make]:
 
 ```
 git clone --recurse https://github.com/thiagowfx/.dotfiles ~/.dotfiles
