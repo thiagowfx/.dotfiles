@@ -219,7 +219,8 @@ command! Wq wq
 nnoremap <Esc><Esc> :noh<CR>
 
 " a la emacs just-one-space
-nnoremap <Esc><Space> ciw<Space>
+inoremap <Esc><Space> <Esc>ciw<Space>
+nnoremap <Esc><Space> ciw<Space><Esc>
 
 " Disable horizontal cursor line as it is very slow over ssh.
 " https://stackoverflow.com/q/307148/1745064
