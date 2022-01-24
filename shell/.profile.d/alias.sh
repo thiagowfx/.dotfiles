@@ -12,3 +12,8 @@ alias ls="ls -Fh --color=auto" && set_alias ls "exa -F --group-directories-first
 set_alias gi git git
 set_alias gt git git
 alias sl=ls
+
+# https://frantic.im/cdtmp/
+cdtmp() {
+	cd $(mktemp -d "/tmp/$USER-XXXXXX")
+}
