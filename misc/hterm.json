@@ -14,6 +14,7 @@
   "hterm": {
     "default": {
       "alt-backspace-is-meta-backspace": true,
+      "audible-bell-sound": "",
       "background-color": "rgba(39, 40, 34, 1)",
       "color-palette-overrides": [
         "#272822",
