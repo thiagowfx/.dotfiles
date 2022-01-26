@@ -180,11 +180,7 @@ let g:ale_fix_on_save = 1
 Plug 'junegunn/goyo.vim'
 Plug 'amix/vim-zenroom2'
 Plug 'reedes/vim-pencil'
-Plug 'junegunn/limelight.vim'
-Plug 'reedes/vim-colors-pencil'
-Plug 'subnut/vim-iawriter'
-nnoremap <leader>g :Goyo <bar> SoftPencil <bar> Iawriter<CR>
-let g:iawriter_force_defaults = 1
+nnoremap <leader>g :Goyo <bar> SoftPencil<CR>
 
 augroup vim_pencil
   autocmd!
