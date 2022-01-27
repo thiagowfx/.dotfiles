@@ -49,6 +49,7 @@
 
 # https://git-scm.com/docs/diff-config
 [diff]
+	algorithm = histogram
 	# Make it easier to distinguish moved snippets of code within the same file.
 	colorMoved = default
 	# Detect copies in addition to renames
