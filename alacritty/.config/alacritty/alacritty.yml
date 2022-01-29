@@ -1,8 +1,8 @@
 # Default config: https://github.com/alacritty/alacritty/blob/master/alacritty.yml
 #
 # Hotkeys:
-#   <Ctrl-Shift-SPC>: vi mode (e.g. for scrollback)
-#   <Ctrl-Shift-u>: regex hints (e.g. URLs)
+#   <Ctrl-Shift-SPC>: vi mode (e.g. for scrollback), exit with Ctrl-c
+#   <Ctrl-Shift-u>: regex hints (e.g. URLs), exit with Esc
 #
 #   <Ctrl-Shift-t>: open new instance in PWD
 
