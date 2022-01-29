@@ -23,6 +23,7 @@ PACKAGES := \
 	ssh \
 	sway \
 	systemd \
+	tmux \
 	tmux_auto_ssh \
 	vscode \
 	x11 \
@@ -30,7 +31,6 @@ PACKAGES := \
 
 # These packages have their own targets.
 ADVANCED_PACKAGES := \
-		tmux \
 		vim
 
 ALL_PACKAGES := $(PACKAGES) $(ADVANCED_PACKAGES)
@@ -70,12 +70,6 @@ $(foreach package,$(PACKAGES),$(eval $(call stowrule,$(package))))
 
 uninstall:
 	stow -t $(TARGETDIR) -d $(DOTFILESDIR) --delete $(ALL_PACKAGES)
-
-tmux:
-	$(call stow,$@)
-	~/.tmux/plugins/tpm/bin/install_plugins
-	~/.tmux/plugins/tpm/bin/update_plugins all
-	~/.tmux/plugins/tpm/bin/clean_plugins
 
 vim:
 	$(call stow,$@)
