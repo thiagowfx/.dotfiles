@@ -39,13 +39,11 @@
 	autosetupmerge = always
 	autosetuprebase = always
 
-[commit]
-	template = ~/.git_commit_msg.txt
-
 [core]
-	# Auto-convert CRLF <-> LF. Yields a transparent experience in Windows.
+	# Auto-convert CRLF <-> LF for a transparent experience in Windows.
 	autocrlf = input
 	editor = vim
+	# Caveat: May interfere with custom in-repository hooks.
 	hooksPath = ~/.githooks
 	pager = "(diff-highlight 2>/dev/null || cat) | ${PAGER:-less}"
 
