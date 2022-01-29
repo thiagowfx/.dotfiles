@@ -79,6 +79,7 @@ Plug 'tpope/vim-fugitive'
 command! Gadd Gwrite
 command! Gdiff Gdiffsplit
 command! GDiff Gdiffsplit
+command! Gwqall Gwq
 
 " A better vimdiff mergetool: 2-way diff.
 "   ~/.gitconfig and ~/.hgrc are set up to use this plugin.
