@@ -14,6 +14,7 @@ set_alias gt git git
 alias sl=ls
 
 # https://frantic.im/cdtmp/
+# Usage: cdtmp [foo]
 cdtmp() {
-	cd $(mktemp -d "/tmp/$USER-XXXXXX")
+	cd $(mktemp -d "/tmp/$USER-${1:+$1-}XXXXXX")
 }
