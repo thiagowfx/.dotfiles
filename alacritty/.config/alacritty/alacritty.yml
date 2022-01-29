@@ -19,29 +19,29 @@ colors:
   # Default colors
   primary:
     background: '#272822'
-    foreground: '#F8F8F2'
+    foreground: '#f8f8f2'
 
   # Normal colors
   normal:
     black:   '#272822'
-    red:     '#F92672'
-    green:   '#A6E22E'
-    yellow:  '#F4BF75'
-    blue:    '#66D9EF'
-    magenta: '#AE81FF'
-    cyan:    '#A1EFE4'
-    white:   '#F8F8F2'
+    red:     '#f92672'
+    green:   '#a6e22e'
+    yellow:  '#f4bf75'
+    blue:    '#66d9ef'
+    magenta: '#ae81ff'
+    cyan:    '#a1efe4'
+    white:   '#f8f8f2'
 
   # Bright colors
   bright:
-    black:   '#75715E'
-    red:     '#F92672'
-    green:   '#A6E22E'
-    yellow:  '#F4BF75'
-    blue:    '#66D9EF'
-    magenta: '#AE81FF'
-    cyan:    '#A1EFE4'
-    white:   '#F9F8F5'
+    black:   '#75715e'
+    red:     '#f92672'
+    green:   '#a6e22e'
+    yellow:  '#f4bf75'
+    blue:    '#66d9ef'
+    magenta: '#ae81ff'
+    cyan:    '#a1efe4'
+    white:   '#f9f8f5'
 
 key_bindings:
   # open new instance in PWD
