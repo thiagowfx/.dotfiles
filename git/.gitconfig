@@ -2,8 +2,10 @@
 	name = Thiago Perrotta
 	email = tbperrotta@gmail.com
 
-# https://git-scm.com/docs/git-send-email
-# https://git-send-email.io/
+# This setup will always prompt for the password.
+# There's also https://aur.archlinux.org/packages/git-sendgmail-git/ for an OAuth2-based setup with Gmail.
+#   https://git-scm.com/docs/git-send-email
+#   https://git-send-email.io/
 [sendemail]
 	annotate = yes
 	smtpEncryption = tls
@@ -14,11 +16,15 @@
 [alias]
 	amend = commit --amend --no-edit
 	dc = diff --cached
-	ignore = !curl -L -s https://www.gitignore.io/api/$@
-	l = log --graph --pretty=oneline --abbrev-commit --all  # log; there's also gitk and tig
 	st = status
 
-	# hg compatibility
+	# usage: git ignore go,hugo,vim >> .gitignore
+	ignore = !curl -L -s https://www.gitignore.io/api/$@
+
+	# log; there's also gitk and tig
+	l = log --graph --pretty=oneline --abbrev-commit --all
+
+	# hg/fig compatibility
 	reword = commit --amend
 	shelve = stash
 	unshelve = stash apply
