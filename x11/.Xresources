@@ -2,7 +2,7 @@
 !   xrdb -q
 !
 ! Check if it is set:
-   xrdb -q | grep -i dpi
+!   xrdb -q | grep -i dpi
 
 ! HiDPI
 ! Common values:
