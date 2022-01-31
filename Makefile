@@ -30,8 +30,7 @@ PACKAGES := \
 	zsh
 
 # These packages have their own targets.
-ADVANCED_PACKAGES := \
-		vim
+ADVANCED_PACKAGES := vim
 
 ALL_PACKAGES := $(PACKAGES) $(ADVANCED_PACKAGES)
 
