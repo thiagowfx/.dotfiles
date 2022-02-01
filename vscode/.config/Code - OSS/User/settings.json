@@ -3,5 +3,6 @@
     "terminal.integrated.sendKeybindingsToShell": true,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
-    "editor.selectionClipboard": false
+    "editor.selectionClipboard": false,
+    "terminal.external.linuxExec": "alacritty"
 }
