@@ -215,12 +215,4 @@ bindsym XF86AudioStop exec playerctl stop
 bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86AudioNext exec playerctl next
 
-# automatic master stack layout a la dwm
-# https://git.goral.net.pl/mgoral/i3a
-#   --stack [i3|dwm]
-exec --no-startup-id i3a-master-stack
-
-# automatic `devour`ing / swallowing of windows
-exec --no-startup-id i3a-swallow
-
 include conf.d/i3.conf
