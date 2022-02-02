@@ -62,9 +62,6 @@ install: $(ALL_PACKAGES)
 	# Delete dangling symlinks
 	find $(TARGETDIR) -maxdepth 3 -xtype l -delete
 
-pull:
-	git -C $(DOTFILESDIR) submodule update --init --remote
-
 uninstall:
 	stow -t $(TARGETDIR) -d $(DOTFILESDIR) --delete $(ALL_PACKAGES)
 
@@ -74,4 +71,4 @@ vim:
 	$(call stow,$@)
 	vim +PlugClean! +PlugInstall +PlugUpgrade +PlugUpdate +qall
 
-.PHONY: all install pull uninstall $(ALL_PACKAGES)
+.PHONY: all install uninstall $(ALL_PACKAGES)
