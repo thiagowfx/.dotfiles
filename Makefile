@@ -65,10 +65,10 @@ install: $(ALL_PACKAGES)
 pull:
 	git -C $(DOTFILESDIR) submodule update --init --remote
 
-$(foreach package,$(PACKAGES),$(eval $(call stowrule,$(package))))
-
 uninstall:
 	stow -t $(TARGETDIR) -d $(DOTFILESDIR) --delete $(ALL_PACKAGES)
+
+$(foreach package,$(PACKAGES),$(eval $(call stowrule,$(package))))
 
 vim:
 	$(call stow,$@)
