@@ -1,8 +1,8 @@
 {
-    "workbench.colorTheme": "One Dark Pro",
-    "terminal.integrated.sendKeybindingsToShell": true,
+    "editor.selectionClipboard": false,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
-    "editor.selectionClipboard": false,
-    "terminal.external.linuxExec": "alacritty"
+    "terminal.external.linuxExec": "alacritty",
+    "terminal.integrated.sendKeybindingsToShell": true,
+    "workbench.colorTheme": "One Dark Pro"
 }
