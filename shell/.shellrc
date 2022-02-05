@@ -34,4 +34,4 @@ path_munge() {
         done
 }
 
-# vim:ft=sh
+# vim: ft=sh

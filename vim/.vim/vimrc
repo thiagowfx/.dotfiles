@@ -248,6 +248,9 @@ set lazyredraw
 " https://vi.stackexchange.com/q/422/8211
 set list lcs=tab:\|\ ,trail:·,nbsp:·
 
+" https://vim.fandom.com/wiki/Modeline_magic
+set modeline
+
 " Disable --INSERT-- which is not necessary, because:
 "   Cursor shape changes thanks to wincent/terminus.
 "   itchyny/lightline.vim already displays it.
