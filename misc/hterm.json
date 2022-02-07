@@ -34,11 +34,11 @@
         "#a1efe4",
         "#f9f8f5"
       ],
-      "font-family": "\"Fira Code\", \"PT Mono\", \"DejaVu Sans Mono\", \"Noto Sans Mono\", \"Everson Mono\", FreeMono, Menlo, Terminal, monospace",
+      "font-family": "\"IBM Plex Mono\", \"Fira Code\", \"PT Mono\", \"DejaVu Sans Mono\", \"Noto Sans Mono\", \"Everson Mono\", FreeMono, Menlo, Terminal, monospace",
       "font-size": "12",
       "foreground-color": "rgba(197, 200, 198, 1)",
       "scroll-on-output": true,
-      "user-css": "https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap",
+      "user-css": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Fira+Code:wght@400;700&display=swap",
       "user-css-text": "* {\n    -webkit-font-feature-settings: \"liga\" on, \"calt\" on;\n    -webkit-font-smoothing: antialiased;\n    text-rendering: optimizeLegibility;\n}"
     }
   }
