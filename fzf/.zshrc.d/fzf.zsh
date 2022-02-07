@@ -7,4 +7,7 @@ if (( $+commands[fzf] )); then
 
 	# debian: https://packages.debian.org/sid/amd64/fzf/filelist
 	src_files /usr/share/doc/fzf/examples/{completion,key-bindings}.zsh
+
+	# nix
+	(( $+commands[fzf-share] )) && src_files "$(fzf-share)"/{completion,key-bindings}.zsh
 fi
