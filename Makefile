@@ -10,6 +10,7 @@ PACKAGES := \
 	alpine \
 	arch \
 	bash \
+	brew \
 	chromium \
 	direnv \
 	fzf \
