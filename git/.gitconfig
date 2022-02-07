@@ -43,7 +43,7 @@
 	# Auto-convert CRLF <-> LF for a transparent experience in Windows.
 	autocrlf = input
 	editor = vim
-	# Caveat: May interfere with custom in-repository hooks.
+	# Caveat: may interfere with custom in-repository hooks.
 	hooksPath = ~/.githooks
 	pager = "(diff-highlight 2>/dev/null || cat) | ${PAGER:-less}"
 
