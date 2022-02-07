@@ -1,7 +1,0 @@
-[Unit]
-Description=Tool to automatically purge old trashed files
-Documentation=https://github.com/bneijt/autotrash
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/autotrash -d 30
