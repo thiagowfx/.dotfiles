@@ -6,12 +6,18 @@
 #
 # https://wiki.archlinux.org/title/Xprofile
 
-# Parse user session environment variables.
-# This file is shared with the systemd user instance.
-# Export all variables: https://stackoverflow.com/a/30969768/1745064
-set -a
-[ -r ~/.config/environment.d/user.conf ] && . ~/.config/environment.d/user.conf
-set +a
+# fix java application decorations, for tiling window managers
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+# make Chrome pick up proxy settings stored in gconf
+export DESKTOP_SESSION=gnome
+
+# HiDPI settings for GTK3+
+export GDK_DPI_SCALE=0.5
+export GDK_SCALE=2
+
+# HiDPI settings for QT
+export QT_FONT_DPI=192
 
 # Set preferred terminal emulator in reverse order of preference for i3-sensible-terminal.
 hash tilix >/dev/null 2>&1 && export TERMINAL="tilix"
