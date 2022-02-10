@@ -33,7 +33,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 
 " Automatically follow symlinks, helpful for ~/.dotfiles
-"   vim-bbye: optional dependency to consistenly wipe buffers without impacting the windows order
+"   vim-bbye: optional dependency to consistenly wipe buffers without impacting the order of windows
 Plug 'moll/vim-bbye'
 Plug 'aymericbeaumet/vim-symlink'
 
@@ -45,7 +45,6 @@ Plug 'aymericbeaumet/vim-symlink'
 Plug 'wincent/terminus'
 
 " Highlight trailing whitespace.
-"
 " Fix all occurrences:
 "   :FixWhitespace
 Plug 'bronson/vim-trailing-whitespace'
@@ -56,9 +55,9 @@ Plug 'joshdick/onedark.vim'  " onedark
 
 " Minimalist statusline / tabline.
 Plug 'itchyny/lightline.vim'
-
 " The colorscheme of lightline is independent of the editor colorscheme.
 "   'one' provides sensible defaults and works in 8-color mode (linux tty).
+"   'onedark' provides its own colorscheme.
 let g:lightline = {
       \ 'colorscheme': 'onedark',
       \ }
@@ -66,10 +65,6 @@ let g:lightline = {
 " Display thin vertical lines at each indentation level for code indented with spaces.
 "   :IndentLinesToggle
 Plug 'Yggdroot/indentLine'
-" augroup indent_line
-"   autocmd!
-"   autocmd FileType man call let g:indentLine_enabled=0
-" augroup END
 
 " Async VCS info: git, hg, etc
 Plug 'mhinz/vim-signify'
@@ -84,13 +79,10 @@ command! Gwqall Gwq
 " A better vimdiff mergetool: 2-way diff.
 "   ~/.gitconfig and ~/.hgrc are set up to use this plugin.
 "   :DiffConflicts
-"   do for diffobtain (get), dp for diffput, [c and ]c to navigate diff hunks
+"   do for diffobtain (get)
+"   dp for diffput
+"   [c and ]c to navigate diff hunks
 Plug 'whiteinge/diffconflicts', {'on': 'DiffConflicts'}
-
-" Single-line <-> multi-line statements.
-"   gS to split
-"   gJ to join
-Plug 'AndrewRadev/splitjoin.vim'
 
 " Toggle comment blocks.
 "   gc to comment out in visual mode or the target of a motion
@@ -102,8 +94,8 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 
 " Helpers for unix
+"   :Delete, :Rename, :SudoWrite
 Plug 'tpope/vim-eunuch'
-
 " https://superuser.com/a/785016/165044
 command! DoasWrite execute 'silent! write !doas tee % >/dev/null' <bar> edit!
 
@@ -177,12 +169,11 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 
 " Distraction-free writing, good for blogging.
-" Make Vim as powerful a tool for writers.
 Plug 'junegunn/goyo.vim'
-Plug 'amix/vim-zenroom2'
-Plug 'reedes/vim-pencil'
 nnoremap <leader>g :Goyo <bar> SoftPencil<CR>
 
+Plug 'amix/vim-zenroom2'
+Plug 'reedes/vim-pencil'
 augroup vim_pencil
   autocmd!
   autocmd FileType markdown call pencil#init({'wrap': 'soft', 'autoformat': 1})
@@ -191,10 +182,10 @@ augroup END
 " built-in markdown: https://github.com/tpope/vim-markdown
 let g:markdown_syntax_conceal = 0
 
-" Format current paragraph
-nnoremap <silent> Q gqap
-
 call plug#end()
+
+" Reflow current paragraph
+nnoremap <silent> Q gqap
 
 " Better %
 runtime! macros/matchit.vim
@@ -213,9 +204,6 @@ command! W w
 command! WQ wq
 command! Wq wq
 
-" double tap esc to unset highlighting
-nnoremap <Esc><Esc> :noh<CR>
-
 " a la emacs just-one-space
 inoremap <Esc><Space> <Esc>ciw<Space>
 nnoremap <Esc><Space> ciw<Space><Esc>
@@ -233,6 +221,8 @@ set nofoldenable
 " Highlight search pattern matches.
 "   :noh dismisses all highlights
 set hlsearch
+" double tap esc to unset highlighting
+nnoremap <Esc><Esc> :noh<CR>
 
 " https://stackoverflow.com/a/2288438/1745064
 set ignorecase smartcase
