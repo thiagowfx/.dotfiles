@@ -1,10 +1,16 @@
 #!/bin/sh
 # shellcheck source=/dev/null
 #
-# Sourced by most display managers (GDM, LightDM, LXDM, SDDM, etc).
+# Sourced by most display managers (GDM, LightDM, LXDM, SDDM, ly, etc).
 # ~/.xinitrc is configured to source it as well.
 #
 # https://wiki.archlinux.org/title/Xprofile
+
+# Load Xmodmap.
+[ -f ~/.Xmodmap ] && xmodmap ~/.Xmodmap
+
+# Load Xresources.
+[ -f ~/.Xresources ] && xrdb -merge ~/.Xresources
 
 # fix java application decorations, for tiling window managers
 export _JAVA_AWT_WM_NONREPARENTING=1
