@@ -32,5 +32,5 @@ hash alacritty >/dev/null 2>&1 && export TERMINAL="alacritty"
 # Set X11 wallpaper if existing.
 [ -x ~/.fehbg ] && ~/.fehbg
 
-# xset s 1200  # 20min
-# xss-lock -l -n /usr/lib/xsecurelock/dimmer -- xsecurelock
+# Screensaver params.
+xset s 900  # 15m
