@@ -210,12 +210,5 @@ bindsym XF86AudioStop exec playerctl stop
 bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86AudioNext exec playerctl next
 
-# Autostart XDG applications (.desktop files).
-# https://wiki.archlinux.org/title/XDG_Autostart
-#
-# Troubleshooting:
-#   dex -ade i3
-exec dex --autostart --environment i3
-
 # Load user configs if existing. Order is important.
 include conf.d/*.conf
