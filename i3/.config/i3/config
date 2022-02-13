@@ -210,4 +210,5 @@ bindsym XF86AudioStop exec playerctl stop
 bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86AudioNext exec playerctl next
 
-include conf.d/i3.conf
+# Load user configs if existing. Order is important.
+include conf.d/*.conf
