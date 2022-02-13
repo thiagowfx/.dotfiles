@@ -4,7 +4,7 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
-# i3 config file (v4)
+# i3 and sway config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
@@ -13,9 +13,9 @@ set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 11
+font pango:monospace 10
 
-# start a terminal
+# start a terminal (prefer $TERMINAL)
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+Return exec i3-sensible-terminal
 
@@ -209,6 +209,13 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioStop exec playerctl stop
 bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86AudioNext exec playerctl next
+
+# Autostart XDG applications (.desktop files).
+# https://wiki.archlinux.org/title/XDG_Autostart
+#
+# Troubleshooting:
+#   dex -ade i3
+exec dex --autostart --environment i3
 
 # Load user configs if existing. Order is important.
 include conf.d/*.conf
