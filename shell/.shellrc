@@ -12,13 +12,6 @@ path_munge() {
         done
 }
 
-# Set alias ($1) to value ($2) if $3 exists.
-# Usage: set_alias ip "ip color --auto" ip
-set_alias() {
-        # shellcheck disable=SC2139
-        hash "$3" >/dev/null 2>&1 && alias "$1"="$2"
-}
-
 # Source files and directories recursively if they exist.
 # Usage: src_files "/usr/local/etc/bashrc.d/" "/usr/share/doc/pkgfile/command-not-found.bash"
 src_files() {

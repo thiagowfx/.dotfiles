@@ -1,16 +1,16 @@
 # Sensible command defaults for both bash and zsh.
 
 # color on
-set_alias diff "diff -uN --color=auto" diff
-set_alias grep "grep --color=auto" grep
-set_alias ip "ip --color=auto" ip
+alias diff="diff -uN --color=auto"
+alias grep="grep --color=auto"
+alias ip="ip --color=auto"
 
 # drop-in replacements
-alias ls="ls -Fh --color=auto" && set_alias ls "exa -F --group-directories-first" exa
+alias ls="ls -Fh --color=auto" && hash exa >/dev/null 2>&1 && alias ls="exa -F --group-directories-first"
 
 # misspellings
-set_alias gi git git
-set_alias gt git git
+alias gi=git
+alias gt=git
 alias sl=ls
 
 # https://frantic.im/cdtmp/
