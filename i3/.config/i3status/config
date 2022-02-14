@@ -2,19 +2,17 @@ general {
 	interval = 5
 }
 
-order += "memory"
 order += "load"
+order += "path_exists tailscale"
 order += "wireless _first_"
 order += "tztime local"
 
-memory {
-	format = "%used"
-	threshold_degraded = "15%"
-	format_degraded = "memory: < %available"
+load {
+	format = "%5min"
 }
 
-load {
-	format = "%1min"
+path_exists tailscale {
+	path = "/proc/sys/net/ipv4/conf/tailscale0"
 }
 
 wireless _first_ {
