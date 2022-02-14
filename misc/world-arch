@@ -15,7 +15,6 @@ git
 highlight
 lesspipe
 make
-mercurial
 moreutils
 otf-fira-sans
 otf-hermit
@@ -25,7 +24,6 @@ shellcheck
 stow
 tig
 tmux
-trash-cli
 tree
 vi-vim-symlink
 vim
