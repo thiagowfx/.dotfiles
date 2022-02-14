@@ -26,14 +26,10 @@ PACKAGES := \
 	systemd \
 	tmux \
 	tmux_auto_ssh \
+	vim \
 	vscode \
 	x11 \
 	zsh
-
-# These packages have their own targets.
-ADVANCED_PACKAGES := vim
-
-ALL_PACKAGES := $(PACKAGES) $(ADVANCED_PACKAGES)
 
 DOTFILESDIR := $(shell dirname "$(readlink -f "$0")")
 TARGETDIR := ~
@@ -48,28 +44,21 @@ ifeq (, $(shell which stow))
   $(error "No stow in $$PATH, install it first")
 endif
 
-define stow
-	stow -t $(TARGETDIR) -d $(DOTFILESDIR) --restow $(1)
-endef
+all: install lint
+
+install: $(PACKAGES)
+
+uninstall:
+	stow -t $(TARGETDIR) -d $(DOTFILESDIR) --delete $(PACKAGES)
+
+lint:
+	# Find dangling symlinks
+	chkstow -t $(TARGETDIR)
 
 define stowrule
 $(1):
-	$(call stow,$(1))
+	stow -t $(TARGETDIR) -d $(DOTFILESDIR) --restow $(1)
 endef
-
-all: install
-
-install: $(ALL_PACKAGES)
-	# Delete dangling symlinks
-	find $(TARGETDIR) -maxdepth 3 -xtype l -delete
-
-uninstall:
-	stow -t $(TARGETDIR) -d $(DOTFILESDIR) --delete $(ALL_PACKAGES)
-
 $(foreach package,$(PACKAGES),$(eval $(call stowrule,$(package))))
 
-vim:
-	$(call stow,$@)
-	vim +PlugClean! +PlugInstall +PlugUpgrade +PlugUpdate +qall
-
-.PHONY: all install uninstall $(ALL_PACKAGES)
+.PHONY: all install uninstall lint $(PACKAGES)

@@ -26,6 +26,11 @@ silent! source $VIMRUNTIME/defaults.vim
 " Set leader key. Default is '\'.
 let mapleader=","
 
+" Automatically bootstrap vim-plug plugins.
+if !isdirectory($HOME . "/.vim/plugged")
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC | q
+endif
+
 " Initialize plugin manager: vim-plug
 call plug#begin('~/.vim/plugged')
 
@@ -169,7 +174,7 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 
 " Distraction-free writing, good for blogging.
-Plug 'junegunn/goyo.vim'
+Plug 'junegunn/goyo.vim', {'for': 'markdown'}
 nnoremap <leader>g :Goyo <bar> SoftPencil<CR>
 
 Plug 'amix/vim-zenroom2'
@@ -195,8 +200,8 @@ runtime! macros/matchit.vim
 source $VIMRUNTIME/ftplugin/man.vim
 
 " Set color theme / scheme
-" colorscheme monokai
-colorscheme onedark
+" silent! colorscheme monokai
+silent! colorscheme onedark
 highlight ColorColumn ctermbg=magenta
 
 " :w save misspellings
