@@ -23,7 +23,6 @@ PACKAGES := \
 	shell \
 	ssh \
 	sway \
-	systemd \
 	tmux \
 	tmux_auto_ssh \
 	vim \
