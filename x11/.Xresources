@@ -1,7 +1,14 @@
+! These settings apply to X11 only.
+! Use ~/.Xdefaults for settings that apply to both X11 and Wayland (xorg-xwayland).
+#include ".Xdefaults"
+
+! Source:
+!   xrdb -merge ~/.Xresources
+!
 ! Dump all properties:
 !   xrdb -q
 !
-! Check if it is set:
+! Check if DPI is set:
 !   xrdb -q | grep -i dpi
 
 ! HiDPI
@@ -10,53 +17,3 @@
 !   144 (x1.5)
 !   192 (x2.0, HiDPI)
 *.dpi: 144
-
-Xft.antialias: true
-Xft.hinting: true
-
-! one of: lcddefault, lcdlight, lcdlegacy, lcdnone
-Xft.lcdfilter: lcddefault
-
-! text hinting style, one of: hintnone, hintslight, hintmedium, hintfull
-Xft.hintstyle: hintslight
-
-! text subpixel rendering, one of: none, rgb, bgr, vrgb, vbgr
-Xft.rgba: rgb
-
-! Theme: /base16/monokai.dark from https://terminal.love/
-! special
-*.background:   #272822
-*.foreground:   #f8f8f2
-*.cursorColor:  #f8f8f2
-! black
-*.color0:       #272822
-*.color8:       #75715e
-! red
-*.color1:       #f92672
-*.color9:       #f92672
-! green
-*.color2:       #a6e22e
-*.color10:      #a6e22e
-! yellow
-*.color3:       #f4bf75
-*.color11:      #f4bf75
-! blue
-*.color4:       #66d9ef
-*.color12:      #66d9ef
-! magenta
-*.color5:       #ae81ff
-*.color13:      #ae81ff
-! cyan
-*.color6:       #a1efe4
-*.color14:      #a1efe4
-! white
-*.color7:       #f8f8f2
-*.color15:      #f9f8f5
-
-! xterm sensible defaults with osc-52 support
-*.allowWindowOps: true
-xterm.termName: xterm-256color
-xterm.vt100.faceName: hermit:size=10
-xterm.vt100.translations: #override \n\
-	Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
-	Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
