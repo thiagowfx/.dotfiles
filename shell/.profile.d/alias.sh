@@ -13,8 +13,9 @@ alias gi=git
 alias gt=git
 alias sl=ls
 
-# https://frantic.im/cdtmp/
+# Inspiration from https://frantic.im/cdtmp/ and grml-zsh-config's cdt
 # Usage: cdtmp [foo]
 cdtmp() {
-	cd $(mktemp -d "/tmp/$USER-${1:+$1-}XXXXXX")
+	builtin cd $(mktemp -d "/tmp/$USER-${1:+$1-}XXXXXX")
+	builtin pwd
 }
