@@ -12,7 +12,6 @@ PACKAGES := \
 	bash \
 	brew \
 	chromium \
-	direnv \
 	fzf \
 	git \
 	hg \

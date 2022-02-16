@@ -16,3 +16,11 @@ bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
 bindkey '^[OA' history-substring-search-up
 bindkey '^[OB' history-substring-search-down
+
+# unclutter your .profile: load/unload env depending on the current directory
+# https://direnv.net/
+(( $+commands[direnv] )) && eval "$(direnv hook zsh)"
+
+# zoxide is a smarter cd command
+# https://github.com/ajeetdsouza/zoxide
+(( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
