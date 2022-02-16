@@ -27,7 +27,7 @@ silent! source $VIMRUNTIME/defaults.vim
 let mapleader=","
 
 " Automatically bootstrap vim-plug plugins.
-if !isdirectory($HOME . "/.vim/plugged")
+if empty(globpath(&runtimepath, 'plugged'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC | q
 endif
 
