@@ -289,8 +289,3 @@ augroup vcs_commit_message
   autocmd!
   autocmd Filetype gitcommit,hgcommit setlocal spell textwidth=72 cc=+1
 augroup end
-
-" Load corp configs if any.
-if filereadable($HOME . "/.vim/vimrc_corp")
-  source ~/.vim/vimrc_corp
-endif
