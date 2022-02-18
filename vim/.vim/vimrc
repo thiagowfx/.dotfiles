@@ -272,6 +272,10 @@ set smartindent
 " Better splits.
 set splitbelow splitright switchbuf=useopen
 
+" Set visual bell. The audio bell is very annoying. Then make it do nothing.
+" https://unix.stackexchange.com/a/5313
+set visualbell t_vb=
+
 " Shorter update time than the 4000ms default, for async vim operations.
 set updatetime=2000
 
