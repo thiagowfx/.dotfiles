@@ -3,16 +3,11 @@ general {
 }
 
 order += "load"
-order += "path_exists tailscale"
 order += "wireless _first_"
 order += "tztime local"
 
 load {
 	format = "%5min"
-}
-
-path_exists tailscale {
-	path = "/proc/sys/net/ipv4/conf/tailscale0"
 }
 
 wireless _first_ {
