@@ -2,12 +2,6 @@
 
 # fzf: fuzzy file finder
 if (( $+commands[fzf] )); then
-	# alpine, arch
-	src_files /usr/share/fzf/{completion,key-bindings}.zsh
-
-	# debian: https://packages.debian.org/sid/amd64/fzf/filelist
-	src_files /usr/share/doc/fzf/examples/{completion,key-bindings}.zsh
-
-	# nix
-	(( $+commands[fzf-share] )) && src_files "$(fzf-share)"/{completion,key-bindings}.zsh
+	# alpine/arch, debian, nix
+	src_files {/usr/share/fzf,/usr/share/doc/fzf/examples,"$HOME"/.nix-profile/share/fzf}/{completion,key-bindings}.zsh
 fi
