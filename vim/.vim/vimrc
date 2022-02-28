@@ -287,9 +287,3 @@ endif
 
 " Set completion mode.
 set wildmode=list:longest
-
-" https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
-augroup vcs_commit_message
-  autocmd!
-  autocmd Filetype gitcommit,hgcommit setlocal spell textwidth=72 cc=+1
-augroup end
