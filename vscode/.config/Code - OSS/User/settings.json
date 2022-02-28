@@ -4,5 +4,6 @@
     "explorer.confirmDragAndDrop": false,
     "terminal.external.linuxExec": "alacritty",
     "terminal.integrated.sendKeybindingsToShell": true,
-    "workbench.colorTheme": "One Dark Pro"
+    "workbench.colorTheme": "One Dark Pro",
+    "files.insertFinalNewline": true
 }
