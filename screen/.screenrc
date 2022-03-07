@@ -10,6 +10,9 @@
 # don't display lengthy license and version information on startup
 startup_message off
 
+# no annoying audible bell
+vbell on
+
 # automatically detach on terminal hangup, so that one can attach again and continue working
 autodetach on
 
