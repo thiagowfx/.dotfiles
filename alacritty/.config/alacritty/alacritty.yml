@@ -9,11 +9,6 @@
 env:
   TERM: xterm-256color
 
-font:
-  size: 10
-  normal:
-    family: Hermit
-
 # Monokai dark theme from https://github.com/alacritty/alacritty/wiki/Color-schemes
 colors:
   # Default colors
