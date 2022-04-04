@@ -1,5 +1,5 @@
 #!/bin/bash
-# apk(8) from Alpine Linux command not found hook for bash
+# apk(8) from Alpine Linux command-not-found hook for bash
 
 command_not_found_handle () {
 	local cmd="$1" pkgs
