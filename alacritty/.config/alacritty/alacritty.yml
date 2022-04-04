@@ -39,7 +39,7 @@ colors:
     white:   '#f9f8f5'
 
 key_bindings:
-  # open new instance in PWD
+  # open new instance in PWD; macOS default: Command + N
   - { key: T, mods: Control|Shift, action: SpawnNewInstance }
 
 mouse:
