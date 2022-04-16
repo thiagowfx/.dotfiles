@@ -10,4 +10,4 @@
 
 # command-not-found hook
 # https://github.com/Homebrew/homebrew-command-not-found
-hash brew >/dev/null 2>&1 && src_files "$(brew --repository)/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
+hash brew >/dev/null 2>&1 && src_files "$(brew --prefix)/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
