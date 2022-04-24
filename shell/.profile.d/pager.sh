@@ -7,7 +7,7 @@ if hash less >/dev/null 2>&1; then
 	#   Progress percentage: https://unix.stackexchange.com/a/329092/41858
 	export MANPAGER="less -R -s -M +Gg"
 
-	if [ "$(less -V | head -n 1 | cut -f2 -d' ')" -ge 580 ]; then
+	if [ "$(less -V | head -n 1 | cut -f2 -d' ' | xargs printf '%.0f')" -ge 580 ]; then
 		export MANPAGER="${MANPAGER} --use-color -Dd+r -Du+b"
 	else
 		man() {
