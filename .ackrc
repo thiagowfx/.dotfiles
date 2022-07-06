@@ -1,4 +1,3 @@
---ignore-case
 --ignore-directory=vendor
 --ignore-directory=vim/.vim/plugged
 --ignore-directory=vim/.vim/vim-plug
