@@ -92,6 +92,7 @@
 	followTags = true
 
 # https://git-scm.com/docs/git-rebase
+# https://thoughtbot.com/blog/autosquashing-git-commits
 [rebase]
 	autosquash = true
 
