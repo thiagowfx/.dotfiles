@@ -92,9 +92,11 @@
 	followTags = true
 
 # https://git-scm.com/docs/git-rebase
-# https://thoughtbot.com/blog/autosquashing-git-commits
 [rebase]
-	autosquash = true
+	# https://thoughtbot.com/blog/autosquashing-git-commits
+	autoSquash = true
+	# https://cscheng.info/2017/01/26/git-tip-autostash-with-git-pull-rebase.html
+	autoStash = true
 
 # https://git-scm.com/docs/git-rerere
 [rerere]
