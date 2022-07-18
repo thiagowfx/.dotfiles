@@ -29,7 +29,6 @@
 	shelve = stash
 	unshelve = stash apply
 	unstash = stash apply
-	world = !git shelve && git pull --rebase && git unshelve
 
 [apply]
 	# Detect whitespace errors when applying a patch.
