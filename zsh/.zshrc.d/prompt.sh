@@ -3,9 +3,9 @@
 
 # Set python-venv token.
 python_venv_prompt() {
-    REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
+    REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t})}
 }
-grml_theme_add_token python-venv -f python_venv_prompt '%F{magenta}' '%f'
+grml_theme_add_token python-venv -f python_venv_prompt '%F{magenta}' '%f '
 
 # Customize grml prompt.
 #   Two lines instead of one
