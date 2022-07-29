@@ -1,4 +1,6 @@
 {
+    "editor.fontLigatures": true,
+    "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "editor.selectionClipboard": false,
     "explorer.confirmDelete": false,
