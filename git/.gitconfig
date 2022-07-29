@@ -67,8 +67,12 @@
 [help]
 	autocorrect = 1
 
+[http]
+	# Needed for Gerrit authentication
+	cookiefile = ~/.gitcookies
+
 [init]
-	# some codebases use 'main' these days
+	# Some codebases use 'main' these days
 	defaultBranch = master
 
 [merge]
