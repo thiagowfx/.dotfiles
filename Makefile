@@ -6,6 +6,7 @@
 
 # List of packages to install.
 PACKAGES := \
+	ack \
 	alacritty \
 	alpine \
 	arch \
