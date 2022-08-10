@@ -2,12 +2,13 @@
     "editor.fontLigatures": true,
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
+    "editor.linkedEditing": true,
     "editor.selectionClipboard": false,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
-    "terminal.integrated.sendKeybindingsToShell": true,
-    "workbench.colorTheme": "One Dark Pro",
     "files.autoSave": "off",
     "files.insertFinalNewline": true,
-    "files.trimTrailingWhitespace": true
+    "files.trimTrailingWhitespace": true,
+    "terminal.integrated.sendKeybindingsToShell": true,
+    "workbench.colorTheme": "One Dark Pro"
 }
