@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# homebrew bash completion
+hash brew >/dev/null 2>&1 && src_files "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+
 # unclutter your .profile: load/unload env depending on the current directory
 # https://direnv.net/
 hash direnv >/dev/null 2>&1 && eval "$(direnv hook bash)"
