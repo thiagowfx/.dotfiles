@@ -4,7 +4,14 @@ if hash git >/dev/null 2>&1; then
 
 	# alpine:nil, arch, debian
 	src_files "/usr/share/git/git-prompt.sh" "/usr/lib/git-core/git-sh-prompt"
-fi
 
-# git-diff-highlight: alpine:/usr/bin/diff-highlight, arch, debian
-path_munge "/usr/share/git/diff-highlight" "/usr/share/doc/git/contrib/diff-highlight"
+	# git-diff-highlight: alpine:/usr/bin/, arch, debian
+	path_munge "/usr/share/git/diff-highlight" "/usr/share/doc/git/contrib/diff-highlight"
+
+	# brew
+	if hash brew >/dev/null 2>&1; then
+		src_files "$(brew --prefix)"/etc/bash_completion.d/git-prompt.sh
+		path_munge "$(brew --prefix)"/share/git-core/contrib/diff-highlight
+	fi
+
+fi
