@@ -124,7 +124,7 @@ for_window [window_role="About|bubble|pop-up|Preferences|task_dialog"] floating 
 for_window [class="Blueman|Lxappearance|Pavucontrol"] floating enable
 
 # set floating window + workspace assignment: music
-#   spotify | youtube music
+#   spotify, youtube music
 for_window [instance="crx_pjibgclleladliembfgfagdaldikeohf|crx_cinhimbnkkaeohfgghhklpknlkffjgod"] floating disable
 assign [instance="crx_pjibgclleladliembfgfagdaldikeohf|crx_cinhimbnkkaeohfgghhklpknlkffjgod"] → workspace number $ws9
 assign [class="Clementine|strawberry"] → workspace number $ws9
