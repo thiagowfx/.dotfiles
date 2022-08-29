@@ -40,7 +40,7 @@
 	autosetuprebase = always
 
 [core]
-	# Auto-convert CRLF <-> LF for a transparent experience in Windows.
+	# Auto-convert CRLF <-> LF for a transparent experience on Windows.
 	autocrlf = input
 	editor = vim
 	pager = "(diff-highlight 2>/dev/null || cat) | ${PAGER:-less}"
@@ -69,7 +69,7 @@
 	autocorrect = 1
 
 [http]
-	# Needed for Gerrit authentication
+	# Needed for Gerrit authentication/integration
 	cookiefile = ~/.gitcookies
 
 [init]
@@ -104,7 +104,7 @@
 
 # https://git-scm.com/docs/git-rerere
 [rerere]
-	autoupdate = true
+	autoUpdate = true
 	enabled = true
 
 [status]

@@ -1,4 +1,4 @@
-# __git_ps1 prompt customization: https://wiki.archlinux.org/title/Git
+# __git_ps1 upstream prompt customization: https://wiki.archlinux.org/title/Git
 if hash git >/dev/null 2>&1; then
 	GIT_PS1_SHOWDIRTYSTATE=1
 

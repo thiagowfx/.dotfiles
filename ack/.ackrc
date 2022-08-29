@@ -1,1 +1,2 @@
+# generate ninja: https://gn.googlesource.com/gn/
 --type-set=gn=.gn,.gni
