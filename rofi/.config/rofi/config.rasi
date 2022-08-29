@@ -6,4 +6,4 @@ configuration {
 	show-icons: true;
 }
 
-/* ft=css */
+/* vim: set ft=css */
