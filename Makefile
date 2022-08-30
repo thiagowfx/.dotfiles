@@ -11,7 +11,6 @@ PACKAGES := \
 	alpine \
 	arch \
 	bash \
-	brew \
 	chromium \
 	fzf \
 	git \
