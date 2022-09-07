@@ -5,6 +5,9 @@ alias diff="diff -uN --color=auto"
 alias grep="grep --color=auto"
 alias ip="ip --color=auto"
 
+# verbose on
+alias rsync="rsync -v"
+
 # drop-in replacements
 alias ls="ls -Fh --color=auto" && hash exa >/dev/null 2>&1 && alias ls="exa -F --group-directories-first"
 
