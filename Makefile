@@ -19,6 +19,7 @@ PACKAGES := \
 	ranger \
 	rofi \
 	screen \
+	scripts \
 	shell \
 	ssh \
 	sway \
