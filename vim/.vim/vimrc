@@ -239,6 +239,10 @@ set nojoinspaces
 "   :redraw to force
 set lazyredraw
 
+" Display whitespace characters, including tabs.
+" https://vi.stackexchange.com/q/422/8211
+set list lcs=tab:\|\ ,trail:·,nbsp:·
+
 " https://vim.fandom.com/wiki/Modeline_magic
 set modeline
 
