@@ -5,9 +5,8 @@
 # Monokai-inspired: https://gist.github.com/transat/6694554
 RESET=$'\e[0m'
 BOLD=$'\e[1m'
-BLUE=$'\e[34;49m'
 GREEN=$'\e[32;49m'
-LIGHTBLUE=$'\e[36;49m'
+CYAN=$'\e[0;36m'
 ORANGE=$'\e[33;49m'
 PINK=$'\e[31;49m'
 PURPLE=$'\e[35;49m'
@@ -31,7 +30,7 @@ prompt_command() {
 	if [ "$(id -u)" -eq 0 ]; then
 		PS1+='\[$BOLD\]\[$RED\]\u'
 	else
-		PS1+='\[$BOLD\]\[$BLUE\]\u'
+		PS1+='\[$BOLD\]\[$GREEN\]\u'
 	fi
 
 	# add hostname and directory
