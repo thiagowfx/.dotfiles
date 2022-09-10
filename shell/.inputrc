@@ -46,3 +46,7 @@ set visible-stats on
 "\e[B": history-search-forward
 "\C-p": history-search-backward
 "\C-n": history-search-forward
+
+# macOS Option + Left/Right arrow keys to move the cursor wordwise
+"\e\e[C": forward-word
+"\e\e[D": backward-word
