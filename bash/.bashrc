@@ -20,9 +20,6 @@ HISTTIMEFORMAT='[%F %T] '
 # History: Default commands not to record.
 HISTIGNORE="clear:history:ls:pwd:tree"
 
-# Make C-r followed by C-s work in reverse history search.
-stty -ixon
-
 # Complete filenames after flag arguments.
 #   https://stackoverflow.com/a/33740951/1745064
 #
