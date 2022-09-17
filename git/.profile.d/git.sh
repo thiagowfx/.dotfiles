@@ -1,6 +1,9 @@
 # __git_ps1 upstream prompt customization: https://wiki.archlinux.org/title/Git
 if hash git >/dev/null 2>&1; then
+	# GIT_PS1_SHOWCOLORHINTS=1
 	GIT_PS1_SHOWDIRTYSTATE=1
+	GIT_PS1_SHOWSTASHSTATE=1
+	# GIT_PS1_SHOWUPSTREAM=1
 
 	# alpine:nil, arch, debian
 	src_files "/usr/share/git/git-prompt.sh" "/usr/lib/git-core/git-sh-prompt"
