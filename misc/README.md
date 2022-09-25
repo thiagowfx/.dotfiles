@@ -1,2 +1,0 @@
-- hterm.json: Chrome SSH Extension
-- Monokai.terminal: macOS Terminal.app
