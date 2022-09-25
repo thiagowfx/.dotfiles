@@ -24,23 +24,23 @@ HISTIGNORE="clear:history:ls:pwd:tree"
 #   https://stackoverflow.com/a/33740951/1745064
 #
 #   $ foo --config=$HOME/.b| <TAB> would expand .bashrc.
-complete -D -o default
+complete -D -o default 2&>/dev/null
 
 # Enable history expansion with space.
 #   Typing !!<SPC> will replace !! with the last command.
 bind Space:magic-space
 
 # Prepend cd to directory names automatically.
-shopt -s autocd
+shopt -s autocd 2&>/dev/null
 
 # Correct spelling errors in arguments supplied to cd.
 shopt -s cdspell
 
 # Correct spelling errors during tab-completion.
-shopt -s dirspell
+shopt -s dirspell 2&>/dev/null
 
 # Turn on recursive globbing: Enables ** to recurse all directories.
-shopt -s globstar
+shopt -s globstar 2&>/dev/null
 
 # Append to the history file, do not overwrite it.
 shopt -s histappend
