@@ -1,6 +1,7 @@
 if hash less >/dev/null 2>&1; then
 	# Set sensible defaults for less.
-	export LESS="-R"
+	# https://stackoverflow.com/a/14118014/1745064
+	export LESS="-FR"
 
 	# Enhanced man pages
 	#   Color: https://wiki.archlinux.org/title/Color_output_in_console#man
