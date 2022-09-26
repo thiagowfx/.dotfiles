@@ -50,3 +50,10 @@ set visible-stats on
 # macOS Option + Left/Right arrow keys to move the cursor wordwise
 "\e\e[C": forward-word
 "\e\e[D": backward-word
+
+# macOS Home/End keys with sensible defaults.
+#
+# This isn't needed in modern systems e.g. it works out-of-the-box in iTerm2,
+# nonetheless we add it here for completeness.
+"\e[H": beginning-of-line
+"\e[F": end-of-line
