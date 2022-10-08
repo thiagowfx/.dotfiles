@@ -102,6 +102,8 @@
 	autoSquash = true
 	# https://cscheng.info/2017/01/26/git-tip-autostash-with-git-pull-rebase.html
 	autoStash = true
+	# https://github.blog/2022-10-03-highlights-from-git-2-38/
+	updateRefs = true
 
 # https://git-scm.com/docs/git-rerere
 [rerere]
