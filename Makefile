@@ -56,7 +56,7 @@ lint:
 
 define stowrule
 $(1):
-	stow -t $(TARGETDIR) -d $(DOTFILESDIR) --restow $(1)
+	stow --no-folding -t $(TARGETDIR) -d $(DOTFILESDIR) --restow $(1)
 endef
 $(foreach package,$(PACKAGES),$(eval $(call stowrule,$(package))))
 
