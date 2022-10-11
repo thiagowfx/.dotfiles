@@ -11,5 +11,8 @@
     "files.trimTrailingWhitespace": true,
     "terminal.integrated.sendKeybindingsToShell": true,
     "workbench.colorTheme": "One Dark Pro",
-    "C_Cpp.intelliSenseEngine": "Disabled"
+    "C_Cpp.intelliSenseEngine": "Disabled",
+    "[cpp]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    }
 }
