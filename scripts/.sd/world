@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# perform a full system update
+
+set -euo pipefail
+
+run_if_exists() {
+	if hash "$1" >/dev/null 2>&1; then
+		if [[ $# -eq 1 ]]; then
+			echo "Running $1..."
+			"$1"
+		else
+			shift
+			"$@"
+			echo "Running $*..."
+		fi
+	fi
+}
+
+# alpine
+run_if_exists "apk" doas apk upgrade
+
+# arch
+run_if_exists "pacman" sudo pacman -Syu
+
+# debian
+# warning: macos has /usr/bin/apt which is a Java thing
+run_if_exists "apt-get" sudo apt-get upgrade
+run_if_exists "apt-get" sudo apt-get autoremove
+
+# nix
+run_if_exists "nix-channel" nix-channel --update
+run_if_exists "nix-env" nix-env -u
+
+# macos
+run_if_exists "brew" brew upgrade
+run_if_exists "brew" brew cleanup
+
+# corp
+run_if_exists "glinux-updater"
+run_if_exists "gmac-updater"
