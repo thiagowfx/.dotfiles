@@ -6,6 +6,10 @@
 	path = vendor/grml-etc-core
 	url = https://github.com/grml/grml-etc-core
 	shallow = true
+[submodule "vendor/sd"]
+	path = vendor/sd
+	url = https://github.com/ianthehenry/sd
+	shallow = true
 [submodule "zsh/.zsh/zsh-autosuggestions"]
 	path = zsh/.zsh/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
