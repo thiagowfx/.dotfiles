@@ -40,6 +40,9 @@ run_if_exists "nix-env" nix-env -u
 run_if_exists "brew" brew upgrade
 run_if_exists "brew" brew cleanup
 
-# corp
+# corp linux
 run_if_exists "glinux-updater"
+
+# corp macos
+run_if_exists "mule" mule upgrade
 run_if_exists "gmac-updater"
