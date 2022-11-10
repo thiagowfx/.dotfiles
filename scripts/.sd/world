@@ -15,8 +15,8 @@ run_if_exists() {
 			"$1"
 		else
 			shift
-			"$@"
 			log "Running $*..."
+			"$@"
 		fi
 	fi
 }
