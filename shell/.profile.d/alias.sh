@@ -16,6 +16,9 @@ alias gi=git
 alias gt=git
 alias sl=ls
 
+# muscle memory
+alias unstow="stow -D"
+
 # Inspiration from https://frantic.im/cdtmp/ and grml-zsh-config's cdt
 # Usage: cdtmp [foo]
 cdtmp() {
