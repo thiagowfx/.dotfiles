@@ -3,6 +3,3 @@
 
 # chromium
 --ignore-dir=out
-
-# cmake
---ignore-dir=build
