@@ -39,6 +39,7 @@ run_if_exists "nix-env" nix-env -u
 # macos
 run_if_exists "brew" brew upgrade
 run_if_exists "brew" brew cleanup
+run_if_exists "mas" mas upgrade
 
 # corp linux
 run_if_exists "glinux-updater"
