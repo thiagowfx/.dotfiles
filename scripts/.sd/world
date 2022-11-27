@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# perform a full system update
+# perform a full system upgrade
 
 set -euo pipefail
 
@@ -21,29 +21,39 @@ run_if_exists() {
 	fi
 }
 
-# alpine
-run_if_exists "apk" doas apk upgrade
+case "$(uname)" in
+	# linux
+	Linux)
+		# alpine linux
+		run_if_exists "apk" doas apk upgrade
 
-# arch
-run_if_exists "pacman" sudo pacman -Syu
+		# debian linux
+		# warning: macos has /usr/bin/apt which is a Java thing
+		run_if_exists "apt-get" sudo apt-get upgrade
+		run_if_exists "apt-get" sudo apt-get autoremove
 
-# debian
-# warning: macos has /usr/bin/apt which is a Java thing
-run_if_exists "apt-get" sudo apt-get upgrade
-run_if_exists "apt-get" sudo apt-get autoremove
+		# arch linux
+		run_if_exists "pacman" sudo pacman -Syu
+
+		# linux @ corp
+		run_if_exists "glinux-updater"
+		;;
+
+	# macOS
+	Darwin)
+		# macos mas: Mac App Store
+		run_if_exists "mas" mas upgrade
+
+		# macos homebrew
+		run_if_exists "brew" brew upgrade
+		run_if_exists "brew" brew cleanup
+
+		# macos @ corp
+		run_if_exists "mule" mule upgrade
+		run_if_exists "gmac-updater"
+		;;
+esac
 
 # nix
 run_if_exists "nix-channel" nix-channel --update
 run_if_exists "nix-env" nix-env -u
-
-# macos
-run_if_exists "brew" brew upgrade
-run_if_exists "brew" brew cleanup
-run_if_exists "mas" mas upgrade
-
-# corp linux
-run_if_exists "glinux-updater"
-
-# corp macos
-run_if_exists "mule" mule upgrade
-run_if_exists "gmac-updater"
