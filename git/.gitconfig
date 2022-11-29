@@ -114,8 +114,6 @@
 [status]
 	# Show individual files in untracked directories.
 	showUntrackedFiles = all
-	# Show summary of commits for modified submodules
-	submoduleSummary = true
 
 [submodule]
 	# Clone new submodules in parallel with as many jobs.
