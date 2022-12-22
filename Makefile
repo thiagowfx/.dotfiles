@@ -26,7 +26,6 @@ PACKAGES := \
 	tmux \
 	tmux_auto_ssh \
 	vim \
-	vscode \
 	x11 \
 	zsh
 
@@ -41,7 +40,6 @@ PACKAGES := \
 #   rofi
 #   screen
 #   sway
-#   vscode
 #   x11
 DEFAULT_PACKAGES := \
 	ack \
