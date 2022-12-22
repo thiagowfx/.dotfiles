@@ -1,10 +1,10 @@
 # Manage the dotfiles environment.
+
+# List of all valid packages.
 #
 # Packages not included:
 #   misc/
 #   vendor/
-
-# List of packages to install.
 PACKAGES := \
 	ack \
 	alacritty \
@@ -30,6 +30,34 @@ PACKAGES := \
 	x11 \
 	zsh
 
+# List of default packages to install.
+#
+# Packages not included:
+#   alacritty
+#   alpine
+#   arch
+#   chromium
+#   i3
+#   rofi
+#   screen
+#   sway
+#   vscode
+#   x11
+DEFAULT_PACKAGES := \
+	ack \
+	bash \
+	fzf \
+	git \
+	hg \
+	ranger \
+	scripts \
+	shell \
+	ssh \
+	tmux \
+	tmux_auto_ssh \
+	vim \
+	zsh
+
 DOTFILESDIR := $(shell dirname "$(readlink -f "$0")")
 TARGETDIR := ~
 
@@ -45,7 +73,7 @@ endif
 
 all: install lint
 
-install: $(PACKAGES)
+install: $(DEFAULT_PACKAGES)
 
 uninstall:
 	stow -t $(TARGETDIR) -d $(DOTFILESDIR) --delete $(PACKAGES)

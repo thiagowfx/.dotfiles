@@ -34,7 +34,7 @@
         "#a1efe4",
         "#f9f8f5"
       ],
-      "font-family": "\"IBM Plex Mono\", \"Fira Code\", \"PT Mono\", \"DejaVu Sans Mono\", \"Noto Sans Mono\", \"Everson Mono\", FreeMono, Menlo, Terminal, monospace",
+      "font-family": "\"IBM Plex Mono\", \"Fira Code\", \"PT Mono\", Hermit, \"DejaVu Sans Mono\", \"Noto Sans Mono\", \"Everson Mono\", FreeMono, Menlo, Terminal, monospace",
       "font-size": "12",
       "foreground-color": "rgba(197, 200, 198, 1)",
       "scroll-on-output": true,

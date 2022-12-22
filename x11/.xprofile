@@ -25,7 +25,8 @@ export GDK_SCALE=2
 # HiDPI settings for QT
 export QT_FONT_DPI=192
 
-# Set preferred terminal emulator in reverse order of preference for i3-sensible-terminal.
+# Set preferred terminal emulator in reverse order of preference (latter is
+# more preferred) for i3-sensible-terminal.
 hash tilix >/dev/null 2>&1 && export TERMINAL="tilix"
 hash alacritty >/dev/null 2>&1 && export TERMINAL="alacritty"
 
@@ -33,4 +34,4 @@ hash alacritty >/dev/null 2>&1 && export TERMINAL="alacritty"
 [ -x ~/.fehbg ] && ~/.fehbg
 
 # Screensaver params.
-xset s 900  # 15m
+xset s 900  # 15min

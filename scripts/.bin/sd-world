@@ -27,13 +27,13 @@ case "$(uname)" in
 		# alpine linux
 		run_if_exists "apk" doas apk upgrade
 
+		# arch linux
+		run_if_exists "pacman" sudo pacman -Syu
+
 		# debian linux
 		# warning: macos has /usr/bin/apt which is a Java thing
 		run_if_exists "apt-get" sudo apt-get upgrade
 		run_if_exists "apt-get" sudo apt-get autoremove
-
-		# arch linux
-		run_if_exists "pacman" sudo pacman -Syu
 
 		# linux @ corp
 		run_if_exists "glinux-updater"

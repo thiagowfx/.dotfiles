@@ -1,5 +1,5 @@
 # generate ninja: https://gn.googlesource.com/gn/
---type-set=gn=.gn,.gni
+--type-add=gn=.gn,.gni
 
 # chromium
 --ignore-dir=out
