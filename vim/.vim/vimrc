@@ -193,7 +193,7 @@ Plug 'https://gn.googlesource.com/gn', { 'rtp': 'misc/vim' }
 call plug#end()
 
 " Reflow current paragraph
-nnoremap <silent> Q gqap
+nnoremap <silent> Q gwip
 
 " Better %
 runtime! macros/matchit.vim
