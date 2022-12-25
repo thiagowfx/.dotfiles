@@ -10,6 +10,7 @@ alias rsync="rsync -v"
 
 # drop-in replacements
 alias ls="ls -Fh --color=auto" && hash exa >/dev/null 2>&1 && alias ls="exa -F --group-directories-first"
+alias la="ls -la --color=auto"
 
 # misspellings
 alias gi=git
