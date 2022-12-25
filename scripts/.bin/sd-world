@@ -57,3 +57,7 @@ esac
 # nix
 run_if_exists "nix-channel" nix-channel --update
 run_if_exists "nix-env" nix-env -u
+
+# pihole
+run_if_exists "pihole" pihole -up
+run_if_exists "pihole" pihole -g
