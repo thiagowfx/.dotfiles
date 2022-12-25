@@ -53,7 +53,7 @@ shopt -s histreedit
 shopt -s histverify
 
 # Source base shell functions.
-[ -r ~/.shellrc ] && . ~/.shellrc
+[ -r ~/.profilerc ] && . ~/.profilerc
 
 # bash completion
 src_files "/etc/bash_completion"

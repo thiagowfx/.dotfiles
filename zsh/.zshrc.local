@@ -63,7 +63,7 @@ MAILCHECK=0
 set noshare_history
 
 # Source base shell functions.
-[ -r ~/.shellrc ] && . ~/.shellrc
+[ -r ~/.profilerc ] && . ~/.profilerc
 
 # Load user scripts and functions if existing. Order is important.
 # Corp config is handled as part of .zshrc.d.

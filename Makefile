@@ -16,11 +16,11 @@ PACKAGES := \
 	git \
 	hg \
 	i3 \
+	profile \
 	ranger \
 	rofi \
 	screen \
 	scripts \
-	shell \
 	ssh \
 	sway \
 	tmux \
@@ -47,9 +47,9 @@ DEFAULT_PACKAGES := \
 	fzf \
 	git \
 	hg \
+	profile \
 	ranger \
 	scripts \
-	shell \
 	ssh \
 	tmux \
 	tmux_auto_ssh \
