@@ -18,6 +18,10 @@ run_if_exists() {
 			log "Running $*..."
 			"$@"
 		fi
+	elif [[ -d "$1" ]]; then
+		shift
+		log "Running $*..."
+		"$@"
 	fi
 }
 
@@ -49,7 +53,7 @@ case "$(uname)" in
 		run_if_exists "brew" brew cleanup
 
 		# macos @ corp
-		run_if_exists "mule" mule upgrade
+		run_if_exists "mule" sudo mule upgrade
 		run_if_exists "gmac-updater"
 		;;
 esac
@@ -61,3 +65,9 @@ run_if_exists "nix-env" nix-env -u
 # pihole
 run_if_exists "pihole" pihole -up
 run_if_exists "pihole" pihole -g
+
+# dotfiles
+run_if_exists "$HOME/.dotfiles" git -C "$HOME/.dotfiles" pull origin master
+
+# dotfiles @ corp
+run_if_exists "$HOME/.dotfiles_corp" git -C "$HOME/.dotfiles_corp" pull origin master
