@@ -23,7 +23,7 @@
 
 	# log; there's also gitk and tig
 	l = log --graph --pretty=oneline --abbrev-commit --all
-	xl = branch -vv
+	xl = branch -vva
 
 	# hg/fig compatibility
 	purge = clean -f -d
