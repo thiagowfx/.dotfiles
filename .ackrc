@@ -1,4 +1,3 @@
 --ignore-directory=vendor
---ignore-directory=vim/.vim/plugged
---ignore-directory=vim/.vim/vim-plug
+--ignore-directory=vim/.vim/pack
 --ignore-directory=zsh/.zsh

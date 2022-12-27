@@ -1,6 +1,7 @@
 ranger/.config/ranger
 ssh/.ssh/authorized_keys
 ssh/.ssh/known_hosts*
+vim/.vim/pack
 
 # Managed with gitignore.io
 #

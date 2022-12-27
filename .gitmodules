@@ -1,7 +1,3 @@
-[submodule "vim/.vim/vim-plug"]
-	path = vim/.vim/vim-plug
-	url = https://github.com/junegunn/vim-plug
-	shallow = true
 [submodule "vendor/grml-etc-core"]
 	path = vendor/grml-etc-core
 	url = https://github.com/grml/grml-etc-core
@@ -13,4 +9,132 @@
 [submodule "zsh/.zsh/zsh-syntax-highlighting"]
 	path = zsh/.zsh/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
+	shallow = true
+[submodule "vim/.vim/pack/misc/opt/onedark"]
+	path = vim/.vim/pack/misc/opt/onedark
+	url = https://github.com/joshdick/onedark.vim
+	shallow = true
+[submodule "vim/.vim/pack/misc/opt/monokai"]
+	path = vim/.vim/pack/misc/opt/monokai
+	url = https://github.com/crusoexia/vim-monokai
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/vim-sensible"]
+	path = vim/.vim/pack/misc/start/vim-sensible
+	url = https://github.com/tpope/vim-sensible
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/vim-fugitive"]
+	path = vim/.vim/pack/misc/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/terminus"]
+	path = vim/.vim/pack/misc/start/terminus
+	url = https://github.com/wincent/terminus
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/vim-commentary"]
+	path = vim/.vim/pack/misc/start/vim-commentary
+	url = https://github.com/tpope/vim-commentary
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/vim-eunuch"]
+	path = vim/.vim/pack/misc/start/vim-eunuch
+	url = https://github.com/tpope/vim-eunuch
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/vim-endwise"]
+	path = vim/.vim/pack/misc/start/vim-endwise
+	url = https://github.com/tpope/vim-endwise
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/vim-vinegar"]
+	path = vim/.vim/pack/misc/start/vim-vinegar
+	url = https://github.com/tpope/vim-vinegar
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/vim-repeat"]
+	path = vim/.vim/pack/misc/start/vim-repeat
+	url = https://github.com/tpope/vim-repeat
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/vim-sleuth"]
+	path = vim/.vim/pack/misc/start/vim-sleuth
+	url = https://github.com/tpope/vim-sleuth
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/vim-signify"]
+	path = vim/.vim/pack/misc/start/vim-signify
+	url = https://github.com/mhinz/vim-signify
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/vim-surround"]
+	path = vim/.vim/pack/misc/start/vim-surround
+	url = https://github.com/tpope/vim-surround
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/vim-unimpaired"]
+	path = vim/.vim/pack/misc/start/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/vim-mkdir"]
+	path = vim/.vim/pack/misc/start/vim-mkdir
+	url = https://github.com/pbrisbin/vim-mkdir
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/vim-zenroom2"]
+	path = vim/.vim/pack/misc/start/vim-zenroom2
+	url = https://github.com/amix/vim-zenroom2
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/vim-css-color"]
+	path = vim/.vim/pack/misc/start/vim-css-color
+	url = https://github.com/ap/vim-css-color
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/vim-fetch"]
+	path = vim/.vim/pack/misc/start/vim-fetch
+	url = https://github.com/wsdjeg/vim-fetch
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/vim-highlightedyank"]
+	path = vim/.vim/pack/misc/start/vim-highlightedyank
+	url = https://github.com/machakann/vim-highlightedyank
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/vim-slash"]
+	path = vim/.vim/pack/misc/start/vim-slash
+	url = https://github.com/junegunn/vim-slash
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/vim-oscyank"]
+	path = vim/.vim/pack/misc/start/vim-oscyank
+	url = https://github.com/ojroques/vim-oscyank
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/vim-trailing-whitespace"]
+	path = vim/.vim/pack/misc/start/vim-trailing-whitespace
+	url = https://github.com/bronson/vim-trailing-whitespace
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/vim-lightline"]
+	path = vim/.vim/pack/misc/start/vim-lightline
+	url = https://github.com/itchyny/lightline.vim
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/vim-bbye"]
+	path = vim/.vim/pack/misc/start/vim-bbye
+	url = https://github.com/moll/vim-bbye
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/fzf"]
+	path = vim/.vim/pack/misc/start/fzf
+	url = https://github.com/junegunn/fzf
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/fzf.vim"]
+	path = vim/.vim/pack/misc/start/fzf.vim
+	url = https://github.com/junegunn/fzf.vim
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/vim-easy-align"]
+	path = vim/.vim/pack/misc/start/vim-easy-align
+	url = https://github.com/junegunn/vim-easy-align
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/goyo.vim"]
+	path = vim/.vim/pack/misc/start/goyo.vim
+	url = https://github.com/junegunn/goyo.vim
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/diffconflicts"]
+	path = vim/.vim/pack/misc/start/diffconflicts
+	url = https://github.com/whiteinge/diffconflicts
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/vim-symlink"]
+	path = vim/.vim/pack/misc/start/vim-symlink
+	url = https://github.com/aymericbeaumet/vim-symlink
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/ale"]
+	path = vim/.vim/pack/misc/start/ale
+	url = https://github.com/dense-analysis/ale
+	shallow = true
+[submodule "vim/.vim/pack/misc/start/gn"]
+	path = vim/.vim/pack/misc/start/gn
+	url = https://gn.googlesource.com/gn
 	shallow = true

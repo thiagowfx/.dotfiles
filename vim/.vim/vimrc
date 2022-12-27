@@ -18,6 +18,10 @@
 " Open command history:
 "   :<C-f>
 
+" https://gn.googlesource.com/gn/+/HEAD/misc/vim/README.md
+" Fancy way to do set rtp+=~/.vim/pack/misc/start/gn/misc/vim
+execute "set rtp+=" . globpath(&rtp, 'pack/misc/start/gn/misc/vim')
+
 " Load vim defaults.
 " :h skip_defaults_vim
 unlet! skip_defaults_vim
@@ -26,186 +30,23 @@ silent! source $VIMRUNTIME/defaults.vim
 " Set leader key. Default is '\'.
 let mapleader=","
 
-" Automatically bootstrap vim-plug plugins.
-if empty(globpath(&runtimepath, 'plugged'))
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC | q
-endif
-
-" Initialize plugin manager: vim-plug
-call plug#begin('~/.vim/plugged')
-
-" Better defaults
-Plug 'tpope/vim-sensible'
-
-" Automatically follow symlinks, helpful for ~/.dotfiles
-"   vim-bbye: optional dependency to consistenly wipe buffers without impacting the order of windows
-Plug 'moll/vim-bbye'
-Plug 'aymericbeaumet/vim-symlink'
-
-" Miscellaneous features:
-"   Cursor shape change in insert and replace mode
-"   Improved mouse support
-"   Focus reporting: plays well with tmux and terminal
-"   Bracketed paste: automatically handles :set paste
-Plug 'wincent/terminus'
-
-" Highlight trailing whitespace.
-" Fix all occurrences:
-"   :FixWhitespace
-Plug 'bronson/vim-trailing-whitespace'
-
-" Color theme / scheme
-Plug 'crusoexia/vim-monokai' " monokai
-Plug 'joshdick/onedark.vim'  " onedark
-
-" Minimalist statusline / tabline.
-Plug 'itchyny/lightline.vim'
-" The colorscheme of lightline is independent of the editor colorscheme.
-"   'one' provides sensible defaults and works in 8-color mode (linux tty).
-"   'onedark' provides its own colorscheme.
-let g:lightline = {
-      \ 'colorscheme': 'onedark',
-      \ }
-
-" Display thin vertical lines at each indentation level for code indented with spaces.
-"   :IndentLinesToggle
-Plug 'Yggdroot/indentLine'
-
-" Async VCS info: git, hg, etc
-Plug 'mhinz/vim-signify'
-
-" Git wrapper
-Plug 'tpope/vim-fugitive'
-command! Gadd Gwrite
-command! Gdiff Gdiffsplit
-command! GDiff Gdiffsplit
-command! Gwqall Gwq
-
-" A better vimdiff mergetool: 2-way diff.
-"   ~/.gitconfig and ~/.hgrc are set up to use this plugin.
-"   :DiffConflicts
-"   do for diffobtain (get)
-"   dp for diffput
-"   [c and ]c to navigate diff hunks
-Plug 'whiteinge/diffconflicts', {'on': 'DiffConflicts'}
-
-" Toggle comment blocks.
-"   gc to comment out in visual mode or the target of a motion
-"   gcc to comment out the current line
-"   gcgc to uncomment a set of adjacent lines
-Plug 'tpope/vim-commentary'
-
-" Automatically adds `end`, `fi`, etc.
-Plug 'tpope/vim-endwise'
-
-" Helpers for unix
-"   :Delete, :Rename, :SudoWrite
-Plug 'tpope/vim-eunuch'
-" https://superuser.com/a/785016/165044
-command! DoasWrite execute 'silent! write !doas tee % >/dev/null' <bar> edit!
-
-" Automatically create any non-existent directories before writing the buffer.
-Plug 'pbrisbin/vim-mkdir'
-
-" Smarter '.' repeat
-Plug 'tpope/vim-repeat'
-
-" Heuristically infers tabs and spaces settings, so that there's no need to
-" specify them in ~/.vimrc.
-Plug 'tpope/vim-sleuth'
-
-" Native vim:
-"   di"  delete inside "quotes"
-"   da"  delete around "quotes"
-"   dip  delete inside paragraph
-"   dit  delete inside HTML tag
-"
-" Vim surround:
-"   ysiw"  insert quotes around word
-"   cs'"   replace single quotes with double quotes
-Plug 'tpope/vim-surround'
-
-" Complimentary pairs of mappings.
-"   ]n and [n to jump between SCM conflict markers.
-Plug 'tpope/vim-unimpaired'
-
-" Improved file manager.
-"   Activate with '-' (hyphen) key.
-Plug 'tpope/vim-vinegar'
-
-" Comment alignment plugin.
-"   :EasyAlign <delimiter>
-"   v for visual selection mode, then :EasyAlign #
-Plug 'junegunn/vim-easy-align', {'on': 'EasyAlign'}
-
-" fzf for vim.
-Plug 'junegunn/fzf.vim', {'on': 'FZF'}
-command! Fzf FZF
-
-" Miscellaneous features:
-"   Automatically clears search highlight when cursor is moved
-"   Improved star-search (visual-mode, highlighting without moving)
-Plug 'junegunn/vim-slash'
-
-" OSC52 integration for system clipboard.
-"   C-c to copy to system clipboard.
-"   gv preserves selection
-Plug 'ojroques/vim-oscyank'
-vnoremap <C-c> :OSCYank<CR>gv
-
-" Make the yanked region apparent
-Plug 'machakann/vim-highlightedyank'
-
-" Open file.ext:line:col at the appropriate line and column.
-Plug 'wsdjeg/vim-fetch'
-
-" Preview colours in source code while editing.
-Plug 'ap/vim-css-color'
-
-" ALE: Asynchronous Lint Engine:
-"   Syntax checking and semantic errors
-"   Language Server Protocol (LSP) client
-"   :ALEFix to apply linter fixes
-"   :ALEInfo to debug/troubleshoot
-Plug 'dense-analysis/ale'
-let g:ale_fixers = {
-      \    'python': ['autopep8'],
-      \}
-let g:ale_fix_on_save = 1
-
-" Distraction-free writing, good for blogging.
-Plug 'junegunn/goyo.vim', {'for': 'markdown'}
-nnoremap <leader>g :Goyo <bar> SoftPencil<CR>
-
-Plug 'amix/vim-zenroom2'
-Plug 'reedes/vim-pencil'
-augroup vim_pencil
-  autocmd!
-  autocmd FileType markdown call pencil#init({'wrap': 'soft', 'autoformat': 1})
-augroup END
-
-" built-in markdown: https://github.com/tpope/vim-markdown
-let g:markdown_syntax_conceal = 0
-
-" https://gn.googlesource.com/gn/+/HEAD/misc/vim/README.md
-Plug 'https://gn.googlesource.com/gn', { 'rtp': 'misc/vim' }
-
-call plug#end()
-
-" Reflow current paragraph
-nnoremap <silent> Q gwip
+" Browse manual pages within vim.
+"   :Man man
+runtime! ftplugin/man.vim
 
 " Better %
 runtime! macros/matchit.vim
 
-" Browse manual pages within vim.
-"   :Man man
-source $VIMRUNTIME/ftplugin/man.vim
-
 " Set color theme / scheme
-" silent! colorscheme monokai
-silent! colorscheme onedark
+packadd! monokai
+packadd! onedark
+colorscheme monokai
 highlight ColorColumn ctermbg=magenta
+
+" The colorscheme of lightline is independent of the editor colorscheme.
+"   'one' provides sensible defaults and works in 8-color mode (linux tty).
+"   'onedark' provides its own colorscheme.
+let g:lightline = {'colorscheme': 'onedark'}
 
 " :w save misspellings
 command! W w
@@ -216,15 +57,11 @@ command! Wq wq
 inoremap <Esc><Space> <Esc>ciw<Space>
 nnoremap <Esc><Space> ciw<Space><Esc>
 
-" Disable horizontal cursor line as it is very slow over ssh.
-" https://stackoverflow.com/q/307148/1745064
-set nocursorline
+" Reflow current paragraph
+nnoremap <silent> Q gwip
 
 " Always use vertical diff splits.
 set diffopt+=vertical
-
-" Disable fold.
-set nofoldenable
 
 " Highlight search pattern matches.
 "   :noh dismisses all highlights
@@ -234,9 +71,6 @@ nnoremap <Esc><Esc> :noh<CR>
 
 " https://stackoverflow.com/a/2288438/1745064
 set ignorecase smartcase
-
-" Use one space, not two, after punctuation.
-set nojoinspaces
 
 " Do not redraw the screen while executing macros.
 "   :redraw to force
@@ -248,6 +82,16 @@ set list lcs=tab:\|\ ,trail:·,nbsp:·
 
 " https://vim.fandom.com/wiki/Modeline_magic
 set modeline
+
+" Disable horizontal cursor line as it is very slow over ssh.
+" https://stackoverflow.com/q/307148/1745064
+set nocursorline
+
+" Disable fold.
+set nofoldenable
+
+" Use one space, not two, after punctuation.
+set nojoinspaces
 
 " Disable --INSERT-- which is not necessary, because:
 "   Cursor shape changes thanks to wincent/terminus.
@@ -275,18 +119,18 @@ set smartindent
 " Better splits.
 set splitbelow splitright switchbuf=useopen
 
-" Set visual bell. The audio bell is very annoying, so make it do nothing.
-" https://unix.stackexchange.com/a/5313
-set visualbell t_vb=
-
-" Shorter update time than the 4000ms default, for async vim operations.
-set updatetime=2000
-
 " Enable persistent undo.
 if has('persistent_undo')
   set undofile undodir=~/.cache/vim/undo
   call mkdir(&undodir, "p", 0700)
 endif
+
+" Shorter update time than the 4000ms default, for async vim operations.
+set updatetime=2000
+
+" Set visual bell. The audio bell is very annoying, so make it do nothing.
+" https://unix.stackexchange.com/a/5313
+set visualbell t_vb=
 
 " Set completion mode.
 set wildmode=list:longest
