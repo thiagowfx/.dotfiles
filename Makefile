@@ -16,6 +16,7 @@ PACKAGES := \
 	git \
 	hg \
 	i3 \
+	mr \
 	profile \
 	ranger \
 	rofi \
@@ -47,6 +48,7 @@ DEFAULT_PACKAGES := \
 	fzf \
 	git \
 	hg \
+	mr \
 	profile \
 	ranger \
 	scripts \

@@ -1,0 +1,8 @@
+[.dotfiles]
+checkout = git clone --recurse --jobs=$(nproc) 'git@github.com:thiagowfx/.dotfiles.git' '.dotfiles'
+
+[.dotfiles_corp]
+checkout = git clone --recurse --jobs=$(nproc) 'sso://user/tperrotta/dotfiles' '.dotfiles_corp'
+chain = true
+
+# vim: ft=cfg
