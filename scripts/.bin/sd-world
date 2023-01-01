@@ -9,7 +9,7 @@ log() {
 }
 
 run_if_exists() {
-	if hash "$1" >/dev/null 2>&1; then
+	if command -v "$1" >/dev/null 2>&1; then
 		if [[ $# -eq 1 ]]; then
 			log "Running $1..."
 			"$1"
