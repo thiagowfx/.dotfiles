@@ -55,6 +55,9 @@ case "$(uname)" in
 		# macos @ corp
 		run_if_exists "mule" sudo mule upgrade
 		run_if_exists "gmac-updater"
+
+		# macos system upgrade
+		run_if_exists "softwareupdate" softwareupdate --install --all
 		;;
 esac
 
