@@ -61,3 +61,6 @@ src_files "/etc/bash_completion"
 # Load user scripts and functions if existing. Order is important.
 # Corp config is handled as part of .bashrc.d.
 src_files "$HOME/.profile.d" "$HOME/.bashrc.d"
+
+# iTerm 2 shell integration
+src_files "$HOME/.iterm2_shell_integration.bash"
