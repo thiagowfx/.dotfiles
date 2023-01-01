@@ -1,3 +1,6 @@
+[DEFAULT]
+jobs = 8
+
 [.dotfiles]
 checkout = git clone --recurse --jobs=$(nproc) 'git@github.com:thiagowfx/.dotfiles.git' '.dotfiles'
 
