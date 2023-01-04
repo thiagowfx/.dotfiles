@@ -7,10 +7,14 @@ alias ip="ip --color=auto"
 
 # verbose on
 alias rsync="rsync -v"
-
-# drop-in replacements
-alias ls="ls -Fh --color=auto" && hash exa >/dev/null 2>&1 && alias ls="exa -F --group-directories-first"
+alias ls="ls -Fh --color=auto"
 alias la="ls -la --color=auto"
+alias l="ls -l --color=auto" && alias ll="l"
+
+# exa: modern drop-in replacement for ls
+if hash exa >/dev/null 2>&1; then
+	alias ls="exa -F --group-directories-first"
+fi
 
 # misspellings
 alias gi=git
