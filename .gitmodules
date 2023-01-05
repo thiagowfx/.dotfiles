@@ -102,10 +102,6 @@
 	path = vim/.vim/pack/misc/start/vim-lightline
 	url = https://github.com/itchyny/lightline.vim
 	shallow = true
-[submodule "vim/.vim/pack/misc/start/vim-bbye"]
-	path = vim/.vim/pack/misc/start/vim-bbye
-	url = https://github.com/moll/vim-bbye
-	shallow = true
 [submodule "vim/.vim/pack/misc/start/fzf"]
 	path = vim/.vim/pack/misc/start/fzf
 	url = https://github.com/junegunn/fzf
