@@ -16,6 +16,9 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 # https://direnv.net/
 (( $+commands[direnv] )) && eval "$(direnv hook zsh)"
 
-# zoxide is a smarter cd command
+# a smarter cd command
 # https://github.com/ajeetdsouza/zoxide
 (( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
+
+# Utilities that work out-of-the-box, no manual source needed:
+#   - gh: github's official command line tool
