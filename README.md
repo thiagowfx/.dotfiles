@@ -9,3 +9,13 @@ make -C ~/.dotfiles
 
 [make]: https://www.gnu.org/software/make/
 [stow]: https://www.gnu.org/software/stow/
+
+## software
+
+- alacritty / hterm / iterm2
+- arch linux / alpine linux / debian
+- bash / zsh + grml-zsh-config
+- chromium
+- i3 / sway
+- tmux
+- vim
