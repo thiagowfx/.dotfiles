@@ -45,22 +45,26 @@ case "$(uname)" in
 
 	# macOS
 	Darwin)
-		# macos homebrew
+		# homebrew
 		run_if_exists "brew" brew upgrade
 		run_if_exists "brew" brew cleanup
 
-		# macos @ corp
-		run_if_exists "mule" sudo mule upgrade
-		run_if_exists "gmac-updater"
-
-		# macos system update and app store
+		# system update and app store
 		run_if_exists "softwareupdate" softwareupdate --install --all
 		run_if_exists "mas" mas upgrade
+
+		# gMac
+		run_if_exists "mule" sudo mule upgrade
+		run_if_exists "gmac-updater"
 		;;
 
 	# windows
 	MINGW*)
+		# third-party package manager
 		run_if_exists "scoop" scoop update
+
+		# gWindows
+		run_if_exists "gwindows-updater"
 		;;
 esac
 
