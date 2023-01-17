@@ -39,15 +39,12 @@ case "$(uname)" in
 		run_if_exists "apt-get" sudo apt-get upgrade
 		run_if_exists "apt-get" sudo apt-get autoremove
 
-		# linux @ corp
+		# gLinux
 		run_if_exists "glinux-updater"
 		;;
 
 	# macOS
 	Darwin)
-		# macos mas: Mac App Store
-		run_if_exists "mas" mas upgrade
-
 		# macos homebrew
 		run_if_exists "brew" brew upgrade
 		run_if_exists "brew" brew cleanup
@@ -56,8 +53,14 @@ case "$(uname)" in
 		run_if_exists "mule" sudo mule upgrade
 		run_if_exists "gmac-updater"
 
-		# macos system upgrade
+		# macos system update and app store
 		run_if_exists "softwareupdate" softwareupdate --install --all
+		run_if_exists "mas" mas upgrade
+		;;
+
+	# windows
+	MINGW*)
+		run_if_exists "scoop" scoop update
 		;;
 esac
 
@@ -71,6 +74,4 @@ run_if_exists "pihole" pihole -g
 
 # dotfiles
 run_if_exists "$HOME/.dotfiles" git -C "$HOME/.dotfiles" pull origin master
-
-# dotfiles @ corp
 run_if_exists "$HOME/.dotfiles_corp" git -C "$HOME/.dotfiles_corp" pull origin master
