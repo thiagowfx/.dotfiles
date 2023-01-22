@@ -68,6 +68,9 @@ case "$(uname)" in
 		;;
 esac
 
+# flatpaks
+run_if_exists "flatpak" flatpak update
+
 # nix
 run_if_exists "nix-channel" nix-channel --update
 run_if_exists "nix-env" nix-env -u
