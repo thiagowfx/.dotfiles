@@ -1,5 +1,4 @@
 #!/bin/bash
-# shellcheck disable=SC2034
 # Set bash prompt.
 
 # Monokai-inspired: https://gist.github.com/transat/6694554
