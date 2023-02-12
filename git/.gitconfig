@@ -59,6 +59,8 @@
 	renames = copies
 	# A la `git submodule summary`
 	submodule = log
+	# Do not show "a/" "b/", allows file navigation when supported
+	noPrefix = true
 
 [fetch]
 	prune = true
