@@ -3,6 +3,9 @@
 # Sensible $PATH should include user binary directories.
 path_munge "$HOME/.bin" "$HOME/bin"
 
+# golang
+path_munge "$HOME/go/bin"
+
 # scoop package manager
 [[ "$(uname -s)" == "MSYS"* ]] && path_munge "$HOME/scoop/shims"
 
