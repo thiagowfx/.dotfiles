@@ -13,3 +13,6 @@ hash gh >/dev/null 2>&1 && eval "$(gh completion -s bash)"
 # a smarter cd command
 # https://github.com/ajeetdsouza/zoxide
 hash zoxide >/dev/null 2>&1 && eval "$(zoxide init bash)"
+
+# pytest.org
+hash register-python-argcomplete && hash pytest && eval "$(register-python-argcomplete pytest)"
