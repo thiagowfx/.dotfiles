@@ -1,3 +1,6 @@
+# better ctrl/cmd + click navigation for text editors
+--column
+
 # generate ninja: https://gn.googlesource.com/gn/
 --type-add=gn=.gn,.gni
 
