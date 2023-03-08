@@ -16,6 +16,7 @@
 [alias]
 	amend = commit --amend --no-edit
 	dc = diff --cached
+	rc = rebase --continue
 	st = status
 
 	# usage: git ignore go,hugo,vim >> .gitignore
