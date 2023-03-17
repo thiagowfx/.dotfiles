@@ -45,6 +45,7 @@
 [core]
 	# Auto-convert CRLF <-> LF for a transparent experience on Windows.
 	autocrlf = input
+	excludesfile = ~/.gitignore_global
 	editor = vim
 	pager = "(diff-highlight 2>/dev/null || cat) | ${PAGER:-less}"
 
