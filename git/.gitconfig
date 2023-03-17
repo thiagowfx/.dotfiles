@@ -28,7 +28,7 @@
 
 	# hg/fig compatibility
 	purge = clean -f -d
-	reword = commit --amend
+	reword = commit --amend -n
 	shelve = stash
 	uncommit = reset --soft HEAD^
 	unshelve = stash apply
