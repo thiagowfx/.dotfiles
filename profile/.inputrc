@@ -7,6 +7,9 @@
 # First, include any system-wide bindings and variable assignments from /etc/inputrc
 $include /etc/inputrc
 
+# http://www.faqs.org/docs/Linux-mini/Visual-Bell.html
+set bell-style visible
+
 # If set to 'on', Readline attempts to briefly move the cursor to an opening parenthesis when a closing parenthesis is inserted. The default is 'off'.
 set blink-matching-paren on
 
