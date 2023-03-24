@@ -19,6 +19,9 @@
 	rc = rebase --continue
 	st = status
 
+	# do not use "emerge" as it is already defined in corp
+	emergef = !git add -A && git amend && git push -f
+
 	# usage: git ignore go,hugo,vim >> .gitignore
 	ignore = !curl -L -s https://www.gitignore.io/api/$@
 
