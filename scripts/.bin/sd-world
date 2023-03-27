@@ -76,8 +76,8 @@ run_if_exists "nix-channel" nix-channel --update
 run_if_exists "nix-env" nix-env -u
 
 # pihole
+# update pihole itself and gravity lists
 run_if_exists "pihole" pihole -up
-run_if_exists "pihole" pihole -g
 
 # dotfiles
 run_if_exists "$HOME/.dotfiles" git -C "$HOME/.dotfiles" pull origin master
