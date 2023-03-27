@@ -15,4 +15,4 @@ hash gh >/dev/null 2>&1 && eval "$(gh completion -s bash)"
 hash zoxide >/dev/null 2>&1 && eval "$(zoxide init bash)"
 
 # pytest.org
-hash register-python-argcomplete && hash pytest && eval "$(register-python-argcomplete pytest)"
+hash register-python-argcomplete >/dev/null 2>&1 && hash pytest >/dev/null 2>&1 && eval "$(register-python-argcomplete pytest)"
