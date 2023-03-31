@@ -16,6 +16,7 @@
 [alias]
 	amend = commit --amend --no-edit
 	dc = diff --cached
+	desc = commit --allow-empty
 	rc = rebase --continue
 	st = status
 
