@@ -54,6 +54,11 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^x^e' edit-command-line
 
+# Make C-u delete to beginning of line from cursor position,
+# not the whole line.
+# https://unix.stackexchange.com/a/522922/41858
+bindkey '^U' backward-kill-line
+
 # Compatibility with bash completion.
 autoload -Uz bashcompinit && bashcompinit
 
