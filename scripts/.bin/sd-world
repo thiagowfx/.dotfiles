@@ -25,6 +25,13 @@ run_if_exists() {
 	fi
 }
 
+# usage: do_git <path/to/git/repo>
+do_git() {
+	if [[ -d "$1" ]]; then
+		run_if_exists "$1" git -C "$1" pull origin master
+	fi
+}
+
 case "$(uname)" in
 	# linux
 	Linux)
@@ -80,5 +87,5 @@ run_if_exists "nix-env" nix-env -u
 run_if_exists "pihole" pihole -up
 
 # dotfiles
-run_if_exists "$HOME/.dotfiles" git -C "$HOME/.dotfiles" pull origin master
-run_if_exists "$HOME/.dotfiles_corp" git -C "$HOME/.dotfiles_corp" pull origin master
+do_git "$HOME/.dotfiles"
+do_git "$HOME/.dotfiles_corp"
