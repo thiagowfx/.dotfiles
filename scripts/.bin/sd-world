@@ -43,7 +43,7 @@ case "$(uname)" in
 
 		# debian linux
 		# warning: macos has /usr/bin/apt which is a Java thing
-		run_if_exists "apt-get" sudo apt-get upgrade
+		run_if_exists "apt-get" sudo apt-get upgrade -y
 		run_if_exists "apt-get" sudo apt-get autoremove
 
 		# gLinux
