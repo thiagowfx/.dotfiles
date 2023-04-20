@@ -6,6 +6,9 @@ path_munge "$HOME/.bin" "$HOME/bin"
 # golang
 path_munge "$HOME/go/bin"
 
+# rust / cargo
+path_munge "$HOME/.cargo/bin"
+
 # scoop package manager
 [[ "$(uname -s)" == "MSYS"* ]] && path_munge "$HOME/scoop/shims"
 
