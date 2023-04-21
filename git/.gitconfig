@@ -15,6 +15,7 @@
 
 [alias]
 	amend = commit --amend --no-edit
+	cherry = cherry-pick
 	dc = diff --cached
 	desc = commit --allow-empty
 	rc = rebase --continue
