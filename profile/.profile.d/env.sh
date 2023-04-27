@@ -15,5 +15,8 @@ path_munge "$HOME/.cargo/bin"
 # Colorize CLI output when supported.
 export CLICOLOR=1
 
+# https://stackoverflow.com/questions/46288847/how-to-suppress-pip-upgrade-warning
+hash python3 >/dev/null 2>&1 && export PIP_DISABLE_PIP_VERSION_CHECK=1
+
 # Set preferred text editor.
 hash vim >/dev/null 2>&1 && export EDITOR="vim" VISUAL="vim"
