@@ -4,8 +4,14 @@
 # generate ninja: https://gn.googlesource.com/gn/
 --type-add=gn=.gn,.gni
 
-# ini files
+# ini
 --type-add=ini=.ini
+
+# markdown
+--type-add=md=.md,.markdown
+
+# shell
+--type-add=sh=.sh,.bash.,zsh
 
 # chromium
 --ignore-dir=out
