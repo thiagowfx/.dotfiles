@@ -25,7 +25,8 @@
 	absorb = absorb --and-rebase
 
 	# do not use "emerge" as it is already defined in corp
-	emergef = !git add -A && git amend && git push $(git remote) $(git branch --show-current):$(git branch --show-current) -f
+	emergef = !git add -A && git amend && git pushm -f
+	pushm = !git push $(git remote) $(git branch --show-current):$(git branch --show-current)
 
 	# usage: git ignore go,hugo,vim >> .gitignore
 	ignore = !curl -L -s https://www.gitignore.io/api/$@
