@@ -13,5 +13,8 @@
 # shell
 --type-add=sh=.sh,.bash.,zsh
 
+# text
+--type-add=txt=.txt
+
 # chromium
 --ignore-dir=out
