@@ -57,7 +57,7 @@ case "$(uname)" in
 		run_if_exists "brew" brew cleanup
 
 		# system update and app store
-		run_if_exists "softwareupdate" softwareupdate --install --all
+		# run_if_exists "softwareupdate" softwareupdate --install --all
 		run_if_exists "mas" mas upgrade
 
 		# gMac
