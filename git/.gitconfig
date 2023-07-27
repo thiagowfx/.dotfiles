@@ -39,6 +39,7 @@
 	# hg/fig compatibility
 	purge = clean -f -d
 	reword = commit --allow-empty --amend -n
+	rbi = rebase -i HEAD~10
 	shelve = stash
 	uncommit = !git reset --soft HEAD^ && git restore --staged .
 	unshelve = stash apply
