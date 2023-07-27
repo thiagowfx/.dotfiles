@@ -12,3 +12,8 @@
 # setup: brew tap "homebrew/command-not-found"
 # https://github.com/Homebrew/homebrew-command-not-found
 hash brew >/dev/null 2>&1 && src_files "$(brew --prefix)/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
+
+# GNU coreutils
+path_munge "/opt/homebrew/opt/coreutils/libexec/gnubin"
+# GNU sed
+path_munge "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
