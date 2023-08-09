@@ -36,9 +36,11 @@
         - fpp
         - fzf
         - gh
-        - git
+        # - htop
+        # - hugo
         - imagemagick
         - jq
+        # - less
         - make
         - moreutils
         - mr
@@ -46,7 +48,6 @@
         - ncdu
         - ranger
         - shellcheck
-        - stow
         - tig
         - tmux
         - tree
