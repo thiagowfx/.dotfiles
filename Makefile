@@ -4,6 +4,7 @@
 #
 # Packages not included:
 #   misc/
+#   roles/
 #   vendor/
 PACKAGES := \
 	ack \
