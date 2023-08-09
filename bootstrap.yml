@@ -12,6 +12,14 @@
         type: bool
         value: true
         state: present
+    # https://stackoverflow.com/questions/39972335/how-do-i-press-and-hold-a-key-and-have-it-repeat-in-vscode
+    - name: unset key press and hold on VSCode.app
+      community.general.osx_defaults:
+        domain: com.microsoft.VSCode
+        key: ApplePressAndHoldEnabled
+        type: bool
+        value: false
+        state: present
     - name: install git and stow
       ansible.builtin.package:
         name: "{{ item }}"
