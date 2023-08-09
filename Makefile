@@ -71,7 +71,7 @@ ifeq (, $(shell which stow))
   $(error "No stow in $$PATH, install it first")
 endif
 
-all: install stow-lint
+all: ansible stow
 
 install: $(DEFAULT_PACKAGES)
 
