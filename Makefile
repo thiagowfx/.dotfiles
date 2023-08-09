@@ -71,14 +71,14 @@ ifeq (, $(shell which stow))
   $(error "No stow in $$PATH, install it first")
 endif
 
-all: install lint
+all: install stow-lint
 
 install: $(DEFAULT_PACKAGES)
 
 uninstall:
 	stow -t $(TARGETDIR) -d $(DOTFILESDIR) --delete $(PACKAGES)
 
-lint:
+stow-lint:
 	# Find dangling symlinks
 	chkstow -t $(TARGETDIR)
 
@@ -88,4 +88,12 @@ $(1):
 endef
 $(foreach package,$(PACKAGES),$(eval $(call stowrule,$(package))))
 
-.PHONY: all install uninstall lint $(PACKAGES)
+ansible: ansible-galaxy ansible-playbook
+
+ansible-galaxy:
+	ansible-galaxy install -r requirements.yml
+
+ansible-playbook: ansible-galaxy
+	ansible-playbook bootstrap.yml -i inventory
+
+.PHONY: all install uninstall stow-lint ansible ansible-galaxy ansible-playbook $(PACKAGES)
