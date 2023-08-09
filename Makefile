@@ -78,7 +78,7 @@ install: $(DEFAULT_PACKAGES)
 uninstall:
 	stow -t $(TARGETDIR) -d $(DOTFILESDIR) --delete $(PACKAGES)
 
-stow: stow-lint
+stow: $(DEFAULT_PACKAGES) stow-lint
 
 stow-lint:
 	# Find dangling symlinks
