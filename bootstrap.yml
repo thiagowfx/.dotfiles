@@ -6,7 +6,12 @@
   tasks:
     # https://stackoverflow.com/questions/98310/focus-follows-mouse-plus-auto-raise-on-mac-os-x
     - name: set focus follows mouse on Terminal.app
-      shell: defaults write com.apple.Terminal FocusFollowsMouse -bool true
+      community.general.osx_defaults:
+        domain: com.apple.Terminal
+        key: FocusFollowsMouse
+        type: bool
+        value: true
+        state: present
     - name: install git and stow
       ansible.builtin.package:
         name: "{{ item }}"
