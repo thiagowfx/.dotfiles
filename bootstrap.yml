@@ -27,6 +27,17 @@
       with_items:
         - git
         - stow
+    - name: install brew taps
+      community.general.homebrew_tap:
+        name: "{{ item }}"
+      with_items:
+        - buo/cask-upgrade
+        - homebrew/bundle
+        - homebrew/cask
+        - homebrew/cask-fonts
+        - homebrew/command-not-found
+        - homebrew/core
+        - homebrew/services
     - name: install brew apps
       community.general.homebrew:
         name: "{{ item }}"
