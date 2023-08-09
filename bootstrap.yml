@@ -19,3 +19,39 @@
       with_items:
         - git
         - stow
+    - name: install brew apps
+      community.general.homebrew:
+        name: "{{ item }}"
+      with_items:
+        - ack
+        - ansible
+        - atool
+        - bash
+        - bash-completion@2
+        - coreutils
+        - direnv
+        - entr
+        - exa
+        - fd
+        - fpp
+        - fzf
+        - gh
+        - git
+        - imagemagick
+        - jq
+        - make
+        - moreutils
+        - mr
+        - mtr
+        - ncdu
+        - ranger
+        - shellcheck
+        - stow
+        - tig
+        - tmux
+        - tree
+        - vim
+        - watch
+        - wget
+        - zoxide
+        - zsh-completions
