@@ -78,6 +78,8 @@ install: $(DEFAULT_PACKAGES)
 uninstall:
 	stow -t $(TARGETDIR) -d $(DOTFILESDIR) --delete $(PACKAGES)
 
+stow: stow-lint
+
 stow-lint:
 	# Find dangling symlinks
 	chkstow -t $(TARGETDIR)
@@ -96,4 +98,4 @@ ansible-galaxy:
 ansible-playbook: ansible-galaxy
 	ansible-playbook bootstrap.yml -i inventory
 
-.PHONY: all install uninstall stow-lint ansible ansible-galaxy ansible-playbook $(PACKAGES)
+.PHONY: all install uninstall stow stow-lint ansible ansible-galaxy ansible-playbook $(PACKAGES)
