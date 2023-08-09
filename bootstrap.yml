@@ -55,3 +55,30 @@
         - wget
         - zoxide
         - zsh-completions
+    - name: install brew casks
+      community.general.homebrew_cask:
+        name: "{{ item }}"
+      with_items:
+        # - 1password
+        - anki
+        - basictex
+        # - calibre
+        # - font-cascadia-code
+        # - font-fira-code
+        # - font-fira-sans
+        # - font-ibm-plex-mono
+        - google-chrome
+        - google-drive
+        - iterm2
+        # - jellyfin
+        - karabiner-elements
+        - maccy
+        - obsidian
+        # - qbittorrent
+        - qlmarkdown
+        - rectangle
+        - spotify
+        - textmate
+        - visual-studio-code
+        - vlc
+        # - windscribe
