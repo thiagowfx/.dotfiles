@@ -74,6 +74,7 @@
         - watch
         - wget
         - zoxide
+        - zsh
         - zsh-completions
     - name: install brew casks
       community.general.homebrew_cask:
