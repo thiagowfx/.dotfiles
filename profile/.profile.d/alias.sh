@@ -11,6 +11,10 @@ alias ls="ls -Fh --color=auto"
 alias la="ls -la --color=auto"
 alias l="ls -l --color=auto" && alias ll="l"
 
+if hash direnv >/dev/null 2>&1; then
+	alias de="direnv edit"
+fi
+
 # exa: modern drop-in replacement for ls
 if hash exa >/dev/null 2>&1; then
 	alias ls="exa -F --group-directories-first"
