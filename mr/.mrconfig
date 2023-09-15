@@ -21,8 +21,4 @@ skip = lazy
 checkout = git clone 'git@github.com:thiagowfx/PKGBUILDs' 'PKGBUILDs'
 skip = lazy
 
-[Projects/adventofcode]
-checkout = git clone 'git@github.com:thiagowfx/adventofcode.git' 'adventofcode'
-skip = lazy
-
 # vim: ft=cfg
