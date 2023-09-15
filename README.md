@@ -23,7 +23,7 @@ make -C ~/.dotfiles
 - OS: arch linux, alpine linux, debian
 - terminal emulator: alacritty (Linux), hterm (ChromeOS), iterm2 (macOS)
 - shell: bash, zsh + grml-zsh-config
-- web browser: chromium (Linux), google chrome
+- web browser: chromium (Linux), google chrome (macOS)
 - window manager: i3 (X11), sway (Wayland)
 - terminal multiplexer: tmux
 - text editor: vim, vscode
