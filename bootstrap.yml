@@ -53,6 +53,7 @@
         - fpp
         - fzf
         - gh
+        - gnu-sed
         # - htop
         # - hugo
         - imagemagick
