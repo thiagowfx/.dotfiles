@@ -20,6 +20,7 @@
 	rc = rebase --continue
 	recommit = commit --reedit-message ORIG_HEAD
 	st = status
+	su = submodule update
 
 	# git-absorb(1): https://github.com/tummychow/git-absorb
 	absorb = absorb --and-rebase
