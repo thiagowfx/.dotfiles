@@ -23,7 +23,7 @@
 	su = submodule update
 
 	# git-absorb(1): https://github.com/tummychow/git-absorb
-	absorb = absorb --and-rebase
+	# absorb --and-rebase
 
 	# do not use "emerge" as it is already defined in corp
 	emergef = !git add -A && git amend && git pushm -f
