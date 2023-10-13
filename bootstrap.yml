@@ -53,6 +53,7 @@
         - fpp
         - fzf
         - gh
+        - git-absorb
         - gnu-sed
         # - htop
         # - hugo
