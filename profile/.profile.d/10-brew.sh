@@ -17,3 +17,6 @@ hash brew >/dev/null 2>&1 && src_files "$(brew --prefix)/Library/Taps/homebrew/h
 path_munge "/opt/homebrew/opt/coreutils/libexec/gnubin"
 # GNU sed
 path_munge "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
+
+# Node 20
+path_munge "/opt/homebrew/opt/node@20/bin"
