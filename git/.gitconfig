@@ -69,6 +69,7 @@
 [diff]
 	# Make it easier to distinguish moved snippets of code within the same file.
 	colorMoved = default
+	colorMovedWs = "allow-indentation-change"
 	# Detect copies in addition to renames
 	renames = copies
 	# A la `git submodule summary`
