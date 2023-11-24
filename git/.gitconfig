@@ -46,6 +46,29 @@
 	unshelve = stash apply
 	unstash = stash apply
 
+	# depot_tools aliases
+	cft = cl try -B chromium/try -b={linux,mac,win}-rel{,-cft}
+	emerge = !git cl format && git add -A && git amend && git uc
+	nb = new-branch
+	next = nav-downstream
+	prev = nav-upstream
+	rb = rename-branch
+	rp = reparent-branch
+	ru = rebase-update
+	squash = squash-branch
+	ua = cl upload -T --dependencies
+	uc = cl upload -T --force
+	udiff = upstream-diff
+	unfreeze = thaw
+	world = rebase-update
+	xl = map-branches -vv
+
+	# gerrit aliases
+	abandon = cl set-close
+	cq0 = cl set-commit --clear
+	cq1 = cl try
+	cq2 = cl set-commit
+
 [apply]
 	# Detect whitespace errors when applying a patch.
 	whitespace = fix
@@ -92,7 +115,7 @@
 	cookiefile = ~/.gitcookies
 
 [init]
-	# Some codebases use 'main' these days
+	# master or main
 	defaultBranch = master
 
 [merge]
