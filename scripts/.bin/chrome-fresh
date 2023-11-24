@@ -1,0 +1,17 @@
+#!/bin/bash
+# start chrome with ephemeral settings (every run of Chrome is empty)
+# usage: chrome-fresh out/Default/chrome
+
+TMPDIR="$(mktemp -d)"
+trap 'rm -rf "${TMPDIR}"' EXIT
+
+CHROME="${1:-google-chrome}"; shift
+
+# https://github.com/GoogleChrome/chrome-launcher/blob/main/docs/chrome-flags-for-tools.md
+CHROME_FLAGS="--use-mock-keychain"
+
+if [[ "$(uname -s)" == "Darwin" && "$CHROME" == *.app ]]; then
+	open -n "$CHROME" --args "$CHROME_FLAGS" --user-data-dir="$TMPDIR" "$@"
+else  # "Linux"
+	"$CHROME" "$CHROME_FLAGS" --user-data-dir="$TMPDIR" "$@"
+fi
