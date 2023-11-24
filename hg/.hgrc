@@ -2,6 +2,17 @@
 username = Thiago Perrotta <tbperrotta@gmail.com>
 merge = diffconflicts
 
+[alias]
+emerge = !$HG amend; $HG evolve; $HG push -r '.::'
+unbranch = !$HG uncommit --keep $1; $HG forget $1; $HG add $1; $HG amend $1
+whatsout = status -r .^ -man
+
+# equivalent to `git reset --hard`
+reset = !$HG up --clean .; $HG purge
+
+# mark file as branched / retroactive
+retro = !$HG uncommit --keep $1 $2 && $HG mv --after $1 $2
+
 # https://github.com/whiteinge/diffconflicts
 [merge-tools]
 diffconflicts.executable=vim
@@ -9,6 +20,9 @@ diffconflicts.args=-c 'let g:diffconflicts_vcs="hg"' -c DiffConflicts $output $b
 diffconflicts.check=conflicts
 diffconflicts.premerge=keep
 diffconflicts.priority=99
+
+[defaults]
+graft = --no-commit
 
 [extensions]
 color =
