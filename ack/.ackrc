@@ -1,6 +1,9 @@
 # expose column for better ctrl/cmd + click navigation for text editors
 --column
 
+# bikeshed
+--type-add=bs=.bs
+
 # cddl
 --type-add=cddl=.cddl
 
