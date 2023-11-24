@@ -46,3 +46,10 @@ prompt_command() {
 	hash __vte_osc7 &>/dev/null && __vte_osc7
 }
 PROMPT_COMMAND="prompt_command"
+
+# Example extension:
+# prompt_command_corp() {
+# 	prompt_command
+# 	# PS1="${PS1/\\w/\\[$RESET\\]\\[$GREEN\\][$vcs:$client]\\[$RESET\\]\\[$BOLD\\]$shortpath}"
+# }
+# PROMPT_COMMAND="prompt_command_corp"
