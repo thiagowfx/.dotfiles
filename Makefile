@@ -37,6 +37,7 @@ PACKAGES := \
 #   alacritty
 #   alpine
 #   arch
+#   bazel
 #   chromium
 #   i3
 #   rofi
