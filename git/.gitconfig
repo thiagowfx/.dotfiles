@@ -47,7 +47,9 @@
 	unstash = stash apply
 
 	# depot_tools aliases
-	cft = cl try -B chromium/try -b={linux,mac,win}-rel{,-cft}
+	cq0 = cl set-commit --clear
+	cq1 = cl try
+	cq2 = cl set-commit
 	emerge = !git cl format && git add -A && git amend && git uc
 	nb = new-branch
 	next = nav-downstream
@@ -60,14 +62,7 @@
 	uc = cl upload -T --force
 	udiff = upstream-diff
 	unfreeze = thaw
-	world = rebase-update
 	xl = map-branches -vv
-
-	# gerrit aliases
-	abandon = cl set-close
-	cq0 = cl set-commit --clear
-	cq1 = cl try
-	cq2 = cl set-commit
 
 [apply]
 	# Detect whitespace errors when applying a patch.
