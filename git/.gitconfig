@@ -14,19 +14,15 @@
 	smtpUser = tbperrotta@gmail.com
 
 [alias]
-	amend = commit --amend --no-edit
 	dc = diff --cached
 	desc = commit --allow-empty
+	rbi = rebase -i HEAD~10
 	rc = rebase --continue
-	recommit = commit --reedit-message ORIG_HEAD
 	st = status
 	su = submodule update
 
-	# git-absorb(1): https://github.com/tummychow/git-absorb
-	# absorb --and-rebase
-
-	# do not use "emerge" as it is already defined in corp
-	emergef = !git add -A && git amend && git pushm -f
+	# m = matching
+	emergem = !git add -A && git amend && git pushm -f
 	pushm = !git push $(git remote) $(git branch --show-current):$(git branch --show-current)
 	pullm = !git pull $(git remote) $(git branch --show-current):$(git branch --show-current)
 
@@ -38,15 +34,16 @@
 	xl = branch -vva
 
 	# hg/fig compatibility
+	amend = commit --amend --no-edit
 	purge = clean -f -d
+	recommit = commit --reedit-message ORIG_HEAD
 	reword = commit --allow-empty --amend -n
-	rbi = rebase -i HEAD~10
 	shelve = stash
 	uncommit = !git reset --soft HEAD^ && git restore --staged .
 	unshelve = stash apply
 	unstash = stash apply
 
-	# depot_tools aliases
+	# depot_tools(1): https://www.chromium.org/developers/how-tos/install-depot-tools/
 	cq0 = cl set-commit --clear
 	cq1 = cl try
 	cq2 = cl set-commit
@@ -63,6 +60,9 @@
 	udiff = upstream-diff
 	unfreeze = thaw
 	xl = map-branches -vv
+
+	# git-absorb(1): https://github.com/tummychow/git-absorb
+	absorbm = absorb --and-rebase
 
 [apply]
 	# Detect whitespace errors when applying a patch.
