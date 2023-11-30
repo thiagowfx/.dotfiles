@@ -59,7 +59,7 @@
 	uc = cl upload -T --force
 	udiff = upstream-diff
 	unfreeze = thaw
-	xl = map-branches -vv
+	# xl = map-branches -vv
 
 	# git-absorb(1): https://github.com/tummychow/git-absorb
 	absorbm = absorb --and-rebase
