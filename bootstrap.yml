@@ -55,11 +55,11 @@
         - gh
         - git-absorb
         - gnu-sed
-        # - htop
-        # - hugo
+        - htop
+        - hugo
         - imagemagick
         - jq
-        # - less
+        - less
         - make
         - moreutils
         - mr
@@ -80,26 +80,24 @@
       community.general.homebrew_cask:
         name: "{{ item }}"
       with_items:
-        # - 1password
+        - 1password
         - anki
         - basictex
-        # - calibre
+        - calibre
         - font-cascadia-code
-        # - font-fira-code
-        # - font-fira-sans
         - font-ibm-plex-mono
         - google-chrome
         - google-drive
         - iterm2
-        # - jellyfin
+        - jellyfin
         - karabiner-elements
         - maccy
         - obsidian
-        # - qbittorrent
+        - qbittorrent
         - qlmarkdown
         - rectangle
         - spotify
         - textmate
         - visual-studio-code
         - vlc
-        # - windscribe
+        - windscribe
