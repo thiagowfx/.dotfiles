@@ -67,6 +67,7 @@
         - mr
         - mtr
         - ncdu
+        - pyenv
         - ranger
         - shellcheck
         - tig
