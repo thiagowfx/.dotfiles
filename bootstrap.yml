@@ -50,7 +50,7 @@
         - coreutils
         - direnv
         - entr
-        - exa
+        - eza
         - fd
         - fpp
         - fzf
