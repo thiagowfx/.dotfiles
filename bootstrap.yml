@@ -86,6 +86,7 @@
         - 1password
         - anki
         - basictex
+        - bbedit
         - calibre
         - font-cascadia-code
         - font-ibm-plex-mono
@@ -101,7 +102,6 @@
         - qlmarkdown
         - rectangle
         - spotify
-        - textmate
         - visual-studio-code
         - vlc
         - windscribe
