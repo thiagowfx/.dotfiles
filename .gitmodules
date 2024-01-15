@@ -114,10 +114,6 @@
 	path = vim/.vim/pack/misc/start/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align
 	shallow = true
-[submodule "vim/.vim/pack/misc/start/goyo.vim"]
-	path = vim/.vim/pack/misc/start/goyo.vim
-	url = https://github.com/junegunn/goyo.vim
-	shallow = true
 [submodule "vim/.vim/pack/misc/start/diffconflicts"]
 	path = vim/.vim/pack/misc/start/diffconflicts
 	url = https://github.com/whiteinge/diffconflicts
