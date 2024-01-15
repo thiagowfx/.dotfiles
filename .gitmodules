@@ -126,7 +126,3 @@
 	path = vim/.vim/pack/misc/start/ale
 	url = https://github.com/dense-analysis/ale
 	shallow = true
-[submodule "vim/.vim/pack/misc/start/gn"]
-	path = vim/.vim/pack/misc/start/gn
-	url = https://gn.googlesource.com/gn
-	shallow = true
