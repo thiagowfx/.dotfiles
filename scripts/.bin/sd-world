@@ -45,9 +45,6 @@ case "$(uname)" in
 		# warning: macos has /usr/bin/apt which is a Java thing
 		run_if_exists "apt-get" sudo apt-get upgrade -y
 		run_if_exists "apt-get" sudo apt-get autoremove
-
-		# gLinux
-		run_if_exists "glinux-updater"
 		;;
 
 	# macOS
@@ -59,19 +56,12 @@ case "$(uname)" in
 		# system update and app store
 		# run_if_exists "softwareupdate" softwareupdate --install --all
 		run_if_exists "mas" mas upgrade
-
-		# gMac
-		run_if_exists "mule" sudo mule upgrade
-		run_if_exists "gmac-updater"
 		;;
 
 	# windows
 	MINGW*)
 		# third-party package manager
 		run_if_exists "scoop" scoop update
-
-		# gWindows
-		run_if_exists "gwindows-updater"
 		;;
 esac
 
