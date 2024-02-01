@@ -15,7 +15,7 @@ make -C ~/.dotfiles
 
 - `ansible.cfg`: config
 - `bootstrap.yml`: tasks
-- `inventory`: hosts
+- `inventory.ini`: hosts
 - `requirements.yml`: dependencies
 
 ## software ([uses](https://uses.tech/))

@@ -98,6 +98,6 @@ ansible-galaxy:
 	ansible-galaxy install -r requirements.yml
 
 ansible-playbook: ansible-galaxy
-	ansible-playbook bootstrap.yml -i inventory
+	ansible-playbook bootstrap.yml -i inventory.ini
 
 .PHONY: all install uninstall stow stow-lint ansible ansible-galaxy ansible-playbook $(PACKAGES)
