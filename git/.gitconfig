@@ -78,6 +78,7 @@
 	autocrlf = input
 	excludesfile = ~/.gitignore_global
 	editor = vim
+	# Alternative for diff-highlight: git-delta
 	pager = "(diff-highlight 2>/dev/null || cat) | ${PAGER:-less}"
 
 [credential]
