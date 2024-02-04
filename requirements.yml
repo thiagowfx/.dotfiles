@@ -1,5 +1,11 @@
 ---
+# List:
+#   ansible-galaxy collection list
+#
+# Install:
+#   ansible-galaxy collection install ansible.posix
 collections:
+  - name: ansible.posix
   - name: community.general
 roles:
   - name: elliotweiser.osx-command-line-tools
