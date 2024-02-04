@@ -40,8 +40,9 @@ runtime! macros/matchit.vim
 " Set color theme / scheme
 packadd! monokai
 packadd! onedark
-colorscheme monokai
+colorscheme onedark
 highlight ColorColumn ctermbg=magenta
+set colorcolumn=80
 
 " The colorscheme of lightline is independent of the editor colorscheme.
 "   'one' provides sensible defaults and works in 8-color mode (linux tty).
