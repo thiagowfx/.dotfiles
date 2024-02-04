@@ -4,7 +4,12 @@
   roles:
     - role: elliotweiser.osx-command-line-tools
   tasks:
-    - name: Disable double space auto-period on macOS
+    - name: set ssh authorized keys from url
+      ansible.posix.authorized_key:
+        user: "{{ lookup('env', 'USER') }}"
+        state: present
+        key: https://github.com/thiagowfx.keys
+    - name: disable double space auto-period on macOS
       shell: defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
     # https://stackoverflow.com/questions/98310/focus-follows-mouse-plus-auto-raise-on-mac-os-x
     - name: set focus follows mouse on Terminal.app
