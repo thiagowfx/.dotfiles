@@ -29,15 +29,19 @@
       with_items:
         - git
         - stow
+    # brew tap
     - name: install brew taps
       community.general.homebrew_tap:
         name: "{{ item }}"
       with_items:
         - buo/cask-upgrade
         - homebrew/bundle
+        - homebrew/cask
         - homebrew/cask-fonts
         - homebrew/command-not-found
+        - homebrew/core
         - homebrew/services
+    # brew leaves -r
     - name: install brew apps
       community.general.homebrew:
         name: "{{ item }}"
@@ -70,6 +74,7 @@
         - pyenv
         - ranger
         - shellcheck
+        - stow
         - tig
         - tmux
         - tree
@@ -79,6 +84,7 @@
         - zoxide
         - zsh
         - zsh-completions
+    # brew list --cask -1
     - name: install brew casks
       community.general.homebrew_cask:
         name: "{{ item }}"
