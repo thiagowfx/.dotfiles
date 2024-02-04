@@ -66,12 +66,15 @@
         - gh
         - git-absorb
         - gnu-sed
+        - graphviz
         - htop
         - hugo
         - imagemagick
         - jq
         - less
+        - lesspipe
         - make
+        - mas
         - moreutils
         - mr
         - mtr
@@ -101,6 +104,7 @@
         - calibre
         - font-cascadia-code
         - font-ibm-plex-mono
+        - gimp
         - google-chrome
         - google-drive
         - intellij-idea-ce
@@ -115,4 +119,5 @@
         - spotify
         - visual-studio-code
         - vlc
+        - whatsapp
         - windscribe
