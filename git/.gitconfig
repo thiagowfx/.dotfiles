@@ -156,6 +156,9 @@
 	# Clone new submodules in parallel with as many jobs.
 	fetchJobs = 0
 
+[url "git@github.com:"]
+	pushInsteadOf = "https://github.com/"
+
 # Import corp configs if any.
 [include]
 	path = .gitconfig_corp
