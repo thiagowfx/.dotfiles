@@ -3,6 +3,7 @@
   hosts: all
   roles:
     - role: elliotweiser.osx-command-line-tools
+    - role: iterm2-shell-integration
   tasks:
     - name: set ssh authorized keys from url
       ansible.posix.authorized_key:
