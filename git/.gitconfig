@@ -73,6 +73,9 @@
 	autosetupmerge = always
 	autosetuprebase = always
 
+[commit]
+	verbose = true
+
 [core]
 	# Auto-convert CRLF <-> LF for a transparent experience on Windows.
 	autocrlf = input
