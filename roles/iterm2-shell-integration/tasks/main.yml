@@ -1,0 +1,21 @@
+---
+- name: Check if iTerm2 shell integration files exist
+  find:
+    hidden: true
+    paths: "{{ ansible_env.HOME }}"
+    patterns: ".iterm2_shell_integration*"
+  register: iterm2_integration_files
+
+- name: Set register variable if iTerm2 shell integration files exist
+  set_fact:
+    iterm2_integration_exists: "{{ iterm2_integration_files.matched }}"
+
+- name: Download iTerm2 shell integration script
+  get_url:
+    url: "{{ iterm2_shell_integration_base_url }}/{{ iterm2_shell_integration_script }}"
+    dest: "{{ ansible_env.HOME }}/"
+  when: not iterm2_integration_exists
+
+- name: Run iTerm2 shell integration script
+  command: "{{ ansible_shell_executable }} {{ ansible_env.HOME }}/{{ iterm2_shell_integration_script }}"
+  when: not iterm2_integration_exists
