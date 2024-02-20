@@ -10,6 +10,7 @@
         user: "{{ lookup('env', 'USER') }}"
         state: present
         key: https://github.com/thiagowfx.keys
+        comment: github
     - name: disable double space auto-period on macOS
       shell: defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
     # https://stackoverflow.com/questions/98310/focus-follows-mouse-plus-auto-raise-on-mac-os-x
