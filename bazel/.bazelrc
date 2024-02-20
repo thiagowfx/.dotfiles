@@ -7,6 +7,6 @@ startup --host_jvm_args=-Xmx18g --host_jvm_args=-Xms18g
 # improve test execution time
 build -c opt
 
-# ciarandowney@'s tips
+# ciarandowney@google.com's tips
 build --show_timestamps
 test --test_output=errors --test_summary=detailed
