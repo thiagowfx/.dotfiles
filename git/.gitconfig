@@ -72,6 +72,7 @@
 [branch]
 	autosetupmerge = always
 	autosetuprebase = always
+	sort = -committerdate
 
 [commit]
 	verbose = true
