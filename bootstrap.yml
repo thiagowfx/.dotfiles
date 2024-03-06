@@ -43,7 +43,6 @@
       with_items:
         - buo/cask-upgrade
         - homebrew/bundle
-        - homebrew/cask
         - homebrew/cask-fonts
         - homebrew/command-not-found
         - homebrew/core
