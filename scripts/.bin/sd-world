@@ -72,10 +72,6 @@ run_if_exists "flatpak" flatpak update
 run_if_exists "nix-channel" nix-channel --update
 run_if_exists "nix-env" nix-env -u
 
-# pihole
-# update pihole itself and gravity lists
-run_if_exists "pihole" pihole -up
-
 # dotfiles
 do_git "$HOME/.dotfiles"
 do_git "$HOME/.dotfiles_corp"
