@@ -109,9 +109,6 @@
 	# Automatically sign-off patches when using format-patch.
 	signoff = true
 
-[gpg]
-	format = ssh
-
 [help]
 	autocorrect = 1
 
