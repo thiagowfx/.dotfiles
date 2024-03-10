@@ -32,7 +32,8 @@ all: ansible install
 clean:
 	stow -t $(TARGETDIR) -d $(DOTFILESDIR) --delete $(PACKAGES)
 
-install: $(PACKAGES)
+install:
+	stow $(PACKAGES)
 
 lint:
 	# Find dangling symlinks
