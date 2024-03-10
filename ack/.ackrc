@@ -1,18 +1,6 @@
 # expose column for better ctrl/cmd + click navigation for text editors
 --column
 
-# bikeshed
---type-add=bs=.bs
-
-# cddl
---type-add=cddl=.cddl
-
-# generate ninja: https://gn.googlesource.com/gn/
---type-add=gn=.gn,.gni
-
-# chromium grd files
---type-add=grd=.grd,.grdp
-
 # ini
 --type-add=ini=.ini
 
@@ -24,9 +12,3 @@
 
 # text
 --type-add=txt=.txt
-
-# chromium
---ignore-dir=out
-
-# nodejs
---ignore-dir=.wireit

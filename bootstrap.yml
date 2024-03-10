@@ -59,7 +59,6 @@
         - bash-completion@2
         - coreutils
         - direnv
-        - entr
         - eza
         - fd
         - fpp
@@ -77,10 +76,8 @@
         - make
         - mas
         - moreutils
-        - mr
         - mtr
         - ncdu
-        - pyenv
         - ranger
         - shellcheck
         - stow

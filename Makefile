@@ -1,62 +1,16 @@
 # Manage the dotfiles environment.
 
-# List of all valid packages.
-#
-# Packages not included:
-#   misc/
-#   roles/
-#   vendor/
+# List of default packages to install.
 PACKAGES := \
 	ack \
-	alacritty \
-	alpine \
-	arch \
 	bash \
-	chromium \
+	bin \
 	fzf \
 	git \
-	hg \
-	i3 \
-	mr \
 	profile \
 	ranger \
-	rofi \
-	screen \
-	scripts \
-	ssh \
-	sway \
-	tmux \
-	tmux_auto_ssh \
-	vim \
-	x11 \
-	zsh
-
-# List of default packages to install.
-#
-# Packages not included:
-#   alacritty
-#   alpine
-#   arch
-#   bazel
-#   chromium
-#   i3
-#   rofi
-#   screen
-#   sway
-#   x11
-DEFAULT_PACKAGES := \
-	ack \
-	bash \
-	fzf \
-	git \
-	hg \
-	mr \
-	profile \
-	ranger \
-	scripts \
 	ssh \
 	tmux \
-	tmux_auto_ssh \
 	vim \
 	zsh
 
@@ -73,31 +27,19 @@ ifeq (, $(shell which stow))
   $(error "No stow in $$PATH, install it first")
 endif
 
-all: ansible stow
+all: ansible install
 
-install: $(DEFAULT_PACKAGES)
-
-uninstall:
+clean:
 	stow -t $(TARGETDIR) -d $(DOTFILESDIR) --delete $(PACKAGES)
 
-stow: $(DEFAULT_PACKAGES) stow-lint
+install: $(PACKAGES)
 
-stow-lint:
+lint:
 	# Find dangling symlinks
 	chkstow -t $(TARGETDIR)
 
-define stowrule
-$(1):
-	stow --no-folding -t $(TARGETDIR) -d $(DOTFILESDIR) --restow $(1)
-endef
-$(foreach package,$(PACKAGES),$(eval $(call stowrule,$(package))))
-
-ansible: ansible-galaxy ansible-playbook
-
-ansible-galaxy:
+ansible:
 	ansible-galaxy install -r requirements.yml
-
-ansible-playbook: ansible-galaxy
 	ansible-playbook bootstrap.yml -i inventory.ini
 
-.PHONY: all install uninstall stow stow-lint ansible ansible-galaxy ansible-playbook $(PACKAGES)
+.PHONY: all clean install lint ansible

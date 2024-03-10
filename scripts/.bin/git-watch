@@ -1,4 +1,0 @@
-#!/bin/sh
-# usage: git-watch autoninja -C out/Default chrome
-
-git ls-files | entr -a -- "$@"

@@ -17,6 +17,7 @@ make -C ~/.dotfiles
 - `bootstrap.yml`: tasks
 - `inventory.ini`: hosts
 - `requirements.yml`: dependencies
+- `roles/`: roles
 
 ## software ([uses](https://uses.tech/))
 
