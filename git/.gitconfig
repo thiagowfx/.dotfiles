@@ -32,7 +32,7 @@
 
 	# log: there's also gitk and tig
 	l = log --graph --pretty=oneline --abbrev-commit --all
-	xl = branch -vva
+	xl = branch -vv
 
 	# hg/fig compatibility
 	amend = commit --amend --no-edit
