@@ -1,3 +1,2 @@
---ignore-directory=vendor
 --ignore-directory=vim/.vim/pack
 --ignore-directory=zsh/.zsh
