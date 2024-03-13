@@ -45,22 +45,16 @@
 	unstash = stash apply
 
 	# depot_tools(1): https://www.chromium.org/developers/how-tos/install-depot-tools/
-	# cq0 = cl set-commit --clear
-	# cq1 = cl try
-	# cq2 = cl set-commit
-	# emerge = !git cl format && git add -A && git amend && git uc
-	# nb = new-branch
-	# next = nav-downstream
-	# prev = nav-upstream
-	# rb = rename-branch
-	# rp = reparent-branch
-	# ru = rebase-update
-	# squash = squash-branch
-	# ua = cl upload -T --dependencies
-	# uc = cl upload -T --force
-	# udiff = upstream-diff
-	# unfreeze = thaw
-	# xl = map-branches -vv
+	nb = new-branch
+	next = nav-downstream
+	prev = nav-upstream
+	rb = rename-branch
+	rp = reparent-branch
+	ru = rebase-update
+	squash = squash-branch
+	udiff = upstream-diff
+	unfreeze = thaw
+	xl = map-branches -vv
 
 	# git-absorb(1): https://github.com/tummychow/git-absorb
 	absorbm = absorb --and-rebase
