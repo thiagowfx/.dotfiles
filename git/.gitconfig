@@ -44,17 +44,15 @@
 	unshelve = stash apply
 	unstash = stash apply
 
-	# depot_tools(1): https://www.chromium.org/developers/how-tos/install-depot-tools/
-	nb = new-branch
-	next = nav-downstream
-	prev = nav-upstream
-	rb = rename-branch
-	rp = reparent-branch
-	ru = rebase-update
-	squash = squash-branch
-	udiff = upstream-diff
-	unfreeze = thaw
-	xl = map-branches -vv
+	# Inspired by depot_tools(1): https://www.chromium.org/developers/how-tos/install-depot-tools/
+	nb = checkout -b
+	next = checkout '@{u}'
+	# prev = nav-upstream
+	rb = branch -m
+	# rp = reparent-branch
+	# ru = rebase-update
+	# squash = squash-branch
+	# unfreeze = thaw
 
 	# git-absorb(1): https://github.com/tummychow/git-absorb
 	absorbm = absorb --and-rebase
