@@ -16,7 +16,9 @@
 [alias]
 	dc = diff --cached
 	desc = commit --allow-empty
+	nb = checkout -b
 	rbi = rebase -i HEAD~10
+	rb = branch -m
 	rc = rebase --continue
 	st = status
 	su = submodule update
@@ -43,16 +45,6 @@
 	uncommit = !git reset --soft HEAD^ && git restore --staged .
 	unshelve = stash apply
 	unstash = stash apply
-
-	# Inspired by depot_tools(1): https://www.chromium.org/developers/how-tos/install-depot-tools/
-	nb = checkout -b
-	next = checkout '@{u}'
-	# prev = nav-upstream
-	rb = branch -m
-	# rp = reparent-branch
-	# ru = rebase-update
-	# squash = squash-branch
-	# unfreeze = thaw
 
 	# git-absorb(1): https://github.com/tummychow/git-absorb
 	absorbm = absorb --and-rebase
