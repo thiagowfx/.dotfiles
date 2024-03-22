@@ -1,1 +1,0 @@
-nnoremap <leader>g :Goyo
