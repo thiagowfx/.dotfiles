@@ -43,4 +43,7 @@ ansible:
 	ansible-galaxy install -r requirements.yml
 	ansible-playbook bootstrap.yml -i inventory.ini
 
-.PHONY: all clean install lint ansible
+uninstall:
+	stow -D $(PACKAGES)
+
+.PHONY: all clean install lint ansible uninstall
