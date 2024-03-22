@@ -1,6 +1,11 @@
 ---
 - name: disable double space auto-period on macOS
-  shell: defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: NSAutomaticPeriodSubstitutionEnabled
+    type: bool
+    value: false
+    state: present
 
 # https://stackoverflow.com/questions/98310/focus-follows-mouse-plus-auto-raise-on-mac-os-x
 - name: set focus follows mouse on Terminal.app
@@ -19,4 +24,3 @@
     type: bool
     value: false
     state: present
-
