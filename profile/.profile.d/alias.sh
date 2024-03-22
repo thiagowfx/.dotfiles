@@ -3,10 +3,8 @@
 # color on
 alias diff="diff -uN --color=auto"
 alias grep="grep --color=auto"
-alias ip="ip --color=auto"
 
 # verbose on
-alias rsync="rsync -v"
 alias ls="ls -Fh --color=auto"
 alias la="ls -la --color=auto"
 alias l="ls -l --color=auto" && alias ll="l"

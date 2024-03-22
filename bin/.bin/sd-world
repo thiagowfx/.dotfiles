@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # perform a full system upgrade
 
-set -euo pipefail
+# set -e omitted so that script continues on error
+set -uo pipefail
 
 log() {
 	local bold=$(tput bold) normal=$(tput sgr0)
@@ -25,8 +26,8 @@ run_if_exists() {
 	fi
 }
 
-# usage: do_git <path/to/git/repo>
-do_git() {
+# usage: run_git <path/to/git/repo>
+run_git() {
 	if [[ -d "$1" ]]; then
 		run_if_exists "$1" git -C "$1" pull origin master
 	fi
@@ -57,12 +58,6 @@ case "$(uname)" in
 		# run_if_exists "softwareupdate" softwareupdate --install --all
 		run_if_exists "mas" mas upgrade
 		;;
-
-	# windows
-	MINGW*)
-		# third-party package manager
-		run_if_exists "scoop" scoop update
-		;;
 esac
 
 # flatpaks
@@ -73,5 +68,5 @@ run_if_exists "nix-channel" nix-channel --update
 run_if_exists "nix-env" nix-env -u
 
 # dotfiles
-do_git "$HOME/.dotfiles"
-do_git "$HOME/.dotfiles_corp"
+run_git "$HOME/.dotfiles"
+run_git "$HOME/.dotfiles_corp"

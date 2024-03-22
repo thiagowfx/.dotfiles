@@ -24,8 +24,7 @@
 	su = submodule update
 
 	# m = matching
-	emerge = emergem
-	emergem = !git add -A && git amend && git pushm -f
+	emerge = !git add -A && git amend && git pushm -f
 	pushm = !git push $(git remote) $(git branch --show-current):$(git branch --show-current)
 	pullm = !git pull $(git remote) $(git branch --show-current):$(git branch --show-current)
 
@@ -79,12 +78,12 @@
 	# Make it easier to distinguish moved snippets of code within the same file.
 	colorMoved = default
 	colorMovedWs = "allow-indentation-change"
+	# Do not show "a/" "b/", allows file navigation when supported
+	noPrefix = true
 	# Detect copies in addition to renames
 	renames = copies
 	# A la `git submodule summary`
 	submodule = log
-	# Do not show "a/" "b/", allows file navigation when supported
-	noPrefix = true
 
 [fetch]
 	prune = true
