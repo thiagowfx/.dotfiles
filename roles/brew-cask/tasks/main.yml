@@ -1,0 +1,33 @@
+---
+# brew list --cask -1
+- name: install brew casks
+  community.general.homebrew_cask:
+    name: "{{ item }}"
+  with_items:
+    - 1password
+    - anki
+    - basictex
+    - bbedit
+    - calibre
+    - font-ibm-plex-mono
+    - font-hermit
+    - gimp
+    - google-chrome
+    - google-drive
+    - intellij-idea-ce
+    - iterm2
+    - jellyfin
+    - karabiner-elements
+    - logseq
+    - lulu
+    - maccy
+    - obsidian
+    - qbittorrent
+    - qlmarkdown
+    - raycast
+    - rectangle
+    - spotify
+    - visual-studio-code
+    - vlc
+    - whatsapp
+    - windscribe

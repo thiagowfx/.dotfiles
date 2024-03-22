@@ -1,0 +1,45 @@
+---
+# brew leaves -r
+- name: install brew apps
+  community.general.homebrew:
+    name: "{{ item }}"
+  with_items:
+    - ack
+    - ansible
+    - atool
+    - bash
+    - bash-completion@2
+    - coreutils
+    - direnv
+    - eza
+    - fd
+    - fpp
+    - fzf
+    - gh
+    - git
+    - git-absorb
+    - gnu-sed
+    - graphviz
+    - htop
+    - hugo
+    - imagemagick
+    - jq
+    - less
+    - lesspipe
+    - make
+    - mas
+    - moreutils
+    - mtr
+    - ncdu
+    - ranger
+    - shellcheck
+    - stow
+    - tig
+    - tmux
+    - tree
+    - vim
+    - watch
+    - wget
+    - zoxide
+    - zsh
+    - zsh-completions

@@ -1,0 +1,22 @@
+---
+- name: disable double space auto-period on macOS
+  shell: defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+
+# https://stackoverflow.com/questions/98310/focus-follows-mouse-plus-auto-raise-on-mac-os-x
+- name: set focus follows mouse on Terminal.app
+  community.general.osx_defaults:
+    domain: com.apple.Terminal
+    key: FocusFollowsMouse
+    type: bool
+    value: true
+    state: present
+
+# https://stackoverflow.com/questions/39972335/how-do-i-press-and-hold-a-key-and-have-it-repeat-in-vscode
+- name: unset key press and hold on VSCode.app
+  community.general.osx_defaults:
+    domain: com.microsoft.VSCode
+    key: ApplePressAndHoldEnabled
+    type: bool
+    value: false
+    state: present
+
