@@ -24,3 +24,11 @@
     type: bool
     value: false
     state: present
+
+- name: don’t show recent applications in Dock
+  community.general.osx_defaults:
+    domain: com.apple.dock
+    key: show-recents
+    type: bool
+    value: false
+    state: present
