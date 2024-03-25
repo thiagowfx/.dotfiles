@@ -23,5 +23,8 @@ alias gi=git
 alias gt=git
 alias sl=ls
 
+# k8s
+alias k=kubectl
+
 # muscle memory
 alias unstow="stow -D"
