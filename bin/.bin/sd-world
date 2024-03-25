@@ -33,6 +33,10 @@ run_git() {
 	fi
 }
 
+# dotfiles
+run_git "$HOME/.dotfiles"
+run_git "$HOME/.dotfiles_corp"
+
 case "$(uname)" in
 	# linux
 	Linux)
@@ -66,7 +70,3 @@ run_if_exists "flatpak" flatpak update
 # nix
 run_if_exists "nix-channel" nix-channel --update
 run_if_exists "nix-env" nix-env -u
-
-# dotfiles
-run_git "$HOME/.dotfiles"
-run_git "$HOME/.dotfiles_corp"
