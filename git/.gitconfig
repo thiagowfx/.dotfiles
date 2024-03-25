@@ -24,7 +24,6 @@
 	su = submodule update
 
 	# m = matching
-	emerge = !git add -A && git amend && git pushm -f
 	pushm = !git push $(git remote) $(git branch --show-current):$(git branch --show-current)
 	pullm = !git pull $(git remote) $(git branch --show-current):$(git branch --show-current)
 
