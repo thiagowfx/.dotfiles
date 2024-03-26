@@ -10,6 +10,9 @@
 # shell
 --type-add=sh=.sh,.bash.,zsh
 
+# terraform
+--type-add=tf=.tf
+
 # text
 --type-add=txt=.txt
 
