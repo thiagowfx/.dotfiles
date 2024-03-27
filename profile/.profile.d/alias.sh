@@ -19,13 +19,14 @@ if hash eza >/dev/null 2>&1; then
 fi
 
 # misspellings
+alias t=git
+alias it=git
 alias gi=git
 alias gt=git
 alias sl=ls
 
 # shorts
 alias k=kubectl
-alias t=git
 
 # muscle memory
 alias unstow="stow -D"
