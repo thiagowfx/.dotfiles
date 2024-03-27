@@ -17,4 +17,5 @@
 --type-add=txt=.txt
 
 # ignore common third-party directories
+--ignore-directory=.terraform
 --ignore-directory=vendor
