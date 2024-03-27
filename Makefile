@@ -32,7 +32,7 @@ all: ansible install
 clean:
 	stow -t $(TARGETDIR) -d $(DOTFILESDIR) --delete $(PACKAGES)
 
-install:
+install stow:
 	stow $(PACKAGES)
 
 lint:
@@ -43,7 +43,7 @@ ansible:
 	ansible-galaxy install -r requirements.yml
 	ansible-playbook bootstrap.yml -i inventory.ini
 
-uninstall:
+uninstall unstow:
 	stow -D $(PACKAGES)
 
-.PHONY: all clean install lint ansible uninstall
+.PHONY: all clean install stow lint ansible uninstall unstow
