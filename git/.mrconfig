@@ -1,0 +1,5 @@
+# vim: ft=conf
+
+[DEFAULT]
+git_xl = git xl "$@"
+
