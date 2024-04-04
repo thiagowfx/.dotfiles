@@ -14,6 +14,7 @@
 	smtpUser = tbperrotta@gmail.com
 
 [alias]
+	cp = cherry-pick
 	dc = diff --cached
 	desc = commit --allow-empty
 	nb = checkout -b
