@@ -17,12 +17,14 @@
 	cp = cherry-pick
 	dc = diff --cached
 	desc = commit --allow-empty
+	emerge = !git amend; git pushm -f
 	nb = checkout -b
 	rbi = rebase -i HEAD~10
 	rb = branch -m
 	rc = rebase --continue
 	st = status
 	su = submodule update
+	world = fetch --all
 
 	# m = matching
 	pushm = !git push $(git remote) $(git branch --show-current):$(git branch --show-current)
