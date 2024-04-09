@@ -1,3 +1,4 @@
+# Enables iterm2 Shell Integration: https://iterm2.com/documentation-shell-integration.html
 ---
 - name: Check if iTerm2 shell integration files exist
   find:
@@ -12,10 +13,10 @@
 
 - name: Download iTerm2 shell integration script
   get_url:
-    url: "{{ iterm2_shell_integration_base_url }}/{{ iterm2_shell_integration_script }}"
+    url: "https://iterm2.com/misc/install_shell_integration.sh"
     dest: "{{ ansible_env.HOME }}/"
   when: not iterm2_integration_exists
 
 - name: Run iTerm2 shell integration script
-  command: "{{ ansible_shell_executable }} {{ ansible_env.HOME }}/{{ iterm2_shell_integration_script }}"
+  command: "{{ ansible_shell_executable }} {{ ansible_env.HOME }}/install_shell_integration.sh"
   when: not iterm2_integration_exists

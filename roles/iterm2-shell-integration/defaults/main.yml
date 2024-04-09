@@ -1,5 +1,0 @@
-# install script
-iterm2_shell_integration_script: install_shell_integration.sh
-
-# base url to download from
-iterm2_shell_integration_base_url: https://iterm2.com/misc

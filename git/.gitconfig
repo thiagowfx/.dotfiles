@@ -47,9 +47,6 @@
 	unshelve = stash apply
 	unstash = stash apply
 
-	# git-absorb(1): https://github.com/tummychow/git-absorb
-	absorbm = absorb --and-rebase
-
 [apply]
 	# Detect whitespace errors when applying a patch.
 	whitespace = fix
