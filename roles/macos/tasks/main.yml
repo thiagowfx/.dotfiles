@@ -7,6 +7,23 @@
     value: false
     state: present
 
+- name: do not show recent applications in Dock
+  community.general.osx_defaults:
+    domain: com.apple.dock
+    key: show-recents
+    type: bool
+    value: false
+    state: present
+
+# https://docs.ansible.com/ansible/latest/collections/community/general/osx_defaults_module.html
+- name: enable software auto update
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.SoftwareUpdate
+    key: AutomaticCheckEnabled
+    type: int
+    value: 1
+  # become: true
+
 # https://stackoverflow.com/questions/98310/focus-follows-mouse-plus-auto-raise-on-mac-os-x
 - name: set focus follows mouse on Terminal.app
   community.general.osx_defaults:
@@ -21,14 +38,6 @@
   community.general.osx_defaults:
     domain: com.microsoft.VSCode
     key: ApplePressAndHoldEnabled
-    type: bool
-    value: false
-    state: present
-
-- name: do not show recent applications in Dock
-  community.general.osx_defaults:
-    domain: com.apple.dock
-    key: show-recents
     type: bool
     value: false
     state: present
