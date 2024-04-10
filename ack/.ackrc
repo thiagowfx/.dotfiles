@@ -11,7 +11,7 @@
 --type-add=sh=.sh,.bash.,zsh
 
 # terraform
---type-add=tf=.tf
+--type-add=tf=.tf,.tfvars
 
 # text
 --type-add=txt=.txt
