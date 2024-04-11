@@ -10,7 +10,7 @@ alias la="ls -la --color=auto"
 alias l="ls -l --color=auto" && alias ll="l"
 
 if hash direnv >/dev/null 2>&1; then
-	alias de="direnv edit"
+	alias de="direnv edit || direnv edit ."
 fi
 
 # eza: modern drop-in replacement for ls
