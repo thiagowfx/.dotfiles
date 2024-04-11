@@ -17,7 +17,7 @@
 	cp = cherry-pick
 	dc = diff --cached
 	desc = commit --allow-empty
-	emerge = !git amend && git pushm -f
+	emerge = !git amend -n && git pushm -f
 	nb = checkout -b
 	rbi = rebase -i HEAD~10
 	rb = branch -m
