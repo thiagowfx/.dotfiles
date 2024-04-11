@@ -17,6 +17,7 @@
 
 # https://docs.ansible.com/ansible/latest/collections/community/general/osx_defaults_module.html
 - name: enable software auto update
+  become: true
   community.general.osx_defaults:
     domain: /Library/Preferences/com.apple.SoftwareUpdate
     key: AutomaticCheckEnabled
