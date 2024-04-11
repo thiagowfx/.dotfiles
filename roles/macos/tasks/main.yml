@@ -22,7 +22,6 @@
     key: AutomaticCheckEnabled
     type: int
     value: 1
-  # become: true
 
 # https://stackoverflow.com/questions/98310/focus-follows-mouse-plus-auto-raise-on-mac-os-x
 - name: set focus follows mouse on Terminal.app
@@ -40,4 +39,12 @@
     key: ApplePressAndHoldEnabled
     type: bool
     value: false
+    state: present
+
+- name: set fn key to show emoji & symbols
+  community.general.osx_defaults:
+    domain: com.apple.HIToolbox
+    key: AppleFnUsageType
+    type: int
+    value: 2
     state: present
