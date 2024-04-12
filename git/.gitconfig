@@ -24,7 +24,7 @@
 	rc = rebase --continue
 	st = status
 	su = submodule update
-	world = fetch --all
+	world = !git fetch --all && git remote prune origin
 
 	# m = matching
 	pushm = !git push $(git remote) $(git branch --show-current):$(git branch --show-current)
