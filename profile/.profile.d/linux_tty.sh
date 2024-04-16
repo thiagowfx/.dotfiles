@@ -1,3 +1,5 @@
+# shellcheck disable=SC2148
+
 # Set linux tty/console theme
 # /base16/monokai.dark from https://terminal.love/
 if [ "$TERM" = "linux" ]; then
@@ -22,4 +24,3 @@ if [ "$TERM" = "linux" ]; then
 	# clear artifacts
 	clear
 fi
-

@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Custom user environment variables for both bash and zsh.
 
 # Sensible $PATH should include user binary directories.

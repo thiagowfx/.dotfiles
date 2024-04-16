@@ -3,4 +3,3 @@
 [DEFAULT]
 git_world = git world "$@"
 git_xl = git xl "$@" && gh pr list --author "@me"
-

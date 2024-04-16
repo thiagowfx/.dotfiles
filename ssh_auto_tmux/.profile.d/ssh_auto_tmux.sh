@@ -1,3 +1,5 @@
+# shellcheck disable=SC2148
+
 # Automatically spawn tmux within SSH sessions for interactive terminals.
 # https://stackoverflow.com/a/43819740/1745064
 #

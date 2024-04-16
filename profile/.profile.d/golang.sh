@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # https://go.dev/wiki/GOPATH
 export GOPATH="$HOME/go"
 
