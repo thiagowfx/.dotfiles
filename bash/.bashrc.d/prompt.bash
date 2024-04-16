@@ -1,5 +1,6 @@
 #!/bin/bash
 # Set bash prompt.
+# shellcheck disable=SC2034
 
 # Monokai-inspired: https://gist.github.com/transat/6694554
 RESET=$'\e[0m'
@@ -10,7 +11,6 @@ ORANGE=$'\e[33;49m'
 PINK=$'\e[31;49m'
 PURPLE=$'\e[35;49m'
 RED=$'\e[31;49m'
-YELLOW=$'\e[37;49m'
 
 prompt_command() {
 	# this must be the first line
@@ -46,10 +46,3 @@ prompt_command() {
 	hash __vte_osc7 &>/dev/null && __vte_osc7
 }
 PROMPT_COMMAND="prompt_command"
-
-# Example extension:
-# prompt_command_corp() {
-# 	prompt_command
-# 	# PS1="${PS1/\\w/\\[$RESET\\]\\[$GREEN\\][$vcs:$client]\\[$RESET\\]\\[$BOLD\\]$shortpath}"
-# }
-# PROMPT_COMMAND="prompt_command_corp"
