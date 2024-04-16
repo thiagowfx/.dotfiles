@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Sensible command defaults for both bash and zsh.
 
 # color on

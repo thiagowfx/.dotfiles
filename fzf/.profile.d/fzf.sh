@@ -1,3 +1,5 @@
+#!/bin/sh
+
 if hash fzf >/dev/null 2>&1; then
 	# fzf history: C-r
 	export FZF_CTRL_R_OPTS="--preview-window up:2:wrap --preview 'echo {}'"

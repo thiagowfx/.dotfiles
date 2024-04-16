@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Homebrew: The Missing Package Manager for macOS (or Linux)
 # https://brew.sh
 

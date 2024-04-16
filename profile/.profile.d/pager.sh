@@ -1,3 +1,5 @@
+# shellcheck disable=SC2148
+
 if hash less >/dev/null 2>&1; then
 	# Set sensible defaults for less.
 	# https://stackoverflow.com/a/14118014/1745064
@@ -22,4 +24,3 @@ if hash less >/dev/null 2>&1; then
 			}
 	fi
 fi
-

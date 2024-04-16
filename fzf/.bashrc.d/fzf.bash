@@ -10,4 +10,3 @@ if hash fzf >/dev/null 2>&1; then
 		src_files "$(brew --prefix)"/opt/fzf/shell/{completion,key-bindings}.bash
 	fi
 fi
-

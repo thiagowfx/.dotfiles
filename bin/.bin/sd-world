@@ -5,8 +5,7 @@
 set -uo pipefail
 
 log() {
-	local bold=$(tput bold) normal=$(tput sgr0)
-	echo "${bold}$*${normal}"
+	echo "$(tput bold)$*$(tput sgr0)"
 }
 
 run_if_exists() {
