@@ -1,5 +1,5 @@
 ---
-- name: disable double space auto-period on macOS
+- name: disable double space auto-period on macos
   community.general.osx_defaults:
     domain: NSGlobalDomain
     key: NSAutomaticPeriodSubstitutionEnabled
@@ -7,7 +7,7 @@
     value: false
     state: present
 
-- name: do not show recent applications in Dock
+- name: do not show recent applications in the dock
   community.general.osx_defaults:
     domain: com.apple.dock
     key: show-recents
@@ -18,6 +18,7 @@
 # https://docs.ansible.com/ansible/latest/collections/community/general/osx_defaults_module.html
 - name: enable software auto update
   become: true
+  ignore_errors: true
   community.general.osx_defaults:
     domain: /Library/Preferences/com.apple.SoftwareUpdate
     key: AutomaticCheckEnabled
@@ -48,4 +49,36 @@
     key: AppleFnUsageType
     type: int
     value: 2
+    state: present
+
+- name: enable tap to click on touchpad
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: com.apple.mouse.tapBehavior
+    type: int
+    value: 1
+    state: present
+
+- name: disable text auto-correct
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: NSAutomaticSpellingCorrectionEnabled
+    type: bool
+    value: false
+    state: present
+
+- name: show all filenames in finder by default
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: AppleShowAllExtensions
+    type: bool
+    value: true
+    state: present
+
+- name: disable the annoying backswipe in google chrome
+  community.general.osx_defaults:
+    domain: com.google.Chrome
+    key: AppleEnableSwipeNavigateWithScrolls
+    type: bool
+    value: false
     state: present
