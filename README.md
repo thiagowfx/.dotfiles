@@ -1,6 +1,6 @@
 # thiagowfx's dotfiles
 
-![Pre-commit](https://github.com/thiagowfx/.dotfiles/actions/workflows/pre-commit.yml/badge.svg)
+[![Pre-commit](https://github.com/thiagowfx/.dotfiles/actions/workflows/pre-commit.yaml/badge.svg)](https://github.com/thiagowfx/.dotfiles/actions/workflows/pre-commit.yaml)
 
 This dotfiles repository is managed with [`GNU stow`][stow], [`GNU make`][make] and [`Ansible`][ansible].
 
