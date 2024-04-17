@@ -18,6 +18,7 @@
 	dc = diff --cached
 	desc = commit --allow-empty
 	emerge = !git amend -n && git pushm -f
+	exec = !exec
 	nb = checkout -b
 	rbi = rebase -i HEAD~10
 	rb = branch -m
@@ -42,6 +43,7 @@
 	purge = clean -f -d
 	recommit = commit --reedit-message ORIG_HEAD
 	reword = commit --allow-empty --amend -n
+	root = rev-parse --show-toplevel
 	shelve = stash
 	uncommit = !git reset --soft HEAD^ && git restore --staged .
 	unshelve = stash apply
