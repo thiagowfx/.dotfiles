@@ -5,13 +5,14 @@
     name: "{{ item }}"
   ignore_errors: true
   with_items:
+    # keep-sorted start
     - 1password
     - anki
     - basictex
     - bbedit
     - calibre
-    - font-ibm-plex-mono
     - font-hermit
+    - font-ibm-plex-mono
     - gimp
     - google-chrome
     - google-drive
@@ -33,3 +34,4 @@
     - vlc
     - whatsapp
     - windscribe
+    # keep-sorted end
