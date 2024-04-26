@@ -4,6 +4,7 @@
   community.general.homebrew:
     name: "{{ item }}"
   with_items:
+    # keep-sorted start
     - ack
     - ansible
     - atool
@@ -28,6 +29,7 @@
     - make
     - mas
     - moreutils
+    - mr
     - mtr
     - ncdu
     - ranger
@@ -42,3 +44,4 @@
     - zoxide
     - zsh
     - zsh-completions
+    # keep-sorted end
