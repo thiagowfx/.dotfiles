@@ -21,12 +21,14 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.6.0
     hooks:
+      # keep-sorted start
       - id: check-executables-have-shebangs
       - id: check-symlinks
       - id: check-yaml
       - id: detect-private-key
       - id: end-of-file-fixer
       - id: trailing-whitespace
+      # keep-sorted end
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.10.0.1
     hooks:
@@ -36,3 +38,7 @@ repos:
     rev: v2.2.6
     hooks:
       - id: codespell
+  - repo: https://github.com/google/keep-sorted
+    rev: v0.4.0
+    hooks:
+      - id: keep-sorted
