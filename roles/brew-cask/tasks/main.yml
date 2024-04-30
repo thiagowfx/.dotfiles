@@ -9,14 +9,13 @@
     - 1password
     - anki
     - basictex
-    - bbedit
     - calibre
     - font-hermit
     - font-ibm-plex-mono
     - gimp
     - google-chrome
     - google-drive
-    - intellij-idea-ce
+    - hiddenbar
     - iterm2
     - jdownloader
     - jellyfin
@@ -30,6 +29,7 @@
     - raycast
     - rectangle
     - spotify
+    - telegram
     - visual-studio-code
     - vlc
     - whatsapp

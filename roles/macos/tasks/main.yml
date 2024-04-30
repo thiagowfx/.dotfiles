@@ -1,11 +1,65 @@
 ---
-- name: disable double space auto-period on macos
-  community.general.osx_defaults:
-    domain: NSGlobalDomain
-    key: NSAutomaticPeriodSubstitutionEnabled
-    type: bool
-    value: false
-    state: present
+- name: set up keyboard
+  block:
+    - name: disable double space auto-period on macos
+      community.general.osx_defaults:
+        domain: NSGlobalDomain
+        key: NSAutomaticPeriodSubstitutionEnabled
+        type: bool
+        value: false
+        state: present
+
+    - name: set fn key to show emoji & symbols
+      community.general.osx_defaults:
+        domain: com.apple.HIToolbox
+        key: AppleFnUsageType
+        type: int
+        value: 2
+        state: present
+
+    - name: disable text auto-correct
+      community.general.osx_defaults:
+        domain: NSGlobalDomain
+        key: NSAutomaticSpellingCorrectionEnabled
+        type: bool
+        value: false
+        state: present
+
+- name: configure applications
+  block:
+    - name: show all filenames in finder by default
+      community.general.osx_defaults:
+        domain: NSGlobalDomain
+        key: AppleShowAllExtensions
+        type: bool
+        value: true
+        state: present
+
+    - name: disable the annoying backswipe in google chrome
+      community.general.osx_defaults:
+        domain: com.google.Chrome
+        key: AppleEnableSwipeNavigateWithScrolls
+        type: bool
+        value: false
+        state: present
+
+    # https://stackoverflow.com/questions/98310/focus-follows-mouse-plus-auto-raise-on-mac-os-x
+    - name: set focus follows mouse on Terminal.app
+      community.general.osx_defaults:
+        domain: com.apple.Terminal
+        key: FocusFollowsMouse
+        type: bool
+        value: true
+        state: present
+
+    # https://stackoverflow.com/questions/39972335/how-do-i-press-and-hold-a-key-and-have-it-repeat-in-vscode
+    - name: unset key press and hold on VSCode.app
+      community.general.osx_defaults:
+        domain: com.microsoft.VSCode
+        key: ApplePressAndHoldEnabled
+        type: bool
+        value: false
+        state: present
 
 - name: do not show recent applications in the dock
   community.general.osx_defaults:
@@ -25,32 +79,6 @@
     type: int
     value: 1
 
-# https://stackoverflow.com/questions/98310/focus-follows-mouse-plus-auto-raise-on-mac-os-x
-- name: set focus follows mouse on Terminal.app
-  community.general.osx_defaults:
-    domain: com.apple.Terminal
-    key: FocusFollowsMouse
-    type: bool
-    value: true
-    state: present
-
-# https://stackoverflow.com/questions/39972335/how-do-i-press-and-hold-a-key-and-have-it-repeat-in-vscode
-- name: unset key press and hold on VSCode.app
-  community.general.osx_defaults:
-    domain: com.microsoft.VSCode
-    key: ApplePressAndHoldEnabled
-    type: bool
-    value: false
-    state: present
-
-- name: set fn key to show emoji & symbols
-  community.general.osx_defaults:
-    domain: com.apple.HIToolbox
-    key: AppleFnUsageType
-    type: int
-    value: 2
-    state: present
-
 - name: enable tap to click on touchpad
   community.general.osx_defaults:
     domain: NSGlobalDomain
@@ -59,26 +87,10 @@
     value: 1
     state: present
 
-- name: disable text auto-correct
-  community.general.osx_defaults:
-    domain: NSGlobalDomain
-    key: NSAutomaticSpellingCorrectionEnabled
-    type: bool
-    value: false
-    state: present
-
-- name: show all filenames in finder by default
-  community.general.osx_defaults:
-    domain: NSGlobalDomain
-    key: AppleShowAllExtensions
-    type: bool
-    value: true
-    state: present
-
-- name: disable the annoying backswipe in google chrome
-  community.general.osx_defaults:
-    domain: com.google.Chrome
-    key: AppleEnableSwipeNavigateWithScrolls
-    type: bool
-    value: false
-    state: present
+- name: sudo integration with touch id
+  become: true
+  lineinfile:
+    create: true
+    path: /etc/pam.d/sudo
+    regexp: 'auth\s+sufficient\s+pam_tid.so'
+    line: 'auth       sufficient     pam_tid.so'
