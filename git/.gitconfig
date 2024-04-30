@@ -3,7 +3,6 @@
 	email = tbperrotta@gmail.com
 
 # This setup will always prompt for the password.
-# There's also https://aur.archlinux.org/packages/git-sendgmail-git/ for an OAuth2-based setup with Gmail.
 #   https://git-scm.com/docs/git-send-email
 #   https://git-send-email.io/
 [sendemail]
@@ -14,22 +13,22 @@
 	smtpUser = tbperrotta@gmail.com
 
 [alias]
+	# keep-sorted start
 	cp = cherry-pick
 	dc = diff --cached
 	desc = commit --allow-empty
 	emerge = !git amend -n && git pushm -f
 	exec = !exec
 	nb = checkout -b
-	rbi = rebase -i HEAD~10
+	pullm = !git pull $(git remote) $(git branch --show-current):$(git branch --show-current)
+	pushm = !git push $(git remote) $(git branch --show-current):$(git branch --show-current)
 	rb = branch -m
+	rbi = rebase -i HEAD~10
 	rc = rebase --continue
 	st = status
 	su = submodule update
 	world = !git fetch --all && git remote prune origin
-
-	# m = matching
-	pushm = !git push $(git remote) $(git branch --show-current):$(git branch --show-current)
-	pullm = !git pull $(git remote) $(git branch --show-current):$(git branch --show-current)
+	# keep-sorted end
 
 	# usage: git ignore go,hugo,vim >> .gitignore
 	ignore = !curl -L -s https://www.gitignore.io/api/$@
@@ -39,6 +38,7 @@
 	xl = branch -vv
 
 	# hg/fig compatibility
+	# keep-sorted start
 	amend = commit --amend --no-edit
 	purge = clean -f -d
 	recommit = commit --reedit-message ORIG_HEAD
@@ -48,6 +48,7 @@
 	uncommit = !git reset --soft HEAD^ && git restore --staged .
 	unshelve = stash apply
 	unstash = stash apply
+	# keep-sorted end
 
 [apply]
 	# Detect whitespace errors when applying a patch.
