@@ -1,5 +1,4 @@
 #!/bin/sh
-
 # Sensible command defaults for both bash and zsh.
 
 # color on
@@ -11,6 +10,7 @@ alias ls="ls -Fh --color=auto"
 alias la="ls -la --color=auto"
 alias l="ls -l --color=auto" && alias ll="l"
 
+# https://direnv.net/
 if hash direnv >/dev/null 2>&1; then
 	alias de="direnv edit || direnv edit ."
 fi
@@ -20,11 +20,13 @@ if hash eza >/dev/null 2>&1; then
 	alias ls="eza -F --group-directories-first"
 fi
 
-# misspellings
+# misspellings for git
 alias t=git
 alias it=git
 alias gi=git
 alias gt=git
+
+# more misspellings
 alias sl=ls
 
 # shorts
