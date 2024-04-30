@@ -7,13 +7,12 @@
 # markdown
 --type-add=md=.md,.markdown
 
-# shell
---type-add=sh=.sh,.bash.,zsh
-
 # terraform
+# upstream: https://github.com/beyondgrep/ack3/issues/377
 --type-add=tf=.tf,.tfvars
 
 # text
+# upstream: https://github.com/beyondgrep/ack3/issues/370
 --type-add=txt=.txt
 
 # ignore common third-party directories
