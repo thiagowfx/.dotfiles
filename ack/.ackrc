@@ -10,11 +10,11 @@
 # terraform
 # upstream: https://github.com/beyondgrep/ack3/issues/377
 --type-add=tf=.tf,.tfvars
+--ignore-directory=.terraform
 
 # text
 # upstream: https://github.com/beyondgrep/ack3/issues/370
 --type-add=txt=.txt
 
 # ignore common third-party directories
---ignore-directory=.terraform
 --ignore-directory=vendor
