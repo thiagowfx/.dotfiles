@@ -1,0 +1,8 @@
+# set ft=yaml
+---
+exclude_paths:
+  # keep-sorted start
+  - alacritty
+  - vim
+  - zsh
+  # keep-sorted end

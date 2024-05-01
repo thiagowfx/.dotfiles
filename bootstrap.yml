@@ -1,9 +1,9 @@
 ---
-- name: bootstrap environment
+- name: Bootstrap environment
   hosts: all
   roles:
     - role: elliotweiser.osx-command-line-tools
     - role: macos
     - role: brew
-    - role: brew-cask
-    - role: iterm2-shell-integration
+    - role: brew_cask
+    - role: iterm2_shell_integration

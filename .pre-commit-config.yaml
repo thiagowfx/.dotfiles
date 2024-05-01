@@ -42,3 +42,7 @@ repos:
     rev: v0.4.0
     hooks:
       - id: keep-sorted
+  - repo: https://github.com/ansible/ansible-lint
+    rev: v24.2.3
+    hooks:
+      - id: ansible-lint
