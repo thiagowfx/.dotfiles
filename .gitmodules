@@ -70,10 +70,6 @@
 	path = vim/.vim/pack/misc/start/vim-mkdir
 	url = https://github.com/pbrisbin/vim-mkdir
 	shallow = true
-[submodule "vim/.vim/pack/misc/start/vim-zenroom2"]
-	path = vim/.vim/pack/misc/start/vim-zenroom2
-	url = https://github.com/amix/vim-zenroom2
-	shallow = true
 [submodule "vim/.vim/pack/misc/start/vim-css-color"]
 	path = vim/.vim/pack/misc/start/vim-css-color
 	url = https://github.com/ap/vim-css-color
@@ -101,14 +97,6 @@
 [submodule "vim/.vim/pack/misc/start/vim-lightline"]
 	path = vim/.vim/pack/misc/start/vim-lightline
 	url = https://github.com/itchyny/lightline.vim
-	shallow = true
-[submodule "vim/.vim/pack/misc/start/fzf"]
-	path = vim/.vim/pack/misc/start/fzf
-	url = https://github.com/junegunn/fzf
-	shallow = true
-[submodule "vim/.vim/pack/misc/start/fzf.vim"]
-	path = vim/.vim/pack/misc/start/fzf.vim
-	url = https://github.com/junegunn/fzf.vim
 	shallow = true
 [submodule "vim/.vim/pack/misc/start/vim-easy-align"]
 	path = vim/.vim/pack/misc/start/vim-easy-align

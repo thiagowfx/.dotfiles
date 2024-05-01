@@ -1,6 +1,5 @@
 ranger/.config/ranger
 ssh/.ssh/authorized_keys
-ssh/.ssh/known_hosts*
 vim/.vim/pack
 
 # Managed with gitignore.io
@@ -67,6 +66,7 @@ Temporary Items
 **/.ssh/id_*
 **/.ssh/*_id_*
 **/.ssh/known_hosts
+**/.ssh/known_hosts.old
 
 ### Vim ###
 # Swap

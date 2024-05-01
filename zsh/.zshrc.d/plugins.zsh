@@ -20,8 +20,5 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 # https://github.com/ajeetdsouza/zoxide
 (( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
 
-# Utilities that work out-of-the-box, no manual source needed:
-#   - gh: github's official command line tool
-
 # iTerm2 shell integration: https://iterm2.com/documentation-shell-integration.html
 src_files "$HOME/.iterm2_shell_integration.zsh"

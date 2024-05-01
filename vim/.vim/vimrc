@@ -18,10 +18,6 @@
 " Open command history:
 "   :<C-f>
 
-" https://gn.googlesource.com/gn/+/HEAD/misc/vim/README.md
-" Fancy way to do set rtp+=~/.vim/pack/misc/start/gn/misc/vim
-execute "set rtp+=" . globpath(&rtp, 'pack/misc/start/gn/misc/vim')
-
 " Load vim defaults.
 " :h skip_defaults_vim
 unlet! skip_defaults_vim
@@ -119,7 +115,7 @@ set smartindent
 
 " Spell-checking
 " set spell
-" set spelllang=de_de,en_ca,en_us,pt_br
+set spelllang=de_de,en_ca,en_us,pt_br
 
 " Better splits.
 set splitbelow splitright switchbuf=useopen

@@ -3,7 +3,6 @@
 - name: install brew casks
   community.general.homebrew_cask:
     name: "{{ item }}"
-  ignore_errors: true
   with_items:
     # keep-sorted start
     - 1password
