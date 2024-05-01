@@ -1,4 +1,4 @@
-name: pre-commit
+name: ansible-lint
 
 on:
   pull_request:
@@ -7,8 +7,8 @@ on:
       - master
 
 jobs:
-  pre-commit:
+  ansible-lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
-      - uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd # v3.0.1
+      - uses: ansible/ansible-lint@dfb8fea539b53a0f9615282615f1dca90e7ecb91 # v24.2.3
