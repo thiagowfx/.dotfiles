@@ -89,8 +89,9 @@
 
 - name: sudo integration with touch id
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     create: true
+    mode: '0444'
     path: /etc/pam.d/sudo
     regexp: 'auth\s+sufficient\s+pam_tid.so'
     line: 'auth       sufficient     pam_tid.so'

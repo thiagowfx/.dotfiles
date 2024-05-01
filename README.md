@@ -29,4 +29,4 @@ make -C ~/.dotfiles
 - web browser: chromium (Linux), safari / google chrome (macOS)
 - window manager: i3 (X11), sway (Wayland)
 - terminal multiplexer: tmux
-- text editor: vim (terminal), vscode (lightweight IDE), intellij (heavyweight IDE)
+- text editor: vim (terminal), zed (lightweight editor), vscode (heavyweight IDE)
