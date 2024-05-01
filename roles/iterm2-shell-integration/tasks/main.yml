@@ -17,7 +17,3 @@
     dest: "{{ ansible_env.HOME }}/"
     mode: '0755'
   when: not iterm2_integration_exists
-
-- name: Run iTerm2 shell integration script
-  ansible.builtin.command: "{{ ansible_shell_executable }} {{ ansible_env.HOME }}/install_shell_integration.sh"
-  when: not iterm2_integration_exists

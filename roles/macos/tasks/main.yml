@@ -1,7 +1,7 @@
 ---
-- name: set up keyboard
+- name: Set up keyboard
   block:
-    - name: disable double space auto-period on macos
+    - name: Disable double space auto-period on macos
       community.general.osx_defaults:
         domain: NSGlobalDomain
         key: NSAutomaticPeriodSubstitutionEnabled
@@ -9,7 +9,7 @@
         value: false
         state: present
 
-    - name: set fn key to show emoji & symbols
+    - name: Set fn key to show emoji & symbols
       community.general.osx_defaults:
         domain: com.apple.HIToolbox
         key: AppleFnUsageType
@@ -17,7 +17,7 @@
         value: 2
         state: present
 
-    - name: disable text auto-correct
+    - name: Disable text auto-correct
       community.general.osx_defaults:
         domain: NSGlobalDomain
         key: NSAutomaticSpellingCorrectionEnabled
@@ -25,9 +25,9 @@
         value: false
         state: present
 
-- name: configure applications
+- name: Configure applications
   block:
-    - name: show all filenames in finder by default
+    - name: Show all filenames in finder by default
       community.general.osx_defaults:
         domain: NSGlobalDomain
         key: AppleShowAllExtensions
@@ -35,7 +35,7 @@
         value: true
         state: present
 
-    - name: disable the annoying backswipe in google chrome
+    - name: Disable the annoying backswipe in google chrome
       community.general.osx_defaults:
         domain: com.google.Chrome
         key: AppleEnableSwipeNavigateWithScrolls
@@ -44,7 +44,7 @@
         state: present
 
     # https://stackoverflow.com/questions/98310/focus-follows-mouse-plus-auto-raise-on-mac-os-x
-    - name: set focus follows mouse on Terminal.app
+    - name: Set focus follows mouse on Terminal.app
       community.general.osx_defaults:
         domain: com.apple.Terminal
         key: FocusFollowsMouse
@@ -53,7 +53,7 @@
         state: present
 
     # https://stackoverflow.com/questions/39972335/how-do-i-press-and-hold-a-key-and-have-it-repeat-in-vscode
-    - name: unset key press and hold on VSCode.app
+    - name: Unset key press and hold on VSCode.app
       community.general.osx_defaults:
         domain: com.microsoft.VSCode
         key: ApplePressAndHoldEnabled
@@ -61,7 +61,7 @@
         value: false
         state: present
 
-- name: do not show recent applications in the dock
+- name: Do not show recent applications in the dock
   community.general.osx_defaults:
     domain: com.apple.dock
     key: show-recents
@@ -70,16 +70,15 @@
     state: present
 
 # https://docs.ansible.com/ansible/latest/collections/community/general/osx_defaults_module.html
-- name: enable software auto update
+- name: Enable software auto update
   become: true
-  ignore_errors: true
   community.general.osx_defaults:
     domain: /Library/Preferences/com.apple.SoftwareUpdate
     key: AutomaticCheckEnabled
     type: int
     value: 1
 
-- name: enable tap to click on touchpad
+- name: Enable tap to click on touchpad
   community.general.osx_defaults:
     domain: NSGlobalDomain
     key: com.apple.mouse.tapBehavior
@@ -87,7 +86,7 @@
     value: 1
     state: present
 
-- name: sudo integration with touch id
+- name: Sudo integration with touch id
   become: true
   ansible.builtin.lineinfile:
     create: true

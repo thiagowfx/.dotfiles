@@ -1,6 +1,6 @@
 ---
 # brew list --cask -1
-- name: install brew casks
+- name: Install brew casks
   community.general.homebrew_cask:
     name: "{{ item }}"
   with_items:
