@@ -115,7 +115,7 @@ set smartindent
 
 " Spell-checking
 " set spell
-set spelllang=de_de,en_ca,en_us,pt_br
+" set spelllang=de_de,en_ca,en_us,pt_br
 
 " Better splits.
 set splitbelow splitright switchbuf=useopen
