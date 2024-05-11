@@ -33,9 +33,6 @@ ansible:
 	ansible-galaxy install -r requirements.yml
 	ansible-playbook -K bootstrap.yml -i inventory.ini
 
-ansible-lint:
-	ansible-lint roles/
-
 clean:
 	stow -t $(TARGETDIR) -d $(DOTFILESDIR) --delete $(PACKAGES)
 
@@ -53,3 +50,10 @@ uninstall unstow:
 	stow -D $(PACKAGES)
 
 .PHONY: all clean install uninstall lint stow stow-lint unstow ansible ansible-lint
+
+# TODO
+#   more ansible roles
+#   detach programs and apps from config
+#   config remote hosts
+#   install misc/
+#   autostart software

@@ -1,6 +1,6 @@
----
 # brew leaves -r
-- name: Install brew apps
+---
+- name: Install brew apps (common)
   community.general.homebrew:
     name: "{{ item }}"
   with_items:
@@ -32,6 +32,7 @@
     - mr
     - mtr
     - ncdu
+    - pre-commit
     - ranger
     - shellcheck
     - stow
@@ -44,4 +45,23 @@
     - zoxide
     - zsh
     - zsh-completions
+    # keep-sorted end
+- name: Install brew apps (cozy)
+  tags:
+    - cozy
+  community.general.homebrew:
+    name: "{{ item }}"
+  with_items:
+    # keep-sorted start
+    - terraform
+    # keep-sorted end
+- name: Install brew apps (corp)
+  tags:
+    - corp
+  community.general.homebrew:
+    name: "{{ item }}"
+  with_items:
+    # keep-sorted start
+    - minikube
+    - warrensbox/tap/tfswitch
     # keep-sorted end

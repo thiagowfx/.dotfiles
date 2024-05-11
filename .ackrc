@@ -1,2 +1,4 @@
+# keep-sorted start
 --ignore-directory=vim/.vim/pack
 --ignore-directory=zsh/.zsh
+# keep-sorted end

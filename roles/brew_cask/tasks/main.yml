@@ -1,35 +1,52 @@
----
 # brew list --cask -1
-- name: Install brew casks
+---
+- name: Install brew casks (common)
   community.general.homebrew_cask:
     name: "{{ item }}"
   with_items:
     # keep-sorted start
     - 1password
     - anki
-    - basictex
-    - calibre
     - font-hermit
     - font-ibm-plex-mono
-    - gimp
     - google-chrome
     - google-drive
     - hiddenbar
     - iterm2
-    - jdownloader
-    - jellyfin
     - karabiner-elements
-    - logseq
     - maccy
-    - obsidian
-    - qbittorrent
     - qlmarkdown
-    - raycast
     - rectangle
     - spotify
     - telegram
     - visual-studio-code
-    - vlc
     - whatsapp
+    # keep-sorted end
+- name: Install brew casks (cozy)
+  tags:
+    - cozy
+  community.general.homebrew_cask:
+    name: "{{ item }}"
+  with_items:
+    # keep-sorted start
+    - basictex
+    - calibre
+    - gimp
+    - jdownloader
+    - jellyfin
+    - lulu
+    - obsidian
+    - qbittorrent
+    - vlc
     - windscribe
+    # keep-sorted end
+- name: Install brew casks (corp)
+  tags:
+    - corp
+  community.general.homebrew_cask:
+    name: "{{ item }}"
+  with_items:
+    # keep-sorted start
+    - logseq
+    - raycast
     # keep-sorted end
