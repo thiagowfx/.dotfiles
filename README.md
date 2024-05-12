@@ -13,14 +13,6 @@ make -C ~/.dotfiles
 [make]: https://www.gnu.org/software/make/
 [stow]: https://www.gnu.org/software/stow/
 
-## ansible
-
-- `ansible.cfg`: config
-- `bootstrap.yml`: tasks
-- `inventory.ini`: hosts
-- `requirements.yml`: dependencies
-- `roles/`: roles
-
 ## software ([uses](https://uses.tech/))
 
 - OS: arch linux, alpine linux, debian, macOS

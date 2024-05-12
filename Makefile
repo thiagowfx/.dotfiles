@@ -30,8 +30,8 @@ endif
 all: stow ansible
 
 ansible:
-	ansible-galaxy install -r requirements.yml
-	ansible-playbook bootstrap.yml -i inventory.ini --tags untagged
+	ansible-galaxy install -r ansible/requirements.yml
+	ANSIBLE_CONFIG=ansible/ansible.cfg ansible-playbook ansible/bootstrap.yml -i ansible/inventory.ini --tags untagged
 
 stow:
 	stow -t $(TARGETDIR) -d $(DOTFILESDIR) $(PACKAGES)
