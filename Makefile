@@ -27,33 +27,19 @@ ifeq (, $(shell which stow))
   $(error "No stow in $$PATH, install it first")
 endif
 
-all: install lint
+all: stow ansible
 
 ansible:
 	ansible-galaxy install -r requirements.yml
-	ansible-playbook -K bootstrap.yml -i inventory.ini
-
-clean:
-	stow -t $(TARGETDIR) -d $(DOTFILESDIR) --delete $(PACKAGES)
-
-install: stow ansible
-
-lint: ansible-lint stow-lint
+	ansible-playbook bootstrap.yml -i inventory.ini --tags untagged
 
 stow:
-	stow $(PACKAGES)
+	stow -t $(TARGETDIR) -d $(DOTFILESDIR) $(PACKAGES)
 
 stow-lint:
 	chkstow -t $(TARGETDIR)  # find dangling symlinks
 
-uninstall unstow:
-	stow -D $(PACKAGES)
+unstow:
+	stow -t $(TARGETDIR) -d $(DOTFILESDIR) --delete $(PACKAGES)
 
-.PHONY: all clean install uninstall lint stow stow-lint unstow ansible ansible-lint
-
-# TODO
-#   more ansible roles
-#   detach programs and apps from config
-#   config remote hosts
-#   install misc/
-#   autostart software
+.PHONY: all ansible stow stow-lint unstow
