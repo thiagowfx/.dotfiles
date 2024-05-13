@@ -64,4 +64,5 @@
     # keep-sorted start
     - minikube
     - warrensbox/tap/tfswitch
+    - yq
     # keep-sorted end
