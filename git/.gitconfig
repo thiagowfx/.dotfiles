@@ -45,9 +45,7 @@
 	reword = commit --allow-empty --amend -n
 	root = rev-parse --show-toplevel
 	shelve = stash
-	# TODO: test
-	squash-all = "!n=$(expr $(git rev-list HEAD ^master --count) - 1); git reset --soft HEAD~$n; COMMIT_MSG=$(git log --format=%B --reverse HEAD..HEAD@{1}); git commit --edit -m\"$COMMIT_MSG\""
-	squash-all-2 = !git reset --soft master && git commit -am \"$(git log master..HEAD --pretty=%B)\"
+	squash-branch = "!n=$(expr $(git rev-list HEAD ^master --count) - 1); git reset --soft HEAD~$n; COMMIT_MSG=$(git log --format=%B --reverse HEAD..HEAD@{1}); git commit --edit -m\"$COMMIT_MSG\""
 	uncommit = !git reset --soft HEAD^ && git restore --staged .
 	unshelve = stash apply
 	unstash = stash apply
