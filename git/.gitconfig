@@ -37,7 +37,7 @@
 	l = log --graph --pretty=oneline --abbrev-commit --all
 	xl = branch -vv
 
-	# hg/fig compatibility
+	# hg/fig/depot_tools compatibility
 	# keep-sorted start
 	amend = commit --amend --no-edit
 	purge = clean -f -d
