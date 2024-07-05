@@ -20,8 +20,8 @@
 	emerge = !git add -A . && git amend -n && git pushm -f
 	exec = !exec
 	nb = checkout -b
-	pullm = !git pull $(git remote) $(git branch --show-current):$(git branch --show-current)
-	pushm = !git push $(git remote) $(git branch --show-current):$(git branch --show-current)
+	pullm = !git pull $(git remote | head -1) $(git branch --show-current):$(git branch --show-current)
+	pushm = !git push $(git remote | head -1) $(git branch --show-current):$(git branch --show-current)
 	rb = branch -m
 	rbi = rebase -i HEAD~10
 	rc = rebase --continue
