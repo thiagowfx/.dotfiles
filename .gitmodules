@@ -70,10 +70,6 @@
 	path = vim/.vim/pack/misc/start/vim-mkdir
 	url = https://github.com/pbrisbin/vim-mkdir
 	shallow = true
-[submodule "vim/.vim/pack/misc/start/vim-css-color"]
-	path = vim/.vim/pack/misc/start/vim-css-color
-	url = https://github.com/ap/vim-css-color
-	shallow = true
 [submodule "vim/.vim/pack/misc/start/vim-fetch"]
 	path = vim/.vim/pack/misc/start/vim-fetch
 	url = https://github.com/wsdjeg/vim-fetch
