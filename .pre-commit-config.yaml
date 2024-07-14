@@ -26,7 +26,11 @@ repos:
       - id: check-symlinks
       - id: check-yaml
       - id: detect-private-key
-      - id: end-of-file-fixer
+      - id: pretty-format-json
+        args:
+          - --autofix
+          - --no-sort-keys
+      - id: sort-simple-yaml
       - id: trailing-whitespace
       # keep-sorted end
   - repo: https://github.com/shellcheck-py/shellcheck-py
