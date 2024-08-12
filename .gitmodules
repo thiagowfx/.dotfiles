@@ -110,3 +110,7 @@
 	path = vim/.vim/pack/misc/start/ale
 	url = https://github.com/dense-analysis/ale
 	shallow = true
+[submodule "vim/.vim/pack/misc/start/vim-sneak"]
+	path = vim/.vim/pack/misc/start/vim-sneak
+	url = https://github.com/justinmk/vim-sneak
+	shallow = true
