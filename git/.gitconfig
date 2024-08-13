@@ -14,11 +14,11 @@
 
 [alias]
 	# keep-sorted start
+	bd = !git checkout master && git branch -D "$1"
 	cp = cherry-pick
 	dc = diff --cached
 	desc = commit --allow-empty
 	emerge = !git add -A . && git amend -n && git pushm -f
-	exec = !exec
 	nb = switch --create
 	pullm = !git pull $(git remote | head -1) $(git branch --show-current):$(git branch --show-current)
 	pushm = !git push $(git remote | head -1) $(git branch --show-current):$(git branch --show-current)
