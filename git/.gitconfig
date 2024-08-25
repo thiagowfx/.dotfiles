@@ -17,7 +17,7 @@
 	bd = !git checkout master && git branch -D "$1"
 	cp = cherry-pick
 	dc = diff --cached
-	desc = commit --allow-empty
+	desc = commit --allow-empty -n
 	emerge = !git add -A . && git amend -n && git pushm -f
 	nb = switch --create
 	pullm = !git pull $(git remote | head -1) $(git branch --show-current):$(git branch --show-current)
