@@ -20,6 +20,7 @@
 	desc = commit --allow-empty -n
 	emerge = !git add -A . && git amend -n && git pushm -f
 	nb = switch --create
+	nbt = !git nb "thiagowfx/${1:+$1-}$(shuf -n1 /usr/share/dict/words)"
 	pullm = !git pull $(git remote | head -1) $(git branch --show-current):$(git branch --show-current)
 	pushm = !git push $(git remote | head -1) $(git branch --show-current):$(git branch --show-current)
 	rb = branch -m
