@@ -31,6 +31,7 @@ alias sl=ls
 
 # shorts
 alias k=kubectl
+alias tf=terraform
 
 # muscle memory
 alias unstow="stow -D"
