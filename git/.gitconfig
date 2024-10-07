@@ -47,7 +47,6 @@
 	root = rev-parse --show-toplevel
 	shelve = stash
 	squash-branch = "!n=$(expr $(git rev-list HEAD ^master --count) - 1); git reset --soft HEAD~$n; COMMIT_MSG=$(git log --format=%B --reverse HEAD..HEAD@{1}); git commit --edit -m\"$COMMIT_MSG\""
-	udiff = !git diff $(git show-branch --merge-base HEAD 2>/dev/null)~1
 	uncommit = !git reset --soft HEAD^ && git restore --staged .
 	unshelve = stash apply
 	unstash = stash apply
