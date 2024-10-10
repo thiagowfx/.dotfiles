@@ -26,6 +26,8 @@ alias it=git
 alias gi=git
 alias gt=git
 
+alias cdg='cd "$(git root)"'
+
 # more misspellings
 alias sl=ls
 
