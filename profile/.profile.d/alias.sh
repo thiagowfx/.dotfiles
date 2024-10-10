@@ -25,6 +25,7 @@ alias t=git
 alias it=git
 alias gi=git
 alias gt=git
+alias gti=git
 
 alias cdg='cd "$(git root)"'
 
