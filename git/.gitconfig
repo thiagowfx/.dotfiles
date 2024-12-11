@@ -54,6 +54,8 @@
 	unstash = stash apply
 	# keep-sorted end
 
+	# github
+	pr = !gh pr list --author @me
 [apply]
 	# Detect whitespace errors when applying a patch.
 	whitespace = fix
