@@ -49,7 +49,6 @@ let g:lightline = {'colorscheme': 'onedark'}
 command! W w
 command! WQ wq
 command! Wq wq
-command! wQ wq
 
 " a la emacs just-one-space
 inoremap <Esc><Space> <Esc>ciw<Space>
