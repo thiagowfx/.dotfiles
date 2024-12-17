@@ -19,7 +19,7 @@
 #   $ pre-commit run --all-files
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v5.0.0
     hooks:
       # keep-sorted start
       - id: check-executables-have-shebangs
@@ -43,6 +43,6 @@ repos:
     hooks:
       - id: codespell
   - repo: https://github.com/google/keep-sorted
-    rev: v0.4.0
+    rev: v0.5.1
     hooks:
       - id: keep-sorted
