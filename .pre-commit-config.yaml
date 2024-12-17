@@ -17,6 +17,8 @@
 #
 # Apply all pre-commit hooks to all files:
 #   $ pre-commit run --all-files
+ci:
+  submodules: true
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
