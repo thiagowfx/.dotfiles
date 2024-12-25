@@ -20,6 +20,15 @@
 ci:
   submodules: true
 repos:
+  # keep-sorted start
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.3.0
+    hooks:
+      - id: codespell
+  - repo: https://github.com/google/keep-sorted
+    rev: v0.5.1
+    hooks:
+      - id: keep-sorted
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
@@ -40,11 +49,4 @@ repos:
     hooks:
       - id: shellcheck
         exclude: zsh$
-  - repo: https://github.com/codespell-project/codespell
-    rev: v2.3.0
-    hooks:
-      - id: codespell
-  - repo: https://github.com/google/keep-sorted
-    rev: v0.5.1
-    hooks:
-      - id: keep-sorted
+  # keep-sorted end
