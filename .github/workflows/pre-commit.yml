@@ -13,4 +13,4 @@ jobs:
       - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
         with:
           submodules: true
-      - uses: tox-dev/action-pre-commit-uv@809bca45df31b263ec72f5bb5e3dab2951a7de66 # v1.0.1
+      - uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd # v3.0.1
