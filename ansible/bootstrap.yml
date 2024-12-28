@@ -6,5 +6,6 @@
     # keep-sorted start
     - role: brew
     - role: brew_cask
+    - role: iterm2_shell_integration
     - role: macos
     # keep-sorted end

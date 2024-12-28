@@ -1,0 +1,19 @@
+# Enables iterm2 Shell Integration: https://iterm2.com/documentation-shell-integration.html
+---
+- name: Check if iTerm2 shell integration files exist
+  ansible.builtin.find:
+    hidden: true
+    paths: "{{ ansible_env.HOME }}"
+    patterns: ".iterm2_shell_integration*"
+  register: iterm2_integration_files
+
+- name: Set register variable if iTerm2 shell integration files exist
+  ansible.builtin.set_fact:
+    iterm2_integration_exists: "{{ iterm2_integration_files.matched }}"
+
+- name: Download and install iTerm2 shell integration script
+  ansible.builtin.get_url:
+    url: "https://iterm2.com/misc/install_shell_integration.sh"
+    dest: "{{ ansible_env.HOME }}/"
+    mode: '0755'
+  when: not iterm2_integration_exists
