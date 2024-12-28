@@ -19,6 +19,3 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 # a smarter cd command
 # https://github.com/ajeetdsouza/zoxide
 (( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
-
-# iTerm2 shell integration: https://iterm2.com/documentation-shell-integration.html
-src_files "$HOME/.iterm2_shell_integration.zsh"
