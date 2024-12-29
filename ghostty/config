@@ -1,0 +1,3 @@
+# https://github.com/ghostty-org/ghostty
+cursor-style-blink = false
+shell-integration-features = no-cursor
