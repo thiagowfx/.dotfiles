@@ -24,7 +24,7 @@
 	nb = switch --create
 	nbt = !git nb "thiagowfx/$(shuf -n1 /usr/share/dict/words | tr '[:upper:]' '[:lower:]')"
 	pullm = !git pull $(git remote | head -1) $(git branch --show-current):$(git branch --show-current)
-	pushm = !git push $(git remote | head -1) $(git branch --show-current):$(git branch --show-current)
+	pushm = !git push $(git remote | head -1) $(git symbolic-ref --short HEAD) -u
 	rb = branch -m
 	rbi = rebase -i HEAD~10
 	rc = rebase --continue
