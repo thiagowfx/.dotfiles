@@ -20,7 +20,7 @@
 	cp = cherry-pick
 	dc = diff --cached
 	desc = commit --allow-empty -n
-	emerge = !git add -A . && git amend -n && git pushm -f
+	emerge = !git add -A . && git amend -n && git pushm --force-with-lease
 	nb = switch --create
 	nbt = !git nb "thiagowfx/$(shuf -n1 /usr/share/dict/words | tr '[:upper:]' '[:lower:]')"
 	pullm = !git pull $(git remote | head -1) $(git branch --show-current):$(git branch --show-current)
