@@ -14,11 +14,12 @@
 
 [alias]
 	# keep-sorted start
-	bd = !branch="$(git branch --show-current)" && git checkout master && git branch -D "${1:-$branch}"
+	bd = !branch="$(git branch --show-current)" && git checkout $(git default) && git branch -D "${1:-$branch}"
 	cm = commit
 	co = checkout
 	cp = cherry-pick
 	dc = diff --cached
+	default = !git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
 	desc = commit --allow-empty -n
 	emerge = !git add -A . && git amend -n && git pushm --force-with-lease
 	nb = switch --create
@@ -48,7 +49,7 @@
 	reword = commit --allow-empty --amend -n
 	root = rev-parse --show-toplevel
 	shelve = stash
-	squash-branch = "!n=$(expr $(git rev-list HEAD ^master --count) - 1); git reset --soft HEAD~$n; COMMIT_MSG=$(git log --format=%B --reverse HEAD..HEAD@{1}); git commit --edit -m\"$COMMIT_MSG\""
+	squash-branch = "!n=$(expr $(git rev-list HEAD ^$(git default) --count) - 1); git reset --soft HEAD~$n; COMMIT_MSG=$(git log --format=%B --reverse HEAD..HEAD@{1}); git commit --edit -m\"$COMMIT_MSG\""
 	uncommit = !git reset --soft HEAD^ && git restore --staged .
 	unshelve = stash apply
 	unstash = stash apply
