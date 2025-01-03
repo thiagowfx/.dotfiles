@@ -14,7 +14,7 @@
 
 [alias]
 	# keep-sorted start
-	bd = !branch="$(git branch --show-current)" && git checkout master && git branch -D "${branch:-$1}"
+	bd = !branch="$(git branch --show-current)" && git checkout master && git branch -D "${1:-$branch}"
 	cm = commit
 	co = checkout
 	cp = cherry-pick
