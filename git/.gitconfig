@@ -22,6 +22,7 @@
 	default = !git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
 	desc = commit --allow-empty -n
 	emerge = !git add -A . && git amend -n && git pushm --force-with-lease
+	empty = desc -m "empty commit"
 	nb = switch --create
 	nbt = !git nb "thiagowfx/$(shuf -n1 /usr/share/dict/words | tr '[:upper:]' '[:lower:]')"
 	pullm = !git pull $(git remote | head -1) $(git branch --show-current):$(git branch --show-current)
