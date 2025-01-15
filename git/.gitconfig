@@ -19,7 +19,7 @@
 	co = checkout
 	cp = cherry-pick
 	dc = diff --cached
-	default = !git checkout master &>/dev/null || git checkout main
+	default = !git checkout main &>/dev/null || git checkout master
 	desc = commit --allow-empty -n
 	emerge = !git add -A . && git amend -n && git pushm --force-with-lease
 	empty = desc -n -m "empty"
