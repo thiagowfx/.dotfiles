@@ -40,11 +40,11 @@ repos:
       # keep-sorted end
   # keep-sorted start
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.3.0
+    rev: v2.4.1
     hooks:
       - id: codespell
   - repo: https://github.com/google/keep-sorted
-    rev: v0.5.1
+    rev: v0.6.0
     hooks:
       - id: keep-sorted
   - repo: https://github.com/lalten/check-gha-pinning
@@ -52,7 +52,7 @@ repos:
     hooks:
       - id: check-gha-pinning
   - repo: https://github.com/rhysd/actionlint/
-    rev: v1.7.6
+    rev: v1.7.7
     hooks:
       - id: actionlint
   - repo: https://github.com/shellcheck-py/shellcheck-py
