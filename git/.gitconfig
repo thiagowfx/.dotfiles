@@ -15,7 +15,7 @@
 [alias]
 	# keep-sorted start
 	bd = !branch="$(git branch --show-current)" && git default && git branch -D "${branch:-$1}"
-	blank = desc -n -m \"blank commit\"
+	blank = desc -m \"blank commit\"
 	cm = commit
 	co = checkout
 	cp = cherry-pick
