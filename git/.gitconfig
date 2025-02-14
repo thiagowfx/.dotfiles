@@ -15,6 +15,7 @@
 [alias]
 	# keep-sorted start
 	bd = !branch="$(git branch --show-current)" && git default && git branch -D "${branch:-$1}"
+	blank = desc -n -m \"blank commit\"
 	cm = commit
 	co = checkout
 	cp = cherry-pick
@@ -22,7 +23,6 @@
 	default = !git checkout main &>/dev/null || git checkout master
 	desc = commit --allow-empty -n
 	emerge = !git add -A . && git amend -n && git pushm --force-with-lease
-	empty = desc -n -m "empty"
 	nb = switch --create
 	nbt = !git nb "thiagowfx/$(shuf -n1 /usr/share/dict/words | tr '[:upper:]' '[:lower:]')"
 	pushm = !git push $(git remote | head -1) $(git symbolic-ref --short HEAD) -u
