@@ -25,13 +25,14 @@
 	emerge = !git add -A . && git amend -n && git pushm --force-with-lease
 	nb = switch --create
 	nbt = !git nb "thiagowfx/$(shuf -n1 /usr/share/dict/words | tr '[:upper:]' '[:lower:]')"
+	prune-gone = !git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs -r git branch -D
 	pushm = !git push $(git remote | head -1) $(git symbolic-ref --short HEAD) -u
 	rb = branch -m
 	rbi = rebase -i HEAD~10
 	rc = rebase --continue
 	st = status
 	su = submodule update
-	world = !git fetch --all && git remote prune origin
+	world = !git fetch --all && git remote prune origin && git prune-gone
 	# keep-sorted end
 
 	# usage: git ignore go,hugo,vim >> .gitignore
