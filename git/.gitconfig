@@ -105,7 +105,7 @@
 	signoff = true
 
 [help]
-	autocorrect = 1
+	autocorrect = 10
 
 [http]
 	# Needed for Gerrit authentication/integration
