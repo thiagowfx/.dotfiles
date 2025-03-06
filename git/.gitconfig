@@ -12,6 +12,7 @@
 	smtpServerPort = 587
 	smtpUser = tbperrotta@gmail.com
 
+# keep-sorted start block=yes newline_separated=yes
 [alias]
 	# keep-sorted start
 	bd = !branch="$(git branch --show-current)" && git default && git branch -D "${branch:-$1}"
@@ -55,6 +56,7 @@
 	unshelve = stash apply
 	unstash = stash apply
 	# keep-sorted end
+
 [apply]
 	# Detect whitespace errors when applying a patch.
 	whitespace = fix
@@ -63,6 +65,9 @@
 	autosetupmerge = always
 	autosetuprebase = always
 	sort = -committerdate
+
+[column]
+	ui = auto
 
 [commit]
 	verbose = true
@@ -114,13 +119,13 @@
 	prompt = true
 	tool = diffconflicts
 
-[mergetool]
-	keepBackup = false
-
 # https://github.com/whiteinge/diffconflicts
 [mergetool "diffconflicts"]
 	cmd = vim -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
 	trustExitCode = true
+
+[mergetool]
+	keepBackup = false
 
 [pull]
 	rebase = true
@@ -156,6 +161,7 @@
 
 [url "git@github.com:"]
 	pushInsteadOf = "https://github.com/"
+# keep-sorted end
 
 # Import corp configs if any.
 [include]
