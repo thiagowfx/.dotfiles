@@ -87,18 +87,16 @@
 # https://git-scm.com/docs/diff-config
 [diff]
 	algorithm = histogram
-	# Make it easier to distinguish moved snippets of code within the same file.
-	colorMoved = default
+	colorMoved = plain
 	colorMovedWs = "allow-indentation-change"
 	# Do not show "a/" "b/", allows file navigation when supported
 	noPrefix = true
-	# Detect copies in addition to renames
-	renames = copies
-	# A la `git submodule summary`
+	renames = true
 	submodule = log
 
 [fetch]
 	prune = true
+	pruneTags = true
 
 [format]
 	# Automatically sign-off patches when using format-patch.
@@ -158,6 +156,9 @@
 [submodule]
 	# Clone new submodules in parallel with as many jobs.
 	fetchJobs = 0
+
+[tag]
+	sort = version:refname
 
 [url "git@github.com:"]
 	pushInsteadOf = "https://github.com/"
