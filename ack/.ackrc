@@ -1,6 +1,3 @@
-# expose column for better ctrl/cmd + click navigation for text editors
---column
-
 # ini
 --type-add=ini=.ini
 
