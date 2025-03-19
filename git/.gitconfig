@@ -46,7 +46,6 @@
 	# hg/fig/depot_tools compatibility
 	# keep-sorted start
 	amend = commit --amend --no-edit
-	freeze = !git add -A && git commit -m git-freeze
 	purge = clean -f -d
 	recommit = commit --reedit-message ORIG_HEAD
 	reword = commit --allow-empty --amend -n

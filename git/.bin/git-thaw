@@ -1,0 +1,36 @@
+#!/bin/sh
+#
+# git-thaw - Undo a git-freeze operation
+#
+
+set -e
+
+# Check if we're inside a git repository
+if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" != "true" ]; then
+  echo "Error: Not in a git repository"
+  exit 1
+fi
+
+# Check if there's at least one commit
+if ! git rev-parse --verify HEAD >/dev/null 2>&1; then
+  echo "Error: No commits yet"
+  exit 1
+fi
+
+# Check if the last commit is a git-freeze commit
+if ! git log -n 1 --pretty=%B | grep -q "^git-freeze$"; then
+  echo "Error: Last commit is not a git-freeze commit"
+  exit 1
+fi
+
+# Undo the git-freeze commit
+if git rev-parse --verify HEAD^ >/dev/null 2>&1; then
+  # If there's a parent commit, reset to it
+  git reset "HEAD^"
+else
+  # If it's the initial commit, delete the reference and unstage everything
+  git update-ref -d HEAD
+  git restore --staged .
+fi
+
+echo "Git freeze thawed successfully"

@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# git-freeze - Stage all files and create a git-freeze commit
+#
+
+set -e
+
+# Check if we're inside a git repository
+if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" != "true" ]; then
+  echo "Error: Not in a git repository"
+  exit 1
+fi
+
+# Stage all changes (tracked and untracked)
+git add -A
+
+# Create a commit with the freeze message
+git commit -m "git-freeze"
+
+echo "Git freeze created successfully"
