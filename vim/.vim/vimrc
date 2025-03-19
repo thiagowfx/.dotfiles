@@ -45,6 +45,7 @@ highlight ColorColumn ctermbg=magenta
 let g:lightline = {'colorscheme': 'onedark'}
 
 " :w save misspellings
+command! GWQ Gwq
 command! W w
 command! WQ wq
 command! Wq wq
