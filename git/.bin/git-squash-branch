@@ -1,9 +1,29 @@
-#!/bin/bash
+#!/bin/sh
+#
+# git-squash-branch - Squash all commits in the current branch since branching from master
 
 set -e
 
+# Check if we're inside a git repository
+if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" != "true" ]; then
+  echo "Error: Not in a git repository"
+  exit 1
+fi
+
+# Get current branch name
 branch=$(git rev-parse --abbrev-ref HEAD)
+
+# Don't allow squashing master branch
+if [ "$branch" = "master" ]; then
+  echo "Error: Cannot squash the master branch"
+  exit 1
+fi
+
+# Find the merge base with master
 merge_base=$(git merge-base master "$branch")
 
+# Squash all commits since the merge base
 git reset --soft "$merge_base"
 git commit -m "Squashed branch $branch"
+
+echo "Branch '$branch' squashed successfully"
