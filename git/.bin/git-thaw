@@ -1,7 +1,6 @@
 #!/bin/sh
 #
 # git-thaw - Undo a git-freeze operation
-#
 
 set -e
 

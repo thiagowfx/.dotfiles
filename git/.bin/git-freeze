@@ -1,7 +1,6 @@
 #!/bin/sh
 #
 # git-freeze - Stage all files and create a git-freeze commit
-#
 
 set -e
 
