@@ -51,7 +51,6 @@
 	reword = commit --allow-empty --amend -n
 	root = rev-parse --show-toplevel
 	shelve = stash
-	squash-branch = "!n=$(expr $(git rev-list HEAD ^$(git default) --count) - 1); git reset --soft HEAD~$n; COMMIT_MSG=$(git log --format=%B --reverse HEAD..HEAD@{1}); git commit --edit -m\"$COMMIT_MSG\""
 	uncommit = !git reset --soft HEAD^ && git restore --staged .
 	unshelve = stash apply
 	unstash = stash apply
