@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e
+
+branch=$(git rev-parse --abbrev-ref HEAD)
+merge_base=$(git merge-base master "$branch")
+
+git reset --soft "$merge_base"
+git commit -m "Squashed branch $branch"
