@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# git-squash-branch - Squash all commits in the current branch since branching from master
+# git-squash-branch - Squash all commits in the current branch since branching from main branch
 
 set -e
 
@@ -13,14 +13,24 @@ fi
 # Get current branch name
 branch=$(git rev-parse --abbrev-ref HEAD)
 
-# Don't allow squashing master branch
-if [ "$branch" = "master" ]; then
-  echo "Error: Cannot squash the master branch"
+# Determine main branch (main or master)
+if git show-ref --verify --quiet refs/heads/main; then
+  main_branch="main"
+elif git show-ref --verify --quiet refs/heads/master; then
+  main_branch="master"
+else
+  echo "Error: Neither main nor master branch found"
   exit 1
 fi
 
-# Find the merge base with master
-merge_base=$(git merge-base master "$branch")
+# Don't allow squashing the main branch
+if [ "$branch" = "$main_branch" ]; then
+  echo "Error: Cannot squash the $main_branch branch"
+  exit 1
+fi
+
+# Find the merge base with main branch
+merge_base=$(git merge-base "$main_branch" "$branch")
 
 # Squash all commits since the merge base
 git reset --soft "$merge_base"
