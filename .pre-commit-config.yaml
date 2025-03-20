@@ -25,7 +25,7 @@ repos:
       - id: check-hooks-apply
       - id: check-useless-excludes
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: cef0300fd0fc4d2a87a85fa2093c6b283ea36f4b  # frozen: v5.0.0
     hooks:
       # keep-sorted start
       - id: check-executables-have-shebangs
@@ -40,23 +40,23 @@ repos:
       # keep-sorted end
   # keep-sorted start
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.4.1
+    rev: 63c8f8312b7559622c0d82815639671ae42132ac  # frozen: v2.4.1
     hooks:
       - id: codespell
   - repo: https://github.com/google/keep-sorted
-    rev: v0.6.0
+    rev: df93c2722b6126556183749880f16a9beb664bb4  # frozen: v0.6.0
     hooks:
       - id: keep-sorted
   - repo: https://github.com/lalten/check-gha-pinning
-    rev: v1.3.0
+    rev: 225deee5dff16fae532978007ce6e37045e14c68  # frozen: v1.3.0
     hooks:
       - id: check-gha-pinning
   - repo: https://github.com/rhysd/actionlint/
-    rev: v1.7.7
+    rev: 03d0035246f3e81f36aed592ffb4bebf33a03106  # frozen: v1.7.7
     hooks:
       - id: actionlint
   - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.10.0.1
+    rev: a23f6b85d0fdd5bb9d564e2579e678033debbdff  # frozen: v0.10.0.1
     hooks:
       - id: shellcheck
         exclude: \.zsh$
