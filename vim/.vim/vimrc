@@ -34,7 +34,6 @@ runtime! ftplugin/man.vim
 runtime! macros/matchit.vim
 
 " Set color theme / scheme
-packadd! monokai
 packadd! onedark
 colorscheme onedark
 highlight ColorColumn ctermbg=magenta

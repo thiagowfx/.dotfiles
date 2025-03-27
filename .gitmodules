@@ -14,10 +14,6 @@
 	path = vim/.vim/pack/misc/opt/onedark
 	url = https://github.com/joshdick/onedark.vim
 	shallow = true
-[submodule "vim/.vim/pack/misc/opt/monokai"]
-	path = vim/.vim/pack/misc/opt/monokai
-	url = https://github.com/crusoexia/vim-monokai
-	shallow = true
 [submodule "vim/.vim/pack/misc/start/vim-sensible"]
 	path = vim/.vim/pack/misc/start/vim-sensible
 	url = https://github.com/tpope/vim-sensible
