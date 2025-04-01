@@ -21,5 +21,8 @@ path_munge "/opt/homebrew/opt/coreutils/libexec/gnubin"
 # GNU sed
 path_munge "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
 
+# Trash
+path_munge "/opt/homebrew/opt/macos-trash/bin"
+
 # Rancher Desktop: https://rancherdesktop.io
 path_munge "$HOME/.rd/bin"
