@@ -64,3 +64,6 @@ case "$(uname)" in
 		run_if_exists "softwareupdate" softwareupdate --install --all
 		;;
 esac
+
+# potpourri apps
+run_if_exists "claude" claude update
