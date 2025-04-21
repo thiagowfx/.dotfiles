@@ -27,11 +27,7 @@ ifeq (, $(shell which stow))
   $(error "No stow in $$PATH, install it first")
 endif
 
-all: stow ansible
-
-ansible:
-	ansible-galaxy install -r ansible/requirements.yml
-	ANSIBLE_CONFIG=ansible/ansible.cfg ansible-playbook ansible/bootstrap.yml -i ansible/inventory.ini --tags untagged
+all: stow
 
 stow:
 	stow -t $(TARGETDIR) -d $(DOTFILESDIR) $(PACKAGES)
@@ -42,4 +38,4 @@ stow-lint:
 unstow:
 	stow -t $(TARGETDIR) -d $(DOTFILESDIR) --delete $(PACKAGES)
 
-.PHONY: all ansible stow stow-lint unstow
+.PHONY: all stow stow-lint unstow
