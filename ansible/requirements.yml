@@ -1,9 +1,9 @@
----
 # List:
 #   ansible-galaxy collection list
 #
 # Install:
 #   ansible-galaxy collection install ansible.posix
+---
 collections:
   # keep-sorted start
   - name: ansible.posix

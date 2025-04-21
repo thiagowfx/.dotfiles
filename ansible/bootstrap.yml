@@ -2,10 +2,9 @@
 - name: Bootstrap environment
   hosts: all
   roles:
+    # keep-sorted start skip_lines=1
     - role: elliotweiser.osx-command-line-tools
-    # keep-sorted start
     - role: brew
     - role: brew_cask
-    - role: iterm2_shell_integration
     - role: macos
     # keep-sorted end
