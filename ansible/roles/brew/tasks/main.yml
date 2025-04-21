@@ -24,6 +24,7 @@
     - hugo
     - imagemagick
     - jq
+    - just
     - less
     - lesspipe
     - make
@@ -53,6 +54,7 @@
     name: "{{ item }}"
   with_items:
     # keep-sorted start
+    - llm
     - terraform
     # keep-sorted end
 - name: Install brew apps (corp)

@@ -7,19 +7,23 @@
     # keep-sorted start
     - 1password
     - anki
+    - calibre
+    - duckduckgo
     - font-hermit
     - font-ibm-plex-mono
     - google-chrome
     - google-drive
     - hiddenbar
-    - iterm2
     - karabiner-elements
+    - logseq
     - maccy
     - qlmarkdown
+    - raycast
     - rectangle
     - spotify
     - telegram
     - visual-studio-code
+    - vlc
     - whatsapp
     # keep-sorted end
 - name: Install brew casks (cozy)
@@ -30,14 +34,10 @@
   with_items:
     # keep-sorted start
     - basictex
-    - calibre
-    - gimp
-    - jdownloader
+    - element
     - jellyfin
-    - lulu
-    - obsidian
     - qbittorrent
-    - vlc
+    - tailscale
     - windscribe
     # keep-sorted end
 - name: Install brew casks (corp)
@@ -47,6 +47,5 @@
     name: "{{ item }}"
   with_items:
     # keep-sorted start
-    - logseq
-    - raycast
+    - slack
     # keep-sorted end
