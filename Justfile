@@ -9,21 +9,18 @@ packages := "ack bash bin fzf git profile ranger ssh tmux vim zsh"
 dotfiles_dir := justfile_directory()
 target_dir := env_var("HOME")
 
-# Default recipe
-default: stow
-
 # List available commands
 @list:
     just --list
 
-# Update git submodules
-update:
-	git submodule update --remote
-	pre-commit autoupdate
+# Run ansible
+ansible: _ansible-galaxy ansible-playbook
+
+_ansible-galaxy:
+	ansible-galaxy install -r ansible/requirements.yml
 
 # Run ansible playbook
-ansible:
-	ansible-galaxy install -r ansible/requirements.yml
+ansible-playbook:
 	ANSIBLE_CONFIG=ansible/ansible.cfg ansible-playbook ansible/bootstrap.yml -i ansible/inventory.ini --tags untagged
 
 # Stow all packages
@@ -48,3 +45,7 @@ stow-lint:
 unstow:
 	stow -t {{target_dir}} -d {{dotfiles_dir}} --delete {{packages}}
 
+# Update git submodules and pre-commit hooks
+update:
+	git submodule update --remote
+	pre-commit autoupdate --freeze
