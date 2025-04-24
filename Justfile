@@ -6,8 +6,15 @@ set dotenv-load
 # List of default packages to install
 packages := "ack bash bin fzf git profile ranger ssh tmux vim zsh"
 
-dotfilesdir := justfile_directory()
-targetdir := env_var("HOME")
+dotfiles_dir := justfile_directory()
+target_dir := env_var("HOME")
+
+# Default recipe
+default: stow
+
+# List available commands
+@list:
+    just --list
 
 # Update git submodules
 update:
@@ -22,24 +29,22 @@ ansible:
 # Stow all packages
 stow:
 	#!/usr/bin/env bash
-	if ! command -v git &> /dev/null; then
-		echo "No git in PATH, install it first" >&2
-		exit 1
-	fi
-	if ! command -v stow &> /dev/null; then
-		echo "No stow in PATH, install it first" >&2
-		exit 1
-	fi
-	stow -t {{targetdir}} -d {{dotfilesdir}} {{packages}}
+	set -euo pipefail
+
+	for cmd in git stow; do
+	    if ! command -v $cmd &> /dev/null; then
+	        echo "No $cmd in PATH, install it first" >&2
+	        exit 1
+	    fi
+	done
+
+	stow -t {{target_dir}} -d {{dotfiles_dir}} {{packages}}
 
 # Check for dangling symlinks
 stow-lint:
-	chkstow -t {{targetdir}}
+	chkstow -t {{target_dir}}
 
 # Remove all symlinks
 unstow:
-	stow -t {{targetdir}} -d {{dotfilesdir}} --delete {{packages}}
-
-# Default recipe
-default: stow
+	stow -t {{target_dir}} -d {{dotfiles_dir}} --delete {{packages}}
 
