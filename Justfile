@@ -45,6 +45,9 @@ stow-lint:
 unstow:
 	stow -t {{target_dir}} -d {{dotfiles_dir}} --delete {{packages}}
 
+# Install dotfiles
+install: stow ansible
+
 # Update git submodules and pre-commit hooks
 update:
 	git submodule update --remote
