@@ -51,4 +51,4 @@ install: stow ansible
 # Update git submodules and pre-commit hooks
 update:
 	git submodule update --remote
-	pre-commit autoupdate --freeze
+	pre-commit autoupdate --freeze --jobs "$(nproc)"
