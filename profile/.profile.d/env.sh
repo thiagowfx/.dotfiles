@@ -3,7 +3,8 @@
 # Custom user environment variables for both bash and zsh.
 
 # Sensible $PATH should include user binary directories.
-path_munge "$HOME/.bin" "$HOME/bin"
+#   pipx uses $HOME/.local/bin
+path_munge "$HOME/.bin" "$HOME/bin" "$HOME/.local/bin"
 
 # Colorize CLI output when supported.
 export CLICOLOR=1
