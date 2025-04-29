@@ -108,6 +108,7 @@
 [init]
 	# master or main
 	defaultBranch = master
+	defaultObjectFormat = sha256
 
 [merge]
 	prompt = true
