@@ -21,7 +21,7 @@
 	co = checkout
 	cp = cherry-pick
 	dc = diff --cached
-	default = !git switch main &>/dev/null || git switch master
+	default = !git switch --force main &>/dev/null || git switch --force master
 	desc = commit --allow-empty -n
 	emerge = !git add -A . && git amend -n && git pushm --force-with-lease
 	nb = switch --create
