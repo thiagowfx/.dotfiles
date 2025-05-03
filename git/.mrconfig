@@ -6,3 +6,6 @@ pull = update
 [DEFAULT]
 git_world = git world "$@"
 git_xl = git xl "$@"
+
+[workspace/perrotta.dev]
+checkout = git clone 'git@github.com:thiagowfx/thiagowfx.github.io.git' 'perrotta.dev'
