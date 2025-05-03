@@ -7,5 +7,8 @@ pull = update
 git_world = git world "$@"
 git_xl = git xl "$@"
 
+[.dotfiles]
+checkout = git clone 'git@github.com:thiagowfx/.dotfiles.git' '.dotfiles'
+
 [workspace/perrotta.dev]
 checkout = git clone 'git@github.com:thiagowfx/thiagowfx.github.io.git' 'perrotta.dev'
