@@ -25,9 +25,6 @@ run_if_exists() {
 	fi
 }
 
-# git repositories
-mr --directory "$HOME" update
-
 # package managers
 case "$(uname)" in
 	# linux
