@@ -33,7 +33,7 @@
 	rc = rebase --continue
 	st = status
 	su = submodule update
-	world = !git fetch --all && git remote prune origin && git prune-gone
+	world = !git fetch --all && git remote prune origin && git prune && git prune-gone
 	# keep-sorted end
 
 	# usage: git ignore go,hugo,vim >> .gitignore
