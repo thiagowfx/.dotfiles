@@ -1,6 +1,6 @@
 [user]
 	name = Thiago Perrotta
-	email = tbperrotta@gmail.com
+	email = thiago@perrotta.dev
 
 # This setup will always prompt for the password.
 #   https://git-scm.com/docs/git-send-email
@@ -10,7 +10,7 @@
 	smtpEncryption = tls
 	smtpServer = smtp.gmail.com
 	smtpServerPort = 587
-	smtpUser = tbperrotta@gmail.com
+	smtpUser = thiago@perrotta.dev
 
 # keep-sorted start block=yes newline_separated=yes
 [alias]
