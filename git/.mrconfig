@@ -16,3 +16,4 @@ skip = lazy
 
 [workspace/perrotta.dev]
 checkout = git clone 'git@github.com:thiagowfx/thiagowfx.github.io.git' 'perrotta.dev'
+skip = lazy
