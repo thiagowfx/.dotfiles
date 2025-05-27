@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ansible-doc:*)",
+      "Bash(chmod:*)",
+      "Bash(command -v:*)",
+      "Bash(find:*)",
+      "Bash(gh pr list:*)",
+      "Bash(gh pr review-comment list:*)",
+      "Bash(gh pr view:*)",
+      "Bash(grep:*)",
+      "Bash(hadolint:*)",
+      "Bash(helm template:*)",
+      "Bash(ls:*)",
+      "Bash(pre-commit run:*)",
+      "Bash(tar:*)"
+    ]
+  },
+  "env": {
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "0"
+  }
+}
