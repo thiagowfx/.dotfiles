@@ -48,6 +48,10 @@ repos:
     rev: 3f9cf7d52cc6832a6752433472925981f89d516f  # frozen: v0.6.1
     hooks:
       - id: keep-sorted
+  - repo: https://github.com/instrumentl/pre-commit-just
+    rev: v0.1
+    hooks:
+      - id: format-justfile
   - repo: https://github.com/lalten/check-gha-pinning
     rev: 225deee5dff16fae532978007ce6e37045e14c68  # frozen: v1.3.0
     hooks:
