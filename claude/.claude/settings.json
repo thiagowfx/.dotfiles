@@ -13,6 +13,7 @@
       "Bash(helm template:*)",
       "Bash(ls:*)",
       "Bash(pre-commit run:*)",
+      "Bash(rg:*)",
       "Bash(tar:*)"
     ]
   },
