@@ -41,6 +41,8 @@
 
 	# log: there's also gitk and tig
 	l = log --graph --pretty=oneline --abbrev-commit --all
+	# ll from https://registerspill.thorstenball.com/p/how-i-use-git
+	ll = !git log --graph --pretty='tformat:%C(always,yellow)%h%C(always,reset) %C(always,green)%ar%C(always,reset){%C(always,bold blue)%an%C(always,reset){%C(always,red)%d%C(always,reset) %s' "$@" | column -t -s '{' | less -XS
 	xl = branch -vv
 
 	# hg/fig/depot_tools compatibility
