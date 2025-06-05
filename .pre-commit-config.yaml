@@ -48,10 +48,6 @@ repos:
     rev: 3f9cf7d52cc6832a6752433472925981f89d516f  # frozen: v0.6.1
     hooks:
       - id: keep-sorted
-  - repo: https://github.com/instrumentl/pre-commit-just
-    rev: 9afb27e76938eca22c92ad1d8a6f4b9e1c29bb6b  # frozen: v0.1
-    hooks:
-      - id: format-justfile
   - repo: https://github.com/lalten/check-gha-pinning
     rev: 225deee5dff16fae532978007ce6e37045e14c68  # frozen: v1.3.0
     hooks:
@@ -65,4 +61,8 @@ repos:
     hooks:
       - id: shellcheck
         exclude: \.zsh$
+  - repo: https://github.com/thiagowfx/pre-commit-hooks
+    rev: c3a722a70322749e660d6ff5bf51f55121315092  # frozen: v0.0.1
+    hooks:
+      - id: format-justfile
   # keep-sorted end
