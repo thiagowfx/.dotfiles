@@ -245,3 +245,6 @@ tags
 # AI coding tool rule files
 .claude/settings.local.json
 .clinerules
+
+# Ansible
+.lock
