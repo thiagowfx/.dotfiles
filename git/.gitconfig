@@ -75,8 +75,8 @@
 	autocrlf = input
 	excludesfile = ~/.gitignore_global
 	editor = vim
-	# Alternative for diff-highlight: git-delta
-	pager = "(diff-highlight 2>/dev/null || cat) | ${PAGER:-less}"
+	# delta > diff-highlight > plain cat
+	pager = "delta 2>/dev/null || ((diff-highlight 2>/dev/null || cat) | ${PAGER:-less})"
 
 [credential]
 	# Cache credentials in memory for a while. See git-credential-cache(1).
@@ -110,6 +110,9 @@
 [init]
 	# master or main
 	defaultBranch = master
+
+[interactive]
+	diffFilter = delta --color-only
 
 [merge]
 	prompt = true
