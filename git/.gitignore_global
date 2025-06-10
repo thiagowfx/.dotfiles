@@ -243,6 +243,7 @@ tags
 # End of https://www.toptal.com/developers/gitignore/api/direnv,emacs,intellij,macos,vim,visualstudiocode
 
 # AI coding tool rule files
+.aider*
 .claude/settings.local.json
 .clinerules
 
