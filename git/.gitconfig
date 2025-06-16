@@ -76,11 +76,16 @@
 	excludesfile = ~/.gitignore_global
 	editor = vim
 	# delta > diff-highlight > plain cat
-	pager = "delta 2>/dev/null || ((diff-highlight 2>/dev/null || cat) | ${PAGER:-less})"
+	pager = "delta --diff-highlight 2>/dev/null || ((diff-highlight 2>/dev/null || cat) | ${PAGER:-less})"
 
 [credential]
 	# Cache credentials in memory for a while. See git-credential-cache(1).
 	helper = cache
+
+[delta]
+	navigate = true
+	side-by-side = false
+	line-numbers = true
 
 # https://git-scm.com/docs/diff-config
 [diff]
