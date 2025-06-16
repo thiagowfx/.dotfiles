@@ -85,7 +85,6 @@
 [delta]
 	navigate = true
 	side-by-side = false
-	line-numbers = true
 
 # https://git-scm.com/docs/diff-config
 [diff]
@@ -117,7 +116,7 @@
 	defaultBranch = master
 
 [interactive]
-	diffFilter = delta --color-only
+	diffFilter = delta --diff-highlight --color-only
 
 [merge]
 	prompt = true
