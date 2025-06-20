@@ -116,7 +116,7 @@
 	defaultBranch = master
 
 [interactive]
-	diffFilter = delta --diff-highlight --color-only
+	diffFilter = delta --color-only
 
 [merge]
 	prompt = true
