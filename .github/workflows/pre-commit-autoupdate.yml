@@ -29,7 +29,10 @@ jobs:
       - name: Run pre-commit autoupdate
         run: pre-commit autoupdate --freeze --jobs "$(nproc)"
 
+      - uses: extractions/setup-just@e33e0265a09d6d736e2ee1e0eb685ef1de4669ff # v3
+
       - uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd # v3.0.1
+        continue-on-error: true
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
