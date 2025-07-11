@@ -73,6 +73,7 @@
 [core]
 	# Auto-convert CRLF <-> LF for a transparent experience on Windows.
 	autocrlf = input
+	commentChar = auto
 	excludesfile = ~/.gitignore_global
 	editor = vim
 	# delta > diff-highlight > plain cat
