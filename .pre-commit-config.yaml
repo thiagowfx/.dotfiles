@@ -20,6 +20,9 @@
 ci:
   autoupdate_schedule: monthly
   submodules: true
+  skip:
+    # missing deps: just
+    - just-fmt
 repos:
   - repo: meta
     hooks:
