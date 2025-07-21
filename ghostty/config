@@ -1,8 +1,8 @@
 # https://github.com/ghostty-org/ghostty
 # keep-sorted start
 cursor-style-blink = false
+keybind = shift+enter=text:\n
 macos-icon = chalkboard
-macos-titlebar-style=tabs
 shell-integration-features = no-cursor
-theme=catppuccin-macchiato
+theme = catppuccin-macchiato
 # keep-sorted end
