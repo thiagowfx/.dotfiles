@@ -1,4 +1,4 @@
-# https://github.com/ghostty-org/ghostty
+# https://ghostty.org/docs/config
 # keep-sorted start
 cursor-style-blink = false
 keybind = shift+enter=text:\n
