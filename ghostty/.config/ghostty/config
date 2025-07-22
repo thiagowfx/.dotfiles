@@ -1,8 +1,10 @@
 # https://ghostty.org/docs/config
 # keep-sorted start
+background-opacity = 0.95
 cursor-style-blink = false
 keybind = shift+enter=text:\n
 macos-icon = chalkboard
+mouse-hide-while-typing = true
 shell-integration-features = no-cursor
 theme = catppuccin-macchiato
 # keep-sorted end
