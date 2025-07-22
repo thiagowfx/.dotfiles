@@ -53,6 +53,9 @@ command! Wq wq
 inoremap <Esc><Space> <Esc>ciw<Space>
 nnoremap <Esc><Space> ciw<Space><Esc>
 
+" https://vi.stackexchange.com/questions/439/how-to-join-lines-without-producing-a-space
+nnoremap J gJ
+
 " Reflow current paragraph
 nnoremap <silent> Q gwip
 
