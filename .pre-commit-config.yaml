@@ -69,7 +69,15 @@ repos:
       - id: shellcheck
         exclude: \.zsh$
   - repo: https://github.com/thiagowfx/pre-commit-hooks
-    rev: d99794e0e948ffda5a19e07210f0c1383d66949c  # frozen: v0.0.2
+    rev: 6a10778590b3dd62d920dbd257780ce54ea883b2  # frozen: v0.0.4
     hooks:
       - id: just-format
+  - repo: local
+    hooks:
+      - id: ghostty
+        name: Validate Ghostty config
+        description: https://ghostty.org/docs/config
+        entry: ghostty +validate-config --config-file=ghostty/.config/ghostty/config
+        pass_filenames: false
+        language: system
   # keep-sorted end
