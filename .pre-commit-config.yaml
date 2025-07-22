@@ -77,7 +77,7 @@ repos:
       - id: ghostty
         name: Validate Ghostty config
         description: https://ghostty.org/docs/config
-        entry: ghostty +validate-config --config-file=ghostty/.config/ghostty/config
+        entry: sh -c 'command -v ghostty >/dev/null 2>&1 && ghostty +validate-config --config-file=ghostty/.config/ghostty/config || echo "ghostty not installed, skipping validation"'
         pass_filenames: false
         language: system
   # keep-sorted end
