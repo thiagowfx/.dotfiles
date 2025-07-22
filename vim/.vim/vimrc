@@ -35,7 +35,8 @@ runtime! macros/matchit.vim
 
 " Set color theme / scheme
 packadd! onedark
-colorscheme onedark
+packadd! catppuccin
+colorscheme catppuccin-mocha
 highlight ColorColumn ctermbg=magenta
 
 " The colorscheme of lightline is independent of the editor colorscheme.

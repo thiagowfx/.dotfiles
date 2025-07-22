@@ -14,6 +14,10 @@
 	path = vim/.vim/pack/misc/opt/onedark
 	url = https://github.com/joshdick/onedark.vim
 	shallow = true
+[submodule "vim/.vim/pack/misc/opt/catppuccin"]
+	path = vim/.vim/pack/misc/opt/catppuccin
+	url = https://github.com/catppuccin/nvim
+	shallow = true
 [submodule "vim/.vim/pack/misc/start/vim-sensible"]
 	path = vim/.vim/pack/misc/start/vim-sensible
 	url = https://github.com/tpope/vim-sensible
