@@ -7,15 +7,13 @@ pull = update
 git_xl = git xl "$@"
 jobs = 2
 
-# keep-sorted start newline_separated=yes
 [.dotfiles]
-	checkout = git clone 'git@github.com:thiagowfx/.dotfiles.git' '.dotfiles'
+checkout = git clone 'git@github.com:thiagowfx/.dotfiles.git' '.dotfiles'
 
 [.dotfiles_corp]
-	checkout = git clone 'git@github.com:thiagowfx/.dotfiles_corp.git' '.dotfiles_corp'
-	skip = lazy
+checkout = git clone 'git@github.com:thiagowfx/.dotfiles_corp.git' '.dotfiles_corp'
+skip = lazy
 
 [workspace/perrotta.dev]
-	checkout = git clone 'git@github.com:thiagowfx/thiagowfx.github.io.git' 'perrotta.dev'
-	skip = lazy
-# keep-sorted end
+checkout = git clone 'git@github.com:thiagowfx/thiagowfx.github.io.git' 'perrotta.dev'
+skip = lazy
