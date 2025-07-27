@@ -6,7 +6,7 @@ dotfiles_dir := justfile_directory()
 target_dir := env_var("HOME")
 
 # List available commands
-@list:
+@_list:
     just --list
 
 # Run ansible
