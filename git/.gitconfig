@@ -117,7 +117,7 @@
 	defaultBranch = master
 
 [interactive]
-	diffFilter = delta --color-only --diff-highlight
+	diffFilter = "delta --color-only --diff-highlight 2>/dev/null || ((diff-highlight 2>/dev/null || cat) | ${PAGER:-less})"
 
 [merge]
 	prompt = true
