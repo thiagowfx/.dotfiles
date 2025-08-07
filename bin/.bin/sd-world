@@ -58,7 +58,7 @@ esac
 run_if_exists "claude" claude update
 
 # myrepos
-run_if_exists "mr" mr -d ~ update
+(cd ~ && run_if_exists "mr" mr update)
 
 # source corp updates if any
 run_if_exists "sd-world-corp"
