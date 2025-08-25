@@ -34,6 +34,6 @@ merge_base=$(git merge-base "$main_branch" "$branch")
 
 # Squash all commits since the merge base
 git reset --soft "$merge_base"
-git commit -m "Squashed branch $branch"
+git commit -m "Squashed branch $branch" "$@"
 
 echo "Branch '$branch' squashed successfully"
