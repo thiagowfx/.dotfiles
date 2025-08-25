@@ -5,9 +5,9 @@
   "permissions": {
     "allow": [
       "Bash(ansible-doc:*)",
-      "Bash(chmod:*)",
       "Bash(command -v:*)",
       "Bash(find:*)",
+      "Bash(gh pr diff:*)",
       "Bash(gh pr list:*)",
       "Bash(gh pr review-comment list:*)",
       "Bash(gh pr view:*)",
@@ -15,9 +15,11 @@
       "Bash(hadolint:*)",
       "Bash(helm template:*)",
       "Bash(ls:*)",
-      "Bash(pre-commit run:*)",
-      "Bash(rg:*)",
-      "Bash(tar:*)"
+      "Bash(rg:*)"
     ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline.sh"
   }
 }
