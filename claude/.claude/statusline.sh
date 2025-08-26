@@ -18,9 +18,9 @@ if git rev-parse --git-dir > /dev/null 2>&1; then
     if [[ -n "$branch" ]]; then
         # Check for uncommitted changes
         if ! git diff --quiet 2>/dev/null || ! git diff --cached --quiet 2>/dev/null; then
-            git_info="($branch*)"
+            git_info="(git:$branch*)"
         else
-            git_info="($branch)"
+            git_info="(git:$branch)"
         fi
     fi
 fi
