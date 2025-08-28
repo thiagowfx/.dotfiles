@@ -6,5 +6,5 @@ keybind = shift+enter=text:\n
 macos-icon = chalkboard
 mouse-hide-while-typing = true
 shell-integration-features = no-cursor
-theme = catppuccin-macchiato
+theme = tokyonight
 # keep-sorted end
