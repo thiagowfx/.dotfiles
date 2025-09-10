@@ -33,6 +33,7 @@
 	rc = rebase --continue
 	st = status
 	su = submodule update
+	unfreeze = thaw
 	world = !git fetch --all && git remote prune origin && git prune && git prune-gone
 	# keep-sorted end
 
