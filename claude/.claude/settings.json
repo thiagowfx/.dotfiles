@@ -15,7 +15,8 @@
       "Bash(hadolint:*)",
       "Bash(helm template:*)",
       "Bash(ls:*)",
-      "Bash(rg:*)"
+      "Bash(rg:*)",
+      "Bash(yamllint:*)"
     ]
   },
   "statusLine": {
