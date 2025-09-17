@@ -63,6 +63,35 @@ nnoremap <silent> Q gwip
 " Remove all trailing whitespace
 nnoremap <leader>t :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
+" a la emacs just-one-space
+function! JustOneSpace()
+  let l:line = getline('.')
+  let l:col = col('.')
+
+  " Find start of whitespace sequence
+  let l:start = l:col
+  while l:start > 1 && l:line[l:start-2] =~ '\s'
+    let l:start = l:start - 1
+  endwhile
+
+  " Find end of whitespace sequence
+  let l:end = l:col
+  while l:end <= len(l:line) && l:line[l:end-1] =~ '\s'
+    let l:end = l:end + 1
+  endwhile
+
+  " Only proceed if we're in a whitespace sequence with more than 1 space
+  if l:end - l:start > 1
+    " Replace the whitespace sequence with a single space
+    let l:newline = l:line[0:l:start-2] . ' ' . l:line[l:end-1:]
+    call setline('.', l:newline)
+    " Position cursor right after the single space
+    call cursor('.', l:start + 1)
+  endif
+endfunction
+inoremap <leader><Space> <Esc>:call JustOneSpace()<CR>a
+nnoremap <leader><Space> :call JustOneSpace()<CR>
+
 " Always use vertical diff splits.
 set diffopt+=vertical
 
