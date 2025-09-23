@@ -70,7 +70,7 @@ repos:
       - id: shellcheck
         exclude: \.zsh$
   - repo: https://github.com/thiagowfx/pre-commit-hooks
-    rev: f7dd9fa1144abe3b02e88215a0263edb8840775e  # frozen: v0.0.6
+    rev: 39767c56f62c1cb664eec67a47a83125e3f41717  # frozen: v0.0.8
     hooks:
       - id: just-format
   - repo: local
