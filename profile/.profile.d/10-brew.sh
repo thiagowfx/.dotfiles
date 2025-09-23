@@ -11,9 +11,8 @@
 [ -z "$HOMEBREW_PREFIX" ] && [ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # command-not-found hook
-# setup: brew tap "homebrew/command-not-found"
-# https://github.com/Homebrew/homebrew-command-not-found
-hash brew >/dev/null 2>&1 && src_files "$(brew --prefix)/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
+# brew --prefix works too
+hash brew >/dev/null 2>&1 && src_files "$(brew --repository)/Library/Homebrew/command-not-found/handler.sh"
 
 # GNU coreutils
 path_munge "/opt/homebrew/opt/coreutils/libexec/gnubin"
