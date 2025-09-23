@@ -49,7 +49,7 @@ update: update-git update-pre-commit
 
 # Update git submodules
 update-git:
-    git submodule update --remote --jobs "$(nproc)"
+    git submodule update --force --remote --jobs "$(nproc)"
 
 # Update pre-commit hooks
 update-pre-commit:
