@@ -22,3 +22,6 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # iTerm2 shell integration: https://iterm2.com/documentation-shell-integration.html
 src_files "$HOME/.iterm2_shell_integration.zsh"
+
+# atuin: https://docs.atuin.sh/
+# (( $+commands[atuin] )) && eval "$(atuin init zsh)"
