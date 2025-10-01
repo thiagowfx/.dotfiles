@@ -6,6 +6,7 @@
     "allow": [
       "Bash(ansible-doc:*)",
       "Bash(command -v:*)",
+      "Bash(fd:*)",
       "Bash(find:*)",
       "Bash(gh pr diff:*)",
       "Bash(gh pr list:*)",
@@ -22,5 +23,6 @@
   "statusLine": {
     "type": "command",
     "command": "bash ~/.claude/statusline.sh"
-  }
+  },
+  "alwaysThinkingEnabled": false
 }
