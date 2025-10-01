@@ -16,7 +16,6 @@ skip = lazy
 
 [workspace/pancake]
 checkout = git clone 'git@github.com:thiagowfx/pancake' 'pancake'
-skip = lazy
 
 [workspace/perrotta.dev]
 checkout = git clone 'git@github.com:thiagowfx/thiagowfx.github.io.git' 'perrotta.dev'
