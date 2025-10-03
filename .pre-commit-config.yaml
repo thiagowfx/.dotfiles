@@ -73,6 +73,10 @@ repos:
     rev: 39767c56f62c1cb664eec67a47a83125e3f41717  # frozen: v0.0.8
     hooks:
       - id: just-format
+  - repo: https://github.com/woodruffw/zizmor-pre-commit
+    rev: b933184438555436e38621f46ceb0c417cbed400 # frozen: v1.13.0
+    hooks:
+      - id: zizmor
   - repo: local
     hooks:
       - id: ghostty
