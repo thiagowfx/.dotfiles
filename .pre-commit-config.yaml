@@ -36,6 +36,10 @@ repos:
       - id: check-symlinks
       - id: check-yaml
       - id: detect-private-key
+      - id: file-contents-sorter
+        files: ^vim/.vim/spell/en.utf-8.add$
+        args:
+          - --ignore-case
       - id: pretty-format-json
         args:
           - --autofix
