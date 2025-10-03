@@ -81,8 +81,12 @@ repos:
     hooks:
       - id: ghostty
         name: Validate Ghostty config
-        description: https://ghostty.org/docs/config
         entry: sh -c 'command -v ghostty >/dev/null 2>&1 && ghostty +validate-config --config-file=ghostty/.config/ghostty/config || echo "ghostty not installed, skipping validation"'
         pass_filenames: false
         language: system
+      - id: pre-commit
+        name: Validate pre-commit config
+        entry: pre-commit validate-config
+        language: system
+        files: ^.pre-commit-config.yaml$
   # keep-sorted end
