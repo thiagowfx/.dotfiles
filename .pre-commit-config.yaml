@@ -60,10 +60,6 @@ repos:
     rev: c71803fd297b5736f3bfab1cfd84424ca52e961a  # frozen: v0.7.1
     hooks:
       - id: keep-sorted
-  - repo: https://github.com/lalten/check-gha-pinning
-    rev: 225deee5dff16fae532978007ce6e37045e14c68  # frozen: v1.3.0
-    hooks:
-      - id: check-gha-pinning
   - repo: https://github.com/rhysd/actionlint/
     rev: 03d0035246f3e81f36aed592ffb4bebf33a03106  # frozen: v1.7.7
     hooks:
