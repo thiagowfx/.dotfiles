@@ -13,5 +13,5 @@ If there's a .github/PULL_REQUEST_TEMPLATE.md file, use it as template.
 If the current branch is 'main' or 'master', create a local branch first.
 The branch name should be prefixed by my github username[2] and a slash.
 
-[1]: Use the 'gh' CLI to do so.
-[2]: 'gh api user --jq .login'.
+[1]: 'gh pr create'
+[2]: 'gh api user --jq .login'
