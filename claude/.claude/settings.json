@@ -8,6 +8,7 @@
       "Bash(command -v:*)",
       "Bash(fd:*)",
       "Bash(find:*)",
+      "Bash(gh api:*)",
       "Bash(gh pr diff:*)",
       "Bash(gh pr list:*)",
       "Bash(gh pr review-comment list:*)",
