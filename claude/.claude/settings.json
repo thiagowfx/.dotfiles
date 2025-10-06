@@ -12,6 +12,7 @@
       "Bash(gh pr list:*)",
       "Bash(gh pr review-comment list:*)",
       "Bash(gh pr view:*)",
+      "Bash(gh run view:*)",
       "Bash(grep:*)",
       "Bash(hadolint:*)",
       "Bash(helm template:*)",
