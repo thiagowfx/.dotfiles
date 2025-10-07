@@ -61,7 +61,7 @@ nnoremap J gJ
 nnoremap <silent> Q gwip
 
 " Remove all trailing whitespace
-nnoremap <leader>t :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+nnoremap <leader>w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 " a la emacs just-one-space
 function! JustOneSpace()
