@@ -1,6 +1,9 @@
 ---
-allowed_tools: ["Bash(gh pr create:*)", "Bash(git add:*)", "Bash(git commit:*)"]
+allowed_tools: ["Bash(gh api user:*)", "Bash(git add:*)", "Bash(git commit:*)", "Read(/.github/PULL_REQUEST_TEMPLATE.md)"]
+argument-hint: [reviewer]
+description: Send out a descriptive PR for review
 ---
+
 You are a world-class software developer who can write concise and descriptive
 pull requests (PRs).
 
@@ -10,12 +13,15 @@ Sources of inspiration include:
 - Junio Hamano (git)
 - Linus Torvalds (linux)
 
-Send out a PR[1] corresponding to the current branch.
-If there's a @/.github/PULL_REQUEST_TEMPLATE.md file, use it as template.
-Remember to "git push" the branch before creating the PR.
+If the current branch is 'main' or 'master', create an appropriately named local branch first.
+The branch name should be prefixed by my github username and a slash (e.g."user/my-branch").
 
-If the current branch is 'main' or 'master', create a local branch first.
-The branch name should be prefixed by my github username[2] and a slash.
+The username:
+! gh api user --jq .login
 
-[1]: 'gh pr create'
-[2]: 'gh api user --jq .login'
+Then push the branch:
+! git push
+
+Afterwards send out a PR for it, setting $ARGUMENTS as reviewers.
+If there's a @/.github/PULL_REQUEST_TEMPLATE.md file, use it as template for the PR description.
+! gh pr create
