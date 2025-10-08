@@ -35,6 +35,7 @@ repos:
       - id: check-executables-have-shebangs
       - id: check-symlinks
       - id: check-yaml
+      - id: detect-aws-credentials
       - id: detect-private-key
       - id: file-contents-sorter
         files: ^vim/.vim/spell/en.utf-8.add$
