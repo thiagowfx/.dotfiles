@@ -78,6 +78,13 @@ repos:
     rev: 39767c56f62c1cb664eec67a47a83125e3f41717  # frozen: v0.0.8
     hooks:
       - id: just-format
+  - repo: https://github.com/thoughtworks/talisman
+    rev: 12fab7055d7e640d5dae43209bafc48bf5ef1fd7 # frozen: v1.37.0
+    hooks:
+      - id: talisman-commit
+        entry: cmd --githook pre-commit
+      - id: talisman-push
+        entry: cmd --githook pre-push
   - repo: https://github.com/woodruffw/zizmor-pre-commit
     rev: 3c10df247c55cf21f75003105b879f145096bd4a  # frozen: v1.14.2
     hooks:

@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=schemas/talismanrc.json
+
+# Docs: https://thoughtworks.github.io/talisman/docs/configuring-talisman/ignoring/
+threshold: medium
+allowed_patterns:
+  - "rev: \\w+ # frozen:"
+version: "1.0"
