@@ -7,4 +7,5 @@ macos-icon = chalkboard
 mouse-hide-while-typing = true
 shell-integration-features = no-cursor
 theme = tokyonight
+window-new-tab-position = end
 # keep-sorted end
