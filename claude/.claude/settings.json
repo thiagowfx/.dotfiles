@@ -5,6 +5,7 @@
   "permissions": {
     "allow": [
       "Bash(ansible-doc:*)",
+      "Bash(cat:*)",
       "Bash(command -v:*)",
       "Bash(fd:*)",
       "Bash(find:*)",
