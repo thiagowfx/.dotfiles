@@ -36,7 +36,6 @@
 	switch-to-default = !git switch --force main &>/dev/null || git switch --force master
 	unfreeze = thaw
 	world = !git fetch --all && git remote prune origin && git prune && git prune-gone
-	wt = "!f() { repo=$(basename $(git rev-parse --show-toplevel)); word=$(shuf -n1 /usr/share/dict/words | tr '[:upper:]' '[:lower:]'); path=\"../${repo}-${word}\"; if [ -z \"$1\" ]; then git worktree add -b \"thiagowfx/${word}\" \"$path\"; elif git rev-parse --verify \"$1\" >/dev/null 2>&1; then git worktree add \"$path\" \"$1\"; else git worktree add -b \"$1\" \"$path\"; fi; }; f"
 	# keep-sorted end
 
 	# usage: git ignore go,hugo,vim >> .gitignore
