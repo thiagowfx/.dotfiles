@@ -17,6 +17,7 @@
       "Bash(gh pr view:*)",
       "Bash(gh run view:*)",
       "Bash(git log:*)",
+      "Bash(git rev-parse:*)",
       "Bash(grep:*)",
       "Bash(hadolint:*)",
       "Bash(helm template:*)",
