@@ -8,6 +8,7 @@
       "Bash(cat:*)",
       "Bash(command -v:*)",
       "Bash(dir:*)",
+      "Bash(echo:*)",
       "Bash(fd:*)",
       "Bash(find:*)",
       "Bash(gh api:*)",
