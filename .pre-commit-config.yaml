@@ -68,7 +68,7 @@ repos:
     hooks:
       - id: keep-sorted
   - repo: https://github.com/rhysd/actionlint/
-    rev: 03d0035246f3e81f36aed592ffb4bebf33a03106  # frozen: v1.7.7
+    rev: e7d448ef7507c20fc4c88a95d0c448b848cd6127  # frozen: v1.7.8
     hooks:
       - id: actionlint
   - repo: https://github.com/shellcheck-py/shellcheck-py
@@ -77,7 +77,7 @@ repos:
       - id: shellcheck
         exclude: \.zsh$
   - repo: https://github.com/thiagowfx/pre-commit-hooks
-    rev: 39767c56f62c1cb664eec67a47a83125e3f41717  # frozen: v0.0.8
+    rev: 7c52544b0734b280940b0b3492ff07b630f1bac8  # frozen: v0.0.10
     hooks:
       - id: just-format
   - repo: https://github.com/thoughtworks/talisman
@@ -88,7 +88,7 @@ repos:
       - id: talisman-push
         entry: cmd --githook pre-push
   - repo: https://github.com/woodruffw/zizmor-pre-commit
-    rev: 3c10df247c55cf21f75003105b879f145096bd4a  # frozen: v1.14.2
+    rev: 77c6d22b0c515f1635e07a99140d2230db2e2c97  # frozen: v1.16.1
     hooks:
       - id: zizmor
   - repo: local
