@@ -8,7 +8,7 @@
 #   /opt/homebrew for Apple Silicon / ARM Macs, need to add /opt/homebrew/bin to $PATH
 #
 # The following line is idempotent.
-[ -z "$HOMEBREW_PREFIX" ] && [ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+[ -z "$HOMEBREW_PREFIX" ] && [ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)" && export HOMEBREW_NO_ENV_HINTS=1
 
 # command-not-found hook
 # brew --prefix works too
