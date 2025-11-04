@@ -12,6 +12,9 @@
 	smtpServerPort = 587
 	smtpUser = thiago@perrotta.dev
 
+[advice]
+	skippedCherryPicks = false
+
 # keep-sorted start block=yes newline_separated=yes
 [alias]
 	# keep-sorted start

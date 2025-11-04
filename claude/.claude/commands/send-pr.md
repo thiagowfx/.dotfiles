@@ -23,5 +23,8 @@ Then push the branch:
 ! git push
 
 Afterwards send out a PR for it, setting $ARGUMENTS as reviewers.
-If there's a @/.github/PULL_REQUEST_TEMPLATE.md file, use it as template for the PR description.
+If there's a .github/PULL_REQUEST_TEMPLATE.md file at the git repository root, use it as template for the PR description.
+To find the git repository root, use: git rev-parse --show-toplevel
+Then check if the template file exists at $(git rev-parse --show-toplevel)/.github/PULL_REQUEST_TEMPLATE.md
+Claude Code should be added as a PR co-author, for the sake of AI disclosure and transparency.
 ! gh pr create

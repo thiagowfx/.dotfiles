@@ -26,7 +26,8 @@
       "Bash(ls:*)",
       "Bash(rg:*)",
       "Bash(test:*)",
-      "Bash(yamllint:*)"
+      "Bash(yamllint:*)",
+      "Fetch(https://perrotta.dev/*)"
     ]
   },
   "statusLine": {
