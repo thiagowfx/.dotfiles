@@ -23,6 +23,7 @@
       "Bash(grep:*)",
       "Bash(hadolint:*)",
       "Bash(helm template:*)",
+      "Bash(just --list:*)",
       "Bash(ls:*)",
       "Bash(rg:*)",
       "Bash(test:*)",
@@ -34,5 +35,5 @@
     "type": "command",
     "command": "bash ~/.claude/statusline.sh"
   },
-  "alwaysThinkingEnabled": false
+  "alwaysThinkingEnabled": true
 }
