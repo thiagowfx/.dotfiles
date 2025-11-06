@@ -20,6 +20,7 @@
       "Bash(gh run view:*)",
       "Bash(git log:*)",
       "Bash(git rev-parse:*)",
+      "Bash(go test:*)",
       "Bash(grep:*)",
       "Bash(hadolint:*)",
       "Bash(helm template:*)",
