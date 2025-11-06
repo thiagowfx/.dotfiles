@@ -1,9 +1,5 @@
 # Created by https://www.toptal.com/developers/gitignore/api/direnv,emacs,intellij,macos,vim,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=direnv,emacs,intellij,macos,vim,visualstudiocode
-
-### direnv ###
-.direnv
-.envrc
+# Edit at https://www.toptal.com/developers/gitignore?templates=emacs,intellij,macos,vim,visualstudiocode
 
 ### Emacs ###
 # -*- mode: gitignore; -*-
