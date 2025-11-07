@@ -75,6 +75,9 @@ unset -f zed
 # Source base shell functions.
 [ -r ~/.profilerc ] && . ~/.profilerc
 
+# Load zsh-defer early so it's available for all scripts
+src_files "$HOME/.zsh/zsh-defer/zsh-defer.plugin.zsh"
+
 # Load user scripts and functions if existing. Order is important.
 # Corp config is handled as part of .zshrc.d.
 src_files "$HOME/.profile.d" "$HOME/.zshrc.d"
