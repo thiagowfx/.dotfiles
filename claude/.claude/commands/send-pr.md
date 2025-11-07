@@ -1,17 +1,10 @@
 ---
-allowed_tools: ["Bash(gh api user:*)", "Bash(git add:*)", "Bash(git commit:*)", "Read(/.github/PULL_REQUEST_TEMPLATE.md)"]
+allowed_tools: ["Bash(cat:*)", "Bash(gh api user:*)", "Bash(gh pr create:*)", "Bash(git add:*)", "Bash(git checkout:*)", "Bash(git commit:*)", "Bash(git push:*)", "Bash(git rev-parse:*)", "Bash(test:*)"]
 argument-hint: [reviewer]
 description: Send out a descriptive PR for review
 ---
 
-You are a world-class software developer who can write concise and descriptive
-pull requests (PRs).
-
-Sources of inspiration include:
-
-- Daniel Stenberg (curl)
-- Junio Hamano (git)
-- Linus Torvalds (linux)
+Given the guidance below, invoke @agent-pr-writer as needed.
 
 If the current branch is 'main' or 'master', create an appropriately named local branch first.
 The branch name should be prefixed by my github username and a slash (e.g."user/my-branch").
