@@ -33,12 +33,6 @@ runtime! ftplugin/man.vim
 " Better %
 runtime! macros/matchit.vim
 
-" Set color theme / scheme
-packadd! onedark
-packadd! catppuccin
-colorscheme catppuccin-mocha
-highlight ColorColumn ctermbg=magenta
-
 " The colorscheme of lightline is independent of the editor colorscheme.
 "   'one' provides sensible defaults and works in 8-color mode (linux tty).
 "   'onedark' provides its own colorscheme.
@@ -176,10 +170,66 @@ set visualbell t_vb=
 " Set completion mode.
 set wildmode=list:longest
 
-" https://github.com/dense-analysis/ale#generating-vim-help-files
-" Load all plugins now.
-" Plugins need to be added to runtimepath before helptags can be generated.
-packloadall
-" Load all of the helptags now, after plugins have been loaded.
-" All messages and errors will be ignored.
-silent! helptags ALL
+" vim-plug plugin manager
+" Install plugins with :PlugInstall
+" Update plugins with :PlugUpdate
+" Remove unused plugins with :PlugClean
+call plug#begin('~/.vim/plugged')
+
+" Linting and fixing
+Plug 'dense-analysis/ale'
+
+" Git integration
+Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
+
+" Text manipulation
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
+
+" Navigation and search
+Plug 'junegunn/fzf'
+Plug 'justinmk/vim-sneak'
+Plug 'junegunn/vim-slash'
+
+" File and buffer management
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-eunuch'
+Plug 'aymericbeaumet/vim-symlink'
+Plug 'pbrisbin/vim-mkdir'
+Plug 'bogado/file-line'
+
+" Code quality and formatting
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-endwise'
+Plug 'bronson/vim-trailing-whitespace'
+
+" UI enhancements
+Plug 'itchyny/lightline.vim'
+Plug 'machakann/vim-highlightedyank'
+Plug 'wincent/terminus'
+
+" Better defaults
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-unimpaired'
+
+" Clipboard integration
+Plug 'ojroques/vim-oscyank'
+
+" Color schemes
+Plug 'joshdick/onedark.vim', { 'as': 'onedark' }
+
+" Diff tools
+Plug 'whiteinge/diffconflicts'
+
+call plug#end()
+
+" Set color theme / scheme (must be after plug#end())
+try
+  colorscheme onedark
+  highlight ColorColumn ctermbg=magenta
+catch
+  " Colorscheme not installed yet, will be available after :PlugInstall
+endtry
