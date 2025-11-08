@@ -29,7 +29,7 @@ repos:
       - id: check-hooks-apply
       - id: check-useless-excludes
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c  # frozen: v6.0.0
+    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c # frozen: v6.0.0
     hooks:
       # keep-sorted start
       - id: check-executables-have-shebangs
@@ -49,15 +49,15 @@ repos:
           - --no-sort-keys
         exclude: ^zed/.config/zed/settings.json$
       - id: trailing-whitespace
-      # keep-sorted end
+        # keep-sorted end
   # keep-sorted start
   - repo: https://github.com/codespell-project/codespell
-    rev: 63c8f8312b7559622c0d82815639671ae42132ac  # frozen: v2.4.1
+    rev: 63c8f8312b7559622c0d82815639671ae42132ac # frozen: v2.4.1
     hooks:
       - id: codespell
         exclude: vim/.vim/autoload/plug.vim
   - repo: https://github.com/gitleaks/gitleaks
-    rev: 3683f1700eef4d855cd549ccbbde4cd0f9e55321  # frozen: v8.29.0
+    rev: 3683f1700eef4d855cd549ccbbde4cd0f9e55321 # frozen: v8.29.0
     hooks:
       - id: gitleaks
   - repo: https://github.com/golangci/misspell
@@ -65,20 +65,24 @@ repos:
     hooks:
       - id: misspell
   - repo: https://github.com/google/keep-sorted
-    rev: c71803fd297b5736f3bfab1cfd84424ca52e961a  # frozen: v0.7.1
+    rev: c71803fd297b5736f3bfab1cfd84424ca52e961a # frozen: v0.7.1
     hooks:
       - id: keep-sorted
+  - repo: https://github.com/google/yamlfmt
+    rev: 884e367e8fae92b238653fd950a54d235d418e4e # frozen: v0.20.0
+    hooks:
+      - id: yamlfmt
   - repo: https://github.com/rhysd/actionlint/
-    rev: e7d448ef7507c20fc4c88a95d0c448b848cd6127  # frozen: v1.7.8
+    rev: e7d448ef7507c20fc4c88a95d0c448b848cd6127 # frozen: v1.7.8
     hooks:
       - id: actionlint
   - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: 745eface02aef23e168a8afb6b5737818efbea95  # frozen: v0.11.0.1
+    rev: 745eface02aef23e168a8afb6b5737818efbea95 # frozen: v0.11.0.1
     hooks:
       - id: shellcheck
         exclude: \.zsh$
   - repo: https://github.com/thiagowfx/pre-commit-hooks
-    rev: 7c52544b0734b280940b0b3492ff07b630f1bac8  # frozen: v0.0.10
+    rev: 7c52544b0734b280940b0b3492ff07b630f1bac8 # frozen: v0.0.10
     hooks:
       - id: just-format
   - repo: https://github.com/thoughtworks/talisman
@@ -89,7 +93,7 @@ repos:
       - id: talisman-push
         entry: cmd --githook pre-push
   - repo: https://github.com/woodruffw/zizmor-pre-commit
-    rev: 86ee5ea442ee969842e00913c6b76c060a7aa8ef  # frozen: v1.16.3
+    rev: 86ee5ea442ee969842e00913c6b76c060a7aa8ef # frozen: v1.16.3
     hooks:
       - id: zizmor
   - repo: local
@@ -104,4 +108,4 @@ repos:
         entry: pre-commit validate-config
         language: system
         files: ^.pre-commit-config.yaml$
-  # keep-sorted end
+# keep-sorted end
