@@ -7,6 +7,10 @@ pull = update
 git_xl = git xl "$@"
 jobs = 2
 
+[aports]
+checkout = git clone 'git@gitlab.alpinelinux.org:thiagowfx/aports.git' 'aports'
+skip = lazy
+
 [.dotfiles]
 checkout = git clone 'git@github.com:thiagowfx/.dotfiles.git' '.dotfiles'
 
