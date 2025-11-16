@@ -34,6 +34,7 @@
 	rb = branch -m
 	rbi = rebase -i HEAD~10
 	rc = rebase --continue
+	rs = restore --staged
 	st = status
 	su = submodule update
 	switch-to-default = !git switch --force main &>/dev/null || git switch --force master
