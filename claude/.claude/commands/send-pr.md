@@ -21,3 +21,5 @@ To find the git repository root, use: git rev-parse --show-toplevel
 Then check if the template file exists at $(git rev-parse --show-toplevel)/.github/PULL_REQUEST_TEMPLATE.md
 Claude Code should be added as a PR co-author, for the sake of AI disclosure and transparency.
 ! gh pr create
+
+If a PR already exists, then update its description.

@@ -18,3 +18,5 @@ If there's a .github/PULL_REQUEST_TEMPLATE.md file at the git repository root, u
 To find the git repository root, use: git rev-parse --show-toplevel
 Then check if the template file exists at $(git rev-parse --show-toplevel)/.github/PULL_REQUEST_TEMPLATE.md
 ! gh pr create
+
+If a PR already exists, then update its description.
