@@ -1,5 +1,9 @@
 {
-  "contextFileName": "CLAUDE.md",
+  "contextFileName": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "GEMINI.md"
+  ],
   "security": {
     "auth": {
       "selectedType": "gemini-api-key"
