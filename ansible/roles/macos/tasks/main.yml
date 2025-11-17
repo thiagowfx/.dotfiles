@@ -1,4 +1,3 @@
----
 - name: Set up keyboard
   block:
     - name: Disable double space auto-period on macos

@@ -1,4 +1,3 @@
----
 - name: Bootstrap environment
   hosts: all
   roles:
@@ -7,4 +6,4 @@
     - role: brew
     - role: brew_cask
     - role: macos
-    # keep-sorted end
+  # keep-sorted end

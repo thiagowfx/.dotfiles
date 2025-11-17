@@ -1,5 +1,4 @@
 # brew list --cask -1
----
 - name: Install brew casks (common)
   community.general.homebrew_cask:
     name: "{{ item }}"

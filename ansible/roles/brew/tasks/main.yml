@@ -1,5 +1,4 @@
 # brew leaves -r
----
 - name: Install brew apps (common)
   community.general.homebrew:
     name: "{{ item }}"

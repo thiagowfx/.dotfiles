@@ -18,29 +18,29 @@ colors:
 
   # Normal colors
   normal:
-    black:   '#272822'
-    red:     '#f92672'
-    green:   '#a6e22e'
-    yellow:  '#f4bf75'
-    blue:    '#66d9ef'
+    black: '#272822'
+    red: '#f92672'
+    green: '#a6e22e'
+    yellow: '#f4bf75'
+    blue: '#66d9ef'
     magenta: '#ae81ff'
-    cyan:    '#a1efe4'
-    white:   '#f8f8f2'
+    cyan: '#a1efe4'
+    white: '#f8f8f2'
 
   # Bright colors
   bright:
-    black:   '#75715e'
-    red:     '#f92672'
-    green:   '#a6e22e'
-    yellow:  '#f4bf75'
-    blue:    '#66d9ef'
+    black: '#75715e'
+    red: '#f92672'
+    green: '#a6e22e'
+    yellow: '#f4bf75'
+    blue: '#66d9ef'
     magenta: '#ae81ff'
-    cyan:    '#a1efe4'
-    white:   '#f9f8f5'
+    cyan: '#a1efe4'
+    white: '#f9f8f5'
 
 key_bindings:
   # open new instance in PWD; macOS default: Command + N
-  - { key: T, mods: Control|Shift, action: SpawnNewInstance }
+  - {key: T, mods: Control|Shift, action: SpawnNewInstance,}
 
 mouse:
   # X11 unclutter-like behavior

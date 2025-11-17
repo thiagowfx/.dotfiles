@@ -3,13 +3,12 @@
 #
 # Install:
 #   ansible-galaxy collection install ansible.posix
----
 collections:
   # keep-sorted start
   - name: ansible.posix
   - name: community.general
-  # keep-sorted end
+    # keep-sorted end
 roles:
   # keep-sorted start
   - name: elliotweiser.osx-command-line-tools
-  # keep-sorted end
+# keep-sorted end
