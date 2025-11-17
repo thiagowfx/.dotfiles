@@ -1,0 +1,11 @@
+{
+  "contextFileName": "CLAUDE.md",
+  "security": {
+    "auth": {
+      "selectedType": "gemini-api-key"
+    }
+  },
+  "ui": {
+    "theme": "Default"
+  }
+}
