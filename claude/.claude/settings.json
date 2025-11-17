@@ -27,6 +27,7 @@
       "Bash(just --list:*)",
       "Bash(ls:*)",
       "Bash(rg:*)",
+      "Bash(terrascan scan:*)",
       "Bash(test:*)",
       "Bash(yamllint:*)",
       "Fetch(https://perrotta.dev/*)"
