@@ -26,6 +26,7 @@
       "Bash(helm template:*)",
       "Bash(just --list:*)",
       "Bash(ls:*)",
+      "Bash(readlink:*)",
       "Bash(rg:*)",
       "Bash(terrascan scan:*)",
       "Bash(test:*)",
