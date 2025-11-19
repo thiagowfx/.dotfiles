@@ -4,8 +4,6 @@ argument-hint: [reviewer]
 description: Make a concise git commit
 ---
 
-Given the guidance below, invoke @agent-pr-writer as needed.
-
 Use the current branch.
 
 Commit with --no-verify, to bypass pre-commit hooks.
