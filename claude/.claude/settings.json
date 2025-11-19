@@ -30,6 +30,7 @@
       "Bash(rg:*)",
       "Bash(terrascan scan:*)",
       "Bash(test:*)",
+      "Bash(wc:*)",
       "Bash(yamllint:*)",
       "Fetch(https://perrotta.dev/*)"
     ]
