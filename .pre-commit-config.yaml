@@ -72,6 +72,10 @@ repos:
     rev: 884e367e8fae92b238653fd950a54d235d418e4e # frozen: v0.20.0
     hooks:
       - id: yamlfmt
+  - repo: https://github.com/jmlrt/check-yamlschema
+    rev: 907e5521b7f182966e59b1736ed1e5ba9eb24641 # frozen: v0.0.7
+    hooks:
+      - id: check-yamlschema
   - repo: https://github.com/rhysd/actionlint/
     rev: e7d448ef7507c20fc4c88a95d0c448b848cd6127 # frozen: v1.7.8
     hooks:
