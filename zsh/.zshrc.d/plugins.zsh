@@ -10,7 +10,7 @@ src_files "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # homebrew
-(( $+commands[brew] )) && FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}" && compinit
+(( $+commands[brew] )) && FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
 # unclutter your .profile: load/unload env depending on the current directory
 # https://direnv.net/
