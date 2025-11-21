@@ -1,7 +1,7 @@
 #!/usr/bin/env just --justfile
 # https://github.com/casey/just
 
-packages := "ack bash bin fzf ghostty git profile ranger ssh tmux vim zsh"
+packages := "ack bash fzf ghostty git profile ranger ssh tmux vim zsh"
 dotfiles_dir := justfile_directory()
 target_dir := env_var("HOME")
 
