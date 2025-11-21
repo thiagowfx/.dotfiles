@@ -1,6 +1,43 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/espanso/espanso/refs/heads/dev/schemas/match.schema.json
 # https://espanso.org/docs/
 matches:
+  # keep-sorted start newline_separated=yes
+  - trigger: ":helm:ls"
+    replace: "helm ls --max 9999 -A | grep -i "
+
+  - trigger: ":kubectl:node:cordoned"
+    replace: kubectl get nodes --field-selector spec.unschedulable=true -o wide
+
+  - trigger: ":kubectl:pod:wip"
+    replace: kubectl get pods -o wide -A | egrep -v '(([0-9]+)/\2 *Running|Completed)'
+
+  - trigger: ":lorem"
+    replace: |-
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+      eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+      voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+      clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+      amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+      nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+      sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+      rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
+      dolor sit amet.
+
+  - trigger: ":pc:autoupdate"
+    replace: "pre-commit autoupdate --jobs $(nproc) --freeze"
+
+  - trigger: ":pc:mdsh"
+    replace: "pre-commit run --hook-stage manual -a mdsh"
+
+  - trigger: ":py"
+    replace: |
+      ```python
+      $|$
+      ```
+
+  - trigger: ":rightarrow"
+    replace: "→"
+
   - trigger: ":today"
     replace: "{{mydate}}"
     vars:
@@ -8,3 +45,19 @@ matches:
         type: date
         params:
           format: "%Y-%m-%d"
+
+  - triggers:
+      - ":hugo:link"
+      - ":hugo:ref"
+    replace: '{{< ref "$|$" >}}'
+
+  - triggers:
+      - ":hugo:prev"
+      - ":hugo:previously"
+    replace: '[Previously]({{< ref "$|$" >}}).'
+
+  - triggers:
+      - ":yaml:lsp"
+      - ":yaml:schema"
+    replace: "# yaml-language-server: $schema=foo.json"
+  # keep-sorted end
