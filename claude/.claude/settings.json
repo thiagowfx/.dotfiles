@@ -23,6 +23,7 @@
       "Bash(go test:*)",
       "Bash(grep:*)",
       "Bash(hadolint:*)",
+      "Bash(helm lint:*)",
       "Bash(helm template:*)",
       "Bash(just --list:*)",
       "Bash(ls:*)",
