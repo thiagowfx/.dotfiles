@@ -32,7 +32,6 @@ matches:
   - trigger: ":py"
     replace: |
       ```python
-      $|$
       ```
 
   - trigger: ":rightarrow"
@@ -60,4 +59,4 @@ matches:
       - ":yaml:lsp"
       - ":yaml:schema"
     replace: "# yaml-language-server: $schema=foo.json"
-  # keep-sorted end
+# keep-sorted end
