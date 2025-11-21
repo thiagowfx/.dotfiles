@@ -90,9 +90,6 @@ nnoremap <leader><Space> :call JustOneSpace()<CR>
 " Always use vertical diff splits.
 set diffopt+=vertical
 
-" Highlight search pattern matches.
-"   :noh dismisses all highlights
-set hlsearch
 " double tap esc to unset highlighting
 nnoremap <Esc><Esc> :noh<CR>
 
@@ -136,9 +133,6 @@ set shortmess=atI
 
 " Display indicators for lines that have been wrapped.
 let &showbreak = '> '
-
-" Show matching brackets, briefly jump to the matched one.
-set showmatch
 
 " Smart autoindent when starting a new line.
 set smartindent
