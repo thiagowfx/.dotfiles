@@ -1,0 +1,9 @@
+# https://espanso.org/docs/
+matches:
+  - trigger: ":today"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y-%m-%d"
