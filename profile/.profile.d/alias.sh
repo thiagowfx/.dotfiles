@@ -8,7 +8,8 @@ alias grep="grep --color=auto"
 # verbose on
 alias ls="ls -Fh --color=auto"
 alias la="ls -la --color=auto"
-alias l="ls -l --color=auto" && alias ll="l"
+alias l="ls -l --color=auto"
+alias ll="l"
 
 # https://direnv.net/
 if hash direnv >/dev/null 2>&1; then

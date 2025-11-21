@@ -69,7 +69,7 @@ autoload -Uz bashcompinit && bashcompinit
 # Disable undesired grml-zsh-config features.
 # https://grml.org/zsh/grmlzshrc.html
 MAILCHECK=0
-set noshare_history
+unsetopt share_history
 unset -f zed
 
 # Source base shell functions.
