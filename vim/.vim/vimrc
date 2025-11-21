@@ -56,9 +56,6 @@ nnoremap <silent> Q gwip
 nnoremap <silent> W <Esc>!ipfmt<Enter>
 nnoremap <silent> E <Esc>!ipfold -s<Enter>
 
-" Remove all trailing whitespace
-nnoremap <leader>w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
-
 " a la emacs just-one-space
 function! JustOneSpace()
   let l:line = getline('.')
