@@ -5,6 +5,7 @@
   "permissions": {
     "allow": [
       "Bash(ansible-doc:*)",
+      "Bash(basename:*)",
       "Bash(cat:*)",
       "Bash(command -v:*)",
       "Bash(dir:*)",
@@ -18,6 +19,7 @@
       "Bash(gh pr review-comment list:*)",
       "Bash(gh pr view:*)",
       "Bash(gh run view:*)",
+      "Bash(git check-ignore:*)",
       "Bash(git log:*)",
       "Bash(git rev-parse:*)",
       "Bash(go test:*)",
@@ -30,7 +32,6 @@
       "Bash(mkdir:*)",
       "Bash(readlink:*)",
       "Bash(rg:*)",
-      "Bash(terrascan scan:*)",
       "Bash(test:*)",
       "Bash(tree:*)",
       "Bash(wc:*)",
