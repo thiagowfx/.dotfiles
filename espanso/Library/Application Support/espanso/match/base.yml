@@ -1,9 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/espanso/espanso/refs/heads/dev/schemas/match.schema.json
 # https://espanso.org/docs/
 
-imports:
-  - corp.yml
-
 matches:
   # keep-sorted start newline_separated=yes
   - trigger: ":helm:ls"
