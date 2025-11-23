@@ -245,3 +245,6 @@ tags
 
 # Ansible
 .lock
+
+# jj
+.jj/
