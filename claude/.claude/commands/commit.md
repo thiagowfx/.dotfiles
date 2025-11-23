@@ -1,13 +1,14 @@
 ---
-allowed_tools: ["Bash(cat:*)", "Bash(gh api user:*)", "Bash(gh pr create:*)", "Bash(git add:*)", "Bash(git checkout:*)", "Bash(git commit:*)", "Bash(git push:*)", "Bash(git rev-parse:*)", "Bash(test:*)"]
-argument-hint: [reviewer]
-description: Make a concise git commit
+allowed_tools: ["Bash(git add:*)", "Bash(git commit:*)", "Bash(git status:*)", "Bash(git rev-parse:*)"]
+argument-hint: [message]
+description: Make a concise git commit on the current branch
 ---
 
-Use the current branch.
+Create a concise git commit with the provided message.
 
-Commit with --no-verify, to bypass pre-commit hooks.
+Steps:
+1. Show current git status to confirm changes
+2. Commit with the provided message
+3. Ask the user if they want to push the changes
 
-If there's a .github/PULL_REQUEST_TEMPLATE.md file at the git repository root, use it as template for the PR description.
-To find the git repository root, use: git rev-parse --show-toplevel
-Then check if the template file exists at $(git rev-parse --show-toplevel)/.github/PULL_REQUEST_TEMPLATE.md
+If the user provides a message as argument, use it directly. Otherwise, ask them for a commit message.
