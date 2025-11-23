@@ -32,6 +32,7 @@
       "Bash(mkdir:*)",
       "Bash(readlink:*)",
       "Bash(rg:*)",
+      "Bash(shellcheck:*)",
       "Bash(test:*)",
       "Bash(tree:*)",
       "Bash(wc:*)",
