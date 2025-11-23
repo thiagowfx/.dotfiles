@@ -37,6 +37,9 @@
       "Bash(wc:*)",
       "Bash(yamllint:*)",
       "Fetch(https://perrotta.dev/*)"
+    ],
+    "deny": [
+      "Bash(terraform apply:*)"
     ]
   },
   "statusLine": {
