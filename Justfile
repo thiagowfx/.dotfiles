@@ -54,3 +54,47 @@ update-git:
 # Update pre-commit hooks
 update-pre-commit:
     pre-commit autoupdate --freeze --jobs "$(nproc)" && pre-commit run --all-files
+
+# Update local JSON schemas
+update-schemas:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    echo "=== Updating JSON Schemas ==="
+    echo ""
+
+    # Create schemas directory if it doesn't exist
+    mkdir -p schemas
+
+    # Define schema mappings (filename -> URL)
+    declare -A schemas=(
+        ["espanso-match.schema.json"]="https://raw.githubusercontent.com/espanso/espanso/refs/heads/dev/schemas/match.schema.json"
+        ["espanso-config.schema.json"]="https://raw.githubusercontent.com/espanso/espanso/refs/heads/dev/schemas/config.schema.json"
+    )
+
+    failed=0
+    succeeded=0
+
+    # Download each schema
+    for filename in "${!schemas[@]}"; do
+        url="${schemas[$filename]}"
+        output_path="schemas/$filename"
+
+        echo -n "Downloading $filename... "
+        if curl -sL -o "$output_path" "$url"; then
+            echo "✓"
+            succeeded=$((succeeded + 1))
+        else
+            echo "✗"
+            failed=$((failed + 1))
+        fi
+    done
+
+    echo ""
+    if [[ $failed -eq 0 ]]; then
+        echo "✓ All $succeeded schemas updated successfully"
+        exit 0
+    else
+        echo "✗ Failed to update $failed schema(s), $succeeded succeeded"
+        exit 1
+    fi

@@ -17,6 +17,9 @@
 #
 # Apply all pre-commit hooks to all files:
 #   $ pre-commit run --all-files
+
+# Vendored files
+exclude: "^schemas/"
 ci:
   autoupdate_schedule: monthly
   submodules: true
@@ -89,6 +92,7 @@ repos:
     rev: 7c52544b0734b280940b0b3492ff07b630f1bac8 # frozen: v0.0.10
     hooks:
       - id: just-format
+      - id: check-yamlschema-local
   - repo: https://github.com/thoughtworks/talisman
     rev: 12fab7055d7e640d5dae43209bafc48bf5ef1fd7 # frozen: v1.37.0
     hooks:
