@@ -122,7 +122,7 @@ set noswapfile nowritebackup
 set number
 
 " Simplify some display messages.
-set shortmess=atI
+set shortmess+=atI
 
 " Display indicators for lines that have been wrapped.
 let &showbreak = '> '
