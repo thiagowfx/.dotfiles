@@ -40,6 +40,7 @@
       "Bash(shellcheck:*)",
       "Bash(tail:*)",
       "Bash(test:*)",
+      "Bash(tflint:*)",
       "Bash(tree:*)",
       "Bash(wc:*)",
       "Bash(yamllint:*)",
