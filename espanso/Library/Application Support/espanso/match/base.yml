@@ -34,7 +34,7 @@ matches:
     replace: "pre-commit run --hook-stage manual -a mdsh"
 
   - trigger: ":py"
-    replace: |
+    replace: |-
       ```python
       ```
 
