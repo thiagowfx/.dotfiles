@@ -8,3 +8,6 @@ mouse-hide-while-typing = true
 shell-integration-features = no-cursor
 theme = tokyonight
 # keep-sorted end
+
+# guake terminal
+keybind = global:cmd+grave_accent=toggle_quick_terminal
