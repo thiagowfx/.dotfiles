@@ -4,14 +4,12 @@
 # markdown
 --type-add=md=.md,.markdown
 
-# terraform
-# upstream: https://github.com/beyondgrep/ack3/issues/377
---type-add=tf=.tf,.tfvars
---ignore-directory=.terraform
-
 # text
 # upstream: https://github.com/beyondgrep/ack3/issues/370
 --type-add=txt=.txt
 
 # ignore common third-party directories
---ignore-directory=vendor
+--ignore-directory=vendor/
+
+# https://conductor.build/
+--ignore-directory=.conductor/
