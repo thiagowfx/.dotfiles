@@ -9,3 +9,4 @@ theme = tokyonight
 # keep-sorted end
 
 keybind = shift+enter=text:\n
+keybind = global:cmd+;=toggle_quick_terminal
