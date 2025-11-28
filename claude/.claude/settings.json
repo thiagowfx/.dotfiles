@@ -33,6 +33,7 @@
       "Bash(just --list:*)",
       "Bash(less:*)",
       "Bash(ls:*)",
+      "Bash(md5sum:*)",
       "Bash(mkdir:*)",
       "Bash(pytest:*)",
       "Bash(readlink:*)",
