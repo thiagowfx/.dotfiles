@@ -1,4 +1,5 @@
 # https://ghostty.org/docs/config
+# ghostty +show-config --default --docs
 # keep-sorted start
 background-opacity = 0.95
 cursor-style-blink = false
