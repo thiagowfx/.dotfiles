@@ -8,5 +8,5 @@ keybind = shift+enter=text:\n
 macos-icon = chalkboard
 mouse-hide-while-typing = true
 shell-integration-features = no-cursor
-theme = Monokai Pro
+theme = Gruvbox Dark
 # keep-sorted end
