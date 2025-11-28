@@ -14,9 +14,11 @@
 # Customize the key used to disable and enable espanso (when double tapped)
 # Available options: CTRL, SHIFT, ALT, CMD, OFF
 # You can also specify the key variant, such as LEFT_CTRL, RIGHT_SHIFT, etc...
-# toggle_key: OFF
-# You can also disable the toggle key completely with
-# toggle_key: OFF
+# You can also disable the toggle key completely with toggle_key: OFF
+toggle_key: ALT
+
+# --- Search shortcut
+# Default: ALT+Space conflicts with Raycast
 search_shortcut: ALT+SHIFT+Space
 
 # --- Injection Backend
