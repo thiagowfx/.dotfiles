@@ -7,5 +7,5 @@ keybind = shift+enter=text:\n
 macos-icon = chalkboard
 mouse-hide-while-typing = true
 shell-integration-features = no-cursor
-theme = tokyonight
+theme = Monokai Pro
 # keep-sorted end
