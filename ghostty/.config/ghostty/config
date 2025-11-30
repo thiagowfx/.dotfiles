@@ -1,11 +1,17 @@
 # https://ghostty.org/docs/config
-# ghostty +show-config --default --docs
+#   Edit config: Cmd + ,
+#   Reload config: Cmd + Shift + ,
+#   Config defaults with docs: ghostty +show-config --default --docs
+
 # keep-sorted start
 background-opacity = 0.95
 cursor-style-blink = false
+# native: Cmd + Shift + d
 keybind = cmd+shift+-=new_split:down
+# native: Cmd + d
 keybind = cmd+shift+|=new_split:right
 keybind = global:cmd+;=toggle_quick_terminal
+keybind = global:cmd+shift+;=toggle_quick_terminal
 keybind = shift+enter=text:\n
 macos-icon = chalkboard
 mouse-hide-while-typing = true
