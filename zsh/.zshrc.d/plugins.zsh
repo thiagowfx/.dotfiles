@@ -32,4 +32,4 @@ if (( $+commands[fzf] )); then
 fi
 
 # atuin: https://docs.atuin.sh/
-(( $+commands[atuin] )) && eval "$(atuin init zsh --disable-up-arrow)"
+(( $+commands[atuin] )) && eval "$(atuin init zsh)"
