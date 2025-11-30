@@ -1,0 +1,1 @@
+../../../../vendor/ghostty-cursor-shaders/cursor_tail.glsl

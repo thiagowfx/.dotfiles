@@ -1,4 +1,9 @@
 # keep-sorted start newline_separated=yes
+[submodule "vendor/ghostty-cursor-shaders"]
+	path = vendor/ghostty-cursor-shaders
+	url = https://github.com/sahaj-b/ghostty-cursor-shaders
+	shallow = true
+
 [submodule "vendor/grml-etc-core"]
 	path = vendor/grml-etc-core
 	url = https://github.com/grml/grml-etc-core

@@ -6,6 +6,7 @@
 # keep-sorted start
 background-opacity = 0.95
 cursor-style-blink = false
+custom-shader = shaders/cursor_tail.glsl
 # native: Cmd + Shift + d
 keybind = cmd+shift+-=new_split:down
 # native: Cmd + d
