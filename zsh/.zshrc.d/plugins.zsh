@@ -24,4 +24,4 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 src_files "$HOME/.iterm2_shell_integration.zsh"
 
 # atuin: https://docs.atuin.sh/
-# (( $+commands[atuin] )) && eval "$(atuin init zsh)"
+(( $+commands[atuin] )) && eval "$(atuin init zsh --disable-up-arrow)"
