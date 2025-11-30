@@ -2,6 +2,9 @@
 #   Edit config: Cmd + ,
 #   Reload config: Cmd + Shift + ,
 #   Config defaults with docs: ghostty +show-config --default --docs
+#
+# https://ghostty.org/docs/config/keybind
+#   ghostty +list-keybinds --default
 
 # keep-sorted start
 background-opacity = 0.95
