@@ -3,6 +3,8 @@
 # keep-sorted start
 background-opacity = 0.95
 cursor-style-blink = false
+keybind = cmd+shift+-=new_split:down
+keybind = cmd+shift+|=new_split:right
 keybind = global:cmd+;=toggle_quick_terminal
 keybind = shift+enter=text:\n
 macos-icon = chalkboard
