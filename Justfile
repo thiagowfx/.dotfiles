@@ -1,7 +1,8 @@
 #!/usr/bin/env just --justfile
 # https://github.com/casey/just
 
-packages := "ack bash espanso fzf ghostty git profile ranger ssh tmux vim zsh"
+packages := "ack bash fzf ghostty git profile ranger ssh tmux vim zsh"
+packages_no_folding := "espanso swiftbar"
 dotfiles_dir := justfile_directory()
 target_dir := env_var("HOME")
 
@@ -32,6 +33,7 @@ stow:
     done
 
     stow -t {{ target_dir }} -d {{ dotfiles_dir }} {{ packages }}
+    stow -t {{ target_dir }} -d {{ dotfiles_dir }} --no-folding {{ packages_no_folding }}
 
 # Check for dangling symlinks
 stow-lint:
