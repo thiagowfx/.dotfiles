@@ -15,6 +15,8 @@ custom-shader = shaders/cursor_tail.glsl
 keybind = cmd+shift+-=new_split:down
 # native: Cmd + d
 keybind = cmd+shift+|=new_split:right
+keybind = ctrl+shift+down=jump_to_prompt:1
+keybind = ctrl+shift+up=jump_to_prompt:-1
 keybind = global:cmd+;=toggle_quick_terminal
 keybind = global:cmd+shift+;=toggle_quick_terminal
 keybind = shift+enter=text:\n
