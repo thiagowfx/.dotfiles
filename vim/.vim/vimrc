@@ -47,6 +47,9 @@ command! Wq wq
 " https://vi.stackexchange.com/questions/439/how-to-join-lines-without-producing-a-space
 nnoremap J gJ
 
+" Fix whitespace with <leader>w
+nnoremap <leader>w :FixWhitespace<CR>
+
 " Reflow current paragraph
 nnoremap <silent> Q gwip
 nnoremap <silent> W <Esc>!ipfmt<Enter>
