@@ -22,9 +22,18 @@ skip = lazy
 checkout = git clone 'git@github.com:thiagowfx/adventofcode' 'adventofcode'
 skip = lazy
 
+[workspace/homebrew-taps]
+checkout = git clone 'git@github.com:thiagowfx/homebrew-taps' 'homebrew-taps'
+skip = lazy
+
 [workspace/pancake]
 checkout = git clone 'git@github.com:thiagowfx/pancake' 'pancake'
+skip = lazy
 
 [workspace/perrotta.dev]
 checkout = git clone 'git@github.com:thiagowfx/thiagowfx.github.io.git' 'perrotta.dev'
+skip = lazy
+
+[workspace/pre-commit-hooks]
+checkout = git clone 'git@github.com:thiagowfx/pre-commit-hooks' 'pre-commit-hooks'
 skip = lazy
