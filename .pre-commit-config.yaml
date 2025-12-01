@@ -60,7 +60,7 @@ repos:
       - id: codespell
         exclude: vim/.vim/autoload/plug.vim
   - repo: https://github.com/gitleaks/gitleaks
-    rev: 3683f1700eef4d855cd549ccbbde4cd0f9e55321 # frozen: v8.29.0
+    rev: 2ca41cc1372d1e939a6a879f18cdc19fc1cac1ce # frozen: v8.30.0
     hooks:
       - id: gitleaks
   - repo: https://github.com/golangci/misspell
@@ -80,7 +80,7 @@ repos:
     hooks:
       - id: check-yamlschema
   - repo: https://github.com/rhysd/actionlint/
-    rev: e7d448ef7507c20fc4c88a95d0c448b848cd6127 # frozen: v1.7.8
+    rev: a443f344ff32813837fa49f7aa6cbc478d770e62 # frozen: v1.7.9
     hooks:
       - id: actionlint
   - repo: https://github.com/shellcheck-py/shellcheck-py
@@ -89,7 +89,7 @@ repos:
       - id: shellcheck
         exclude: \.zsh$
   - repo: https://github.com/thiagowfx/pre-commit-hooks
-    rev: 7c52544b0734b280940b0b3492ff07b630f1bac8 # frozen: v0.0.10
+    rev: 9b63854d88b564765fda71e6089fcd9c8c5b822d # frozen: v0.0.15
     hooks:
       - id: just-format
       - id: check-yamlschema-local
@@ -101,7 +101,7 @@ repos:
       - id: talisman-push
         entry: cmd --githook pre-push
   - repo: https://github.com/woodruffw/zizmor-pre-commit
-    rev: 86ee5ea442ee969842e00913c6b76c060a7aa8ef # frozen: v1.16.3
+    rev: 1e30511413f07e516c1844ba91abce8aca984963 # frozen: v1.18.0
     hooks:
       - id: zizmor
   - repo: local
