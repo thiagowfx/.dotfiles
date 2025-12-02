@@ -195,6 +195,7 @@ Plug 'bogado/file-line'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-endwise'
 Plug 'bronson/vim-trailing-whitespace'
+Plug 'editorconfig/editorconfig-vim'
 
 " UI enhancements
 Plug 'itchyny/lightline.vim'
