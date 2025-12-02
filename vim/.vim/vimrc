@@ -52,8 +52,8 @@ nnoremap <leader>w :FixWhitespace<CR>
 
 " Reflow current paragraph
 nnoremap <silent> Q gwip
-nnoremap <silent> W <Esc>!ipfmt<Enter>
-nnoremap <silent> E <Esc>!ipfold -s<Enter>
+nnoremap <silent> W !ipfmt<Enter>
+nnoremap <silent> E !ipfold -s<Enter>
 
 " a la emacs just-one-space
 function! JustOneSpace()
@@ -78,7 +78,7 @@ function! JustOneSpace()
     let l:newline = l:line[0:l:start-2] . ' ' . l:line[l:end-1:]
     call setline('.', l:newline)
     " Position cursor right after the single space
-    call cursor('.', l:start + 1)
+    call cursor(line('.'), l:start + 1)
   endif
 endfunction
 nnoremap <leader><Space> :call JustOneSpace()<CR>
