@@ -3,6 +3,9 @@
 
 matches:
   # keep-sorted start newline_separated=yes
+  - trigger: ":github"
+    replace: "https://github.com/thiagowfx"
+
   - trigger: ":helm:ls"
     replace: "helm ls --max 9999 -A | grep -i "
 
