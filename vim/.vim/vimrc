@@ -180,7 +180,6 @@ command! Gadd Gwrite
 command! Gdiff Gdiffsplit
 command! Gwqall Gwq
 
-" Text manipulation
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -191,7 +190,6 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/vim-slash'
 
 Plug 'justinmk/vim-sneak'
-let g:sneak#label = 1
 
 " File and buffer management
 Plug 'tpope/vim-vinegar'
