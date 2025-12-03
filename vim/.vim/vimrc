@@ -168,10 +168,17 @@ call plug#begin('~/.vim/plugged')
 
 " Linting and fixing
 Plug 'dense-analysis/ale'
+let g:ale_lint_on_enter = 0
+let g:ale_virtualtext_cursor = 0
+
+" Git integration
+Plug 'mhinz/vim-signify'
 
 " Git integration
 Plug 'tpope/vim-fugitive'
-Plug 'mhinz/vim-signify'
+command! Gadd Gwrite
+command! Gdiff Gdiffsplit
+command! Gwqall Gwq
 
 " Text manipulation
 Plug 'tpope/vim-commentary'
@@ -181,15 +188,21 @@ Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
 
 " Navigation and search
 Plug 'junegunn/fzf'
-Plug 'justinmk/vim-sneak'
 Plug 'junegunn/vim-slash'
+
+Plug 'justinmk/vim-sneak'
+let g:sneak#label = 1
 
 " File and buffer management
 Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-eunuch'
 Plug 'aymericbeaumet/vim-symlink'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'bogado/file-line'
+
+" File and buffer management
+Plug 'tpope/vim-eunuch'
+" https://superuser.com/a/785016/165044
+command! DoasWrite execute 'silent! write !doas tee % >/dev/null' <bar> edit!
 
 " Code quality and formatting
 Plug 'tpope/vim-sleuth'
@@ -208,6 +221,10 @@ Plug 'tpope/vim-unimpaired'
 
 " Clipboard integration
 Plug 'ojroques/vim-oscyank'
+" OSC52 integration for system clipboard.
+"   C-c to copy to system clipboard.
+"   gv preserves selection
+vnoremap <C-c> :OSCYankVisual<CR>gv
 
 " Color schemes
 Plug 'joshdick/onedark.vim', { 'as': 'onedark' }
