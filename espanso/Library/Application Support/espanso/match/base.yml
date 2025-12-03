@@ -30,9 +30,6 @@ matches:
       rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
       dolor sit amet.
 
-  - trigger: ":pa"
-    replace: "^plan^apply"
-
   - trigger: ":pc:autoupdate"
     replace: "pre-commit autoupdate --jobs $(nproc) --freeze"
 
