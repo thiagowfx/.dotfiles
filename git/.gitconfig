@@ -39,7 +39,7 @@
 	su = submodule update
 	switch-to-default = !git switch --force main &>/dev/null || git switch --force master
 	unfreeze = thaw
-	world = !git fetch --all && git remote prune origin && git prune && git prune-gone
+	world = !git fetch --all && git remote prune origin && git prune && git prune-gone && git wt world 2>/dev/null || true
 	# keep-sorted end
 
 	# usage: git ignore go,hugo,vim >> .gitignore
