@@ -50,7 +50,7 @@ repos:
         args:
           - --autofix
           - --no-sort-keys
-        exclude: ^zed/.config/zed/settings.json$
+        exclude: ^zed/.config/zed/settings.json$|^vscode/Library/Application\ Support/Code/User/settings.json$
       - id: trailing-whitespace
         # keep-sorted end
   # keep-sorted start
