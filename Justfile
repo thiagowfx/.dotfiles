@@ -110,31 +110,47 @@ install-brew-casks:
         # keep-sorted start
         1password
         anki
-        basictex
+        brave-browser
+        bruno
+        burp-suite
         calibre
+        codex
+        conductor
+        dbeaver-community
         duckduckgo
         element
+        espanso
+        font-cascadia-code
+        font-commit-mono
         font-hermit
         font-ibm-plex-mono
+        ghostty
         google-chrome
         google-drive
         hiddenbar
         jellyfin
         karabiner-elements
+        little-snitch
         logseq
         maccy
+        microsoft-azure-storage-explorer
+        pgadmin4
+        postico
+        pritunl
         qbittorrent
-        qlmarkdown
+        rancher
         raycast
         rectangle
         slack
         spotify
+        swiftbar
         tailscale
         telegram
         visual-studio-code
         vlc
         whatsapp
         windscribe
+        zed
         # keep-sorted end
     )
 
