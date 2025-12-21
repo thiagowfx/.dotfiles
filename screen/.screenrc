@@ -1,0 +1,78 @@
+# Config file for GNU screen(1).
+# Prefix is C-a.
+#
+# Reload screen config:
+#   C-a r
+#
+# List all keybindings:
+#   C-a ?
+
+# don't display lengthy license and version information on startup
+startup_message off
+
+# no annoying audible bell
+vbell on
+
+# automatically detach on terminal hangup, so that one can attach again and continue working
+autodetach on
+
+# ignore case on searches in copy-mode
+ignorecase on
+
+# assume UTF-8 encoding
+defutf8 on
+
+# erase background with current bg color
+defbce on
+
+# status
+# https://www.kilobitspersecond.com/2014/02/10/understanding-gnu-screens-hardstatus-strings/
+hardstatus alwayslastline '%{= kw}%{+b c}%H%{-} • %{K}%-Lw%{-}%{+b}%n%f*%t%{-}%{K}%+Lw%{-}'
+
+# caption and split bars
+# https://superuser.com/questions/506080/screen-divider-border-width-and-color
+caption string "%{= dd}"
+rendition so = Kk
+
+# use bigger scrollback buffer
+defscrollback 50000
+termcapinfo xterm* ti@:te@
+
+# suppress trailing blank lines when scrolling up text into the history buffer
+compacthist on
+
+# enable mouse (e.g. for split windows)
+mousetrack on
+
+# split focus
+bind o focus next
+bind - eval 'split' 'focus down' 'screen'
+bind | eval 'split -v' 'focus right' 'screen'
+
+# kill window
+bind "^K" kill
+
+# reload configuration file
+bind r source ~/.screenrc
+
+# disable C-a s, which freezes the screen otherwise it needs C-a q to unfreeze
+bind s
+
+# disable prefix ^X which locks the screen, bind it to remove
+bind ^X remove
+bind x remove
+
+# navigate regions with arrow keys
+bind "^A^[OD" focus left
+bind "^A^[OB" focus down
+bind "^A^[OA" focus up
+bind "^A^[OC" focus right
+
+# navigate regions with vi keys
+bind h focus left
+bind j focus down
+bind k focus up
+bind l focus right
+
+# load corp configs if any
+source ~/.screenrc_corp
