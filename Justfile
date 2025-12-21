@@ -54,45 +54,117 @@ install-brew-packages:
     packages=(
         # keep-sorted start
         ack
+        actionlint
+        aider
+        argocd
+        atlassian/acli/acli
         atool
-        bash
+        atuin
+        aws-sso-cli
+        awscli
+        azure-cli
         bash-completion@2
+        bkt
+        broot
+        btop
+        ccusage
+        chart-testing
+        checkov
+        clang-format
+        codespell
+        cookiecutter
         coreutils
+        diffoscope
         direnv
+        diskonaut
+        dive
+        dockerfmt
+        dos2unix
+        dotenv-linter
+        entr
+        eslint
+        expect
         eza
         fd
+        flock
+        folderify
         fpp
+        fx
         fzf
+        gemini-cli
         gh
+        ghostscript
         git
+        git-delta
+        gitui
         gnu-sed
+        go
         graphviz
+        hadolint
+        hashicorp/tap/vault
+        help2man
         htop
+        httpie
         hugo
-        imagemagick
+        icdiff
+        ipython
+        jj
         jq
         just
+        keep-sorted
+        kubeconform
+        kustomize
         less
         lesspipe
         llm
+        ls-lint
+        macos-trash
         make
         mas
+        mdsh
+        midnight-commander
+        miller
+        mimirtool
+        mongodb-atlas-cli
         moreutils
         mr
         mtr
+        nalgeon/howto/howto
         ncdu
+        opencode
+        optipng
+        pngcrush
+        poppler
         pre-commit
+        prometheus
         ranger
-        shellcheck
+        rbenv
+        rename
+        ripgrep-all
+        skopeo
         stow
-        terraform
+        tailspin
+        terraform-docs
+        terraformer
+        terrascan
+        tfenv
+        tflint
+        tfupdate
+        thiagowfx/pancake/pancake
+        thiagowfx/taps/python-is-python3
         tig
-        tmux
+        tmuxinator
         tree
+        trivy
+        uv
         vim
         watch
         wget
+        yamlfmt
+        yamllint
+        yarn
         yq
+        zizmor
         zoxide
         zsh
         zsh-completions
