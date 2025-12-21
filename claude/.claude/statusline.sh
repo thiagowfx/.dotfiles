@@ -40,7 +40,10 @@ if [ "$usage" != "null" ]; then
     for ((i=0; i<filled; i++)); do bar+="█"; done
     for ((i=0; i<empty; i++)); do bar+="░"; done
 
-    context_info="[${bar} ${pct}%]"
+    # Format context window size (e.g., 200000 -> 200k)
+    size_k=$((size / 1000))
+
+    context_info="[${bar} ${pct}% of ${size_k}k]"
 fi
 
 # Build status line
