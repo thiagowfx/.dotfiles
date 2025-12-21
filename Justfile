@@ -3,7 +3,8 @@
 
 packages := "ack bash ghostty git profile ranger ssh tmux vim zsh"
 packages_no_folding := "espanso swiftbar"
-dotfiles_dir := justfile_directory()
+[private]
+_dotfiles_dir := justfile_directory()
 target_dir := env_var("HOME")
 
 # List available commands
@@ -32,8 +33,8 @@ stow:
         fi
     done
 
-    stow -t {{ target_dir }} -d {{ dotfiles_dir }} {{ packages }}
-    stow -t {{ target_dir }} -d {{ dotfiles_dir }} --no-folding {{ packages_no_folding }}
+    stow -t {{ target_dir }} -d {{ _dotfiles_dir }} {{ packages }}
+    stow -t {{ target_dir }} -d {{ _dotfiles_dir }} --no-folding {{ packages_no_folding }}
 
 # Check for dangling symlinks
 stow-lint:
@@ -41,7 +42,7 @@ stow-lint:
 
 # Remove all symlinks
 unstow:
-    stow -t {{ target_dir }} -d {{ dotfiles_dir }} --delete {{ packages }}
+    stow -t {{ target_dir }} -d {{ _dotfiles_dir }} --delete {{ packages }}
 
 # Install dotfiles
 install: stow ansible
