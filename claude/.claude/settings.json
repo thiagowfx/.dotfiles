@@ -4,6 +4,18 @@
     "CLAUDE_CODE_ENABLE_TELEMETRY": "0"
   },
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/block-dangerous-commands.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
     "Notification": [
       {
         "hooks": [
@@ -61,7 +73,9 @@
       "Fetch(https://perrotta.dev/*)"
     ],
     "deny": [
-      "Bash(terraform apply:*)"
+      "Bash(rm -rf:*)",
+      "Bash(terraform apply:*)",
+      "Bash(terraform destroy:*)"
     ]
   },
   "statusLine": {
