@@ -11,16 +11,6 @@ target_dir := env_var("HOME")
 @_list:
     just --list
 
-# Run ansible
-ansible: _ansible-galaxy ansible-playbook
-
-_ansible-galaxy:
-    ansible-galaxy install -r ansible/requirements.yml
-
-# Run ansible playbook
-ansible-playbook:
-    ANSIBLE_CONFIG=ansible/ansible.cfg ansible-playbook ansible/bootstrap.yml -i ansible/inventory.ini --tags untagged
-
 # Stow all packages
 stow:
     #!/usr/bin/env bash
@@ -44,8 +34,150 @@ stow-lint:
 unstow:
     stow -t {{ target_dir }} -d {{ _dotfiles_dir }} --delete {{ packages }}
 
+# Install Xcode Command Line Tools
+xcode-command-line-tools:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    if ! command -v xcode-select &> /dev/null; then
+        echo "Installing Xcode Command Line Tools..."
+        xcode-select --install
+    else
+        echo "Xcode Command Line Tools already installed"
+    fi
+
+# Install common brew packages
+install-brew-packages:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    packages=(
+        # keep-sorted start
+        ack
+        atool
+        bash
+        bash-completion@2
+        coreutils
+        direnv
+        eza
+        fd
+        fpp
+        fzf
+        gh
+        git
+        gnu-sed
+        graphviz
+        htop
+        hugo
+        imagemagick
+        jq
+        just
+        less
+        lesspipe
+        llm
+        make
+        mas
+        moreutils
+        mr
+        mtr
+        ncdu
+        pre-commit
+        ranger
+        shellcheck
+        stow
+        terraform
+        tig
+        tmux
+        tree
+        vim
+        watch
+        wget
+        yq
+        zoxide
+        zsh
+        zsh-completions
+        # keep-sorted end
+    )
+
+    brew install "${packages[@]}"
+
+# Install common brew casks
+install-brew-casks:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    casks=(
+        # keep-sorted start
+        1password
+        anki
+        basictex
+        calibre
+        duckduckgo
+        element
+        font-hermit
+        font-ibm-plex-mono
+        google-chrome
+        google-drive
+        hiddenbar
+        jellyfin
+        karabiner-elements
+        logseq
+        maccy
+        qbittorrent
+        qlmarkdown
+        raycast
+        rectangle
+        slack
+        spotify
+        tailscale
+        telegram
+        visual-studio-code
+        vlc
+        whatsapp
+        windscribe
+        # keep-sorted end
+    )
+
+    brew install --cask "${casks[@]}"
+
+# Configure macOS defaults
+configure-macos:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    # Keyboard settings
+    defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+    defaults write com.apple.HIToolbox AppleFnUsageType -int 2
+    defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+    # Application settings
+    defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+    defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
+    defaults write com.apple.Terminal FocusFollowsMouse -bool true
+    defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+
+    # Dock settings
+    defaults write com.apple.dock show-recents -bool false
+
+    # System settings (requires sudo)
+    sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticCheckEnabled -int 1
+
+    # Touchpad settings
+    defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
+    # Sudo with Touch ID
+    @if ! grep -q "pam_tid.so" /etc/pam.d/sudo; then \
+        echo "Configuring Touch ID for sudo..."; \
+        echo "auth       sufficient     pam_tid.so" | sudo tee /tmp/pam_tid_line > /dev/null; \
+        sudo sed -i "" "2r /tmp/pam_tid_line" /etc/pam.d/sudo; \
+        rm /tmp/pam_tid_line; \
+    fi
+
+# Bootstrap environment (install packages, casks, and configure macOS)
+bootstrap: xcode-command-line-tools install-brew-packages install-brew-casks configure-macos
+
 # Install dotfiles
-install: stow ansible
+install: stow bootstrap
 
 # Update git submodules and pre-commit hooks
 update: update-git update-pre-commit
