@@ -2,7 +2,6 @@
 # keep-sorted start
 brew "ack"
 brew "actionlint"
-brew "aider"
 brew "argocd"
 brew "atlassian/acli/acli"
 brew "atool"
