@@ -25,28 +25,16 @@ vim.keymap.set('n', 'E', '!ipfold -s<Enter>', { noremap = true, silent = true })
 
 -- a la emacs just-one-space
 local function just_one_space()
-  local line = vim.fn.getline('.')
+  local line = vim.api.nvim_get_current_line()
   local col = vim.fn.col('.')
 
-  -- Find start of whitespace sequence
-  local start = col
-  while start > 1 and string.find(string.sub(line, start - 1, start - 1), '%s') do
-    start = start - 1
-  end
+  local s, e = col, col
+  while s > 1 and line:sub(s - 1, s - 1):match('%s') do s = s - 1 end
+  while e <= #line and line:sub(e, e):match('%s') do e = e + 1 end
 
-  -- Find end of whitespace sequence
-  local finish = col
-  while finish <= #line and string.find(string.sub(line, finish, finish), '%s') do
-    finish = finish + 1
-  end
-
-  -- Only proceed if we're in a whitespace sequence with more than 1 space
-  if finish - start > 1 then
-    -- Replace the whitespace sequence with a single space
-    local newline = string.sub(line, 1, start - 2) .. ' ' .. string.sub(line, finish)
-    vim.fn.setline('.', newline)
-    -- Position cursor right after the single space
-    vim.fn.cursor(vim.fn.line('.'), start + 1)
+  if e - s > 1 then
+    vim.api.nvim_set_current_line(line:sub(1, s - 1) .. ' ' .. line:sub(e))
+    vim.fn.cursor(0, s)
   end
 end
 vim.keymap.set('n', '<leader><Space>', just_one_space, { noremap = true })
@@ -197,6 +185,7 @@ vim.g.clipboard = {
     ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
   },
 }
+vim.keymap.set('v', '<C-c>', '"+ygv', { noremap = true, silent = true })
 
 -- Set color theme / scheme
 pcall(function()

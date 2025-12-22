@@ -7,10 +7,6 @@
     "branch": "master",
     "commit": "4972d1401e008c5e9afeb703eddd1b2c2a1d1199"
   },
-  "editorconfig-vim": {
-    "branch": "master",
-    "commit": "13b86c5c691785ffbf2d6508c621dabb08e93df0"
-  },
   "file-line": {
     "branch": "main",
     "commit": "559088afaf10124ea663ee0f4f73b1de48fb1632"
@@ -23,17 +19,9 @@
     "branch": "master",
     "commit": "e358557e1a9f9fc860416c8eb2e34c0404078155"
   },
-  "onedark.vim": {
+  "onedark": {
     "branch": "main",
     "commit": "68dca198f23ef979dc6a123ad50c598902117232"
-  },
-  "terminus": {
-    "branch": "main",
-    "commit": "47247474350e3c2cae12220ef06bed975b7be2dc"
-  },
-  "vim-commentary": {
-    "branch": "master",
-    "commit": "64a654ef4a20db1727938338310209b6a63f60c9"
   },
   "vim-easy-align": {
     "branch": "master",
@@ -51,25 +39,13 @@
     "branch": "master",
     "commit": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4"
   },
-  "vim-highlightedyank": {
-    "branch": "master",
-    "commit": "285a61425e79742997bbde76a91be6189bc988fb"
-  },
   "vim-mkdir": {
     "branch": "main",
     "commit": "039f735268ed0d616e3f3dc5a1db12c929d6c7ab"
   },
-  "vim-oscyank": {
-    "branch": "main",
-    "commit": "d67d76b2f19b868b70a1cf33a779d71dc092cb30"
-  },
   "vim-repeat": {
     "branch": "master",
     "commit": "65846025c15494983dafe5e3b46c8f88ab2e9635"
-  },
-  "vim-sensible": {
-    "branch": "master",
-    "commit": "0ce2d843d6f588bb0c8c7eec6449171615dc56d9"
   },
   "vim-signify": {
     "branch": "master",
@@ -78,10 +54,6 @@
   "vim-slash": {
     "branch": "master",
     "commit": "31aee09b7ea8893a18fa34f65e63e364fc998444"
-  },
-  "vim-sleuth": {
-    "branch": "master",
-    "commit": "be69bff86754b1aa5adcbb527d7fcd1635a84080"
   },
   "vim-sneak": {
     "branch": "master",
