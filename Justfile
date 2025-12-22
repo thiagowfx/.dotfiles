@@ -63,6 +63,7 @@ install-brew-packages:
         aws-sso-cli
         awscli
         azure-cli
+        bash
         bash-completion@2
         bkt
         broot
@@ -107,6 +108,7 @@ install-brew-packages:
         httpie
         hugo
         icdiff
+        imagemagick
         ipython
         jj
         jq
@@ -141,9 +143,11 @@ install-brew-packages:
         rbenv
         rename
         ripgrep-all
+        shellcheck
         skopeo
         stow
         tailspin
+        terraform
         terraform-docs
         terraformer
         terrascan
@@ -153,6 +157,7 @@ install-brew-packages:
         thiagowfx/pancake/pancake
         thiagowfx/taps/python-is-python3
         tig
+        tmux
         tmuxinator
         tree
         trivy
