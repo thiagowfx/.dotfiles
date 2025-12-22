@@ -37,3 +37,6 @@ skip = lazy
 [workspace/pre-commit-hooks]
 checkout = git clone 'git@github.com:thiagowfx/pre-commit-hooks' 'pre-commit-hooks'
 skip = lazy
+
+# chain corp repositories
+include = test -f $HOME/Corp/.mrconfig && sed 's|^\[\([^/DEFAULT]\)|[Corp/\1|' $HOME/Corp/.mrconfig || true
