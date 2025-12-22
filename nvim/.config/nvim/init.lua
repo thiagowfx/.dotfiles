@@ -135,6 +135,11 @@ local plugins = {
     'kylechui/nvim-surround',
     config = function() require('nvim-surround').setup() end,
   },
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = function() require('nvim-autopairs').setup() end,
+  },
   { 'junegunn/vim-easy-align', cmd = { 'EasyAlign' } },
 
   -- Navigation and search
