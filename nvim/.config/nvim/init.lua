@@ -13,7 +13,7 @@ vim.cmd("command! Wq wq")
 vim.keymap.set('n', 'J', 'gJ', { noremap = true, silent = true })
 
 -- Fix whitespace with <leader>w
-vim.keymap.set('n', '<leader>w', ':FixWhitespace<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>w', ':FixWhitespace<CR>', { noremap = true, silent = true, desc = 'Fix whitespace' })
 
 -- Reflow current paragraph
 vim.keymap.set('n', 'Q', 'gwip', { noremap = true, silent = true })
@@ -34,7 +34,7 @@ local function just_one_space()
     vim.fn.cursor(0, s)
   end
 end
-vim.keymap.set('n', '<leader><Space>', just_one_space, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader><Space>', just_one_space, { noremap = true, silent = true, desc = 'Just one space' })
 
 -- Always use vertical diff splits.
 vim.opt.diffopt:append("vertical")
@@ -143,9 +143,9 @@ local plugins = {
     'nvim-telescope/telescope.nvim',
     config = function()
       local builtin = require('telescope.builtin')
-      vim.keymap.set('n', '<leader>ff', builtin.find_files)
-      vim.keymap.set('n', '<leader>fg', builtin.live_grep)
-      vim.keymap.set('n', '<leader>fb', builtin.buffers)
+      vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Find files' })
+      vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Live grep' })
+      vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Buffers' })
     end,
   },
   'junegunn/vim-slash',
@@ -165,6 +165,11 @@ local plugins = {
   {
     'nvim-lualine/lualine.nvim',
     config = function() require('lualine').setup({ options = { theme = 'onedark' } }) end,
+  },
+  {
+    'folke/which-key.nvim',
+    event = 'VeryLazy',
+    config = function() require('which-key').setup() end,
   },
 
   -- Better defaults
