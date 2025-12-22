@@ -190,7 +190,7 @@ vim.g.clipboard = {
     ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
   },
 }
-vim.keymap.set('v', '<C-c>', '"+ygv', { noremap = true, silent = true })
+vim.keymap.set('v', '<C-c>', '"+y', { noremap = true, silent = true })
 
 -- Set color theme / scheme
 pcall(function() vim.cmd("colorscheme onedark") end)
