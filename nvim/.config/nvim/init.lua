@@ -16,7 +16,7 @@ vim.cmd("command! Wq wq")
 vim.keymap.set('n', 'J', 'gJ', { noremap = true })
 
 -- Fix whitespace with <leader>w
-vim.keymap.set('n', '<leader>w', ':FixWhitespace<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>w', ':FixWhitespace<CR>', { noremap = true, silent = true })
 
 -- Reflow current paragraph
 vim.keymap.set('n', 'Q', 'gwip', { noremap = true, silent = true })
@@ -55,7 +55,7 @@ vim.keymap.set('n', '<leader><Space>', just_one_space, { noremap = true })
 vim.opt.diffopt:append("vertical")
 
 -- double tap esc to unset highlighting
-vim.keymap.set('n', '<Esc><Esc>', ':noh<CR>', { noremap = true })
+vim.keymap.set('n', '<Esc><Esc>', ':noh<CR>', { noremap = true, silent = true })
 
 -- https://stackoverflow.com/a/2288438/1745064
 vim.opt.ignorecase = true
@@ -69,7 +69,7 @@ vim.opt.listchars = "tab:|\\ ,trail:·,nbsp:·"
 vim.opt.foldenable = false
 
 -- Disable --INSERT-- which is not necessary, because:
---   Cursor shape changes thanks to wincent/terminus.
+--   Neovim changes cursor shape automatically.
 --   itchyny/lightline.vim already displays it.
 vim.opt.showmode = false
 
@@ -138,7 +138,6 @@ local plugins = {
   'tpope/vim-fugitive',
 
   -- Editing
-  'tpope/vim-commentary',
   'tpope/vim-surround',
   'tpope/vim-repeat',
   { 'junegunn/vim-easy-align', cmd = { 'EasyAlign' } },
@@ -161,14 +160,9 @@ local plugins = {
 
   -- UI enhancements
   'itchyny/lightline.vim',
-  'machakann/vim-highlightedyank',
-  'wincent/terminus',
 
   -- Better defaults
   'tpope/vim-unimpaired',
-
-  -- Clipboard integration
-  'ojroques/vim-oscyank',
 
   -- Color schemes
   { 'joshdick/onedark.vim', name = 'onedark' },
@@ -177,11 +171,7 @@ local plugins = {
   'whiteinge/diffconflicts',
 }
 
-local opts = {
-  -- lazy.nvim options here
-}
-
-require("lazy").setup(plugins, opts)
+require("lazy").setup(plugins)
 
 -- Configure ale
 vim.g.ale_lint_on_enter = 0
@@ -195,11 +185,28 @@ vim.cmd("command! Gwqall Gwq")
 -- Configure vim-eunuch custom command
 vim.cmd("command! DoasWrite execute 'silent! write !doas tee % >/dev/null' <bar> edit!")
 
--- Clipboard integration - OSC52
-vim.keymap.set('v', '<C-c>', ':OSCYankVisual<CR>gv', { noremap = true })
+-- Clipboard integration - use Neovim's built-in OSC52
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+  },
+  paste = {
+    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+  },
+}
 
 -- Set color theme / scheme
 pcall(function()
   vim.cmd("colorscheme onedark")
   vim.cmd("highlight ColorColumn ctermbg=magenta")
 end)
+
+-- Highlight yanked text (built-in replacement for vim-highlightedyank)
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
