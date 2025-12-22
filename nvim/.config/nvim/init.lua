@@ -123,16 +123,11 @@ local plugins = {
     'kylechui/nvim-surround',
     config = function() require('nvim-surround').setup() end,
   },
-  'tpope/vim-repeat',
   { 'junegunn/vim-easy-align', cmd = { 'EasyAlign' } },
 
   -- Navigation and search
   'junegunn/fzf',
   'junegunn/vim-slash',
-  {
-    'ggandor/leap.nvim',
-    config = function() require('leap').add_default_mappings() end,
-  },
 
   -- File and buffer management
   'tpope/vim-vinegar',
