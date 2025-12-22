@@ -3,9 +3,6 @@
 -- Set leader key. Default is '\'.
 vim.g.mapleader = ","
 
--- The colorscheme of lightline is independent of the editor colorscheme.
-vim.g.lightline = { colorscheme = 'onedark' }
-
 -- :w save misspellings
 vim.cmd("command! GWQ Gwq")
 vim.cmd("command! W w")
@@ -58,7 +55,7 @@ vim.opt.foldenable = false
 
 -- Disable --INSERT-- which is not necessary, because:
 --   Neovim changes cursor shape automatically.
---   itchyny/lightline.vim already displays it.
+--   lualine.nvim already displays it.
 vim.opt.showmode = false
 
 -- Disable backups and swapfile, use persistent undo instead.
@@ -122,14 +119,20 @@ local plugins = {
   'tpope/vim-fugitive',
 
   -- Editing
-  'tpope/vim-surround',
+  {
+    'kylechui/nvim-surround',
+    config = function() require('nvim-surround').setup() end,
+  },
   'tpope/vim-repeat',
   { 'junegunn/vim-easy-align', cmd = { 'EasyAlign' } },
 
   -- Navigation and search
   'junegunn/fzf',
   'junegunn/vim-slash',
-  'justinmk/vim-sneak',
+  {
+    'ggandor/leap.nvim',
+    config = function() require('leap').add_default_mappings() end,
+  },
 
   -- File and buffer management
   'tpope/vim-vinegar',
@@ -143,7 +146,10 @@ local plugins = {
   'bronson/vim-trailing-whitespace',
 
   -- UI enhancements
-  'itchyny/lightline.vim',
+  {
+    'nvim-lualine/lualine.nvim',
+    config = function() require('lualine').setup({ options = { theme = 'onedark' } }) end,
+  },
 
   -- Better defaults
   'tpope/vim-unimpaired',
