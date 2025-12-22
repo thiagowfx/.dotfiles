@@ -111,6 +111,18 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Plugin specs
 local plugins = {
+  -- Syntax highlighting
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    config = function()
+      require('nvim-treesitter').setup({
+        ensure_installed = { 'lua', 'vim', 'vimdoc', 'bash', 'python', 'json', 'yaml', 'markdown' },
+        auto_install = true,
+      })
+    end,
+  },
+
   -- Linting and fixing
   'dense-analysis/ale',
 

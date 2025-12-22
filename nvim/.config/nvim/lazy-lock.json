@@ -19,6 +19,10 @@
     "branch": "main",
     "commit": "1098d7b3c34adcfa7feb3289ee434529abd4afd1"
   },
+  "nvim-treesitter": {
+    "branch": "main",
+    "commit": "6e42d823ce0a5a76180c473c119c7677738a09d1"
+  },
   "onedark": {
     "branch": "main",
     "commit": "68dca198f23ef979dc6a123ad50c598902117232"
