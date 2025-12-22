@@ -103,7 +103,6 @@ install-brew-packages:
         graphviz
         hadolint
         hashicorp/tap/vault
-        help2man
         htop
         httpie
         hugo
