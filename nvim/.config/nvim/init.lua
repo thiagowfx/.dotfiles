@@ -183,6 +183,11 @@ local plugins = {
     config = function() require('lualine').setup({ options = { theme = 'onedark' } }) end,
   },
   {
+    'lukas-reineke/indent-blankline.nvim',
+    main = 'ibl',
+    config = function() require('ibl').setup() end,
+  },
+  {
     'folke/which-key.nvim',
     event = 'VeryLazy',
     config = function() require('which-key').setup() end,
