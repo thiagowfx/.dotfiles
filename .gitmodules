@@ -1,4 +1,9 @@
 # keep-sorted start newline_separated=yes
+[submodule "nvim/.config/nvim/lazy.nvim"]
+	path = nvim/.config/nvim/lazy.nvim
+	url = https://github.com/folke/lazy.nvim.git
+	shallow = true
+
 [submodule "vendor/ghostty-cursor-shaders"]
 	path = vendor/ghostty-cursor-shaders
 	url = https://github.com/sahaj-b/ghostty-cursor-shaders
