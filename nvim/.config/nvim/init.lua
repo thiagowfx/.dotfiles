@@ -13,7 +13,7 @@ vim.cmd("command! WQ wq")
 vim.cmd("command! Wq wq")
 
 -- https://vi.stackexchange.com/questions/439/how-to-join-lines-without-producing-a-space
-vim.keymap.set('n', 'J', 'gJ', { noremap = true })
+vim.keymap.set('n', 'J', 'gJ', { noremap = true, silent = true })
 
 -- Fix whitespace with <leader>w
 vim.keymap.set('n', '<leader>w', ':FixWhitespace<CR>', { noremap = true, silent = true })
@@ -37,7 +37,7 @@ local function just_one_space()
     vim.fn.cursor(0, s)
   end
 end
-vim.keymap.set('n', '<leader><Space>', just_one_space, { noremap = true })
+vim.keymap.set('n', '<leader><Space>', just_one_space, { noremap = true, silent = true })
 
 -- Always use vertical diff splits.
 vim.opt.diffopt:append("vertical")
@@ -76,10 +76,6 @@ vim.opt.showbreak = '> '
 
 -- Smart autoindent when starting a new line.
 vim.opt.smartindent = true
-
--- Spell-checking
--- vim.opt.spell = true
--- vim.opt.spelllang = "de_de,en_ca,en_us,pt_br"
 
 -- Better splits.
 vim.opt.splitbelow = true
@@ -167,7 +163,6 @@ vim.g.ale_virtualtext_cursor = 0
 
 -- Configure vim-fugitive custom commands
 vim.cmd("command! Gadd Gwrite")
-vim.cmd("command! Gdiff Gdiffsplit")
 vim.cmd("command! Gwqall Gwq")
 
 -- Configure vim-eunuch custom command
@@ -188,14 +183,10 @@ vim.g.clipboard = {
 vim.keymap.set('v', '<C-c>', '"+ygv', { noremap = true, silent = true })
 
 -- Set color theme / scheme
-pcall(function()
-  vim.cmd("colorscheme onedark")
-  vim.cmd("highlight ColorColumn ctermbg=magenta")
-end)
+pcall(function() vim.cmd("colorscheme onedark") end)
 
 -- Highlight yanked text (built-in replacement for vim-highlightedyank)
 vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
+  group = vim.api.nvim_create_augroup('YankHighlight', { clear = true }),
+  callback = function() vim.highlight.on_yank() end,
 })
