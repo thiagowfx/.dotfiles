@@ -177,7 +177,6 @@ Plug 'mhinz/vim-signify'
 " Git integration
 Plug 'tpope/vim-fugitive'
 command! Gadd Gwrite
-command! Gdiff Gdiffsplit
 command! Gwqall Gwq
 
 Plug 'tpope/vim-commentary'
