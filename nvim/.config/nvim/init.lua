@@ -156,7 +156,13 @@ local plugins = {
   'junegunn/vim-slash',
 
   -- File and buffer management
-  'tpope/vim-vinegar',
+  {
+    'stevearc/oil.nvim',
+    config = function()
+      require('oil').setup()
+      vim.keymap.set('n', '-', '<cmd>Oil<CR>', { desc = 'Open parent directory' })
+    end,
+  },
   'aymericbeaumet/vim-symlink',
   'pbrisbin/vim-mkdir',
   'bogado/file-line',
