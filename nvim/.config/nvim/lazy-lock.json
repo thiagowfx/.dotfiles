@@ -11,18 +11,6 @@
     "branch": "main",
     "commit": "559088afaf10124ea663ee0f4f73b1de48fb1632"
   },
-  "fzf": {
-    "branch": "master",
-    "commit": "603240122e300d146cbae6f0bc9c52a1017ac3c8"
-  },
-  "gitsigns.nvim": {
-    "branch": "main",
-    "commit": "5813e4878748805f1518cee7abb50fd7205a3a48"
-  },
-  "leap.nvim": {
-    "branch": "main",
-    "commit": "f19d43590c4b6d31188ee1ea2954d2b7558a9e11"
-  },
   "lualine.nvim": {
     "branch": "master",
     "commit": "47f91c416daef12db467145e16bed5bbfe00add8"
@@ -34,6 +22,14 @@
   "onedark": {
     "branch": "main",
     "commit": "68dca198f23ef979dc6a123ad50c598902117232"
+  },
+  "plenary.nvim": {
+    "branch": "master",
+    "commit": "b9fd5226c2f76c951fc8ed5923d85e4de065e509"
+  },
+  "telescope.nvim": {
+    "branch": "master",
+    "commit": "e709d31454ee6e6157f0537f861f797bd44c0bad"
   },
   "vim-easy-align": {
     "branch": "master",
@@ -55,9 +51,9 @@
     "branch": "main",
     "commit": "039f735268ed0d616e3f3dc5a1db12c929d6c7ab"
   },
-  "vim-repeat": {
+  "vim-signify": {
     "branch": "master",
-    "commit": "65846025c15494983dafe5e3b46c8f88ab2e9635"
+    "commit": "9ec7989ef5f92c5073de26abb46fc6a998b75ef8"
   },
   "vim-slash": {
     "branch": "master",

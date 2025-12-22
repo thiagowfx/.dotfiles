@@ -126,7 +126,16 @@ local plugins = {
   { 'junegunn/vim-easy-align', cmd = { 'EasyAlign' } },
 
   -- Navigation and search
-  'junegunn/fzf',
+  'nvim-lua/plenary.nvim',
+  {
+    'nvim-telescope/telescope.nvim',
+    config = function()
+      local builtin = require('telescope.builtin')
+      vim.keymap.set('n', '<leader>ff', builtin.find_files)
+      vim.keymap.set('n', '<leader>fg', builtin.live_grep)
+      vim.keymap.set('n', '<leader>fb', builtin.buffers)
+    end,
+  },
   'junegunn/vim-slash',
 
   -- File and buffer management
