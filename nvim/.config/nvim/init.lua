@@ -3,12 +3,6 @@
 -- Set leader key. Default is '\'.
 vim.g.mapleader = ","
 
--- Browse manual pages within nvim.
-vim.cmd("runtime! ftplugin/man.vim")
-
--- Better %
-vim.cmd("runtime! macros/matchit.vim")
-
 -- The colorscheme of lightline is independent of the editor colorscheme.
 vim.g.lightline = { colorscheme = 'onedark' }
 
@@ -67,24 +61,12 @@ vim.keymap.set('n', '<Esc><Esc>', ':noh<CR>', { noremap = true })
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
--- Do not redraw the screen while executing macros.
-vim.opt.lazyredraw = true
-
 -- Display whitespace characters, including tabs.
 vim.opt.list = true
 vim.opt.listchars = "tab:|\\ ,trail:·,nbsp:·"
 
--- https://vim.fandom.com/wiki/Modeline_magic
-vim.opt.modeline = true
-
--- Disable horizontal cursor line as it is very slow over ssh.
-vim.opt.cursorline = false
-
 -- Disable fold.
 vim.opt.foldenable = false
-
--- Use one space, not two, after punctuation.
-vim.opt.joinspaces = false
 
 -- Disable --INSERT-- which is not necessary, because:
 --   Cursor shape changes thanks to wincent/terminus.
@@ -117,12 +99,10 @@ vim.opt.splitright = true
 vim.opt.switchbuf = "useopen"
 
 -- Enable persistent undo.
-if vim.fn.has('persistent_undo') == 1 then
-  vim.opt.undofile = true
-  local undo_dir = vim.fn.expand('~/.cache/nvim/undo')
-  vim.opt.undodir = undo_dir
-  vim.fn.mkdir(undo_dir, 'p', tonumber('0700', 8))
-end
+vim.opt.undofile = true
+local undo_dir = vim.fn.expand('~/.cache/nvim/undo')
+vim.opt.undodir = undo_dir
+vim.fn.mkdir(undo_dir, 'p', tonumber('0700', 8))
 
 -- Shorter update time than the 4000ms default, for async operations.
 vim.opt.updatetime = 2000
@@ -131,15 +111,12 @@ vim.opt.updatetime = 2000
 vim.opt.timeoutlen = 500
 vim.opt.ttimeoutlen = 10
 
--- Set visual bell. The audio bell is very annoying, so make it do nothing.
-vim.opt.visualbell = true
-
 -- Set completion mode.
 vim.opt.wildmode = "list:longest"
 
 -- Setup lazy.nvim
 local lazypath = vim.fn.stdpath("config") .. "/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
@@ -179,10 +156,8 @@ local plugins = {
   'tpope/vim-eunuch',
 
   -- Code quality and formatting
-  'tpope/vim-sleuth',
   'tpope/vim-endwise',
   'bronson/vim-trailing-whitespace',
-  'editorconfig/editorconfig-vim',
 
   -- UI enhancements
   'itchyny/lightline.vim',
@@ -190,14 +165,13 @@ local plugins = {
   'wincent/terminus',
 
   -- Better defaults
-  'tpope/vim-sensible',
   'tpope/vim-unimpaired',
 
   -- Clipboard integration
   'ojroques/vim-oscyank',
 
   -- Color schemes
-  { 'joshdick/onedark.vim', as = 'onedark' },
+  { 'joshdick/onedark.vim', name = 'onedark' },
 
   -- Diff tools
   'whiteinge/diffconflicts',
