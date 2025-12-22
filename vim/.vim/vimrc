@@ -103,10 +103,6 @@ set list lcs=tab:\|\ ,trail:·,nbsp:·
 " https://vim.fandom.com/wiki/Modeline_magic
 set modeline
 
-" Disable horizontal cursor line as it is very slow over ssh.
-" https://stackoverflow.com/q/307148/1745064
-set nocursorline
-
 " Disable fold.
 set nofoldenable
 
@@ -132,10 +128,6 @@ let &showbreak = '> '
 
 " Smart autoindent when starting a new line.
 set smartindent
-
-" Spell-checking
-" set spell
-" set spelllang=de_de,en_ca,en_us,pt_br
 
 " Better splits.
 set splitbelow splitright switchbuf=useopen
@@ -234,7 +226,6 @@ call plug#end()
 " Set color theme / scheme (must be after plug#end())
 try
   colorscheme onedark
-  highlight ColorColumn ctermbg=magenta
 catch
   " Colorscheme not installed yet, will be available after :PlugInstall
 endtry
