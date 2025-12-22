@@ -79,9 +79,9 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.switchbuf = "useopen"
 
--- Enable persistent undo (shared with vim).
+-- Enable persistent undo.
 vim.opt.undofile = true
-local undo_dir = vim.fn.expand('~/.cache/vim/undo')
+local undo_dir = vim.fn.expand('~/.cache/nvim/undo')
 vim.opt.undodir = undo_dir
 vim.fn.mkdir(undo_dir, 'p', tonumber('0700', 8))
 
