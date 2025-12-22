@@ -171,6 +171,11 @@ local plugins = {
   -- Code quality and formatting
   'tpope/vim-endwise',
   'bronson/vim-trailing-whitespace',
+  {
+    'folke/todo-comments.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function() require('todo-comments').setup() end,
+  },
 
   -- UI enhancements
   {
