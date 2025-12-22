@@ -14,6 +14,11 @@
 	url = https://github.com/grml/grml-etc-core
 	shallow = true
 
+[submodule "vim/.vim/vim-plug"]
+	path = vim/.vim/vim-plug
+	url = https://github.com/junegunn/vim-plug.git
+	shallow = true
+
 [submodule "zsh/.zsh/zsh-autosuggestions"]
 	path = zsh/.zsh/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
