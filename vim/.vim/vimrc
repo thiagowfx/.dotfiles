@@ -26,10 +26,6 @@ silent! source $VIMRUNTIME/defaults.vim
 " Set leader key. Default is '\'.
 let mapleader=","
 
-" Browse manual pages within vim.
-"   :Man man
-runtime! ftplugin/man.vim
-
 " Better %
 runtime! macros/matchit.vim
 
@@ -133,10 +129,8 @@ set smartindent
 set splitbelow splitright switchbuf=useopen
 
 " Enable persistent undo.
-if has('persistent_undo')
-  set undofile undodir=~/.cache/vim/undo
-  call mkdir(&undodir, "p", 0700)
-endif
+set undofile undodir=~/.cache/vim/undo
+call mkdir(&undodir, "p", 0700)
 
 " Shorter update time than the 4000ms default, for async vim operations.
 set updatetime=2000
@@ -210,10 +204,7 @@ Plug 'tpope/vim-unimpaired'
 
 " Clipboard integration
 Plug 'ojroques/vim-oscyank'
-" OSC52 integration for system clipboard.
-"   C-c to copy to system clipboard.
-"   gv preserves selection
-vnoremap <C-c> :OSCYankVisual<CR>gv
+vnoremap <C-c> :OSCYankVisual<CR>
 
 " Color schemes
 Plug 'joshdick/onedark.vim', { 'as': 'onedark' }
