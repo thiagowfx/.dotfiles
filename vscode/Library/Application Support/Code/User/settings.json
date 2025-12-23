@@ -31,7 +31,6 @@
     "gitlens.launchpad.indicator.enabled": false,
     "gitlens.plusFeatures.enabled": false,
     "gitlens.views.commitDetails.files.layout": "tree",
-    "go.toolsManagement.autoUpdate": true,
     "terminal.external.osxExec": "Ghostty.app",
     "terminal.integrated.copyOnSelection": true,
     "terminal.integrated.fontFamily": "Hermit, Menlo, Monaco, 'Courier New', monospace",
@@ -41,7 +40,9 @@
     "terminal.integrated.middleClickBehavior": "paste",
     "terminal.integrated.persistentSessionReviveProcess": "never",
     "terminal.integrated.sendKeybindingsToShell": true,
+    "terminal.integrated.shellIntegration.enabled": false,
     "terminal.integrated.showExitAlert": false, // https://github.com/microsoft/vscode/issues/106555
+    "terminal.integrated.suggest.enabled": false,
     "update.showReleaseNotes": false,
     "window.commandCenter": true,
     "workbench.colorTheme": "Catppuccin Frappé",
