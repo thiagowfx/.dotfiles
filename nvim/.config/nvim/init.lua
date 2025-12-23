@@ -290,6 +290,17 @@ vim.lsp.config.yamlls = {}
 vim.lsp.config.jsonls = {}
 vim.lsp.enable({ 'lua_ls', 'pyright', 'bashls', 'yamlls', 'jsonls' })
 
+-- Configure LSP diagnostics display
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = '●',
+    spacing = 2,
+  },
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+})
+
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true }),
   callback = function(ev)
