@@ -40,9 +40,9 @@ if [ "$usage" != "null" ]; then
     pct=$((current * 100 / compact_threshold))
     if [ "$pct" -gt 100 ]; then pct=100; fi
 
-    # Create progress bar (10 characters wide)
-    filled=$((pct / 10))
-    empty=$((10 - filled))
+    # Create progress bar (5 characters wide)
+    filled=$((pct / 20))
+    empty=$((5 - filled))
     bar=""
     for ((i=0; i<filled; i++)); do bar+="█"; done
     for ((i=0; i<empty; i++)); do bar+="░"; done
