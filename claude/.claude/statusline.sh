@@ -47,9 +47,7 @@ if [ "$usage" != "null" ]; then
     for ((i=0; i<filled; i++)); do bar+="█"; done
     for ((i=0; i<empty; i++)); do bar+="░"; done
 
-    # Show percentage left until auto-compact (consistent with Claude Code)
-    left=$((100 - pct))
-    context_info="[${bar} ${left}% left]"
+    context_info="[${bar}]"
 fi
 
 # Build status line
