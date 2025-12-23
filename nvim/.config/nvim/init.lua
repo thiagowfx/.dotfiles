@@ -186,7 +186,6 @@ local plugins = {
     end,
   },
   'aymericbeaumet/vim-symlink',
-  'pbrisbin/vim-mkdir',
   'bogado/file-line',
   'tpope/vim-eunuch',
 
@@ -271,4 +270,13 @@ vim.keymap.set('v', '<C-c>', '"+y', { noremap = true, silent = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = vim.api.nvim_create_augroup('YankHighlight', { clear = true }),
   callback = function() vim.highlight.on_yank() end,
+})
+
+-- Auto-create directories when saving (replaces vim-mkdir)
+vim.api.nvim_create_autocmd('BufWritePre', {
+  group = vim.api.nvim_create_augroup('AutoMkdir', { clear = true }),
+  callback = function(event)
+    local file = vim.uv.fs_realpath(event.match) or event.match
+    vim.fn.mkdir(vim.fn.fnamemodify(file, ':p:h'), 'p')
+  end,
 })
