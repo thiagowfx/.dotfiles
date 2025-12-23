@@ -123,9 +123,6 @@ local plugins = {
     end,
   },
 
-  -- Linting and fixing
-  'dense-analysis/ale',
-
   -- Git integration
   {
     'lewis6991/gitsigns.nvim',
@@ -237,13 +234,78 @@ local plugins = {
 
   -- Diff tools
   'whiteinge/diffconflicts',
+
+  -- LSP, Linting, and Formatting
+  'neovim/nvim-lspconfig',
+  {
+    'mfussenegger/nvim-lint',
+    config = function()
+      require('lint').linters_by_ft = {
+        sh = { 'shellcheck' },
+        bash = { 'shellcheck' },
+        yaml = { 'yamllint' },
+        json = { 'jsonlint' },
+      }
+      vim.api.nvim_create_autocmd({ 'BufWritePost', 'BufReadPost' }, {
+        callback = function() require('lint').try_lint() end,
+      })
+    end,
+  },
+  {
+    'stevearc/conform.nvim',
+    config = function()
+      require('conform').setup({
+        formatters_by_ft = {
+          lua = { 'stylua' },
+          python = { 'black' },
+          sh = { 'shfmt' },
+          bash = { 'shfmt' },
+          yaml = { 'yamlfmt' },
+          json = { 'jq' },
+        },
+      })
+      vim.keymap.set('n', '<leader>f', function()
+        require('conform').format({ async = true, lsp_fallback = true })
+      end, { desc = 'Format buffer' })
+    end,
+  },
 }
 
 require("lazy").setup(plugins)
 
--- Configure ale
-vim.g.ale_lint_on_enter = 0
-vim.g.ale_virtualtext_cursor = 0
+-- LSP configuration (Neovim 0.11+ native API)
+vim.lsp.config.lua_ls = {
+  settings = {
+    Lua = {
+      runtime = { version = 'LuaJIT' },
+      diagnostics = { globals = { 'vim' } },
+      workspace = { library = vim.api.nvim_get_runtime_file('', true), checkThirdParty = false },
+      telemetry = { enable = false },
+    },
+  },
+}
+vim.lsp.config.pyright = {}
+vim.lsp.config.bashls = {}
+vim.lsp.config.yamlls = {}
+vim.lsp.config.jsonls = {}
+vim.lsp.enable({ 'lua_ls', 'pyright', 'bashls', 'yamlls', 'jsonls' })
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true }),
+  callback = function(ev)
+    local opts = { buffer = ev.buf }
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+    vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
+  end,
+})
 
 -- Configure vim-fugitive custom commands
 vim.cmd("command! Gadd Gwrite")
