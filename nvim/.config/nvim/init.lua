@@ -239,7 +239,11 @@ local plugins = {
   'whiteinge/diffconflicts',
 }
 
-require("lazy").setup(plugins)
+require("lazy").setup(plugins, {
+  install = { missing = true, colorscheme = { "onedark" } },
+  checker = { enabled = true },
+  change_detection = { enabled = true, notify = false },
+})
 
 -- Configure ale
 vim.g.ale_lint_on_enter = 0
