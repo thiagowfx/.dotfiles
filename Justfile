@@ -79,7 +79,7 @@ configure-macos:
 
     # Keyboard repeat rate
     defaults write NSGlobalDomain InitialKeyRepeat -int 10
-    defaults write NSGlobalDomain KeyRepeat -int 1
+    defaults write NSGlobalDomain KeyRepeat -int 2
 
     # Sudo with Touch ID
     @if ! grep -q "pam_tid.so" /etc/pam.d/sudo; then \
