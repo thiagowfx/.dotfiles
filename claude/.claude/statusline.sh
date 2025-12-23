@@ -25,6 +25,33 @@ if git rev-parse --git-dir > /dev/null 2>&1; then
     fi
 fi
 
+# Calculate context window usage (relative to auto-compact threshold ~80%)
+context_info=""
+usage=$(echo "$input" | jq '.context_window.current_usage')
+if [ "$usage" != "null" ]; then
+    # Include output_tokens for accurate context measurement
+    current=$(echo "$usage" | jq '.input_tokens + .output_tokens + .cache_creation_input_tokens + .cache_read_input_tokens')
+    size=$(echo "$input" | jq '.context_window.context_window_size')
+
+    # Auto-compact triggers at ~80% of context window
+    compact_threshold=$((size * 80 / 100))
+
+    # Calculate percentage toward auto-compact (capped at 100%)
+    pct=$((current * 100 / compact_threshold))
+    if [ "$pct" -gt 100 ]; then pct=100; fi
+
+    # Create progress bar (10 characters wide)
+    filled=$((pct / 10))
+    empty=$((10 - filled))
+    bar=""
+    for ((i=0; i<filled; i++)); do bar+="█"; done
+    for ((i=0; i<empty; i++)); do bar+="░"; done
+
+    # Show percentage left until auto-compact (consistent with Claude Code)
+    left=$((100 - pct))
+    context_info="[${bar} ${left}% left]"
+fi
+
 # Build status line
 status_parts=()
 
@@ -42,6 +69,11 @@ status_parts+=("[$model_name]")
 # Add output style if not default
 if [[ "$output_style" != "default" && "$output_style" != "null" ]]; then
     status_parts+=("{$output_style}")
+fi
+
+# Add context usage if available
+if [[ -n "$context_info" ]]; then
+    status_parts+=("$context_info")
 fi
 
 # Join parts with spaces and print
