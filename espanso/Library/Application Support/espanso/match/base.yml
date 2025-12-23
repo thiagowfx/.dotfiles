@@ -7,7 +7,7 @@ matches:
   - trigger: ":  "
     replace: "⠀"
 
-  - trigger: ":github"
+  - trigger: ":github:url"
     replace: "https://github.com/thiagowfx"
 
   - trigger: ":helm:ls"
