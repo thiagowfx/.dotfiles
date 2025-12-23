@@ -192,7 +192,15 @@ local plugins = {
 
   -- Code quality and formatting
   'tpope/vim-endwise',
-  'bronson/vim-trailing-whitespace',
+  {
+    'echasnovski/mini.trailspace',
+    config = function()
+      require('mini.trailspace').setup()
+      vim.api.nvim_create_user_command('FixWhitespace', function()
+        MiniTrailspace.trim()
+      end, {})
+    end,
+  },
   {
     'folke/todo-comments.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
