@@ -219,7 +219,14 @@ local plugins = {
   'tpope/vim-unimpaired',
 
   -- Color schemes
-  { 'joshdick/onedark.vim', name = 'onedark' },
+  {
+    'navarasu/onedark.nvim',
+    priority = 1000,
+    config = function()
+      require('onedark').setup({ style = 'dark' })
+      require('onedark').load()
+    end,
+  },
 
   -- Diff tools
   'whiteinge/diffconflicts',
@@ -251,9 +258,6 @@ vim.g.clipboard = {
   },
 }
 vim.keymap.set('v', '<C-c>', '"+y', { noremap = true, silent = true })
-
--- Set color theme / scheme
-pcall(function() vim.cmd("colorscheme onedark") end)
 
 -- Highlight yanked text (built-in replacement for vim-highlightedyank)
 vim.api.nvim_create_autocmd('TextYankPost', {
