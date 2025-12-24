@@ -216,7 +216,11 @@ local plugins = {
   {
     'folke/which-key.nvim',
     event = 'VeryLazy',
-    config = function() require('which-key').setup() end,
+    config = function()
+      require('which-key').setup({
+        triggers = { '<leader>', 'g', 'z', '[', ']' },
+      })
+    end,
   },
 
   -- Better defaults
