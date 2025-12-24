@@ -27,8 +27,7 @@
 	desc = commit --allow-empty -n
 	emerge = !git add -A . && git amend -n && git pushm --force-with-lease
 	graft = cherry-pick -n
-	nb = switch --create
-	nbt = !git nb "thiagowfx/$(shuf -n1 /usr/share/dict/words | tr '[:upper:]' '[:lower:]')"
+	nb = "!f() { if [ $# -eq 0 ]; then git switch --create \"thiagowfx/$(shuf -n1 /usr/share/dict/words | tr '[:upper:]' '[:lower:]')\"; else git switch --create \"$@\"; fi; }; f"
 	prune-gone = !git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs -r git branch -D
 	pushm = !git push $(git remote | head -1) $(git symbolic-ref --short HEAD) -u
 	rb = branch -m
