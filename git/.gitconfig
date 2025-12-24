@@ -49,7 +49,6 @@
 
 	# log: there's also gitk and tig
 	# ll adapted from https://registerspill.thorstenball.com/p/how-i-use-git
-	l = !git ll
 	ll = log --graph --pretty=tformat:'%C(always,yellow)%h%C(always,reset) %C(always,green)%<(25,trunc)%ar%C(always,reset) %C(always,bold blue)%<(20,trunc)%an%C(always,reset) %C(always,red)%d%C(always,reset) %s'
 	xl = branch -vv
 
