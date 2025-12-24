@@ -40,11 +40,6 @@ matches:
   - trigger: ":pc:mdsh"
     replace: "pre-commit run --hook-stage manual -a mdsh"
 
-  - trigger: ":py"
-    replace: |-
-      ```python
-      ```
-
   - trigger: ":rightarrow"
     replace: "→"
 
