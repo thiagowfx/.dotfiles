@@ -39,9 +39,6 @@ vim.keymap.set('n', '<leader><Space>', just_one_space, { noremap = true, silent 
 -- Always use vertical diff splits.
 vim.opt.diffopt:append("vertical")
 
--- double tap esc to unset highlighting
-vim.keymap.set('n', '<Esc><Esc>', ':noh<CR>', { noremap = true, silent = true })
-
 -- https://stackoverflow.com/a/2288438/1745064
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -222,11 +219,11 @@ local plugins = {
   {
     'folke/which-key.nvim',
     event = 'VeryLazy',
-    config = function()
-      require('which-key').setup({
-        triggers = { '<leader>', 'g', 'z', '[', ']' },
-      })
-    end,
+    opts = {
+      spec = {
+        { '<leader>', group = 'Leader' },
+      },
+    },
   },
 
   -- Better defaults
