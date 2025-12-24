@@ -37,7 +37,7 @@
 	rs = restore --staged
 	st = status
 	su = submodule update
-	switch-to-default = !git switch --force main &>/dev/null || git switch --force master
+	switch-to-default = !git switch --force main 2>/dev/null || git switch --force master 2>/dev/null || git switch --force $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
 	unfreeze = thaw
 	world = !git fetch --all && git remote prune origin && git prune && git prune-gone && git wt world 2>/dev/null || true
 	# keep-sorted end
