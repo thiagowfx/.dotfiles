@@ -88,6 +88,12 @@ vim.fn.mkdir(undo_dir, 'p', tonumber('0700', 8))
 -- Shorter update time than the 4000ms default, for async operations.
 vim.opt.updatetime = 2000
 
+-- Auto-reload files changed on disk
+vim.opt.autoread = true
+vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter' }, {
+  command = 'checktime',
+})
+
 -- Faster mode switching
 vim.opt.timeoutlen = 500
 vim.opt.ttimeoutlen = 10
