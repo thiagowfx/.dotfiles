@@ -78,7 +78,7 @@ configure-macos:
     defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
     # Keyboard repeat rate
-    defaults write NSGlobalDomain InitialKeyRepeat -int 12
+    defaults write NSGlobalDomain InitialKeyRepeat -int 10
     defaults write NSGlobalDomain KeyRepeat -int 2
 
     # Sudo with Touch ID
