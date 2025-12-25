@@ -156,7 +156,7 @@ local plugins = {
   {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
-    config = function() require('nvim-autopairs').setup() end,
+    config = function() require('nvim-autopairs').setup({ map_cr = false }) end,
   },
   { 'junegunn/vim-easy-align', cmd = { 'EasyAlign' } },
 
