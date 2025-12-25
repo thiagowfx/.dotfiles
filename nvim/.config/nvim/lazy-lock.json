@@ -31,6 +31,10 @@
     "branch": "master",
     "commit": "c2a0dd0d931d0fb07665e1fedb1ea688da3b80b4"
   },
+  "nvim-lastplace": {
+    "branch": "main",
+    "commit": "0bb6103c506315044872e0f84b1f736c4172bb20"
+  },
   "nvim-lint": {
     "branch": "master",
     "commit": "1f19dacd945a7b1a57f29f32b2d7168384df3d36"
