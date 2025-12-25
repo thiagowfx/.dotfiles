@@ -83,4 +83,5 @@ fi
 
 echo "---"
 echo "Open Full Report | bash='/opt/homebrew/bin/ccusage' param1='daily' terminal=true"
+echo "View Amp Credits | href=https://ampcode.com/settings"
 echo "Refresh | refresh=true"
