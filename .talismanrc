@@ -4,7 +4,6 @@
 threshold: medium
 allowed_patterns:
   - "rev: \\w+ # frozen:"
-fileignoreconfig:
-  - filename: nvim/**/*lazy-lock.json
-    ignore_detectors: [filecontent]
+files_to_ignore:
+  - "nvim/.config/nvim/lazy-lock.json"
 version: "1.0"
