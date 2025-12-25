@@ -186,7 +186,7 @@ update-schemas:
     echo ""
 
     # Create schemas directory if it doesn't exist
-    mkdir -p schemas
+    mkdir -p vendor/schemas
 
     # Define schema mappings (filename -> URL)
     declare -A schemas=(
@@ -200,7 +200,7 @@ update-schemas:
     # Download each schema
     for filename in "${!schemas[@]}"; do
         url="${schemas[$filename]}"
-        output_path="schemas/$filename"
+        output_path="vendor/schemas/$filename"
 
         echo -n "Downloading $filename... "
         if curl -sL -o "$output_path" "$url"; then

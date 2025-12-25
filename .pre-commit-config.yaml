@@ -19,7 +19,7 @@
 #   $ pre-commit run --all-files
 
 # Vendored files
-exclude: "^schemas/"
+exclude: "^vendor/schemas/"
 ci:
   autoupdate_schedule: monthly
   submodules: true
