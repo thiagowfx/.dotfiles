@@ -19,6 +19,9 @@ matches:
   - trigger: ":k:pod:wip"
     replace: kubectl get pods -o wide -A | egrep -v '(([0-9]+)/\2 *Running|Completed)'
 
+  - trigger: ":left"
+    replace: "←"
+
   - trigger: ":linkedin"
     replace: "https://www.linkedin.com/in/thiagoperrotta/"
 
@@ -40,7 +43,7 @@ matches:
   - trigger: ":pc:mdsh"
     replace: "pre-commit run --hook-stage manual -a mdsh"
 
-  - trigger: ":rightarrow"
+  - trigger: ":right"
     replace: "→"
 
   - trigger: ":today"
