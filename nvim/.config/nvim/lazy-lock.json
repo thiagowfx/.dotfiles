@@ -1,7 +1,7 @@
 {
-  "ale": {
+  "conform.nvim": {
     "branch": "master",
-    "commit": "8eb4803da99a575bc827a6c814e63b1053b7002f"
+    "commit": "5420c4b5ea0aeb99c09cfbd4fd0b70d257b44f25"
   },
   "diffconflicts": {
     "branch": "master",
@@ -31,6 +31,14 @@
     "branch": "master",
     "commit": "c2a0dd0d931d0fb07665e1fedb1ea688da3b80b4"
   },
+  "nvim-lint": {
+    "branch": "master",
+    "commit": "1f19dacd945a7b1a57f29f32b2d7168384df3d36"
+  },
+  "nvim-lspconfig": {
+    "branch": "master",
+    "commit": "8973916a3d015d65a8c4614e141f4270a713cf33"
+  },
   "nvim-surround": {
     "branch": "main",
     "commit": "1098d7b3c34adcfa7feb3289ee434529abd4afd1"
@@ -53,7 +61,7 @@
   },
   "telescope.nvim": {
     "branch": "master",
-    "commit": "e709d31454ee6e6157f0537f861f797bd44c0bad"
+    "commit": "4d0f5e0e7f69071e315515c385fab2a4eff07b3d"
   },
   "todo-comments.nvim": {
     "branch": "main",
