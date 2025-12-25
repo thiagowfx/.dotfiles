@@ -49,7 +49,6 @@ nnoremap <leader>w :FixWhitespace<CR>
 " Reflow current paragraph
 nnoremap <silent> Q gwip
 nnoremap <silent> W !ipfmt<Enter>
-nnoremap <silent> E !ipfold -s<Enter>
 
 " a la emacs just-one-space
 function! JustOneSpace()

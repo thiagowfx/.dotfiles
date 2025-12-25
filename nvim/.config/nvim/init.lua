@@ -18,7 +18,6 @@ vim.keymap.set('n', '<leader>w', ':FixWhitespace<CR>', { noremap = true, silent 
 -- Reflow current paragraph
 vim.keymap.set('n', 'Q', 'gwip', { noremap = true, silent = true })
 vim.keymap.set('n', 'W', '!ipfmt<Enter>', { noremap = true, silent = true })
-vim.keymap.set('n', 'E', '!ipfold -s<Enter>', { noremap = true, silent = true })
 
 -- a la emacs just-one-space
 local function just_one_space()
