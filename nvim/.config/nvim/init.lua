@@ -259,21 +259,23 @@ local plugins = {
   },
   {
     'stevearc/conform.nvim',
-    config = function()
-      require('conform').setup({
-        formatters_by_ft = {
-          lua = { 'stylua' },
-          python = { 'black' },
-          sh = { 'shfmt' },
-          bash = { 'shfmt' },
-          yaml = { 'yamlfmt' },
-          json = { 'jq' },
-        },
-      })
-      vim.keymap.set('n', '<leader>f', function()
-        require('conform').format({ async = true, lsp_fallback = true })
-      end, { desc = 'Format buffer' })
-    end,
+    opts = {
+      formatters_by_ft = {
+        lua = { 'stylua' },
+        python = { 'black' },
+        sh = { 'shfmt' },
+        bash = { 'shfmt' },
+        yaml = { 'yamlfmt' },
+        json = { 'jq' },
+      },
+    },
+    keys = {
+      {
+        '<leader>f',
+        function() require('conform').format({ async = true, lsp_fallback = true }) end,
+        desc = 'Format buffer',
+      },
+    },
   },
 }
 
