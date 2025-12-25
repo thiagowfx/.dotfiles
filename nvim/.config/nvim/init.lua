@@ -213,7 +213,7 @@ local plugins = {
   {
     'lukas-reineke/indent-blankline.nvim',
     main = 'ibl',
-    config = function() require('ibl').setup() end,
+    opts = {},
   },
   {
     'folke/which-key.nvim',
