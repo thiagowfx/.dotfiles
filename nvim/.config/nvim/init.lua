@@ -117,13 +117,12 @@ local plugins = {
   -- Syntax highlighting
   {
     'nvim-treesitter/nvim-treesitter',
+    event = 'VeryLazy',
     build = ':TSUpdate',
-    config = function()
-      require('nvim-treesitter').setup({
-        ensure_installed = { 'lua', 'vim', 'vimdoc', 'bash', 'python', 'json', 'yaml', 'markdown' },
-        auto_install = true,
-      })
-    end,
+    opts = {
+      ensure_installed = { 'lua', 'vim', 'vimdoc', 'bash', 'python', 'json', 'yaml', 'markdown' },
+      auto_install = true,
+    },
   },
 
   -- Git integration
