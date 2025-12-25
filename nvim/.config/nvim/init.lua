@@ -360,3 +360,25 @@ vim.api.nvim_create_autocmd('BufWritePre', {
     vim.fn.mkdir(vim.fn.fnamemodify(file, ':p:h'), 'p')
   end,
 })
+
+-- Preserve cursor position across sessions
+vim.opt.shada = {
+  "'1000",  -- marks (including last cursor position)
+  '<50',    -- lines in each register
+  's10',    -- max size of items in kilobytes
+  'h',      -- disable search highlighting on startup
+  ':100',   -- command line history
+  '@100',   -- input line history
+  '/100',   -- search pattern history
+}
+
+-- Restore cursor position from shada
+vim.api.nvim_create_autocmd('BufReadPost', {
+  group = vim.api.nvim_create_augroup('RestoreCursorPosition', { clear = true }),
+  callback = function()
+    local line = vim.fn.line("'\"")
+    if line > 1 and line <= vim.fn.line('$') then
+      vim.cmd('normal! g`"')
+    end
+  end,
+})
