@@ -142,6 +142,7 @@ local plugins = {
             vim.schedule(function() gs.prev_hunk() end)
             return '<Ignore>'
           end, { expr = true, buffer = bufnr, desc = 'Prev hunk' })
+          vim.keymap.set('n', '<leader>s', gs.stage_hunk, { buffer = bufnr, desc = 'Stage hunk' })
         end,
       })
     end,
