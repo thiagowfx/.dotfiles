@@ -1,7 +1,7 @@
 #!/usr/bin/env just --justfile
 # https://github.com/casey/just
 
-packages := "ack atuin bash claude gemini gh ghostty git lf mc nvim profile ranger ssh tmux vim zsh"
+packages := "ack atuin bash claude gemini gh ghostty git gitui lf mc nvim profile ranger ssh tmux vim zsh"
 packages_no_folding := "espanso swiftbar"
 [private]
 _dotfiles_dir := justfile_directory()
