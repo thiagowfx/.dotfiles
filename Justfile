@@ -82,12 +82,12 @@ configure-macos:
     defaults write NSGlobalDomain KeyRepeat -int 2
 
     # Sudo with Touch ID
-    @if ! grep -q "pam_tid.so" /etc/pam.d/sudo; then \
-        echo "Configuring Touch ID for sudo..."; \
-        echo "auth       sufficient     pam_tid.so" | sudo tee /tmp/pam_tid_line > /dev/null; \
-        sudo sed -i "" "2r /tmp/pam_tid_line" /etc/pam.d/sudo; \
-        rm /tmp/pam_tid_line; \
-    fi
+    # @if ! grep -q "pam_tid.so" /etc/pam.d/sudo; then \
+    #     echo "Configuring Touch ID for sudo..."; \
+    #     echo "auth       sufficient     pam_tid.so" | sudo tee /tmp/pam_tid_line > /dev/null; \
+    #     sudo sed -i "" "2r /tmp/pam_tid_line" /etc/pam.d/sudo; \
+    #     rm /tmp/pam_tid_line; \
+    # fi
 
 # Bootstrap environment (install packages, casks, and configure macOS)
 bootstrap: xcode-command-line-tools install-brewfile configure-macos
