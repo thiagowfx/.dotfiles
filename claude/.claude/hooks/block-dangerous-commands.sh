@@ -35,6 +35,12 @@ if echo "$command" | grep -qE 'terraform\s+destroy'; then
     reason="terraform destroy is blocked for safety"
 fi
 
+# Check for --auto-approve flag (commonly used to skip confirmation prompts)
+if echo "$command" | grep -qE '\-\-auto-approve'; then
+    blocked=true
+    reason="--auto-approve is blocked for safety - manual confirmation required"
+fi
+
 # If blocked, return denial via JSON
 if [ "$blocked" = true ]; then
     cat <<EOF
