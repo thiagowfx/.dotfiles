@@ -23,8 +23,67 @@ stow:
         fi
     done
 
-    stow -t {{ target_dir }} -d {{ _dotfiles_dir }} {{ packages }}
-    stow -t {{ target_dir }} -d {{ _dotfiles_dir }} --no-folding {{ packages_no_folding }}
+    # Map package names to their binaries
+    declare -A package_binaries=(
+        [ack]="ack"
+        [atuin]="atuin"
+        [bash]="bash"
+        [claude]="claude"
+        [gemini]="gemini"
+        [gh]="gh"
+        [ghostty]="ghostty"
+        [git]="git"
+        [gitui]="gitui"
+        [lf]="lf"
+        [mc]="mc"
+        [nvim]="nvim"
+        [profile]="sh"
+        [ranger]="ranger"
+        [ssh]="ssh"
+        [tmux]="tmux"
+        [vim]="vim"
+        [zsh]="zsh"
+        [espanso]="espanso"
+        [swiftbar]="/Applications/SwiftBar.app/Contents/MacOS/SwiftBar"
+    )
+
+    # Stow packages with regular folding
+    stow_packages=""
+    for pkg in {{ packages }}; do
+        binary="${package_binaries[$pkg]:-}"
+        if [[ -z "$binary" ]]; then
+            echo "Warning: No binary mapping for package '$pkg', skipping" >&2
+            continue
+        fi
+        if [[ -f "$binary" ]] || command -v "$binary" &> /dev/null; then
+            echo "Stowing '$pkg'"
+            stow_packages="$stow_packages $pkg"
+        else
+            echo "Skipping '$pkg' (binary '$binary' not found)"
+        fi
+    done
+    if [[ -n "$stow_packages" ]]; then
+        stow -v -t {{ target_dir }} -d {{ _dotfiles_dir }} $stow_packages
+    fi
+
+    # Stow packages with no folding
+    stow_packages_no_folding=""
+    for pkg in {{ packages_no_folding }}; do
+        binary="${package_binaries[$pkg]:-}"
+        if [[ -z "$binary" ]]; then
+            echo "Warning: No binary mapping for package '$pkg', skipping" >&2
+            continue
+        fi
+        if [[ -f "$binary" ]] || command -v "$binary" &> /dev/null; then
+            echo "Stowing '$pkg' (no folding)"
+            stow_packages_no_folding="$stow_packages_no_folding $pkg"
+        else
+            echo "Skipping '$pkg' (binary '$binary' not found)"
+        fi
+    done
+    if [[ -n "$stow_packages_no_folding" ]]; then
+        stow -v -t {{ target_dir }} -d {{ _dotfiles_dir }} --no-folding $stow_packages_no_folding
+    fi
 
 # Check for dangling symlinks
 stow-lint:
