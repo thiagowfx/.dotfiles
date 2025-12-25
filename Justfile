@@ -1,7 +1,7 @@
 #!/usr/bin/env just --justfile
 # https://github.com/casey/just
 
-packages := "ack atuin bash claude gemini gh ghostty git gitui lf mc nvim profile ranger ssh tmux vim zsh"
+packages := "ack atuin bash claude gemini gh ghostty git gitui jj lf mc nvim pacman profile ranger screen ssh tmux vim zed zsh"
 packages_no_folding := "espanso swiftbar"
 [private]
 _dotfiles_dir := justfile_directory()
@@ -25,26 +25,32 @@ stow:
 
     # Map package names to their binaries
     declare -A package_binaries=(
+        # keep-sorted start
         [ack]="ack"
         [atuin]="atuin"
         [bash]="bash"
         [claude]="claude"
+        [espanso]="espanso"
         [gemini]="gemini"
         [gh]="gh"
         [ghostty]="ghostty"
         [git]="git"
         [gitui]="gitui"
+        [jj]="jj"
         [lf]="lf"
         [mc]="mc"
         [nvim]="nvim"
+        [pacman]="pacman"
         [profile]="sh"
         [ranger]="ranger"
+        [screen]="screen"
         [ssh]="ssh"
+        [swiftbar]="/Applications/SwiftBar.app/Contents/MacOS/SwiftBar"
         [tmux]="tmux"
         [vim]="vim"
+        [zed]="zed"
         [zsh]="zsh"
-        [espanso]="espanso"
-        [swiftbar]="/Applications/SwiftBar.app/Contents/MacOS/SwiftBar"
+        # keep-sorted end
     )
 
     # Stow packages with regular folding
