@@ -1,7 +1,7 @@
 #!/usr/bin/env just --justfile
 # https://github.com/casey/just
 
-packages := "ack alacritty apk atuin bash claude gemini gh ghostty git gitui hg i3 jj lf mc nvim pacman profile ranger screen ssh sway tmux vim zed zsh"
+packages := "ack alacritty apk atuin bash claude gemini gh ghostty git gitui hg i3 jj lf mc nvim pacman profile ranger screen ssh sway tmux vim vscode zed zsh"
 packages_no_folding := "espanso swiftbar"
 [private]
 _dotfiles_dir := justfile_directory()
@@ -53,6 +53,7 @@ stow:
         [swiftbar]="/Applications/SwiftBar.app/Contents/MacOS/SwiftBar"
         [tmux]="tmux"
         [vim]="vim"
+        [vscode]="code"
         [zed]="zed"
         [zsh]="zsh"
         # keep-sorted end
