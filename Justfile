@@ -1,7 +1,7 @@
 #!/usr/bin/env just --justfile
 # https://github.com/casey/just
 
-packages := "ack atuin bash claude gemini gh ghostty git gitui jj lf mc nvim pacman profile ranger screen ssh tmux vim zed zsh"
+packages := "ack apk atuin bash claude gemini gh ghostty git gitui jj lf mc nvim pacman profile ranger screen ssh tmux vim zed zsh"
 packages_no_folding := "espanso swiftbar"
 [private]
 _dotfiles_dir := justfile_directory()
@@ -27,6 +27,7 @@ stow:
     declare -A package_binaries=(
         # keep-sorted start
         [ack]="ack"
+        [apk]="apk"
         [atuin]="atuin"
         [bash]="bash"
         [claude]="claude"
