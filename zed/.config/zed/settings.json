@@ -7,7 +7,9 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "collaboration_panel": {
+    "button": false
+  },
   "disable_ai": true,
-  "theme": "Catppuccin Macchiato",
   "vim_mode": true
 }
