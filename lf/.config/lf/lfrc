@@ -7,8 +7,5 @@ cmd remove delete
 # Show hidden files by default
 set hidden true
 
-# Draw borders (lf uses a different approach - drawbox toggles file preview box)
-set drawbox true
-
 # Edit file: 'e' (mapped out-of-the-box)
 # Toggle hidden files: 'zh'
