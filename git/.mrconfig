@@ -18,6 +18,10 @@ skip = lazy
 checkout = git clone 'git@github.com:thiagowfx/adventofcode' 'adventofcode'
 skip = lazy
 
+[workspace/check-json-schema-meta]
+checkout = git clone 'git@github.com:thiagowfx/check-json-schema-meta' 'check-json-schema-meta'
+skip = lazy
+
 [workspace/aports]
 checkout = git clone 'git@gitlab.alpinelinux.org:thiagowfx/aports.git' 'aports'
 skip = lazy
