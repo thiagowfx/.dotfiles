@@ -32,6 +32,9 @@ local plugins = {
       if has_executable('ruff') then
         table.insert(python_linters, 'ruff')
       end
+      if has_executable('ty') then
+        table.insert(python_linters, 'ty')
+      end
       if #python_linters > 0 then
         linters_by_ft.python = python_linters
       end
@@ -137,6 +140,11 @@ local function setup()
   if has_executable('vscode-json-language-server') then
     vim.lsp.config.jsonls = {}
     table.insert(servers, 'jsonls')
+  end
+
+  if has_executable('marksman') then
+    vim.lsp.config.marksman = {}
+    table.insert(servers, 'marksman')
   end
 
   vim.lsp.enable(servers)
