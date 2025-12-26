@@ -122,11 +122,6 @@ local function setup()
     table.insert(servers, 'pyright')
   end
 
-  if has_executable('ruby-lsp') then
-    vim.lsp.config.ruby_lsp = {}
-    table.insert(servers, 'ruby_lsp')
-  end
-
   if has_executable('bash-language-server') then
     vim.lsp.config.bashls = {}
     table.insert(servers, 'bashls')
