@@ -52,10 +52,10 @@ Gather context first (if not main, then master)
   - Summarize the changes from the git diff above
   - Update the PR description: `gh pr edit --body "<updated-description>"`
   - Add reviewers if $ARGUMENTS provided: `gh pr edit --add-reviewer $ARGUMENTS`
-  - Output: "Updated existing PR: <url>"
-- If no PR exists:
+  - Output: "Updated existing PR: {url}"
+  - If no PR exists:
   - Analyze all commits and changes to create a concise PR description
   - If template exists, follow its structure
   - Create PR with reviewers: `gh pr create --title "<title>" --body "<description>" --reviewer $ARGUMENTS`
   - If $ARGUMENTS is empty, omit the --reviewer flag
-  - Output: "Created new PR: <url>"
+  - Output: "Created new PR: {url}"
