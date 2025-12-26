@@ -1,0 +1,8 @@
+# vim: ft=conf
+
+[ALIAS]
+pull = update
+
+[DEFAULT]
+git_xl = git xl "$@"
+jobs = 4

@@ -1,11 +1,6 @@
 # vim: ft=conf
 
-[ALIAS]
-pull = update
-
-[DEFAULT]
-git_xl = git xl "$@"
-jobs = 2
+include = cat ~/.mrconfig.defaults
 
 [.dotfiles]
 checkout = git clone 'git@github.com:thiagowfx/.dotfiles.git' '.dotfiles'
