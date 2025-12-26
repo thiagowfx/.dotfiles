@@ -147,7 +147,7 @@ local function setup()
   if has_executable('codebook-lsp') then
     vim.lsp.config.codebook = {
       cmd = { 'codebook-lsp', 'serve' },
-      filetypes = { 'lua', 'python', 'go', 'javascript', 'typescript', 'markdown' },
+      filetypes = { 'lua', 'go', 'javascript', 'typescript', 'markdown' },
     }
     table.insert(servers, 'codebook')
   end
