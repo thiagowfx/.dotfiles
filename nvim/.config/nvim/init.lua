@@ -268,7 +268,7 @@ vim.keymap.set('v', '<C-c>', '"+y', { noremap = true, silent = true })
 -- Highlight yanked text (built-in replacement for vim-highlightedyank)
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = vim.api.nvim_create_augroup('YankHighlight', { clear = true }),
-  callback = function() vim.highlight.on_yank() end,
+  callback = function() vim.hl.on_yank() end,
 })
 
 -- Auto-create directories when saving (replaces vim-mkdir)
