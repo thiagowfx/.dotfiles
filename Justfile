@@ -1,7 +1,7 @@
 #!/usr/bin/env just --justfile
 # https://github.com/casey/just
 
-packages := "ack alacritty apk atuin bash claude gemini gh ghostty git gitui hg i3 iterm2 jj lf mc nvim pacman profile ranger screen ssh sway tmux vim vscode x11 zed zsh"
+packages := "ack alacritty apk atuin bash claude gemini gh ghostty git gitui hg i3 iterm2 jj lf mc mr nvim pacman profile ranger screen ssh sway tmux vim vscode x11 zed zsh"
 packages_no_folding := "espanso swiftbar"
 [private]
 _dotfiles_dir := justfile_directory()
@@ -44,6 +44,7 @@ stow:
         [jj]="jj"
         [lf]="lf"
         [mc]="mc"
+        [mr]="mr"
         [nvim]="nvim"
         [pacman]="pacman"
         [profile]="sh"
