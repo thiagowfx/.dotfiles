@@ -104,9 +104,11 @@
 	submodule = log
 	tool = icdiff
 
+# git difftool -t difftastic
 [difftool "difft"]
 	cmd = difft \"$LOCAL\" \"$REMOTE\"
 
+# git difftool -t icdiff
 [difftool "icdiff"]
 	cmd = icdiff --line-numbers \"$LOCAL\" \"$REMOTE\"
 
