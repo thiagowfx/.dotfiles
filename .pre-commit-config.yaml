@@ -50,7 +50,7 @@ repos:
         args:
           - --autofix
           - --no-sort-keys
-        exclude: ^vscode/Library/Application\ Support/Code/User/(keybindings|settings)\.json$|^zed/.config/zed/settings.json$
+        exclude: ^nvim/.config/nvim/lazy-lock\.json$|^vscode/Library/Application\ Support/Code/User/(keybindings|settings)\.json$|^zed/.config/zed/settings.json$
       - id: trailing-whitespace
         # keep-sorted end
   # keep-sorted start
