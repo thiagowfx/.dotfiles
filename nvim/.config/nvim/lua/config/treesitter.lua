@@ -18,6 +18,7 @@ return {
       'vim',
       'vimdoc',
       'yaml',
+      'zsh',
       -- keep-sorted end
     },
     auto_install = true,

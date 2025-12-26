@@ -13,6 +13,7 @@ local plugins = {
       if has_executable('shellcheck') then
         linters_by_ft.bash = { 'shellcheck' }
         linters_by_ft.sh = { 'shellcheck' }
+        linters_by_ft.zsh = { 'shellcheck' }
       end
       if has_executable('clang-tidy') then
         linters_by_ft.c = { 'clang-tidy' }
@@ -54,6 +55,7 @@ local plugins = {
         if has_executable('shfmt') then
           formatters.bash = { 'shfmt' }
           formatters.sh = { 'shfmt' }
+          formatters.zsh = { 'shfmt' }
         end
         if has_executable('clang-format') then
           formatters.c = { 'clang-format' }
