@@ -1,22 +1,46 @@
+-- Helper function to check if executable exists
+local function has_executable(name)
+  return vim.fn.executable(name) == 1
+end
+
 -- LSP, Linting, and Formatting plugins
 local plugins = {
   'neovim/nvim-lspconfig',
   {
     'mfussenegger/nvim-lint',
     config = function()
-      require('lint').linters_by_ft = {
-        -- keep-sorted start
-        bash = { 'shellcheck' },
-        c = { 'clang-tidy' },
-        cpp = { 'clang-tidy' },
-        go = { 'golangci-lint' },
-        json = { 'jsonlint' },
-        python = { 'mypy', 'ruff' },
-        ruby = { 'rubocop' },
-        sh = { 'shellcheck' },
-        yaml = { 'yamllint' },
-        -- keep-sorted end
-      }
+      local linters_by_ft = {}
+      if has_executable('shellcheck') then
+        linters_by_ft.bash = { 'shellcheck' }
+        linters_by_ft.sh = { 'shellcheck' }
+      end
+      if has_executable('clang-tidy') then
+        linters_by_ft.c = { 'clang-tidy' }
+        linters_by_ft.cpp = { 'clang-tidy' }
+      end
+      if has_executable('golangci-lint') then
+        linters_by_ft.go = { 'golangci-lint' }
+      end
+      if has_executable('jsonlint') then
+        linters_by_ft.json = { 'jsonlint' }
+      end
+      local python_linters = {}
+      if has_executable('mypy') then
+        table.insert(python_linters, 'mypy')
+      end
+      if has_executable('ruff') then
+        table.insert(python_linters, 'ruff')
+      end
+      if #python_linters > 0 then
+        linters_by_ft.python = python_linters
+      end
+      if has_executable('rubocop') then
+        linters_by_ft.ruby = { 'rubocop' }
+      end
+      if has_executable('yamllint') then
+        linters_by_ft.yaml = { 'yamllint' }
+      end
+      require('lint').linters_by_ft = linters_by_ft
       vim.api.nvim_create_autocmd({ 'BufWritePost', 'BufReadPost' }, {
         callback = function() require('lint').try_lint() end,
       })
@@ -25,20 +49,36 @@ local plugins = {
   {
     'stevearc/conform.nvim',
     opts = {
-      formatters_by_ft = {
-        -- keep-sorted start
-        bash = { 'shfmt' },
-        c = { 'clang-format' },
-        cpp = { 'clang-format' },
-        go = { 'gofmt' },
-        json = { 'jq' },
-        lua = { 'stylua' },
-        python = { 'black' },
-        ruby = { 'rubocop' },
-        sh = { 'shfmt' },
-        yaml = { 'yamlfmt' },
-        -- keep-sorted end
-      },
+      formatters_by_ft = function()
+        local formatters = {}
+        if has_executable('shfmt') then
+          formatters.bash = { 'shfmt' }
+          formatters.sh = { 'shfmt' }
+        end
+        if has_executable('clang-format') then
+          formatters.c = { 'clang-format' }
+          formatters.cpp = { 'clang-format' }
+        end
+        if has_executable('gofmt') then
+          formatters.go = { 'gofmt' }
+        end
+        if has_executable('jq') then
+          formatters.json = { 'jq' }
+        end
+        if has_executable('stylua') then
+          formatters.lua = { 'stylua' }
+        end
+        if has_executable('black') then
+          formatters.python = { 'black' }
+        end
+        if has_executable('rubocop') then
+          formatters.ruby = { 'rubocop' }
+        end
+        if has_executable('yamlfmt') then
+          formatters.yaml = { 'yamlfmt' }
+        end
+        return formatters
+      end,
     },
     keys = {
       {
@@ -53,6 +93,8 @@ local plugins = {
 -- LSP configuration function (called after lazy.setup)
 local function setup()
   -- Configure LSP servers (Neovim 0.11+ native API)
+  local servers = {}
+
   vim.lsp.config.lua_ls = {
     settings = {
       Lua = {
@@ -63,14 +105,44 @@ local function setup()
       },
     },
   }
-  vim.lsp.config.clangd = {}
-  vim.lsp.config.gopls = {}
-  vim.lsp.config.pyright = {}
-  vim.lsp.config.ruby_lsp = {}
-  vim.lsp.config.bashls = {}
-  vim.lsp.config.yamlls = {}
-  vim.lsp.config.jsonls = {}
-  vim.lsp.enable({ 'lua_ls', 'clangd', 'gopls', 'pyright', 'ruby_lsp', 'bashls', 'yamlls', 'jsonls' })
+  table.insert(servers, 'lua_ls')
+
+  if has_executable('clangd') then
+    vim.lsp.config.clangd = {}
+    table.insert(servers, 'clangd')
+  end
+
+  if has_executable('gopls') then
+    vim.lsp.config.gopls = {}
+    table.insert(servers, 'gopls')
+  end
+
+  if has_executable('pyright') then
+    vim.lsp.config.pyright = {}
+    table.insert(servers, 'pyright')
+  end
+
+  if has_executable('ruby-lsp') then
+    vim.lsp.config.ruby_lsp = {}
+    table.insert(servers, 'ruby_lsp')
+  end
+
+  if has_executable('bash-language-server') then
+    vim.lsp.config.bashls = {}
+    table.insert(servers, 'bashls')
+  end
+
+  if has_executable('yaml-language-server') then
+    vim.lsp.config.yamlls = {}
+    table.insert(servers, 'yamlls')
+  end
+
+  if has_executable('vscode-json-language-server') then
+    vim.lsp.config.jsonls = {}
+    table.insert(servers, 'jsonls')
+  end
+
+  vim.lsp.enable(servers)
 
   -- Configure LSP diagnostics display
   vim.diagnostic.config({
