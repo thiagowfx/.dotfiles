@@ -14,6 +14,7 @@ return {
       'lua',
       'markdown',
       'python',
+      'ruby',
       'vim',
       'vimdoc',
       'yaml',

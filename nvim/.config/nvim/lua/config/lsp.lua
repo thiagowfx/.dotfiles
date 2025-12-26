@@ -12,6 +12,7 @@ local plugins = {
         go = { 'golangci-lint' },
         json = { 'jsonlint' },
         python = { 'ruff' },
+        ruby = { 'rubocop' },
         sh = { 'shellcheck' },
         yaml = { 'yamllint' },
         -- keep-sorted end
@@ -33,6 +34,7 @@ local plugins = {
         json = { 'jq' },
         lua = { 'stylua' },
         python = { 'black' },
+        ruby = { 'rubocop' },
         sh = { 'shfmt' },
         yaml = { 'yamlfmt' },
         -- keep-sorted end
@@ -64,10 +66,11 @@ local function setup()
   vim.lsp.config.clangd = {}
   vim.lsp.config.gopls = {}
   vim.lsp.config.pyright = {}
+  vim.lsp.config.ruby_lsp = {}
   vim.lsp.config.bashls = {}
   vim.lsp.config.yamlls = {}
   vim.lsp.config.jsonls = {}
-  vim.lsp.enable({ 'lua_ls', 'clangd', 'gopls', 'pyright', 'bashls', 'yamlls', 'jsonls' })
+  vim.lsp.enable({ 'lua_ls', 'clangd', 'gopls', 'pyright', 'ruby_lsp', 'bashls', 'yamlls', 'jsonls' })
 
   -- Configure LSP diagnostics display
   vim.diagnostic.config({
