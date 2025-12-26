@@ -205,6 +205,7 @@ local plugins = {
   {
     'folke/which-key.nvim',
     event = 'VeryLazy',
+    dependencies = { 'echasnovski/mini.icons' },
     opts = {
       spec = {
         { '<leader>', group = 'Leader' },
