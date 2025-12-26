@@ -60,7 +60,7 @@ repos:
       - id: codespell
         exclude: vim/.vim/autoload/plug.vim
         args:
-          - -W iterm
+          - -W iterm,iTerm
   - repo: https://github.com/gitleaks/gitleaks
     rev: 2ca41cc1372d1e939a6a879f18cdc19fc1cac1ce # frozen: v8.30.0
     hooks:
