@@ -16,12 +16,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Vim Plugin Management
 
-- Vim plugins are managed with vim-plug (https://github.com/junegunn/vim-plug)
+- Vim plugins are managed with vim-plug (<https://github.com/junegunn/vim-plug>)
 - Install plugins: Open vim and run `:PlugInstall`
 - Update plugins: `:PlugUpdate`
 - Remove unused plugins: `:PlugClean`
 - Upgrade vim-plug itself: `:PlugUpgrade`
-- Plugin configuration is in `vim/.vimrc` (lines 177-233)
+- Plugin configuration is in `vim/.vimrc` (lines 177-233) - <https://github.com/junegunn/vim-plug>
 
 ## Code Style Guidelines
 

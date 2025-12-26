@@ -15,7 +15,7 @@ Gather context first (if not main, then master)
 ! git log origin/main..HEAD --oneline
 ! git diff origin/main...HEAD
 
-**Step 1: Handle Uncommitted Changes**
+### Step 1: Handle Uncommitted Changes
 
 - Check the git status output above for uncommitted changes
 - If there are uncommitted changes (modified, added, or untracked files):
@@ -23,29 +23,29 @@ Gather context first (if not main, then master)
   - Wait for the commit to complete before proceeding
   - If the commit fails, stop and report the error
 
-**Step 2: Verify Prerequisites**
+### Step 2: Verify Prerequisites
 
 - Check that there are commits to push (from git log output above)
 - If no commits exist, stop and inform the user: "No commits to push. Create commits first."
 
-**Step 3: Handle Branch Creation**
+### Step 3: Handle Branch Creation
 
 - If current branch is 'main' or 'master', create a new branch first:
   - Generate a descriptive branch name based on the changes (from git diff above)
   - Prefix it with the GitHub username and slash (e.g., "username/feature-name")
   - Use `git checkout -b <branch-name>` to create and switch to it
 
-**Step 4: Push the Branch**
+### Step 4: Push the Branch
 
 - Push with upstream tracking: `git push -u origin <branch-name>`
 - If push fails, report the error and stop
 
-**Step 5: Check for PR Template**
+### Step 5: Check for PR Template
 
 - Check if `.github/PULL_REQUEST_TEMPLATE.md` exists at the git repository root
 - If it exists, read it with `cat` to use as the PR description template
 
-**Step 6: Create or Update PR**
+### Step 6: Create or Update PR
 
 - Check if a PR already exists for this branch: `gh pr view --json url 2>/dev/null`
 - If PR exists:
