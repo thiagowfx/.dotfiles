@@ -1,0 +1,22 @@
+{
+  "default": true,
+  "MD013": {
+    "line_length": 120,
+    "code_blocks": false
+  },
+  "MD033": {
+    "enabled": false
+  },
+  "MD034": {
+    "enabled": false
+  },
+  "MD036": {
+    "enabled": false
+  },
+  "MD041": {
+    "enabled": false
+  },
+  "MD047": {
+    "enabled": false
+  }
+}

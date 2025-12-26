@@ -5,7 +5,7 @@
 
 This dotfiles repository is managed with [`GNU stow`][stow] and [`Just`][just].
 
-```
+```bash
 git clone --recurse --jobs=$(nproc) https://github.com/thiagowfx/.dotfiles ~/.dotfiles
 (cd ~/.dotfiles && just install)
 ```
