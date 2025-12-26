@@ -7,6 +7,8 @@ return {
     ensure_installed = {
       -- keep-sorted start
       'bash',
+      'c',
+      'cpp',
       'go',
       'json',
       'lua',

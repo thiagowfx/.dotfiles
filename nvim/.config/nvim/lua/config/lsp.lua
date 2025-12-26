@@ -7,6 +7,8 @@ local plugins = {
       require('lint').linters_by_ft = {
         -- keep-sorted start
         bash = { 'shellcheck' },
+        c = { 'clang-tidy' },
+        cpp = { 'clang-tidy' },
         go = { 'golangci-lint' },
         json = { 'jsonlint' },
         python = { 'ruff' },
@@ -25,6 +27,8 @@ local plugins = {
       formatters_by_ft = {
         -- keep-sorted start
         bash = { 'shfmt' },
+        c = { 'clang-format' },
+        cpp = { 'clang-format' },
         go = { 'gofmt' },
         json = { 'jq' },
         lua = { 'stylua' },
@@ -57,12 +61,13 @@ local function setup()
       },
     },
   }
+  vim.lsp.config.clangd = {}
   vim.lsp.config.gopls = {}
   vim.lsp.config.pyright = {}
   vim.lsp.config.bashls = {}
   vim.lsp.config.yamlls = {}
   vim.lsp.config.jsonls = {}
-  vim.lsp.enable({ 'lua_ls', 'gopls', 'pyright', 'bashls', 'yamlls', 'jsonls' })
+  vim.lsp.enable({ 'lua_ls', 'clangd', 'gopls', 'pyright', 'bashls', 'yamlls', 'jsonls' })
 
   -- Configure LSP diagnostics display
   vim.diagnostic.config({
