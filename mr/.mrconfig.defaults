@@ -5,4 +5,4 @@ pull = update
 
 [DEFAULT]
 git_xl = git xl "$@"
-jobs = 4
+jobs = 6
