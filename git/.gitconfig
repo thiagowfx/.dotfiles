@@ -102,6 +102,16 @@
 	noPrefix = true
 	renames = true
 	submodule = log
+	tool = icdiff
+
+[difftool "difft"]
+	cmd = difft \"$LOCAL\" \"$REMOTE\"
+
+[difftool "icdiff"]
+	cmd = icdiff --line-numbers \"$LOCAL\" \"$REMOTE\"
+
+[difftool]
+	prompt = false
 
 [fetch]
 	prune = true
