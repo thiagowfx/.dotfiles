@@ -75,14 +75,8 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.switchbuf = "useopen"
 
--- Enable persistent undo.
+-- Enable persistent undo (uses XDG_STATE_HOME/nvim/undo by default).
 vim.opt.undofile = true
-local undo_dir = vim.fn.expand('~/.cache/nvim/undo')
-vim.opt.undodir = undo_dir
-vim.fn.mkdir(undo_dir, 'p', tonumber('0700', 8))
-
--- Shorter update time than the 4000ms default, for async operations.
-vim.opt.updatetime = 2000
 
 -- Auto-reload files changed on disk
 vim.opt.autoread = true
@@ -104,6 +98,7 @@ if not vim.uv.fs_stat(lazypath) then
     "git",
     "clone",
     "--filter=blob:none",
+    "--depth=1",
     "https://github.com/folke/lazy.nvim.git",
     "--branch=stable",
     lazypath,
@@ -114,15 +109,7 @@ vim.opt.rtp:prepend(lazypath)
 -- Plugin specs
 local plugins = {
   -- Syntax highlighting
-  {
-    'nvim-treesitter/nvim-treesitter',
-    event = 'VeryLazy',
-    build = ':TSUpdate',
-    opts = {
-      ensure_installed = { 'lua', 'vim', 'vimdoc', 'bash', 'python', 'json', 'yaml', 'markdown' },
-      auto_install = true,
-    },
-  },
+  pcall(require, 'config.treesitter') and require('config.treesitter') or nil,
 
   -- Git integration
   {
@@ -163,7 +150,6 @@ local plugins = {
   { 'junegunn/vim-easy-align', cmd = { 'EasyAlign' } },
 
   -- Navigation and search
-  'nvim-lua/plenary.nvim',
   {
     'nvim-telescope/telescope.nvim',
     config = function()
@@ -245,92 +231,18 @@ local plugins = {
 
   -- Diff tools
   'whiteinge/diffconflicts',
-
-  -- LSP, Linting, and Formatting
-  'neovim/nvim-lspconfig',
-  {
-    'mfussenegger/nvim-lint',
-    config = function()
-      require('lint').linters_by_ft = {
-        bash = { 'shellcheck' },
-        json = { 'jsonlint' },
-        python = { 'ruff' },
-        sh = { 'shellcheck' },
-        yaml = { 'yamllint' },
-      }
-      vim.api.nvim_create_autocmd({ 'BufWritePost', 'BufReadPost' }, {
-        callback = function() require('lint').try_lint() end,
-      })
-    end,
-  },
-  {
-    'stevearc/conform.nvim',
-    opts = {
-      formatters_by_ft = {
-        lua = { 'stylua' },
-        python = { 'black' },
-        sh = { 'shfmt' },
-        bash = { 'shfmt' },
-        yaml = { 'yamlfmt' },
-        json = { 'jq' },
-      },
-    },
-    keys = {
-      {
-        '<leader>f',
-        function() require('conform').format({ async = true, lsp_fallback = true }) end,
-        desc = 'Format buffer',
-      },
-    },
-  },
 }
+
+-- Load LSP, Linting, and Formatting plugins
+local lsp = pcall(require, 'config.lsp') and require('config.lsp') or { plugins = {}, setup = function() end }
+for _, plugin in ipairs(lsp.plugins) do
+  table.insert(plugins, plugin)
+end
 
 require("lazy").setup(plugins)
 
--- LSP configuration (Neovim 0.11+ native API)
-vim.lsp.config.lua_ls = {
-  settings = {
-    Lua = {
-      runtime = { version = 'LuaJIT' },
-      diagnostics = { globals = { 'vim' } },
-      workspace = { library = vim.api.nvim_get_runtime_file('', true), checkThirdParty = false },
-      telemetry = { enable = false },
-    },
-  },
-}
-vim.lsp.config.pyright = {}
-vim.lsp.config.bashls = {}
-vim.lsp.config.yamlls = {}
-vim.lsp.config.jsonls = {}
-vim.lsp.enable({ 'lua_ls', 'pyright', 'bashls', 'yamlls', 'jsonls' })
-
--- Configure LSP diagnostics display
-vim.diagnostic.config({
-  virtual_text = {
-    prefix = '●',
-    spacing = 2,
-  },
-  signs = true,
-  underline = true,
-  update_in_insert = false,
-})
-
-vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true }),
-  callback = function(ev)
-    local opts = { buffer = ev.buf }
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-    vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
-  end,
-})
+-- Run LSP setup after plugins are loaded
+lsp.setup()
 
 -- Configure vim-fugitive custom commands
 vim.cmd("command! Gadd Gwrite")
@@ -367,5 +279,3 @@ vim.api.nvim_create_autocmd('BufWritePre', {
     vim.fn.mkdir(vim.fn.fnamemodify(file, ':p:h'), 'p')
   end,
 })
-
-
