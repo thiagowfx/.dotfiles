@@ -41,7 +41,7 @@ format = "[$number](cyan) "
 
 [sudo]
 disabled = false
-format = "[🔓](red) "
+format = "[🧙](red) "
 
 [character]
 success_symbol = "[❯](green)"
