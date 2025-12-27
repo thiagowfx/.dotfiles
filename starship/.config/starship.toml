@@ -10,10 +10,11 @@ style = "bold red"
 
 [username]
 show_always = true
-format = "[$user](bold green)"
+format = "[$user](bold green) "
 
 [hostname]
-ssh_only = false
+ssh_only = true
+trim_at = "."
 format = "@$hostname "
 
 [directory]
