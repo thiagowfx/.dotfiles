@@ -217,7 +217,12 @@ local plugins = {
   'tpope/vim-unimpaired',
   {
     'ethanholz/nvim-lastplace',
-    config = function() require('nvim-lastplace').setup() end,
+    config = function()
+      local ok, lp = pcall(require, 'nvim-lastplace')
+      if ok then
+        pcall(lp.setup)
+      end
+    end,
   },
 
   -- Color schemes
