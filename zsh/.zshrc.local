@@ -83,3 +83,9 @@ src_files "$HOME/.profile.d" "$HOME/.zshrc.d"
 #   Two lines instead of one
 zstyle ':prompt:grml:left:items:user' pre '%B%F{green}'
 zstyle ':prompt:grml:left:setup' items rc change-root user at host path vcs newline percent
+
+# Hashed directories.
+# keep-sorted start
+hash -d blog=~/Workspace/perrotta.dev
+hash -d dotfiles=~/.dotfiles
+# keep-sorted end
