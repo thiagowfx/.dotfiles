@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=vendor/schemas/yamllint.json
+extends: default
+
+rules:
+  braces:
+    max-spaces-inside: 1
+  comments:
+    min-spaces-from-content: 1
+  document-start: disable
+  line-length: disable

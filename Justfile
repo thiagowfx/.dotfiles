@@ -194,9 +194,10 @@ update-schemas:
 
     # Define schema mappings (filename -> URL)
     declare -A schemas=(
-        ["espanso-match.schema.json"]="https://raw.githubusercontent.com/espanso/espanso/refs/heads/dev/schemas/match.schema.json"
-        ["espanso-config.schema.json"]="https://raw.githubusercontent.com/espanso/espanso/refs/heads/dev/schemas/config.schema.json"
-    )
+         ["espanso-config.schema.json"]="https://raw.githubusercontent.com/espanso/espanso/refs/heads/dev/schemas/config.schema.json"
+         ["espanso-match.schema.json"]="https://raw.githubusercontent.com/espanso/espanso/refs/heads/dev/schemas/match.schema.json"
+         ["yamllint.json"]="https://json.schemastore.org/yamllint.json"
+     )
 
     failed=0
     succeeded=0
