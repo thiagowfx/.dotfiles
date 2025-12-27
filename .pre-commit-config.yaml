@@ -37,6 +37,7 @@ repos:
       # keep-sorted start
       - id: check-executables-have-shebangs
       - id: check-symlinks
+      - id: check-toml
       - id: check-yaml
       - id: detect-aws-credentials
         args:
