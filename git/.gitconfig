@@ -80,6 +80,7 @@
 [core]
 	# Auto-convert CRLF <-> LF for a transparent experience on Windows.
 	autocrlf = input
+	commitGraph = true
 	excludesfile = ~/.gitignore_global
 	editor = vim
 	# delta > diff-highlight > plain cat
@@ -122,6 +123,9 @@
 [format]
 	# Automatically sign-off patches when using format-patch.
 	signoff = true
+
+[gc]
+	writeCommitGraph = true
 
 [help]
 	autocorrect = 10
