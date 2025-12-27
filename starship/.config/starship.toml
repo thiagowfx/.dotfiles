@@ -27,8 +27,7 @@ format = "[$branch]() "
 format = "|[$state]()"
 
 [git_status]
-format = " "
-disabled = true
+format = "[$all_status$ahead_behind](red) "
 
 [cmd_duration]
 min_time = 2000
