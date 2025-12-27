@@ -41,20 +41,21 @@ echo "💰 \$$FORMATTED_COST | color=$COLOR"
 
 # Dropdown menu
 echo "---"
-echo "Today's Usage | size=14"
-echo "Total Cost: \$$FORMATTED_COST | color=$COLOR"
-echo "---"
+echo "Claude | size=14"
+echo "Open ccusage | bash='/opt/homebrew/bin/ccusage' param1='daily' terminal=true"
 
 # Last 7 Days Summary
-echo "Last 7 Days | size=14"
-
 # Get weekly data (using BSD date syntax for macOS)
 WEEK_START=$(/bin/date -v-7d +%Y%m%d 2>/dev/null || date -d "7 days ago" +%Y%m%d 2>/dev/null)
 WEEK_JSON=$(/opt/homebrew/bin/ccusage daily --json --since "$WEEK_START" --until "$TODAY" --offline 2>/dev/null)
 
 if echo "$WEEK_JSON" | grep -q '"daily"'; then
-    # Parse and display each day
-    echo "$WEEK_JSON" | grep -o '"date": "[^"]*"' | while IFS= read -r line; do
+    # Calculate weekly total first
+    WEEK_TOTAL=$(echo "$WEEK_JSON" | grep '"totals"' -A 10 | grep -o '"totalCost": [0-9.]*' | head -1 | sed 's/"totalCost": //')
+    FORMATTED_WEEK_TOTAL=$(printf "%.2f" "${WEEK_TOTAL:-0}")
+    echo "Last 7 Days: \$$FORMATTED_WEEK_TOTAL | size=14"
+    # Parse and display each day (most recent first)
+    echo "$WEEK_JSON" | grep -o '"date": "[^"]*"' | sort -r | while IFS= read -r line; do
         DATE=$(echo "$line" | sed 's/"date": "//;s/"//')
 
         # Get cost for this date
@@ -66,22 +67,17 @@ if echo "$WEEK_JSON" | grep -q '"daily"'; then
 
         # Highlight today
         if [ "$DATE" = "$(date +%Y-%m-%d)" ]; then
-            echo "$FORMATTED_DATE: \$$FORMATTED_DAY_COST | color=$COLOR font=Monaco"
+            echo "$FORMATTED_DATE (today): \$$FORMATTED_DAY_COST | color=$COLOR font=Monaco"
         else
             echo "$FORMATTED_DATE: \$$FORMATTED_DAY_COST | font=Monaco"
         fi
     done
-
-    # Calculate and display weekly total (from totals section)
-    WEEK_TOTAL=$(echo "$WEEK_JSON" | grep '"totals"' -A 10 | grep -o '"totalCost": [0-9.]*' | head -1 | sed 's/"totalCost": //')
-    FORMATTED_WEEK_TOTAL=$(printf "%.2f" "${WEEK_TOTAL:-0}")
-    echo "---"
-    echo "7-Day Total: \$$FORMATTED_WEEK_TOTAL | size=12"
 else
     echo "No data available"
 fi
 
 echo "---"
-echo "Open Full Report | bash='/opt/homebrew/bin/ccusage' param1='daily' terminal=true"
-echo "View Amp Credits | href=https://ampcode.com/settings"
+echo "Amp | size=14"
+echo "View Credits | href=https://ampcode.com/settings"
+echo "---"
 echo "Refresh | refresh=true"
