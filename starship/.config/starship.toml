@@ -18,7 +18,7 @@ trim_at = "."
 format = "@$hostname"
 
 [directory]
-truncation_length = 40
+truncation_length = 10
 truncate_to_repo = true
 format = " [$path](bold) "
 
