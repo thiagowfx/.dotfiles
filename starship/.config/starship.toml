@@ -10,17 +10,17 @@ style = "bold red"
 
 [username]
 show_always = true
-format = "[$user](bold green) "
+format = "[$user](bold green)"
 
 [hostname]
 ssh_only = true
 trim_at = "."
-format = "@$hostname "
+format = "@$hostname"
 
 [directory]
 truncation_length = 40
 truncate_to_repo = true
-format = "[$path](bold) "
+format = " [$path](bold) "
 
 [git_branch]
 symbol = ""
