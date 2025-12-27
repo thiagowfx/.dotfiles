@@ -144,14 +144,6 @@ local function setup()
     table.insert(servers, 'marksman')
   end
 
-  if has_executable('codebook-lsp') then
-    vim.lsp.config.codebook = {
-      cmd = { 'codebook-lsp', 'serve' },
-      filetypes = { 'lua', 'go', 'javascript', 'typescript', 'markdown' },
-    }
-    table.insert(servers, 'codebook')
-  end
-
   vim.lsp.enable(servers)
 
   -- Configure LSP diagnostics display
