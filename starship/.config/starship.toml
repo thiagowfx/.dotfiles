@@ -1,5 +1,5 @@
 # Minimal starship config matching grml prompt
-format = "$status$username$hostname$directory$git_branch$git_state$git_status$cmd_duration$jobs$line_break$character"
+format = "$status$sudo$username$hostname$directory$git_branch$git_state$git_status$cmd_duration$jobs$line_break$character"
 add_newline = false
 
 [status]
@@ -35,6 +35,10 @@ format = "[$duration](yellow) "
 
 [jobs]
 format = "[$number](cyan) "
+
+[sudo]
+disabled = false
+format = "[🔓](red) "
 
 [character]
 success_symbol = "[❯](green)"
