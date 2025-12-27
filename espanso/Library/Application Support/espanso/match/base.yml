@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=../../../../../schemas/espanso-match.schema.json
+# yaml-language-server: $schema=../../../../../vendor/schemas/espanso-match.schema.json
 # https://espanso.org/docs/
 
 matches:
