@@ -79,10 +79,15 @@ unset -f zed
 # Corp config is handled as part of .zshrc.d.
 src_files "$HOME/.profile.d" "$HOME/.zshrc.d"
 
-# Customize grml prompt.
-#   Two lines instead of one
-zstyle ':prompt:grml:left:items:user' pre '%B%F{green}'
-zstyle ':prompt:grml:left:setup' items rc change-root user at host path vcs newline percent
+# Use starship prompt if available, otherwise customize grml prompt.
+if command -v starship &> /dev/null; then
+    prompt off
+    eval "$(starship init zsh)"
+else
+    # Customize grml prompt: two lines, user in bold green
+    zstyle ':prompt:grml:left:items:user' pre '%B%F{green}'
+    zstyle ':prompt:grml:left:setup' items rc change-root user at host path vcs newline percent
+fi
 
 # Hashed directories.
 # keep-sorted start
