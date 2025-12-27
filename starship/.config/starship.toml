@@ -1,6 +1,7 @@
 # Minimal starship config matching grml prompt
-format = "$status$sudo$username$hostname$directory$git_branch$git_state$git_status$cmd_duration$jobs$line_break$character"
-add_newline = false
+format = "$status$sudo$username$hostname$directory$git_branch$git_state$git_status$line_break$character"
+right_format = "$cmd_duration$jobs"
+add_newline = true
 
 [status]
 disabled = false
@@ -17,11 +18,12 @@ format = "@$hostname "
 
 [directory]
 truncation_length = 40
-truncate_to_repo = false
+truncate_to_repo = true
 format = "[$path](bold) "
 
 [git_branch]
-format = "[$branch]() "
+symbol = ""
+format = "[$symbol$branch]() "
 
 [git_state]
 format = "|[$state]()"
