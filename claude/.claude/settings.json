@@ -1,31 +1,6 @@
 {
-  "alwaysThinkingEnabled": true,
   "env": {
     "CLAUDE_CODE_ENABLE_TELEMETRY": "0"
-  },
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/block-dangerous-commands.sh",
-            "timeout": 10
-          }
-        ]
-      }
-    ],
-    "Notification": [
-      {
-        "hooks": [
-          {
-            "command": "afplay /System/Library/Sounds/Glass.aiff &",
-            "type": "command"
-          }
-        ]
-      }
-    ]
   },
   "permissions": {
     "allow": [
@@ -80,8 +55,34 @@
       "Bash(terraform destroy:*)"
     ]
   },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/block-dangerous-commands.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /System/Library/Sounds/Glass.aiff &"
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
-    "command": "bash ~/.claude/statusline.sh",
-    "type": "command"
-  }
+    "type": "command",
+    "command": "bash ~/.claude/statusline.sh"
+  },
+  "alwaysThinkingEnabled": true,
+  "model": "sonnet"
 }
