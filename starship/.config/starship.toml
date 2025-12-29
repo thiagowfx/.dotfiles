@@ -23,8 +23,8 @@ truncate_to_repo = true
 format = " [$path](bold) "
 
 [git_branch]
-symbol = ""
-format = "[$symbol$branch]() "
+symbol = "git:"
+format = "[$symbol$branch](bold cyan) "
 
 [git_state]
 format = "|[$state]()"
