@@ -207,6 +207,7 @@ local plugins = {
     event = 'VeryLazy',
     dependencies = { 'echasnovski/mini.icons' },
     opts = {
+      delay = 2000,
       spec = {
         { '<leader>', group = 'Leader' },
       },
