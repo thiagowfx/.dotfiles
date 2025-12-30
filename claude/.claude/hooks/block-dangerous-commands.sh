@@ -41,6 +41,12 @@ if echo "$command" | grep -qE '\-\-auto-approve'; then
     reason="--auto-approve is blocked for safety - manual confirmation required"
 fi
 
+# Check for just apply
+if echo "$command" | grep -qE 'just\s+apply'; then
+    blocked=true
+    reason="just apply is blocked - use just plan first"
+fi
+
 # If blocked, return denial via JSON
 if [ "$blocked" = true ]; then
     cat <<EOF
