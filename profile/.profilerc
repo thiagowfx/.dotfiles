@@ -45,8 +45,24 @@ src_files() {
 # Usage: cdtmp [foo]
 # Creates temp dir with user, date, and optional prefix
 cdtmp() {
-        builtin cd "$(mktemp -d -t "$USER-${1:+$1-}$(date +%Y-%m-%d)-XXXXXX")" || return
-        builtin pwd
+	builtin cd "$(mktemp -d -t "$USER-${1:+$1-}$(date +%Y-%m-%d)-XXXXXX")" || return
+	builtin pwd
+}
+
+# bd: back directory (delete current directory with confirmation)
+# Usage: bd or bd <directory>
+bd() {
+	if [ -z "$1" ]; then
+		dir="$PWD"
+		builtin cd ..
+		printf "Delete '%s'? (y/n) " "$dir"
+		read -r response
+		case "$response" in
+			[Yy]) rm -rf "$dir" ;;
+		esac
+	else
+		builtin cd "$1"
+	fi
 }
 
 # Configure less pager if available.
