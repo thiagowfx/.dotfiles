@@ -1,7 +1,7 @@
 #!/usr/bin/env just --justfile
 # https://github.com/casey/just
 
-packages := "ack alacritty apk atuin bash claude gemini gh ghostty git gitui hg i3 iterm2 jj lf mc mr nvim pacman profile ranger screen ssh starship sway tmux vim vscode x11 zed zsh"
+packages := "ack alacritty apk atuin bash claude gemini gh ghostty git gitui hg i3 iterm2 jj lf logseq mc mr nvim pacman profile ranger screen ssh starship sway tmux vim vscode x11 zed zsh"
 packages_no_folding := "espanso swiftbar"
 [private]
 _dotfiles_dir := justfile_directory()
@@ -42,8 +42,9 @@ stow:
         [i3]="i3"
         [iterm2]="/Applications/iTerm.app/Contents/MacOS/iTerm2"
         [jj]="jj"
-        [lf]="lf"
-        [mc]="mc"
+         [lf]="lf"
+         [logseq]="/Applications/LogSeq.app/Contents/MacOS/LogSeq"
+         [mc]="mc"
         [mr]="mr"
         [nvim]="nvim"
         [pacman]="pacman"
