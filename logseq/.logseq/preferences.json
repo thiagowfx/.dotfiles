@@ -1,0 +1,33 @@
+{
+  "theme": {
+    "name": "Bonofix Theme",
+    "url": "file:///Users/thiago.perrotta/.logseq/plugins/logseq-bonofix-theme/custom.css",
+    "description": "A clean theme",
+    "pid": "logseq-bonofix-theme"
+  },
+  "themes": {
+    "mode": "light",
+    "light": {
+      "name": "Bonofix Theme",
+      "url": "file:///Users/thiago.perrotta/.logseq/plugins/logseq-bonofix-theme/custom.css",
+      "description": "A clean theme",
+      "pid": "logseq-bonofix-theme",
+      "group-first": true,
+      "group-desc": "light & dark themes",
+      "mode": "light",
+      "selected": false
+    },
+    "dark": {
+      "name": "Bonofix Theme",
+      "url": "file:///Users/thiago.perrotta/.logseq/plugins/logseq-bonofix-theme/custom.css",
+      "description": "A clean theme",
+      "pid": "logseq-bonofix-theme",
+      "group-first": true,
+      "group-desc": "light & dark themes",
+      "mode": "dark",
+      "selected": false
+    }
+  },
+  "externals": [],
+  "pinnedToolbarItems": []
+}
