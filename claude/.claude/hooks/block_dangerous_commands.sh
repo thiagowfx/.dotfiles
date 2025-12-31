@@ -47,6 +47,12 @@ if echo "$command" | grep -qE 'just\s+apply'; then
     reason="just apply is blocked - use just plan first"
 fi
 
+# Block deletion of pre-commit cache
+if echo "$command" | grep -qE 'rm\s+.*\.cache/pre-commit'; then
+    blocked=true
+    reason="Deleting pre-commit cache is blocked for safety"
+fi
+
 # If blocked, return denial via JSON
 if [ "$blocked" = true ]; then
     cat <<EOF

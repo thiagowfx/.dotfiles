@@ -1,0 +1,23 @@
+# https://github.com/ls-lint/action
+name: ls-lint
+
+permissions: read-all
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ls-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+        with:
+          persist-credentials: false
+      - uses: ls-lint/action@02e380fe8733d499cbfc9e22276de5085508a5bd # v2.3.1

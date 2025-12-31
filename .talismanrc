@@ -4,6 +4,9 @@
 threshold: medium
 allowed_patterns:
   - "rev: \\w+ # frozen:"
+fileignoreconfig:
+  - filename: .github/workflows/ls-lint.yml
+    checksum: 745e95a79f6986bc0f22e8639566b87e3996b4c8da7370e134cc685d74076c98
 files_to_ignore:
   - "nvim/.config/nvim/lazy-lock.json"
 version: "1.0"

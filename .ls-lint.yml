@@ -1,0 +1,22 @@
+# https://github.com/ls-lint/docs
+
+ls:
+  # keep-sorted start
+  .bash: snake_case
+  .json: kebab-case
+  .sh: snake_case
+  .toml: kebab-case
+  .yaml: kebab-case
+  .yml: kebab-case
+  .zsh: snake_case
+  # keep-sorted end
+
+ignore:
+  # keep-sorted start
+  - nvim/.config/nvim/lazy.nvim
+  - vendor
+  - vim/.vim/plugged
+  - vim/.vim/vim-plug
+  - zsh/.zsh/zsh-autosuggestions
+  - zsh/.zsh/zsh-syntax-highlighting
+  # keep-sorted end

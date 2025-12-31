@@ -62,7 +62,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/hooks/block-dangerous-commands.sh",
+            "command": "~/.claude/hooks/block_dangerous_commands.sh",
             "timeout": 10
           }
         ]
