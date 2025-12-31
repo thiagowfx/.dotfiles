@@ -8,4 +8,12 @@
 ;;  would result in the final config:
 ;;   {:shortcuts {:ui/toggle-theme "t z"
 ;;                :ui/toggle-brackets "t b"}}
-{:shortcuts {:go/search ["mod+k" "meta+p" "meta+o"]}}
+{:feature/enable-flashcards? false
+ :feature/enable-timetracking? false
+ :feature/enable-whiteboards? false
+ :file/name-format :triple-lowbar
+ :graph/settings {:journal? false
+                  :builtin-pages? false}
+ :preferred-workflow :todo
+ :shortcuts {:go/search ["mod+k" "meta+p" "meta+o"]}
+ :start-of-week 6}
