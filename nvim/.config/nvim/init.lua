@@ -169,6 +169,12 @@ local plugins = {
     config = function()
       require('oil').setup({ view_options = { show_hidden = true } })
       vim.keymap.set('n', '-', '<cmd>Oil<CR>', { desc = 'Open parent directory' })
+      vim.keymap.set('n', 'yy', function()
+        local line = vim.api.nvim_get_current_line()
+        local path = line:gsub("^/[0-9]+%s+", "")
+        vim.fn.setreg('+', path)
+        vim.notify('Copied: ' .. path, vim.log.levels.INFO)
+      end, { buffer = true, desc = 'Copy file path' })
     end,
   },
   'aymericbeaumet/vim-symlink',
