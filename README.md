@@ -2,15 +2,12 @@
 
 ## CI status
 
-```shell
-grep -Erl '\b(push|schedule|workflow_dispatch):$' .github/workflows | \
-  xargs -n 1 basename | sort -d | \
-  sed -e 's|^[^-].*|- [![](https://github.com/thiagowfx/.dotfiles/actions/workflows/&/badge.svg?branch=master)](https://github.com/thiagowfx/.dotfiles/actions/workflows/&)|'
-```
+`> grep -Erl '\b(push|schedule|workflow_dispatch):$' .github/workflows | xargs -n 1 basename | sort -d | sed 's|^[^/]*$|[![&](https://github.com/thiagowfx/.dotfiles/actions/workflows/&/badge.svg)](https://github.com/thiagowfx/.dotfiles/actions/workflows/&)|'`
 
 <!-- BEGIN mdsh -->
-- [![pre-commit-autoupdate](https://github.com/thiagowfx/.dotfiles/actions/workflows/pre-commit-autoupdate.yml/badge.svg?branch=master)](https://github.com/thiagowfx/.dotfiles/actions/workflows/pre-commit-autoupdate.yml)
-- [![pre-commit](https://github.com/thiagowfx/.dotfiles/actions/workflows/pre-commit.yml/badge.svg?branch=master)](https://github.com/thiagowfx/.dotfiles/actions/workflows/pre-commit.yml)
+[![ls-lint.yml](https://github.com/thiagowfx/.dotfiles/actions/workflows/ls-lint.yml/badge.svg)](https://github.com/thiagowfx/.dotfiles/actions/workflows/ls-lint.yml)
+[![pre-commit-autoupdate.yml](https://github.com/thiagowfx/.dotfiles/actions/workflows/pre-commit-autoupdate.yml/badge.svg)](https://github.com/thiagowfx/.dotfiles/actions/workflows/pre-commit-autoupdate.yml)
+[![pre-commit.yml](https://github.com/thiagowfx/.dotfiles/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/thiagowfx/.dotfiles/actions/workflows/pre-commit.yml)
 <!-- END mdsh -->
 
 This dotfiles repository is managed with [`GNU stow`][stow] and [`Just`][just].
