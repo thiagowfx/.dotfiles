@@ -114,6 +114,10 @@ repos:
     rev: 1e30511413f07e516c1844ba91abce8aca984963 # frozen: v1.18.0
     hooks:
       - id: zizmor
+  - repo: https://github.com/zimbatm/mdsh.git
+    rev: 4b8fb1e7b52a65d6ea875ede3272ac3571f5d015 # frozen: v0.9.2
+    hooks:
+      - id: mdsh
   - repo: local
     hooks:
       - id: ghostty
