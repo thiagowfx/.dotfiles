@@ -277,9 +277,6 @@ local plugins = {
 
   -- Diff tools
   'whiteinge/diffconflicts',
-
-  -- EditorConfig
-  'gpanders/editorconfig.nvim',
   }
 
 -- Load LSP, Linting, and Formatting plugins
