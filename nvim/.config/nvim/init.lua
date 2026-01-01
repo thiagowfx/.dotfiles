@@ -1,5 +1,43 @@
 -- Neovim config file
 
+-- Custom Keybindings:
+--   Leader: comma (,)
+--
+--   Editing:
+--     J         - Join lines without adding space (built-in)
+--     Q         - Reflow current paragraph (built-in gwip)
+--     W         - Format current paragraph with ipfmt (external command)
+--     <leader>w - Fix whitespace (mini.trailspace)
+--     <leader><Space> - Just one space (custom function)
+--
+--   Git:
+--     ]c        - Next git hunk (gitsigns.nvim)
+--     [c        - Previous git hunk (gitsigns.nvim)
+--     <leader>s - Stage current hunk (gitsigns.nvim)
+--     <leader>u - Unstage current hunk (gitsigns.nvim)
+--
+--   LSP (Language Server Protocol):
+--     ]d        - Next diagnostic (nvim-lspconfig)
+--     [d        - Previous diagnostic (nvim-lspconfig)
+--     gd        - Go to definition (nvim-lspconfig)
+--     gD        - Go to declaration (nvim-lspconfig)
+--     gr        - Go to references (nvim-lspconfig)
+--     gi        - Go to implementation (nvim-lspconfig)
+--     K         - Hover documentation (nvim-lspconfig)
+--     <leader>rn - Rename symbol (nvim-lspconfig)
+--     <leader>ca - Code actions (nvim-lspconfig)
+--     <leader>e - Show diagnostics in float window (nvim-lspconfig)
+--     <leader>f - Format buffer (conform.nvim)
+--
+--   Navigation and Search:
+--     <leader>ff - Find files (telescope.nvim, includes hidden)
+--     <leader>fg - Live grep (telescope.nvim)
+--     <leader>fb - List buffers (telescope.nvim)
+--     -         - Open parent directory (oil.nvim)
+--
+--   Clipboard:
+--     <C-c>     - Copy selection to system clipboard (built-in OSC52)
+
 -- Set leader key. Default is '\'.
 vim.g.mapleader = ","
 
