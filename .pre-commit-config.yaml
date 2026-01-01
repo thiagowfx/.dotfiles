@@ -89,7 +89,7 @@ repos:
     hooks:
       - id: check-yamlschema
   - repo: https://github.com/rhysd/actionlint/
-    rev: a443f344ff32813837fa49f7aa6cbc478d770e62 # frozen: v1.7.9
+    rev: 0933c147c9d6587653d45fdcb4c497c57a65f9af # frozen: v1.7.10
     hooks:
       - id: actionlint
   - repo: https://github.com/shellcheck-py/shellcheck-py
@@ -98,7 +98,7 @@ repos:
       - id: shellcheck
         exclude: \.zsh$
   - repo: https://github.com/thiagowfx/pre-commit-hooks
-    rev: 9b63854d88b564765fda71e6089fcd9c8c5b822d # frozen: v0.0.15
+    rev: 454fa6b8f5255d9348b11cc1b7480e3a0d80ca96 # frozen: v0.0.18
     hooks:
       - id: just-format
       - id: check-yamlschema-local
@@ -110,7 +110,7 @@ repos:
       - id: talisman-push
         entry: cmd --githook pre-push
   - repo: https://github.com/woodruffw/zizmor-pre-commit
-    rev: 1e30511413f07e516c1844ba91abce8aca984963 # frozen: v1.18.0
+    rev: ea18690d7f8e44203c9efd7bc6229447d02e3951 # frozen: v1.19.0
     hooks:
       - id: zizmor
   - repo: https://github.com/zimbatm/mdsh.git
