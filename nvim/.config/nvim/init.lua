@@ -238,7 +238,10 @@ local plugins = {
 
   -- Diff tools
   'whiteinge/diffconflicts',
-}
+
+  -- EditorConfig
+  'gpanders/editorconfig.nvim',
+  }
 
 -- Load LSP, Linting, and Formatting plugins
 local lsp = pcall(require, 'config.lsp') and require('config.lsp') or { plugins = {}, setup = function() end }

@@ -1,6 +1,7 @@
 {
   "conform.nvim": { "branch": "master", "commit": "5420c4b5ea0aeb99c09cfbd4fd0b70d257b44f25" },
   "diffconflicts": { "branch": "master", "commit": "4972d1401e008c5e9afeb703eddd1b2c2a1d1199" },
+  "editorconfig.nvim": { "branch": "master", "commit": "67758c3e8a2f79019322a60013e4ce0aad09dafa" },
   "file-line": { "branch": "main", "commit": "559088afaf10124ea663ee0f4f73b1de48fb1632" },
   "gitsigns.nvim": { "branch": "main", "commit": "5813e4878748805f1518cee7abb50fd7205a3a48" },
   "indent-blankline.nvim": { "branch": "master", "commit": "005b56001b2cb30bfa61b7986bc50657816ba4ba" },
