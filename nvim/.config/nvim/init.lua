@@ -278,6 +278,47 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function() vim.hl.on_yank() end,
 })
 
+-- Read max_line_length from .editorconfig
+local function get_editorconfig_max_line_length(file)
+  local dir = vim.fn.fnamemodify(file, ':h')
+  local editorconfig_path = vim.fn.findfile('.editorconfig', dir .. ';')
+
+  if editorconfig_path == '' then
+    return nil
+  end
+
+  local lines = vim.fn.readfile(editorconfig_path)
+  local in_md_section = false
+
+  for _, line in ipairs(lines) do
+    if line:match('^%[%*%.md%]') then
+      in_md_section = true
+    elseif line:match('^%[') then
+      in_md_section = false
+    end
+
+    if in_md_section then
+      local value = line:match('^max_line_length%s*=%s*(%d+)')
+      if value then
+        return value
+      end
+    end
+  end
+
+  return nil
+end
+
+-- Set colorcolumn for markdown files in repos with .editorconfig
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'markdown',
+  callback = function(event)
+    local cc = get_editorconfig_max_line_length(event.file)
+    if cc then
+      vim.opt_local.colorcolumn = cc
+    end
+  end,
+})
+
 -- Auto-create directories when saving (replaces vim-mkdir)
 vim.api.nvim_create_autocmd('BufWritePre', {
   group = vim.api.nvim_create_augroup('AutoMkdir', { clear = true }),
