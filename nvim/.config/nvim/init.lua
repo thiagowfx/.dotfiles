@@ -157,6 +157,7 @@ local plugins = {
         on_attach = function(bufnr)
           local gs = require('gitsigns')
           -- ]c / [c: next/prev hunk (falls back to default in diff mode)
+	  -- like git-gutter in vim
           vim.keymap.set('n', ']c', function()
             if vim.wo.diff then return ']c' end
             vim.schedule(function() gs.next_hunk() end)
