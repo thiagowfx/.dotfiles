@@ -22,6 +22,21 @@ path_munge() {
         done
 }
 
+# Augmented cd with path substitution support.
+# Usage: cd [directory] or cd <find> <replace>
+#   cd main develop           - switch branch: /projects/myapp/main/src -> /projects/myapp/develop/src
+#   cd v1 v2                  - switch version: /app/v1/build -> /app/v2/build
+#   cd prod staging           - switch environment: /var/www/prod/api -> /var/www/staging/api
+cd() {
+	if [ $# -eq 2 ]; then
+		local find="$1" replace="$2"
+		local new_pwd="${PWD//$find/$replace}"
+		builtin cd "$new_pwd" || return
+	else
+		builtin cd "$@" || return
+	fi
+}
+
 # Sensible $PATH should include user binary directories.
 #   pipx uses $HOME/.local/bin
 path_munge "$HOME/.bin" "$HOME/bin" "$HOME/.local/bin"
