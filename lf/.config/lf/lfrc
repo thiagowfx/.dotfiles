@@ -9,6 +9,3 @@ set hidden true
 
 # Edit file: 'e' (mapped out-of-the-box)
 # Toggle hidden files: 'zh'
-
-# l edits file (like ranger)
-map l $$EDITOR "$f"
