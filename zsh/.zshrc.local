@@ -93,6 +93,6 @@ fi
 # keep-sorted start
 hash -d blog=~/Workspace/perrotta.dev
 hash -d dotfiles=~/.dotfiles
-hash -d icloud='/Users/thiago.perrotta/Library/Mobile Documents/com~apple~CloudDocs/'
+hash -d icloud='/Users/thiago.perrotta/Library/Mobile Documents/com~apple~CloudDocs'
 hash -d pancake=~/workspace/pancake
 # keep-sorted end
