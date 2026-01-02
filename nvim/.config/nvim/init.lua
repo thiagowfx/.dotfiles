@@ -30,9 +30,9 @@
 --     <leader>f - Format buffer (conform.nvim)
 --
 --   Navigation and Search:
---     <leader>ff - Find files (telescope.nvim, includes hidden)
---     <leader>fg - Live grep (telescope.nvim)
---     <leader>fb - List buffers (telescope.nvim)
+--     <leader>tf - Find files (telescope.nvim, includes hidden)
+--     <leader>tg - Live grep (telescope.nvim)
+--     <leader>tb - List buffers (telescope.nvim)
 --     -         - Open parent directory (oil.nvim)
 --
 --   Clipboard:
@@ -193,11 +193,11 @@ local plugins = {
     'nvim-telescope/telescope.nvim',
     config = function()
       local builtin = require('telescope.builtin')
-      vim.keymap.set('n', '<leader>ff', function()
+      vim.keymap.set('n', '<leader>tf', function()
         builtin.find_files({ hidden = true, respect_gitignore = true })
       end, { desc = 'Find files' })
-      vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Live grep' })
-      vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Buffers' })
+      vim.keymap.set('n', '<leader>tg', builtin.live_grep, { desc = 'Live grep' })
+      vim.keymap.set('n', '<leader>tb', builtin.buffers, { desc = 'Buffers' })
     end,
   },
   'junegunn/vim-slash',
