@@ -97,17 +97,20 @@ local function setup()
   -- Configure LSP servers (Neovim 0.11+ native API)
   local servers = {}
 
-  vim.lsp.config.lua_ls = {
-    settings = {
-      Lua = {
-        runtime = { version = 'LuaJIT' },
-        diagnostics = { globals = { 'vim' } },
-        workspace = { library = vim.api.nvim_get_runtime_file('', true), checkThirdParty = false },
-        telemetry = { enable = false },
+  if has_executable('lua-language-server') then
+    vim.lsp.config.lua_ls = {
+      cmd = { 'lua-language-server' },
+      settings = {
+        Lua = {
+          runtime = { version = 'LuaJIT' },
+          diagnostics = { globals = { 'vim' } },
+          workspace = { library = vim.api.nvim_get_runtime_file('', true), checkThirdParty = false },
+          telemetry = { enable = false },
+        },
       },
-    },
-  }
-  table.insert(servers, 'lua_ls')
+    }
+    table.insert(servers, 'lua_ls')
+  end
 
   if has_executable('clangd') then
     vim.lsp.config.clangd = {}
