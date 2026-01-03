@@ -1,7 +1,41 @@
+# This file is managed with cog.
+#
+# To regenerate it, run:
+#   cog -r Brewfile
+
+# Taps
+# (uses brew tap)
+# [[[cog
+import subprocess
+import cog
+taps = subprocess.check_output(['brew', 'tap']).decode().strip().split('\n')
+taps.sort()
+for tap in taps:
+    cog.outl(f'tap "{tap}"')
+# ]]]
+tap "acsandmann/tap"
+tap "atlassian/acli"
+tap "azure/functions"
+tap "cloudflare/cloudflare"
+tap "hashicorp/tap"
+tap "knqyf263/pet"
+tap "mongodb/brew"
+tap "nalgeon/howto"
+tap "thiagowfx/pancake"
+tap "thiagowfx/taps"
+# [[[end]]]
+
 # Brew packages
-# To update this list, run:
-#   brew leaves --installed-on-request
-# keep-sorted start
+# (uses brew leaves --installed-on-request to list only explicitly requested packages)
+# Alternative: brew bundle dump (includes transitive dependencies)
+# [[[cog
+import subprocess
+import cog
+packages = subprocess.check_output(['brew', 'leaves', '--installed-on-request']).decode().strip().split('\n')
+packages.sort()
+for pkg in packages:
+    cog.outl(f'brew "{pkg}"')
+# ]]]
 brew "ack"
 brew "actionlint"
 brew "argocd"
@@ -11,8 +45,8 @@ brew "atuin"
 brew "aws-sso-cli"
 brew "awscli"
 brew "azure-cli"
-brew "bash"
 brew "bash-completion@2"
+brew "bash-language-server"
 brew "bkt"
 brew "broot"
 brew "btop"
@@ -20,10 +54,13 @@ brew "ccusage"
 brew "chart-testing"
 brew "checkov"
 brew "clang-format"
+brew "codebook-lsp"
 brew "codespell"
+brew "cogapp"
 brew "cookiecutter"
 brew "coreutils"
 brew "diffoscope"
+brew "difftastic"
 brew "direnv"
 brew "diskonaut"
 brew "dive"
@@ -56,10 +93,10 @@ brew "htop"
 brew "httpie"
 brew "hugo"
 brew "icdiff"
-brew "imagemagick"
 brew "ipython"
 brew "jj"
 brew "jq"
+brew "jsonlint"
 brew "just"
 brew "keep-sorted"
 brew "kubeconform"
@@ -69,8 +106,10 @@ brew "lesspipe"
 brew "lf"
 brew "llm"
 brew "ls-lint"
+brew "lua-language-server"
 brew "macos-trash"
 brew "make"
+brew "marksman"
 brew "mas"
 brew "mdsh"
 brew "midnight-commander"
@@ -89,18 +128,18 @@ brew "pngcrush"
 brew "poppler"
 brew "pre-commit"
 brew "prometheus"
+brew "proselint"
+brew "pyright"
 brew "ranger"
 brew "rbenv"
 brew "rename"
 brew "ripgrep-all"
 brew "ruff"
-brew "shellcheck"
 brew "skopeo"
+brew "starship"
 brew "stow"
 brew "tailspin"
-brew "terraform"
 brew "terraform-docs"
-brew "terraformer"
 brew "terrascan"
 brew "tfenv"
 brew "tflint"
@@ -108,14 +147,19 @@ brew "tfupdate"
 brew "thiagowfx/pancake/pancake"
 brew "thiagowfx/taps/python-is-python3"
 brew "tig"
-brew "tmux"
 brew "tmuxinator"
 brew "tree"
+brew "tree-sitter-cli"
 brew "trivy"
+brew "ty"
+brew "typst"
 brew "uv"
 brew "vim"
+brew "vscode-langservers-extracted"
 brew "watch"
+brew "watchexec"
 brew "wget"
+brew "yaml-language-server"
 brew "yamlfmt"
 brew "yamllint"
 brew "yarn"
@@ -124,24 +168,31 @@ brew "zizmor"
 brew "zoxide"
 brew "zsh"
 brew "zsh-completions"
-# keep-sorted end
+# [[[end]]]
 
-# Casks
-# To update this list, run:
-#   brew list --cask
-# keep-sorted start
+# Brew Casks
+# (uses brew list --cask)
+# [[[cog
+import subprocess
+import cog
+casks = subprocess.check_output(['brew', 'list', '--cask']).decode().strip().split('\n')
+casks.sort()
+for cask in casks:
+    cog.outl(f'cask "{cask}"')
+# ]]]
 cask "1password"
+cask "1password-cli"
 cask "anki"
 cask "brave-browser"
 cask "bruno"
 cask "burp-suite"
-cask "calibre"
 cask "codex"
 cask "conductor"
 cask "dbeaver-community"
 cask "duckduckgo"
-cask "element"
 cask "espanso"
+cask "finicky"
+cask "flameshot"
 cask "font-cascadia-code"
 cask "font-commit-mono"
 cask "font-hermit"
@@ -149,8 +200,8 @@ cask "font-ibm-plex-mono"
 cask "ghostty"
 cask "google-chrome"
 cask "google-drive"
+cask "heynote"
 cask "hiddenbar"
-cask "jellyfin"
 cask "karabiner-elements"
 cask "little-snitch"
 cask "logseq"
@@ -159,18 +210,17 @@ cask "microsoft-azure-storage-explorer"
 cask "pgadmin4"
 cask "postico"
 cask "pritunl"
-cask "qbittorrent"
 cask "rancher"
 cask "raycast"
 cask "rectangle"
 cask "slack"
 cask "spotify"
 cask "swiftbar"
-cask "tailscale"
+cask "tailscale-app"
 cask "telegram"
 cask "visual-studio-code"
 cask "vlc"
 cask "whatsapp"
 cask "windscribe"
 cask "zed"
-# keep-sorted end
+# [[[end]]]
