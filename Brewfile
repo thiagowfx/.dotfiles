@@ -1,4 +1,6 @@
 # Brew packages
+# To update this list, run:
+#   brew leaves --installed-on-request
 # keep-sorted start
 brew "ack"
 brew "actionlint"
@@ -64,6 +66,7 @@ brew "kubeconform"
 brew "kustomize"
 brew "less"
 brew "lesspipe"
+brew "lf"
 brew "llm"
 brew "ls-lint"
 brew "macos-trash"
@@ -79,6 +82,7 @@ brew "mr"
 brew "mtr"
 brew "nalgeon/howto/howto"
 brew "ncdu"
+brew "neovim"
 brew "opencode"
 brew "optipng"
 brew "pngcrush"
@@ -89,6 +93,7 @@ brew "ranger"
 brew "rbenv"
 brew "rename"
 brew "ripgrep-all"
+brew "ruff"
 brew "shellcheck"
 brew "skopeo"
 brew "stow"
@@ -122,6 +127,8 @@ brew "zsh-completions"
 # keep-sorted end
 
 # Casks
+# To update this list, run:
+#   brew list --cask
 # keep-sorted start
 cask "1password"
 cask "anki"
