@@ -57,7 +57,7 @@ matches:
   - triggers:
       - ":hugo:link"
       - ":hugo:ref"
-    replace: '{{< ref "$|$" >}}'
+    replace: '({{< ref "$|$" >}})'
 
   - triggers:
       - ":hugo:prev"
