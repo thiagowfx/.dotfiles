@@ -1,6 +1,11 @@
 local M = {}
 
 function M.get_max_line_length(file)
+  -- Skip processing for non-real files (e.g., fugitive:// buffers)
+  if not file or file == '' or file:match('^fugitive://') then
+    return nil
+  end
+
   local dir = vim.fn.fnamemodify(file, ':h')
   local editorconfig_path = vim.fn.findfile('.editorconfig', dir .. ';')
 
