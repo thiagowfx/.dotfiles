@@ -13,12 +13,10 @@ taps.sort()
 for tap in taps:
     cog.outl(f'tap "{tap}"')
 # ]]]
-tap "acsandmann/tap"
 tap "atlassian/acli"
 tap "azure/functions"
 tap "cloudflare/cloudflare"
 tap "hashicorp/tap"
-tap "knqyf263/pet"
 tap "mongodb/brew"
 tap "nalgeon/howto"
 tap "thiagowfx/pancake"
