@@ -38,7 +38,6 @@
 --
 --   LSP-Enhanced Completion (nvim-cmp):
 --     <C-n>     - Open completion menu (or next item if menu open)
---     <Tab>     - Open completion menu (alternative to C-n)
 --     <C-p>     - Previous completion item
 --     <CR>      - Confirm selection
 --     <C-e>     - Abort completion
