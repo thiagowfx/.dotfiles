@@ -145,10 +145,10 @@ set visualbell t_vb=
 " Set completion mode.
 set wildmode=list:longest
 
-" vim-plug plugin manager
-" Install plugins with :PlugInstall
-" Update plugins with :PlugUpdate
-" Remove unused plugins with :PlugClean
+" vim-plug plugin management
+"   Install plugins with :PlugInstall
+"   Update plugins with :PlugUpdate
+"   Remove unused plugins with :PlugClean
 call plug#begin('~/.vim/plugged')
 
 " Linting and fixing

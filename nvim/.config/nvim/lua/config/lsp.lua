@@ -7,6 +7,32 @@ end
 local plugins = {
   'neovim/nvim-lspconfig',
   {
+    'hrsh7th/nvim-cmp',
+    dependencies = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+    },
+    config = function()
+      local cmp = require('cmp')
+      cmp.setup({
+        mapping = cmp.mapping.preset.insert({
+          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<Tab>'] = cmp.mapping.complete(),
+          ['<C-e>'] = cmp.mapping.abort(),
+          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        }),
+        sources = cmp.config.sources({
+          { name = 'nvim_lsp' },
+        }, {
+          { name = 'buffer' },
+          { name = 'path' },
+        }),
+      })
+    end,
+  },
+  {
     'mfussenegger/nvim-lint',
     config = function()
       local linters_by_ft = {}
@@ -97,9 +123,14 @@ local function setup()
   -- Configure LSP servers (Neovim 0.11+ native API)
   local servers = {}
 
+  -- Get capabilities from nvim-cmp
+  local cmp_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+  local capabilities = cmp_ok and cmp_nvim_lsp.default_capabilities() or {}
+
   if has_executable('lua-language-server') then
     vim.lsp.config.lua_ls = {
       cmd = { 'lua-language-server' },
+      capabilities = capabilities,
       settings = {
         Lua = {
           runtime = { version = 'LuaJIT' },
@@ -113,37 +144,37 @@ local function setup()
   end
 
   if has_executable('clangd') then
-    vim.lsp.config.clangd = {}
+    vim.lsp.config.clangd = { capabilities = capabilities }
     table.insert(servers, 'clangd')
   end
 
   if has_executable('gopls') then
-    vim.lsp.config.gopls = {}
+    vim.lsp.config.gopls = { capabilities = capabilities }
     table.insert(servers, 'gopls')
   end
 
   if has_executable('pyright') then
-    vim.lsp.config.pyright = {}
+    vim.lsp.config.pyright = { capabilities = capabilities }
     table.insert(servers, 'pyright')
   end
 
   if has_executable('bash-language-server') then
-    vim.lsp.config.bashls = {}
+    vim.lsp.config.bashls = { capabilities = capabilities }
     table.insert(servers, 'bashls')
   end
 
   if has_executable('yaml-language-server') then
-    vim.lsp.config.yamlls = {}
+    vim.lsp.config.yamlls = { capabilities = capabilities }
     table.insert(servers, 'yamlls')
   end
 
   if has_executable('vscode-json-language-server') then
-    vim.lsp.config.jsonls = {}
+    vim.lsp.config.jsonls = { capabilities = capabilities }
     table.insert(servers, 'jsonls')
   end
 
   if has_executable('marksman') then
-    vim.lsp.config.marksman = {}
+    vim.lsp.config.marksman = { capabilities = capabilities }
     table.insert(servers, 'marksman')
   end
 

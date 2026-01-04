@@ -1,5 +1,8 @@
 -- Neovim config file
 
+-- Plugin management
+--   :Lazy
+--
 -- Custom Keybindings:
 --   Leader: comma (,)
 --
@@ -29,6 +32,15 @@
 --     <leader>e - Show diagnostics in float window (nvim-lspconfig)
 --     <leader>f - Format buffer (conform.nvim)
 --
+--   LSP-Enhanced Completion (nvim-cmp):
+--     <C-n>     - Open completion menu (or next item if menu open)
+--     <Tab>     - Open completion menu (alternative to C-n)
+--     <C-p>     - Previous completion item
+--     <CR>      - Confirm selection
+--     <C-e>     - Abort completion
+--     <C-b>     - Scroll docs backward
+--     <C-f>     - Scroll docs forward
+--
 --   Navigation and Search:
 --     <leader>tf - Find files (telescope.nvim, includes hidden)
 --     <leader>tg - Live grep (telescope.nvim)
@@ -38,7 +50,7 @@
 --   Clipboard:
 --     <C-c>     - Copy selection to system clipboard (built-in OSC52)
 
--- Set leader key. Default is '\'.
+-- Set leader key to comma. Default is '\'.
 vim.g.mapleader = ","
 
 -- :w save misspellings
