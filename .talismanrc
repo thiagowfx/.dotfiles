@@ -5,8 +5,6 @@ threshold: medium
 allowed_patterns:
   - "rev: \\w+ # frozen:"
 fileignoreconfig:
-  - filename: nvim/.config/nvim/lazy-lock.json
-    checksum: d150d55e3535f210dd9948fbbb562def61503c3e2f3b906fe9962f3bf6f4e25c
   - filename: .github/workflows/ls-lint.yml
     checksum: 745e95a79f6986bc0f22e8639566b87e3996b4c8da7370e134cc685d74076c98
 version: "1.0"
