@@ -64,6 +64,7 @@ local plugins = {
         bash = { 'shellcheck' },
         c = { 'clang-tidy' },
         cpp = { 'clang-tidy' },
+        dockerfile = { 'hadolint' },
         go = { 'golangci-lint' },
         json = { 'jsonlint' },
         python = { 'mypy', 'ruff' },
