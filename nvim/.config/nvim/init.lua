@@ -27,6 +27,7 @@
 --     gr        - Go to references (nvim-lspconfig)
 --     gi        - Go to implementation (nvim-lspconfig)
 --     K         - Hover documentation (nvim-lspconfig)
+--     <C-k>     - Signature help (nvim-lspconfig)
 --     <leader>rn - Rename symbol (nvim-lspconfig)
 --     <leader>ca - Code actions (nvim-lspconfig)
 --     <leader>e - Show diagnostics in float window (nvim-lspconfig)
@@ -40,6 +41,7 @@
 --     <C-e>     - Abort completion
 --     <C-b>     - Scroll docs backward
 --     <C-f>     - Scroll docs forward
+--     <C-k>     - Signature help (insert mode)
 --
 --   Navigation and Search:
 --     <leader>tf - Find files (telescope.nvim, includes hidden)

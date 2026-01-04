@@ -120,6 +120,12 @@ local plugins = {
 
 -- LSP configuration function (called after lazy.setup)
 local function setup()
+  -- Configure signature help display
+  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+    vim.lsp.handlers.signature_help,
+    { border = 'rounded' }
+  )
+
   -- Configure LSP servers (Neovim 0.11+ native API)
   local servers = {}
 
@@ -201,11 +207,25 @@ local function setup()
       vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
       vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+      vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+      vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, opts)
       vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
       vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
       vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
       vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
       vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
+
+      -- Auto-trigger signature help on ( and , (with small delay for LSP to catch up)
+      vim.api.nvim_create_autocmd('InsertCharPre', {
+        buffer = ev.buf,
+        callback = function()
+          if vim.v.char == '(' or vim.v.char == ',' then
+            vim.defer_fn(function()
+              vim.lsp.buf.signature_help()
+            end, 50)
+          end
+        end,
+      })
     end,
   })
 end
