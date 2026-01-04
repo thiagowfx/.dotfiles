@@ -7,5 +7,6 @@
     "skill": "ask",
     "doom_loop": "ask",
     "external_directory": "ask"
-  }
+  },
+  "share": "manual"
 }
