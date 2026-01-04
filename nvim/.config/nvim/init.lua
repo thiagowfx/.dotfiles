@@ -32,6 +32,9 @@
 --     <leader>ca - Code actions (nvim-lspconfig)
 --     <leader>e - Show diagnostics in float window (nvim-lspconfig)
 --     <leader>f - Format buffer (conform.nvim)
+--     <leader>a - Toggle outline (aerial.nvim)
+--     [a        - Previous symbol (aerial.nvim)
+--     ]a        - Next symbol (aerial.nvim)
 --
 --   LSP-Enhanced Completion (nvim-cmp):
 --     <C-n>     - Open completion menu (or next item if menu open)

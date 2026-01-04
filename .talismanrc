@@ -7,4 +7,6 @@ allowed_patterns:
 fileignoreconfig:
   - filename: .github/workflows/ls-lint.yml
     checksum: 745e95a79f6986bc0f22e8639566b87e3996b4c8da7370e134cc685d74076c98
+  - filename: nvim/.config/nvim/lazy-lock.json
+    checksum: c2ed63e5761a4f0c9aa9ac2d7ce6aa8eb89b26944c1b1c8ce0a6021418e3986d
 version: "1.0"

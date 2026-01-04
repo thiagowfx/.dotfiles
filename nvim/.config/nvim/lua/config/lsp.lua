@@ -116,6 +116,20 @@ local plugins = {
       },
     },
   },
+  {
+    'stevearc/aerial.nvim',
+    keys = {
+      { '<leader>a', '<cmd>AerialToggle<CR>', desc = 'Toggle outline' },
+    },
+    config = function()
+      require('aerial').setup({
+        layout = { default_direction = 'right', width = 35 },
+        filter_kind = false,
+      })
+      vim.keymap.set('n', '[a', '<cmd>AerialPrev<CR>', { desc = 'Previous symbol' })
+      vim.keymap.set('n', ']a', '<cmd>AerialNext<CR>', { desc = 'Next symbol' })
+    end,
+  },
 }
 
 -- LSP configuration function (called after lazy.setup)
