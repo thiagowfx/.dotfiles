@@ -32,6 +32,7 @@
 
 ## address of the sync server
 # sync_address = "https://api.atuin.sh"
+sync_address = "https://atuin.perrotta.dev"
 
 ## how often to sync history. note that this is only triggered when a command
 ## is ran, so sync intervals may well be longer
