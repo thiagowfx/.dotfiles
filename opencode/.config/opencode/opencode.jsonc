@@ -8,5 +8,6 @@
     "doom_loop": "ask",
     "external_directory": "ask"
   },
-  "share": "disabled"
+  // https://opencode.ai/docs/config#sharing
+  "share": "disabled",
 }
