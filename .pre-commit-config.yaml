@@ -75,7 +75,7 @@ repos:
     hooks:
       - id: keep-sorted
   - repo: https://github.com/google/yamlfmt
-    rev: b5ca1890231d5e1e5181fef75a1be609d1e25029  # frozen: v0.21.0
+    rev: b5ca1890231d5e1e5181fef75a1be609d1e25029 # frozen: v0.21.0
     hooks:
       - id: yamlfmt
   - repo: https://github.com/igorshubovych/markdownlint-cli
