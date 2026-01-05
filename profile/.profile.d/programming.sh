@@ -24,25 +24,15 @@ hash python3 >/dev/null 2>&1 && export PIP_DISABLE_PIP_VERSION_CHECK=1
 if hash pyenv >/dev/null 2>&1; then
 	export PYENV_ROOT="$HOME/.pyenv"
 	path_munge "$PYENV_ROOT/bin"
-	if [ -n "${ZSH_VERSION:-}" ] && command -v zsh-defer >/dev/null 2>&1; then
-		# shellcheck disable=SC2016
-		zsh-defer -c 'eval "$(pyenv init -)"'
-	else
-		# shellcheck disable=SC2016
-		eval "$(pyenv init -)"
-	fi
+	# shellcheck disable=SC2016
+	eval "$(pyenv init -)"
 fi
 
 # ruby rbenv: https://github.com/rbenv/rbenv
 if hash rbenv >/dev/null 2>&1; then
 	path_munge "$HOME/.rbenv/bin"
-	if [ -n "${ZSH_VERSION:-}" ] && command -v zsh-defer >/dev/null 2>&1; then
-		# shellcheck disable=SC2016
-		zsh-defer -c 'eval "$(rbenv init -)"'
-	else
-		# shellcheck disable=SC2016
-		eval "$(rbenv init -)"
-	fi
+	# shellcheck disable=SC2016
+	eval "$(rbenv init -)"
 fi
 
 # rust cargo: https://github.com/rust-lang/cargo
