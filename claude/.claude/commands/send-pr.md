@@ -47,23 +47,16 @@ Gather context first (if not main, then master)
 - Check if `.github/PULL_REQUEST_TEMPLATE.md` exists at the git repository root
 - If it exists, read it with `cat` to use as the PR description template
 
-### Step 6: Create or Update PR
+### Step 6: Create PR
 
-- Check if a PR already exists for this branch: `gh pr view --json url 2>/dev/null`
-- If PR exists:
-  - Summarize the changes from the git diff above
-  - Update the PR description: `gh pr edit --body "<updated-description>"`
-  - Add reviewers if $ARGUMENTS provided: `gh pr edit --add-reviewer $ARGUMENTS`
-  - Output: "Updated existing PR: {url}"
-- If no PR exists:
-  - Analyze all commits and changes to create a concise PR description
-  - If template exists, follow its structure
-  - Create PR with reviewers: `gh pr create --title "<title>" --body "<description>" --reviewer $ARGUMENTS`
-  - If $ARGUMENTS is empty, omit the --reviewer flag
-  - Output: "Created new PR: {url}"
+- Analyze all commits and changes to create a concise PR description
+- If template exists (from Step 5), follow its structure
+- Create PR with reviewers: `gh pr create --title "<title>" --body "<description>" --reviewer $ARGUMENTS`
+- If $ARGUMENTS is empty, omit the --reviewer flag
+- Output: "Created new PR: {url}"
 
 ### FINAL CHECK
 
-- CRITICAL: Verify that you have completed Step 6 and either created or updated a PR
+- CRITICAL: Verify that you have completed Step 6 and created a PR
 - You MUST output the PR URL to the user
-- If you have not created/updated a PR yet, go back and complete Step 6 now
+- If you have not created a PR yet, go back and complete Step 6 now
