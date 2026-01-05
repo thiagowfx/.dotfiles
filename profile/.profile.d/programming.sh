@@ -6,9 +6,6 @@ if hash go >/dev/null 2>&1; then
     path_munge "$GOPATH/bin" "/usr/local/go/bin"
 fi
 
-# Rancher Desktop
-path_munge "$HOME/.rd/bin"
-
 # npm nvm: node version manager: https://github.com/nvm-sh/nvm
 # bash_completion is intentional
 if hash nvm >/dev/null 2>&1; then
@@ -36,4 +33,6 @@ if hash rbenv >/dev/null 2>&1; then
 fi
 
 # rust cargo: https://github.com/rust-lang/cargo
-path_munge "$HOME/.cargo/bin"
+if hash cargo >/dev/null 2>&1; then
+	path_munge "$HOME/.cargo/bin"
+fi
