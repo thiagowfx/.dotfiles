@@ -7,5 +7,8 @@ cmd remove delete
 # Show hidden files by default
 set hidden true
 
+# Draw border separators
+set drawbox true
+
 # Edit file: 'e' (mapped out-of-the-box)
 # Toggle hidden files: 'zh'
