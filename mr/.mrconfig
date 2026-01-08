@@ -37,5 +37,5 @@ skip = lazy
 checkout = git clone 'git@github.com:thiagowfx/pre-commit-hooks' 'pre-commit-hooks'
 skip = lazy
 
-# chain corp repositories
-include = test -f $HOME/Corp/.mrconfig && sed 's|^\[\([^/DEFAULT]\)|[Corp/\1|' $HOME/Corp/.mrconfig || true
+# chain corp repositories (skip if running from within Corp to avoid duplicates)
+include = test -f $HOME/Corp/.mrconfig && case "$PWD" in "$(cd "$HOME/Corp" 2>/dev/null && pwd -P)"*|"$HOME/Corp"*) ;; *) sed '/^\[DEFAULT\]/,/^$/d; s|^\[\([^/DEFAULT]\)|[Corp/\1|' $HOME/Corp/.mrconfig;; esac || true
