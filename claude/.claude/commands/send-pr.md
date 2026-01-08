@@ -44,13 +44,17 @@ Gather context first (if not main, then master)
 
 ### Step 5: Check for PR Template
 
-- Check if `.github/PULL_REQUEST_TEMPLATE.md` exists at the git repository root
-- If it exists, read it with `cat` to use as the PR description template
+- Check for PR template in these locations (in order of priority):
+  1. `.github/PULL_REQUEST_TEMPLATE.md`
+  2. `PULL_REQUEST_TEMPLATE.md` (repository root)
+  3. `docs/PULL_REQUEST_TEMPLATE.md`
+- Use `test -f <path>` to check existence, then `cat` to read the first one found
+- If a template exists, you MUST use it as the structure for the PR description
 
 ### Step 6: Create PR
 
 - Analyze all commits and changes to create a concise PR description
-- If template exists (from Step 5), follow its structure
+- If a template was found in Step 5, you MUST follow its structure and fill in all sections
 - Create PR with reviewers: `gh pr create --title "<title>" --body "<description>" --reviewer $ARGUMENTS`
 - If $ARGUMENTS is empty, omit the --reviewer flag
 - Output: "Created new PR: {url}"
