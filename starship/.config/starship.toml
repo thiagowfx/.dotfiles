@@ -1,5 +1,5 @@
 # Minimal starship config matching grml prompt
-format = "$status$sudo$username$hostname$directory$git_branch$git_state$git_status$line_break$character"
+format = "$status$sudo$username$hostname$directory$git_branch$git_state$git_status${custom.git_worktree}$line_break$character"
 right_format = "$cmd_duration$jobs"
 add_newline = true
 
@@ -24,13 +24,13 @@ format = " [$path](bold) "
 
 [git_branch]
 symbol = "git:"
-format = "[$symbol$branch](bold cyan) "
+format = "[$symbol$branch](bold cyan)"
 
 [git_state]
 format = "|[$state]()"
 
 [git_status]
-format = "[$conflicted$deleted$renamed$modified$staged$untracked$ahead_behind](red) "
+format = "[$conflicted$deleted$renamed$modified$staged$untracked$ahead_behind](red)"
 
 [cmd_duration]
 min_time = 2000
@@ -46,3 +46,9 @@ format = "[🧙](red) "
 [character]
 success_symbol = "[❯](green)"
 error_symbol = "[x](red)"
+
+[custom.git_worktree]
+command = "printf '🌲'"
+when = "git rev-parse --is-inside-work-tree 2>/dev/null && [ -f $(git rev-parse --git-dir)/commondir ]"
+format = " [$output]($style)"
+style = "bold yellow"
