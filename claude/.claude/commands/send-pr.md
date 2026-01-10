@@ -22,7 +22,8 @@ Gather context first (if not main, then master)
   - Use the SlashCommand tool to invoke /commit
   - Wait for the commit to complete before proceeding
   - If the commit fails, stop and report the error
-  - CRITICAL: After the commit completes, you MUST continue with Steps 2-6 below to create the PR
+  - CRITICAL: After the commit completes, you MUST IMMEDIATELY continue with Steps 2-6 below to create the PR
+  - DO NOT ask the user if they want to proceed or push - just continue automatically
 
 ### Step 2: Verify Prerequisites
 
