@@ -19,7 +19,7 @@ format = "@$hostname"
 
 [directory]
 truncation_length = 10
-truncate_to_repo = true
+truncate_to_repo = false
 format = " [$path](bold) "
 
 [git_branch]
