@@ -49,6 +49,7 @@
 --     <C-b>     - Scroll docs backward
 --     <C-f>     - Scroll docs forward
 --     <C-k>     - Signature help (insert mode)
+--     <leader>da - Toggle auto-completion (nvim-cmp)
 --
 --   Navigation and Search:
 --     <leader>tf - Find files (telescope.nvim, includes hidden)
