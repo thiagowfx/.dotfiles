@@ -113,6 +113,7 @@ local plugins = {
     'stevearc/aerial.nvim',
     keys = {
       { '<leader>a', '<cmd>AerialToggle<CR>', desc = 'Toggle outline' },
+      { '<leader>do', '<cmd>AerialToggle<CR>', desc = 'Toggle outline' },
     },
     config = function()
       require('aerial').setup({

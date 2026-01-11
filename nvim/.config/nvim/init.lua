@@ -7,6 +7,7 @@
 --   <leader>da - Toggle auto-completion (on by default)
 --   <leader>dc - Toggle Copilot, or :Copilot enable (off by default)
 --   <leader>dd - Toggle diagnostics (on by default)
+--   <leader>do - Toggle outline (aerial.nvim)
 --   <leader>ds - Toggle spell checking, or :set spell (off by default)
 --
 -- Custom Keybindings:
