@@ -124,8 +124,9 @@ vim.opt.showmode = false
 vim.opt.swapfile = false
 vim.opt.writebackup = false
 
--- Show line numbers.
+-- Show line numbers (relative for easier motion counts).
 vim.opt.number = true
+vim.opt.relativenumber = true
 
 -- Simplify some display messages.
 vim.opt.shortmess:append("atI")
