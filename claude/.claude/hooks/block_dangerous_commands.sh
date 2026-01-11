@@ -1,71 +1,46 @@
 #!/bin/bash
-# PreToolUse hook to block dangerous commands like "rm -rf" and "terraform apply"
+# PreToolUse hook to block dangerous commands
+# shellcheck disable=SC2154 # tool_name and command are assigned via eval
 
-# Read hook input from stdin
 input=$(cat)
 
-# Extract tool name and command
-tool_name=$(echo "$input" | jq -r '.tool_name // ""')
-command=$(echo "$input" | jq -r '.tool_input.command // ""')
+# Parse JSON once (variables assigned via eval)
+eval "$(echo "$input" | jq -r '@sh "tool_name=\(.tool_name // "") command=\(.tool_input.command // "")"')"
 
 # Exit early if not a Bash tool
-if [ "$tool_name" != "Bash" ]; then
-    exit 0
-fi
+[[ $tool_name != "Bash" ]] && exit 0
 
-# Check for dangerous patterns
-blocked=false
-reason=""
+# Define blocked patterns and reasons (parallel arrays)
+# Note: Using [[:space:]] instead of \s for POSIX ERE compatibility
+patterns=(
+    'rm[[:space:]]+(-[a-zA-Z]*r[a-zA-Z]*[[:space:]]+-[a-zA-Z]*f|-[a-zA-Z]*f[a-zA-Z]*[[:space:]]+-[a-zA-Z]*r|-[rRf]*r[rRf]*f|-[rRf]*f[rRf]*r)'
+    'terraform[[:space:]]+apply'
+    'terraform[[:space:]]+destroy'
+    '--auto-approve'
+    'just[[:space:]]+apply'
+    'rm[[:space:]]+.*\.cache/pre-commit'
+)
+reasons=(
+    "rm -rf is blocked for safety"
+    "terraform apply is blocked - use terraform plan first"
+    "terraform destroy is blocked for safety"
+    "--auto-approve is blocked - manual confirmation required"
+    "just apply is blocked - use just plan first"
+    "Deleting pre-commit cache is blocked for safety"
+)
 
-# Check for rm -rf (with various flag orderings)
-if echo "$command" | grep -qE 'rm\s+(-[a-zA-Z]*r[a-zA-Z]*f|(-[a-zA-Z]*f[a-zA-Z]*\s+)?-[a-zA-Z]*r|-rf|-fr)\b'; then
-    blocked=true
-    reason="rm -rf is blocked for safety"
-fi
+# Check all patterns
+for i in "${!patterns[@]}"; do
+    if [[ $command =~ ${patterns[$i]} ]]; then
+        jq -n --arg reason "${reasons[$i]}" '{
+            hookSpecificOutput: {
+                hookEventName: "PreToolUse",
+                permissionDecision: "deny",
+                permissionDecisionReason: $reason
+            }
+        }'
+        exit 0
+    fi
+done
 
-# Check for terraform apply (without -auto-approve is still dangerous)
-if echo "$command" | grep -qE 'terraform\s+apply'; then
-    blocked=true
-    reason="terraform apply is blocked - use terraform plan first"
-fi
-
-# Check for terraform destroy
-if echo "$command" | grep -qE 'terraform\s+destroy'; then
-    blocked=true
-    reason="terraform destroy is blocked for safety"
-fi
-
-# Check for --auto-approve flag (commonly used to skip confirmation prompts)
-if echo "$command" | grep -qE '\-\-auto-approve'; then
-    blocked=true
-    reason="--auto-approve is blocked for safety - manual confirmation required"
-fi
-
-# Check for just apply
-if echo "$command" | grep -qE 'just\s+apply'; then
-    blocked=true
-    reason="just apply is blocked - use just plan first"
-fi
-
-# Block deletion of pre-commit cache
-if echo "$command" | grep -qE 'rm\s+.*\.cache/pre-commit'; then
-    blocked=true
-    reason="Deleting pre-commit cache is blocked for safety"
-fi
-
-# If blocked, return denial via JSON
-if [ "$blocked" = true ]; then
-    cat <<EOF
-{
-  "hookSpecificOutput": {
-    "hookEventName": "PreToolUse",
-    "permissionDecision": "deny",
-    "permissionDecisionReason": "$reason"
-  }
-}
-EOF
-    exit 0
-fi
-
-# Allow command to proceed
 exit 0
