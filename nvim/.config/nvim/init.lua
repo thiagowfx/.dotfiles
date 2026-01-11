@@ -9,6 +9,7 @@
 --   <leader>dd - Toggle diagnostics (on by default)
 --   <leader>do - Toggle outline (aerial.nvim)
 --   <leader>ds - Toggle spell checking, or :set spell (off by default)
+--   <leader>dx - Toggle diagnostics list (trouble.nvim)
 --
 -- Custom Keybindings:
 --   Leader: comma (,)
