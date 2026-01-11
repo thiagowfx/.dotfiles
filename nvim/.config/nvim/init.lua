@@ -237,8 +237,8 @@ local plugins = {
       vim.keymap.set('n', '-', '<cmd>Oil<CR>', { desc = 'Open parent directory' })
     end,
   },
-  'aymericbeaumet/vim-symlink',
-  'bogado/file-line',
+  { 'aymericbeaumet/vim-symlink', event = 'BufReadPre' },
+  { 'bogado/file-line', event = 'BufReadPre' },
   'tpope/vim-eunuch',
 
   -- Code quality and formatting
