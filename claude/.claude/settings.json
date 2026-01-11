@@ -76,7 +76,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "printf '\\a'; afplay /System/Library/Sounds/Glass.aiff &"
+            "command": "~/.claude/hooks/notify.sh"
           }
         ]
       }
