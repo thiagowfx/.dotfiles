@@ -4,10 +4,10 @@
 --   :Lazy
 --
 -- Disabling Features (one-off, for the current buffer):
---   <leader>da - Toggle auto-completion
---   <leader>dc - Toggle Copilot
---   <leader>dd - Toggle diagnostics
---   <leader>ds - Toggle spell checking
+--   <leader>da - Toggle auto-completion (on by default)
+--   <leader>dc - Toggle Copilot, or :Copilot enable (off by default)
+--   <leader>dd - Toggle diagnostics (on by default)
+--   <leader>ds - Toggle spell checking, or :set spell (off by default)
 --
 -- Custom Keybindings:
 --   Leader: comma (,)
@@ -323,7 +323,6 @@ local plugins = {
   },
   {
     "github/copilot.vim",
-    event = "InsertEnter",
     cmd = "Copilot",
     keys = {
       { '<leader>dc', function()
