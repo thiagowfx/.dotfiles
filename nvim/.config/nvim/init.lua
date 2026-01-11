@@ -305,7 +305,15 @@ local plugins = {
 
   -- Diff tools
   'whiteinge/diffconflicts',
-  }
+
+  -- AI
+  {
+    "sourcegraph/amp.nvim",
+    branch = "main",
+    lazy = false,
+    opts = { auto_start = true, log_level = "info" },
+  },
+}
 
 -- Load LSP, Linting, and Formatting plugins
 local lsp = pcall(require, 'config.lsp') and require('config.lsp') or { plugins = {}, setup = function() end }
