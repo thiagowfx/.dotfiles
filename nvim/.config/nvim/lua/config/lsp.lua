@@ -124,6 +124,17 @@ local plugins = {
       vim.keymap.set('n', ']a', '<cmd>AerialNext<CR>', { desc = 'Next symbol' })
     end,
   },
+  {
+    'folke/trouble.nvim',
+    dependencies = { 'echasnovski/mini.icons' },
+    keys = {
+      { '<leader>xx', '<cmd>Trouble diagnostics toggle<CR>', desc = 'Diagnostics (Trouble)' },
+      { '<leader>xd', '<cmd>Trouble diagnostics toggle filter.buf=0<CR>', desc = 'Buffer diagnostics (Trouble)' },
+      { '<leader>xq', '<cmd>Trouble qflist toggle<CR>', desc = 'Quickfix (Trouble)' },
+      { '<leader>xl', '<cmd>Trouble loclist toggle<CR>', desc = 'Location list (Trouble)' },
+    },
+    opts = {},
+  },
 }
 
 -- LSP configuration function (called after lazy.setup)

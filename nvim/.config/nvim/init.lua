@@ -43,6 +43,10 @@
 --     <leader>a - Toggle outline (aerial.nvim)
 --     [a        - Previous symbol (aerial.nvim)
 --     ]a        - Next symbol (aerial.nvim)
+--     <leader>xx - Diagnostics list (trouble.nvim)
+--     <leader>xd - Buffer diagnostics (trouble.nvim)
+--     <leader>xq - Quickfix list (trouble.nvim)
+--     <leader>xl - Location list (trouble.nvim)
 --
 --   LSP-Enhanced Completion (nvim-cmp):
 --     <C-n>     - Open completion menu (or next item if menu open)
