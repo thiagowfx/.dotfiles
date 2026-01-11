@@ -55,6 +55,10 @@ local plugins = {
           { name = 'path' },
         }),
       })
+      vim.keymap.set('n', '<leader>da', function()
+        cmp_enabled = not cmp_enabled
+        cmp.setup.buffer({ enabled = cmp_enabled })
+      end, { desc = 'Toggle auto-completion' })
     end,
   },
   {
@@ -184,7 +188,7 @@ local function setup()
       vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
       vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
       vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
-      vim.keymap.set('n', '<leader>d', function()
+      vim.keymap.set('n', '<leader>dd', function()
         diagnostics_enabled = not diagnostics_enabled
         if diagnostics_enabled then
           vim.diagnostic.config(diagnostic_config)

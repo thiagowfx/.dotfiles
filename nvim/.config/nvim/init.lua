@@ -3,6 +3,10 @@
 -- Plugin management
 --   :Lazy
 --
+-- Disabling Features (one-off, for the current buffer):
+--   <leader>da - Toggle auto-completion
+--   <leader>dd - Toggle diagnostics
+--
 -- Custom Keybindings:
 --   Leader: comma (,)
 --
@@ -31,7 +35,7 @@
 --     <leader>rn - Rename symbol (nvim-lspconfig)
 --     <leader>ca - Code actions (nvim-lspconfig)
 --     <leader>e - Show diagnostics in float window (nvim-lspconfig)
---     <leader>d - Toggle diagnostics (nvim-lspconfig)
+--     <leader>dd - Toggle diagnostics (nvim-lspconfig)
 --     <leader>f - Format buffer (conform.nvim)
 --     <leader>a - Toggle outline (aerial.nvim)
 --     [a        - Previous symbol (aerial.nvim)
