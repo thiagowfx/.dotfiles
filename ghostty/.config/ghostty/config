@@ -8,6 +8,7 @@
 
 # keep-sorted start
 background-opacity = 0.95
+bell-features = title,attention
 clipboard-trim-trailing-spaces = true
 cursor-style-blink = false
 custom-shader = shaders/cursor_tail.glsl
