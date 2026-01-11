@@ -6,6 +6,7 @@
 -- Disabling Features (one-off, for the current buffer):
 --   <leader>da - Toggle auto-completion
 --   <leader>dd - Toggle diagnostics
+--   <leader>ds - Toggle spell checking
 --
 -- Custom Keybindings:
 --   Leader: comma (,)
@@ -78,6 +79,11 @@ vim.keymap.set('n', '<leader>w', ':FixWhitespace<CR>', { noremap = true, silent 
 -- Reflow current paragraph
 vim.keymap.set('n', 'Q', 'gwip', { noremap = true, silent = true })
 vim.keymap.set('n', 'W', '!ipfmt<Enter>', { noremap = true, silent = true })
+
+-- Toggle spell checking
+vim.keymap.set('n', '<leader>ds', function()
+  vim.opt_local.spell = not vim.opt_local.spell:get()
+end, { desc = 'Toggle spell checking' })
 
 -- a la emacs just-one-space
 local function just_one_space()
