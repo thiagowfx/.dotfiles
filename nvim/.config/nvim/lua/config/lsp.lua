@@ -220,7 +220,14 @@ local function setup()
         callback = function()
           if vim.v.char == '(' or vim.v.char == ',' then
             vim.defer_fn(function()
-              vim.lsp.buf.signature_help()
+              -- Check if any attached LSP supports signature help
+              local clients = vim.lsp.get_clients({ bufnr = ev.buf })
+              for _, client in ipairs(clients) do
+                if client.supports_method('textDocument/signatureHelp') then
+                  vim.lsp.buf.signature_help()
+                  return
+                end
+              end
             end, 50)
           end
         end,
