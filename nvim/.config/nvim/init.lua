@@ -227,7 +227,7 @@ local plugins = {
       { '<leader>tb', function() require('telescope.builtin').buffers() end, desc = 'Buffers' },
     },
   },
-  'junegunn/vim-slash',
+  { 'junegunn/vim-slash', event = 'CmdlineEnter' },
 
   -- File and buffer management
   {
