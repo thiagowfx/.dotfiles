@@ -220,14 +220,12 @@ local plugins = {
   -- Navigation and search
   {
     'nvim-telescope/telescope.nvim',
-    config = function()
-      local builtin = require('telescope.builtin')
-      vim.keymap.set('n', '<leader>tf', function()
-        builtin.find_files({ hidden = true, respect_gitignore = true })
-      end, { desc = 'Find files' })
-      vim.keymap.set('n', '<leader>tg', builtin.live_grep, { desc = 'Live grep' })
-      vim.keymap.set('n', '<leader>tb', builtin.buffers, { desc = 'Buffers' })
-    end,
+    cmd = 'Telescope',
+    keys = {
+      { '<leader>tf', function() require('telescope.builtin').find_files({ hidden = true, respect_gitignore = true }) end, desc = 'Find files' },
+      { '<leader>tg', function() require('telescope.builtin').live_grep() end, desc = 'Live grep' },
+      { '<leader>tb', function() require('telescope.builtin').buffers() end, desc = 'Buffers' },
+    },
   },
   'junegunn/vim-slash',
 
