@@ -281,7 +281,7 @@ local plugins = {
   },
 
   -- Better defaults
-  'tpope/vim-unimpaired',
+  { 'tpope/vim-unimpaired', event = 'VeryLazy' },
   {
     'ethanholz/nvim-lastplace',
     config = function()
