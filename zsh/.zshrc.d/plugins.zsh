@@ -21,15 +21,8 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 (( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
 
 # fzf: fuzzy file finder
-if (( $+commands[fzf] )); then
-        # alpine/arch, debian
-        src_files {/usr/share/fzf,/usr/share/doc/fzf/examples}/{completion,key-bindings}.zsh
-
-        # brew
-        if (( $+commands[brew] )); then
-                src_files "$(brew --prefix)"/opt/fzf/shell/{completion,key-bindings}.zsh
-        fi
-fi
+# https://github.com/junegunn/fzf#setting-up-shell-integration
+(( $+commands[fzf] )) && source <(fzf --zsh)
 
 # atuin: https://docs.atuin.sh/
 (( $+commands[atuin] )) && eval "$(atuin init zsh --disable-up-arrow)"
