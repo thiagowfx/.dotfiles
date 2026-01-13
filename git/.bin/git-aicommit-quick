@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # git-aicommit-quick - Create a commit with an AI-generated title based on staged changes
 
@@ -16,8 +16,27 @@ if git diff --cached --quiet; then
   exit 1
 fi
 
-# Generate commit message using Claude and commit
-echo "Generating commit message with Claude..."
-git commit -m "$(claude -p "Look at the staged git changes and create a summarizing git commit title. Only respond with the title and no affirmation.")" "$@"
+# Select AI agent (default: claude)
+agent="${GIT_AI_AGENT:-claude}"
+case "$agent" in
+  # keep-sorted start
+  amp|ampcode)
+    ai_prompt() { amp -x "$1"; }
+    ;;
+  claude)
+    ai_prompt() { claude -p "$1"; }
+    ;;
+  # keep-sorted end
+  *)
+    echo "Error: Unknown AI agent: $agent"
+    exit 1
+    ;;
+esac
+
+prompt="Look at the staged git changes and create a summarizing git commit title. Only respond with the title and no affirmation."
+
+# Generate commit message and commit
+echo "Generating commit message with $agent..."
+git commit -m "$(ai_prompt "$prompt")" "$@"
 
 echo "AI commit created successfully"

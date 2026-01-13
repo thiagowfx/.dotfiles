@@ -1,0 +1,74 @@
+#!/bin/bash
+#
+# git-aicommit - Create a commit with an AI-generated message (title + body) based on staged changes
+
+set -e
+
+# Check if we're inside a git repository
+if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" != "true" ]; then
+  echo "Error: Not in a git repository"
+  exit 1
+fi
+
+# Check if there are staged changes
+if git diff --cached --quiet; then
+  echo "Error: No staged changes to commit"
+  exit 1
+fi
+
+# Find the repository root
+repo_root=$(git rev-parse --show-toplevel)
+
+# GitHub pull request template locations
+pr_templates=(
+  # keep-sorted start
+  "$repo_root/.github/PULL_REQUEST_TEMPLATE.md"
+  "$repo_root/.github/pull_request_template.md"
+  "$repo_root/PULL_REQUEST_TEMPLATE.md"
+  "$repo_root/docs/pull_request_template.md"
+  "$repo_root/pull_request_template.md"
+  # keep-sorted end
+)
+
+# Look for GitHub pull request template
+pr_template=""
+for template in "${pr_templates[@]}"; do
+  if [ -f "$template" ]; then
+    pr_template="$template"
+    break
+  fi
+done
+
+# Build the prompt
+if [ -n "$pr_template" ]; then
+  prompt="Look at the staged git changes and create a git commit message with a title and body. Use the following pull request template as a guide for the body structure:
+
+$(cat "$pr_template")
+
+Respond only with the commit message (title on first line, blank line, then body). No affirmations or explanations."
+else
+  prompt="Look at the staged git changes and create a git commit message with a title and body. Follow standard commit practices: explain what changed, why it changed, and any relevant context or rationale. Respond only with the commit message (title on first line, blank line, then body). No affirmations or explanations."
+fi
+
+# Select AI agent (default: claude)
+agent="${GIT_AI_AGENT:-claude}"
+case "$agent" in
+  # keep-sorted start
+  amp|ampcode)
+    ai_prompt() { amp -x "$1"; }
+    ;;
+  claude)
+    ai_prompt() { claude -p "$1"; }
+    ;;
+  # keep-sorted end
+  *)
+    echo "Error: Unknown AI agent: $agent"
+    exit 1
+    ;;
+esac
+
+# Generate commit message and commit
+echo "Generating commit message with $agent..."
+git commit -m "$(ai_prompt "$prompt")" "$@"
+
+echo "AI commit created successfully"
