@@ -10,8 +10,23 @@ if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" != "true" ]; then
   exit 1
 fi
 
+# Check for ongoing operations
+git_dir=$(git rev-parse --git-dir)
+if [ -d "$git_dir/rebase-merge" ] || \
+   [ -d "$git_dir/rebase-apply" ] || \
+   [ -f "$git_dir/MERGE_HEAD" ]; then
+  echo "Error: A rebase or merge is in progress"
+  exit 1
+fi
+
 # Get current branch name
 branch=$(git rev-parse --abbrev-ref HEAD)
+
+# Check for detached HEAD
+if [ "$branch" = "HEAD" ]; then
+  echo "Error: Cannot squash in detached HEAD state"
+  exit 1
+fi
 
 # Determine main branch (main or master)
 if git show-ref --verify --quiet refs/heads/main; then
@@ -29,8 +44,20 @@ if [ "$branch" = "$main_branch" ]; then
   exit 1
 fi
 
+# Check for dirty working directory
+if ! git diff --quiet || ! git diff --cached --quiet; then
+  echo "Error: Working directory has uncommitted changes"
+  exit 1
+fi
+
 # Find the merge base with main branch
 merge_base=$(git merge-base "$main_branch" "$branch")
+
+# Check if there are commits to squash
+if [ "$(git rev-list --count "$merge_base".."$branch")" -eq 0 ]; then
+  echo "Error: No commits to squash"
+  exit 1
+fi
 
 # Squash all commits since the merge base
 git reset --soft "$merge_base"
