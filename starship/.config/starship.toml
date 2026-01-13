@@ -49,6 +49,7 @@ error_symbol = "[x](red)"
 
 [custom.git_worktree]
 command = "printf '⎇'"
-when = "git rev-parse --is-inside-work-tree 2>/dev/null && [ -f $(git rev-parse --git-dir)/commondir ]"
+when = "[ -f \"$(git rev-parse --git-dir 2>/dev/null)/commondir\" ]"
 format = " [$output]($style)"
 style = "bold yellow"
+ignore_timeout = true
