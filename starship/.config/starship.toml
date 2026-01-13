@@ -49,7 +49,6 @@ error_symbol = "[x](red)"
 
 [custom.git_worktree]
 command = "printf '⎇'"
-when = "[ -f \"$(git rev-parse --git-dir 2>/dev/null)/commondir\" ]"
+when = "[ -f .git ]"
 format = " [$output]($style)"
 style = "bold yellow"
-ignore_timeout = true
