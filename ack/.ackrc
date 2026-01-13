@@ -16,3 +16,6 @@
 
 # https://conductor.build/
 --ignore-directory=.conductor/
+
+# git worktrees
+--ignore-directory=.git/worktrees/
