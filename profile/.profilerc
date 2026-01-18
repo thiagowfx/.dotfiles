@@ -3,14 +3,6 @@
 # shellcheck source=/dev/null
 # Base shell functions for bash and zsh.
 
-# Colorize CLI output when supported.
-export CLICOLOR=1
-
-# Set preferred text editor.
-# nvim should be preferred to vim if it is installed.
-hash vim >/dev/null 2>&1 && export EDITOR="vim" VISUAL="vim"
-hash nvim >/dev/null 2>&1 && export EDITOR="nvim" VISUAL="nvim" && alias vim=nvim
-
 # Add paths to $PATH if they exist.
 # Usage: path_munge "$HOME/.bin" "$HOME/bin"
 path_munge() {
@@ -20,6 +12,26 @@ path_munge() {
                         PATH="$f:$PATH"
                 fi
         done
+}
+
+# Sensible $PATH should include user binary directories.
+#   pipx uses $HOME/.local/bin
+path_munge "$HOME/.bin" "$HOME/bin" "$HOME/.local/bin"
+
+# bd: back directory (delete current directory with confirmation)
+# Usage: bd or bd <directory>
+bd() {
+	if [ -z "$1" ]; then
+		dir="$PWD"
+		builtin cd ..
+		printf "Delete '%s'? (y/n) " "$dir"
+		read -r response
+		case "$response" in
+			[Yy]) rm -rf "$dir" ;;
+		esac
+	else
+		builtin cd "$1"
+	fi
 }
 
 # Augmented cd with path substitution support.
@@ -37,9 +49,13 @@ cd() {
 	fi
 }
 
-# Sensible $PATH should include user binary directories.
-#   pipx uses $HOME/.local/bin
-path_munge "$HOME/.bin" "$HOME/bin" "$HOME/.local/bin"
+# Inspiration from https://frantic.im/cdtmp/ and grml-zsh-config's cdt
+# Usage: cdtmp [foo]
+# Creates temp dir with user, date, and optional prefix
+cdtmp() {
+	builtin cd "$(mktemp -d -t "$USER-${1:+$1-}$(date +%Y-%m-%d)-XXXXXX")" || return
+	builtin pwd
+}
 
 # Source files and directories recursively if they exist.
 # Usage: src_files "/usr/local/etc/bashrc.d/" "/usr/share/doc/pkgfile/command-not-found.bash"
@@ -56,29 +72,13 @@ src_files() {
         done
 }
 
-# Inspiration from https://frantic.im/cdtmp/ and grml-zsh-config's cdt
-# Usage: cdtmp [foo]
-# Creates temp dir with user, date, and optional prefix
-cdtmp() {
-	builtin cd "$(mktemp -d -t "$USER-${1:+$1-}$(date +%Y-%m-%d)-XXXXXX")" || return
-	builtin pwd
-}
+# Colorize CLI output when supported.
+export CLICOLOR=1
 
-# bd: back directory (delete current directory with confirmation)
-# Usage: bd or bd <directory>
-bd() {
-	if [ -z "$1" ]; then
-		dir="$PWD"
-		builtin cd ..
-		printf "Delete '%s'? (y/n) " "$dir"
-		read -r response
-		case "$response" in
-			[Yy]) rm -rf "$dir" ;;
-		esac
-	else
-		builtin cd "$1"
-	fi
-}
+# Set preferred text editor.
+# nvim should be preferred to vim if it is installed.
+hash vim >/dev/null 2>&1 && export EDITOR="vim" VISUAL="vim"
+hash nvim >/dev/null 2>&1 && export EDITOR="nvim" VISUAL="nvim" && alias vim=nvim
 
 # Configure less pager if available.
 if hash less >/dev/null 2>&1; then
