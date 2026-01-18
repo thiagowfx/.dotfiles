@@ -36,3 +36,6 @@ fi
 if command -v cargo >/dev/null 2>&1; then
 	path_munge "$HOME/.cargo/bin"
 fi
+
+# nix: https://ariya.io/2020/05/nix-package-manager-on-ubuntu-or-debian
+src_files "$HOME/.nix-profile/etc/profile.d/nix.sh"
