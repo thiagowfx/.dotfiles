@@ -1,0 +1,5 @@
+# Prevent grml zshrc from running /usr/libexec/path_helper on macOS.
+# path_helper reorders PATH, putting system paths before user paths,
+# which breaks Homebrew priority (user binaries should come first).
+# grml zshrc checks this variable before invoking path_helper (~/.zshrc:519).
+export NOPATHHELPER=1
