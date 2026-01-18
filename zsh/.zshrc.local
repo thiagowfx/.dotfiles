@@ -71,6 +71,7 @@ autoload -Uz bashcompinit && bashcompinit
 MAILCHECK=0
 unsetopt share_history
 unset -f zed
+unfunction vim 2>/dev/null  # Allow alias vim=nvim to work
 
 # Source base shell functions.
 [ -r ~/.profilerc ] && . ~/.profilerc
