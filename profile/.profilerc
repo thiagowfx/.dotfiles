@@ -75,10 +75,6 @@ src_files() {
 # Colorize CLI output when supported.
 export CLICOLOR=1
 
-# Set preferred text editor (fallback if nvim not yet in PATH).
-# See .profile.d/alias.sh for nvim setup after Homebrew PATH is configured.
-command -v vim >/dev/null 2>&1 && export EDITOR="vim" VISUAL="vim"
-
 # Configure less pager if available.
 if command -v less >/dev/null 2>&1; then
         # Set sensible defaults for less.

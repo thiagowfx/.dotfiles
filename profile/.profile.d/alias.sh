@@ -37,5 +37,11 @@ alias k=kubectl
 # muscle memory
 alias unstow="stow -D"
 
-# nvim as vim (must be after 10_brew.sh adds Homebrew to PATH)
-command -v nvim >/dev/null 2>&1 && export EDITOR="nvim" VISUAL="nvim" && alias vim=nvim
+# editor: prefer nvim over vim
+# (must be in alias.sh, not .profilerc, because Homebrew PATH isn't set yet in .profilerc)
+if command -v nvim >/dev/null 2>&1; then
+        export EDITOR="nvim" VISUAL="nvim"
+        alias vim=nvim
+elif command -v vim >/dev/null 2>&1; then
+        export EDITOR="vim" VISUAL="vim"
+fi
