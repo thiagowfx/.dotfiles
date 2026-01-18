@@ -77,7 +77,7 @@ export CLICOLOR=1
 
 # Set preferred text editor.
 # nvim should be preferred to vim if it is installed.
-# Note: alias vim=nvim is set in .zshrc.local (after PATH includes Homebrew).
+# Note: alias vim=nvim is set in .bashrc/.zshrc.local (after PATH includes Homebrew).
 command -v vim >/dev/null 2>&1 && export EDITOR="vim" VISUAL="vim"
 command -v nvim >/dev/null 2>&1 && export EDITOR="nvim" VISUAL="nvim"
 

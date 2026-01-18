@@ -65,6 +65,11 @@ src_files "/etc/bash_completion"
 # Corp config is handled as part of .bashrc.d.
 src_files "$HOME/.profile.d" "$HOME/.bashrc.d"
 
+# Set nvim as vim after PATH is configured.
+# This must be here (not in .profilerc) because Homebrew's PATH is added via
+# .profile.d/10_brew.sh, which runs after .profilerc is sourced.
+command -v nvim >/dev/null 2>&1 && export EDITOR="nvim" VISUAL="nvim" && alias vim=nvim
+
 # Use starship prompt if available, otherwise use custom prompt.
 if command -v starship &> /dev/null; then
     eval "$(starship init bash)"
