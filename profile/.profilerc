@@ -75,11 +75,9 @@ src_files() {
 # Colorize CLI output when supported.
 export CLICOLOR=1
 
-# Set preferred text editor.
-# nvim should be preferred to vim if it is installed.
-# Note: alias vim=nvim is set in .bashrc/.zshrc.local (after PATH includes Homebrew).
+# Set preferred text editor (fallback if nvim not yet in PATH).
+# See .profile.d/alias.sh for nvim setup after Homebrew PATH is configured.
 command -v vim >/dev/null 2>&1 && export EDITOR="vim" VISUAL="vim"
-command -v nvim >/dev/null 2>&1 && export EDITOR="nvim" VISUAL="nvim"
 
 # Configure less pager if available.
 if command -v less >/dev/null 2>&1; then
