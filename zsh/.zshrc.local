@@ -80,7 +80,9 @@ unfunction vim 2>/dev/null  # Allow alias vim=nvim to work
 # Corp config is handled as part of .zshrc.d.
 src_files "$HOME/.profile.d" "$HOME/.zshrc.d"
 
-# Set nvim as vim after PATH is configured (Homebrew not in PATH during .profilerc)
+# Set nvim as vim after PATH is configured.
+# This must be here (not in .profilerc) because Homebrew's PATH is added via
+# .profile.d/10_brew.sh, which runs after .profilerc is sourced.
 if (( $+commands[nvim] )); then
     export EDITOR="nvim" VISUAL="nvim"
     alias vim=nvim
