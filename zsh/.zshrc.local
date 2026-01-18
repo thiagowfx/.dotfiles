@@ -80,8 +80,14 @@ unfunction vim 2>/dev/null  # Allow alias vim=nvim to work
 # Corp config is handled as part of .zshrc.d.
 src_files "$HOME/.profile.d" "$HOME/.zshrc.d"
 
+# Set nvim as vim after PATH is configured (Homebrew not in PATH during .profilerc)
+if (( $+commands[nvim] )); then
+    export EDITOR="nvim" VISUAL="nvim"
+    alias vim=nvim
+fi
+
 # Use starship prompt if available, otherwise customize grml prompt.
-if command -v starship &> /dev/null; then
+if (( $+commands[starship] )); then
     prompt off
     eval "$(starship init zsh)"
 else

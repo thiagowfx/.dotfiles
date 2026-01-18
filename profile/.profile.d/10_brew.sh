@@ -12,7 +12,7 @@
 
 # command-not-found hook
 # brew --prefix works too
-hash brew >/dev/null 2>&1 && src_files "$(brew --repository)/Library/Homebrew/command-not-found/handler.sh"
+command -v brew >/dev/null 2>&1 && src_files "$(brew --repository)/Library/Homebrew/command-not-found/handler.sh"
 
 # GNU coreutils
 path_munge "/opt/homebrew/opt/coreutils/libexec/gnubin"

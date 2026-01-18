@@ -27,9 +27,9 @@ export QT_FONT_DPI=192
 
 # Set preferred terminal emulator in reverse order of preference (latter is
 # more preferred) for i3-sensible-terminal.
-hash tilix >/dev/null 2>&1 && export TERMINAL="tilix"
-hash alacritty >/dev/null 2>&1 && export TERMINAL="alacritty"
-hash ghostty >/dev/null 2>&1 && export TERMINAL="ghostty"
+command -v tilix >/dev/null 2>&1 && export TERMINAL="tilix"
+command -v alacritty >/dev/null 2>&1 && export TERMINAL="alacritty"
+command -v ghostty >/dev/null 2>&1 && export TERMINAL="ghostty"
 
 # Set X11 wallpaper if existing.
 [ -x ~/.fehbg ] && ~/.fehbg

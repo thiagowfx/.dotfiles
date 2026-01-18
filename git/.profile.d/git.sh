@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # __git_ps1 upstream prompt customization: https://wiki.archlinux.org/title/Git
-if hash git >/dev/null 2>&1; then
+if command -v git >/dev/null 2>&1; then
 	# shellcheck disable=SC2034
 	GIT_PS1_SHOWCOLORHINTS=1 GIT_PS1_SHOWDIRTYSTATE=1 GIT_PS1_SHOWSTASHSTATE=1
 
@@ -12,7 +12,7 @@ if hash git >/dev/null 2>&1; then
 	path_munge "/usr/share/git/diff-highlight" "/usr/share/doc/git/contrib/diff-highlight"
 
 	# brew
-	if hash brew >/dev/null 2>&1; then
+	if command -v brew >/dev/null 2>&1; then
 		src_files "$(brew --prefix)"/etc/bash_completion.d/git-prompt.sh
 		path_munge "$(brew --prefix)"/share/git-core/contrib/diff-highlight
 	fi

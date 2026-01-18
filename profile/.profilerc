@@ -77,11 +77,11 @@ export CLICOLOR=1
 
 # Set preferred text editor.
 # nvim should be preferred to vim if it is installed.
-hash vim >/dev/null 2>&1 && export EDITOR="vim" VISUAL="vim"
-hash nvim >/dev/null 2>&1 && export EDITOR="nvim" VISUAL="nvim" && alias vim=nvim
+command -v vim >/dev/null 2>&1 && export EDITOR="vim" VISUAL="vim"
+command -v nvim >/dev/null 2>&1 && export EDITOR="nvim" VISUAL="nvim"
 
 # Configure less pager if available.
-if hash less >/dev/null 2>&1; then
+if command -v less >/dev/null 2>&1; then
         # Set sensible defaults for less.
         # https://stackoverflow.com/a/14118014/1745064
         export LESS="-FR"
