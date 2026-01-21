@@ -192,6 +192,10 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
   -- Syntax highlighting
   pcall(require, 'config.treesitter') and require('config.treesitter') or nil,
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    opts = { max_lines = 5 },
+  },
 
   -- Git integration
   {
