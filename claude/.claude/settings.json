@@ -27,6 +27,7 @@
       "Bash(git diff:*)",
       "Bash(git log:*)",
       "Bash(git rev-parse:*)",
+      "Bash(git run list:*)",
       "Bash(git show:*)",
       "Bash(go test:*)",
       "Bash(grep:*)",
