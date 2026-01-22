@@ -4,6 +4,10 @@
 # <xbar.version>v1.0</xbar.version>
 # <xbar.author>Thiago Perrotta</xbar.author>
 # <xbar.desc>Displays daily Claude Code spending in the menu bar</xbar.desc>
+#
+# SwiftBar stores disabled plugin config in macOS defaults:
+#   defaults read com.ameba.SwiftBar DisabledPlugins
+# To re-enable: defaults delete com.ameba.SwiftBar DisabledPlugins
 
 # Get today's date in YYYYMMDD format
 TODAY=$(date +%Y%m%d)
