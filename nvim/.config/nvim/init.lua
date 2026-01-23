@@ -9,7 +9,6 @@
 --   <leader>dd - Toggle diagnostics (on by default)
 --   <leader>do - Toggle outline (aerial.nvim)
 --   <leader>ds - Toggle spell checking, or :set spell (off by default)
---   <leader>dx - Toggle diagnostics list (trouble.nvim)
 --
 -- Custom Keybindings:
 --   Leader: comma (,)
@@ -86,14 +85,14 @@ vim.cmd("command! WQ wq")
 vim.cmd("command! Wq wq")
 
 -- https://vi.stackexchange.com/questions/439/how-to-join-lines-without-producing-a-space
-vim.keymap.set('n', 'J', 'gJ', { noremap = true, silent = true })
+vim.keymap.set('n', 'J', 'gJ', { noremap = true, silent = true, desc = 'Join lines without space' })
 
 -- Fix whitespace with <leader>w
 vim.keymap.set('n', '<leader>w', ':FixWhitespace<CR>', { noremap = true, silent = true, desc = 'Fix whitespace' })
 
 -- Reflow current paragraph
-vim.keymap.set('n', 'Q', 'gwip', { noremap = true, silent = true })
-vim.keymap.set('n', 'W', '!ipfmt<Enter>', { noremap = true, silent = true })
+vim.keymap.set('n', 'Q', 'gwip', { noremap = true, silent = true, desc = 'Reflow paragraph' })
+vim.keymap.set('n', 'W', '!ipfmt<Enter>', { noremap = true, silent = true, desc = 'Format paragraph with ipfmt' })
 
 -- Toggle spell checking
 vim.keymap.set('n', '<leader>ds', function()
@@ -294,7 +293,9 @@ local plugins = {
     opts = {
       delay = 2000,
       spec = {
-        { '<leader>', group = 'Leader' },
+        { '<leader>d', group = 'Disable/Toggle' },
+        { '<leader>t', group = 'Telescope' },
+        { '<leader>x', group = 'Trouble' },
       },
     },
   },
@@ -381,7 +382,7 @@ vim.g.clipboard = {
     ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
   },
 }
-vim.keymap.set('v', '<C-c>', '"+y', { noremap = true, silent = true })
+vim.keymap.set('v', '<C-c>', '"+y', { noremap = true, silent = true, desc = 'Copy to clipboard' })
 
 -- Highlight yanked text (built-in replacement for vim-highlightedyank)
 vim.api.nvim_create_autocmd('TextYankPost', {

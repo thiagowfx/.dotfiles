@@ -129,7 +129,6 @@ local plugins = {
     dependencies = { 'echasnovski/mini.icons' },
     keys = {
       { '<leader>xx', '<cmd>Trouble diagnostics toggle<CR>', desc = 'Diagnostics (Trouble)' },
-      { '<leader>dx', '<cmd>Trouble diagnostics toggle<CR>', desc = 'Diagnostics (Trouble)' },
       { '<leader>xd', '<cmd>Trouble diagnostics toggle filter.buf=0<CR>', desc = 'Buffer diagnostics (Trouble)' },
       { '<leader>xq', '<cmd>Trouble qflist toggle<CR>', desc = 'Quickfix (Trouble)' },
       { '<leader>xl', '<cmd>Trouble loclist toggle<CR>', desc = 'Location list (Trouble)' },
@@ -188,19 +187,19 @@ local function setup()
   vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true }),
     callback = function(ev)
-      local opts = { buffer = ev.buf }
-      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-      vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-      vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-      vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-      vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, opts)
-      vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-      vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-      vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-      vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-      vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
+      local buf = ev.buf
+      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = buf, desc = 'Go to definition' })
+      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { buffer = buf, desc = 'Go to declaration' })
+      vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = buf, desc = 'Go to references' })
+      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { buffer = buf, desc = 'Go to implementation' })
+      vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = buf, desc = 'Hover documentation' })
+      vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { buffer = buf, desc = 'Signature help' })
+      vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, { buffer = buf, desc = 'Signature help' })
+      vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = buf, desc = 'Rename symbol' })
+      vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = buf, desc = 'Code action' })
+      vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { buffer = buf, desc = 'Previous diagnostic' })
+      vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { buffer = buf, desc = 'Next diagnostic' })
+      vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { buffer = buf, desc = 'Show diagnostics' })
       vim.keymap.set('n', '<leader>dd', function()
         diagnostics_enabled = not diagnostics_enabled
         if diagnostics_enabled then
