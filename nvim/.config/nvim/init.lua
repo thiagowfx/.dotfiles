@@ -3,6 +3,9 @@
 -- Plugin management
 --   :Lazy
 --
+-- Keymaps
+--   :map
+--
 -- Disabling Features (one-off, for the current buffer):
 --   <leader>da - Toggle auto-completion (on by default)
 --   <leader>dc - Toggle Copilot, or :Copilot enable (off by default)
