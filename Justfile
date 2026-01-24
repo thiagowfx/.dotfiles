@@ -128,7 +128,8 @@ xcode-command-line-tools:
 install-brewfile:
     #!/usr/bin/env bash
     set -euo pipefail
-    brew bundle
+    # Strip cog markers and Python code before passing to brew bundle
+    sed '/# \[\[\[cog/,/# \]\]\]/d; /# \[\[\[end\]\]\]/d' Brewfile | brew bundle --file=-
 
 # Configure macOS defaults
 configure-macos:
