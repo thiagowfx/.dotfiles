@@ -173,8 +173,8 @@ bootstrap: xcode-command-line-tools install-brewfile configure-macos
 # Install dotfiles
 install: stow bootstrap
 
-# Update git submodules and pre-commit hooks
-update: update-git update-pre-commit
+# Update git submodules, pre-commit hooks, and schemas
+update: update-git update-pre-commit update-schemas
 
 # Update git submodules
 update-git:
