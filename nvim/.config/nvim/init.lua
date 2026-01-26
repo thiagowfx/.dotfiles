@@ -393,6 +393,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function() vim.hl.on_yank() end,
 })
 
+-- Alias 'md' filetype to 'markdown' (for :set ft=md)
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'md',
+  callback = function() vim.bo.filetype = 'markdown' end,
+})
+
 -- Set colorcolumn for markdown files from .editorconfig e.g. for blog posts
 local editorconfig = require('config.editorconfig')
 vim.api.nvim_create_autocmd('FileType', {
@@ -402,8 +408,7 @@ vim.api.nvim_create_autocmd('FileType', {
     if cc then
       vim.opt_local.colorcolumn = cc
     end
-    -- Convert -- followed by space to em-dash
-    vim.keymap.set('i', '--<Space>', '—', { buffer = event.buf, desc = 'Em-dash' })
+
   end,
 })
 
