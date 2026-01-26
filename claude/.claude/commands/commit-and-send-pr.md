@@ -42,10 +42,11 @@ Commit all changes and create a pull request. Follow these steps:
 
 ## Step 5: Check for Existing PR
 
-- Run `gh pr view --json url` to check if a PR already exists for this branch
-- If a PR exists:
+- Run `gh pr view --json url,state` to check if a PR already exists for this branch
+- If a PR exists and state is "OPEN":
   - Output: "Pushed to existing PR: {url}"
   - Stop here, do not continue to Step 6
+- If a PR exists but state is "MERGED" or "CLOSED", continue to Step 6 (create a new PR)
 - If no PR exists, continue to Step 6
 
 ## Step 6: Check for PR Template

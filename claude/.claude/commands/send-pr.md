@@ -34,7 +34,16 @@ Gather context first (if not main, then master)
 - Push with upstream tracking: `git push -u origin <branch-name>`
 - If push fails, report the error and stop
 
-### Step 4: Check for PR Template
+### Step 4: Check for Existing PR
+
+- Run `gh pr view --json url,state` to check if a PR already exists for this branch
+- If a PR exists and state is "OPEN":
+  - Output: "Pushed to existing PR: {url}"
+  - Stop here, do not continue to Step 5
+- If a PR exists but state is "MERGED" or "CLOSED", continue to Step 5 (create a new PR)
+- If no PR exists, continue to Step 5
+
+### Step 5: Check for PR Template
 
 - Check for PR template in these locations (in order of priority):
   1. `.github/PULL_REQUEST_TEMPLATE.md`
@@ -43,16 +52,16 @@ Gather context first (if not main, then master)
 - Use `test -f <path>` to check existence, then `cat` to read the first one found
 - If a template exists, you MUST use it as the structure for the PR description
 
-### Step 5: Create PR
+### Step 6: Create PR
 
 - Analyze all commits and changes to create a concise PR description
-- If a template was found in Step 4, you MUST follow its structure and fill in all sections
+- If a template was found in Step 5, you MUST follow its structure and fill in all sections
 - Create PR with reviewers: `gh pr create --title "<title>" --body "<description>" --reviewer $ARGUMENTS`
 - If $ARGUMENTS is empty, omit the --reviewer flag
 - Output: "Created new PR: {url}"
 
 ### FINAL CHECK
 
-- CRITICAL: Verify that you have completed Step 5 and created a PR
+- CRITICAL: Verify that you have completed Step 6 and created a PR
 - You MUST output the PR URL to the user
-- If you have not created a PR yet, go back and complete Step 5 now
+- If you have not created a PR yet, go back and complete Step 6 now
