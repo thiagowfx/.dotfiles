@@ -399,19 +399,6 @@ vim.api.nvim_create_autocmd('FileType', {
   callback = function() vim.bo.filetype = 'markdown' end,
 })
 
--- Set colorcolumn for markdown files from .editorconfig e.g. for blog posts
-local editorconfig = require('config.editorconfig')
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'markdown',
-  callback = function(event)
-    local cc = editorconfig.get_max_line_length(event.file)
-    if cc then
-      vim.opt_local.colorcolumn = cc
-    end
-
-  end,
-})
-
 -- Auto-create directories when saving (replaces vim-mkdir)
 vim.api.nvim_create_autocmd('BufWritePre', {
   group = vim.api.nvim_create_augroup('AutoMkdir', { clear = true }),
