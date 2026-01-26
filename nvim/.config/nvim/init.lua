@@ -402,6 +402,8 @@ vim.api.nvim_create_autocmd('FileType', {
     if cc then
       vim.opt_local.colorcolumn = cc
     end
+    -- Convert -- followed by space to em-dash
+    vim.keymap.set('i', '--<Space>', '—', { buffer = event.buf, desc = 'Em-dash' })
   end,
 })
 
