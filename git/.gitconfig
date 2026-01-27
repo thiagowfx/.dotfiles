@@ -12,10 +12,10 @@
 	smtpServerPort = 587
 	smtpUser = thiago@perrotta.dev
 
+# keep-sorted start block=yes newline_separated=yes
 [advice]
 	skippedCherryPicks = false
 
-# keep-sorted start block=yes newline_separated=yes
 [alias]
 	# keep-sorted start
 	bd = !branch="$(git branch --show-current)" && git switch-to-default && git branch -D "${branch:-$1}"
