@@ -5,6 +5,7 @@
   },
   "permissions": {
     "allow": [
+      "Bash(acli jira workitem view:*)",
       "Bash(ansible-doc:*)",
       "Bash(basename:*)",
       "Bash(cat:*)",
