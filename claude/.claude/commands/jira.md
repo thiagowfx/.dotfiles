@@ -1,3 +1,7 @@
+---
+allowed-tools: Bash(acli jira workitem view *)
+---
+
 # Jira Issue Onboarding
 
 Get onboarded with an existing Jira issue by viewing its details, description, and comments.
