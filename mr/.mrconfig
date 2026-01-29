@@ -19,8 +19,8 @@ skip = lazy
 
 [workspace/aports]
 checkout = git clone 'git@gitlab.alpinelinux.org:thiagowfx/aports.git' 'aports'
-pull = git pull upstream master
 skip = lazy
+update = git pull upstream master
 
 [workspace/homebrew-taps]
 checkout = git clone 'git@github.com:thiagowfx/homebrew-taps' 'homebrew-taps'
