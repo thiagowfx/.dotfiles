@@ -1,5 +1,5 @@
 # Minimal starship config matching grml prompt
-format = "$status$sudo$username$hostname$directory$git_branch$git_state$git_status${custom.git_worktree}$line_break$character"
+format = "$status$sudo$username$hostname$directory$git_branch$git_state$git_status${custom.git_worktree}${custom.github_pr}$line_break$character"
 right_format = "$cmd_duration$jobs"
 add_newline = true
 
@@ -52,3 +52,9 @@ command = "printf '⎇'"
 when = "[ -f .git ]"
 format = " [$output]($style)"
 style = "bold yellow"
+
+[custom.github_pr]
+command = "bkt --ttl=10m --scope=\"$(git rev-parse --show-toplevel):$(git branch --show-current)\" -- gh pr view --json number --jq '\"#\" + (.number | tostring)' 2>/dev/null"
+when = "git rev-parse --is-inside-work-tree 2>/dev/null"
+format = " [$output](magenta)"
+ignore_timeout = true
