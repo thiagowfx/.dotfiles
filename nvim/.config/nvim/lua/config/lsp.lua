@@ -55,11 +55,11 @@ local plugins = {
           { name = 'path' },
         }),
       })
-      local cmp_enabled = true
+      vim.g.cmp_enabled = true
       vim.keymap.set('n', '<leader>da', function()
-        cmp_enabled = not cmp_enabled
-        cmp.setup.buffer({ enabled = cmp_enabled })
-        print('Auto-completion ' .. (cmp_enabled and 'enabled' or 'disabled'))
+        vim.g.cmp_enabled = not vim.g.cmp_enabled
+        cmp.setup.buffer({ enabled = vim.g.cmp_enabled })
+        print('Auto-completion ' .. (vim.g.cmp_enabled and 'enabled' or 'disabled'))
       end, { desc = 'Toggle auto-completion' })
     end,
   },
@@ -148,7 +148,7 @@ local function setup()
     underline = true,
     update_in_insert = false,
   }
-  local diagnostics_enabled = true
+  vim.g.diagnostics_enabled = true
 
   -- Configure signature help display
   vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
@@ -203,8 +203,8 @@ local function setup()
       vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { buffer = buf, desc = 'Next diagnostic' })
       vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { buffer = buf, desc = 'Show diagnostics' })
       vim.keymap.set('n', '<leader>dd', function()
-        diagnostics_enabled = not diagnostics_enabled
-        if diagnostics_enabled then
+        vim.g.diagnostics_enabled = not vim.g.diagnostics_enabled
+        if vim.g.diagnostics_enabled then
           vim.diagnostic.config(diagnostic_config)
         else
           vim.diagnostic.config({
@@ -213,6 +213,7 @@ local function setup()
             underline = false,
           })
         end
+        print('Diagnostics ' .. (vim.g.diagnostics_enabled and 'enabled' or 'disabled'))
       end, { desc = 'Toggle diagnostics' })
 
       -- Auto-trigger signature help on ( and , (with small delay for LSP to catch up)

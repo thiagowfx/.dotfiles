@@ -100,6 +100,7 @@ vim.keymap.set('n', 'W', '!ipfmt<Enter>', { noremap = true, silent = true, desc 
 -- Toggle spell checking
 vim.keymap.set('n', '<leader>ds', function()
   vim.opt_local.spell = not vim.opt_local.spell:get()
+  print('Spell checking ' .. (vim.opt_local.spell:get() and 'enabled' or 'disabled'))
 end, { desc = 'Toggle spell checking' })
 
 -- a la emacs just-one-space
