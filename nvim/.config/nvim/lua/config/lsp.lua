@@ -55,9 +55,11 @@ local plugins = {
           { name = 'path' },
         }),
       })
+      local cmp_enabled = true
       vim.keymap.set('n', '<leader>da', function()
         cmp_enabled = not cmp_enabled
         cmp.setup.buffer({ enabled = cmp_enabled })
+        print('Auto-completion ' .. (cmp_enabled and 'enabled' or 'disabled'))
       end, { desc = 'Toggle auto-completion' })
     end,
   },
