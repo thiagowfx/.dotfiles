@@ -100,7 +100,7 @@ repos:
       - id: shellcheck
         exclude: \.zsh$
   - repo: https://github.com/thiagowfx/pre-commit-hooks
-    rev: 454fa6b8f5255d9348b11cc1b7480e3a0d80ca96 # frozen: v0.0.18
+    rev: 39d231dce50719fc61bcf61e324efe26b39e5444 # frozen: v0.0.20
     hooks:
       - id: just-format
       - id: check-yamlschema-local
