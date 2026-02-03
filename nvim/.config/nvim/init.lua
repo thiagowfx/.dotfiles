@@ -50,6 +50,9 @@
 --     <leader>xd - Buffer diagnostics (trouble.nvim)
 --     <leader>xq - Quickfix list (trouble.nvim)
 --     <leader>xl - Location list (trouble.nvim)
+--     <leader>dp - Pick breadcrumb segment (dropbar.nvim)
+--     [;        - Go to context start (dropbar.nvim)
+--     ];        - Select next context (dropbar.nvim)
 --
 --   LSP-Enhanced Completion (nvim-cmp) - off by default, toggle with <leader>da:
 --     <C-n>     - Open completion menu (or next item if menu open)
@@ -283,6 +286,15 @@ local plugins = {
   {
     'nvim-lualine/lualine.nvim',
     config = function() require('lualine').setup({ options = { theme = 'onedark' } }) end,
+  },
+  {
+    'Bekaboo/dropbar.nvim',
+    config = function()
+      require('dropbar').setup()
+      vim.keymap.set('n', '<leader>dp', function() require('dropbar.api').pick() end, { desc = 'Dropbar pick' })
+      vim.keymap.set('n', '[;', function() require('dropbar.api').goto_context_start() end, { desc = 'Go to context start' })
+      vim.keymap.set('n', '];', function() require('dropbar.api').select_next_context() end, { desc = 'Select next context' })
+    end,
   },
   {
     'lukas-reineke/indent-blankline.nvim',
