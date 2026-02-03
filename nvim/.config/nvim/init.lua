@@ -7,7 +7,7 @@
 --   :map
 --
 -- Disabling Features (one-off, for the current buffer):
---   <leader>da - Toggle auto-completion (on by default)
+--   <leader>da - Toggle auto-completion (off by default)
 --   <leader>dc - Toggle Copilot, or :Copilot enable (off by default)
 --   <leader>dd - Toggle diagnostics (on by default)
 --   <leader>do - Toggle outline (aerial.nvim)
@@ -51,7 +51,7 @@
 --     <leader>xq - Quickfix list (trouble.nvim)
 --     <leader>xl - Location list (trouble.nvim)
 --
---   LSP-Enhanced Completion (nvim-cmp):
+--   LSP-Enhanced Completion (nvim-cmp) - off by default, toggle with <leader>da:
 --     <C-n>     - Open completion menu (or next item if menu open)
 --     <C-p>     - Previous completion item
 --     <CR>      - Confirm selection
@@ -59,7 +59,6 @@
 --     <C-b>     - Scroll docs backward
 --     <C-f>     - Scroll docs forward
 --     <C-k>     - Signature help (insert mode)
---     <leader>da - Toggle auto-completion (nvim-cmp)
 --
 --   Navigation and Search:
 --     <leader>tf - Find files (telescope.nvim, includes hidden)

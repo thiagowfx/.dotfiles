@@ -55,7 +55,7 @@ local plugins = {
           { name = 'path' },
         }),
       })
-      vim.g.cmp_enabled = true
+      vim.g.cmp_enabled = false
       vim.keymap.set('n', '<leader>da', function()
         vim.g.cmp_enabled = not vim.g.cmp_enabled
         cmp.setup.buffer({ enabled = vim.g.cmp_enabled })
