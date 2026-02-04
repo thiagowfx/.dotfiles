@@ -18,10 +18,23 @@ if git rev-parse --git-dir > /dev/null 2>&1; then
     if [[ -n "$branch" ]]; then
         # Check for uncommitted changes
         if ! git diff --quiet 2>/dev/null || ! git diff --cached --quiet 2>/dev/null; then
-            git_info="(git:$branch*)"
+            dirty="*"
         else
-            git_info="(git:$branch)"
+            dirty=""
         fi
+
+        # Check if in a linked worktree (not the main worktree)
+        worktree_info=""
+        git_dir=$(git rev-parse --git-dir 2>/dev/null)
+        git_common_dir=$(git rev-parse --git-common-dir 2>/dev/null)
+        if [[ "$git_dir" != "$git_common_dir" ]]; then
+            # We're in a linked worktree - show its name
+            worktree_path=$(git rev-parse --show-toplevel 2>/dev/null)
+            worktree_name=$(basename "$worktree_path")
+            worktree_info="⎇$worktree_name"
+        fi
+
+        git_info="(git:$branch$worktree_info$dirty)"
     fi
 fi
 
