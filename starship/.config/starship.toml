@@ -48,7 +48,7 @@ success_symbol = "[❯](green)"
 error_symbol = "[x](red)"
 
 [custom.git_worktree]
-command = "printf '⎇'"
+command = "printf '⎇ %s' \"$(basename \"$(pwd)\")\""
 when = "[ -f .git ]"
 format = " [$output]($style)"
 style = "bold yellow"
