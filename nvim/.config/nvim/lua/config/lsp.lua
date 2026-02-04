@@ -42,6 +42,7 @@ local plugins = {
     config = function()
       local cmp = require('cmp')
       cmp.setup({
+        enabled = false,
         mapping = cmp.mapping.preset.insert({
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -58,7 +59,7 @@ local plugins = {
       vim.g.cmp_enabled = false
       vim.keymap.set('n', '<leader>da', function()
         vim.g.cmp_enabled = not vim.g.cmp_enabled
-        cmp.setup.buffer({ enabled = vim.g.cmp_enabled })
+        cmp.setup({ enabled = vim.g.cmp_enabled })
         print('Auto-completion ' .. (vim.g.cmp_enabled and 'enabled' or 'disabled'))
       end, { desc = 'Toggle auto-completion' })
     end,
