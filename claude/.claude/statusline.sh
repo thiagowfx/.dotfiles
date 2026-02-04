@@ -31,7 +31,7 @@ if git rev-parse --git-dir > /dev/null 2>&1; then
             # We're in a linked worktree - show its name
             worktree_path=$(git rev-parse --show-toplevel 2>/dev/null)
             worktree_name=$(basename "$worktree_path")
-            worktree_info="⎇$worktree_name"
+            worktree_info=" ⎇ $worktree_name"
         fi
 
         git_info="(git:$branch$worktree_info$dirty)"
