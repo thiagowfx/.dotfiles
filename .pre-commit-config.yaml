@@ -1,22 +1,22 @@
-# See https://pre-commit.com for more information
-# See https://pre-commit.com/hooks.html for more hooks
+# See https://prek.j178.dev for more information
+# Migrated from pre-commit to prek: https://prek.j178.dev/benchmark/
 #
-# Install pre-commit itself:
-#   $ pip install pre-commit
+# Install prek itself:
+#   $ cargo install prek
 #     OR
-#   $ brew install pre-commit
+#   $ brew install prek
 #
-# Update all pre-commit hooks to latest version:
-#   $ pre-commit autoupdate
+# Update all prek hooks to latest version:
+#   $ prek auto-update
 #
-# Install all default pre-commit hooks locally:
-#   $ pre-commit install
+# Install all default prek hooks locally:
+#   $ prek install
 #
-# Apply a given pre-commit hook to all files:
-#   $ pre-commit run --all-files <id>
+# Apply a given prek hook to all files:
+#   $ prek run --all-files <id>
 #
-# Apply all pre-commit hooks to all files:
-#   $ pre-commit run --all-files
+# Apply all prek hooks to all files:
+#   $ prek run --all-files
 
 # Vendored files
 exclude: "^vendor/schemas/"
@@ -129,9 +129,10 @@ repos:
         entry: sh -c 'command -v ghostty >/dev/null 2>&1 && ghostty +validate-config --config-file=ghostty/.config/ghostty/config || echo "ghostty not installed, skipping validation"'
         pass_filenames: false
         language: system
-      - id: pre-commit
-        name: Validate pre-commit config
-        entry: pre-commit validate-config
+      - id: prek
+        name: Validate prek config
+        entry: sh -c 'command -v prek >/dev/null 2>&1 && prek validate-config || pre-commit validate-config'
+        pass_filenames: false
         language: system
         files: ^.pre-commit-config.yaml$
 # keep-sorted end
