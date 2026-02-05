@@ -129,9 +129,9 @@ repos:
         entry: sh -c 'command -v ghostty >/dev/null 2>&1 && ghostty +validate-config --config-file=ghostty/.config/ghostty/config || echo "ghostty not installed, skipping validation"'
         pass_filenames: false
         language: system
-      - id: pre-commit
-        name: Validate pre-commit config
-        entry: pre-commit validate-config
+      - id: prek
+        name: Validate prek config
+        entry: prek validate-config
         language: system
         files: ^.pre-commit-config.yaml$
 # keep-sorted end
