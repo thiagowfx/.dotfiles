@@ -48,9 +48,9 @@ success_symbol = "[❯](green)"
 error_symbol = "[x](red)"
 
 [custom.git_worktree]
-command = "printf '⎇ %s' \"$(basename \"$(pwd)\")\""
-when = "[ -f .git ]"
-format = " [$output]($style)"
+command = "git rev-parse --show-toplevel 2>/dev/null | xargs basename"
+when = "[ -f \"$(git rev-parse --show-toplevel 2>/dev/null)/.git\" ]"
+format = " [⎇ $output]($style)"
 style = "bold yellow"
 
 [custom.github_pr]
