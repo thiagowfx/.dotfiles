@@ -45,6 +45,7 @@
       "Bash(rg:*)",
       "Bash(shellcheck:*)",
       "Bash(tail:*)",
+      "Bash(terraform validate:*)",
       "Bash(test:*)",
       "Bash(tflint:*)",
       "Bash(tree:*)",
