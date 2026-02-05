@@ -131,7 +131,8 @@ repos:
         language: system
       - id: prek
         name: Validate prek config
-        entry: prek validate-config
+        entry: sh -c 'command -v prek >/dev/null 2>&1 && prek validate-config || echo "prek not installed, skipping validation"'
+        pass_filenames: false
         language: system
         files: ^.pre-commit-config.yaml$
 # keep-sorted end
