@@ -1,4 +1,4 @@
-name: Pre-commit auto-update
+name: Prek auto-update
 
 on:
   schedule:
@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  pre-commit-auto-update:
+  prek-auto-update:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -22,30 +22,27 @@ jobs:
           submodules: true
           persist-credentials: false
 
-      - name: Set up Python
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+      - name: Install prek
+        uses: j178/prek-action@564dda4cfa5e96aafdc4a5696c4bf7b46baae5ac # v1.1.0
         with:
-          python-version: "3.14"
+          install-only: true
 
-      - name: Install pre-commit
-        run: pip install pre-commit
-
-      - name: Run pre-commit autoupdate
-        run: pre-commit autoupdate --freeze --jobs "$(nproc)"
+      - name: Run prek auto-update
+        run: prek auto-update --freeze --jobs "$(nproc)"
 
       - uses: extractions/setup-just@e33e0265a09d6d736e2ee1e0eb685ef1de4669ff # v3
 
-      - uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd # v3.0.1
+      - uses: j178/prek-action@564dda4cfa5e96aafdc4a5696c4bf7b46baae5ac # v1.1.0
         continue-on-error: true
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: bot/pre-commit-autoupdate
+          branch: bot/prek-autoupdate
           delete-branch: true
-          title: Auto-update pre-commit hooks
-          commit-message: Auto-update pre-commit hooks
+          title: Auto-update prek hooks
+          commit-message: Auto-update prek hooks
           body: |
             Update tool versions in pre-commit configs to latest version.
           labels: |

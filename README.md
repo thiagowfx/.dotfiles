@@ -6,8 +6,8 @@
 
 <!-- BEGIN mdsh -->
 [![ls-lint.yml](https://github.com/thiagowfx/.dotfiles/actions/workflows/ls-lint.yml/badge.svg)](https://github.com/thiagowfx/.dotfiles/actions/workflows/ls-lint.yml)
-[![pre-commit-autoupdate.yml](https://github.com/thiagowfx/.dotfiles/actions/workflows/pre-commit-autoupdate.yml/badge.svg)](https://github.com/thiagowfx/.dotfiles/actions/workflows/pre-commit-autoupdate.yml)
-[![pre-commit.yml](https://github.com/thiagowfx/.dotfiles/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/thiagowfx/.dotfiles/actions/workflows/pre-commit.yml)
+[![prek-autoupdate.yml](https://github.com/thiagowfx/.dotfiles/actions/workflows/prek-autoupdate.yml/badge.svg)](https://github.com/thiagowfx/.dotfiles/actions/workflows/prek-autoupdate.yml)
+[![prek.yml](https://github.com/thiagowfx/.dotfiles/actions/workflows/prek.yml/badge.svg)](https://github.com/thiagowfx/.dotfiles/actions/workflows/prek.yml)
 <!-- END mdsh -->
 
 This dotfiles repository is managed with [`GNU stow`][stow] and [`Just`][just].

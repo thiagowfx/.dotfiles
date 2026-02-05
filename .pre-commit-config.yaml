@@ -1,22 +1,22 @@
-# See https://pre-commit.com for more information
-# See https://pre-commit.com/hooks.html for more hooks
+# See https://prek.j178.dev for more information
+# Migrated from pre-commit to prek: https://prek.j178.dev/benchmark/
 #
-# Install pre-commit itself:
-#   $ pip install pre-commit
+# Install prek itself:
+#   $ cargo install prek
 #     OR
-#   $ brew install pre-commit
+#   $ brew install prek
 #
-# Update all pre-commit hooks to latest version:
-#   $ pre-commit autoupdate
+# Update all prek hooks to latest version:
+#   $ prek auto-update
 #
-# Install all default pre-commit hooks locally:
-#   $ pre-commit install
+# Install all default prek hooks locally:
+#   $ prek install
 #
-# Apply a given pre-commit hook to all files:
-#   $ pre-commit run --all-files <id>
+# Apply a given prek hook to all files:
+#   $ prek run --all-files <id>
 #
-# Apply all pre-commit hooks to all files:
-#   $ pre-commit run --all-files
+# Apply all prek hooks to all files:
+#   $ prek run --all-files
 
 # Vendored files
 exclude: "^vendor/schemas/"
