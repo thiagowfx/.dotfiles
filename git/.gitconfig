@@ -93,6 +93,7 @@
 [delta]
 	navigate = true
 	side-by-side = false
+	width = variable
 
 # https://git-scm.com/docs/diff-config
 [diff]
@@ -152,6 +153,10 @@
 
 [mergetool]
 	keepBackup = false
+
+[pager]
+	log = delta --diff-highlight
+	show = delta --diff-highlight
 
 [pull]
 	rebase = true
