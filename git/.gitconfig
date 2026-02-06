@@ -83,8 +83,8 @@
 	commitGraph = true
 	excludesfile = ~/.gitignore_global
 	editor = vim
-	# delta > diff-highlight > plain cat
-	pager = "delta --diff-highlight 2>/dev/null || ((diff-highlight 2>/dev/null || cat) | ${PAGER:-less})"
+	# delta > diff-highlight > less; falls back to unpaged output if delta is missing
+	pager = delta --diff-highlight
 
 [credential]
 	# Cache credentials in memory for a while. See git-credential-cache(1).
@@ -140,7 +140,7 @@
 	defaultBranch = master
 
 [interactive]
-	diffFilter = "delta --color-only --diff-highlight 2>/dev/null || ((diff-highlight 2>/dev/null || cat) | ${PAGER:-less})"
+	diffFilter = delta --color-only --diff-highlight
 
 [merge]
 	prompt = true
@@ -154,9 +154,6 @@
 [mergetool]
 	keepBackup = false
 
-[pager]
-	log = delta --diff-highlight
-	show = delta --diff-highlight
 
 [pull]
 	rebase = true
