@@ -163,6 +163,7 @@ nnoremap <leader>s :GitGutterStageHunk<CR>
 " Git integration
 Plug 'tpope/vim-fugitive'
 command! Gadd Gwrite
+command! Gamend G commit --amend --no-edit
 command! Gwqall Gwq
 
 Plug 'tpope/vim-commentary'

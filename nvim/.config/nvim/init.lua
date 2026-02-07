@@ -380,6 +380,7 @@ lsp.setup()
 
 -- Configure vim-fugitive custom commands
 vim.cmd("command! Gadd Gwrite")
+vim.cmd("command! Gamend G commit --amend --no-edit")
 vim.cmd("command! Gwqall Gwq")
 
 -- Configure vim-eunuch custom command
