@@ -92,6 +92,7 @@
 
 [delta]
 	navigate = true
+	pager = less -R
 	side-by-side = false
 	width = variable
 
