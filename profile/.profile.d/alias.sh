@@ -33,6 +33,7 @@ alias cdg='cd "$(git root)"'
 
 # shortcuts
 alias k=kubectl
+alias claudey="claude --dangerously-skip-permissions"
 
 # muscle memory
 alias unstow="stow -D"
