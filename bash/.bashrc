@@ -69,12 +69,13 @@ src_files "$HOME/.profile.d" "$HOME/.bashrc.d"
 if command -v starship &> /dev/null; then
     eval "$(starship init bash)"
 else
-    # Monokai-inspired: https://gist.github.com/transat/6694554
+    # Gruvbox dark theme
     RESET=$'\e[0m'
     BOLD=$'\e[1m'
-    GREEN=$'\e[32;49m'
-    ORANGE=$'\e[33;49m'
-    RED=$'\e[31;49m'
+    GREEN=$'\e[38;5;142m'
+    ORANGE=$'\e[38;5;214m'
+    RED=$'\e[38;5;167m'
+    AQUA=$'\e[38;5;108m'
 
     prompt_command() {
             # this must be the first line
@@ -101,7 +102,7 @@ else
 
             # add vanilla git prompt if existing
             # __git_ps1 is provided by the git package
-            hash __git_ps1 &>/dev/null && PS1+='\[$GREEN\]$(__git_ps1)'
+            hash __git_ps1 &>/dev/null && PS1+='\[$AQUA\]$(__git_ps1)'
 
             # add prompt
             PS1+='\n\[$ORANGE\]\$ \[$RESET\]'
