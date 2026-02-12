@@ -67,11 +67,11 @@ repos:
         args:
           - --ignore-words=.codespell-ignore-words.txt
   - repo: https://github.com/gitleaks/gitleaks
-    rev: 2ca41cc1372d1e939a6a879f18cdc19fc1cac1ce # frozen: v8.30.0
+    rev: 6eaad039603a4de39fddd1cf5f727391efe9974e # frozen: v8.30.0
     hooks:
       - id: gitleaks
   - repo: https://github.com/golangci/misspell
-    rev: e78f9b6cd537559a24525b6ea7e182794edfd31f # frozen: v0.7.0
+    rev: b565578a5ec9b815331bdae8f588021f7696ec6f # frozen: v0.8.0
     hooks:
       - id: misspell
   - repo: https://github.com/google/keep-sorted
@@ -79,7 +79,7 @@ repos:
     hooks:
       - id: keep-sorted
   - repo: https://github.com/google/yamlfmt
-    rev: b5ca1890231d5e1e5181fef75a1be609d1e25029 # frozen: v0.21.0
+    rev: 21ca5323a9c87ee37a434e0ca908efc0a89daa07 # frozen: v0.21.0
     hooks:
       - id: yamlfmt
   - repo: https://github.com/igorshubovych/markdownlint-cli
@@ -89,7 +89,7 @@ repos:
         args:
           - --config=.markdownlintrc.json
   - repo: https://github.com/jmlrt/check-yamlschema
-    rev: 907e5521b7f182966e59b1736ed1e5ba9eb24641 # frozen: v0.0.7
+    rev: a45841f016eaecf72b3434f0687866b62bc3c3d4 # frozen: v0.0.7
     hooks:
       - id: check-yamlschema
   - repo: https://github.com/rhysd/actionlint/
@@ -102,7 +102,7 @@ repos:
       - id: shellcheck
         exclude: \.zsh$
   - repo: https://github.com/thiagowfx/pre-commit-hooks
-    rev: 39d231dce50719fc61bcf61e324efe26b39e5444 # frozen: v0.0.20
+    rev: 528e165cff8a11bc4f9f49a9b25f3249e09e4237 # frozen: v0.0.22
     hooks:
       - id: just-format
       - id: check-yamlschema-local
