@@ -18,8 +18,9 @@ Commit all changes and create a pull request. Follow these steps:
 ## Step 1: Commit Changes
 
 - Stage all changes: `git add -A`
-- Generate a concise commit message based on the changes
+- Generate a conventional commit message based on the changes (e.g., `feat:`, `fix:`, `refactor:`, `docs:`, `chore:`)
 - Create the commit with the generated message
+- If pre-commit hooks fail due to environment issues (not code issues), retry with `--no-verify`
 - If there are no changes to commit, skip to Step 2
 
 ## Step 2: Verify Prerequisites
