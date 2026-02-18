@@ -64,6 +64,7 @@
 --     <C-k>     - Signature help (insert mode)
 --
 --   Navigation and Search:
+--     <leader>te - Toggle neo-tree file explorer (neo-tree.nvim)
 --     <leader>tf - Find files (telescope.nvim, includes hidden)
 --     <leader>tg - Live grep (telescope.nvim)
 --     <leader>tb - List buffers (telescope.nvim)
@@ -261,6 +262,28 @@ local plugins = {
       vim.keymap.set('n', '-', '<cmd>Oil<CR>', { desc = 'Open parent directory' })
     end,
   },
+  {
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+      'MunifTanjim/nui.nvim',
+    },
+    keys = {
+      { '<leader>te', function() require('neo-tree.command').execute({ action = 'focus', source = 'filesystem' }) end, desc = 'Neo-tree explorer' },
+    },
+    config = function()
+      require('neo-tree').setup({
+        filesystem = {
+          filtered_items = {
+            hide_dotfiles = false,
+            hide_gitignored = false,
+          },
+        },
+      })
+    end,
+  },
   { 'aymericbeaumet/vim-symlink', event = 'BufReadPre' },
   { 'bogado/file-line', event = 'BufReadPre' },
   'tpope/vim-eunuch',
@@ -309,7 +332,7 @@ local plugins = {
       delay = 2000,
       spec = {
         { '<leader>d', group = 'Disable/Toggle' },
-        { '<leader>t', group = 'Telescope' },
+        { '<leader>t', group = 'Navigation' },
         { '<leader>x', group = 'Trouble' },
       },
     },
