@@ -307,6 +307,21 @@ local plugins = {
 
   -- UI enhancements
   {
+    'akinsho/bufferline.nvim',
+    version = '*',
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    config = function()
+      require('bufferline').setup({
+        options = {
+          mode = 'tabs',
+          show_close_icon = true,
+          show_buffer_close_icons = true,
+          always_show_bufferline = false,
+        },
+      })
+    end,
+  },
+  {
     'nvim-lualine/lualine.nvim',
     config = function() require('lualine').setup({ options = { theme = 'onedark' } }) end,
   },
