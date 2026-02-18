@@ -96,6 +96,7 @@
     "lua-lsp@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true
   },
+  "outputStyle": "verbose",
   "alwaysThinkingEnabled": true,
-  "outputStyle": "verbose"
+  "skipDangerousModePermissionPrompt": true
 }
