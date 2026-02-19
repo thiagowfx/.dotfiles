@@ -285,7 +285,12 @@ local plugins = {
     end,
   },
   { 'aymericbeaumet/vim-symlink', event = 'BufReadPre' },
-  { 'bogado/file-line', event = 'BufReadPre' },
+  {
+    'dk949/file_line.nvim',
+    main = 'file_line',
+    opts = {},
+    lazy = false,
+  },
   'tpope/vim-eunuch',
 
   -- Code quality and formatting
