@@ -64,7 +64,7 @@
 --     <C-k>     - Signature help (insert mode)
 --
 --   Navigation and Search:
---     <leader>te - Toggle neo-tree file explorer (neo-tree.nvim)
+--     <leader>te - Toggle neo-tree file explorer (neo-tree.nvim) # codespell:ignore
 --     <leader>tf - Find files (telescope.nvim, includes hidden)
 --     <leader>tg - Live grep (telescope.nvim)
 --     <leader>tb - List buffers (telescope.nvim)
