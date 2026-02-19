@@ -19,3 +19,4 @@
 
 # git worktrees
 --ignore-directory=.git/worktrees/
+--ignore-directory=.worktrees/
