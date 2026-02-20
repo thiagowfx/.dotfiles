@@ -426,6 +426,18 @@ vim.cmd("command! Gadd Gwrite")
 vim.cmd("command! Gamend G commit --amend --no-edit")
 vim.cmd("command! Gwqall Gwq")
 
+-- Auto-delete fugitive:/ directories on exit
+vim.api.nvim_create_autocmd('VimLeavePre', {
+  group = vim.api.nvim_create_augroup('FugitiveCleanup', { clear = true }),
+  callback = function()
+    local cwd = vim.fn.getcwd()
+    local fugitive_dir = cwd .. '/fugitive:/'
+    if vim.uv.fs_stat(fugitive_dir) then
+      vim.fn.system('rm -rf ' .. vim.fn.shellescape(fugitive_dir))
+    end
+  end,
+})
+
 -- Configure vim-eunuch custom command
 vim.cmd("command! DoasWrite execute 'silent! write !doas tee % >/dev/null' <bar> edit!")
 
