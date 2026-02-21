@@ -11,7 +11,8 @@ target_dir := env_var("HOME")
 @_list:
     just --list
 
-# Stow all packages
+[doc('Stow all packages')]
+[group('stow')]
 stow:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -104,15 +105,18 @@ stow:
         stow -v -t {{ target_dir }} -d {{ _dotfiles_dir }} --no-folding $stow_packages_no_folding
     fi
 
-# Check for dangling symlinks
+[doc('Check for dangling symlinks')]
+[group('stow')]
 stow-lint:
     chkstow -t {{ target_dir }}
 
-# Remove all symlinks
+[doc('Remove all symlinks')]
+[group('stow')]
 unstow:
     stow -t {{ target_dir }} -d {{ _dotfiles_dir }} --delete {{ packages }}
 
-# Install Xcode Command Line Tools
+[doc('Install Xcode Command Line Tools')]
+[group('bootstrap')]
 xcode-command-line-tools:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -124,14 +128,16 @@ xcode-command-line-tools:
         echo "Xcode Command Line Tools already installed"
     fi
 
-# Install dependencies from Brewfile
+[doc('Install dependencies from Brewfile (Homebrew packages and casks)')]
+[group('bootstrap')]
 install-brewfile:
     #!/usr/bin/env bash
     set -euo pipefail
     # Strip cog markers and Python code before passing to brew bundle
     sed '/# \[\[\[cog/,/# \]\]\]/d; /# \[\[\[end\]\]\]/d' Brewfile | brew bundle --file=-
 
-# Configure macOS defaults
+[doc('Configure macOS defaults (keyboard, dock, security, etc.)')]
+[group('bootstrap')]
 configure-macos:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -168,24 +174,30 @@ configure-macos:
     #     rm /tmp/pam_tid_line; \
     # fi
 
-# Bootstrap environment (install packages, casks, and configure macOS)
+[doc('Bootstrap environment (install packages, casks, and configure macOS)')]
+[group('bootstrap')]
 bootstrap: xcode-command-line-tools install-brewfile configure-macos
 
-# Install dotfiles
+[doc('Install dotfiles (stow packages and bootstrap environment)')]
+[group('install')]
 install: stow bootstrap
 
-# Update git submodules, pre-commit hooks, and schemas
+[doc('Update git submodules, pre-commit hooks, and schemas')]
+[group('update')]
 update: update-git update-pre-commit update-schemas
 
-# Update git submodules
+[doc('Update git submodules')]
+[group('update')]
 update-git:
     git submodule update --force --remote --jobs "$(nproc)"
 
-# Update pre-commit hooks
+[doc('Update pre-commit hooks and run all hooks')]
+[group('update')]
 update-pre-commit:
     pre-commit autoupdate --freeze --jobs "$(nproc)" && pre-commit run --all-files
 
-# Update local JSON schemas
+[doc('Update local JSON schemas (Espanso, yamllint, etc.)')]
+[group('update')]
 update-schemas:
     #!/usr/bin/env bash
     set -euo pipefail
