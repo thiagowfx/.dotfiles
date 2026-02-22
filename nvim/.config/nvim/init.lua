@@ -28,6 +28,7 @@
 --     [c        - Previous git hunk (gitsigns.nvim)
 --     <leader>s - Stage current hunk (gitsigns.nvim)
 --     <leader>u - Unstage current hunk (gitsigns.nvim)
+--     <leader>b - Toggle inline git blame (gitsigns.nvim)
 --
 --   LSP (Language Server Protocol):
 --     ]d        - Next diagnostic (nvim-lspconfig)
@@ -225,6 +226,7 @@ local plugins = {
           end, { expr = true, buffer = bufnr, desc = 'Prev hunk' })
           vim.keymap.set('n', '<leader>s', gs.stage_hunk, { buffer = bufnr, desc = 'Stage hunk' })
           vim.keymap.set('n', '<leader>u', gs.reset_hunk, { buffer = bufnr, desc = 'Reset hunk' })
+          vim.keymap.set('n', '<leader>b', gs.toggle_current_line_blame, { buffer = bufnr, desc = 'Toggle inline blame' })
         end,
       })
     end,
