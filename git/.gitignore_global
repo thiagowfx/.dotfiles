@@ -238,8 +238,11 @@ tags
 
 # End of https://www.toptal.com/developers/gitignore/api/direnv,emacs,intellij,macos,vim,visualstudiocode
 
-# AI coding tool rule files
+# Anthropic / Claude
 **/.claude/settings.local.json
+.claude/worktrees/
+
+# AI coding tool rule files
 .aider*
 .clinerules
 
@@ -248,3 +251,6 @@ tags
 
 # jj
 .jj/
+
+# Worktrees
+.worktrees/
