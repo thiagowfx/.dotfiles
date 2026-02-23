@@ -45,7 +45,11 @@ ee() {
 	eval "kill -HUP $pids"
 }
 alias k=kubectl
-alias claudey="claude --dangerously-skip-permissions"
+if command -v cco >/dev/null 2>&1; then
+	alias claudey=cco
+else
+	alias claudey="claude --dangerously-skip-permissions"
+fi
 
 # muscle memory
 alias unstow="stow -D"
