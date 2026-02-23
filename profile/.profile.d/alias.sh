@@ -32,6 +32,19 @@ alias sl=ls
 alias cdg='cd "$(git root)"'
 
 # shortcuts
+# exit everything: quit all nested shells, closing the terminal tab
+ee() {
+	pid=$$
+	pids=$pid
+	while ppid=$(ps -o ppid= -p "$pid" | tr -d ' ') && [ "$ppid" -gt 1 ] 2>/dev/null; do
+		case "$(ps -o comm= -p "$ppid" 2>/dev/null)" in
+			*sh) pids="$pids $ppid"; pid=$ppid ;;
+			*) break ;;
+		esac
+	done
+	# shellcheck disable=SC2086
+	kill -HUP $pids
+}
 alias k=kubectl
 alias claudey="claude --dangerously-skip-permissions"
 
