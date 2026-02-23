@@ -42,8 +42,7 @@ ee() {
 			*) break ;;
 		esac
 	done
-	# shellcheck disable=SC2086
-	kill -HUP $pids
+	eval "kill -HUP $pids"
 }
 alias k=kubectl
 alias claudey="claude --dangerously-skip-permissions"
