@@ -35,15 +35,14 @@ alias cdg='cd "$(git root)"'
 # exit everything: quit all nested shells, closing the terminal tab
 ee() {
 	pid=$$
-	pids=""
+	pids=$pid
 	while ppid=$(ps -o ppid= -p "$pid" | tr -d ' ') && [ "$ppid" -gt 1 ] 2>/dev/null; do
 		case "$(ps -o comm= -p "$ppid" 2>/dev/null)" in
 			*sh) pids="$pids $ppid"; pid=$ppid ;;
 			*) break ;;
 		esac
 	done
-	[ -n "$pids" ] && eval "kill $pids"
-	exit
+	eval "kill -HUP $pids"
 }
 alias k=kubectl
 if command -v cco >/dev/null 2>&1; then
