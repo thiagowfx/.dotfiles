@@ -34,6 +34,8 @@ alias cdg='cd "$(git root)"'
 # shortcuts
 # exit everything: quit all nested shells, closing the terminal tab
 ee() {
+	# Prevent direnv hooks from failing and blocking the exit
+	unset DIRENV_WATCHES DIRENV_DIFF 2>/dev/null
 	pid=$$
 	pids=$pid
 	while ppid=$(ps -o ppid= -p "$pid" | tr -d ' ') && [ "$ppid" -gt 1 ] 2>/dev/null; do
