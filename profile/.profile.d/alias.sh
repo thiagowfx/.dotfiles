@@ -46,7 +46,7 @@ ee() {
 }
 alias k=kubectl
 if command -v cco >/dev/null 2>&1; then
-	alias claudey=cco
+	alias claudey="cco --add-dir ~/.cache --add-dir ~/.aws/cli/cache --add-dir ~/.terraform.d/plugin-cache"
 else
 	alias claudey="claude --dangerously-skip-permissions"
 fi
