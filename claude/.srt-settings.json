@@ -1,0 +1,19 @@
+{
+  "filesystem": {
+    "denyRead": [],
+    "allowWrite": [
+      ".",
+      "~/.cache",
+      "~/.aws/cli/cache",
+      "~/.terraform.d/plugin-cache"
+    ],
+    "denyWrite": []
+  },
+  "network": {
+    "allowedDomains": [
+      "github.com",
+      "perrotta.dev"
+    ],
+    "deniedDomains": []
+  }
+}
