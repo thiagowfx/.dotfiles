@@ -51,8 +51,6 @@ fi
 
 if command -v cco >/dev/null 2>&1; then
 	alias claudey="cco --allow-oauth-refresh --add-dir ~/.cache --add-dir ~/.aws/cli/cache --add-dir ~/.terraform.d/plugin-cache"
-elif command -v srt >/dev/null 2>&1; then
-	alias claudey="srt claude --dangerously-skip-permissions"
 else
 	alias claudey="claude --dangerously-skip-permissions"
 fi
