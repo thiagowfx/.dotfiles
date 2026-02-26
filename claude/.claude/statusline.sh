@@ -63,6 +63,26 @@ if [ "$usage" != "null" ]; then
     context_info="[${bar}]"
 fi
 
+# Check sandbox status (enabled by default, settings can override)
+sandbox_enabled=true
+for sf in \
+    "/Library/Application Support/ClaudeCode/managed-settings.json" \
+    "$HOME/.claude/settings.json" \
+    "$HOME/.claude/settings.local.json" \
+    "$current_dir/.claude/settings.json" \
+    "$current_dir/.claude/settings.local.json"; do
+    if [[ -f "$sf" ]]; then
+        val=$(jq -r '.sandbox.enabled // empty' "$sf" 2>/dev/null)
+        if [[ "$val" == "false" ]]; then sandbox_enabled=false; fi
+        if [[ "$val" == "true" ]]; then sandbox_enabled=true; fi
+    fi
+done
+if $sandbox_enabled; then
+    sandbox_info="sandbox:on"
+else
+    sandbox_info="sandbox:off"
+fi
+
 # Build status line
 status_parts=()
 
@@ -81,6 +101,9 @@ status_parts+=("[$model_name]")
 if [[ "$output_style" != "default" && "$output_style" != "null" ]]; then
     status_parts+=("{$output_style}")
 fi
+
+# Add sandbox status
+status_parts+=("($sandbox_info)")
 
 # Add context usage if available
 if [[ -n "$context_info" ]]; then
