@@ -92,9 +92,9 @@
     "command": "bash ~/.claude/statusline.sh"
   },
   "enabledPlugins": {
-    "pyright-lsp@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
-    "gopls-lsp@claude-plugins-official": true
+    "pyright-lsp@claude-plugins-official": true
   },
   "outputStyle": "verbose",
   "alwaysThinkingEnabled": true,
