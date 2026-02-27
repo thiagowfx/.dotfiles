@@ -96,7 +96,6 @@
     "lua-lsp@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true
   },
-  "outputStyle": "verbose",
   "alwaysThinkingEnabled": true,
   "skipDangerousModePermissionPrompt": true,
   "sandbox": {
