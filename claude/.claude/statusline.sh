@@ -5,8 +5,10 @@ input=$(cat)
 
 # Extract information from JSON
 model_name=$(echo "$input" | jq -r '.model.display_name')
+session_id=$(echo "$input" | jq -r '.session_id')
 current_dir=$(echo "$input" | jq -r '.workspace.current_dir')
 output_style=$(echo "$input" | jq -r '.output_style.name')
+cost=$(echo "$input" | jq -r '.cost.total_cost_usd')
 
 # Get current working directory basename
 dir_name=$(basename "$current_dir")
@@ -85,6 +87,16 @@ fi
 # Add context usage if available
 if [[ -n "$context_info" ]]; then
     status_parts+=("$context_info")
+fi
+
+# Add cost
+if [[ -n "$cost" && "$cost" != "null" ]]; then
+    status_parts+=("$(printf '$%.2f' "$cost")")
+fi
+
+# Add session ID
+if [[ -n "$session_id" && "$session_id" != "null" ]]; then
+    status_parts+=("sid:$session_id")
 fi
 
 # Join parts with spaces and print
