@@ -52,7 +52,7 @@ fi
 if command -v cco >/dev/null 2>&1; then
 	alias claudey="cco --allow-oauth-refresh --add-dir ~/.cache --add-dir ~/.aws/cli/cache --add-dir ~/.terraform.d/plugin-cache"
 else
-	alias claudey="claude --dangerously-skip-permissions"
+	alias claudey="claude --allow-dangerously-skip-permissions"
 fi
 
 # muscle memory
