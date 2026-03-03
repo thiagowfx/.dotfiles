@@ -54,6 +54,7 @@ if command -v cco >/dev/null 2>&1; then
 else
 	alias claudey="claude --allow-dangerously-skip-permissions"
 fi
+alias claudeyy="claude --allow-dangerously-skip-permissions"
 
 # muscle memory
 alias unstow="stow -D"
