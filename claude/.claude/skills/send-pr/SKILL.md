@@ -1,7 +1,8 @@
 ---
-allowed_tools: ["Bash(cat:*)", "Bash(gh api user:*)", "Bash(gh pr create:*)", "Bash(gh pr edit:*)", "Bash(gh pr view:*)", "Bash(git checkout:*)", "Bash(git diff:*)", "Bash(git log:*)", "Bash(git push:*)", "Bash(git rev-parse:*)", "Bash(git status:*)", "Bash(test:*)"]
-argument-hint: [reviewer]
+name: send-pr
 description: Send out a concise PR for review
+argument-hint: "[reviewer]"
+allowed-tools: Bash(cat:*), Bash(gh api user:*), Bash(gh pr create:*), Bash(gh pr edit:*), Bash(gh pr view:*), Bash(git checkout:*), Bash(git diff:*), Bash(git log:*), Bash(git push:*), Bash(git rev-parse:*), Bash(git status:*), Bash(test:*)
 ---
 
 Create and send a pull request for review. Follow these steps:

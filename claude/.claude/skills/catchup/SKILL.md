@@ -1,6 +1,7 @@
 ---
+name: catchup
 description: Inspect all uncommitted changes in the repository using git diff
-argument-hint: Optional - provide a file path to see changes for specific file(s)
+argument-hint: "[file-path]"
 allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git log:*)
 ---
 

@@ -1,6 +1,7 @@
 ---
-allowed_tools: ["Bash(git add:*)", "Bash(git commit:*)", "Bash(git status:*)", "Bash(git rev-parse:*)"]
+name: commit
 description: Make a concise git commit on the current branch
+allowed-tools: Bash(git add:*), Bash(git commit:*), Bash(git status:*), Bash(git rev-parse:*)
 ---
 
 Create a concise git commit on the current branch.

@@ -1,4 +1,7 @@
 ---
+name: jira
+description: Jira Issue Onboarding
+argument-hint: "<issue-key-or-url>"
 allowed-tools: Bash(acli jira workitem view *)
 ---
 

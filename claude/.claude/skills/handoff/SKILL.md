@@ -1,4 +1,5 @@
 ---
+name: handoff
 description: Write or update a handoff document for the next agent
 ---
 
