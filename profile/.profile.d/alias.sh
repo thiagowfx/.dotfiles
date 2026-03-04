@@ -18,7 +18,7 @@ fi
 
 # https://direnv.net/
 if command -v direnv >/dev/null 2>&1; then
-	alias de="direnv edit .envrc.local 2>/dev/null || direnv edit .envrc"
+	alias de='if [ -f .envrc.local ]; then direnv edit .envrc.local; else direnv edit .envrc; fi'
 fi
 
 # misspellings
