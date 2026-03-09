@@ -297,6 +297,7 @@ local plugins = {
   'tpope/vim-eunuch',
 
   -- Code quality and formatting
+  'tpope/vim-abolish',
   'tpope/vim-endwise',
   {
     'echasnovski/mini.trailspace',
