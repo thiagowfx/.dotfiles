@@ -63,7 +63,14 @@ Commit all changes and create a pull request. Follow these steps:
 ## Step 7: Create PR
 
 - Analyze all commits and changes to create a concise PR description
-- If a template was found in Step 6, you MUST follow its structure and fill in all sections
-- Create PR with reviewers: `gh pr create --title "<title>" --body "<description>" --reviewer $ARGUMENTS`
+- If a template was found in Step 6, you MUST follow its structure and fill in
+  all sections
+- When the remote is on GitHub and the changes are non-trivial, include a
+  Mermaid diagram in the PR description to visually illustrate the change
+  (e.g., flowchart of new logic, architecture of added components, before/after
+  state). Skip the diagram for trivial changes like typo fixes or config
+  tweaks.
+- Create PR with reviewers: `gh pr create --title "<title>" --body
+  "<description>" --reviewer $ARGUMENTS`
 - If $ARGUMENTS is empty, omit the --reviewer flag
 - Output: "Created new PR: {url}"
