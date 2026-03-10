@@ -24,6 +24,9 @@ keybind = shift+enter=text:\n
 macos-icon = chalkboard
 mouse-hide-while-typing = true
 shell-integration-features = no-cursor
+split-inherit-working-directory = true
+tab-inherit-working-directory = false
 theme = Gruvbox Dark
+window-inherit-working-directory = false
 window-new-tab-position = end
 # keep-sorted end
