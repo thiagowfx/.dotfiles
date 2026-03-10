@@ -3,8 +3,10 @@
     "denyRead": [],
     "allowWrite": [
       ".",
-      "~/.cache",
       "~/.aws/cli/cache",
+      "~/.aws/sso/cache",
+      "~/.azure",
+      "~/.cache",
       "~/.terraform.d/plugin-cache"
     ],
     "denyWrite": []
