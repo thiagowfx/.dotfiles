@@ -48,6 +48,10 @@ if [ "$usage" != "null" ]; then
     current=$(echo "$usage" | jq '.input_tokens + .output_tokens + .cache_creation_input_tokens + .cache_read_input_tokens')
     size=$(echo "$input" | jq '.context_window.context_window_size')
 
+    # Human-readable token counts (e.g., 120k/200k)
+    current_k=$((current / 1000))
+    size_k=$((size / 1000))
+
     # Auto-compact triggers at ~80% of context window
     compact_threshold=$((size * 80 / 100))
 
@@ -62,7 +66,17 @@ if [ "$usage" != "null" ]; then
     for ((i=0; i<filled; i++)); do bar+="█"; done
     for ((i=0; i<empty; i++)); do bar+="░"; done
 
-    context_info="[${bar}]"
+    # Color based on usage level (ANSI: green <50%, yellow 50-75%, red ≥75%)
+    if [ "$pct" -ge 75 ]; then
+        color="\033[31m"  # red
+    elif [ "$pct" -ge 50 ]; then
+        color="\033[33m"  # yellow
+    else
+        color="\033[32m"  # green
+    fi
+    reset="\033[0m"
+
+    context_info="${color}[${bar} ${current_k}k/${size_k}k ${pct}%]${reset}"
 fi
 
 # Build status line
@@ -99,5 +113,5 @@ if [[ -n "$session_id" && "$session_id" != "null" ]]; then
     status_parts+=("sid:$session_id")
 fi
 
-# Join parts with spaces and print
-printf "%s" "$(IFS=' '; echo "${status_parts[*]}")"
+# Join parts with spaces and print (printf -e for ANSI color codes)
+printf "%b" "$(IFS=' '; echo "${status_parts[*]}")"
