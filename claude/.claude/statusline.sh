@@ -90,8 +90,15 @@ if [[ -n "$git_info" ]]; then
     status_parts+=("$git_info")
 fi
 
-# Add model name
-status_parts+=("[$model_name]")
+# Add model name with color per model family
+reset="\033[0m"
+case "$model_name" in
+    *Opus*)   model_color="\033[38;5;208m" ;;  # orange
+    *Sonnet*) model_color="\033[38;5;141m" ;;  # purple
+    *Haiku*)  model_color="\033[36m" ;;            # cyan
+    *)        model_color="" ; reset="" ;;
+esac
+status_parts+=("${model_color}[${model_name}]${reset}")
 
 # Add output style if not default
 if [[ "$output_style" != "default" && "$output_style" != "null" ]]; then
