@@ -49,12 +49,12 @@ if command -v kubectl >/dev/null 2>&1; then
 	alias k=kubectl
 fi
 
-if command -v cco >/dev/null 2>&1; then
-	alias claudey="cco --allow-oauth-refresh --add-dir ~/.cache --add-dir ~/.aws/cli/cache --add-dir ~/.aws/sso/cache --add-dir ~/.azure --add-dir ~/.terraform.d/plugin-cache"
-else
-	alias claudey="claude --allow-dangerously-skip-permissions"
+if command -v claude >/dev/null 2>&1; then
+	if command -v cco >/dev/null 2>&1; then
+		alias claudey="cco --allow-oauth-refresh --add-dir ~/.cache --add-dir ~/.aws/cli/cache --add-dir ~/.aws/sso/cache --add-dir ~/.azure --add-dir ~/.terraform.d/plugin-cache"
+	fi
+	alias claudeyy="claude --allow-dangerously-skip-permissions"
 fi
-alias claudeyy="claude --allow-dangerously-skip-permissions"
 
 # muscle memory
 alias unstow="stow -D"
