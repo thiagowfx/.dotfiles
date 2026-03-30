@@ -152,10 +152,11 @@ local function setup()
   vim.g.diagnostics_enabled = true
 
   -- Configure signature help display
-  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-    vim.lsp.handlers.signature_help,
-    { border = 'rounded' }
-  )
+  vim.lsp.handlers['textDocument/signatureHelp'] = function(err, result, ctx, config)
+    config = config or {}
+    config.border = 'rounded'
+    return vim.lsp.handlers.signature_help(err, result, ctx, config)
+  end
 
   -- Configure LSP servers (mason-lspconfig handles automatic setup)
   -- Get capabilities from nvim-cmp
