@@ -51,7 +51,7 @@ fi
 
 if command -v claude >/dev/null 2>&1; then
 	if command -v cco >/dev/null 2>&1; then
-		alias claudey="cco --allow-oauth-refresh --add-dir ~/.cache --add-dir ~/.aws/cli/cache --add-dir ~/.aws/sso/cache --add-dir ~/.azure --add-dir ~/.terraform.d/plugin-cache --add-dir ~/go --add-dir ~/.semgrep"
+		alias claudey="cco --allow-oauth-refresh --add-dir ~/.cache --add-dir ~/.aws/cli/cache --add-dir ~/.aws/sso/cache --add-dir ~/.azure --add-dir ~/.terraform.d/plugin-cache --add-dir ~/go"
 	fi
 	alias claudeyy="claude --allow-dangerously-skip-permissions"
 fi
