@@ -60,14 +60,14 @@ repos:
         # keep-sorted end
   # keep-sorted start
   - repo: https://github.com/codespell-project/codespell
-    rev: 63c8f8312b7559622c0d82815639671ae42132ac # frozen: v2.4.1
+    rev: 2ccb47ff45ad361a21071a7eedda4c37e6ae8c5a # frozen: v2.4.2
     hooks:
       - id: codespell
         exclude: vim/.vim/autoload/plug.vim
         args:
           - --ignore-words=.codespell-ignore-words.txt
   - repo: https://github.com/gitleaks/gitleaks
-    rev: 2ca41cc1372d1e939a6a879f18cdc19fc1cac1ce # frozen: v8.30.0
+    rev: 83d9cd684c87d95d656c1458ef04895a7f1cbd8e # frozen: v8.30.1
     hooks:
       - id: gitleaks
   - repo: https://github.com/golangci/misspell
@@ -75,26 +75,26 @@ repos:
     hooks:
       - id: misspell
   - repo: https://github.com/google/keep-sorted
-    rev: c71803fd297b5736f3bfab1cfd84424ca52e961a # frozen: v0.7.1
+    rev: ac58172d1655aa47a6f806e56ff0f269d6dbe637 # frozen: v0.8.0
     hooks:
       - id: keep-sorted
   - repo: https://github.com/google/yamlfmt
-    rev: b5ca1890231d5e1e5181fef75a1be609d1e25029 # frozen: v0.21.0
+    rev: 21ca5323a9c87ee37a434e0ca908efc0a89daa07 # frozen: v0.21.0
     hooks:
       - id: yamlfmt
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: 76b3d32d3f4b965e1d6425253c59407420ae2c43 # frozen: v0.47.0
+    rev: e72a3ca1632f0b11a07d171449fe447a7ff6795e # frozen: v0.48.0
     hooks:
       - id: markdownlint
         exclude: ^plans/
         args:
           - --config=.markdownlintrc.json
   - repo: https://github.com/jmlrt/check-yamlschema
-    rev: 907e5521b7f182966e59b1736ed1e5ba9eb24641 # frozen: v0.0.7
+    rev: a45841f016eaecf72b3434f0687866b62bc3c3d4 # frozen: v0.0.7
     hooks:
       - id: check-yamlschema
   - repo: https://github.com/rhysd/actionlint/
-    rev: 393031adb9afb225ee52ae2ccd7a5af5525e03e8 # frozen: v1.7.11
+    rev: 914e7df21a07ef503a81201c76d2b11c789d3fca # frozen: v1.7.12
     hooks:
       - id: actionlint
   - repo: https://github.com/shellcheck-py/shellcheck-py
@@ -117,7 +117,7 @@ repos:
         entry: cmd --githook pre-push
         exclude: ^nvim/.config/nvim/lazy-lock\.json$
   - repo: https://github.com/woodruffw/zizmor-pre-commit
-    rev: b546b77c44c466a54a42af5499dcc0dcc1a3193f # frozen: v1.22.0
+    rev: ea2eb407b4cbce87cf0d502f36578950494f5ac9 # frozen: v1.23.1
     hooks:
       - id: zizmor
   - repo: https://github.com/zimbatm/mdsh.git
