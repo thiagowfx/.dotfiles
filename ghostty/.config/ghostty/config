@@ -11,7 +11,7 @@ background-opacity = 0.95
 bell-features = title,attention
 clipboard-trim-trailing-spaces = true
 cursor-style-blink = false
-custom-shader = shaders/cursor_tail.glsl
+# custom-shader = shaders/cursor_tail.glsl
 # native: Cmd + Shift + d
 keybind = cmd+shift+-=new_split:down
 # native: Cmd + d
