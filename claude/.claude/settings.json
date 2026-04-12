@@ -42,6 +42,7 @@
       "Bash(ls:*)",
       "Bash(md5sum:*)",
       "Bash(mkdir:*)",
+      "Bash(mkdir -p:*)",
       "Bash(pytest:*)",
       "Bash(readlink:*)",
       "Bash(rg:*)",
