@@ -62,7 +62,8 @@
       "Bash(rm -rf:*)",
       "Bash(terraform apply:*)",
       "Bash(terraform destroy:*)"
-    ]
+    ],
+    "defaultMode": "auto"
   },
   "hooks": {
     "PreToolUse": [
