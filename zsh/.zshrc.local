@@ -92,9 +92,10 @@ fi
 
 # Hashed directories.
 # keep-sorted start
+hash -d anki=~/Library/Application\ Support/Anki2/Thiago
 hash -d blog=~/Workspace/perrotta.dev
 hash -d dotfiles=~/.dotfiles
 hash -d icloud=~/Library/Mobile\ Documents/com~apple~CloudDocs
 hash -d logseq=~/Library/Mobile\ Documents/iCloud~com~logseq~logseq/Documents
-hash -d pancake=~/workspace/pancake
+hash -d pancake=~/Workspace/pancake
 # keep-sorted end
