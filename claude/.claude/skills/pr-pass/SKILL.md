@@ -21,20 +21,33 @@ Push your code and loop: wait for CI, analyze failures, fix them, and re-push un
 
 ### Step 3: Poll CI and Act Eagerly
 
-Poll CI checks repeatedly and start analyzing failures as soon as individual checks complete — don't wait for all checks to finish.
+Poll CI checks and start analyzing failures as soon as individual checks complete — don't wait for all checks to finish.
 
 **Important:** `--watch` and `--json` are mutually exclusive in `gh pr checks`. Never combine them.
 
-- Poll with:
+**Important:** Never use `sleep` to poll. Use the `Monitor` tool with an until-loop to wait for CI state changes. This avoids the sleep sandbox block.
+
+- First, run a single check to see current state:
 
   ```bash
   gh pr checks <number> --json name,state,bucket,link
   ```
 
-- On each poll iteration:
-  1. If any check has `"state": "FAILURE"` — immediately start analyzing and fixing it (Step 4)
-  2. If all checks have completed (no `"state": "PENDING"`) and all passed — report success and stop
-  3. If checks are still pending and none have failed yet — wait ~30 seconds and poll again
+- If any check has `"state": "FAILURE"` — immediately start analyzing and fixing it (Step 4)
+- If all checks have completed (no `"state": "PENDING"`) and all passed — report success and stop
+- If checks are still pending and none have failed yet — use the `Monitor` tool to poll until a change occurs:
+
+  ```bash
+  until gh pr checks <number> --json name,state,bucket 2>&1 | python3 -c "
+  import json, sys
+  checks = json.load(sys.stdin)
+  failed = any(c['bucket'] == 'fail' for c in checks)
+  done = all(c['state'] != 'PENDING' for c in checks)
+  sys.exit(0 if (failed or done) else 1)
+  "; do sleep 30; done && echo "CI status changed"
+  ```
+
+  Then re-fetch the full check results and proceed.
 
 - This eager approach means you can start diagnosing and fixing the first failure while slower checks are still running.
 
