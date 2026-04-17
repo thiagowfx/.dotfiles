@@ -18,6 +18,7 @@ patterns=(
     'terraform[[:space:]]+destroy'
     '--auto-approve'
     'just[[:space:]]+apply'
+    'just[[:space:]]+destroy'
     'rm[[:space:]]+.*\.cache/pre-commit'
 )
 reasons=(
