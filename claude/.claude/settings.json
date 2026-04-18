@@ -102,5 +102,6 @@
   },
   "alwaysThinkingEnabled": true,
   "skipAutoPermissionPrompt": true,
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "showThinkingSummaries": true
 }
