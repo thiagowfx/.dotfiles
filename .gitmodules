@@ -9,11 +9,6 @@
 	url = https://github.com/sahaj-b/ghostty-cursor-shaders
 	shallow = true
 
-[submodule "vendor/grml-etc-core"]
-	path = vendor/grml-etc-core
-	url = https://github.com/grml/grml-etc-core
-	shallow = true
-
 [submodule "vim/.vim/vim-plug"]
 	path = vim/.vim/vim-plug
 	url = https://github.com/junegunn/vim-plug.git
