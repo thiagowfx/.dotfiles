@@ -186,7 +186,7 @@ install: stow bootstrap
 
 [doc('Update git submodules, pre-commit hooks, and schemas')]
 [group('update')]
-update: update-git update-pre-commit update-schemas
+update: update-git update-pre-commit update-schemas check-gitui-keybindings
 
 [doc('Update git submodules')]
 [group('update')]
@@ -242,4 +242,27 @@ update-schemas:
     else
         echo "✗ Failed to update $failed schema(s), $succeeded succeeded"
         exit 1
+    fi
+
+[doc('Check if local gitui key bindings differ from upstream vim config')]
+[group('update')]
+check-gitui-keybindings:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    url="https://raw.githubusercontent.com/gitui-org/gitui/master/vim_style_key_config.ron"
+    local_file="gitui/.config/gitui/key_bindings.ron"
+
+    tmpfile=$(mktemp)
+    trap 'rm -f "$tmpfile"' EXIT
+
+    echo "=== Checking gitui vim key bindings against upstream ==="
+    curl -fsSL "$url" -o "$tmpfile"
+
+    if diff_output=$(diff -u "$tmpfile" "$local_file"); then
+        echo "✓ No differences with upstream"
+    else
+        printf '%s\n' "$diff_output"
+        echo ""
+        echo "⚠ Local differs from upstream (review diff above)"
     fi
