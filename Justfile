@@ -184,9 +184,9 @@ bootstrap: xcode-command-line-tools install-brewfile configure-macos
 [group('install')]
 install: stow bootstrap
 
-[doc('Update git submodules, pre-commit hooks, and schemas')]
+[doc('Update git submodules, pre-commit hooks, schemas, and upstream files')]
 [group('update')]
-update: update-git update-pre-commit update-schemas
+update: update-git update-pre-commit update-schemas update-upstream
 
 [doc('Update git submodules')]
 [group('update')]
@@ -242,4 +242,43 @@ update-schemas:
     else
         echo "✗ Failed to update $failed schema(s), $succeeded succeeded"
         exit 1
+    fi
+
+[doc('Diff vendored files against their upstream sources')]
+[group('update')]
+update-upstream:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    # Map local file -> upstream URL
+    declare -A files=(
+        # keep-sorted start
+        ["gitui/.config/gitui/key_bindings.ron"]="https://raw.githubusercontent.com/gitui-org/gitui/master/vim_style_key_config.ron"
+        ["vendor/grml-etc-core/etc/zsh/zshrc"]="https://raw.githubusercontent.com/grml/grml-etc-core/master/etc/zsh/zshrc"
+        # keep-sorted end
+    )
+
+    tmpfile=$(mktemp)
+    trap 'rm -f "$tmpfile"' EXIT
+
+    drift=0
+    for local_file in "${!files[@]}"; do
+        url="${files[$local_file]}"
+        echo "=== $local_file ==="
+        curl -fsSL "$url" -o "$tmpfile"
+        if diff_output=$(diff -u "$tmpfile" "$local_file"); then
+            echo "✓ Up-to-date with upstream"
+        else
+            printf '%s\n' "$diff_output"
+            echo ""
+            echo "⚠ Differs from $url"
+            drift=$((drift + 1))
+        fi
+        echo ""
+    done
+
+    if [[ $drift -eq 0 ]]; then
+        echo "✓ All vendored files in sync with upstream"
+    else
+        echo "⚠ $drift file(s) differ from upstream (review diffs above)"
     fi
