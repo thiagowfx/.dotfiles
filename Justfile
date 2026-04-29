@@ -186,7 +186,7 @@ install: stow bootstrap
 
 [doc('Update git submodules, pre-commit hooks, schemas, and upstream files')]
 [group('update')]
-update: update-git update-pre-commit update-schemas update-upstream
+update: update-git update-pre-commit update-schemas sync-upstream
 
 [doc('Update git submodules')]
 [group('update')]
@@ -244,13 +244,12 @@ update-schemas:
         exit 1
     fi
 
-[doc('Diff vendored files against their upstream sources')]
+[doc('Overwrite vendored files with their upstream sources (review with git diff)')]
 [group('update')]
-update-upstream:
+sync-upstream:
     #!/usr/bin/env bash
     set -euo pipefail
 
-    # Map local file -> upstream URL
     declare -A files=(
         # keep-sorted start
         ["gitui/.config/gitui/key_bindings.ron"]="https://raw.githubusercontent.com/gitui-org/gitui/master/vim_style_key_config.ron"
@@ -258,27 +257,7 @@ update-upstream:
         # keep-sorted end
     )
 
-    tmpfile=$(mktemp)
-    trap 'rm -f "$tmpfile"' EXIT
-
-    drift=0
     for local_file in "${!files[@]}"; do
-        url="${files[$local_file]}"
-        echo "=== $local_file ==="
-        curl -fsSL "$url" -o "$tmpfile"
-        if diff_output=$(diff -u "$tmpfile" "$local_file"); then
-            echo "✓ Up-to-date with upstream"
-        else
-            printf '%s\n' "$diff_output"
-            echo ""
-            echo "⚠ Differs from $url"
-            drift=$((drift + 1))
-        fi
-        echo ""
+        curl -fsSL "${files[$local_file]}" -o "$local_file"
+        echo "✓ $local_file"
     done
-
-    if [[ $drift -eq 0 ]]; then
-        echo "✓ All vendored files in sync with upstream"
-    else
-        echo "⚠ $drift file(s) differ from upstream (review diffs above)"
-    fi
