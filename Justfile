@@ -184,9 +184,9 @@ bootstrap: xcode-command-line-tools install-brewfile configure-macos
 [group('install')]
 install: stow bootstrap
 
-[doc('Update git submodules, pre-commit hooks, schemas, and upstream files')]
+[doc('Update git submodules, pre-commit hooks, and upstream files')]
 [group('update')]
-update: update-git update-pre-commit update-schemas sync-upstream
+update: update-git update-pre-commit sync-upstream
 
 [doc('Update git submodules')]
 [group('update')]
@@ -198,52 +198,6 @@ update-git:
 update-pre-commit:
     pre-commit autoupdate --freeze --jobs "$(nproc)" && pre-commit run --all-files
 
-[doc('Update local JSON schemas (Espanso, yamllint, etc.)')]
-[group('update')]
-update-schemas:
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    echo "=== Updating JSON Schemas ==="
-    echo ""
-
-    # Create schemas directory if it doesn't exist
-    mkdir -p vendor/schemas
-
-    # Define schema mappings (filename -> URL)
-    declare -A schemas=(
-         ["espanso-config.schema.json"]="https://raw.githubusercontent.com/espanso/espanso/refs/heads/dev/schemas/config.schema.json"
-         ["espanso-match.schema.json"]="https://raw.githubusercontent.com/espanso/espanso/refs/heads/dev/schemas/match.schema.json"
-         ["yamllint.json"]="https://json.schemastore.org/yamllint.json"
-     )
-
-    failed=0
-    succeeded=0
-
-    # Download each schema
-    for filename in "${!schemas[@]}"; do
-        url="${schemas[$filename]}"
-        output_path="vendor/schemas/$filename"
-
-        echo -n "Downloading $filename... "
-        if curl -sL -o "$output_path" "$url"; then
-            echo "✓"
-            succeeded=$((succeeded + 1))
-        else
-            echo "✗"
-            failed=$((failed + 1))
-        fi
-    done
-
-    echo ""
-    if [[ $failed -eq 0 ]]; then
-        echo "✓ All $succeeded schemas updated successfully"
-        exit 0
-    else
-        echo "✗ Failed to update $failed schema(s), $succeeded succeeded"
-        exit 1
-    fi
-
 [doc('Overwrite vendored files with their upstream sources (review with git diff)')]
 [group('update')]
 sync-upstream:
@@ -254,6 +208,9 @@ sync-upstream:
         # keep-sorted start
         ["gitui/.config/gitui/key_bindings.ron"]="https://raw.githubusercontent.com/gitui-org/gitui/master/vim_style_key_config.ron"
         ["vendor/grml-etc-core/etc/zsh/zshrc"]="https://raw.githubusercontent.com/grml/grml-etc-core/master/etc/zsh/zshrc"
+        ["vendor/schemas/espanso-config.schema.json"]="https://raw.githubusercontent.com/espanso/espanso/refs/heads/dev/schemas/config.schema.json"
+        ["vendor/schemas/espanso-match.schema.json"]="https://raw.githubusercontent.com/espanso/espanso/refs/heads/dev/schemas/match.schema.json"
+        ["vendor/schemas/yamllint.json"]="https://www.schemastore.org/yamllint.json"
         # keep-sorted end
     )
 
