@@ -206,7 +206,7 @@ sync-upstream:
 
     declare -A files=(
         # keep-sorted start
-        ["gitui/.config/gitui/key_bindings.ron"]="https://raw.githubusercontent.com/gitui-org/gitui/master/vim_style_key_config.ron"
+        ["vendor/gitui/key_bindings.ron"]="https://raw.githubusercontent.com/gitui-org/gitui/master/vim_style_key_config.ron"
         ["vendor/grml-etc-core/etc/zsh/zshrc"]="https://raw.githubusercontent.com/grml/grml-etc-core/master/etc/zsh/zshrc"
         ["vendor/schemas/espanso-config.schema.json"]="https://raw.githubusercontent.com/espanso/espanso/refs/heads/dev/schemas/config.schema.json"
         ["vendor/schemas/espanso-match.schema.json"]="https://raw.githubusercontent.com/espanso/espanso/refs/heads/dev/schemas/match.schema.json"
