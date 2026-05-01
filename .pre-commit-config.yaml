@@ -67,7 +67,7 @@ repos:
         args:
           - --ignore-words=.codespell-ignore-words.txt
   - repo: https://github.com/gitleaks/gitleaks
-    rev: 2ca41cc1372d1e939a6a879f18cdc19fc1cac1ce # frozen: v8.30.0
+    rev: 83d9cd684c87d95d656c1458ef04895a7f1cbd8e # frozen: v8.30.1
     hooks:
       - id: gitleaks
   - repo: https://github.com/golangci/misspell
@@ -79,7 +79,7 @@ repos:
     hooks:
       - id: keep-sorted
   - repo: https://github.com/google/yamlfmt
-    rev: b5ca1890231d5e1e5181fef75a1be609d1e25029 # frozen: v0.21.0
+    rev: 21ca5323a9c87ee37a434e0ca908efc0a89daa07 # frozen: v0.21.0
     hooks:
       - id: yamlfmt
   - repo: https://github.com/igorshubovych/markdownlint-cli
@@ -90,7 +90,7 @@ repos:
         args:
           - --config=.markdownlintrc.json
   - repo: https://github.com/jmlrt/check-yamlschema
-    rev: 907e5521b7f182966e59b1736ed1e5ba9eb24641 # frozen: v0.0.7
+    rev: a45841f016eaecf72b3434f0687866b62bc3c3d4 # frozen: v0.0.7
     hooks:
       - id: check-yamlschema
   - repo: https://github.com/rhysd/actionlint/
@@ -117,7 +117,7 @@ repos:
         entry: cmd --githook pre-push
         exclude: ^nvim/.config/nvim/lazy-lock\.json$
   - repo: https://github.com/woodruffw/zizmor-pre-commit
-    rev: ea2eb407b4cbce87cf0d502f36578950494f5ac9 # frozen: v1.23.1
+    rev: a4727cbbcd26d7098e96b9cb738169b59711ae51 # frozen: v1.24.1
     hooks:
       - id: zizmor
   - repo: https://github.com/zimbatm/mdsh.git
