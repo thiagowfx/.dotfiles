@@ -100,7 +100,7 @@
     "pyright-lsp@claude-plugins-official": true,
     "ruby-lsp@claude-plugins-official": true
   },
-  "alwaysThinkingEnabled": true,
+  "alwaysThinkingEnabled": false,
   "skipAutoPermissionPrompt": true,
   "skipDangerousModePermissionPrompt": true,
   "showThinkingSummaries": true
