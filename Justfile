@@ -184,19 +184,19 @@ bootstrap: xcode-command-line-tools install-brewfile configure-macos
 [group('install')]
 install: stow bootstrap
 
-[doc('Update git submodules, pre-commit hooks, and upstream files')]
+[doc('Update git submodules, prek hooks, and upstream files')]
 [group('update')]
-update: update-git update-pre-commit sync-upstream
+update: update-git update-prek sync-upstream
 
 [doc('Update git submodules')]
 [group('update')]
 update-git:
     git submodule update --force --remote --jobs "$(nproc)"
 
-[doc('Update pre-commit hooks and run all hooks')]
+[doc('Update prek hooks and run all hooks')]
 [group('update')]
-update-pre-commit:
-    pre-commit autoupdate --freeze --jobs "$(nproc)" && pre-commit run --all-files
+update-prek:
+    prek autoupdate --freeze --jobs "$(nproc)" && prek run --all-files
 
 [doc('Overwrite vendored files with their upstream sources (review with git diff)')]
 [group('update')]
