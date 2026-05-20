@@ -73,3 +73,7 @@ Personal preferences that apply across every project. Project-specific facts liv
 - When code and live state disagree, the default is **update the code to match
   the live state**, not the reverse. Don't propose `terraform import`
   reshuffles unless I ask.
+
+## Terraform
+
+- Always run `terraform plan` with `-lock=false`.
