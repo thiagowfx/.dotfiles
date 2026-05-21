@@ -129,10 +129,9 @@ Personal preferences that apply across every project. Project-specific facts liv
   `~/<org>/<repo>/.worktrees/<topic>/`. If I say "work here please: `<path>`",
   `cd` there and proceed. Use the `wt` tool to manage worktrees.
 - Branch prefix: `thiagowfx/<topic>`.
-- Slash commands I lean on: `/commit`, `/commit-and-send-pr`, `/send-pr`,
-  `/pr-pass`, `/gha`, `/grill-me`. If I chain a task with one of these ("do X,
-  then /commit-and-send-pr foo"), treat the slash command as the final step —
-  invoke it, don't paraphrase.
+- Slash commands I lean on: `/ship`, `/pr-pass`, `/gha`, `/grill-me`. If I
+  chain a task with one of these ("do X, then /ship foo"), treat the slash
+  command as the final step — invoke it, don't paraphrase.
 - "commit what you changed (only). DO NOT push" means exactly that: stage only
   the files you touched this turn, commit, stop.
 - For non-trivial PRs, include a Mermaid diagram in the description when it
