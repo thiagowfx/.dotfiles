@@ -45,7 +45,6 @@
     "terminal.integrated.suggest.enabled": false,
     "update.showReleaseNotes": false,
     "window.commandCenter": true,
-    "workbench.colorTheme": "One Dark Pro",
     "workbench.editor.doubleClickTabToToggleEditorGroupSizes": "expand",
     "workbench.editor.focusRecentEditorAfterClose": false,
     "workbench.editor.splitSizing": "auto",
