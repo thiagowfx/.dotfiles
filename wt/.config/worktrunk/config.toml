@@ -75,7 +75,8 @@ worktree-path = "{{ repo_path }}/.worktrees/{{ branch | sanitize }}"
 # ### llm
 #
 [commit.generation]
-command = "llm -m claude-haiku-4.5"
+# command = "llm -m gpt-5-mini"
+command = "llm -m gpt-5-nano"
 #
 # ### aichat
 #
