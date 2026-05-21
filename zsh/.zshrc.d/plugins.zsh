@@ -28,4 +28,4 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 (( $+commands[atuin] )) && eval "$(atuin init zsh --disable-up-arrow)"
 
 # worktrunk: https://worktrunk.dev/
-(( $+commands[wtr] )) && eval "$(wtr config shell init zsh)"
+(( $+commands[wt] )) && eval "$(wt config shell init zsh)"
