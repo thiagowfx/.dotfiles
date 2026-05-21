@@ -30,6 +30,57 @@ Personal preferences that apply across every project. Project-specific facts liv
 - Prefer the simplest thing that works. I'll ask for more if I want more. Keep
   it simple.
 
+## Testing changes
+
+- When you change a function/recipe/script, exercise the *caller*, not just
+  the new helper in isolation. A green unit test on the extracted piece does
+  not prove the integration still works.
+- Specifically walk the paths your diff actually touched — including the
+  failure/skip branches (missing binary, env var set, non-matching input).
+- Watch for shell-quoting bugs when passing arguments through templating layers
+  (Just `{{ ... }}`, Make `$(...)`, etc.): backticks, `$`, and unbalanced
+  quotes in a string can trigger command substitution or word-splitting in the
+  recipe body. Test with a literal value that would expose it.
+- Don't claim "tested" when you only ran adjacent code. If the real path needs
+  interactive auth, a browser, or production creds, say so explicitly instead
+  of skipping silently.
+
+## Proving it works
+
+- "Done" means you ran the real thing and saw it work. Reading code and
+  reasoning about it is not proof; the test suite passing is the developer's
+  evidence, not yours.
+- Show evidence inline: quote the command and its output, or the file contents
+  you checked. "Install creates the file with correct frontmatter" without
+  showing the file is not evidence.
+- Try to break it. Run it twice, feed it bad input, delete a file it depends
+  on. The happy path probably works — that's the part already tested.
+- The most dangerous bugs aren't in the lines that changed — they're in the
+  lines that should have changed but didn't. If a signature, default, or
+  contract moved, grep every caller. Don't guess.
+- If you can't verify something (needs prod creds, browser, etc.), say what
+  you couldn't verify and why. Don't paper over it.
+
+## Test integrity
+
+- Tests must actually catch a reversion. If reverting the production change
+  would still leave the test green, the test proves nothing.
+- Cover *decisions*, not *declarations*. Conditionals, computations, state
+  transitions, validation → need a test. Property assignments, view
+  composition, framework wiring → don't.
+- Never weaken a test to make it pass: don't loosen matchers (`toBe(42)` →
+  `toBeDefined()`), don't widen expected values, don't add `.skip`/`xit`,
+  don't wrap assertions in try/catch, don't change the expected value to
+  match buggy output. Fix the code, not the test.
+- No tautological tests. The expected value must not be computed by the same
+  formula as the production code (`assert(price(x), x * rate * (1+tax))` is
+  worthless). Use precomputed known-good values.
+- If you mock every dependency, you're testing the mocking framework, not
+  the code. Real code paths must run.
+- For bug fixes: add the regression test *first*, watch it fail against the
+  current code, then fix. A passing test added alongside the fix doesn't
+  prove the fix did anything.
+
 ## Destructive ops
 
 - Never `rm`. Use `trash` (or the equivalent move-to-trash).
