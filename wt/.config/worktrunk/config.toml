@@ -151,8 +151,22 @@ command = "llm -m gpt-5-nano"
 # url = "echo http://localhost:{{ branch | hash_port }}"
 [aliases]
 add = "wt switch --create {{ args }}"
-cd = "wt switch"
-ls = "wt list"
+bd = "wt remove {{ args }}"
+cd = "wt switch {{ args }}"
+checkout = "wt switch {{ args }}"
+cleanup = "wt step prune {{ args }}"
+co = "wt switch {{ args }}"
+commit = "wt step commit {{ args }}"
+create = "wt switch --create {{ args }}"
+del = "wt remove {{ args }}"
+delete = "wt remove {{ args }}"
+goto = "wt switch --no-cd {{ args }}"
+ls = "wt list {{ args }}"
+new = "wt switch --create {{ args }}"
+prune = "wt step prune {{ args }}"
+rm = "wt remove {{ args }}"
+tui = "wt switch {{ args }}"
+world = "wt step prune {{ args }}"
 xl = "wt list {{ args }}"
 #
 # Aliases defined here apply to all projects. For project-specific aliases, use the project config (https://worktrunk.dev/config/#project-configuration) `[aliases]` section instead.
@@ -297,3 +311,9 @@ xl = "wt list {{ args }}"
 # ## Hooks
 #
 # See `wt hook` (https://worktrunk.dev/hook/) for hook types, execution order, template variables, and examples. User hooks apply to all projects; project hooks (https://worktrunk.dev/config/#project-configuration) apply only to that repository.
+
+[pre-start]
+prek = "test -f .pre-commit-config.yaml && prek install --install-hooks || true"
+
+[pre-merge]
+prek = "test -f .pre-commit-config.yaml && prek run --from-ref \"$(git symbolic-ref --short refs/remotes/origin/HEAD)\" --to-ref HEAD || true"

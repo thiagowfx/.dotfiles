@@ -6,7 +6,7 @@
     "pid": "logseq-bonofix-theme"
   },
   "themes": {
-    "mode": "dark",
+    "mode": "light",
     "light": {
       "name": "Bonofix Theme",
       "url": "file:///Users/thiago.perrotta/.logseq/plugins/logseq-bonofix-theme/custom.css",
