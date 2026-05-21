@@ -82,6 +82,10 @@ Personal preferences that apply across every project. Project-specific facts liv
   contract moved, grep every caller. Don't guess.
 - If you can't verify something (needs prod creds, browser, etc.), say what
   you couldn't verify and why. Don't paper over it.
+- Never guess. If you don't know — grep, read, or run. No "probably", no
+  inferring a symbol's existence or behavior from its name or surrounding
+  context. If verification isn't possible, say so explicitly instead of
+  hedging in a way that reads as fact.
 
 ## Test integrity
 
