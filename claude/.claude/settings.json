@@ -9,8 +9,10 @@
       "Bash(acli jira workitem view:*)",
       "Bash(ansible-doc:*)",
       "Bash(basename:*)",
+      "Bash(brew info:*)",
       "Bash(cat:*)",
       "Bash(command -v:*)",
+      "Bash(date:*)",
       "Bash(dir:*)",
       "Bash(echo:*)",
       "Bash(fd:*)",
@@ -64,7 +66,8 @@
       "Bash(xxd:*)",
       "Bash(yamllint:*)",
       "Fetch(https://docs.github.com/*)",
-      "Fetch(https://perrotta.dev/*)"
+      "Fetch(https://perrotta.dev/*)",
+      "WebFetch(domain:perrotta.dev)"
     ],
     "deny": [
       "Bash(rm -rf:*)",
