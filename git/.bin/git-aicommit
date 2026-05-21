@@ -54,9 +54,6 @@ fi
 agent="${GIT_AI_AGENT:-claude}"
 case "$agent" in
   # keep-sorted start
-  amp|ampcode)
-    ai_prompt() { amp -x "$1"; }
-    ;;
   claude)
     ai_prompt() { claude -p "$1"; }
     ;;

@@ -1,7 +1,7 @@
 #!/usr/bin/env just --justfile
 # https://github.com/casey/just
 
-packages := "ack alacritty amp apk atuin bash claude gemini gh ghostty git gitui hg i3 iterm2 jj lf logseq mc mole mr nvim opencode pacman profile ranger screen ssh starship sway tmux vim vscode wt x11 zed zsh"
+packages := "ack alacritty apk atuin bash claude gemini gh ghostty git gitui hg i3 iterm2 jj lf logseq mc mole mr nvim opencode pacman profile ranger screen ssh starship sway tmux vim vscode wt x11 zed zsh"
 packages_no_folding := "espanso swiftbar"
 packages_no_stow := "misc plans ssh_auto_tmux vendor"
 [private]
@@ -30,7 +30,6 @@ stow:
         # keep-sorted start
         [ack]="ack"
         [alacritty]="alacritty"
-        [amp]="amp"
         [apk]="apk"
         [atuin]="atuin"
         [bash]="bash"
