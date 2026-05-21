@@ -150,8 +150,10 @@ command = "llm -m gpt-5-nano"
 # greet = "echo Hello from {{ branch }}"
 # url = "echo http://localhost:{{ branch | hash_port }}"
 [aliases]
+add = "wt switch --create {{ args }}"
 cd = "wt switch"
 ls = "wt list"
+xl = "wt list {{ args }}"
 #
 # Aliases defined here apply to all projects. For project-specific aliases, use the project config (https://worktrunk.dev/config/#project-configuration) `[aliases]` section instead.
 #
