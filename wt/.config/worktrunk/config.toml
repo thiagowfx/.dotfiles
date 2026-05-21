@@ -29,7 +29,7 @@
 #
 # Inside the repository (`~/code/myproject/.worktrees/feature-auth`):
 #
-# worktree-path = "{{ repo_path }}/.worktrees/{{ branch | sanitize }}"
+worktree-path = "{{ repo_path }}/.worktrees/{{ branch | sanitize }}"
 #
 # Friendly branch-derived names (`~/code/myproject.malleable-opah`):
 #
