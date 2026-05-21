@@ -148,6 +148,9 @@ command = "llm -m claude-haiku-4.5"
 # [aliases]
 # greet = "echo Hello from {{ branch }}"
 # url = "echo http://localhost:{{ branch | hash_port }}"
+[aliases]
+cd = "wt switch"
+ls = "wt list"
 #
 # Aliases defined here apply to all projects. For project-specific aliases, use the project config (https://worktrunk.dev/config/#project-configuration) `[aliases]` section instead.
 #
