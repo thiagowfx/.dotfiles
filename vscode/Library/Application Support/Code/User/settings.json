@@ -49,7 +49,6 @@
     "workbench.editor.doubleClickTabToToggleEditorGroupSizes": "expand",
     "workbench.editor.focusRecentEditorAfterClose": false,
     "workbench.editor.splitSizing": "auto",
-    "workbench.productIconTheme": "fluent-icons",
     "workbench.secondarySideBar.defaultVisibility": "hidden",
     "workbench.secondarySideBar.showLabels": false,
     "workbench.settings.editor": "json", // https://stackoverflow.com/questions/65908987/how-can-i-open-visual-studio-codes-settings-json-file
