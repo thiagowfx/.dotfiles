@@ -287,7 +287,6 @@ local plugins = {
       })
     end,
   },
-  { 'aymericbeaumet/vim-symlink', event = 'BufReadPre' },
   {
     'dk949/file_line.nvim',
     main = 'file_line',
