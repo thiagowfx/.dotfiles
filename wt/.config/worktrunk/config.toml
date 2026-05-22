@@ -151,7 +151,7 @@ command = "llm -m gpt-5-nano"
 # url = "echo http://localhost:{{ branch | hash_port }}"
 [aliases]
 add = "wt switch --create {{ args }}"
-bd = "wt remove {{ args }}"
+bd = "wt remove -D {{ args }}"
 cd = "wt switch {{ args }}"
 checkout = "wt switch {{ args }}"
 cleanup = "wt step prune {{ args }}"
