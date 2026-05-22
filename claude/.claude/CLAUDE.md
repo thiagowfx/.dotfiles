@@ -144,6 +144,18 @@ Personal preferences that apply across every project. Project-specific facts liv
   (`gh pr edit`) so it reflects the current state. Don't let the title/body
   drift from what the branch actually does.
 
+## Reviewer feedback
+
+- A review comment is an input to reasoning, not a directive. Before applying
+  a suggested change — even a NIT — verify it's correct for *this* file:
+  does the suggested value/pattern actually fit the code path? Is the
+  reviewer's premise right?
+- Don't propagate a pattern across files just because a sibling has it.
+  Sibling consistency is a weak signal; the *reason* the sibling has it is
+  the strong signal. Find the reason before copying.
+- If you can't justify the change on its merits, push back on the comment or
+  ask. "The reviewer said so" is not a justification.
+
 ## Drift and reconciliation
 
 - When code and live state disagree, the default is **update the code to match
