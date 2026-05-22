@@ -86,6 +86,11 @@ Personal preferences that apply across every project. Project-specific facts liv
   inferring a symbol's existence or behavior from its name or surrounding
   context. If verification isn't possible, say so explicitly instead of
   hedging in a way that reads as fact.
+- "Complete" means every coupled piece is checked, not just the obvious one.
+  If a rollout/change has N parts that must move together (e.g. registering a
+  resource AND flipping a related flag, updating a schema AND every caller,
+  adding an env var AND the secret it reads), verify each part independently
+  before answering "complete". Don't extrapolate from one half being right.
 
 ## Test integrity
 
