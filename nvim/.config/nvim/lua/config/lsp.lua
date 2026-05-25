@@ -82,7 +82,21 @@ local plugins = {
         zsh = { 'shellcheck' },
       }
       vim.api.nvim_create_autocmd({ 'BufWritePost', 'BufReadPost' }, {
-        callback = function() require('lint').try_lint() end,
+        callback = function()
+          local lint = require('lint')
+          local linters = lint.linters_by_ft[vim.bo.filetype] or {}
+          local available = {}
+          for _, name in ipairs(linters) do
+            local linter = lint.linters[name]
+            local cmd = type(linter) == 'table' and (type(linter.cmd) == 'function' and linter.cmd() or linter.cmd) or name
+            if vim.fn.executable(cmd) == 1 then
+              table.insert(available, name)
+            end
+          end
+          if #available > 0 then
+            lint.try_lint(available)
+          end
+        end,
       })
     end,
   },
