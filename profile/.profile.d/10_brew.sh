@@ -7,8 +7,11 @@
 #   /usr/local for Intel Macs, /usr/local/bin is in $PATH out-of-the-box
 #   /opt/homebrew for Apple Silicon / ARM Macs, need to add /opt/homebrew/bin to $PATH
 #
-# The following line is idempotent.
-[ -z "$HOMEBREW_PREFIX" ] && [ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)" && export HOMEBREW_NO_ENV_HINTS=1
+# brew shellenv is dedupe-safe, so it's fine to re-run on every shell startup.
+# Running it unconditionally fixes PATH ordering after /etc/zprofile's
+# path_helper reshuffles it (e.g. in nested login shells like dux's companion
+# terminal, where HOMEBREW_PREFIX is already inherited from the parent).
+[ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)" && export HOMEBREW_NO_ENV_HINTS=1
 
 # command-not-found hook
 # brew --prefix works too
