@@ -113,7 +113,7 @@
     "typescript-lsp@claude-plugins-official": true
   },
   "alwaysThinkingEnabled": false,
+  "showThinkingSummaries": true,
   "skipAutoPermissionPrompt": true,
-  "skipDangerousModePermissionPrompt": true,
-  "showThinkingSummaries": true
+  "skipDangerousModePermissionPrompt": true
 }
