@@ -92,6 +92,28 @@ Personal preferences that apply across every project. Project-specific facts liv
   adding an env var AND the secret it reads), verify each part independently
   before answering "complete". Don't extrapolate from one half being right.
 
+## Calling something a bug
+
+- A "bug" claim is a falsifiable prediction: *this code, run in this context,
+  will produce wrong behavior*. Before making the claim, run it (or read
+  enough of the surrounding code to know what runs) and confirm the bad
+  outcome actually happens. "This looks like a known footgun" is a hypothesis,
+  not a finding.
+- When asked to audit, bias toward fewer, verified findings over a long list.
+  A list of 10 items where 8 are wrong is worse than 2 verified ones — it
+  burns the user's trust and their time.
+- If a careful user wrote the code and you're finding many issues, that's a
+  signal to check harder, not to publish the list. Re-examine each item
+  against the actual code paths before presenting.
+- Don't hedge with severity labels ("Medium", "Low–Medium") to soften
+  unverified claims. Either it's a bug (with evidence) or it isn't (don't
+  mention it, or mark it explicitly as "unverified hypothesis — would need to
+  test X").
+- Pattern recognition from training data ("FPATH after compinit is bad",
+  "syntax-highlighting must be last") is a starting point for investigation,
+  not a conclusion. The specific codebase may already handle it, or the
+  upstream rule may not apply here.
+
 ## Test integrity
 
 - Tests must actually catch a reversion. If reverting the production change
