@@ -115,6 +115,5 @@
   "alwaysThinkingEnabled": false,
   "showThinkingSummaries": true,
   "skipAutoPermissionPrompt": true,
-  "skipDangerousModePermissionPrompt": true,
-  "verbose": true
+  "skipDangerousModePermissionPrompt": true
 }
