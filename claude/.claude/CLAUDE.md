@@ -141,3 +141,22 @@ Personal preferences across every project. Project-specific facts live in each r
 ## Terraform
 
 - Always run `terraform plan` with `-lock=false`.
+
+## Subagents
+
+- The `Agent` tool's `model` param defaults to **inheriting the parent's model** — for me that's
+  Opus. That default is wrong for most subagent work. **Pass `model` explicitly.**
+  - `model: "haiku"` — pure orchestration: iterative web research, doc-skimming,
+    list-and-summarize. The subagent mostly drives tool calls and collates.
+  - `model: "sonnet"` — **default for research/general-purpose**: mixed reasoning + search,
+    multi-file code navigation, synthesis where the answer isn't a flat list.
+  - `model: "opus"` (or omit) — only genuinely reasoning-heavy work: comparing tradeoffs across
+    many alternatives, designing non-obvious architecture, debugging subtle cross-file behavior.
+    Justify it; when in doubt start with Sonnet and promote only if needed.
+- **Right tool before right model.** Pure code-location ("where is X defined / what references Y")
+  → `Explore`, not `general-purpose`. Questions about Claude Code itself → `claude-code-guide`.
+  Both are already cheap; no model override needed.
+- **Terse returns.** Instruct research/`general-purpose`/`Explore` subagents to **report in under
+  ~200 words — file paths and line numbers, not file contents.** Subagent returns are appended
+  verbatim to the parent thread and cached forward every subsequent turn; a 17k-token dump is
+  paid for repeatedly, not once.
