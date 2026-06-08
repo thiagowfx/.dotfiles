@@ -250,3 +250,6 @@ tags
 
 # Worktrees inside the repo, via wt(1): https://github.com/thiagowfx/pancake/tree/master/wt
 .worktrees/
+
+# Python
+*.pyc
