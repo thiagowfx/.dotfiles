@@ -2,6 +2,7 @@
 name: ship
 description: Commit changes (if any) and send a PR for review
 argument-hint: "[reviewer]"
+model: sonnet
 allowed-tools: Bash(cat:*), Bash(gh api user:*), Bash(gh pr create:*), Bash(gh pr edit:*), Bash(gh pr view:*), Bash(git add:*), Bash(git checkout:*), Bash(git commit:*), Bash(git diff:*), Bash(git log:*), Bash(git push:*), Bash(git rev-parse:*), Bash(git status:*), Bash(test:*)
 ---
 
