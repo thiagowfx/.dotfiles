@@ -114,6 +114,6 @@
   },
   "alwaysThinkingEnabled": false,
   "showThinkingSummaries": true,
-  "skipAutoPermissionPrompt": true,
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "skipAutoPermissionPrompt": true
 }
