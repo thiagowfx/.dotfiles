@@ -2,6 +2,7 @@
 name: catchup
 description: Refresh context on the current repo — uncommitted changes, recent commits, open PRs (with full context for the current branch's PR), worktrees, stashes, plans, and handoff notes.
 argument-hint: "[file-path]"
+model: sonnet
 allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git log:*), Bash(git worktree list:*), Bash(git stash list:*), Bash(git branch:*), Bash(gh pr list:*), Bash(gh pr view:*), Bash(gh pr checks:*), Bash(ls:*), Bash(test:*)
 ---
 

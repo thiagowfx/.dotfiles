@@ -2,6 +2,7 @@
 name: jira
 description: Jira Issue Onboarding
 argument-hint: "<issue-key-or-url>"
+model: sonnet
 allowed-tools: Bash(acli jira workitem view *)
 ---
 
