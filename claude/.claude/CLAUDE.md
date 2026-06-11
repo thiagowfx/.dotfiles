@@ -116,6 +116,8 @@ Personal preferences across every project. Project-specific facts live in each r
 
 - Default to worktrees for parallel work. Path: `~/<org>/<repo>/.worktrees/<topic>/`. If I say
   "work here please: `<path>`", `cd` there and proceed. Use `wt` to manage worktrees.
+- Tear down worktrees with `wt del <topic>` — it removes the worktree AND deletes its branch in one
+  step. Don't hand-roll `git worktree remove` + `git branch -D`.
 - Branch prefix: `thiagowfx/<topic>`.
 - Slash commands: `/ship`, `/pr-pass`, `/gha`, `/grill-me`. Chained task ("do X, then /ship foo") →
   invoke the command, don't paraphrase.
