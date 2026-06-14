@@ -36,7 +36,7 @@
 	rs = restore --staged
 	st = status
 	su = submodule update
-	switch-to-default = !git switch --force $(wt config state default-branch 2>/dev/null || git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@' || echo main)
+	switch-to-default = !git switch --force $(wt config state default-branch 2>/dev/null || git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@' || echo master)
 	unfreeze = thaw
 	# keep-sorted end
 
