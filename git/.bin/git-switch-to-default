@@ -1,0 +1,36 @@
+#!/bin/sh
+#
+# git-switch-to-default - Switch to the repository's default branch
+#
+# Uses `wt config state default-branch` when worktrunk is available,
+# falls back to master -> main -> origin/HEAD resolution.
+
+set -e
+
+if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" != "true" ]; then
+  echo "Error: Not in a git repository"
+  exit 1
+fi
+
+# wt-based detection (preferred)
+if command -v wt >/dev/null 2>&1; then
+  default_branch=$(wt config state default-branch 2>/dev/null) || true
+fi
+
+# fallback: master -> main -> origin/HEAD
+if [ -z "$default_branch" ]; then
+  if git show-ref --verify --quiet refs/heads/master; then
+    default_branch="master"
+  elif git show-ref --verify --quiet refs/heads/main; then
+    default_branch="main"
+  else
+    default_branch=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
+  fi
+fi
+
+if [ -z "$default_branch" ]; then
+  echo "Error: Could not determine default branch"
+  exit 1
+fi
+
+exec git switch --force "$default_branch"
