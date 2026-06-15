@@ -5,7 +5,6 @@ input=$(cat)
 
 # Extract information from JSON
 model_name=$(echo "$input" | jq -r '.model.display_name')
-session_id=$(echo "$input" | jq -r '.session_id')
 current_dir=$(echo "$input" | jq -r '.workspace.current_dir')
 output_style=$(echo "$input" | jq -r '.output_style.name')
 cost=$(echo "$input" | jq -r '.cost.total_cost_usd')
@@ -48,9 +47,19 @@ if [ "$usage" != "null" ]; then
     current=$(echo "$usage" | jq '.input_tokens + .output_tokens + .cache_creation_input_tokens + .cache_read_input_tokens')
     size=$(echo "$input" | jq '.context_window.context_window_size')
 
-    # Human-readable token counts (e.g., 120k/200k)
-    current_k=$((current / 1000))
-    size_k=$((size / 1000))
+    # Human-readable token counts (e.g., 120k/200k, or 1.2M once >= 1000k)
+    format_tokens() {
+        local n=$1
+        local k=$((n / 1000))
+        if [ "$k" -ge 1000 ]; then
+            # One decimal place of millions, e.g. 1200k -> 1.2M
+            printf '%d.%dM' $((k / 1000)) $(((k % 1000) / 100))
+        else
+            printf '%dk' "$k"
+        fi
+    }
+    current_k=$(format_tokens "$current")
+    size_k=$(format_tokens "$size")
 
     # Auto-compact triggers at ~80% of context window
     compact_threshold=$((size * 80 / 100))
@@ -75,7 +84,7 @@ if [ "$usage" != "null" ]; then
     fi
     reset="\033[0m"
 
-    context_info="${color}[${moon} ${current_k}k/${size_k}k ${pct}%]${reset}"
+    context_info="${color}[${moon} ${current_k}/${size_k} ${pct}%]${reset}"
 fi
 
 # Build status line
@@ -112,11 +121,6 @@ fi
 # Add cost
 if [[ -n "$cost" && "$cost" != "null" ]]; then
     status_parts+=("$(printf '$%.2f' "$cost")")
-fi
-
-# Add session ID
-if [[ -n "$session_id" && "$session_id" != "null" ]]; then
-    status_parts+=("sid:$session_id")
 fi
 
 # Join parts with spaces and print (printf -e for ANSI color codes)
