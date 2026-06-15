@@ -59,12 +59,11 @@ if [ "$usage" != "null" ]; then
     pct=$((current * 100 / compact_threshold))
     if [ "$pct" -gt 100 ]; then pct=100; fi
 
-    # Create progress bar (5 characters wide)
-    filled=$((pct / 20))
-    empty=$((5 - filled))
-    bar=""
-    for ((i=0; i<filled; i++)); do bar+="█"; done
-    for ((i=0; i<empty; i++)); do bar+="░"; done
+    # Moon-phase gauge in even 20% steps: full (empty context) waning to new (full)
+    phases=("🌕" "🌔" "🌓" "🌒" "🌑")
+    idx=$((pct / 20))
+    if [ "$idx" -gt 4 ]; then idx=4; fi
+    moon="${phases[$idx]}"
 
     # Color based on usage level (ANSI: green <50%, yellow 50-75%, red ≥75%)
     if [ "$pct" -ge 75 ]; then
@@ -76,7 +75,7 @@ if [ "$usage" != "null" ]; then
     fi
     reset="\033[0m"
 
-    context_info="${color}[${bar} ${current_k}k/${size_k}k ${pct}%]${reset}"
+    context_info="${color}[${moon} ${current_k}k/${size_k}k ${pct}%]${reset}"
 fi
 
 # Build status line
