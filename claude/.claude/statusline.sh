@@ -100,10 +100,10 @@ fi
 
 # Add model name with color per model family
 reset="\033[0m"
-case "$model_name" in
-    *Opus*)   model_color="\033[38;5;208m" ;;  # orange
-    *Sonnet*) model_color="\033[38;5;141m" ;;  # purple
-    *Haiku*)  model_color="\033[36m" ;;            # cyan
+case "${model_name,,}" in
+    *opus*)   model_color="\033[38;5;208m" ;;  # orange
+    *sonnet*) model_color="\033[38;5;141m" ;;  # purple
+    *haiku*)  model_color="\033[36m" ;;         # cyan
     *)        model_color="" ; reset="" ;;
 esac
 status_parts+=("${model_color}[${model_name}]${reset}")
