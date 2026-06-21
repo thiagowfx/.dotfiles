@@ -75,6 +75,9 @@
     ],
     "defaultMode": "auto"
   },
+  "fallbackModel": [
+    "sonnet"
+  ],
   "hooks": {
     "PreToolUse": [
       {
