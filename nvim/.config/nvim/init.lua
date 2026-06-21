@@ -69,6 +69,7 @@
 --     <leader>tf - Find files (telescope.nvim, includes hidden)
 --     <leader>tg - Live grep (telescope.nvim)
 --     <leader>tb - List buffers (telescope.nvim)
+--     <leader>tn - Insert file basename at cursor (telescope.nvim)
 --     -         - Open parent directory (oil.nvim)
 --
 --   Clipboard:
@@ -253,6 +254,25 @@ local plugins = {
       { '<leader>tf', function() require('telescope.builtin').find_files({ hidden = true, respect_gitignore = true }) end, desc = 'Find files' },
       { '<leader>tg', function() require('telescope.builtin').live_grep() end, desc = 'Live grep' },
       { '<leader>tb', function() require('telescope.builtin').buffers() end, desc = 'Buffers' },
+      { '<leader>tn', mode = { 'n', 'i' }, function()
+        local actions = require('telescope.actions')
+        local action_state = require('telescope.actions.state')
+        require('telescope.builtin').find_files({
+          prompt_title = 'Insert basename',
+          hidden = true,
+          respect_gitignore = true,
+          attach_mappings = function(prompt_bufnr)
+            actions.select_default:replace(function()
+              actions.close(prompt_bufnr)
+              local entry = action_state.get_selected_entry()
+              if not entry then return end
+              local base = vim.fn.fnamemodify(entry[1] or entry.value, ':t')
+              vim.api.nvim_put({ base }, 'c', true, true)
+            end)
+            return true
+          end,
+        })
+      end, desc = 'Insert file basename' },
     },
   },
   { 'junegunn/vim-slash', event = 'CmdlineEnter' },
