@@ -1,0 +1,16 @@
+{
+  "$schema": "https://raw.githubusercontent.com/manaflow-ai/cmux/main/web/data/cmux.schema.json",
+  "schemaVersion": 1,
+  "app": {
+    "iMessageMode": true,
+    "confirmQuit": "never"
+  },
+  "browser": {
+    "defaultSearchEngine": "kagi",
+    "urlsToAlwaysOpenExternally": [
+      "https://claude.ai",
+      "https://claude.com",
+      "https://github.com"
+    ]
+  }
+}
