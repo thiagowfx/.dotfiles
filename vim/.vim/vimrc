@@ -179,7 +179,6 @@ Plug 'justinmk/vim-sneak'
 
 " File and buffer management
 Plug 'tpope/vim-vinegar'
-Plug 'aymericbeaumet/vim-symlink'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'bogado/file-line'
 
@@ -214,6 +213,30 @@ Plug 'joshdick/onedark.vim', { 'as': 'onedark' }
 Plug 'whiteinge/diffconflicts'
 
 call plug#end()
+
+" Resolve symlinks on file open so fugitive (and friends) see the real path.
+" Without this, :Gwq and other fugitive commands fail when editing a symlink
+" that points into a git working tree.
+augroup ResolveSymlinks
+  autocmd!
+  autocmd BufReadPost * call s:ResolveSymlink()
+augroup END
+
+function! s:ResolveSymlink() abort
+  let l:fname = expand('%:p')
+  if empty(l:fname) || !filereadable(l:fname)
+    return
+  endif
+  let l:resolved = resolve(l:fname)
+  if l:resolved ==# l:fname
+    return
+  endif
+  let l:pos = getpos('.')
+  silent! execute 'keepalt file ' . fnameescape(l:resolved)
+  silent! edit!
+  call setpos('.', l:pos)
+  silent! doautocmd BufRead
+endfunction
 
 " Set color theme / scheme (must be after plug#end())
 try

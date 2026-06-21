@@ -472,3 +472,20 @@ vim.api.nvim_create_autocmd('BufWritePre', {
     vim.fn.mkdir(vim.fn.fnamemodify(file, ':p:h'), 'p')
   end,
 })
+
+-- Resolve symlinks so fugitive (and friends) see the real path. Without this,
+-- :Gwq and similar commands fail when editing a symlink into a git work tree.
+vim.api.nvim_create_autocmd('BufReadPost', {
+  group = vim.api.nvim_create_augroup('ResolveSymlinks', { clear = true }),
+  callback = function(event)
+    local name = event.match
+    if name == '' or vim.fn.filereadable(name) == 0 then return end
+    local resolved = vim.uv.fs_realpath(name)
+    if not resolved or resolved == name then return end
+    local pos = vim.api.nvim_win_get_cursor(0)
+    vim.cmd('keepalt file ' .. vim.fn.fnameescape(resolved))
+    vim.cmd('silent! edit!')
+    pcall(vim.api.nvim_win_set_cursor, 0, pos)
+    vim.cmd('silent! doautocmd BufRead')
+  end,
+})
