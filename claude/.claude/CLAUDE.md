@@ -114,6 +114,9 @@ Personal preferences across every project. Project-specific facts live in each r
 
 ## Worktrees and PRs
 
+- **Personal repos (`github.com/thiagowfx/*`, e.g. dotfiles) don't need a branch or PR** — commit
+  straight to `master`/`main` when I ask you to commit. Branch/PR discipline below is for work
+  repos (corp org, shared repos). Force-push and `--no-verify` rules still apply everywhere.
 - Default to worktrees for parallel work. Path: `~/<org>/<repo>/.worktrees/<topic>/`. If I say
   "work here please: `<path>`", `cd` there and proceed. Use `wt` to manage worktrees.
 - Tear down worktrees with `wt del <topic>` — it removes the worktree AND deletes its branch in one
