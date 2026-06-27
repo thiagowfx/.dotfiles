@@ -38,5 +38,8 @@ skip = lazy
 checkout = git clone 'git@github.com:thiagowfx/pre-commit-hooks' 'pre-commit-hooks'
 skip = lazy
 
+[workspace/skills]
+checkout = git clone 'git@github.com:thiagowfx/skills' 'skills'
+
 # chain corp repositories (skip if running from within Corp to avoid duplicates)
 include = test -f $HOME/Corp/.mrconfig && ! pwd -P | grep -q "^$(cd "$HOME/Corp" 2>/dev/null && pwd -P)" && sed '/^\[DEFAULT\]/,/^$/d; s|^\[\([^/DEFAULT]\)|[Corp/\1|' $HOME/Corp/.mrconfig || true
