@@ -67,7 +67,7 @@ repos:
         args:
           - --ignore-words=.codespell-ignore-words.txt
   - repo: https://github.com/gitleaks/gitleaks
-    rev: 2ca41cc1372d1e939a6a879f18cdc19fc1cac1ce # frozen: v8.30.0
+    rev: 83d9cd684c87d95d656c1458ef04895a7f1cbd8e # frozen: v8.30.1
     hooks:
       - id: gitleaks
   - repo: https://github.com/golangci/misspell
@@ -75,22 +75,22 @@ repos:
     hooks:
       - id: misspell
   - repo: https://github.com/google/keep-sorted
-    rev: ac58172d1655aa47a6f806e56ff0f269d6dbe637 # frozen: v0.8.0
+    rev: 339d935575ef7d92f2c9b4df9ce4b724d73c9201 # frozen: v0.9.1
     hooks:
       - id: keep-sorted
   - repo: https://github.com/google/yamlfmt
-    rev: b5ca1890231d5e1e5181fef75a1be609d1e25029 # frozen: v0.21.0
+    rev: 21ca5323a9c87ee37a434e0ca908efc0a89daa07 # frozen: v0.21.0
     hooks:
       - id: yamlfmt
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: e72a3ca1632f0b11a07d171449fe447a7ff6795e # frozen: v0.48.0
+    rev: a4d5d37e66ebcd6b3705204a1d6dbb56dea66338 # frozen: v0.49.0
     hooks:
       - id: markdownlint
         exclude: ^(plans/|claude/\.claude/skills/)
         args:
           - --config=.markdownlintrc.json
   - repo: https://github.com/jmlrt/check-yamlschema
-    rev: 907e5521b7f182966e59b1736ed1e5ba9eb24641 # frozen: v0.0.7
+    rev: a45841f016eaecf72b3434f0687866b62bc3c3d4 # frozen: v0.0.7
     hooks:
       - id: check-yamlschema
   - repo: https://github.com/rhysd/actionlint/
@@ -103,7 +103,7 @@ repos:
       - id: shellcheck
         exclude: \.zsh$
   - repo: https://github.com/thiagowfx/pre-commit-hooks
-    rev: 528e165cff8a11bc4f9f49a9b25f3249e09e4237 # frozen: v0.0.22
+    rev: cbd85e45246586c8869439c8b7bcc38073204bd9 # frozen: v0.0.23
     hooks:
       - id: just-format
       - id: check-yamlschema-local
@@ -117,7 +117,7 @@ repos:
         entry: cmd --githook pre-push
         exclude: ^nvim/.config/nvim/lazy-lock\.json$
   - repo: https://github.com/woodruffw/zizmor-pre-commit
-    rev: 9257c6050c0261b8c57e712f632dc4a8010109a9 # frozen: v1.25.2
+    rev: e3eebf65325ccc992422292cb7a4baee967cf815 # frozen: v1.26.1
     hooks:
       - id: zizmor
   - repo: https://github.com/zimbatm/mdsh.git
