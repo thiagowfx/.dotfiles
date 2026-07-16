@@ -6,3 +6,18 @@ pull = update
 [DEFAULT]
 git_xl = git xl "$@"
 jobs = 6
+
+# List repos with work in progress: not on default branch, extra local branches, or dirty tree.
+# Run as `mr -m wip`: the -m (minimal) flag drops mr's per-repo "mr wip:" header and blank
+# lines, leaving only the flagged repos. This cannot be defaulted per-action (mr only honors
+# -m/-q as CLI flags, not via config).
+wip =
+ reasons=""
+ cur=$(git symbolic-ref --quiet --short HEAD 2>/dev/null || echo "(detached)")
+ def=$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null | sed 's|^origin/||')
+ if [ -z "$def" ]; then if git show-ref --verify --quiet refs/heads/main; then def=main; elif git show-ref --verify --quiet refs/heads/master; then def=master; fi; fi
+ if [ -n "$def" ] && [ "$cur" != "$def" ]; then reasons="$reasons branch:$cur"; fi
+ n=$(git for-each-ref --format='%(refname)' refs/heads | wc -l | tr -d ' ')
+ if [ "$n" -gt 1 ]; then reasons="$reasons +$((n-1))_branches"; fi
+ if [ -n "$(git status --porcelain)" ]; then reasons="$reasons dirty"; fi
+ if [ -n "$reasons" ]; then printf '%s [%s]\n' "$MR_REPO" "${reasons# }"; fi
