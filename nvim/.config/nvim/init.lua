@@ -69,7 +69,7 @@
 --     <leader>tf - Find files (telescope.nvim, includes hidden)
 --     <leader>tg - Live grep (telescope.nvim)
 --     <leader>tb - List buffers (telescope.nvim)
---     <leader>tn - Insert file basename at cursor (telescope.nvim)
+--     <leader>tn - Insert file basename at cursor (telescope.nvim) e.g. for blog posts
 --     -         - Open parent directory (oil.nvim)
 --
 --   Clipboard:
