@@ -1,6 +1,5 @@
 {
   "filesystem": {
-    "denyRead": [],
     "allowWrite": [
       ".",
       "~/.aws/cli/cache",
@@ -9,6 +8,7 @@
       "~/.cache",
       "~/.terraform.d/plugin-cache"
     ],
+    "denyRead": [],
     "denyWrite": []
   },
   "network": {
