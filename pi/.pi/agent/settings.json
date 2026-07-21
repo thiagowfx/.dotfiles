@@ -15,6 +15,10 @@
   ],
   "hideThinkingBlock": false,
   "lastChangelogVersion": "0.80.6",
+  "packages": [
+    "git:github.com/thiagowfx/skills"
+  ],
+  "showCacheMissNotices": true,
   "theme": "catppuccin-mocha",
   "treeFilterMode": "user-only",
   "warnings": {
