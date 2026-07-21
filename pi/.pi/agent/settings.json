@@ -1,22 +1,22 @@
 {
-  "lastChangelogVersion": "0.80.6",
-  "hideThinkingBlock": false,
   "compaction": {
     "enabled": true
   },
-  "defaultProvider": "anthropic",
   "defaultModel": "claude-sonnet-5",
+  "defaultProvider": "anthropic",
   "defaultThinkingLevel": "high",
-  "theme": "catppuccin-mocha",
-  "warnings": {
-    "anthropicExtraUsage": false
-  },
+  "doubleEscapeAction": "tree",
+  "enableInstallTelemetry": false,
   "enabledModels": [
     "anthropic/claude-fable-5",
     "anthropic/claude-opus-4-8",
     "anthropic/claude-sonnet-5",
     "anthropic/claude-haiku-4-5"
   ],
-  "enableInstallTelemetry": false,
-  "doubleEscapeAction": "tree"
+  "hideThinkingBlock": false,
+  "lastChangelogVersion": "0.80.6",
+  "theme": "catppuccin-mocha",
+  "warnings": {
+    "anthropicExtraUsage": false
+  }
 }
