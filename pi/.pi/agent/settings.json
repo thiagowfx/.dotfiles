@@ -7,7 +7,7 @@
   "defaultProvider": "anthropic",
   "defaultModel": "claude-sonnet-5",
   "defaultThinkingLevel": "high",
-  "theme": "dark",
+  "theme": "catppuccin-mocha",
   "warnings": {
     "anthropicExtraUsage": false
   },
