@@ -16,6 +16,7 @@
   "hideThinkingBlock": false,
   "lastChangelogVersion": "0.80.6",
   "theme": "catppuccin-mocha",
+  "treeFilterMode": "user-only",
   "warnings": {
     "anthropicExtraUsage": false
   }
