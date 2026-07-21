@@ -124,6 +124,7 @@ repos:
     rev: 4b8fb1e7b52a65d6ea875ede3272ac3571f5d015 # frozen: v0.9.2
     hooks:
       - id: mdsh
+        files: ^README\.md$
   - repo: local
     hooks:
       - id: ghostty
