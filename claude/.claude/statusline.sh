@@ -100,13 +100,16 @@ fi
 
 # Add model name with color per model family
 reset="\033[0m"
-case "${model_name,,}" in
+bold=""
+model_name_lc=$(echo "$model_name" | tr '[:upper:]' '[:lower:]')
+case "$model_name_lc" in
+    *fable*)  model_color="\033[38;5;208m" ; bold="\033[1m" ;;  # orange, bold (like Opus)
     *opus*)   model_color="\033[38;5;208m" ;;  # orange
     *sonnet*) model_color="\033[38;5;141m" ;;  # purple
     *haiku*)  model_color="\033[36m" ;;         # cyan
     *)        model_color="" ; reset="" ;;
 esac
-status_parts+=("${model_color}[${model_name}]${reset}")
+status_parts+=("${bold}${model_color}[${model_name}]${reset}")
 
 # Add output style if not default
 if [[ "$output_style" != "default" && "$output_style" != "null" ]]; then
