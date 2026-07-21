@@ -4,7 +4,7 @@
 packages := "ack alacritty apk atuin bash cmux gh ghostty git gitui hg i3 iterm2 jj lf logseq mc mole mr nvim opencode pacman profile ranger screen ssh starship sway tmux vim vscode worktrunk x11 zed zsh"
 # claude is stowed without folding so corp-managed skills (from ~/.dotfiles_corp)
 # can be symlinked into the same ~/.claude/skills dir without this repo seeing them.
-packages_no_folding := "claude espanso swiftbar"
+packages_no_folding := "claude espanso"
 packages_no_stow := "misc obsidian plans ssh_auto_tmux vendor"
 [private]
 _dotfiles_dir := justfile_directory()
