@@ -75,7 +75,6 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "sonnet",
   "fallbackModel": [
     "sonnet"
   ],
