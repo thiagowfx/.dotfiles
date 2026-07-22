@@ -99,7 +99,7 @@ repos:
         name: Validate pi theme
         args:
           - --schemafile
-          - https://raw.githubusercontent.com/earendil-works/pi/main/packages/coding-agent/src/modes/interactive/theme/theme-schema.json
+          - vendor/schemas/pi-theme.json
         files: ^pi/.pi/agent/themes/catppuccin-mocha\.json$
   - repo: https://github.com/rhysd/actionlint/
     rev: 914e7df21a07ef503a81201c76d2b11c789d3fca # frozen: v1.7.12
