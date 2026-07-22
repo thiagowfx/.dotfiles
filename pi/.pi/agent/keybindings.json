@@ -2,5 +2,11 @@
   "app.model.cycleBackward": [
     "shift+ctrl+p",
     "ctrl+n"
+  ],
+  "app.models.save": [
+    "alt+s"
+  ],
+  "app.session.toggleSort": [
+    "alt+s"
   ]
 }
