@@ -46,6 +46,9 @@ matches:
   - trigger: ":right"
     replace: "→"
 
+  - trigger: ":therefore"
+    replace: "∴"
+
   - trigger: ":today"
     replace: "{{mydate}}"
     vars:
