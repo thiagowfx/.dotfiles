@@ -27,16 +27,15 @@ export default function (pi: ExtensionAPI) {
     }
   };
 
-  // Persist the stack and refresh the ambient depth widget above the editor.
+  // Persist the stack and refresh the ambient depth indicator in the footer.
   const sync = (ctx: ExtensionContext) => {
     pi.appendEntry(ENTRY_TYPE, { stack: state.stack });
     if (ctx.mode !== "tui") return;
     if (state.stack.length === 0) {
-      ctx.ui.setWidget("prompt-stash", []);
+      ctx.ui.setStatus("prompt-stash", undefined);
       return;
     }
-    const top = preview(state.stack[state.stack.length - 1]);
-    ctx.ui.setWidget("prompt-stash", [`⎇ ${state.stack.length} stashed · top: ${top}`]);
+    ctx.ui.setStatus("prompt-stash", `[⎇ ${state.stack.length} stashed]`);
   };
 
   const preview = (text: string) => {
