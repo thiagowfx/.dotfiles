@@ -92,6 +92,15 @@ repos:
     rev: 907e5521b7f182966e59b1736ed1e5ba9eb24641 # frozen: v0.0.7
     hooks:
       - id: check-yamlschema
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: b035497fb64e3f9faa91e833331688cc185891e6 # frozen: 0.36.0
+    hooks:
+      - id: check-jsonschema
+        name: Validate pi theme
+        args:
+          - --schemafile
+          - https://raw.githubusercontent.com/earendil-works/pi/main/packages/coding-agent/src/modes/interactive/theme/theme-schema.json
+        files: ^pi/.pi/agent/themes/catppuccin-mocha\.json$
   - repo: https://github.com/rhysd/actionlint/
     rev: 914e7df21a07ef503a81201c76d2b11c789d3fca # frozen: v1.7.12
     hooks:
