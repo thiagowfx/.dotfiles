@@ -16,9 +16,6 @@ matches:
   - trigger: ":k:node:cordoned"
     replace: kubectl get nodes --field-selector spec.unschedulable=true -o wide
 
-  - trigger: ":k:pod:wip"
-    replace: kubectl get pods -o wide -A | egrep -v '(([0-9]+)/\2 *Running|Completed)'
-
   - trigger: ":left"
     replace: "←"
 
@@ -66,6 +63,11 @@ matches:
       - ":hugo:prev"
       - ":hugo:previously"
     replace: '[Previously]({{< ref "$|$" >}}).'
+
+  - triggers:
+      - ":k:pod:wip"
+      - ":kubectl:pod:wip"
+    replace: kubectl get pods -o wide -A | egrep -v '(([0-9]+)/\2 *Running|Completed)'
 
   - triggers:
       - ":yaml:lsp"
