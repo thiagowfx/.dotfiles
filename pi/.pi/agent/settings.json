@@ -14,10 +14,16 @@
     "anthropic/claude-haiku-4-5"
   ],
   "hideThinkingBlock": false,
+  "httpIdleTimeoutMs": 30000,
   "lastChangelogVersion": "0.80.6",
   "packages": [
     "git:github.com/thiagowfx/skills"
   ],
+  "retry": {
+    "baseDelayMs": 2000,
+    "enabled": true,
+    "maxRetries": 5
+  },
   "showCacheMissNotices": true,
   "theme": "catppuccin-mocha",
   "treeFilterMode": "user-only",
