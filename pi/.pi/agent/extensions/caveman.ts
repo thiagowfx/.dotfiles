@@ -12,8 +12,13 @@ Boundaries, always: code blocks, commit messages, and PR descriptions stay norma
 export default function (pi: ExtensionAPI) {
   let on = true; // auto-on by default, every session
 
-  const applyStatus = (ctx: { ui: { setStatus: (k: string, v?: string) => void } }) => {
-    ctx.ui.setStatus("caveman", on ? "[caveman]" : undefined);
+  const applyStatus = (ctx: {
+    ui: {
+      setStatus: (k: string, v?: string) => void;
+      theme: { fg: (color: string, text: string) => string };
+    };
+  }) => {
+    ctx.ui.setStatus("caveman", on ? ctx.ui.theme.fg("dim", "[caveman]") : undefined);
   };
 
   pi.on("session_start", async (_event, ctx) => {
