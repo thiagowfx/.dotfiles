@@ -1,8 +1,5 @@
 #!/bin/zsh
 
-# atuin: https://docs.atuin.sh/
-(( $+commands[atuin] )) && eval "$(atuin init zsh --disable-up-arrow)"
-
 # homebrew
 (( $+commands[brew] )) && FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
@@ -13,6 +10,10 @@
 # fzf: fuzzy file finder
 # https://github.com/junegunn/fzf#setting-up-shell-integration
 (( $+commands[fzf] )) && source <(fzf --zsh)
+
+# atuin: https://docs.atuin.sh/
+# MUST come after fzf — both bind C-r, last one wins.
+(( $+commands[atuin] )) && eval "$(atuin init zsh --disable-up-arrow)"
 
 # worktrunk: https://worktrunk.dev/
 (( $+commands[wt] )) && eval "$(wt config shell init zsh)"
