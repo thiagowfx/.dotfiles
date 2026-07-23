@@ -113,18 +113,11 @@
     "pyright-lsp@claude-plugins-official": true,
     "ruby-lsp@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
-    "worktrunk@worktrunk": true,
     "terraform-skill@antonbabenko": true,
     "caveman@caveman": true,
     "thiagowfx@thiagowfx": true
   },
   "extraKnownMarketplaces": {
-    "worktrunk": {
-      "source": {
-        "source": "github",
-        "repo": "max-sixty/worktrunk"
-      }
-    },
     "antonbabenko": {
       "source": {
         "source": "github",
