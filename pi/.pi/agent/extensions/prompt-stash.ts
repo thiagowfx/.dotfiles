@@ -48,10 +48,11 @@ export default function (pi: ExtensionAPI) {
     sync(ctx);
   });
 
-  // Auto-unstash: after a turn fully settles, pop the most recent stash back
-  // into the editor. Only fills an empty editor so we never clobber text the
-  // user has already started typing.
-  pi.on("agent_settled", async (_event, ctx) => {
+  // Auto-unstash: right after the prompt is submitted (before the agent
+  // loop starts working), pop the most recent stash back into the editor.
+  // Only fills an empty editor so we never clobber text the user has
+  // already started typing.
+  pi.on("before_agent_start", async (_event, ctx) => {
     if (ctx.mode !== "tui") return;
     if (state.stack.length === 0) return;
     if (ctx.ui.getEditorText().trim()) return;
