@@ -21,7 +21,8 @@
   "lastChangelogVersion": "0.80.6",
   "packages": [
     "git:github.com/thiagowfx/skills",
-    "npm:@tifan/pi-recap"
+    "npm:@tifan/pi-recap",
+    "npm:@tmustier/pi-tab-status"
   ],
   "retry": {
     "baseDelayMs": 2000,
