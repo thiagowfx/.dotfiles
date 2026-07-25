@@ -18,11 +18,12 @@
   ],
   "hideThinkingBlock": false,
   "httpIdleTimeoutMs": 30000,
-  "lastChangelogVersion": "0.80.6",
+  "lastChangelogVersion": "0.82.0",
   "packages": [
     "git:github.com/thiagowfx/skills",
     "npm:@tifan/pi-recap",
-    "npm:@tmustier/pi-tab-status"
+    "npm:@tmustier/pi-tab-status",
+    "npm:@tmustier/pi-raw-paste"
   ],
   "retry": {
     "baseDelayMs": 2000,
