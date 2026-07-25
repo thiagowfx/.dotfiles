@@ -20,7 +20,8 @@
   "httpIdleTimeoutMs": 30000,
   "lastChangelogVersion": "0.80.6",
   "packages": [
-    "git:github.com/thiagowfx/skills"
+    "git:github.com/thiagowfx/skills",
+    "npm:@tifan/pi-recap"
   ],
   "retry": {
     "baseDelayMs": 2000,
