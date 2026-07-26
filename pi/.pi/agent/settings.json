@@ -23,7 +23,8 @@
     "git:github.com/thiagowfx/skills",
     "npm:@tifan/pi-recap",
     "npm:@tmustier/pi-tab-status",
-    "npm:@tmustier/pi-raw-paste"
+    "npm:@tmustier/pi-raw-paste",
+    "npm:@tintinweb/pi-subagents"
   ],
   "retry": {
     "baseDelayMs": 2000,
