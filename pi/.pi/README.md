@@ -56,7 +56,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 
 ## Layout
 
-- `agent/AGENTS.md` — global instructions, shared with `~/.claude/CLAUDE.md`.
+- `agent/AGENTS.md` — global instruction source of truth; `~/.claude/CLAUDE.md` links to it.
 - `agent/settings.json` — Pi settings and packages.
 - `agent/keybindings.json` — keybindings.
 - `agent/extensions/` — custom TypeScript extensions.
