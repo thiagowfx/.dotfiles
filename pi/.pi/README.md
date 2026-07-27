@@ -19,6 +19,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - **Plan mode** — read-only exploration with `/plan` or `Ctrl+Alt+P`; extracts plans and tracks execution progress.
 - **Side chat** — `/btw [question]` opens a context-aware, read-only side conversation without growing main history.
 - **Prompt stash** — queue drafts with `Ctrl+s`, restore with `Ctrl+Shift+s`, or manage via `/stash`.
+- **Double paste expansion** — large pastes collapse; paste same clipboard text again to expand it.
 - **Command aliases** — `/clear` → `/new`; `/rename` → `/name`.
 - **Dangerous command guard** — blocks agent-issued destructive commands: `rm -rf`, Terraform apply/destroy,
   hard resets, unsafe cleans, protected-branch force-pushes, and hook bypasses.
@@ -47,7 +48,6 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 
 - `@tifan/pi-recap` — session recap generation.
 - `@tintinweb/pi-subagents` — specialized subagents.
-- `@tmustier/pi-raw-paste` — raw paste support.
 - `@tmustier/pi-tab-status` — tab status widget.
 
 ### Local package
