@@ -187,14 +187,44 @@ bootstrap: xcode-command-line-tools install-brewfile configure-macos
 [group('install')]
 install: stow bootstrap
 
-[doc('Update git submodules, prek hooks, and upstream files')]
+[doc('Update git submodules, Pi packages, prek hooks, and upstream files')]
 [group('update')]
-update: update-git update-prek sync-upstream
+update: update-git update-pi update-prek sync-upstream
 
 [doc('Update git submodules')]
 [group('update')]
 update-git:
     git submodule update --force --remote --jobs "$(nproc)"
+
+[doc('Update pinned Pi npm packages')]
+[group('update')]
+update-pi:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    settings="pi/.pi/agent/settings.json"
+    updates="{}"
+    while IFS= read -r spec; do
+        if [[ "$spec" =~ ^npm:((@[^/]+/[^@]+)|([^@]+))(@[^@]+)?$ ]]; then
+            package="${BASH_REMATCH[1]}"
+        else
+            echo "Invalid npm package spec: $spec" >&2
+            exit 1
+        fi
+
+        latest="$(npm view "$package@latest" version)"
+        pinned="npm:$package@$latest"
+        updates="$(jq -cn \
+            --argjson updates "$updates" \
+            --arg spec "$spec" \
+            --arg pinned "$pinned" \
+            '$updates + {($spec): $pinned}')"
+        echo "✓ $pinned"
+    done < <(jq -r '.packages[] | select(type == "string" and startswith("npm:"))' "$settings")
+
+    updated_settings="$(jq --argjson updates "$updates" \
+        '.packages |= map($updates[.] // .)' "$settings")"
+    printf '%s\n' "$updated_settings" > "$settings"
 
 [doc('Update prek hooks and run all hooks')]
 [group('update')]
