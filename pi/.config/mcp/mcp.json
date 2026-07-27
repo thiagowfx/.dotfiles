@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "github": {
+      "auth": "bearer",
+      "bearerToken": "!gh auth token",
+      "url": "https://api.githubcopilot.com/mcp"
+    },
+    "sentry": {
+      "auth": "oauth",
+      "url": "https://mcp.sentry.dev/mcp"
+    }
+  }
+}

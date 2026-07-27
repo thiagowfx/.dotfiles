@@ -51,6 +51,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - `@tifan/pi-recap` — session recap generation.
 - `@tintinweb/pi-subagents` — specialized subagents.
 - `@tmustier/pi-tab-status` — tab status widget.
+- `pi-mcp-adapter` — lazy MCP server integration through one context-efficient proxy tool.
 
 ### Local package
 
@@ -59,6 +60,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 ## Layout
 
 - `agent/AGENTS.md` — global instruction source of truth; `~/.claude/CLAUDE.md` links to it.
+- `.config/mcp/mcp.json` — shared MCP server configuration.
 - `agent/settings.json` — Pi settings and packages.
 - `agent/keybindings.json` — keybindings.
 - `agent/extensions/` — custom TypeScript extensions.
