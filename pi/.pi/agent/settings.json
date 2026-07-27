@@ -23,9 +23,9 @@
     "git:github.com/thiagowfx/skills",
     "local/pi-memory-async",
     "npm:@heyhuynhgiabuu/pi-diff@0.7.6",
-    "npm:@tifan/pi-recap",
-    "npm:@tmustier/pi-tab-status",
-    "npm:@tintinweb/pi-subagents"
+    "npm:@tifan/pi-recap@0.4.4",
+    "npm:@tmustier/pi-tab-status@0.1.4",
+    "npm:@tintinweb/pi-subagents@0.14.3"
   ],
   "retry": {
     "baseDelayMs": 2000,
