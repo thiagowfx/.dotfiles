@@ -21,6 +21,7 @@
   "lastChangelogVersion": "0.82.1",
   "packages": [
     "git:github.com/thiagowfx/skills",
+    "local/pi-memory-async",
     "npm:@tifan/pi-recap",
     "npm:@tmustier/pi-tab-status",
     "npm:@tmustier/pi-raw-paste",

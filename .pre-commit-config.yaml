@@ -85,7 +85,7 @@ repos:
     rev: a4d5d37e66ebcd6b3705204a1d6dbb56dea66338 # frozen: v0.49.0
     hooks:
       - id: markdownlint
-        exclude: ^(plans/|claude/\.claude/skills/)
+        exclude: ^(plans/|claude/\.claude/skills/|pi/\.pi/agent/local/pi-memory-async/README\.upstream\.md$)
         args:
           - --config=.markdownlintrc.json
   - repo: https://github.com/jmlrt/check-yamlschema
