@@ -22,6 +22,7 @@
   "packages": [
     "git:github.com/thiagowfx/skills",
     "local/pi-memory-async",
+    "npm:@heyhuynhgiabuu/pi-diff@0.7.6",
     "npm:@tifan/pi-recap",
     "npm:@tmustier/pi-tab-status",
     "npm:@tintinweb/pi-subagents"

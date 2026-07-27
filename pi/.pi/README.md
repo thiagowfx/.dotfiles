@@ -46,6 +46,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 
 ### npm packages
 
+- `@heyhuynhgiabuu/pi-diff` — Shiki-powered syntax-highlighted, word-level tool diffs.
 - `@tifan/pi-recap` — session recap generation.
 - `@tintinweb/pi-subagents` — specialized subagents.
 - `@tmustier/pi-tab-status` — tab status widget.
