@@ -1,7 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import dangerousCommandGuard, { findBlockedCommand } from "./index.ts";
+import bootstrapDangerousCommandGuard, { ensureDependencies } from "./index.ts";
+import dangerousCommandGuard, { findBlockedCommand } from "./guard.ts";
 
 const blocked = [
   ["rm -rf /tmp/example", "rm -rf"],
@@ -92,4 +93,65 @@ test("extension blocks dangerous bash tool calls", async () => {
     reason: "rm -rf is blocked for safety",
   });
   assert.equal(await handler({ toolName: "bash", input: { command: "echo 'rm -rf /tmp/example'" } }), undefined);
+});
+
+test("loader installs missing dependencies before registering guard", async () => {
+  let dependenciesAvailable = false;
+  let handler: unknown;
+  const pi = {
+    async exec(command: string, arguments_: string[], options: { cwd: string }) {
+      assert.equal(command, "npm");
+      assert.deepEqual(arguments_, ["ci", "--ignore-scripts"]);
+      assert.match(options.cwd, /dangerous-command-guard$/);
+      dependenciesAvailable = true;
+      return { code: 0, stdout: "", stderr: "", killed: false };
+    },
+    on(_event: string, callback: unknown) {
+      handler = callback;
+    },
+  };
+
+  await bootstrapDangerousCommandGuard(pi as never, async () => dependenciesAvailable);
+  assert.ok(handler);
+});
+
+test("loader skips npm when dependencies already exist", async () => {
+  let handler: unknown;
+  const pi = {
+    async exec() {
+      throw new Error("npm should not run");
+    },
+    on(_event: string, callback: unknown) {
+      handler = callback;
+    },
+  };
+
+  await bootstrapDangerousCommandGuard(pi as never, async () => true);
+  assert.ok(handler);
+});
+
+test("dependency bootstrap reports npm failures", async () => {
+  const pi = {
+    async exec() {
+      return { code: 1, stdout: "", stderr: "network unavailable", killed: false };
+    },
+  };
+
+  await assert.rejects(
+    ensureDependencies(pi as never, async () => false),
+    /Failed to install dangerous command guard dependencies: network unavailable/,
+  );
+});
+
+test("dependency bootstrap verifies installed files", async () => {
+  const pi = {
+    async exec() {
+      return { code: 0, stdout: "", stderr: "", killed: false };
+    },
+  };
+
+  await assert.rejects(
+    ensureDependencies(pi as never, async () => false),
+    /required files are still missing/,
+  );
 });
