@@ -21,8 +21,9 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - **Prompt stash** — queue drafts with `Ctrl+s`, restore with `Ctrl+Shift+s`, or manage via `/stash`.
 - **Double paste expansion** — large pastes collapse; paste same clipboard text again to expand it.
 - **Command aliases** — `/clear` → `/new`; `/rename` → `/name`.
-- **Dangerous command guard** — blocks agent-issued destructive commands: `rm -rf`, Terraform apply/destroy,
-  hard resets, unsafe cleans, protected-branch force-pushes, and hook bypasses.
+- **Dangerous command guard** — parses agent-issued shell with Tree-sitter, then blocks destructive
+  operations such as `rm -rf`, Terraform apply/destroy, hard resets, unsafe cleans, protected-branch
+  force-pushes, and hook bypasses.
 - **Ready notifications** — native terminal/OS notification and macOS chime when agent finishes.
 - **Title-bar spinner** — shows agent activity, session name, and working directory in terminal title.
 

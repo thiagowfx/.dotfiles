@@ -9,4 +9,6 @@ fileignoreconfig:
     checksum: 745e95a79f6986bc0f22e8639566b87e3996b4c8da7370e134cc685d74076c98
   - filename: nvim/.config/nvim/lazy-lock.json
     checksum: f6cf88ab8f00edbc6a0329d015c5217a0f47007afb7112ceb2f2a1289b8a6e44
+  - filename: pi/.pi/agent/extensions/dangerous-command-guard/package-lock.json
+    checksum: 59e043bf6a227f6152857f2f8586aabb5094604a912b221f38b0936d6a19537d
 version: "1.0"
