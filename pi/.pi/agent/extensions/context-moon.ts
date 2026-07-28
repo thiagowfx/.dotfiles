@@ -16,15 +16,14 @@ export default function (pi: ExtensionAPI) {
     }
 
     if (usage.percent === null) {
-      ctx.ui.setStatus("context-moon", ctx.ui.theme.fg("dim", "[🌙 ?]"));
+      ctx.ui.setStatus("context-moon", ctx.ui.theme.fg("accent", "[🌙 ?]"));
       return;
     }
 
     const percent = Math.max(0, Math.min(100, usage.percent));
-    const color = percent >= 75 ? "error" : percent >= 50 ? "warning" : "success";
     ctx.ui.setStatus(
       "context-moon",
-      ctx.ui.theme.fg(color, `[${moonForPercent(percent)} ${percent.toFixed(0)}%]`),
+      ctx.ui.theme.fg("accent", `[${moonForPercent(percent)} ${percent.toFixed(0)}%]`),
     );
   }
 
