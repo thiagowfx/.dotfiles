@@ -16,6 +16,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 ### Extensions
 
 - **Caveman mode** — auto-enabled terse responses; toggle with `/caveman on|off`.
+- **Context moon** — colorized moon-phase gauge tracks context-window usage in footer.
 - **Plan mode** — read-only exploration with `/plan` or `Ctrl+Alt+P`; extracts plans and tracks execution progress.
 - **Side chat** — `/btw [question]` opens a context-aware, read-only side conversation without growing main history.
 - **Prompt stash** — queue drafts with `Ctrl+s`, restore with `Ctrl+Shift+s`, or manage via `/stash`.
