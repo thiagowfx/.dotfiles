@@ -105,8 +105,8 @@ Personal preferences across every project. Project-specific facts live in each r
 
 ## Tooling defaults
 
-- **Pre-commit**: prefer `prek` over `pre-commit`. Run `prek run --all-files`. Prefer
-  self-contained/pinned hook deps over system binaries.
+- **Pre-commit**: prefer `prek` over `pre-commit`. Do not run `prek run --all-files` by default;
+  run relevant checks only when warranted. Prefer self-contained/pinned hook deps over system binaries.
 - **Polling**: never `sleep` in a loop. Use `Monitor` with `until`, or `run_in_background` and wait
   for the notification.
 - **`gh pr checks`**: `--watch` and `--json` are mutually exclusive.
