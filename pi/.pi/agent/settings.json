@@ -31,7 +31,7 @@
     {
       "extensions": [],
       "skills": [],
-      "source": "git:github.com/obra/superpowers"
+      "source": "git:github.com/obra/superpowers@v6.2.0"
     },
     "npm:@narumitw/pi-goal@0.38.0",
     "npm:@zeldrisho/pi-web-fetch@0.5.0"
