@@ -38,64 +38,20 @@ Personal preferences across every project. Project-specific facts live in each r
 - Justify every flag (`--force`, `--recursive`, etc.). No cargo-culting.
 - Simplest thing that works. I'll ask for more if I want more.
 
-## Testing changes
+## Verification and tests
 
-- Exercise the *caller*, not just the new helper. Green unit test on the extracted piece ≠
-  integration works.
-- Walk the paths your diff touched, including failure/skip branches (missing binary, env var set,
-  non-matching input).
-- Watch shell-quoting bugs through templating layers (Just `{{ }}`, Make `$()`): backticks, `$`,
-  unbalanced quotes can trigger command substitution / word-splitting. Test with a literal value
-  that would expose it.
-- Don't claim "tested" when you only ran adjacent code. If the real path needs interactive auth,
-  browser, or prod creds — say so explicitly, don't skip silently.
-
-## Proving it works
-
-- "Done" = you ran the real thing and saw it work. Reading code is not proof; the test suite
-  passing is the developer's evidence, not yours.
-- Show evidence inline: quote command + output, or file contents you checked.
-- Try to break it: run twice, feed bad input, delete a dep file. The happy path is already tested.
-- Dangerous bugs are in lines that *should* have changed but didn't. If a signature/default/contract
-  moved, grep every caller. Don't guess.
-- Can't verify (needs prod creds, browser, etc.)? Say what you couldn't verify and why. Don't paper
-  over it.
-- Never guess. Don't infer a symbol's existence/behavior from name or context — grep, read, or run.
-  If verification isn't possible, say so explicitly instead of hedging as fact.
-- "Complete" = every coupled piece checked, not just the obvious one. Rollouts with N parts that
-  must move together (resource + flag, schema + every caller, env var + the secret it reads) →
-  verify each independently. Don't extrapolate.
-
-## Calling something a bug
-
-- A "bug" claim is a falsifiable prediction: *this code, in this context, produces wrong behavior*.
-  Run it (or read enough surrounding code) and confirm the bad outcome happens. "Looks like a known
-  footgun" is a hypothesis, not a finding.
-- Audits: bias toward fewer verified findings over long lists. 10 items with 8 wrong is worse than
-  2 verified — burns trust and time.
-- Careful user + many issues found = check harder, not publish. Re-examine each against actual code
-  paths.
-- Don't hedge with severity labels ("Medium", "Low–Medium") to soften unverified claims. Either
-  it's a bug (with evidence) or it isn't (don't mention it, or mark "unverified hypothesis — would
-  need to test X").
-- Pattern recognition from training ("FPATH after compinit is bad", "syntax-highlighting must be
-  last") is a starting point, not a conclusion. The codebase may handle it, or the rule may not
-  apply.
-
-## Test integrity
-
-- Tests must catch a reversion. Reverting the production change must turn the test red, else the
-  test proves nothing.
-- Cover *decisions*, not *declarations*. Conditionals, computations, state transitions, validation
-  → test. Property assignments, view composition, framework wiring → don't.
-- Never weaken a test to pass: no loosening matchers (`toBe(42)` → `toBeDefined()`), no widening
-  expected values, no `.skip`/`xit`, no try/catch around assertions, no changing expected to match
-  buggy output. Fix the code.
-- No tautological tests. Expected value must not be computed by the same formula as production code
-  (`assert(price(x), x * rate * (1+tax))` is worthless). Use precomputed known-good values.
-- Mock everything = testing the mocking framework. Real code paths must run.
-- Bug fixes: add the regression test *first*, watch it fail, then fix. A passing test added
-  alongside the fix proves nothing.
+- Verify behavior through the caller. Exercise every changed success, failure, and skip path;
+  include coupled changes (schema + callers, flag + resource, env var + secret) independently.
+- Read, grep, or run before asserting a symbol or behavior. A bug needs observed wrong behavior;
+  patterns are hypotheses, not findings. Audits favor fewer verified findings.
+- "Done" means real path ran successfully. Quote evidence inline. A passing test suite is evidence,
+  not proof; if real verification needs auth, browser, or production credentials, state what was not
+  verified and why.
+- Test hostile inputs where relevant: rerun operations, bad input, missing dependency, and shell values
+  containing backticks, `$`, or unbalanced quotes through templating layers.
+- If a signature, default, or contract changes, grep every caller. Do not extrapolate from adjacent code.
+- Tests cover decisions, use known-good expectations, and run real paths. A regression test must fail
+  before its fix and after a reversion. Never weaken or skip tests to pass.
 
 ## Destructive ops
 
@@ -107,8 +63,7 @@ Personal preferences across every project. Project-specific facts live in each r
 
 - **Pre-commit**: prefer `prek` over `pre-commit`. Do not run `prek run --all-files` by default;
   run relevant checks only when warranted. Prefer self-contained/pinned hook deps over system binaries.
-- **Polling**: never `sleep` in a loop. Use `Monitor` with `until`, or `run_in_background` and wait
-  for the notification.
+- **Polling**: never `sleep` in a loop. Use `run_in_background` and wait for completion notification.
 - **`gh pr checks`**: `--watch` and `--json` are mutually exclusive.
 - **Editor**: vim (preferred) and Zed. No VSCode-specific workflows.
 
@@ -159,8 +114,7 @@ Personal preferences across every project. Project-specific facts live in each r
     many alternatives, designing non-obvious architecture, debugging subtle cross-file behavior.
     Justify it; when in doubt start with Sonnet and promote only if needed.
 - **Right tool before right model.** Pure code-location ("where is X defined / what references Y")
-  → `Explore`, not `general-purpose`. Questions about Claude Code itself → `claude-code-guide`.
-  Both are already cheap; no model override needed.
+  → `Explore`, not `general-purpose`. Use direct tools when target is already known.
 - **Terse returns.** Instruct research/`general-purpose`/`Explore` subagents to **report in under
   ~200 words — file paths and line numbers, not file contents.** Subagent returns are appended
   verbatim to the parent thread and cached forward every subsequent turn; a 17k-token dump is
