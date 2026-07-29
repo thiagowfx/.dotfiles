@@ -13,6 +13,13 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 
 ## Customizations
 
+### Workflows
+
+- **External Superpowers artifacts** — stores specs and plans outside source repositories in active
+  Obsidian vault under `superpowers/<github-owner>/<repository>/{specs,plans}`; dedicated qmd collection
+  `superpowers` provides cross-repository search, and handoffs include portable paths plus one-click
+  Obsidian links.
+
 ### Extensions
 
 - **Caveman mode** — auto-enabled terse responses; toggle with `/caveman on|off`.
