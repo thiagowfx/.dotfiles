@@ -168,6 +168,9 @@ Personal preferences across every project. Project-specific facts live in each r
 
 ## Superpowers artifacts
 
+- **This whole section applies only when the Superpowers extension/skills are active in the current
+  session.** If Superpowers is not loaded, ignore everything below — don't create specs/plans, don't
+  touch Obsidian, don't run `qmd`.
 - Never create or commit `docs/superpowers/` in any repository.
 - Store every Superpowers design spec and implementation plan in active Obsidian vault through Obsidian CLI.
 - Derive `<owner>/<repo>` from current repository's GitHub `origin`. Accept HTTPS and SSH GitHub URLs,
