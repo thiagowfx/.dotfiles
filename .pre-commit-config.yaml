@@ -140,6 +140,12 @@ repos:
         entry: sh -c 'command -v ghostty >/dev/null 2>&1 && ghostty +validate-config --config-file=ghostty/.config/ghostty/config || echo "ghostty not installed, skipping validation"'
         pass_filenames: false
         language: system
+      - id: pinned-pi-npm-packages
+        name: Pin Pi npm packages
+        entry: python3 pi/.pi/agent/check-pinned-npm-packages.py
+        pass_filenames: false
+        language: system
+        always_run: true
       - id: prek
         name: Validate prek config
         entry: sh -c 'command -v prek >/dev/null 2>&1 && prek validate-config || pre-commit validate-config'
