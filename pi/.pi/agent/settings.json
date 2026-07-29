@@ -32,7 +32,8 @@
       "extensions": [],
       "skills": [],
       "source": "git:github.com/obra/superpowers"
-    }
+    },
+    "npm:@narumitw/pi-goal"
   ],
   "retry": {
     "baseDelayMs": 2000,
