@@ -15,7 +15,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 
 ### Workflows
 
-- **External Superpowers artifacts** — stores specs and plans outside source repositories in active
+- **External Superpowers artifacts** — `piss` stores specs and plans outside source repositories in active
   Obsidian vault under `superpowers/<github-owner>/<repository>/{specs,plans}`; dedicated qmd collection
   `superpowers` provides cross-repository search, and handoffs include portable paths plus one-click
   Obsidian links.
@@ -53,7 +53,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
   - Design grilling, TDD, APKBUILD scaffolding
   - PR shipping and CI-pass loops
 - [`obra/superpowers`](https://github.com/obra/superpowers)
-  - Disabled by default; launch Pi with full Superpowers workflows using `piss`.
+  - Disabled by default; `piss` loads upstream workflows plus local Obsidian artifact routing.
 
 ### npm packages
 
@@ -75,4 +75,5 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - `agent/settings.json` — Pi settings and packages.
 - `agent/keybindings.json` — keybindings.
 - `agent/extensions/` — custom TypeScript extensions.
+- `agent/local/superpowers-artifacts.ts` — `piss`-only Obsidian artifact-routing overlay.
 - `agent/themes/` — custom themes.

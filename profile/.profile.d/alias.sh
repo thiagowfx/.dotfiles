@@ -32,7 +32,7 @@ alias sl=ls
 alias cdg='cd "$(git root)"'
 
 if command -v pi >/dev/null 2>&1; then
-	alias piss='pi --extension "$HOME/.pi/agent/git/github.com/obra/superpowers/.pi/extensions/superpowers.ts"'
+	alias piss='pi --extension "$HOME/.pi/agent/git/github.com/obra/superpowers/.pi/extensions/superpowers.ts" --extension "$HOME/.pi/agent/local/superpowers-artifacts.ts"'
 fi
 
 # shortcuts
