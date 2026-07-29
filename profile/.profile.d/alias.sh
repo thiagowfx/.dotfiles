@@ -31,6 +31,10 @@ alias sl=ls
 
 alias cdg='cd "$(git root)"'
 
+if command -v pi >/dev/null 2>&1; then
+	alias piss='pi --extension "$HOME/.pi/agent/git/github.com/obra/superpowers/.pi/extensions/superpowers.ts"'
+fi
+
 # shortcuts
 # exit everything: quit all nested shells, closing the terminal tab
 ee() {

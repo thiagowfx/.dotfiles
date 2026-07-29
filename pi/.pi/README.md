@@ -45,6 +45,8 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
   - GitHub Actions failure analysis
   - Design grilling, TDD, APKBUILD scaffolding
   - PR shipping and CI-pass loops
+- [`obra/superpowers`](https://github.com/obra/superpowers)
+  - Disabled by default; launch Pi with full Superpowers workflows using `piss`.
 
 ### npm packages
 

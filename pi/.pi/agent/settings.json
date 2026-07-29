@@ -27,7 +27,12 @@
     "npm:@tifan/pi-recap@0.4.4",
     "npm:@tmustier/pi-tab-status@0.1.4",
     "npm:@tintinweb/pi-subagents@0.14.3",
-    "npm:pi-mcp-adapter@2.15.0"
+    "npm:pi-mcp-adapter@2.15.0",
+    {
+      "extensions": [],
+      "skills": [],
+      "source": "git:github.com/obra/superpowers"
+    }
   ],
   "retry": {
     "baseDelayMs": 2000,
