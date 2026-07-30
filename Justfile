@@ -196,7 +196,7 @@ update: update-git update-pi update-prek sync-upstream
 update-git:
     git submodule update --force --remote --jobs "$(nproc)"
 
-[doc('Update pinned Pi npm packages')]
+[doc('Update pinned Pi packages')]
 [group('update')]
 update-pi:
     #!/usr/bin/env bash
@@ -222,8 +222,43 @@ update-pi:
         echo "✓ $pinned"
     done < <(jq -r '.packages[] | select(type == "string" and startswith("npm:"))' "$settings")
 
+    while IFS= read -r spec; do
+        if [[ "$spec" =~ ^git:(.+)@([^@/]+)$ ]]; then
+            repository="${BASH_REMATCH[1]}"
+        else
+            echo "Invalid pinned git package spec: $spec" >&2
+            exit 1
+        fi
+
+        if [[ "$repository" != *://* && "$repository" != git@* ]]; then
+            repository="https://$repository"
+        fi
+        latest="$(git ls-remote --tags --refs "$repository" \
+            | awk -F/ '{print $3}' \
+            | { grep -E '^(v)?[0-9]+(\.[0-9]+){0,2}$' || true; } \
+            | sort -V \
+            | tail -n 1)"
+        if [[ -z "$latest" ]]; then
+            echo "No SemVer tags found for $spec" >&2
+            exit 1
+        fi
+
+        pinned="${spec%@*}@$latest"
+        updates="$(jq -cn \
+            --argjson updates "$updates" \
+            --arg spec "$spec" \
+            --arg pinned "$pinned" \
+            '$updates + {($spec): $pinned}')"
+        echo "✓ $pinned"
+    done < <(jq -r '.packages[] | select(type == "object" and (.source | type == "string") and (.source | test("^git:.+@[^@/]+$"))) | .source' "$settings")
+
     updated_settings="$(jq --argjson updates "$updates" \
-        '.packages |= map($updates[.] // .)' "$settings")"
+        '.packages |= map(
+            if type == "string" then $updates[.] // .
+            elif type == "object" then .source = ($updates[.source] // .source)
+            else .
+            end
+        )' "$settings")"
     printf '%s\n' "$updated_settings" > "$settings"
 
 [doc('Update prek hooks and run all hooks')]
