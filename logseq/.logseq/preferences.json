@@ -19,7 +19,7 @@
     },
     "dark": {
       "name": "Bonofix Theme",
-      "url": "file:///Users/thiago.perrotta/.logseq/plugins/logseq-bonofix-theme/custom.css",
+      "url": "file:///Users/tperrotta/.logseq/plugins/logseq-bonofix-theme/custom.css",
       "description": "A clean theme",
       "pid": "logseq-bonofix-theme",
       "group-first": true,
