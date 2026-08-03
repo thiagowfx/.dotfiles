@@ -22,6 +22,7 @@
   "packages": [
     "git:github.com/thiagowfx/skills",
     "local/pi-memory-async",
+    "local/web-search",
     "npm:@heyhuynhgiabuu/pi-diff@0.7.6",
     "npm:@heyhuynhgiabuu/pi-pretty@0.6.21",
     "npm:@tifan/pi-recap@0.4.4",

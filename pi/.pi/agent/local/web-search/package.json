@@ -1,0 +1,14 @@
+{
+  "keywords": [
+    "pi-package"
+  ],
+  "license": "MIT",
+  "name": "pi-web-search-skill",
+  "pi": {
+    "skills": [
+      "./skill"
+    ]
+  },
+  "private": true,
+  "version": "1.0.0"
+}

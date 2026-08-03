@@ -66,9 +66,11 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - `@tmustier/pi-tab-status` — tab status widget.
 - `pi-mcp-adapter` — lazy MCP server integration through one context-efficient proxy tool.
 
-### Local package
+### Local packages
 
 - `pi-memory-async` — persists exit-summary jobs and writes durable daily memory asynchronously on a later session.
+- `web-search` — keyless web discovery via Jina Reader and DuckDuckGo; adapted from
+  [`pasky/pi-amplike`](https://github.com/pasky/pi-amplike) under MIT license.
 
 ## Layout
 
