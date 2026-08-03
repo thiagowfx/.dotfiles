@@ -33,6 +33,8 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
   operations such as `rm -rf`, Terraform apply/destroy, hard resets, unsafe cleans, protected-branch
   force-pushes, and hook bypasses; installs pinned parser dependencies automatically on first load.
 - **Ready notifications** — terminal bell and macOS chime when agent finishes; no desktop notifications.
+- **cmux integration** — reports Pi lifecycle and tool activity for idle detection, notifications, Feed telemetry,
+  and session restore.
 - **Title-bar spinner** — shows agent activity, session name, and working directory in terminal title.
 
 ### Interface
@@ -64,7 +66,6 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - `@heyhuynhgiabuu/pi-pretty` — collapsed, syntax-highlighted tool output with FFF-backed `find` and `grep`.
 - `@tifan/pi-recap` — session recap generation.
 - `@tintinweb/pi-subagents` — specialized subagents.
-- `@tmustier/pi-tab-status` — tab status widget.
 - `pi-mcp-adapter` — lazy MCP server integration through one context-efficient proxy tool.
 
 ### Local packages
