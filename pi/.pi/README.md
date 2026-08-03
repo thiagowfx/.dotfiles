@@ -35,6 +35,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - **Ready notifications** — terminal bell and macOS chime when agent finishes; no desktop notifications.
 - **cmux integration** — reports Pi lifecycle and tool activity for idle detection, notifications, Feed telemetry,
   and session restore.
+- **Automatic session names** — generates a concise name from the first prompt using the cheapest available model.
 - **Title-bar spinner** — shows agent activity, session name, and working directory in terminal title.
 
 ### Interface
@@ -60,6 +61,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 
 ### npm packages
 
+- `@nerisma/pi-auto-title` — generates concise session names from first prompts using a cheap model.
 - `@narumitw/pi-goal` — persistent, verifiable autonomous goal completion with `/goal`.
 - `@zeldrisho/pi-web-fetch` — keyless, bounded public webpage fetching through sole `web_fetch` tool.
 - `@heyhuynhgiabuu/pi-diff` — Shiki-powered syntax-highlighted, word-level tool diffs.
