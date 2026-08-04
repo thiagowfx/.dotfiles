@@ -74,9 +74,8 @@ worktree-path = "{{ repo_path }}/.worktrees/{{ branch | sanitize }}"
 #
 # ### llm
 #
-[commit.generation]
+# [commit.generation]
 # command = "llm -m gpt-5-mini"
-command = "llm -m gpt-5-nano"
 #
 # ### aichat
 #
@@ -154,16 +153,13 @@ add = "wt switch --create {{ args }}"
 bd = "wt remove -D {{ args }}"
 cd = "wt switch {{ args }}"
 checkout = "wt switch {{ args }}"
-cleanup = "wt step prune {{ args }}"
 co = "wt switch {{ args }}"
-commit = "wt step commit {{ args }}"
 create = "wt switch --create {{ args }}"
 del = "wt remove -D {{ args }}"
 delete = "wt remove -D {{ args }}"
 goto = "wt switch --no-cd {{ args }}"
 ls = "wt list {{ args }}"
 new = "wt switch --create {{ args }}"
-prune = "wt step prune {{ args }}"
 rm = "wt remove -D {{ args }}"
 tui = "wt switch {{ args }}"
 world = "wt step prune {{ args }}"
