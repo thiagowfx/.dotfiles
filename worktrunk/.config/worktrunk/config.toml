@@ -311,6 +311,3 @@ xl = "wt list {{ args }}"
 # ## Hooks
 #
 # See `wt hook` (https://worktrunk.dev/hook/) for hook types, execution order, template variables, and examples. User hooks apply to all projects; project hooks (https://worktrunk.dev/config/#project-configuration) apply only to that repository.
-
-[pre-merge]
-prek = "test -f .pre-commit-config.yaml && prek run --from-ref \"$(git symbolic-ref --short refs/remotes/origin/HEAD)\" --to-ref HEAD || true"
