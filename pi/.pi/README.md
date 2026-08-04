@@ -55,7 +55,6 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - `@narumitw/pi-goal` — persistent, verifiable autonomous goal completion with `/goal`.
 - `@zeldrisho/pi-web-fetch` — keyless, bounded public webpage fetching through sole `web_fetch` tool.
 - `@heyhuynhgiabuu/pi-diff` — Shiki-powered syntax-highlighted, word-level tool diffs.
-- `@heyhuynhgiabuu/pi-pretty` — collapsed, syntax-highlighted tool output with FFF-backed `find` and `grep`.
 - `@tifan/pi-recap` — session recap generation.
 - `@tintinweb/pi-subagents` — specialized subagents.
 - `pi-mcp-adapter` — lazy MCP server integration through one context-efficient proxy tool.
