@@ -52,6 +52,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 ### npm packages
 
 - `@nerisma/pi-auto-title` — generates concise session names from first prompts using a cheap model.
+- `@mrclrchtr/supi-prompt-suggestions` — advisory ghost-text follow-up prompt suggestions.
 - `@narumitw/pi-goal` — persistent, verifiable autonomous goal completion with `/goal`.
 - `@zeldrisho/pi-web-fetch` — keyless, bounded public webpage fetching through sole `web_fetch` tool.
 - `@heyhuynhgiabuu/pi-diff` — Shiki-powered syntax-highlighted, word-level tool diffs.
