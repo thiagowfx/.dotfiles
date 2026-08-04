@@ -29,7 +29,8 @@
     "npm:pi-mcp-adapter@2.19.0",
     "npm:@narumitw/pi-goal@0.48.0",
     "npm:@zeldrisho/pi-web-fetch@0.5.1",
-    "npm:@nerisma/pi-auto-title@1.0.1"
+    "npm:@nerisma/pi-auto-title@1.0.1",
+    "npm:@mrclrchtr/supi-prompt-suggestions@4.5.1"
   ],
   "retry": {
     "baseDelayMs": 2000,
