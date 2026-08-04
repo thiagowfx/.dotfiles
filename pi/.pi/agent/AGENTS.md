@@ -55,7 +55,6 @@ Personal preferences across every project. Project-specific facts live in each r
 
 ## Destructive ops
 
-- Never `rm`. Use `trash` (or equivalent move-to-trash).
 - Destructive ops on shared state (S3, branches, DB rows): *backup → filter → delete*, then confirm.
 - Never force-push `master`/`main`. Never `--no-verify` unless I explicitly ask.
 
