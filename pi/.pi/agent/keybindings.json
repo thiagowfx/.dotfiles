@@ -6,6 +6,7 @@
   "app.models.save": [
     "alt+s"
   ],
+  "app.session.rename": "ctrl+shift+r",
   "app.session.toggleSort": [
     "alt+s"
   ]
