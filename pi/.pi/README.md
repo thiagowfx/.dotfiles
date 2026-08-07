@@ -55,7 +55,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - `@mrclrchtr/supi-prompt-suggestions` — advisory ghost-text follow-up prompt suggestions.
 - `@narumitw/pi-goal` — persistent, verifiable autonomous goal completion with `/goal`.
 - `@zeldrisho/pi-web-fetch` — keyless, bounded public webpage fetching through sole `web_fetch` tool.
-- `@heyhuynhgiabuu/pi-diff` — Shiki-powered syntax-highlighted, word-level tool diffs.
+- `pi-tool-display` — OpenCode-style compact tool rendering and richer edit diffs.
 - `@tifan/pi-recap` — session recap generation.
 - `@tintinweb/pi-subagents` — specialized subagents.
 - `pi-mcp-adapter` — lazy MCP server integration through one context-efficient proxy tool.
