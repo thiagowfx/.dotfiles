@@ -18,7 +18,7 @@
   ],
   "hideThinkingBlock": false,
   "httpIdleTimeoutMs": 30000,
-  "lastChangelogVersion": "0.83.0",
+  "lastChangelogVersion": "0.84.1",
   "packages": [
     "git:github.com/thiagowfx/skills",
     "local/pi-memory-async",
