@@ -2,6 +2,8 @@
 
 Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed as dotfiles.
 
+![Vanilla Pi session](assets/pi-session.png)
+
 ## Highlights
 
 - Catppuccin Mocha theme
