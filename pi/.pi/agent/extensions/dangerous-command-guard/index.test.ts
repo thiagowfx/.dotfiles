@@ -77,8 +77,13 @@ test("reports malformed shell syntax", async () => {
   assert.match(result.reason, /parse/i);
 });
 
-test("extension blocks dangerous bash tool calls", async () => {
-  let handler: ((event: { toolName: string; input: { command: string } }) => Promise<unknown>) | undefined;
+test("extension prompts before dangerous bash tool calls", async () => {
+  let handler:
+    | ((
+        event: { toolName: string; input: { command: string } },
+        context: { hasUI: boolean; ui: { confirm: (title: string, message: string) => Promise<boolean> } },
+      ) => Promise<unknown>)
+    | undefined;
   const pi = {
     on(event: string, callback: typeof handler) {
       assert.equal(event, "tool_call");
@@ -88,11 +93,51 @@ test("extension blocks dangerous bash tool calls", async () => {
 
   await dangerousCommandGuard(pi as never);
   assert.ok(handler);
-  assert.deepEqual(await handler({ toolName: "bash", input: { command: "rm -rf /tmp/example" } }), {
-    block: true,
-    reason: "rm -rf is blocked for safety",
-  });
-  assert.equal(await handler({ toolName: "bash", input: { command: "echo 'rm -rf /tmp/example'" } }), undefined);
+
+  const prompts: Array<[string, string]> = [];
+  const allowContext = {
+    hasUI: true,
+    ui: {
+      async confirm(title: string, message: string) {
+        prompts.push([title, message]);
+        return true;
+      },
+    },
+  };
+  assert.equal(
+    await handler({ toolName: "bash", input: { command: "git reset --hard HEAD" } }, allowContext),
+    undefined,
+  );
+  assert.deepEqual(prompts, [
+    [
+      "Allow dangerous command?",
+      "git reset --hard HEAD\n\ngit reset --hard is blocked - discards changes irreversibly",
+    ],
+  ]);
+
+  const denyContext = {
+    hasUI: true,
+    ui: { confirm: async () => false },
+  };
+  assert.deepEqual(
+    await handler({ toolName: "bash", input: { command: "rm -rf /tmp/example" } }, denyContext),
+    { block: true, reason: "Blocked by user" },
+  );
+
+  const noUiContext = {
+    hasUI: false,
+    ui: { confirm: async () => assert.fail("confirmation should not run without UI") },
+  };
+  assert.deepEqual(
+    await handler({ toolName: "bash", input: { command: "rm -rf /tmp/example" } }, noUiContext),
+    { block: true, reason: "rm -rf is blocked for safety" },
+  );
+
+  assert.equal(
+    await handler({ toolName: "bash", input: { command: "echo 'rm -rf /tmp/example'" } }, allowContext),
+    undefined,
+  );
+  assert.equal(prompts.length, 1);
 });
 
 test("loader installs missing dependencies before registering guard", async () => {

@@ -491,13 +491,20 @@ export async function findBlockedCommand(source: string): Promise<BlockedCommand
 export default async function dangerousCommandGuard(pi: ExtensionAPI) {
   await getParser();
 
-  pi.on("tool_call", async (event) => {
+  pi.on("tool_call", async (event, ctx) => {
     if (event.toolName !== "bash") return;
 
     const command = event.input.command;
     if (typeof command !== "string") return;
 
     const blocked = await findBlockedCommand(command);
-    if (blocked) return { block: true, reason: blocked.reason };
+    if (!blocked) return;
+    if (!ctx.hasUI) return { block: true, reason: blocked.reason };
+
+    const allowed = await ctx.ui.confirm(
+      "Allow dangerous command?",
+      `${blocked.command}\n\n${blocked.reason}`,
+    );
+    if (!allowed) return { block: true, reason: "Blocked by user" };
   });
 }
