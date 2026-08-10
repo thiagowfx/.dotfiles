@@ -138,14 +138,14 @@
     "command": "bash ~/.claude/statusline.sh"
   },
   "enabledPlugins": {
+    "caveman@caveman": true,
     "gopls-lsp@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
     "ruby-lsp@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true,
     "terraform-skill@antonbabenko": true,
-    "caveman@caveman": true,
-    "thiagowfx@thiagowfx": true
+    "thiagowfx@thiagowfx": true,
+    "typescript-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "antonbabenko": {
