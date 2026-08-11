@@ -56,6 +56,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 
 - `@nerisma/pi-auto-title` — generates concise session names from first prompts using a cheap model.
 - `@narumitw/pi-goal` — persistent, verifiable autonomous goal completion with `/goal`.
+- `@ryan_nookpi/pi-extension-memory-layer` — curated global/project memory with compact index injection and on-demand recall.
 - `@zeldrisho/pi-web-fetch` — keyless, bounded public webpage fetching through sole `web_fetch` tool.
 - `pi-tool-display` — OpenCode-style compact tool rendering and richer edit diffs.
 - `@tifan/pi-recap` — session recap generation.
@@ -64,7 +65,6 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 
 ### Local packages
 
-- `pi-memory-write` — persists explicit durable facts and preferences, injecting only a bounded curated memory snapshot.
 - `web-search` — keyless web discovery via Jina Reader and DuckDuckGo; adapted from
   [`pasky/pi-amplike`](https://github.com/pasky/pi-amplike) under MIT license.
 
