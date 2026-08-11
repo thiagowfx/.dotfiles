@@ -1,5 +1,5 @@
 {
   "promptSuggestions": {
-    "model": "openai-codex/gpt-5.6-luna"
+    "model": "anthropic/claude-haiku-4-5"
   }
 }
