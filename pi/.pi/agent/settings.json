@@ -2,7 +2,7 @@
   "compaction": {
     "enabled": true
   },
-  "defaultModel": "gpt-5.6-sol",
+  "defaultModel": "gpt-5.6-terra",
   "defaultProvider": "openai-codex",
   "defaultThinkingLevel": "high",
   "doubleEscapeAction": "tree",
@@ -21,7 +21,7 @@
   "lastChangelogVersion": "0.84.1",
   "packages": [
     "git:github.com/thiagowfx/skills",
-    "local/pi-memory-async",
+    "local/pi-memory-write",
     "local/web-search",
     "npm:pi-tool-display@0.5.0",
     "npm:@tifan/pi-recap@0.4.4",
