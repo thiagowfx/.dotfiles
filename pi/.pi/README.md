@@ -51,6 +51,9 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
   - GitHub Actions failure analysis
   - Design grilling, TDD, APKBUILD scaffolding
   - PR shipping and CI-pass loops
+- [`tmustier/pi-extensions`](https://github.com/tmustier/pi-extensions)
+  - `session-recap` only: focus-aware while-you-were-away recaps using a cheap
+    same-provider model automatically.
 
 ### npm packages
 
@@ -59,7 +62,6 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - `@ryan_nookpi/pi-extension-memory-layer` — curated global/project memory with compact index injection and on-demand recall.
 - `@zeldrisho/pi-web-fetch` — keyless, bounded public webpage fetching through sole `web_fetch` tool.
 - `pi-tool-display` — OpenCode-style compact tool rendering and richer edit diffs.
-- `@tifan/pi-recap` — session recap generation.
 - `@tintinweb/pi-subagents` — specialized subagents.
 - `pi-mcp-adapter` — lazy MCP server integration through one context-efficient proxy tool.
 
