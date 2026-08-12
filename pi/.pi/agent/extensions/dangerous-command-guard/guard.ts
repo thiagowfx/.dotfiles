@@ -296,10 +296,8 @@ function inspectWords(words: ShellWord[], command: string, parser: Parser): Bloc
 
   const unwrapped = unwrapCommand(words);
   const executableWord = unwrapped[0];
-  if (executableWord === undefined) {
-    if (unwrapped.length > 0) return { command, reason: "Dynamic command name cannot be inspected safely" };
-    return undefined;
-  }
+  // Unknown executable names are not evidence of danger; let the shell resolve them.
+  if (executableWord === undefined) return undefined;
 
   const executable = basename(executableWord);
   const arguments_ = unwrapped.slice(1);

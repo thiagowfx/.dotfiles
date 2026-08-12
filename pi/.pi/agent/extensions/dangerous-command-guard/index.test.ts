@@ -57,6 +57,7 @@ const allowed = [
   "git reset --soft HEAD^",
   "git clean -nfdx",
   "git commit -m 'mention --no-verify in docs'",
+  '"$shell" /tmp/test-cdg.sh "$PWD/profile/.profile.d/alias.sh"',
 ];
 
 for (const command of allowed) {
@@ -132,9 +133,29 @@ test("extension prompts before dangerous bash tool calls", async () => {
     await handler({ toolName: "bash", input: { command: "rm -rf /tmp/example" } }, noUiContext),
     { block: true, reason: "rm -rf is blocked for safety" },
   );
+  assert.equal(
+    await handler(
+      {
+        toolName: "bash",
+        input: { command: '"$shell" /tmp/test-cdg.sh "$PWD/profile/.profile.d/alias.sh"' },
+      },
+      noUiContext,
+    ),
+    undefined,
+  );
 
   assert.equal(
     await handler({ toolName: "bash", input: { command: "echo 'rm -rf /tmp/example'" } }, allowContext),
+    undefined,
+  );
+  assert.equal(
+    await handler(
+      {
+        toolName: "bash",
+        input: { command: '"$shell" /tmp/test-cdg.sh "$PWD/profile/.profile.d/alias.sh"' },
+      },
+      allowContext,
+    ),
     undefined,
   );
   assert.equal(prompts.length, 1);
