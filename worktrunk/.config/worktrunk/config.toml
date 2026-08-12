@@ -192,7 +192,7 @@ if [ "$new_path" != "$old_path" ] && ! git worktree move "$old_path" "$new_path"
   git branch -m "$old"
   exit 1
 fi
-wt switch "$new"
+wt switch --no-hooks "$new"
 {% endif %}
 '''
 mv = "wt rename {{ args }}"
