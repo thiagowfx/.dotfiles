@@ -29,7 +29,35 @@ alias gt=git
 alias gti=git
 alias sl=ls
 
-alias cdg='cd "$(git root)"'
+cdg() {
+	# This file is sourced by bash and zsh, both of which support local.
+	# shellcheck disable=SC3043
+	local line main_is_bare main_worktree root worktrees
+
+	root=$(git rev-parse --path-format=absolute --show-toplevel) || return
+
+	if [ "$(pwd -P)" != "$root" ]; then
+		cd "$root" || return
+		return
+	fi
+
+	worktrees=$(git worktree list --porcelain) || return
+	main_worktree=
+	main_is_bare=false
+	while IFS= read -r line; do
+		case "$line" in
+			worktree\ *) main_worktree=${line#worktree } ;;
+			bare) main_is_bare=true ;;
+			'') break ;;
+		esac
+	done <<-EOF
+	$worktrees
+	EOF
+
+	if [ "$main_is_bare" = false ] && [ -n "$main_worktree" ] && [ "$main_worktree" != "$root" ]; then
+		cd "$main_worktree" || return
+	fi
+}
 
 # shortcuts
 # exit everything: quit all nested shells, closing the terminal tab
