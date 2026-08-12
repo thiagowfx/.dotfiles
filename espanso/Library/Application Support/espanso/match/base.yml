@@ -20,7 +20,7 @@ matches:
     replace: "←"
 
   - trigger: ":linkedin"
-    replace: "https://www.linkedin.com/in/thiagoperrotta/"
+    replace: "https://www.linkedin.com/in/thiagoperrotta"
 
   - trigger: ":lorem"
     replace: |-
@@ -34,11 +34,18 @@ matches:
       rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
       dolor sit amet.
 
+  - trigger: ":option"
+    replace: "⌥"
+
   - trigger: ":pc:autoupdate"
     replace: "pre-commit autoupdate --jobs $(nproc) --freeze"
 
   - trigger: ":pc:mdsh"
     replace: "pre-commit run --hook-stage manual -a mdsh"
+
+  # macOS: Option + 3
+  - trigger: ":pound"
+    replace: "£"
 
   - trigger: ":right"
     replace: "→"
