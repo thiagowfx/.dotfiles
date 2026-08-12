@@ -160,6 +160,42 @@ delete = "wt remove -D {{ args }}"
 goto = "wt switch --no-cd {{ args }}"
 ls = "wt list {{ args }}"
 new = "wt switch --create {{ args }}"
+rename = '''
+{% if args | length != 1 %}
+printf '%s\n' 'usage: wt rename <new-branch>' >&2
+exit 2
+{% else %}
+old={{ branch }}
+new={{ args[0] }}
+old_path={{ worktree_path }}
+new_path={{ worktree_path | dirname }}/{{ args[0] | sanitize }}
+
+if [ "$old_path" = {{ primary_worktree_path }} ]; then
+  printf '%s\n' 'wt rename: primary worktree cannot be moved' >&2
+  exit 1
+fi
+if ! git check-ref-format --branch "$new" >/dev/null 2>&1; then
+  printf 'wt rename: invalid branch name: %s\n' "$new" >&2
+  exit 1
+fi
+if git show-ref --verify --quiet "refs/heads/$new"; then
+  printf 'wt rename: branch already exists: %s\n' "$new" >&2
+  exit 1
+fi
+if [ "$new_path" != "$old_path" ] && [ -e "$new_path" ]; then
+  printf 'wt rename: destination already exists: %s\n' "$new_path" >&2
+  exit 1
+fi
+
+git branch -m "$new" || exit
+if [ "$new_path" != "$old_path" ] && ! git worktree move "$old_path" "$new_path"; then
+  git branch -m "$old"
+  exit 1
+fi
+wt switch "$new"
+{% endif %}
+'''
+mv = "wt rename {{ args }}"
 rm = "wt remove -D {{ args }}"
 tui = "wt switch {{ args }}"
 world = "wt step prune {{ args }}"
