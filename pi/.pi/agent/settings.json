@@ -27,7 +27,6 @@
     "npm:pi-mcp-adapter@2.24.0",
     "npm:@zeldrisho/pi-web-fetch@0.5.4",
     "npm:@nerisma/pi-auto-title@1.0.1",
-    "npm:pi-input-history@1.0.1",
     "npm:@ryan_nookpi/pi-extension-memory-layer@0.3.4",
     {
       "source": "git:github.com/tmustier/pi-extensions@520f34371fb7",
