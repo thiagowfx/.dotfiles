@@ -29,7 +29,7 @@
     "npm:@nerisma/pi-auto-title@1.0.1",
     "npm:@ryan_nookpi/pi-extension-memory-layer@0.3.4",
     {
-      "source": "git:github.com/tmustier/pi-extensions@520f34371fb7",
+      "source": "git:github.com/tmustier/pi-extensions@session-recap/v0.4.1",
       "extensions": [
         "session-recap/index.ts"
       ]
