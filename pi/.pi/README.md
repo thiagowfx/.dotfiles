@@ -59,7 +59,6 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 ### npm packages
 
 - `@nerisma/pi-auto-title` — generates concise session names from first prompts using a cheap model.
-- `@narumitw/pi-goal` — persistent, verifiable autonomous goal completion with `/goal`.
 - `@ryan_nookpi/pi-extension-memory-layer` — curated global/project memory with compact index injection and on-demand recall.
 - `@zeldrisho/pi-web-fetch` — keyless, bounded public webpage fetching through sole `web_fetch` tool.
 - `pi-tool-display` — OpenCode-style compact tool rendering and richer edit diffs.
