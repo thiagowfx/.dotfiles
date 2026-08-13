@@ -225,6 +225,7 @@ update-pi:
     while IFS= read -r spec; do
         if [[ "$spec" =~ ^git:(.+)@([^@/]+)$ ]]; then
             repository="${BASH_REMATCH[1]}"
+            revision="${BASH_REMATCH[2]}"
         else
             echo "Invalid pinned git package spec: $spec" >&2
             exit 1
@@ -233,14 +234,22 @@ update-pi:
         if [[ "$repository" != *://* && "$repository" != git@* ]]; then
             repository="https://$repository"
         fi
-        latest="$(git ls-remote --tags --refs "$repository" \
-            | awk -F/ '{print $3}' \
-            | { grep -E '^(v)?[0-9]+(\.[0-9]+){0,2}$' || true; } \
-            | sort -V \
-            | tail -n 1)"
-        if [[ -z "$latest" ]]; then
-            echo "No SemVer tags found for $spec" >&2
-            exit 1
+        if [[ "$revision" =~ ^[0-9a-fA-F]{7,40}$ ]]; then
+            latest="$(git ls-remote "$repository" HEAD | awk 'NR == 1 {print substr($1, 1, 12)}')"
+            if [[ -z "$latest" ]]; then
+                echo "No HEAD commit found for $spec" >&2
+                exit 1
+            fi
+        else
+            latest="$(git ls-remote --tags --refs "$repository" \
+                | awk -F/ '{print $3}' \
+                | { grep -E '^(v)?[0-9]+(\.[0-9]+){0,2}$' || true; } \
+                | sort -V \
+                | tail -n 1)"
+            if [[ -z "$latest" ]]; then
+                echo "No SemVer tags found for $spec" >&2
+                exit 1
+            fi
         fi
 
         pinned="${spec%@*}@$latest"
