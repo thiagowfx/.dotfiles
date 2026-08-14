@@ -2,8 +2,8 @@
   "compaction": {
     "enabled": true
   },
-  "defaultModel": "gpt-5.6-terra",
-  "defaultProvider": "openai-codex",
+  "defaultModel": "claude-haiku-4-5",
+  "defaultProvider": "anthropic",
   "defaultThinkingLevel": "high",
   "doubleEscapeAction": "tree",
   "enableInstallTelemetry": false,
@@ -11,10 +11,7 @@
     "anthropic/claude-haiku-4-5",
     "anthropic/claude-sonnet-5",
     "anthropic/claude-opus-5",
-    "anthropic/claude-fable-5",
-    "openai-codex/gpt-5.6-luna",
-    "openai-codex/gpt-5.6-terra",
-    "openai-codex/gpt-5.6-sol"
+    "anthropic/claude-fable-5"
   ],
   "hideThinkingBlock": false,
   "httpIdleTimeoutMs": 30000,
