@@ -29,8 +29,7 @@
       "extensions": [
         "session-recap/index.ts"
       ]
-    },
-    "npm:pi-cometix-footer@1.1.1"
+    }
   ],
   "retry": {
     "baseDelayMs": 2000,
