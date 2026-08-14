@@ -18,7 +18,6 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 ### Extensions
 
 - **Caveman mode** — auto-enabled terse responses; toggle with `/caveman on|off`.
-- **Context moon** — accent-colored moon-phase gauge tracks context-window usage in footer.
 - **Session ID** — full session UUID in footer for quick reference.
 - **Side chat** — `/btw [question]` opens a context-aware, read-only side conversation without growing main history.
 - **Prompt stash** — queue drafts with `Ctrl+s`, restore with `Ctrl+Shift+s`, or manage via `/stash`.
@@ -60,6 +59,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 
 - `@nerisma/pi-auto-title` — generates concise session names from first prompts using a cheap model.
 - `@ryan_nookpi/pi-extension-memory-layer` — curated global/project memory with compact index injection and on-demand recall.
+- `pi-cometix-footer` — context-window usage gauge in footer.
 - `@zeldrisho/pi-web-fetch` — keyless, bounded public webpage fetching through sole `web_fetch` tool.
 - `pi-tool-display` — OpenCode-style compact tool rendering and richer edit diffs.
 - `@tintinweb/pi-subagents` — specialized subagents.
