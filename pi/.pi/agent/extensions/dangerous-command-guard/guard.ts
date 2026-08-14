@@ -267,7 +267,7 @@ function inspectGit(arguments_: ShellWord[], command: string): BlockedCommand | 
     }
   }
 
-  if (hasDynamicArguments && ["clean", "commit", "push", "reset"].includes(subcommand)) {
+  if (hasDynamicArguments && ["clean", "push", "reset"].includes(subcommand)) {
     return { command, reason: `Dynamic git ${subcommand} arguments cannot be inspected safely` };
   }
 

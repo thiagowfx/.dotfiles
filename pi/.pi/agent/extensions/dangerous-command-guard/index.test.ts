@@ -57,6 +57,7 @@ const allowed = [
   "git reset --soft HEAD^",
   "git clean -nfdx",
   "git commit -m 'mention --no-verify in docs'",
+  "git commit -m \"$(cat <<'EOF'\nfix: dynamic message\nEOF\n)\"",
   '"$shell" /tmp/test-cdg.sh "$PWD/profile/.profile.d/alias.sh"',
 ];
 
