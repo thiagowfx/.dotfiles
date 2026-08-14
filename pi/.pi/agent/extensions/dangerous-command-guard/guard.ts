@@ -470,12 +470,49 @@ function inspectTree(node: Node, parser: Parser): BlockedCommand | undefined {
   return undefined;
 }
 
+// tree-sitter-bash misparses "<<'EOF' 2>&1 | cmd" (a heredoc redirect followed by another
+// redirect, then piped): it emits an ERROR node instead of accepting valid bash syntax. Moving
+// the trailing fd-redirect ahead of the heredoc operator on that line is semantically
+// equivalent (redirect order doesn't matter here) and resolves the ambiguity, so retry once
+// with that reordering before giving up and blocking.
+const HEREDOC_TRAILING_REDIRECT = /(<<-?\s*(?:'[^']*'|"[^"]*"|[^\s|&;<>]+))((?:\s+\d*(?:>&\d+|<&\d+|>>?\S+|<\S+))+)(\s*\|)/;
+
+function reorderHeredocTrailingRedirects(source: string): string | undefined {
+  let changed = false;
+  const lines = source.split("\n").map((line) => {
+    const match = HEREDOC_TRAILING_REDIRECT.exec(line);
+    if (!match) return line;
+    changed = true;
+    const [whole, heredocPart, redirectPart, pipePart] = match;
+    return (
+      line.slice(0, match.index) +
+      redirectPart.trim() +
+      " " +
+      heredocPart +
+      pipePart +
+      line.slice(match.index + whole.length)
+    );
+  });
+  return changed ? lines.join("\n") : undefined;
+}
+
 function inspectSource(source: string, parser: Parser): BlockedCommand | undefined {
   const tree = parser.parse(source);
   if (!tree) return { command: source, reason: "Shell command could not be parsed safely" };
 
   try {
-    if (tree.rootNode.hasError) return { command: source, reason: "Shell command could not be parsed safely" };
+    if (tree.rootNode.hasError) {
+      const reordered = reorderHeredocTrailingRedirects(source);
+      if (reordered !== undefined) {
+        const recovered = parser.parse(reordered);
+        try {
+          if (recovered && !recovered.rootNode.hasError) return inspectTree(recovered.rootNode, parser);
+        } finally {
+          recovered?.delete();
+        }
+      }
+      return { command: source, reason: "Shell command could not be parsed safely" };
+    }
     return inspectTree(tree.rootNode, parser);
   } finally {
     tree.delete();

@@ -59,6 +59,7 @@ const allowed = [
   "git commit -m 'mention --no-verify in docs'",
   "git commit -m \"$(cat <<'EOF'\nfix: dynamic message\nEOF\n)\"",
   '"$shell" /tmp/test-cdg.sh "$PWD/profile/.profile.d/alias.sh"',
+  "git commit -q -F - <<'EOF' 2>&1 | tail -20\nfeat: message\nEOF",
 ];
 
 for (const command of allowed) {
