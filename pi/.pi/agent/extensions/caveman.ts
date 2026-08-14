@@ -12,19 +12,6 @@ Boundaries, always: code blocks, commit messages, and PR descriptions stay norma
 export default function (pi: ExtensionAPI) {
   let on = true; // auto-on by default, every session
 
-  const applyStatus = (ctx: {
-    ui: {
-      setStatus: (k: string, v?: string) => void;
-      theme: { fg: (color: string, text: string) => string };
-    };
-  }) => {
-    ctx.ui.setStatus("caveman", on ? ctx.ui.theme.fg("dim", "[caveman]") : undefined);
-  };
-
-  pi.on("session_start", async (_event, ctx) => {
-    applyStatus(ctx);
-  });
-
   pi.on("before_agent_start", (event) => {
     if (!on) return;
     return { systemPrompt: `${event.systemPrompt}\n\n${INSTRUCTIONS}` };
@@ -47,7 +34,6 @@ export default function (pi: ExtensionAPI) {
         ctx.ui.notify(`Unknown arg "${arg}". Use: on | off`, "error");
         return;
       }
-      applyStatus(ctx);
       ctx.ui.notify(on ? "Caveman mode on." : "Caveman mode off. Normal verbosity.", "info");
     },
   });
