@@ -2,7 +2,7 @@
   "compaction": {
     "enabled": true
   },
-  "defaultModel": "claude-haiku-4-5",
+  "defaultModel": "claude-sonnet-5",
   "defaultProvider": "anthropic",
   "defaultThinkingLevel": "high",
   "doubleEscapeAction": "tree",
