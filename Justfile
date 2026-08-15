@@ -64,6 +64,7 @@ stow:
         [ssh]="ssh"
         [starship]="starship"
         [sway]="sway"
+        [swiftbar]="/Applications/SwiftBar.app/Contents/MacOS/SwiftBar"
         [tmux]="tmux"
         [vim]="vim"
         [vscode]="code"
@@ -74,13 +75,14 @@ stow:
         # keep-sorted end
     )
 
-    # Guard against mappings for packages that no longer exist. The loops below
-    # warn when a package has no mapping; this is the missing inverse.
+    # The loops below warn when a package has no mapping; this is the missing
+    # inverse. A mapping without a package is either a placeholder for config
+    # not written yet (swiftbar) or a leftover from a deleted package, so warn
+    # rather than fail.
     all_packages=" {{ packages }} {{ packages_no_folding }} "
     for pkg in "${!package_binaries[@]}"; do
         if [[ "$all_packages" != *" $pkg "* ]]; then
-            echo "Error: binary mapping for '$pkg', which is in no package list" >&2
-            exit 1
+            echo "Warning: binary mapping for '$pkg', which is in no package list" >&2
         fi
     done
 

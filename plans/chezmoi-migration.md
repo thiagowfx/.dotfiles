@@ -340,9 +340,9 @@ dotfile manager. All are fixed on this branch.
 | `profile/.profile.d/10_brew.sh` | hardcoded `/opt/homebrew`, though the file's own comment documented the Intel `/usr/local` case; no Linuxbrew fallback |
 | `ssh/.ssh/config` | macOS-only 1Password socket hardcoded, Linux path present only as a comment; now two `Match exec` probes |
 | `Justfile` (`unstow`) | omitted `packages_no_folding`, so `claude` and `espanso` stayed linked |
-| `Justfile` (`swiftbar`) | binary mapping for a package that has no directory and is in no list; added the missing inverse check |
+| `Justfile` (`swiftbar`) | added the missing inverse check - the loops warned about packages without a mapping but never the reverse. `swiftbar` is a known placeholder (the cask is installed, the package isn't written yet), so it warns rather than fails |
 | `Justfile` (`espanso`) | gated on the `espanso` binary, which exists on Linux, but the package only ships the macOS `Library/…` path |
-| `logseq/.logseq/preferences.json` | contained **two different usernames** (`/Users/thiago.perrotta` and `/Users/tperrotta`) — write-through captured each machine's state into a different theme key. Dropped as derived state; Logseq repopulates it |
+| `logseq/.logseq/preferences.json` | contained **two different usernames** (`/Users/thiago.perrotta` and `/Users/tperrotta`) — write-through captured each machine's state into a different theme key. Dropped the active-selection pointer only; the theme itself stays declared and version-pinned in `logseq/.logseq/config/plugins.edn` |
 
 Seven bugs, zero of which needed chezmoi. That is the argument in miniature.
 
