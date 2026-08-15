@@ -18,4 +18,5 @@ if [ -n "$TTY" ] && [ -e "$TTY" ]; then
     printf '\a' > "$TTY"
 fi
 
-/usr/bin/afplay /System/Library/Sounds/Glass.aiff &
+# macOS only; the same guard lives in pi/.pi/agent/extensions/notify.ts.
+command -v afplay >/dev/null 2>&1 && afplay /System/Library/Sounds/Glass.aiff &
