@@ -37,7 +37,10 @@ stow:
         [bash]="bash"
         [claude]="claude"
         [cmux]="cmux"
-        [espanso]="espanso"
+        # The espanso package only ships the macOS config path
+        # (Library/Application Support/espanso); Linux espanso reads
+        # ~/.config/espanso, so gate on the .app rather than the binary.
+        [espanso]="/Applications/Espanso.app/Contents/MacOS/espanso"
         [gh]="gh"
         [ghostty]="ghostty"
         [git]="git"
@@ -61,7 +64,6 @@ stow:
         [ssh]="ssh"
         [starship]="starship"
         [sway]="sway"
-        [swiftbar]="/Applications/SwiftBar.app/Contents/MacOS/SwiftBar"
         [tmux]="tmux"
         [vim]="vim"
         [vscode]="code"
@@ -71,6 +73,16 @@ stow:
         [zsh]="zsh"
         # keep-sorted end
     )
+
+    # Guard against mappings for packages that no longer exist. The loops below
+    # warn when a package has no mapping; this is the missing inverse.
+    all_packages=" {{ packages }} {{ packages_no_folding }} "
+    for pkg in "${!package_binaries[@]}"; do
+        if [[ "$all_packages" != *" $pkg "* ]]; then
+            echo "Error: binary mapping for '$pkg', which is in no package list" >&2
+            exit 1
+        fi
+    done
 
     # Stow packages with regular folding
     stow_packages=""
@@ -118,7 +130,7 @@ stow-lint:
 [doc('Remove all symlinks')]
 [group('stow')]
 unstow:
-    stow -t {{ target_dir }} -d {{ _dotfiles_dir }} --delete {{ packages }}
+    stow -t {{ target_dir }} -d {{ _dotfiles_dir }} --delete {{ packages }} {{ packages_no_folding }}
 
 [doc('Install Xcode Command Line Tools')]
 [group('bootstrap')]
