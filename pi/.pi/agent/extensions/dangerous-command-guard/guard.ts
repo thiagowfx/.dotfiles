@@ -129,10 +129,12 @@ function containsPreCommitCachePath(argument: string): boolean {
   return segments.some((segment, index) => segment === ".cache" && segments[index + 1] === "pre-commit");
 }
 
+const TMP_ROOTS = ["/tmp", "/var/tmp", "/private/tmp", "/private/var/tmp"];
+
 function isTmpPath(argument: string): boolean {
   if (!argument.startsWith("/")) return false;
   const normalized = posixPath.normalize(argument);
-  return normalized === "/tmp" || normalized.startsWith("/tmp/");
+  return TMP_ROOTS.some((root) => normalized === root || normalized.startsWith(`${root}/`));
 }
 
 function rmOperands(arguments_: ShellWord[]): ShellWord[] {
