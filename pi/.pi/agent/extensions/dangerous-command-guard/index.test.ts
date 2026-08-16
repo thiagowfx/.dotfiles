@@ -5,19 +5,19 @@ import bootstrapDangerousCommandGuard, { ensureDependencies } from "./index.ts";
 import dangerousCommandGuard, { findBlockedCommand } from "./guard.ts";
 
 const blocked = [
-  ["rm -rf /tmp/example", "rm -rf"],
-  ["rm -r -f /tmp/example", "rm -rf"],
-  ["/bin/rm '-rf' /tmp/example", "rm -rf"],
-  ["command rm -fr /tmp/example", "rm -rf"],
-  ["env -S 'rm -rf' /tmp/example", "rm -rf"],
-  ["sudo -u root rm -rf /tmp/example", "rm -rf"],
-  ["nohup rm -rf /tmp/example", "rm -rf"],
-  ["nice -n 10 rm -rf /tmp/example", "rm -rf"],
+  ["rm -rf ./build", "rm -rf"],
+  ["rm -r -f ./build", "rm -rf"],
+  ["/bin/rm '-rf' ./build", "rm -rf"],
+  ["command rm -fr ./build", "rm -rf"],
+  ["env -S 'rm -rf' ./build", "rm -rf"],
+  ["sudo -u root rm -rf ./build", "rm -rf"],
+  ["nohup rm -rf ./build", "rm -rf"],
+  ["nice -n 10 rm -rf ./build", "rm -rf"],
   ["find . -exec rm -rf {} +", "rm -rf"],
   ["printf '%s\\0' /tmp/example | xargs -0 rm -rf", "rm -rf"],
-  ["watch -n 1 rm -rf /tmp/example", "rm -rf"],
   ["parallel rm -rf ::: /tmp/example", "rm -rf"],
-  ["eval 'rm -rf /tmp/example'", "rm -rf"],
+  ["eval 'rm -rf ./build'", "rm -rf"],
+  ["rm -rf /tmp/../etc", "rm -rf"],
   ["terraform -chdir=infra apply", "terraform apply"],
   ["terraform destroy", "terraform destroy"],
   ["just --justfile ops.just apply", "just apply"],
@@ -31,7 +31,7 @@ const blocked = [
   ["git commit -m test --no-verify", "--no-verify"],
   ["git push --no-verify origin feature", "--no-verify"],
   ["bash -c 'terraform destroy'", "terraform destroy"],
-  ["bash <<'EOF'\nrm -rf /tmp/example\nEOF", "rm -rf"],
+  ["bash <<'EOF'\nrm -rf ./build\nEOF", "rm -rf"],
   ["echo $(git reset --hard HEAD)", "git reset --hard"],
 ] as const;
 
@@ -51,6 +51,18 @@ const allowed = [
   "rm -r /tmp/example",
   "rm -f /tmp/example",
   "rm /tmp/notes-on-.cache/pre-commit-migration.md",
+  "rm -rf /tmp/example",
+  "rm -r -f /tmp/example",
+  "/bin/rm '-rf' /tmp/example",
+  "command rm -fr /tmp/example",
+  "env -S 'rm -rf' /tmp/example",
+  "sudo -u root rm -rf /tmp/example",
+  "nohup rm -rf /tmp/example",
+  "nice -n 10 rm -rf /tmp/example",
+  "watch -n 1 rm -rf /tmp/example",
+  "eval 'rm -rf /tmp/example'",
+  "bash <<'EOF'\nrm -rf /tmp/example\nEOF",
+  "rm -rf /tmp",
   "terraform plan",
   "just plan",
   "git push --force-with-lease origin feature",
@@ -123,7 +135,7 @@ test("extension prompts before dangerous bash tool calls", async () => {
     ui: { confirm: async () => false },
   };
   assert.deepEqual(
-    await handler({ toolName: "bash", input: { command: "rm -rf /tmp/example" } }, denyContext),
+    await handler({ toolName: "bash", input: { command: "rm -rf ./build" } }, denyContext),
     { block: true, reason: "Blocked by user" },
   );
 
@@ -132,8 +144,12 @@ test("extension prompts before dangerous bash tool calls", async () => {
     ui: { confirm: async () => assert.fail("confirmation should not run without UI") },
   };
   assert.deepEqual(
-    await handler({ toolName: "bash", input: { command: "rm -rf /tmp/example" } }, noUiContext),
+    await handler({ toolName: "bash", input: { command: "rm -rf ./build" } }, noUiContext),
     { block: true, reason: "rm -rf is blocked for safety" },
+  );
+  assert.equal(
+    await handler({ toolName: "bash", input: { command: "rm -rf /tmp/example" } }, noUiContext),
+    undefined,
   );
   assert.equal(
     await handler(

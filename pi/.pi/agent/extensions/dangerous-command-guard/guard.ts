@@ -1,4 +1,5 @@
 import { createRequire } from "node:module";
+import { posix as posixPath } from "node:path";
 
 import { Language, type Node, Parser } from "web-tree-sitter";
 
@@ -126,6 +127,32 @@ function commandAfterOptions(arguments_: ShellWord[], optionsWithValues: Readonl
 function containsPreCommitCachePath(argument: string): boolean {
   const segments = argument.split("/");
   return segments.some((segment, index) => segment === ".cache" && segments[index + 1] === "pre-commit");
+}
+
+function isTmpPath(argument: string): boolean {
+  if (!argument.startsWith("/")) return false;
+  const normalized = posixPath.normalize(argument);
+  return normalized === "/tmp" || normalized.startsWith("/tmp/");
+}
+
+function rmOperands(arguments_: ShellWord[]): ShellWord[] {
+  const operands: ShellWord[] = [];
+  let optionsEnded = false;
+
+  for (const argument of arguments_) {
+    if (optionsEnded || argument === undefined) {
+      operands.push(argument);
+      continue;
+    }
+    if (argument === "--") {
+      optionsEnded = true;
+      continue;
+    }
+    if (argument.startsWith("-") && argument !== "-") continue;
+    operands.push(argument);
+  }
+
+  return operands;
 }
 
 function protectedGitRef(argument: string): boolean {
@@ -387,7 +414,11 @@ function inspectWords(words: ShellWord[], command: string, parser: Parser): Bloc
     const force = staticArguments.some(
       (argument) => argument === "--force" || hasShortOption(argument, "f"),
     );
-    if (recursive && force) return { command, reason: "rm -rf is blocked for safety" };
+    if (recursive && force) {
+      const operands = rmOperands(arguments_);
+      const allTmp = operands.length > 0 && operands.every((operand) => operand !== undefined && isTmpPath(operand));
+      if (!allTmp) return { command, reason: "rm -rf is blocked for safety" };
+    }
     if (staticArguments.some(containsPreCommitCachePath)) {
       return { command, reason: "Deleting pre-commit cache is blocked for safety" };
     }
