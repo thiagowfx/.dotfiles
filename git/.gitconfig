@@ -55,7 +55,7 @@
 	amend = commit --amend --no-edit
 	purge = clean -f -d
 	recommit = commit --reedit-message ORIG_HEAD
-	reword = commit --allow-empty --amend -n
+	reword = history reword HEAD --update-refs=head
 	root = rev-parse --show-toplevel
 	shelve = stash
 	uncommit = !git reset --soft HEAD^ && git restore --staged .
