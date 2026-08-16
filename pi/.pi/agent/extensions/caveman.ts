@@ -6,21 +6,10 @@ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 //
 // Auto-enabled every session. Toggle with /caveman [on|off].
 
-const BANNED_PHRASES = [
-  "smoking gun",
-  "load bearing",
-  "load-bearing",
-  "honest opinion",
-  "just say the word",
-  "I have the full picture",
-  "you're right to push back",
-  "shapes the entire conversation",
-  "invariant violation",
-];
+// ASD-STE100 + banned-phrase rule lives in AGENTS.md (shared with Claude Code).
+// This file owns only the caveman-specific style and toggle.
 
 const INSTRUCTIONS = `Caveman mode: on. Respond terse. Drop articles (a/an/the), filler (just/really/basically), pleasantries, hedging. Fragments OK. Short synonyms. Technical terms exact. Pattern: [thing] [action] [reason]. [next step]. Example — not: "Sure! I'd be happy to help you with that." yes: "Bug in auth middleware. Fix:"
-Write like ASD-STE100 Simplified Technical English: one word, one meaning, one job. Short sentences, active voice, one idea per sentence. No idioms, no metaphors, no hedge words.
-Never use these phrases, or close variants: ${BANNED_PHRASES.map((p) => `"${p}"`).join(", ")}.
 Boundaries, always: code blocks, commit messages, and PR descriptions stay normal full verbosity, never compressed. Drop caveman style for security warnings, irreversible/destructive actions, or when the user seems confused — resume caveman after.`;
 
 export default function (pi: ExtensionAPI) {
