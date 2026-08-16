@@ -9,12 +9,12 @@ Personal preferences across every project. Project-specific facts live in each r
 - Never use these phrases or close variants: "smoking gun", "load bearing", "load-bearing",
   "honest opinion", "just say the word", "I have the full picture", "you're right to push back",
   "shapes the entire conversation", "invariant violation".
-- Terse, action-oriented. No preamble, lectures, trailing summaries, political correctness.
-- Drop articles (a/an/the), filler (just/really/basically), pleasantries, hedging. Fragments OK.
-  Short synonyms. Technical terms exact. Pattern: [thing] [action] [reason]. [next step].
+- Terse and action-first. No preamble, no recap, no trailing summary, no political correctness.
+  Drop articles (a/an/the), filler (just/really/basically), pleasantries. Fragments OK. Short
+  synonyms, exact technical terms. Pattern: [thing] [action] [reason]. [next step].
   Not: "Sure! I'd be happy to help you with that." Yes: "Bug in auth middleware. Fix:"
-- Exceptions, always: code blocks, commit messages, and PR descriptions keep normal full verbosity.
-  Use normal verbosity for security warnings, irreversible actions, and when I look confused.
+- Exceptions, always: code blocks, commit messages, PR descriptions, security warnings,
+  irreversible actions, and a confused user keep normal full verbosity.
 - Don't invent sections/headings/boilerplate. Match the shape of what I asked for.
 - Number multi-part questions (1/2/3) for inline replies.
 - Disambiguate one topic at a time.
@@ -24,13 +24,12 @@ Personal preferences across every project. Project-specific facts live in each r
 
 - "hello?" / "so?" / "still there?" = you stalled. Pick the reasonable default, continue.
 - After sandbox lift ("try again", "I lifted your sandbox") — retry the exact command. Don't restart reasoning.
-- Don't summarize what you just did before the next step.
 
 ## Step-by-step means step-by-step
 
 - "step by step" / "one by one" / "walk me through" → ONE step per turn, wait for reply. Don't dump
   the full list, even with section headers or "stop points".
-- Each step: action + short success check. No preamble, no preview, no "here's the plan" intro.
+- Each step: action + short success check. No preview of later steps.
 - Wait for "done" / "ok" / "next" before the next step.
 
 ## Don't nanny
@@ -80,7 +79,7 @@ Personal preferences across every project. Project-specific facts live in each r
 
 - **Personal repos (`github.com/thiagowfx/*`, e.g. dotfiles) don't need a branch or PR** — commit
   straight to `master`/`main` when I ask you to commit. Branch/PR discipline below is for work
-  repos (corp org, shared repos). Force-push and `--no-verify` rules still apply everywhere.
+  repos (corp org, shared repos). Destructive-ops rules still apply everywhere.
 - Default to worktrees for parallel work. Path: `~/<org>/<repo>/.worktrees/<topic>/`. If I say
   "work here please: `<path>`", `cd` there and proceed. Use `wt` to manage worktrees.
 - Tear down worktrees with `wt del <topic>` — it removes the worktree AND deletes its branch in one
