@@ -28,7 +28,10 @@
       "source": "git:github.com/tmustier/pi-extensions@session-recap/v0.4.1",
       "extensions": [
         "session-recap/index.ts"
-      ]
+      ],
+      "prompts": [],
+      "skills": [],
+      "themes": []
     }
   ],
   "retry": {

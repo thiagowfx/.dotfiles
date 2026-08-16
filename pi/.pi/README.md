@@ -53,8 +53,9 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
   - Design grilling, TDD, APKBUILD scaffolding
   - PR shipping and CI-pass loops
 - [`tmustier/pi-extensions`](https://github.com/tmustier/pi-extensions)
-  - `session-recap` only: focus-aware while-you-were-away recaps using a cheap
-    same-provider model automatically.
+  - `session-recap` extension only: focus-aware while-you-were-away recaps using a cheap
+    same-provider model automatically. Skills, prompts, and themes of that repository are
+    filtered out.
 
 ### npm packages
 
