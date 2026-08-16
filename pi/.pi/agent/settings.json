@@ -15,7 +15,7 @@
   ],
   "hideThinkingBlock": false,
   "httpIdleTimeoutMs": 30000,
-  "lastChangelogVersion": "0.84.1",
+  "lastChangelogVersion": "0.84.2",
   "packages": [
     "git:github.com/thiagowfx/skills",
     "local/web-search",
