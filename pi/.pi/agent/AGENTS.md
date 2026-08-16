@@ -112,18 +112,21 @@ Personal preferences across every project. Project-specific facts live in each r
 
 ## Subagents
 
-- The `Agent` tool's `model` param defaults to **inheriting the parent's model** — for me that's
-  Opus. That default is wrong for most subagent work. **Pass `model` explicitly.**
-  - `model: "haiku"` — pure orchestration: iterative web research, doc-skimming,
-    list-and-summarize. The subagent mostly drives tool calls and collates.
-  - `model: "sonnet"` — **default for research/general-purpose**: mixed reasoning + search,
-    multi-file code navigation, synthesis where the answer isn't a flat list.
-  - `model: "opus"` (or omit) — only genuinely reasoning-heavy work: comparing tradeoffs across
-    many alternatives, designing non-obvious architecture, debugging subtle cross-file behavior.
-    Justify it; when in doubt start with Sonnet and promote only if needed.
-- **Right tool before right model.** Pure code-location ("where is X defined / what references Y")
-  → `Explore`, not `general-purpose`. Use direct tools when target is already known.
-- **Terse returns.** Instruct research/`general-purpose`/`Explore` subagents to **report in under
-  ~200 words — file paths and line numbers, not file contents.** Subagent returns are appended
-  verbatim to the parent thread and cached forward every subsequent turn; a 17k-token dump is
-  paid for repeatedly, not once.
+Applies to any tool that spawns a subagent: the Claude Code `Agent` and `Explore` tools, and Pi
+subagent extensions. Skip the section when the running agent has no such tool.
+
+- **Right tool before right model.** Code-location questions ("where is X defined", "what
+  references Y") go to a search-focused subagent, or to plain grep and read when the target is
+  known. Keep general-purpose subagents for open-ended work.
+- **Set the model explicitly.** A subagent that inherits the parent model runs on the costliest
+  tier by default, which is wrong for most delegated work.
+  - Cheap tier (Haiku class) — orchestration: iterative web research, doc skimming,
+    list-and-summarize. The subagent drives tool calls and collates.
+  - Mid tier (Sonnet class) — **default for research and general-purpose**: mixed reasoning and
+    search, multi-file code navigation, synthesis where the answer is not a flat list.
+  - Top tier (Opus class) — only reasoning-heavy work: tradeoffs across many alternatives,
+    non-obvious architecture, subtle cross-file debugging. Justify it. When in doubt start one
+    tier lower and promote.
+- **Terse returns.** Tell every subagent to report in under ~200 words, with file paths and line
+  numbers instead of file contents. Returns are appended verbatim to the parent thread and cached
+  forward every turn, so a large dump is paid for repeatedly.
