@@ -7,9 +7,9 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 ## Highlights
 
 - Catppuccin Mocha theme
-- Default model: OpenAI Codex GPT Terra or Anthropic Claude Sonnet equivalent
+- Default model: Anthropic Claude Opus
 - High thinking level, visible thinking blocks, compaction, retries, and caching
-- Claude and OpenAI Codex models
+- Anthropic Claude models only: Haiku, Sonnet, Opus, Fable
 - Telemetry disabled
 - User-only session-tree filter
 
@@ -17,7 +17,6 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 
 ### Extensions
 
-- **Context moon** — accent-colored moon-phase gauge tracks context-window usage in footer.
 - **Session ID** — full session UUID in footer for quick reference.
 - **Side chat** — `/btw [question]` opens a context-aware, read-only side conversation without growing main history.
 - **Prompt stash** — queue drafts with `Ctrl+s`, restore with `Ctrl+Shift+s`, or manage via `/stash`.
@@ -32,12 +31,14 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
   and session restore.
 - **Automatic session names** — generates a concise name from the first prompt using the cheapest available model.
 - **Title-bar spinner** — shows agent activity, session name, and working directory in terminal title.
+- **Atuin history** — records agent-issued bash commands in Atuin under author `pi`; needs
+  `atuin hook install pi`.
 
 ### Interface
 
 - **Theme:** Catppuccin Mocha dark palette with markdown, syntax, diff, tool, and thinking-level colors.
-- **Model cycling:** `Shift+Ctrl+P` or `Ctrl+N`; scoped models stay grouped by provider and ordered from
-  cheaper/lighter to costlier/stronger.
+- **Model cycling (backward):** `Shift+Ctrl+P` or `Ctrl+N`; scoped models stay grouped by provider and
+  ordered from cheaper/lighter to costlier/stronger.
 - **Model/session save or sort:** `Alt+S`.
 
 ## Packages and extensions
@@ -61,7 +62,6 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - `@ryan_nookpi/pi-extension-memory-layer` — curated global/project memory with compact index injection and on-demand recall.
 - `@zeldrisho/pi-web-fetch` — keyless, bounded public webpage fetching through sole `web_fetch` tool.
 - `pi-tool-display` — OpenCode-style compact tool rendering and richer edit diffs.
-- `@tintinweb/pi-subagents` — specialized subagents.
 - `pi-mcp-adapter` — lazy MCP server integration through one context-efficient proxy tool.
 
 ### Local packages
@@ -72,8 +72,9 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 ## Layout
 
 - `agent/AGENTS.md` — global instruction source of truth; `~/.claude/CLAUDE.md` links to it.
-- `.config/mcp/mcp.json` — shared MCP server configuration.
 - `agent/settings.json` — Pi settings and packages.
 - `agent/keybindings.json` — keybindings.
 - `agent/extensions/` — custom TypeScript extensions.
+- `agent/local/` — local Pi packages.
 - `agent/themes/` — custom themes.
+- `agent/check-pinned-npm-packages.py` — prek hook; rejects unpinned npm package specs.
