@@ -17,7 +17,6 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 
 ### Extensions
 
-- **Caveman mode** — auto-enabled terse responses; toggle with `/caveman on|off`.
 - **Context moon** — accent-colored moon-phase gauge tracks context-window usage in footer.
 - **Session ID** — full session UUID in footer for quick reference.
 - **Side chat** — `/btw [question]` opens a context-aware, read-only side conversation without growing main history.

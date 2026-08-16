@@ -138,7 +138,6 @@
     "command": "bash ~/.claude/statusline.sh"
   },
   "enabledPlugins": {
-    "caveman@caveman": true,
     "gopls-lsp@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
@@ -152,12 +151,6 @@
       "source": {
         "source": "github",
         "repo": "antonbabenko/agent-plugins"
-      }
-    },
-    "caveman": {
-      "source": {
-        "source": "github",
-        "repo": "JuliusBrussee/caveman"
       }
     },
     "thiagowfx": {
