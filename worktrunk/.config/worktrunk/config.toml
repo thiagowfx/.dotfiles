@@ -160,12 +160,27 @@ delete = "wt remove -D {{ args }}"
 goto = "wt switch --no-cd {{ args }}"
 ls = "wt list {{ args }}"
 me = '''
-sel=$(gh pr list --author @me --limit 100 --json number,headRefName,title \
-  --jq '.[] | "\(.number)\t\(.headRefName)\t\(.title)"' \
-  | fzf --delimiter='\t' --preview 'gh pr view {1}') || exit 1
-number=$(printf '%s\n' "$sel" | cut -f1)
-[ -n "$number" ] || exit 1
-wt switch "pr:$number"
+# Same picker as `wt co --prs`, restricted to PRs authored by @me.
+# worktrunk lists PRs by shelling out to `gh pr list`, so a shim on PATH
+# injects --author @me into that one call (the per-branch status call passes
+# --head and is left alone).
+WT_ME_GH=$(command -v gh) || { printf 'wt me: gh not found\n' >&2; exit 1; }
+export WT_ME_GH
+shim=$(mktemp -d) || exit 1
+trap 'rm -rf "$shim"' EXIT INT TERM
+cat >"$shim/gh" <<'SHIM'
+#!/bin/sh
+if [ "$1" = pr ] && [ "$2" = list ]; then
+  shift 2
+  case " $* " in
+    *" --head "*) exec "$WT_ME_GH" pr list "$@" ;;
+  esac
+  exec "$WT_ME_GH" pr list --author @me "$@"
+fi
+exec "$WT_ME_GH" "$@"
+SHIM
+chmod +x "$shim/gh" || exit 1
+PATH="$shim:$PATH" wt switch --prs {{ args }}
 '''
 new = "wt switch --create {{ args }}"
 rename = '''
