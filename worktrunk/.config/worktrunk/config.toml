@@ -160,27 +160,41 @@ delete = "wt remove -D {{ args }}"
 goto = "wt switch --no-cd {{ args }}"
 ls = "wt list {{ args }}"
 me = '''
-# Same picker as `wt co --prs`, restricted to PRs authored by @me.
-# worktrunk lists PRs by shelling out to `gh pr list`, so a shim on PATH
-# injects --author @me into that one call (the per-branch status call passes
-# --head and is left alone).
-WT_ME_GH=$(command -v gh) || { printf 'wt me: gh not found\n' >&2; exit 1; }
-export WT_ME_GH
-shim=$(mktemp -d) || exit 1
-trap 'rm -rf "$shim"' EXIT INT TERM
-cat >"$shim/gh" <<'SHIM'
-#!/bin/sh
-if [ "$1" = pr ] && [ "$2" = list ]; then
-  shift 2
-  case " $* " in
-    *" --head "*) exec "$WT_ME_GH" pr list "$@" ;;
-  esac
-  exec "$WT_ME_GH" pr list --author @me "$@"
+# Pick one of my open PRs, then hand it to `wt switch pr:N`.
+# `wt switch --prs` renders PR rows with only a truncated branch and the PR
+# number, so this uses its own table: number, CI, review, age, branch, title,
+# with `gh pr view` in the preview pane.
+tab=$(printf '\t')
+rows=$(gh pr list --author @me --limit 100 \
+  --json number,title,headRefName,updatedAt,isDraft,reviewDecision,statusCheckRollup \
+  --jq '.[] | [
+    .number,
+    ( [.statusCheckRollup[]? | (.conclusion // .state // empty)] as $c
+      | if ($c | length) == 0 then "-"
+        elif ($c | any(. == "FAILURE" or . == "ERROR" or . == "TIMED_OUT" or . == "CANCELLED")) then "fail"
+        elif ($c | any(. == "PENDING" or . == "IN_PROGRESS" or . == "QUEUED")) then "run"
+        else "ok" end ),
+    ( if .isDraft then "draft" else ((.reviewDecision // "-") | ascii_downcase) end ),
+    ( (now - (.updatedAt | fromdateiso8601)) as $s
+      | if $s < 3600 then "\($s / 60 | floor)m"
+        elif $s < 86400 then "\($s / 3600 | floor)h"
+        else "\($s / 86400 | floor)d" end ),
+    .headRefName,
+    .title
+  ] | @tsv') || exit 1
+if [ -z "$rows" ]; then
+  printf 'wt me: no open PRs authored by @me\n' >&2
+  exit 1
 fi
-exec "$WT_ME_GH" "$@"
-SHIM
-chmod +x "$shim/gh" || exit 1
-PATH="$shim:$PATH" wt switch --prs {{ args }}
+sel=$(
+  { printf 'PR%sCI%sREVIEW%sAGE%sBRANCH%sTITLE\n' "$tab" "$tab" "$tab" "$tab" "$tab"
+    printf '%s\n' "$rows"
+  } | column -t -s "$tab" \
+    | fzf --header-lines=1 --reverse --preview 'gh pr view {1}' --preview-window='right,55%,border-left'
+) || exit 1
+number=${sel%% *}
+[ -n "$number" ] || exit 1
+wt switch "pr:$number" {{ args }}
 '''
 new = "wt switch --create {{ args }}"
 rename = '''
