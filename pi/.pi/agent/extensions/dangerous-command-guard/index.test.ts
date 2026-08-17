@@ -5,19 +5,6 @@ import bootstrapDangerousCommandGuard, { ensureDependencies } from "./index.ts";
 import dangerousCommandGuard, { findBlockedCommand } from "./guard.ts";
 
 const blocked = [
-  ["rm -rf ./build", "rm -rf"],
-  ["rm -r -f ./build", "rm -rf"],
-  ["/bin/rm '-rf' ./build", "rm -rf"],
-  ["command rm -fr ./build", "rm -rf"],
-  ["env -S 'rm -rf' ./build", "rm -rf"],
-  ["sudo -u root rm -rf ./build", "rm -rf"],
-  ["nohup rm -rf ./build", "rm -rf"],
-  ["nice -n 10 rm -rf ./build", "rm -rf"],
-  ["find . -exec rm -rf {} +", "rm -rf"],
-  ["printf '%s\\0' /tmp/example | xargs -0 rm -rf", "rm -rf"],
-  ["parallel rm -rf ::: /tmp/example", "rm -rf"],
-  ["eval 'rm -rf ./build'", "rm -rf"],
-  ["rm -rf /tmp/../etc", "rm -rf"],
   ["terraform -chdir=infra apply", "terraform apply"],
   ["terraform destroy", "terraform destroy"],
   ["just --justfile ops.just apply", "just apply"],
@@ -31,7 +18,6 @@ const blocked = [
   ["git commit -m test --no-verify", "--no-verify"],
   ["git push --no-verify origin feature", "--no-verify"],
   ["bash -c 'terraform destroy'", "terraform destroy"],
-  ["bash <<'EOF'\nrm -rf ./build\nEOF", "rm -rf"],
   ["echo $(git reset --hard HEAD)", "git reset --hard"],
 ] as const;
 
@@ -51,6 +37,20 @@ const allowed = [
   "rm -r /tmp/example",
   "rm -f /tmp/example",
   "rm /tmp/notes-on-.cache/pre-commit-migration.md",
+  "rm -rf ./build",
+  "rm -r -f ./build",
+  "/bin/rm '-rf' ./build",
+  "command rm -fr ./build",
+  "env -S 'rm -rf' ./build",
+  "sudo -u root rm -rf ./build",
+  "nohup rm -rf ./build",
+  "nice -n 10 rm -rf ./build",
+  "find . -exec rm -rf {} +",
+  "printf '%s\\0' /tmp/example | xargs -0 rm -rf",
+  "parallel rm -rf ::: /tmp/example",
+  "eval 'rm -rf ./build'",
+  "rm -rf /tmp/../etc",
+  "bash <<'EOF'\nrm -rf ./build\nEOF",
   "rm -rf /tmp/example",
   "rm -r -f /tmp/example",
   "/bin/rm '-rf' /tmp/example",
@@ -83,10 +83,8 @@ for (const command of allowed) {
   });
 }
 
-test("fails closed when guarded command contains dynamic arguments", async () => {
-  const result = await findBlockedCommand("rm $flags /tmp/example");
-  assert.ok(result);
-  assert.match(result.reason, /dynamic arguments/i);
+test("allows rm with dynamic arguments", async () => {
+  assert.equal(await findBlockedCommand('rm -rf "$build_dir"'), undefined);
 });
 
 test("reports malformed shell syntax", async () => {
@@ -138,7 +136,7 @@ test("extension prompts before dangerous bash tool calls", async () => {
     ui: { confirm: async () => false },
   };
   assert.deepEqual(
-    await handler({ toolName: "bash", input: { command: "rm -rf ./build" } }, denyContext),
+    await handler({ toolName: "bash", input: { command: "terraform destroy" } }, denyContext),
     { block: true, reason: "Blocked by user" },
   );
 
@@ -147,11 +145,11 @@ test("extension prompts before dangerous bash tool calls", async () => {
     ui: { confirm: async () => assert.fail("confirmation should not run without UI") },
   };
   assert.deepEqual(
-    await handler({ toolName: "bash", input: { command: "rm -rf ./build" } }, noUiContext),
-    { block: true, reason: "rm -rf is blocked for safety" },
+    await handler({ toolName: "bash", input: { command: "terraform destroy" } }, noUiContext),
+    { block: true, reason: "terraform destroy is blocked for safety" },
   );
   assert.equal(
-    await handler({ toolName: "bash", input: { command: "rm -rf /tmp/example" } }, noUiContext),
+    await handler({ toolName: "bash", input: { command: "rm -rf ./build" } }, noUiContext),
     undefined,
   );
   assert.equal(

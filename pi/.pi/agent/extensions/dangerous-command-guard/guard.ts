@@ -1,5 +1,4 @@
 import { createRequire } from "node:module";
-import { posix as posixPath } from "node:path";
 
 import { Language, type Node, Parser } from "web-tree-sitter";
 
@@ -127,34 +126,6 @@ function commandAfterOptions(arguments_: ShellWord[], optionsWithValues: Readonl
 function containsPreCommitCachePath(argument: string): boolean {
   const segments = argument.split("/");
   return segments.some((segment, index) => segment === ".cache" && segments[index + 1] === "pre-commit");
-}
-
-const TMP_ROOTS = ["/tmp", "/var/tmp", "/private/tmp", "/private/var/tmp"];
-
-function isTmpPath(argument: string): boolean {
-  if (!argument.startsWith("/")) return false;
-  const normalized = posixPath.normalize(argument);
-  return TMP_ROOTS.some((root) => normalized === root || normalized.startsWith(`${root}/`));
-}
-
-function rmOperands(arguments_: ShellWord[]): ShellWord[] {
-  const operands: ShellWord[] = [];
-  let optionsEnded = false;
-
-  for (const argument of arguments_) {
-    if (optionsEnded || argument === undefined) {
-      operands.push(argument);
-      continue;
-    }
-    if (argument === "--") {
-      optionsEnded = true;
-      continue;
-    }
-    if (argument.startsWith("-") && argument !== "-") continue;
-    operands.push(argument);
-  }
-
-  return operands;
 }
 
 function protectedGitRef(argument: string): boolean {
@@ -409,24 +380,8 @@ function inspectWords(words: ShellWord[], command: string, parser: Parser): Bloc
     }
   }
 
-  if (executable === "rm") {
-    const recursive = staticArguments.some(
-      (argument) => argument === "--recursive" || hasShortOption(argument, "r") || hasShortOption(argument, "R"),
-    );
-    const force = staticArguments.some(
-      (argument) => argument === "--force" || hasShortOption(argument, "f"),
-    );
-    if (recursive && force) {
-      const operands = rmOperands(arguments_);
-      const allTmp = operands.length > 0 && operands.every((operand) => operand !== undefined && isTmpPath(operand));
-      if (!allTmp) return { command, reason: "rm -rf is blocked for safety" };
-    }
-    if (staticArguments.some(containsPreCommitCachePath)) {
-      return { command, reason: "Deleting pre-commit cache is blocked for safety" };
-    }
-    if (hasDynamicArguments) {
-      return { command, reason: "Dynamic arguments to rm cannot be inspected safely" };
-    }
+  if (executable === "rm" && staticArguments.some(containsPreCommitCachePath)) {
+    return { command, reason: "Deleting pre-commit cache is blocked for safety" };
   }
 
   if (["terraform", "tofu", "terragrunt"].includes(executable)) {
