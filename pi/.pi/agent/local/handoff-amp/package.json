@@ -1,0 +1,17 @@
+{
+  "keywords": [
+    "pi-package"
+  ],
+  "license": "MIT",
+  "name": "handoff-amp",
+  "pi": {
+    "extensions": [
+      "./extensions"
+    ],
+    "skills": [
+      "./skills/session-query"
+    ]
+  },
+  "private": true,
+  "version": "1.0.0"
+}
