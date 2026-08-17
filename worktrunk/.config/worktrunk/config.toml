@@ -159,6 +159,14 @@ del = "wt remove -D {{ args }}"
 delete = "wt remove -D {{ args }}"
 goto = "wt switch --no-cd {{ args }}"
 ls = "wt list {{ args }}"
+me = '''
+sel=$(gh pr list --author @me --limit 100 --json number,headRefName,title \
+  --jq '.[] | "\(.number)\t\(.headRefName)\t\(.title)"' \
+  | fzf --delimiter='\t' --preview 'gh pr view {1}') || exit 1
+number=$(printf '%s\n' "$sel" | cut -f1)
+[ -n "$number" ] || exit 1
+wt switch "pr:$number"
+'''
 new = "wt switch --create {{ args }}"
 rename = '''
 {% if args | length != 1 %}
