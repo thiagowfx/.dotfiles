@@ -67,7 +67,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 
 ### Local packages
 
-- `web-search` — keyless web discovery via Jina Reader and DuckDuckGo; adapted from
+- `web-search` — keyless web discovery via Jina Reader and DuckDuckGo; runs with `python3`; adapted from
   [`pasky/pi-amplike`](https://github.com/pasky/pi-amplike) under MIT license.
 
 ## Layout

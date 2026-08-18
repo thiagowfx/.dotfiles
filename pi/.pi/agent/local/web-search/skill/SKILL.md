@@ -10,7 +10,7 @@ description: >-
 Run:
 
 ```bash
-{baseDir}/search.py "search query"
+python3 {baseDir}/../search.py "search query"
 ```
 
 Use specific queries. Search iteratively only when initial results are weak.
