@@ -22,7 +22,6 @@
   "packages": [
     "git:github.com/thiagowfx/skills",
     "local/web-search",
-    "local/handoff-amp",
     "npm:pi-tool-display@0.5.0",
     "npm:pi-mcp-adapter@2.24.0",
     "npm:@zeldrisho/pi-web-fetch@0.5.4",

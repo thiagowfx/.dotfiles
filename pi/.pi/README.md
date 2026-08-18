@@ -67,8 +67,6 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 
 ### Local packages
 
-- `handoff-amp` — Amp-like focused-session handoff command/tool and `session-query` skill; forked
-  from [`pasky/pi-amplike`](https://github.com/pasky/pi-amplike) under MIT license.
 - `web-search` — keyless web discovery via Jina Reader and DuckDuckGo; adapted from
   [`pasky/pi-amplike`](https://github.com/pasky/pi-amplike) under MIT license.
 
