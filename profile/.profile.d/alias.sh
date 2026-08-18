@@ -11,9 +11,9 @@ alias la="ls -la --color=auto"
 alias l="ls -l --color=auto"
 alias ll="l"
 
-# lsd: modern drop-in replacement for ls
-if command -v lsd >/dev/null 2>&1; then
-	alias ls="lsd -F --group-directories-first"
+# eza: modern drop-in replacement for ls
+if command -v eza >/dev/null 2>&1; then
+        alias ls="eza -F --group-directories-first"
 fi
 
 # https://direnv.net/
