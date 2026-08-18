@@ -241,7 +241,7 @@ local function setup()
               -- Check if any attached LSP supports signature help
               local clients = vim.lsp.get_clients({ bufnr = ev.buf })
               for _, client in ipairs(clients) do
-                if client.supports_method('textDocument/signatureHelp') then
+                if client:supports_method('textDocument/signatureHelp') then
                   vim.lsp.buf.signature_help()
                   return
                 end
