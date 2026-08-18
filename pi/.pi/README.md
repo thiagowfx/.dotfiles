@@ -53,13 +53,10 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
   - GitHub Actions failure analysis
   - Design grilling, TDD, APKBUILD scaffolding
   - PR shipping and CI-pass loops
-- [`tmustier/pi-extensions`](https://github.com/tmustier/pi-extensions)
-  - `session-recap` extension only: focus-aware while-you-were-away recaps using a cheap
-    same-provider model automatically. Skills, prompts, and themes of that repository are
-    filtered out.
 
 ### npm packages
 
+- `@tmustier/pi-session-recap` — focus-aware while-you-were-away recaps using a cheap same-provider model automatically.
 - `@nerisma/pi-auto-title` — generates concise session names from first prompts using a cheap model.
 - `@ryan_nookpi/pi-extension-memory-layer` — curated global/project memory with compact index injection and on-demand recall.
 - `@zeldrisho/pi-web-fetch` — keyless, bounded public webpage fetching through sole `web_fetch` tool.
