@@ -5,11 +5,15 @@
 # version files (see settings below) for repos that do not use mise yet.
 
 [tools]
+# Ships bin/python next to bin/python3, so no `python` shim formula is needed.
+# Project virtualenvs still come from uv.
+python = "3.14"
 ruby = "3.4"
 terraform = "1.15"
 
 [settings]
-# Honour .ruby-version and .terraform-version in repos without mise.toml.
-idiomatic_version_file_enable_tools = ["ruby", "terraform"]
+# Honour .python-version, .ruby-version and .terraform-version in repos
+# without mise.toml.
+idiomatic_version_file_enable_tools = ["python", "ruby", "terraform"]
 
 # vim: ft=toml
