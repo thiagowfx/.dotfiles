@@ -85,7 +85,6 @@ repos:
     rev: 5b5dddc4fb0f83c3ea1fc5616fa63e115dce83e0 # frozen: v0.49.1
     hooks:
       - id: markdownlint
-        exclude: ^(plans/|claude/\.claude/skills/)
         args:
           - --config=.markdownlintrc.json
   - repo: https://github.com/jmlrt/check-yamlschema
