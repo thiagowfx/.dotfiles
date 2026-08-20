@@ -7,6 +7,12 @@
 # https://direnv.net/
 (( $+commands[direnv] )) && eval "$(direnv hook zsh)"
 
+# mise: tool versions, env vars and tasks
+# https://mise.jdx.dev/dev-tools/shims.html#how-to-add-mise-shims-to-path
+# PATH activation for interactive shells; .profile.d/programming.sh sets up the
+# shims that non-interactive shells use.
+(( $+commands[mise] )) && eval "$(mise activate zsh)"
+
 # fzf: fuzzy file finder
 # https://github.com/junegunn/fzf#setting-up-shell-integration
 (( $+commands[fzf] )) && source <(fzf --zsh)

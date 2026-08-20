@@ -1,0 +1,15 @@
+# Global mise configuration: tool versions, env vars and tasks.
+# https://mise.jdx.dev/configuration.html
+#
+# Per-project versions come from each repo's mise.toml, or from idiomatic
+# version files (see settings below) for repos that do not use mise yet.
+
+[tools]
+ruby = "3.4"
+terraform = "1.15"
+
+[settings]
+# Honour .ruby-version and .terraform-version in repos without mise.toml.
+idiomatic_version_file_enable_tools = ["ruby", "terraform"]
+
+# vim: ft=toml
