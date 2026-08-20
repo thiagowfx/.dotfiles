@@ -7,13 +7,23 @@
 [tools]
 # Ships bin/python next to bin/python3, so no `python` shim formula is needed.
 # Project virtualenvs still come from uv.
+# keep-sorted start
 python = "3.14"
 ruby = "3.4"
+rust = "1.97"
 terraform = "1.15"
+# keep-sorted end
 
 [settings]
-# Honour .python-version, .ruby-version and .terraform-version in repos
-# without mise.toml.
-idiomatic_version_file_enable_tools = ["python", "ruby", "terraform"]
+# Honour .python-version, .ruby-version, rust-toolchain.toml and
+# .terraform-version in repos without mise.toml.
+idiomatic_version_file_enable_tools = [
+  # keep-sorted start
+  "python",
+  "ruby",
+  "rust",
+  "terraform",
+  # keep-sorted end
+]
 
 # vim: ft=toml
