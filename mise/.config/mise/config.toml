@@ -9,6 +9,7 @@
 # Project virtualenvs still come from uv.
 # keep-sorted start
 go = "1.27"
+node = "26.7"
 python = "3.14"
 ruby = "3.4"
 rust = "1.97"
@@ -30,6 +31,7 @@ PIP_DISABLE_PIP_VERSION_CHECK = "1"
 idiomatic_version_file_enable_tools = [
   # keep-sorted start
   "go",
+  "node",
   "python",
   "ruby",
   "rust",
