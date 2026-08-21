@@ -11,7 +11,7 @@
 go = "1.27"
 python = "3.14"
 ruby = "3.4"
-rust = "1.97"
+rust = "1.98"
 terraform = "1.15"
 # keep-sorted end
 
