@@ -21,6 +21,9 @@ terraform-docs = "0.24.0"
 # Go CLI binaries installed with `go install`.
 _.path = "{{env.HOME}}/go/bin"
 # keep-sorted start
+# mise points GOBIN at its own versioned install directory, which a go
+# upgrade deletes. Keep `go install` output in the directory on _.path above.
+GOBIN = "{{env.HOME}}/go/bin"
 GOPATH = "{{env.HOME}}/go"
 # https://stackoverflow.com/questions/46288847/how-to-suppress-pip-upgrade-warning
 PIP_DISABLE_PIP_VERSION_CHECK = "1"
