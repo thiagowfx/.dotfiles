@@ -5,11 +5,11 @@
 # version files (see settings below) for repos that do not use mise yet.
 
 [tools]
-# Ships bin/python next to bin/python3, so no `python` shim formula is needed.
-# Project virtualenvs still come from uv.
 # keep-sorted start
 go = "1.27"
 node = "26.7"
+# Ships bin/python next to bin/python3, so no `python` shim formula is needed.
+# Project virtualenvs still come from uv.
 python = "3.14"
 ruby = "3.4"
 rust = "1.97"
@@ -27,8 +27,8 @@ PIP_DISABLE_PIP_VERSION_CHECK = "1"
 # keep-sorted end
 
 [settings]
-# Honour .go-version, .python-version, .ruby-version, rust-toolchain.toml
-# and .terraform-version in repos without mise.toml.
+# Honour .go-version, .node-version, .python-version, .ruby-version,
+# rust-toolchain.toml and .terraform-version in repos without mise.toml.
 idiomatic_version_file_enable_tools = [
   # keep-sorted start
   "go",
