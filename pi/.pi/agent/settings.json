@@ -2,7 +2,7 @@
   "compaction": {
     "enabled": true
   },
-  "defaultModel": "gpt-5.6-luna",
+  "defaultModel": "gpt-5.6-terra",
   "defaultProvider": "openai-codex",
   "defaultThinkingLevel": "high",
   "doubleEscapeAction": "tree",
