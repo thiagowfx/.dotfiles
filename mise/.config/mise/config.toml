@@ -15,6 +15,15 @@ rust = "1.97"
 terraform = "1.15"
 # keep-sorted end
 
+[env]
+# Go CLI binaries installed with `go install`.
+_.path = "{{env.HOME}}/go/bin"
+# keep-sorted start
+GOPATH = "{{env.HOME}}/go"
+# https://stackoverflow.com/questions/46288847/how-to-suppress-pip-upgrade-warning
+PIP_DISABLE_PIP_VERSION_CHECK = "1"
+# keep-sorted end
+
 [settings]
 # Honour .go-version, .python-version, .ruby-version, rust-toolchain.toml
 # and .terraform-version in repos without mise.toml.

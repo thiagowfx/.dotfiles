@@ -198,9 +198,14 @@ configure-macos:
 [group('bootstrap')]
 bootstrap: xcode-command-line-tools install-brewfile configure-macos
 
-[doc('Install dotfiles (stow packages and bootstrap environment)')]
+[doc('Install tools declared in global mise config')]
 [group('install')]
-install: stow bootstrap
+mise-install:
+    mise install
+
+[doc('Install dotfiles, bootstrap environment, and install mise tools')]
+[group('install')]
+install: bootstrap stow mise-install
 
 [doc('Update git submodules, Pi packages, prek hooks, and upstream files')]
 [group('update')]
