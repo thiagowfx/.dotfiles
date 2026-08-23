@@ -32,6 +32,8 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - **Title-bar spinner** — shows agent activity, session name, and working directory in terminal title.
 - **Atuin history** — records agent-issued bash commands in Atuin under author `pi`; needs
   `atuin hook install pi`.
+- **GitHub PR link** — statusline shows the current branch pull request as a clickable `PR #123`;
+  one `gh pr view` call on session start and after each turn; needs authenticated `gh`.
 
 ### Interface
 
@@ -55,8 +57,6 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 ### npm packages
 
 - `@tmustier/pi-session-recap` — focus-aware while-you-were-away recaps using a cheap same-provider model automatically.
-- `@narumitw/pi-github-pr` — passive statusline entry with current branch pull request number, checks state,
-  review state, and comment count; needs authenticated `gh`.
 - `@nerisma/pi-auto-title` — generates concise session names from first prompts using a cheap model.
 - `@ryan_nookpi/pi-extension-memory-layer` — curated global/project memory with compact index injection and on-demand recall.
 - `@zeldrisho/pi-web-fetch` — keyless, bounded public webpage fetching through sole `web_fetch` tool.
