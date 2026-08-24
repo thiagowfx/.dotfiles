@@ -1,8 +1,9 @@
 /**
  * GitHub PR link status
  *
- * Shows the current branch pull request as a clickable `PR #123` statusline entry.
- * Nothing else: no checks state, no review state, no comment count.
+ * Shows the current session branch pull request as a clickable `PR #123` statusline entry.
+ * Tracks a `.worktrees` checkout when tools use one. Nothing else: no checks state,
+ * no review state, no comment count.
  *
  * Refreshes on session start and after each agent turn. One `gh pr view` call per refresh.
  * Any failure (no PR, no `gh`, unauthenticated, not a repository) clears the entry.
@@ -12,6 +13,37 @@ import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-a
 
 const STATUS_KEY = "github-pr";
 const GH_TIMEOUT_MS = 10_000;
+
+export function findWorktreeRoot(value: unknown, sessionCwd: string): string | undefined {
+	const prefix = `${sessionCwd.replace(/\/$/, "")}/.worktrees/`;
+	let latest: string | undefined;
+
+	const inspect = (candidate: unknown) => {
+		if (typeof candidate === "string") {
+			let offset = 0;
+			while (true) {
+				const start = candidate.indexOf(prefix, offset);
+				if (start === -1) break;
+				const topicStart = start + prefix.length;
+				const topicEnd = candidate.slice(topicStart).search(/[\s/'"`;$]/);
+				const topic = candidate.slice(topicStart, topicEnd === -1 ? undefined : topicStart + topicEnd);
+				if (topic) latest = `${prefix}${topic}`;
+				offset = topicStart + Math.max(topic.length, 1);
+			}
+			return;
+		}
+		if (Array.isArray(candidate)) {
+			for (const item of candidate) inspect(item);
+			return;
+		}
+		if (candidate && typeof candidate === "object") {
+			for (const item of Object.values(candidate)) inspect(item);
+		}
+	};
+
+	inspect(value);
+	return latest;
+}
 
 export function osc8Link(url: string, text: string): string {
 	try {
@@ -38,6 +70,14 @@ export function formatPrLink(stdout: string): string | undefined {
 
 export default function (pi: ExtensionAPI) {
 	let request = 0;
+	let activeCwd: string | undefined;
+
+	const useWorktreeFrom = (value: unknown, ctx: ExtensionContext) => {
+		const worktree = findWorktreeRoot(value, ctx.cwd);
+		if (!worktree || worktree === activeCwd) return;
+		activeCwd = worktree;
+		request += 1;
+	};
 
 	const refresh = async (ctx: ExtensionContext) => {
 		request += 1;
@@ -45,7 +85,7 @@ export default function (pi: ExtensionAPI) {
 		let status: string | undefined;
 		try {
 			const result = await pi.exec("gh", ["pr", "view", "--json", "number,url,state"], {
-				cwd: ctx.cwd,
+				cwd: activeCwd ?? ctx.cwd,
 				signal: ctx.signal,
 				timeout: GH_TIMEOUT_MS,
 			});
@@ -56,10 +96,16 @@ export default function (pi: ExtensionAPI) {
 		if (current === request && !ctx.signal?.aborted) ctx.ui.setStatus(STATUS_KEY, status);
 	};
 
-	pi.on("session_start", async (_event, ctx) => refresh(ctx));
-	pi.on("agent_end", async (_event, ctx) => refresh(ctx));
+	pi.on("session_start", async (_event, ctx) => {
+		activeCwd = undefined;
+		useWorktreeFrom(ctx.sessionManager.getBranch(), ctx);
+		return refresh(ctx);
+	});
+	pi.on("tool_call", (event, ctx) => useWorktreeFrom(event.input, ctx));
+	pi.on("turn_end", async (_event, ctx) => refresh(ctx));
 	pi.on("session_shutdown", async (_event, ctx) => {
 		request += 1;
+		activeCwd = undefined;
 		ctx.ui.setStatus(STATUS_KEY, undefined);
 	});
 }

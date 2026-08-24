@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import install, { formatPrLink, osc8Link } from "../github-pr-link.ts";
+import install, { findWorktreeRoot, formatPrLink, osc8Link } from "../github-pr-link.ts";
 
 type Handler = (event: unknown, ctx: unknown) => Promise<void> | void;
 
@@ -27,10 +27,19 @@ function setup(exec: (command: string, args: string[], options?: { cwd?: string 
 	return { handlers, calls };
 }
 
-function ctxWith(statuses: Array<{ key: string; text: string | undefined }>, signal?: AbortSignal) {
+function ctxWith(
+	statuses: Array<{ key: string; text: string | undefined }>,
+	signal?: AbortSignal,
+	branch: unknown[] = [],
+) {
 	return {
 		cwd: "/repo",
 		signal,
+		sessionManager: {
+			getBranch() {
+				return branch;
+			},
+		},
 		ui: {
 			setStatus(key: string, text: string | undefined) {
 				statuses.push({ key, text });
@@ -62,6 +71,20 @@ test("osc8Link rejects non-http schemes", () => {
 	assert.equal(osc8Link("nonsense", "PR #1"), "PR #1");
 });
 
+test("findWorktreeRoot finds the latest session worktree", () => {
+	assert.equal(
+		findWorktreeRoot(
+			{
+				oldPath: "/repo/.worktrees/old/file.ts",
+				command: "cd /repo/.worktrees/current && gh pr view",
+			},
+			"/repo",
+		),
+		"/repo/.worktrees/current",
+	);
+	assert.equal(findWorktreeRoot("/other/.worktrees/topic/file.ts", "/repo"), undefined);
+});
+
 test("session start shows the PR link", async () => {
 	const { handlers, calls } = setup(() => ({ stdout: OPEN_PR, stderr: "", code: 0, killed: false }));
 	const statuses: Array<{ key: string; text: string | undefined }> = [];
@@ -75,7 +98,59 @@ test("session start shows the PR link", async () => {
 	]);
 });
 
-test("agent end clears the entry when gh fails", async () => {
+test("turn end follows a worktree used by tools", async () => {
+	const { handlers, calls } = setup(() => ({ stdout: OPEN_PR, stderr: "", code: 0, killed: false }));
+	const statuses: Array<{ key: string; text: string | undefined }> = [];
+	const ctx = ctxWith(statuses);
+
+	await handlers.get("tool_call")?.(
+		{ input: { path: "/repo/.worktrees/topic/src/file.ts" } },
+		ctx,
+	);
+	await handlers.get("turn_end")?.({}, ctx);
+
+	assert.deepEqual(calls, [
+		{
+			command: "gh",
+			args: ["pr", "view", "--json", "number,url,state"],
+			cwd: "/repo/.worktrees/topic",
+		},
+	]);
+	assert.deepEqual(statuses, [
+		{ key: STATUS_TEXT_KEY, text: "\x1b]8;;https://github.com/o/r/pull/42\x07PR #42\x1b]8;;\x07" },
+	]);
+});
+
+test("session start restores the latest worktree from session history", async () => {
+	const { handlers, calls } = setup(() => ({ stdout: OPEN_PR, stderr: "", code: 0, killed: false }));
+	const statuses: Array<{ key: string; text: string | undefined }> = [];
+	const branch = [
+		{
+			type: "message",
+			message: {
+				role: "assistant",
+				content: [
+					{
+						type: "toolCall",
+						arguments: { path: "/repo/.worktrees/restored/README.md" },
+					},
+				],
+			},
+		},
+	];
+
+	await handlers.get("session_start")?.({}, ctxWith(statuses, undefined, branch));
+
+	assert.deepEqual(calls, [
+		{
+			command: "gh",
+			args: ["pr", "view", "--json", "number,url,state"],
+			cwd: "/repo/.worktrees/restored",
+		},
+	]);
+});
+
+test("turn end clears the entry when gh fails", async () => {
 	const { handlers } = setup(() => ({
 		stdout: "",
 		stderr: "no pull requests found",
@@ -83,17 +158,17 @@ test("agent end clears the entry when gh fails", async () => {
 		killed: false,
 	}));
 	const statuses: Array<{ key: string; text: string | undefined }> = [];
-	await handlers.get("agent_end")?.({}, ctxWith(statuses));
+	await handlers.get("turn_end")?.({}, ctxWith(statuses));
 
 	assert.deepEqual(statuses, [{ key: STATUS_TEXT_KEY, text: undefined }]);
 });
 
-test("agent end clears the entry when gh is missing", async () => {
+test("turn end clears the entry when gh is missing", async () => {
 	const { handlers } = setup(() => {
 		throw new Error("spawn gh ENOENT");
 	});
 	const statuses: Array<{ key: string; text: string | undefined }> = [];
-	await handlers.get("agent_end")?.({}, ctxWith(statuses));
+	await handlers.get("turn_end")?.({}, ctxWith(statuses));
 
 	assert.deepEqual(statuses, [{ key: STATUS_TEXT_KEY, text: undefined }]);
 });
@@ -105,7 +180,7 @@ test("aborted turn keeps the previous entry", async () => {
 	const statuses: Array<{ key: string; text: string | undefined }> = [];
 	const controller = new AbortController();
 	controller.abort();
-	await handlers.get("agent_end")?.({}, ctxWith(statuses, controller.signal));
+	await handlers.get("turn_end")?.({}, ctxWith(statuses, controller.signal));
 
 	assert.deepEqual(statuses, []);
 });
@@ -129,7 +204,7 @@ test("a stale refresh does not overwrite a newer one", async () => {
 	const statuses: Array<{ key: string; text: string | undefined }> = [];
 	const ctx = ctxWith(statuses);
 	const stale = handlers.get("session_start")?.({}, ctx);
-	await handlers.get("agent_end")?.({}, ctx);
+	await handlers.get("turn_end")?.({}, ctx);
 	resolveFirst?.({ stdout: JSON.stringify({ number: 1, state: "OPEN" }), code: 0, killed: false });
 	await stale;
 
