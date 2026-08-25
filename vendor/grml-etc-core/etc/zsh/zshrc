@@ -2421,17 +2421,13 @@ hash -d www=/var/www
 
 # some aliases
 if check_com -c screen ; then
-    if [[ $UID -eq 0 ]] ; then
-        if [[ -r /etc/grml/screenrc ]]; then
-            alias screen='screen -c /etc/grml/screenrc'
-        fi
-    elif [[ ! -r $HOME/.screenrc ]] ; then
-        if [[ -r /etc/grml/screenrc_grml ]]; then
-            alias screen='screen -c /etc/grml/screenrc_grml'
-        else
-            if [[ -r /etc/grml/screenrc ]]; then
-                alias screen='screen -c /etc/grml/screenrc'
-            fi
+    SCREENRC=screenrc
+    if [ "${${${$(screen -v)#*version* }%% *}%%.*}" = 4 ]; then
+        SCREENRC=screenrc_v4
+    fi
+    if [[ ! -r "$HOME"/.screenrc ]]; then
+        if [[ -r /etc/grml/"$SCREENRC" ]]; then
+            alias screen="screen -c /etc/grml/$SCREENRC"
         fi
     fi
 fi
@@ -2782,7 +2778,11 @@ if check_com -c $PAGER ; then
         fi
 
         for package in "$@" ; do
-            if [[ -r /usr/share/doc/${package}/changelog.Debian.gz ]] ; then
+            if [[ -f /usr/share/doc/${package} ]] ; then
+                # Allow opening specific changelog file.
+                # example: dchange $PACKAGE/changelog.md.gz
+                $viewer /usr/share/doc/${package}
+            elif [[ -r /usr/share/doc/${package}/changelog.Debian.gz ]] ; then
                 $viewer /usr/share/doc/${package}/changelog.Debian.gz
             elif [[ -r /usr/share/doc/${package}/changelog.gz ]] ; then
                 $viewer /usr/share/doc/${package}/changelog.gz
@@ -2801,7 +2801,7 @@ if check_com -c $PAGER ; then
             fi
         done
     }
-    function _dchange () { _files -W /usr/share/doc -/ }
+    function _dchange () { _files -W /usr/share/doc -g "*changelog*" }
     compdef _dchange dchange
 
     #f3# View Debian's NEWS of a given package
@@ -2820,6 +2820,25 @@ if check_com -c $PAGER ; then
     }
     function _dnews () { _files -W /usr/share/doc -/ }
     compdef _dnews dnews
+
+    #f3# View Debian's README of a given package
+    function dreadme () {
+        emulate -L zsh
+        if [[ -f /usr/share/doc/$1 ]] ; then
+            # Allow opening specific file. 
+            # example: dreadme $PACKAGE/README.md.gz
+            $PAGER /usr/share/doc/$1
+        elif [[ -r /usr/share/doc/$1/README.Debian ]] ; then
+            $PAGER /usr/share/doc/$1/README.Debian
+        elif [[ -r /usr/share/doc/$1/README.gz ]] ; then
+            $PAGER /usr/share/doc/$1/README.gz
+        else
+            echo "No README file for package $1 found, sorry."
+            return 1
+        fi
+    }
+    function _dreadme () { _files -W /usr/share/doc -g "*README*" }
+    compdef _dreadme dreadme
 
     #f3# View Debian's copyright of a given package
     function dcopyright () {
