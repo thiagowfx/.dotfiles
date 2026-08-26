@@ -17,5 +17,12 @@ git clone --recurse --jobs=$(nproc) https://github.com/thiagowfx/.dotfiles ~/.do
 (cd ~/.dotfiles && just install)
 ```
 
+## Support
+
+These files are personal configuration. Support is not provided.
+
+Read recipes, configuration files, and relevant manual pages before use. Keep
+backups. Know what you are doing.
+
 [just]: https://just.systems/
 [stow]: https://www.gnu.org/software/stow/
