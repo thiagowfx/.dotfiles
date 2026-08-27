@@ -50,6 +50,9 @@ matches:
   - trigger: ":right"
     replace: "→"
 
+  - trigger: ":star"
+    replace: "★"
+
   - trigger: ":therefore"
     replace: "∴"
 
