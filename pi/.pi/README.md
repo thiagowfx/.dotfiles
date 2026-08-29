@@ -68,6 +68,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - `pi-mcp-adapter` — lazy MCP server integration through one context-efficient proxy tool; persistent footer status disabled.
 - `pi-team` — assembles multiple AI agents for parallel task analysis and synthesis.
 - `@juicesharp/rpiv-ask-user-question` — lets model ask structured questions through terminal dialogs.
+- `@juicesharp/rpiv-todo` — renders model todo lists as a live overlay that survives reloads and compaction.
 
 ### Local packages
 
