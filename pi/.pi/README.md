@@ -67,6 +67,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - `pi-tool-display` — OpenCode-style compact tool rendering and richer edit diffs.
 - `pi-mcp-adapter` — lazy MCP server integration through one context-efficient proxy tool; persistent footer status disabled.
 - `pi-team` — assembles multiple AI agents for parallel task analysis and synthesis.
+- `@juicesharp/rpiv-ask-user-question` — lets model ask structured questions through terminal dialogs.
 
 ### Local packages
 

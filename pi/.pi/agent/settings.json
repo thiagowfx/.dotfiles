@@ -28,7 +28,8 @@
     "npm:@nerisma/pi-auto-title@1.0.1",
     "npm:@ryan_nookpi/pi-extension-memory-layer@0.3.4",
     "npm:@tmustier/pi-session-recap@0.5.0",
-    "npm:pi-team@0.6.11"
+    "npm:pi-team@0.6.11",
+    "npm:@juicesharp/rpiv-ask-user-question@2.7.1"
   ],
   "retry": {
     "baseDelayMs": 2000,
