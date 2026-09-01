@@ -125,10 +125,61 @@ stow:
         stow -v -t {{ target_dir }} -d {{ _dotfiles_dir }} --no-folding $stow_packages_no_folding
     fi
 
-[doc('Check for dangling symlinks')]
+[doc('Check for dangling symlinks owned by this repository')]
 [group('stow')]
 stow-lint:
-    chkstow -t {{ target_dir }}
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    repo={{ _dotfiles_dir }}
+    target={{ target_dir }}
+    repo_name="${repo##*/}"
+    broken=0
+    declare -A seen_links=()
+
+    check_link() {
+        local link="$1" link_target resolved_target
+        [[ -n "${seen_links[$link]:-}" ]] && return
+        seen_links[$link]=1
+
+        link_target=$(readlink "$link")
+        if [[ "$link_target" = /* ]]; then
+            resolved_target=$(realpath -m "$link_target")
+        else
+            resolved_target=$(realpath -m "${link%/*}/$link_target")
+        fi
+
+        if [[ "$resolved_target" == "$repo/"* && ! -e "$link" ]]; then
+            printf 'Broken stow link: %s -> %s\n' "$link" "$link_target" >&2
+            broken=1
+        fi
+    }
+
+    while IFS= read -r -d '' link; do
+        check_link "$link"
+    done < <(find "$target" -xdev -path "$repo" -prune -o -maxdepth 4 \
+        -type l -lname "*$repo_name*" -print0 2>/dev/null)
+
+    declare -A deep_roots=()
+    for package in {{ packages }} {{ packages_no_folding }}; do
+        while IFS= read -r -d '' source_dir; do
+            relative_dir="${source_dir#"$repo/$package/"}"
+            deep_roots["$target/$relative_dir"]=1
+        done < <(find "$repo/$package" -mindepth 4 -maxdepth 4 -type d -print0)
+    done
+
+    for root in "${!deep_roots[@]}"; do
+        [[ -e "$root" || -L "$root" ]] || continue
+        while IFS= read -r -d '' link; do
+            check_link "$link"
+        done < <(find "$root" -xdev -type l -lname "*$repo_name*" -print0 2>/dev/null)
+    done
+
+    if (( broken )); then
+        exit 1
+    fi
+
+    echo "No broken stow links"
 
 [doc('Remove all symlinks')]
 [group('stow')]
