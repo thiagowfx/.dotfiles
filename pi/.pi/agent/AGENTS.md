@@ -82,6 +82,9 @@ Personal preferences across every project. Project-specific facts live in each r
 
 ## Tooling defaults
 
+- **Unix tools**: prefer modern, faster replacements when available. Use `rg` instead of `grep` or
+  `ack`, `fd` instead of `find`, and `eza` instead of `ls`. Use classic tools when replacement would
+  change required behavior or portability.
 - **Pre-commit**: prefer `prek` over `pre-commit`. Do not run `prek run --all-files` by default;
   run relevant checks only when warranted. Prefer self-contained/pinned hook deps over system binaries.
 - **Polling**: never `sleep` in a loop. Use `run_in_background` and wait for completion notification.
