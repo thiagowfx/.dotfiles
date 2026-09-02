@@ -233,6 +233,7 @@ wt switch --no-hooks "$new"
 {% endif %}
 '''
 mv = "wt rename {{ args }}"
+rb = "wt rename {{ args }}"
 rm = "wt remove -D {{ args }}"
 tui = "wt switch {{ args }}"
 world = "wt step prune {{ args }}"
