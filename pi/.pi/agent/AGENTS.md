@@ -47,6 +47,19 @@ Personal preferences across every project. Project-specific facts live in each r
 - Justify every flag (`--force`, `--recursive`, etc.). No cargo-culting.
 - Simplest thing that works. I'll ask for more if I want more.
 
+## Comments: no one-off implementation details
+
+- Never put point-in-time findings in code comments. Banned: measured numbers (CPU %, memory
+  used, latency, counts), incident narratives, "was X, now Y" migration notes, dated state,
+  ticket-specific justification, sibling-parity lists ("matches g03/g15/g21").
+- These rot: the code outlives the measurement, and a stale comment is worse than none.
+- Put that rationale where it is versioned against the change instead: PR description, commit
+  message, ADR, or runbook. Reach for the commit message when there is no PR.
+- Comments explain what the reader cannot get from the code: a non-obvious invariant, a
+  deliberate deviation, a `TODO:`, a why-not-the-obvious-thing. Timeless, not situational.
+- Test: would this comment still be true and useful in 12 months, after the numbers move and
+  the incident is forgotten? If no, it goes in the PR body.
+
 ## Verification and tests
 
 - Verify behavior through the caller. Exercise every changed success, failure, and skip path;
