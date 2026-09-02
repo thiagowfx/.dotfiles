@@ -106,6 +106,7 @@ Personal preferences across every project. Project-specific facts live in each r
 - "commit what you changed (only). DO NOT push" = stage only files you touched this turn, commit,
   stop.
 - Non-trivial PRs: include a Mermaid diagram when it helps. Watch string escaping.
+- Every PR description must explain why the change is needed. Do not only list what changed.
 - After meaningful changes to an open PR, update the description (`gh pr edit`). Don't let
   title/body drift from the branch.
 
