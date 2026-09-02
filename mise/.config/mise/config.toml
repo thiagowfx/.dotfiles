@@ -12,7 +12,6 @@ node = "26.7"
 # Project virtualenvs still come from uv.
 python = "3.14"
 ruby = "3.4"
-rust = "1.97"
 terraform = "1.15"
 terraform-docs = "0.24.0"
 # keep-sorted end
@@ -38,7 +37,6 @@ idiomatic_version_file_enable_tools = [
   "node",
   "python",
   "ruby",
-  "rust",
   "terraform",
   # keep-sorted end
 ]
