@@ -14,8 +14,13 @@
  */
 
 import { complete } from "@earendil-works/pi-ai/compat";
-import type { ExtensionAPI, SessionEntry } from "@earendil-works/pi-coding-agent";
-import { convertToLlm, getMarkdownTheme } from "@earendil-works/pi-coding-agent";
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import {
+	convertToLlm,
+	getMarkdownTheme,
+	sessionEntryToContextMessages,
+} from "@earendil-works/pi-coding-agent";
+import { contextMessagesFrom } from "./lib/btw-context.ts";
 import {
 	type Component,
 	type Focusable,
@@ -46,12 +51,10 @@ export default function btwExtension(pi: ExtensionAPI) {
 				return;
 			}
 
-			// Freeze the main conversation context at entry.
-			const branch = ctx.sessionManager.getBranch();
-			const mainMessages = branch
-				.filter((entry): entry is SessionEntry & { type: "message" } => entry.type === "message")
-				.map((entry) => entry.message);
-			const mainLlmMessages = convertToLlm(mainMessages);
+			// Freeze the compaction-aware main conversation context at entry.
+			const mainLlmMessages = convertToLlm(
+				contextMessagesFrom(ctx.sessionManager, sessionEntryToContextMessages),
+			);
 			const systemPrompt = ctx.getSystemPrompt();
 
 			const btwHistory: BtwMessage[] = [];
