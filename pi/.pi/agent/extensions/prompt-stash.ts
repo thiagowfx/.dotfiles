@@ -27,15 +27,18 @@ export default function (pi: ExtensionAPI) {
     }
   };
 
-  // Persist the stack and refresh the ambient depth indicator in the footer.
-  const sync = (ctx: ExtensionContext) => {
-    pi.appendEntry(ENTRY_TYPE, { stack: state.stack });
+  const refreshStatus = (ctx: ExtensionContext) => {
     if (ctx.mode !== "tui") return;
     if (state.stack.length === 0) {
       ctx.ui.setStatus("prompt-stash", undefined);
       return;
     }
     ctx.ui.setStatus("prompt-stash", `[⎇ ${state.stack.length} stashed]`);
+  };
+
+  const persist = (ctx: ExtensionContext) => {
+    pi.appendEntry(ENTRY_TYPE, { stack: state.stack });
+    refreshStatus(ctx);
   };
 
   const preview = (text: string) => {
@@ -45,7 +48,7 @@ export default function (pi: ExtensionAPI) {
 
   pi.on("session_start", async (_event, ctx) => {
     rehydrate(ctx);
-    sync(ctx);
+    refreshStatus(ctx);
   });
 
   // Auto-unstash: right after the prompt is submitted (before the agent
@@ -57,7 +60,7 @@ export default function (pi: ExtensionAPI) {
     if (state.stack.length === 0) return;
     if (ctx.ui.getEditorText().trim()) return;
     const popped = state.stack.pop()!;
-    sync(ctx);
+    persist(ctx);
     ctx.ui.setEditorText(popped);
     ctx.ui.notify(`Unstashed prompt (${state.stack.length} left)`, "info");
   });
@@ -73,7 +76,7 @@ export default function (pi: ExtensionAPI) {
         return;
       }
       state.stack.push(text);
-      sync(ctx);
+      persist(ctx);
       ctx.ui.setEditorText("");
       ctx.ui.notify(`Stashed prompt (${state.stack.length} on stack)`, "info");
     },
@@ -89,7 +92,7 @@ export default function (pi: ExtensionAPI) {
         ctx.ui.notify("Stash is empty", "info");
         return;
       }
-      sync(ctx);
+      persist(ctx);
       const current = ctx.ui.getEditorText();
       ctx.ui.setEditorText(current.trim() ? `${current}\n${popped}` : popped);
       ctx.ui.notify(`Popped stash (${state.stack.length} left)`, "info");
@@ -112,7 +115,7 @@ export default function (pi: ExtensionAPI) {
 
       if (sub === "clear") {
         state.stack = [];
-        sync(ctx);
+        persist(ctx);
         ctx.ui.notify("Cleared all stashes", "info");
         return;
       }
@@ -123,7 +126,7 @@ export default function (pi: ExtensionAPI) {
           ctx.ui.notify("Stash is empty", "info");
           return;
         }
-        sync(ctx);
+        persist(ctx);
         if (ctx.mode === "tui") {
           const current = ctx.ui.getEditorText();
           ctx.ui.setEditorText(current.trim() ? `${current}\n${popped}` : popped);
