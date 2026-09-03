@@ -17,8 +17,8 @@ git_info=""
 if git rev-parse --git-dir > /dev/null 2>&1; then
     branch=$(git branch --show-current 2>/dev/null)
     if [[ -n "$branch" ]]; then
-        # Check for uncommitted changes
-        if ! git diff --quiet 2>/dev/null || ! git diff --cached --quiet 2>/dev/null; then
+        # Check for uncommitted changes, including untracked files
+        if [[ -n "$(git status --porcelain 2>/dev/null)" ]]; then
             dirty="*"
         else
             dirty=""
