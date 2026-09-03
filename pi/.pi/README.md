@@ -5,9 +5,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 ## Highlights
 
 - Catppuccin Mocha theme
-- Default model: Anthropic Claude Opus
 - High thinking level, visible thinking blocks, compaction, retries, and caching
-- Anthropic Claude models only: Haiku, Sonnet, Opus, Fable
 - Telemetry disabled
 - User-only session-tree filter
 
