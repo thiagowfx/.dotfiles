@@ -88,6 +88,17 @@ if [ "$usage" != "null" ] && [[ "$size" =~ ^[1-9][0-9]*$ ]]; then
     context_info="${color}[${moon} ${current_k}/${size_k} ${pct}%]${reset}"
 fi
 
+# Plan rate limit usage (5h / 7d windows; absent on some plans, e.g. API-key sessions)
+limit_info=""
+five=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
+week=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
+limit_parts=()
+[[ -n "$five" ]] && limit_parts+=("5h:$(printf '%.0f' "$five")%")
+[[ -n "$week" ]] && limit_parts+=("7d:$(printf '%.0f' "$week")%")
+if [[ ${#limit_parts[@]} -gt 0 ]]; then
+    limit_info="[${limit_parts[*]}]"
+fi
+
 # Build status line
 status_parts=()
 
@@ -125,6 +136,11 @@ fi
 # Add cost
 if [[ -n "$cost" && "$cost" != "null" ]]; then
     status_parts+=("$(printf '$%.2f' "$cost")")
+fi
+
+# Add plan rate limit usage
+if [[ -n "$limit_info" ]]; then
+    status_parts+=("$limit_info")
 fi
 
 # Join parts with spaces and print (printf -e for ANSI color codes)
