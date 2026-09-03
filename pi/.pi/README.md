@@ -49,6 +49,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - **Model cycling (backward):** `Shift+Ctrl+P` or `Ctrl+N`; scoped models stay grouped by provider and
   ordered from cheaper/lighter to costlier/stronger.
 - **Model/session save or sort:** `Alt+S`.
+- **Fullscreen TUI:** transcript scrolls in viewport; editor and powerline status stay docked at bottom.
 
 ## Packages and extensions
 

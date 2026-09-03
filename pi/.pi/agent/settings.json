@@ -41,6 +41,7 @@
   "showCacheMissNotices": true,
   "theme": "catppuccin-mocha",
   "treeFilterMode": "user-only",
+  "tuiMode": "fullscreen",
   "warnings": {
     "anthropicExtraUsage": false
   }
