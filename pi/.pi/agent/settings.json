@@ -30,7 +30,8 @@
     "npm:@tmustier/pi-session-recap@0.5.0",
     "npm:pi-team@0.6.11",
     "npm:@juicesharp/rpiv-ask-user-question@2.9.0",
-    "npm:@juicesharp/rpiv-todo@2.9.0"
+    "npm:@juicesharp/rpiv-todo@2.9.0",
+    "npm:@sreetej510/pi-usage@0.9.5"
   ],
   "retry": {
     "baseDelayMs": 2000,

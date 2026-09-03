@@ -73,6 +73,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - `pi-team` — assembles multiple AI agents for parallel task analysis and synthesis.
 - `@juicesharp/rpiv-ask-user-question` — lets model ask structured questions through terminal dialogs.
 - `@juicesharp/rpiv-todo` — renders model todo lists as a live overlay that survives reloads and compaction.
+- `@sreetej510/pi-usage` — reports provider usage and rate-limit budgets through `/usage` and a live statusline widget.
 
 ### Local packages
 
