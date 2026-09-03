@@ -7,7 +7,7 @@
 [tools]
 # keep-sorted start
 go = "1.27"
-node = "26.7"
+node = "26.8"
 # Ships bin/python next to bin/python3, so no `python` shim formula is needed.
 # Project virtualenvs still come from uv.
 python = "3.14"
