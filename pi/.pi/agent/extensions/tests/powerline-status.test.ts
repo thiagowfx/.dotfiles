@@ -28,6 +28,7 @@ function state(overrides: Partial<PowerlineState> = {}): PowerlineState {
 		statuses: new Map([
 			["session-id", "sid:123"],
 			["github-pr", "PR #42"],
+			["provider-usage", "codex 30% 5h"],
 		]),
 		nerdFonts: false,
 		...overrides,
@@ -41,7 +42,7 @@ function plain(value: string): string {
 test("renders powerline content in package order", () => {
 	const lines = renderPowerline(200, state(), theme);
 	assert.deepEqual(lines.map(plain), [
-		" Opus 5 | think:high | dir repo | ⎇ main | ◫ 50k/200k (25.0%) | cache in: 12k | $1.012 (sub) | PR #42 · sid:123 ",
+		" Opus 5 | think:high | dir repo | ⎇ main | ◫ 50k/200k (25.0%) | cache in: 12k | $1.012 (sub) | codex 30% 5h · PR #42 · sid:123 ",
 	]);
 });
 

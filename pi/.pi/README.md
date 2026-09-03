@@ -34,8 +34,9 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - **Title-bar spinner** — shows agent activity, session name, and working directory in terminal title.
 - **Atuin history** — records agent-issued bash commands in Atuin under author `pi`; needs
   `atuin hook install pi`.
-- **GitHub PR link** — statusline shows the session pull request as a clickable `PR #123`, including
-  an active `.worktrees` checkout; one `gh pr view` call on session start and after each turn; needs authenticated `gh`.
+- **GitHub PR link** — statusline shows the session pull request as a clickable `PR #123` after provider usage,
+  including an active `.worktrees` checkout; one `gh pr view` call on session start and after each turn;
+  needs authenticated `gh`.
 
 ### Prompt templates
 

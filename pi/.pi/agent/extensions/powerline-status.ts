@@ -7,6 +7,8 @@ const GRAPHEME_SEGMENTER = new Intl.Segmenter(undefined, { granularity: "graphem
 const ZERO_WIDTH_GRAPHEME = /^[\p{Control}\p{Format}\p{Mark}]+$/u;
 const WIDE_GRAPHEME = /[\p{Extended_Pictographic}\u1100-\u115f\u2e80-\ua4cf\uac00-\ud7a3\uf900-\ufaff\ufe10-\ufe6f\uff00-\uff60\uffe0-\uffe6]/u;
 const TRUECOLOR_RESET = "\x1b[0m";
+const PROVIDER_USAGE_STATUS_KEY = "provider-usage";
+const GITHUB_PR_STATUS_KEY = "github-pr";
 
 type ThinkingColor =
 	| "thinkingOff"
@@ -195,7 +197,11 @@ function buildSegments(state: PowerlineState, theme: ThemeLike): Segment[] {
 	}
 
 	const statuses = [...state.statuses.entries()]
-		.sort(([left], [right]) => left.localeCompare(right))
+		.sort(([left], [right]) => {
+			const priority = (key: string) =>
+				key === PROVIDER_USAGE_STATUS_KEY ? 0 : key === GITHUB_PR_STATUS_KEY ? 1 : 2;
+			return priority(left) - priority(right) || left.localeCompare(right);
+		})
 		.map(([, text]) => sanitizeStatus(text))
 		.filter((text) => text && visibleWidth(text) > 0);
 	if (statuses.length > 0) segments.push(segment(statuses.join(" · ")));
