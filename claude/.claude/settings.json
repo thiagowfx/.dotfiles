@@ -79,7 +79,9 @@
     ],
     "defaultMode": "auto"
   },
-  "fallbackModel": "sonnet",
+  "fallbackModel": [
+    "sonnet"
+  ],
   "hooks": {
     "Notification": [
       {
