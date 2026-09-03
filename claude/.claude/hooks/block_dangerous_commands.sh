@@ -13,7 +13,7 @@ eval "$(echo "$input" | jq -r '@sh "tool_name=\(.tool_name // "") command=\(.too
 # Define blocked patterns and reasons (parallel arrays)
 # Note: Using [[:space:]] instead of \s for POSIX ERE compatibility
 patterns=(
-    'rm[[:space:]]+(-[a-zA-Z]*r[a-zA-Z]*[[:space:]]+-[a-zA-Z]*f|-[a-zA-Z]*f[a-zA-Z]*[[:space:]]+-[a-zA-Z]*r|-[rRf]*r[rRf]*f|-[rRf]*f[rRf]*r)'
+    'rm[[:space:]]+(-[a-zA-Z]*[rR][a-zA-Z]*[[:space:]]+-[a-zA-Z]*f|-[a-zA-Z]*f[a-zA-Z]*[[:space:]]+-[a-zA-Z]*[rR]|-[rRf]*[rR][rRf]*f|-[rRf]*f[rRf]*[rR])'
     'terraform[[:space:]]+apply'
     'terraform[[:space:]]+destroy'
     '--auto-approve'
