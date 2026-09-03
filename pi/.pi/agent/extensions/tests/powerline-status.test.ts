@@ -93,6 +93,13 @@ test("collects billed usage from assistant, tool, compaction, and summary entrie
 	});
 });
 
+test("measures Unicode terminal width", () => {
+	assert.equal(visibleWidth("界"), 2);
+	assert.equal(visibleWidth("🚀"), 2);
+	assert.equal(visibleWidth("e\u0301"), 1);
+	assert.equal(visibleWidth("\x1b[31m界\x1b[0m"), 2);
+});
+
 test("formats tokens and detects Nerd Font terminals", () => {
 	assert.equal(formatTokens(999), "999");
 	assert.equal(formatTokens(1_250), "1.3k");

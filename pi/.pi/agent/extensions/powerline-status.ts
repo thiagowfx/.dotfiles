@@ -3,6 +3,9 @@ import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-a
 
 const ANSI_PATTERN = /\x1b\[[0-?]*[ -/]*[@-~]/g;
 const OSC_PATTERN = /\x1b\][^\x07]*(?:\x07|\x1b\\)/g;
+const GRAPHEME_SEGMENTER = new Intl.Segmenter(undefined, { granularity: "grapheme" });
+const ZERO_WIDTH_GRAPHEME = /^[\p{Control}\p{Format}\p{Mark}]+$/u;
+const WIDE_GRAPHEME = /[\p{Extended_Pictographic}\u1100-\u115f\u2e80-\ua4cf\uac00-\ud7a3\uf900-\ufaff\ufe10-\ufe6f\uff00-\uff60\uffe0-\uffe6]/u;
 const TRUECOLOR_RESET = "\x1b[0m";
 
 type ThinkingColor =
@@ -104,7 +107,13 @@ export function formatTokens(count: number): string {
 }
 
 export function visibleWidth(value: string): number {
-	return Array.from(value.replace(OSC_PATTERN, "").replace(ANSI_PATTERN, "")).length;
+	const text = value.replace(OSC_PATTERN, "").replace(ANSI_PATTERN, "");
+	let width = 0;
+	for (const { segment } of GRAPHEME_SEGMENTER.segment(text)) {
+		if (ZERO_WIDTH_GRAPHEME.test(segment)) continue;
+		width += WIDE_GRAPHEME.test(segment) ? 2 : 1;
+	}
+	return width;
 }
 
 export function hasNerdFonts(env: NodeJS.ProcessEnv = process.env): boolean {
