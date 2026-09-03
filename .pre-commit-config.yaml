@@ -95,7 +95,15 @@ repos:
     rev: 12e63946db2c5cfcc9030fac21c3883ba88c6ed8 # frozen: 0.38.0
     hooks:
       - id: check-jsonschema
+        name: Validate Claude Code settings
+        alias: check-jsonschema-claude-settings
+        args:
+          - --schemafile
+          - vendor/schemas/claude-code-settings.json
+        files: ^claude/\.claude/settings\.json$
+      - id: check-jsonschema
         name: Validate pi theme
+        alias: check-jsonschema-pi-theme
         args:
           - --schemafile
           - vendor/schemas/pi-theme.json
