@@ -42,10 +42,11 @@ fi
 # Calculate context window usage (relative to auto-compact threshold ~80%)
 context_info=""
 usage=$(echo "$input" | jq '.context_window.current_usage')
-if [ "$usage" != "null" ]; then
+size=$(echo "$input" | jq -r '.context_window.context_window_size // empty')
+# A non-numeric or zero size would divide by zero when scaling the gauge.
+if [ "$usage" != "null" ] && [[ "$size" =~ ^[1-9][0-9]*$ ]]; then
     # Include output_tokens for accurate context measurement
     current=$(echo "$usage" | jq '.input_tokens + .output_tokens + .cache_creation_input_tokens + .cache_read_input_tokens')
-    size=$(echo "$input" | jq '.context_window.context_window_size')
 
     # Human-readable token counts (e.g., 120k/200k, or 1.2M once >= 1000k)
     format_tokens() {
