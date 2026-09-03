@@ -100,7 +100,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "atuin hook claude-code"
+            "command": "atuin hook claude-code",
+            "timeout": 5
           }
         ]
       }
@@ -111,7 +112,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "atuin hook claude-code"
+            "command": "atuin hook claude-code",
+            "timeout": 5
           }
         ]
       }
@@ -132,7 +134,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "atuin hook claude-code"
+            "command": "atuin hook claude-code",
+            "timeout": 5
           }
         ]
       }
