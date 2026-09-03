@@ -12,9 +12,10 @@ cost=$(echo "$input" | jq -r '.cost.total_cost_usd')
 # Get current working directory basename
 dir_name=$(basename "$current_dir")
 
-# Get git information if in a git repository
+# Get git information for the session's directory, which is not necessarily the
+# working directory this script was spawned in.
 git_info=""
-if git rev-parse --git-dir > /dev/null 2>&1; then
+if [[ -d "$current_dir" ]] && cd "$current_dir" 2>/dev/null && git rev-parse --git-dir > /dev/null 2>&1; then
     branch=$(git branch --show-current 2>/dev/null)
     if [[ -n "$branch" ]]; then
         # Check for uncommitted changes, including untracked files
