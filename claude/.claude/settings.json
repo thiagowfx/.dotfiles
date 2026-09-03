@@ -6,10 +6,12 @@
   "permissions": {
     "allow": [
       "Bash(acli jira workitem view:*)",
+      "Bash(afplay:*)",
       "Bash(ansible-doc:*)",
       "Bash(basename:*)",
       "Bash(brew info:*)",
       "Bash(cat:*)",
+      "Bash(chmod:*)",
       "Bash(command -v:*)",
       "Bash(date:*)",
       "Bash(dir:*)",
@@ -63,9 +65,12 @@
       "Bash(wc:*)",
       "Bash(xxd:*)",
       "Bash(yamllint:*)",
-      "Fetch(https://docs.github.com/*)",
-      "Fetch(https://perrotta.dev/*)",
-      "WebFetch(domain:perrotta.dev)"
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:docs.github.com)",
+      "WebFetch(domain:ghostty.org)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:perrotta.dev)",
+      "WebSearch"
     ],
     "deny": [
       "Bash(rm -rf:*)",
