@@ -16,6 +16,10 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 ### Extensions
 
 - **Session ID** — full session UUID in footer for quick reference.
+- **Powerline status** — compact footer inspired by
+  [`pi-powerline-footer`](https://pi.dev/packages/pi-powerline-footer?name=status), for model, thinking level,
+  directory, branch, context, cache, session cost, and existing extension statuses; no editor, welcome, queue,
+  or shell extras.
 - **MCP startup list** — shows enabled MCP server names below loaded startup resources.
 - **Side chat** — `/btw [question]` opens a context-aware, read-only side conversation without growing main history.
 - **Prompt stash** — queue drafts with `Ctrl+s`, restore with `Ctrl+Shift+s`, or manage via `/stash`.
