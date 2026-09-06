@@ -18,3 +18,9 @@ if command -v git >/dev/null 2>&1; then
 	fi
 
 fi
+
+# Git AI daemon receives Git Trace2 events through per-user socket.
+if command -v git-ai >/dev/null 2>&1; then
+	export GIT_TRACE2_EVENT="af_unix:stream:${GIT_AI_DAEMON_TRACE_SOCKET:-$HOME/.git-ai/internal/daemon/trace2.sock}"
+	export GIT_TRACE2_EVENT_NESTING=0
+fi

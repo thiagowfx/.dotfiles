@@ -37,6 +37,8 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - **GitHub PR link** — statusline shows the session pull request as a clickable `PR #123` after provider usage,
   including an active `.worktrees` checkout; one `gh pr view` call on session start and after each turn;
   needs authenticated `gh`.
+- **Git AI provenance** — records Pi file edits and Bash changes for line-level `git ai blame` attribution;
+  uses local Git notes and does not add stats or telemetry workflow.
 
 ### Prompt templates
 
