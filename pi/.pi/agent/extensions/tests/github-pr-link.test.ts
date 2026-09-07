@@ -57,7 +57,7 @@ const OPEN_PR = JSON.stringify({
 test("formatPrLink links open PRs and hides everything else", () => {
 	assert.equal(
 		formatPrLink(OPEN_PR),
-		"\x1b]8;;https://github.com/o/r/pull/42\x07PR #42\x1b]8;;\x07",
+		"\x1b]8;;https://github.com/o/r/pull/42\x07\x1b[4mPR #42\x1b[24m\x1b]8;;\x07",
 	);
 	assert.equal(formatPrLink(JSON.stringify({ number: 42, state: "MERGED" })), undefined);
 	assert.equal(formatPrLink(JSON.stringify({ number: 42, state: "CLOSED" })), undefined);
@@ -85,7 +85,7 @@ test("findWorktreeRoot finds the latest session worktree", () => {
 	assert.equal(findWorktreeRoot("/other/.worktrees/topic/file.ts", "/repo"), undefined);
 });
 
-test("session start shows the PR link", async () => {
+test("session start shows the underlined PR link", async () => {
 	const { handlers, calls } = setup(() => ({ stdout: OPEN_PR, stderr: "", code: 0, killed: false }));
 	const statuses: Array<{ key: string; text: string | undefined }> = [];
 	await handlers.get("session_start")?.({}, ctxWith(statuses));
@@ -94,7 +94,7 @@ test("session start shows the PR link", async () => {
 		{ command: "gh", args: ["pr", "view", "--json", "number,url,state"], cwd: "/repo" },
 	]);
 	assert.deepEqual(statuses, [
-		{ key: STATUS_TEXT_KEY, text: "\x1b]8;;https://github.com/o/r/pull/42\x07PR #42\x1b]8;;\x07" },
+		{ key: STATUS_TEXT_KEY, text: "\x1b]8;;https://github.com/o/r/pull/42\x07\x1b[4mPR #42\x1b[24m\x1b]8;;\x07" },
 	]);
 });
 
@@ -117,7 +117,7 @@ test("turn end follows a worktree used by tools", async () => {
 		},
 	]);
 	assert.deepEqual(statuses, [
-		{ key: STATUS_TEXT_KEY, text: "\x1b]8;;https://github.com/o/r/pull/42\x07PR #42\x1b]8;;\x07" },
+		{ key: STATUS_TEXT_KEY, text: "\x1b]8;;https://github.com/o/r/pull/42\x07\x1b[4mPR #42\x1b[24m\x1b]8;;\x07" },
 	]);
 });
 
@@ -209,6 +209,6 @@ test("a stale refresh does not overwrite a newer one", async () => {
 	await stale;
 
 	assert.deepEqual(statuses, [
-		{ key: STATUS_TEXT_KEY, text: "\x1b]8;;https://github.com/o/r/pull/42\x07PR #42\x1b]8;;\x07" },
+		{ key: STATUS_TEXT_KEY, text: "\x1b]8;;https://github.com/o/r/pull/42\x07\x1b[4mPR #42\x1b[24m\x1b]8;;\x07" },
 	]);
 });

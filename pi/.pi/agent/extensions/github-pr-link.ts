@@ -49,7 +49,7 @@ export function osc8Link(url: string, text: string): string {
 	try {
 		const parsed = new URL(url);
 		if (parsed.protocol !== "http:" && parsed.protocol !== "https:") return text;
-		return `\x1b]8;;${parsed.toString()}\x07${text}\x1b]8;;\x07`;
+		return `\x1b]8;;${parsed.toString()}\x07\x1b[4m${text}\x1b[24m\x1b]8;;\x07`;
 	} catch {
 		return text;
 	}
