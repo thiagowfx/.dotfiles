@@ -107,6 +107,9 @@ Personal preferences across every project. Project-specific facts live in each r
   stop.
 - Non-trivial PRs: include a Mermaid diagram when it helps. Watch string escaping.
 - Every PR description must explain why the change is needed. Do not only list what changed.
+- State behavior before and after the change. If output or data is removed or replaced, state whether
+  the old value was valid, empty, redundant, or unavailable. Explain why the change does not lose
+  useful information, or identify the information loss and its impact.
 - After meaningful changes to an open PR, update the description (`gh pr edit`). Don't let
   title/body drift from the branch.
 
