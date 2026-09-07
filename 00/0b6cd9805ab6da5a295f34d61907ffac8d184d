@@ -1,0 +1,21 @@
+.github/workflows/prek-autoupdate.yml
+  s_1f550aa6d6c0f7::t_f24556c6b4e794 34-35
+.github/workflows/prek.yml
+  s_1f550aa6d6c0f7::t_9b29c9532bf950 20-21
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "000b6cd9805ab6da5a295f34d61907ffac8d184d",
+  "prompts": {},
+  "sessions": {
+    "s_1f550aa6d6c0f7": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a07e02-9819-7143-a9b8-2d233406257b",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Thiago Perrotta <thiago@perrotta.dev>"
+    }
+  }
+}
