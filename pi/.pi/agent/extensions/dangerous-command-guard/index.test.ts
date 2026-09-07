@@ -17,6 +17,8 @@ const blocked = [
   ["git clean -fdx", "git clean"],
   ["git commit -m test --no-verify", "--no-verify"],
   ["git push --no-verify origin feature", "--no-verify"],
+  ['git push --no-verify origin "$branch"', "--no-verify"],
+  ['git push --force "$remote" main', "Force-push"],
   ["bash -c 'terraform destroy'", "terraform destroy"],
   ["echo $(git reset --hard HEAD)", "git reset --hard"],
 ] as const;
@@ -69,6 +71,7 @@ const allowed = [
   "terraform plan",
   "just plan",
   "git push --force-with-lease origin feature",
+  'git push -u origin "$branch"',
   "git reset --soft HEAD^",
   "git clean -nfdx",
   "git commit -m 'mention --no-verify in docs'",
@@ -150,6 +153,10 @@ test("extension prompts before dangerous bash tool calls", async () => {
   );
   assert.equal(
     await handler({ toolName: "bash", input: { command: "rm -rf ./build" } }, noUiContext),
+    undefined,
+  );
+  assert.equal(
+    await handler({ toolName: "bash", input: { command: 'git push -u origin "$branch"' } }, noUiContext),
     undefined,
   );
   assert.equal(

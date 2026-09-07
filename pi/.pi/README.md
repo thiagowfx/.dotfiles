@@ -25,8 +25,8 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - **Command aliases** — `/clear` → `/new`; `/rename` → `/name`.
 - **Dangerous command guard** — parses agent-issued shell with Tree-sitter, then blocks known destructive
   operations such as Terraform apply/destroy, hard resets, unsafe cleans, protected-branch force-pushes,
-  and hook bypasses; dynamic command names bypass inspection; installs pinned parser
-  dependencies automatically on first load.
+  and hook bypasses; dynamic command names and non-blocked push arguments bypass inspection; installs pinned
+  parser dependencies automatically on first load.
 - **Ready notifications** — terminal bell and macOS chime when agent finishes; no desktop notifications.
 - **cmux integration** — reports Pi lifecycle and tool activity for idle detection, notifications, Feed telemetry,
   and session restore.
