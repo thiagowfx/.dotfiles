@@ -1,0 +1,19 @@
+pi/.pi/agent/keybindings.json
+  s_90d60b0ed56919::t_a0ebc00e84238f 12-14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "391fffc54cbd374551fbb5e0a4c42c45795d4bf1",
+  "prompts": {},
+  "sessions": {
+    "s_90d60b0ed56919": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a07d18-54b5-704b-8c2f-7dabc16de12e",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Thiago Perrotta <thiago@perrotta.dev>"
+    }
+  }
+}
