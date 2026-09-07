@@ -9,5 +9,8 @@
   "app.session.rename": "ctrl+shift+r",
   "app.session.toggleSort": [
     "alt+s"
+  ],
+  "app.thinking.save": [
+    "alt+s"
   ]
 }

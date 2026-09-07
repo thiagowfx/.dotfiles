@@ -49,7 +49,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - **Theme:** Catppuccin Mocha dark palette with markdown, syntax, diff, tool, and thinking-level colors.
 - **Model cycling (backward):** `Shift+Ctrl+P` or `Ctrl+N`; scoped models stay grouped by provider and
   ordered from cheaper/lighter to costlier/stronger.
-- **Model/session save or sort:** `Alt+S`.
+- **Model/thinking save or session sort:** `Alt+S`.
 - **Fullscreen TUI:** transcript scrolls in viewport; editor and powerline status stay docked at bottom.
 
 ## Packages and extensions
