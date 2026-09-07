@@ -66,7 +66,7 @@ repos:
         args:
           - --ignore-words=.codespell-ignore-words.txt
   - repo: https://github.com/gitleaks/gitleaks
-    rev: 83d9cd684c87d95d656c1458ef04895a7f1cbd8e # frozen: v8.30.1
+    rev: 2ca41cc1372d1e939a6a879f18cdc19fc1cac1ce  # frozen: v8.30.0
     hooks:
       - id: gitleaks
   - repo: https://github.com/golangci/misspell
@@ -78,7 +78,7 @@ repos:
     hooks:
       - id: keep-sorted
   - repo: https://github.com/google/yamlfmt
-    rev: 21ca5323a9c87ee37a434e0ca908efc0a89daa07 # frozen: v0.21.0
+    rev: b5ca1890231d5e1e5181fef75a1be609d1e25029  # frozen: v0.21.0
     hooks:
       - id: yamlfmt
   - repo: https://github.com/igorshubovych/markdownlint-cli
@@ -88,11 +88,11 @@ repos:
         args:
           - --config=.markdownlintrc.json
   - repo: https://github.com/jmlrt/check-yamlschema
-    rev: a45841f016eaecf72b3434f0687866b62bc3c3d4 # frozen: v0.0.7
+    rev: 907e5521b7f182966e59b1736ed1e5ba9eb24641  # frozen: v0.0.7
     hooks:
       - id: check-yamlschema
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 12e63946db2c5cfcc9030fac21c3883ba88c6ed8 # frozen: 0.38.0
+    rev: c4654a7e007c9619a5eb63c39a456572a0fa1851  # frozen: 0.38.0
     hooks:
       - id: check-jsonschema
         name: Validate Claude Code settings
@@ -132,7 +132,7 @@ repos:
         entry: cmd --githook pre-push
         exclude: ^nvim/.config/nvim/lazy-lock\.json$
   - repo: https://github.com/woodruffw/zizmor-pre-commit
-    rev: 451b56af716f9f0d0c2b816503a3fd0cf8b036fa # frozen: v1.29.0
+    rev: cef8b8350da46d8114c7e6b7272aebdccdf193ce  # frozen: v1.30.0
     hooks:
       - id: zizmor
   - repo: https://github.com/zimbatm/mdsh.git
