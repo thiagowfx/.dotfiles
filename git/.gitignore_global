@@ -242,6 +242,9 @@ tags
 **/.claude/scheduled_tasks.lock
 **/.claude/settings.local.json
 
+# Pi
+.pi/team/
+
 # Ansible
 *.lock
 
