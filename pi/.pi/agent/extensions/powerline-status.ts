@@ -193,7 +193,8 @@ function buildSegments(state: PowerlineState, theme: ThemeLike): Segment[] {
 	}
 	if (state.usage.cost > 0 || state.usingSubscription) {
 		const cost = state.usage.cost > 0 ? `$${state.usage.cost.toFixed(3)}` : "";
-		segments.push(segment(theme.fg("text", `${cost}${state.usingSubscription ? `${cost ? " " : ""}(sub)` : ""}`)));
+		const mainSessionCost = cost ? `main:${cost}` : "main";
+		segments.push(segment(theme.fg("text", `${mainSessionCost}${state.usingSubscription ? " (sub)" : ""}`)));
 	}
 
 	const statuses = [...state.statuses.entries()]
@@ -204,7 +205,7 @@ function buildSegments(state: PowerlineState, theme: ThemeLike): Segment[] {
 		})
 		.map(([, text]) => sanitizeStatus(text))
 		.filter((text) => text && visibleWidth(text) > 0);
-	if (statuses.length > 0) segments.push(segment(statuses.join(" · ")));
+	segments.push(...statuses.map(segment));
 
 	return segments;
 }

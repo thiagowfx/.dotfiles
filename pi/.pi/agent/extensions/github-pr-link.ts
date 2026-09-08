@@ -56,7 +56,7 @@ export function osc8Link(url: string, text: string): string {
 }
 
 export function formatPrLink(stdout: string): string | undefined {
-	let pr: { number?: unknown; url?: unknown; state?: unknown };
+	let pr: { number?: unknown; url?: unknown; state?: unknown; headRefName?: unknown };
 	try {
 		pr = JSON.parse(stdout);
 	} catch {
@@ -64,7 +64,10 @@ export function formatPrLink(stdout: string): string | undefined {
 	}
 	if (pr.state !== "OPEN") return undefined;
 	if (typeof pr.number !== "number" || !Number.isFinite(pr.number)) return undefined;
-	const label = `PR #${pr.number}`;
+	const headRefName = typeof pr.headRefName === "string"
+		? pr.headRefName.replace(/[\x00-\x20\x7f]+/g, "").slice(0, 48)
+		: "";
+	const label = `PR #${pr.number}${headRefName ? `@${headRefName}` : ""}`;
 	return typeof pr.url === "string" ? osc8Link(pr.url, label) : label;
 }
 
@@ -84,7 +87,7 @@ export default function (pi: ExtensionAPI) {
 		const current = request;
 		let status: string | undefined;
 		try {
-			const result = await pi.exec("gh", ["pr", "view", "--json", "number,url,state"], {
+			const result = await pi.exec("gh", ["pr", "view", "--json", "number,url,state,headRefName"], {
 				cwd: activeCwd ?? ctx.cwd,
 				signal: ctx.signal,
 				timeout: GH_TIMEOUT_MS,

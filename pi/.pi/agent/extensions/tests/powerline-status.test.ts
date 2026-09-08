@@ -42,7 +42,7 @@ function plain(value: string): string {
 test("renders powerline content in package order", () => {
 	const lines = renderPowerline(200, state(), theme);
 	assert.deepEqual(lines.map(plain), [
-		" Opus 5 | think:high | dir repo | ⎇ main | ◫ 50k/200k (25.0%) | cache in: 12k | $1.012 (sub) | codex 30% 5h · PR #42 · sid:123 ",
+		" Opus 5 | think:high | dir repo | ⎇ main | ◫ 50k/200k (25.0%) | cache in: 12k | main:$1.012 (sub) | codex 30% 5h | PR #42 | sid:123 ",
 	]);
 });
 
@@ -53,6 +53,27 @@ test("moves whole segments to second row and respects width", () => {
 	assert.match(plain(lines[0] ?? ""), /Opus 5/);
 	assert.match(plain(lines.join("\n")), /think:high/);
 	assert.match(plain(lines[1] ?? ""), /dir repo/);
+});
+
+test("keeps fitting extension statuses when later statuses exceed width", () => {
+	const lines = renderPowerline(32, state({
+		modelName: "M",
+		modelReasoning: false,
+		cwd: "/r",
+		branch: null,
+		context: undefined,
+		usage: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0, cost: 0 },
+		usingSubscription: false,
+		statuses: new Map([
+			["provider-usage", "usage 30%"],
+			["github-pr", "PR #42"],
+			["session-id", "sid:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"],
+		]),
+	}), theme).map(plain);
+
+	assert.match(lines.join("\n"), /usage 30%/);
+	assert.match(lines.join("\n"), /PR #42/);
+	assert.doesNotMatch(lines.join("\n"), /sid:/);
 });
 
 test("uses warning and error context colors at thresholds", () => {

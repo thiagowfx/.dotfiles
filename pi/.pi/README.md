@@ -16,8 +16,8 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - **Session ID** — full session UUID in footer for quick reference.
 - **Powerline status** — compact footer inspired by
   [`pi-powerline-footer`](https://pi.dev/packages/pi-powerline-footer?name=status), for model, thinking level,
-  directory, branch, context, cache, session cost, and existing extension statuses; no editor, welcome, queue,
-  or shell extras.
+  directory, branch, context, cache, main-session cost, and prioritized extension statuses; no editor, welcome,
+  queue, or shell extras.
 - **MCP startup list** — shows enabled MCP server names below loaded startup resources.
 - **Side chat** — `/btw [question]` opens a context-aware, read-only side conversation without growing main history.
 - **Prompt stash** — queue drafts with `Ctrl+s`, restore with `Ctrl+Shift+s`, or manage via `/stash`.
@@ -27,16 +27,18 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
   operations such as Terraform apply/destroy, hard resets, unsafe cleans, protected-branch force-pushes,
   and hook bypasses; dynamic command names and non-blocked push arguments bypass inspection; installs pinned
   parser dependencies automatically on first load.
-- **Ready notifications** — terminal bell and macOS chime when agent finishes; no desktop notifications.
+- **Ready notifications** — terminal bell and macOS chime when agent finishes; cmux owns completion alerts
+  inside an active cmux surface.
 - **cmux integration** — reports Pi lifecycle and tool activity for idle detection, notifications, Feed telemetry,
   and session restore.
 - **Automatic session names** — generates a concise name from the first prompt using the cheapest available model.
-- **Title-bar spinner** — shows agent activity, session name, and working directory in terminal title.
+- **Title-bar spinner** — shows full agent activity through settled state, current session name, and session
+  working directory in terminal title.
 - **Atuin history** — records agent-issued bash commands in Atuin under author `pi`; needs
   `atuin hook install pi`.
-- **GitHub PR link** — statusline shows the session pull request as an underlined, clickable `PR #123` after
-  provider usage, including an active `.worktrees` checkout; one `gh pr view` call on session start and after
-  each turn; needs authenticated `gh`.
+- **GitHub PR link** — statusline shows the session pull request and head branch as an underlined, clickable
+  `PR #123@branch` after provider usage, including an active `.worktrees` checkout; one `gh pr view` call on
+  session start and after each turn; needs authenticated `gh`.
 - **Git AI provenance** — records Pi file edits and Bash changes for line-level `git ai blame` attribution;
   uses local Git notes and does not add stats or telemetry workflow.
 
@@ -70,8 +72,10 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - `@nerisma/pi-auto-title` — generates concise session names from first prompts using a cheap model.
 - `@ryan_nookpi/pi-extension-memory-layer` — curated global/project memory with compact index injection and on-demand recall.
 - `@zeldrisho/pi-web-fetch` — keyless, bounded public webpage fetching through sole `web_fetch` tool.
-- `pi-tool-display` — OpenCode-style compact tool rendering and richer edit diffs.
-- `pi-mcp-adapter` — lazy MCP server integration through one context-efficient proxy tool; persistent footer status disabled.
+- `pi-tool-display` — OpenCode-style compact tool rendering and richer edit diffs; verified with Pi 0.85.1,
+  although published peer metadata stops at Pi 0.80.x.
+- `pi-mcp-adapter` — lazy MCP server integration through one context-efficient proxy tool; persistent footer status
+  disabled; verified with Pi 0.85.1 while npm peer metadata still stops at `pi-ai` 0.84.x.
 - `pi-team` — assembles multiple AI agents for parallel task analysis and synthesis.
 - `@juicesharp/rpiv-ask-user-question` — lets model ask structured questions through terminal dialogs.
 - `@juicesharp/rpiv-todo` — renders model todo lists as a live overlay that survives reloads and compaction.

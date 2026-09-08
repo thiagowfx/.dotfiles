@@ -13,6 +13,10 @@ function playMacOSChime(): void {
 	execFile("/usr/bin/afplay", ["/System/Library/Sounds/Glass.aiff"], () => {});
 }
 
+export function cmuxRoutesNotifications(env: NodeJS.ProcessEnv = process.env): boolean {
+	return env.CMUX_PI_HOOKS_DISABLED !== "1" && Boolean(env.CMUX_SURFACE_ID);
+}
+
 function notify(): void {
 	process.stdout.write("\x07");
 	playMacOSChime();
@@ -20,6 +24,6 @@ function notify(): void {
 
 export default function (pi: ExtensionAPI) {
 	pi.on("agent_settled", async () => {
-		notify();
+		if (!cmuxRoutesNotifications()) notify();
 	});
 }

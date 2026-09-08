@@ -64,6 +64,10 @@ test("formatPrLink links open PRs and hides everything else", () => {
 	assert.equal(formatPrLink(JSON.stringify({ state: "OPEN" })), undefined);
 	assert.equal(formatPrLink("not json"), undefined);
 	assert.equal(formatPrLink(JSON.stringify({ number: 7, state: "OPEN" })), "PR #7");
+	assert.equal(
+		formatPrLink(JSON.stringify({ number: 7, state: "OPEN", headRefName: "feature/topic" })),
+		"PR #7@feature/topic",
+	);
 });
 
 test("osc8Link rejects non-http schemes", () => {
@@ -91,7 +95,7 @@ test("session start shows the underlined PR link", async () => {
 	await handlers.get("session_start")?.({}, ctxWith(statuses));
 
 	assert.deepEqual(calls, [
-		{ command: "gh", args: ["pr", "view", "--json", "number,url,state"], cwd: "/repo" },
+		{ command: "gh", args: ["pr", "view", "--json", "number,url,state,headRefName"], cwd: "/repo" },
 	]);
 	assert.deepEqual(statuses, [
 		{ key: STATUS_TEXT_KEY, text: "\x1b]8;;https://github.com/o/r/pull/42\x07\x1b[4mPR #42\x1b[24m\x1b]8;;\x07" },
@@ -112,7 +116,7 @@ test("turn end follows a worktree used by tools", async () => {
 	assert.deepEqual(calls, [
 		{
 			command: "gh",
-			args: ["pr", "view", "--json", "number,url,state"],
+			args: ["pr", "view", "--json", "number,url,state,headRefName"],
 			cwd: "/repo/.worktrees/topic",
 		},
 	]);
@@ -144,7 +148,7 @@ test("session start restores the latest worktree from session history", async ()
 	assert.deepEqual(calls, [
 		{
 			command: "gh",
-			args: ["pr", "view", "--json", "number,url,state"],
+			args: ["pr", "view", "--json", "number,url,state,headRefName"],
 			cwd: "/repo/.worktrees/restored",
 		},
 	]);
