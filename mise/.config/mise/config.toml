@@ -12,7 +12,7 @@ node = "26.8"
 # Project virtualenvs still come from uv.
 python = "3.14"
 ruby = "3.4"
-terraform = "1.16.1"
+terraform = "1.16.2"
 terraform-docs = "0.24.0"
 tflint = "latest"
 # keep-sorted end
