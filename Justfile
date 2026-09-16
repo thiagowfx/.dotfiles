@@ -262,6 +262,8 @@ install: bootstrap stow mise-install
 [group('update')]
 update: update-git update-pi update-prek sync-upstream
 
+alias upgrade := update
+
 [doc('Update git submodules')]
 [group('update')]
 update-git:
