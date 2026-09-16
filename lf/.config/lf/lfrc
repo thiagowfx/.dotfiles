@@ -11,4 +11,6 @@ set hidden true
 set drawbox true
 
 # Edit file: 'e' (mapped out-of-the-box)
+map <enter> $$EDITOR "$f"
+
 # Toggle hidden files: 'zh'
