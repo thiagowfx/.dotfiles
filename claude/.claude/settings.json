@@ -11,7 +11,6 @@
       "Bash(basename:*)",
       "Bash(brew info:*)",
       "Bash(cat:*)",
-      "Bash(chmod:*)",
       "Bash(command -v:*)",
       "Bash(date:*)",
       "Bash(dir:*)",
