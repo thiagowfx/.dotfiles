@@ -11,6 +11,13 @@ set hidden true
 set drawbox true
 
 # Edit file: 'e' (mapped out-of-the-box)
-map <enter> $$EDITOR "$f"
+cmd edit-or-open ${{
+    if [ -d "$f" ]; then
+        "$lf" -remote "send $id open"
+    else
+        $EDITOR "$f"
+    fi
+}}
+map <enter> edit-or-open
 
 # Toggle hidden files: 'zh'
