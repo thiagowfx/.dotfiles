@@ -88,11 +88,11 @@ repos:
         args:
           - --config=.markdownlintrc.json
   - repo: https://github.com/jmlrt/check-yamlschema
-    rev: 907e5521b7f182966e59b1736ed1e5ba9eb24641 # frozen: v0.0.7
+    rev: a45841f016eaecf72b3434f0687866b62bc3c3d4 # frozen: v0.0.7
     hooks:
       - id: check-yamlschema
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: c4654a7e007c9619a5eb63c39a456572a0fa1851 # frozen: 0.38.0
+    rev: 12e63946db2c5cfcc9030fac21c3883ba88c6ed8 # frozen: 0.38.0
     hooks:
       - id: check-jsonschema
         name: Validate Claude Code settings
