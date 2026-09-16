@@ -1,7 +1,93 @@
 {
+  "alwaysThinkingEnabled": false,
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "ruby-lsp@claude-plugins-official": true,
+    "terraform-skill@antonbabenko": true,
+    "thiagowfx@thiagowfx": true,
+    "typescript-lsp@claude-plugins-official": true
+  },
   "env": {
     "CLAUDE_CODE_ENABLE_TELEMETRY": "0",
     "ENABLE_TOOL_SEARCH": "true"
+  },
+  "extraKnownMarketplaces": {
+    "antonbabenko": {
+      "source": {
+        "repo": "antonbabenko/agent-plugins",
+        "source": "github"
+      }
+    },
+    "thiagowfx": {
+      "source": {
+        "repo": "thiagowfx/skills",
+        "source": "github"
+      }
+    }
+  },
+  "fallbackModel": [
+    "sonnet"
+  ],
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "command": "~/.claude/hooks/notify.sh",
+            "type": "command"
+          }
+        ],
+        "matcher": "permission_prompt|idle_prompt|elicitation_dialog"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "atuin hook claude-code",
+            "timeout": 5,
+            "type": "command"
+          }
+        ],
+        "matcher": "Bash"
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "hooks": [
+          {
+            "command": "atuin hook claude-code",
+            "timeout": 5,
+            "type": "command"
+          }
+        ],
+        "matcher": "Bash"
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "~/.claude/hooks/block_dangerous_commands.sh",
+            "timeout": 10,
+            "type": "command"
+          }
+        ],
+        "matcher": "Bash"
+      },
+      {
+        "hooks": [
+          {
+            "command": "atuin hook claude-code",
+            "timeout": 5,
+            "type": "command"
+          }
+        ],
+        "matcher": "Bash"
+      }
+    ]
   },
   "permissions": {
     "allow": [
@@ -71,105 +157,19 @@
       "WebFetch(domain:perrotta.dev)",
       "WebSearch"
     ],
+    "defaultMode": "auto",
     "deny": [
       "Bash(rm -rf:*)",
       "Bash(terraform apply:*)",
       "Bash(terraform destroy:*)"
-    ],
-    "defaultMode": "auto"
-  },
-  "fallbackModel": [
-    "sonnet"
-  ],
-  "hooks": {
-    "Notification": [
-      {
-        "matcher": "permission_prompt|idle_prompt|elicitation_dialog",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/notify.sh"
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "atuin hook claude-code",
-            "timeout": 5
-          }
-        ]
-      }
-    ],
-    "PostToolUseFailure": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "atuin hook claude-code",
-            "timeout": 5
-          }
-        ]
-      }
-    ],
-    "PreToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/block_dangerous_commands.sh",
-            "timeout": 10
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "atuin hook claude-code",
-            "timeout": 5
-          }
-        ]
-      }
     ]
   },
-  "statusLine": {
-    "type": "command",
-    "command": "bash ~/.claude/statusline.sh"
-  },
-  "enabledPlugins": {
-    "gopls-lsp@claude-plugins-official": true,
-    "lua-lsp@claude-plugins-official": true,
-    "pyright-lsp@claude-plugins-official": true,
-    "ruby-lsp@claude-plugins-official": true,
-    "terraform-skill@antonbabenko": true,
-    "thiagowfx@thiagowfx": true,
-    "typescript-lsp@claude-plugins-official": true
-  },
-  "extraKnownMarketplaces": {
-    "antonbabenko": {
-      "source": {
-        "source": "github",
-        "repo": "antonbabenko/agent-plugins"
-      }
-    },
-    "thiagowfx": {
-      "source": {
-        "source": "github",
-        "repo": "thiagowfx/skills"
-      }
-    }
-  },
-  "alwaysThinkingEnabled": false,
-  "tui": "fullscreen",
   "showThinkingSummaries": true,
+  "skipAutoPermissionPrompt": true,
   "skipDangerousModePermissionPrompt": true,
-  "skipAutoPermissionPrompt": true
+  "statusLine": {
+    "command": "bash ~/.claude/statusline.sh",
+    "type": "command"
+  },
+  "tui": "fullscreen"
 }
