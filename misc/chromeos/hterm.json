@@ -1,16 +1,4 @@
 {
-  "magic": "nassh-prefs",
-  "version": 1,
-  "nassh": {
-    "profile-ids": [
-      {
-        "id": "b44c",
-        "json": {
-          "argstr": "-t -- tmux -u new -A -s main"
-        }
-      }
-    ]
-  },
   "hterm": {
     "default": {
       "alt-backspace-is-meta-backspace": true,
@@ -41,5 +29,17 @@
       "user-css": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Fira+Code:wght@400;700&display=swap",
       "user-css-text": "* {\n    -webkit-font-feature-settings: \"liga\" on, \"calt\" on;\n    -webkit-font-smoothing: antialiased;\n    text-rendering: optimizeLegibility;\n}"
     }
-  }
+  },
+  "magic": "nassh-prefs",
+  "nassh": {
+    "profile-ids": [
+      {
+        "id": "b44c",
+        "json": {
+          "argstr": "-t -- tmux -u new -A -s main"
+        }
+      }
+    ]
+  },
+  "version": 1
 }
