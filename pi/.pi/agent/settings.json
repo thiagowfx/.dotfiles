@@ -2,7 +2,7 @@
   "compaction": {
     "enabled": true
   },
-  "defaultModel": "gpt-5.6-sol",
+  "defaultModel": "gpt-6-sol",
   "defaultProvider": "openai-codex",
   "defaultThinkingLevel": "high",
   "doubleEscapeAction": "tree",
@@ -12,9 +12,9 @@
     "anthropic/claude-sonnet-5",
     "anthropic/claude-opus-5",
     "anthropic/claude-fable-5",
-    "openai-codex/gpt-5.6-luna",
-    "openai-codex/gpt-5.6-terra",
-    "openai-codex/gpt-5.6-sol"
+    "openai-codex/gpt-6-luna",
+    "openai-codex/gpt-6-sol",
+    "openai-codex/gpt-6-astra"
   ],
   "hideThinkingBlock": false,
   "httpIdleTimeoutMs": 30000,

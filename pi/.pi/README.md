@@ -5,6 +5,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 ## Highlights
 
 - Catppuccin Mocha theme
+- GPT-6 Sol default with Luna, Sol, and Astra model cycling
 - High thinking level, visible thinking blocks, compaction, retries, and caching
 - Telemetry disabled
 - User-only session-tree filter
