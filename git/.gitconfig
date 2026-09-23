@@ -84,6 +84,14 @@
 	# delta > diff-highlight > less; falls back to unpaged output if delta is missing
 	pager = delta --diff-highlight
 
+[credential "https://gist.github.com"]
+	helper =
+	helper = !gh auth git-credential
+
+[credential "https://github.com"]
+	helper =
+	helper = !gh auth git-credential
+
 [credential]
 	# Cache credentials in memory for a while. See git-credential-cache(1).
 	helper = cache
