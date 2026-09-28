@@ -18,20 +18,20 @@
   ],
   "hideThinkingBlock": false,
   "httpIdleTimeoutMs": 30000,
-  "lastChangelogVersion": "0.85.1",
+  "lastChangelogVersion": "0.87.1",
   "packages": [
     "git:github.com/thiagowfx/skills",
     "local/web-search",
     "npm:pi-tool-display@0.5.0",
-    "npm:pi-mcp-adapter@2.34.0",
-    "npm:@zeldrisho/pi-web-fetch@0.8.2",
+    "npm:pi-mcp-adapter@3.2.0",
+    "npm:@zeldrisho/pi-web-fetch@0.9.2",
     "npm:@nerisma/pi-auto-title@1.0.1",
-    "npm:@ryan_nookpi/pi-extension-memory-layer@0.4.2",
-    "npm:@tmustier/pi-session-recap@0.5.0",
+    "npm:@ryan_nookpi/pi-extension-memory-layer@0.5.1",
+    "npm:@tmustier/pi-session-recap@0.5.1",
     "npm:pi-team@0.6.11",
-    "npm:@juicesharp/rpiv-ask-user-question@2.10.1",
-    "npm:@juicesharp/rpiv-todo@2.10.1",
-    "npm:@sreetej510/pi-usage@0.10.0"
+    "npm:@juicesharp/rpiv-ask-user-question@2.11.0",
+    "npm:@juicesharp/rpiv-todo@2.11.0",
+    "npm:@sreetej510/pi-usage@0.10.10"
   ],
   "retry": {
     "baseDelayMs": 2000,
