@@ -99,13 +99,15 @@ export default function (pi: ExtensionAPI) {
 		if (current === request && !ctx.signal?.aborted) ctx.ui.setStatus(STATUS_KEY, status);
 	};
 
-	pi.on("session_start", async (_event, ctx) => {
+	pi.on("session_start", (_event, ctx) => {
 		activeCwd = undefined;
 		useWorktreeFrom(ctx.sessionManager.getBranch(), ctx);
-		return refresh(ctx);
+		void refresh(ctx).catch(() => {});
 	});
 	pi.on("tool_call", (event, ctx) => useWorktreeFrom(event.input, ctx));
-	pi.on("turn_end", async (_event, ctx) => refresh(ctx));
+	pi.on("turn_end", (_event, ctx) => {
+		void refresh(ctx).catch(() => {});
+	});
 	pi.on("session_shutdown", async (_event, ctx) => {
 		request += 1;
 		activeCwd = undefined;

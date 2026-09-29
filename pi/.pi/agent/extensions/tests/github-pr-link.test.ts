@@ -89,6 +89,21 @@ test("findWorktreeRoot finds the latest session worktree", () => {
 	assert.equal(findWorktreeRoot("/other/.worktrees/topic/file.ts", "/repo"), undefined);
 });
 
+test("session start does not wait for gh", async () => {
+	let resolveGh: ((value: unknown) => void) | undefined;
+	const { handlers, calls } = setup(() => new Promise((resolve) => (resolveGh = resolve)));
+	const statuses: Array<{ key: string; text: string | undefined }> = [];
+	const result = handlers.get("session_start")?.({}, ctxWith(statuses));
+
+	assert.equal(result, undefined);
+	assert.equal(calls.length, 1);
+	assert.deepEqual(statuses, []);
+
+	resolveGh?.({ stdout: OPEN_PR, code: 0, killed: false });
+	await new Promise(setImmediate);
+	assert.equal(statuses.length, 1);
+});
+
 test("session start shows the underlined PR link", async () => {
 	const { handlers, calls } = setup(() => ({ stdout: OPEN_PR, stderr: "", code: 0, killed: false }));
 	const statuses: Array<{ key: string; text: string | undefined }> = [];
@@ -100,6 +115,20 @@ test("session start shows the underlined PR link", async () => {
 	assert.deepEqual(statuses, [
 		{ key: STATUS_TEXT_KEY, text: "\x1b]8;;https://github.com/o/r/pull/42\x07\x1b[4mPR #42\x1b[24m\x1b]8;;\x07" },
 	]);
+});
+
+test("turn end does not wait for gh", async () => {
+	let resolveGh: ((value: unknown) => void) | undefined;
+	const { handlers } = setup(() => new Promise((resolve) => (resolveGh = resolve)));
+	const statuses: Array<{ key: string; text: string | undefined }> = [];
+	const result = handlers.get("turn_end")?.({}, ctxWith(statuses));
+
+	assert.equal(result, undefined);
+	assert.deepEqual(statuses, []);
+
+	resolveGh?.({ stdout: OPEN_PR, code: 0, killed: false });
+	await new Promise(setImmediate);
+	assert.equal(statuses.length, 1);
 });
 
 test("turn end follows a worktree used by tools", async () => {
@@ -189,6 +218,30 @@ test("aborted turn keeps the previous entry", async () => {
 	assert.deepEqual(statuses, []);
 });
 
+test("pending gh failure clears the entry without blocking", async () => {
+	let rejectGh: ((reason: Error) => void) | undefined;
+	const { handlers } = setup(() => new Promise((_resolve, reject) => (rejectGh = reject)));
+	const statuses: Array<{ key: string; text: string | undefined }> = [];
+	assert.equal(handlers.get("session_start")?.({}, ctxWith(statuses)), undefined);
+
+	rejectGh?.(new Error("gh failed"));
+	await new Promise(setImmediate);
+	assert.deepEqual(statuses, [{ key: STATUS_TEXT_KEY, text: undefined }]);
+});
+
+test("session shutdown prevents a pending refresh from restoring the entry", async () => {
+	let resolveGh: ((value: unknown) => void) | undefined;
+	const { handlers } = setup(() => new Promise((resolve) => (resolveGh = resolve)));
+	const statuses: Array<{ key: string; text: string | undefined }> = [];
+	const ctx = ctxWith(statuses);
+	handlers.get("session_start")?.({}, ctx);
+	await handlers.get("session_shutdown")?.({}, ctx);
+
+	resolveGh?.({ stdout: OPEN_PR, code: 0, killed: false });
+	await new Promise(setImmediate);
+	assert.deepEqual(statuses, [{ key: STATUS_TEXT_KEY, text: undefined }]);
+});
+
 test("session shutdown clears the entry", async () => {
 	const { handlers } = setup(() => ({ stdout: OPEN_PR, stderr: "", code: 0, killed: false }));
 	const statuses: Array<{ key: string; text: string | undefined }> = [];
@@ -211,6 +264,7 @@ test("a stale refresh does not overwrite a newer one", async () => {
 	await handlers.get("turn_end")?.({}, ctx);
 	resolveFirst?.({ stdout: JSON.stringify({ number: 1, state: "OPEN" }), code: 0, killed: false });
 	await stale;
+	await new Promise(setImmediate);
 
 	assert.deepEqual(statuses, [
 		{ key: STATUS_TEXT_KEY, text: "\x1b]8;;https://github.com/o/r/pull/42\x07\x1b[4mPR #42\x1b[24m\x1b]8;;\x07" },
