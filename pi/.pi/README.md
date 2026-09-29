@@ -19,7 +19,6 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
   [`pi-powerline-footer`](https://pi.dev/packages/pi-powerline-footer?name=status), for model, thinking level,
   directory, branch, context, cache, main-session cost, and prioritized extension statuses; no editor, welcome,
   queue, or shell extras.
-- **MCP startup list** — shows enabled MCP server names below loaded startup resources.
 - **Side chat** — `/btw [question]` opens a context-aware, read-only side conversation without growing main history.
 - **Prompt stash** — queue drafts with `Ctrl+s`, restore with `Ctrl+Shift+s`, or manage via `/stash`.
 - **Double paste expansion** — large pastes collapse; paste same clipboard text again to expand it.
@@ -73,8 +72,6 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - `@zeldrisho/pi-web-fetch` — keyless, bounded public webpage fetching through sole `web_fetch` tool.
 - `pi-tool-display` — OpenCode-style compact tool rendering and richer edit diffs; verified with Pi 0.85.1,
   although published peer metadata stops at Pi 0.80.x.
-- `pi-mcp-adapter` — lazy MCP server integration through one context-efficient proxy tool; persistent footer status
-  disabled; verified with Pi 0.85.1 while npm peer metadata still stops at `pi-ai` 0.84.x.
 - `pi-team` — assembles multiple AI agents for parallel task analysis and synthesis.
 - `@juicesharp/rpiv-ask-user-question` — lets model ask structured questions through terminal dialogs.
 - `@juicesharp/rpiv-todo` — renders model todo lists as a live overlay that survives reloads and compaction.
