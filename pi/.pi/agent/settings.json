@@ -8,10 +8,6 @@
   "doubleEscapeAction": "tree",
   "enableInstallTelemetry": false,
   "enabledModels": [
-    "anthropic/claude-haiku-4-5",
-    "anthropic/claude-sonnet-5",
-    "anthropic/claude-opus-5",
-    "anthropic/claude-fable-5",
     "openai-codex/gpt-6-luna",
     "openai-codex/gpt-6-sol",
     "openai-codex/gpt-6-astra"
@@ -40,8 +36,5 @@
   "showCacheMissNotices": true,
   "theme": "catppuccin-mocha",
   "treeFilterMode": "user-only",
-  "tuiMode": "fullscreen",
-  "warnings": {
-    "anthropicExtraUsage": false
-  }
+  "tuiMode": "fullscreen"
 }
