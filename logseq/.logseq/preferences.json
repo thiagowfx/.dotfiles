@@ -1,4 +1,17 @@
 {
   "externals": [],
-  "pinnedToolbarItems": []
+  "pinnedToolbarItems": [],
+  "theme": null,
+  "themes": {
+    "light": {
+      "description": "Logseq default light theme.",
+      "group-desc": "light themes",
+      "group-first": true,
+      "mode": "light",
+      "name": "Default Light Theme",
+      "selected": false,
+      "url": null
+    },
+    "mode": "light"
+  }
 }
