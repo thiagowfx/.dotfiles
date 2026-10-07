@@ -5,16 +5,8 @@ include = cat ~/.mrconfig.defaults
 [.dotfiles]
 checkout = git clone 'git@github.com:thiagowfx/.dotfiles.git' '.dotfiles'
 
-[.dotfiles_corp]
-checkout = git clone 'git@github.com:thiagowfx/.dotfiles_corp.git' '.dotfiles_corp'
-skip = lazy
-
 [workspace/adventofcode]
 checkout = git clone 'git@github.com:thiagowfx/adventofcode' 'adventofcode'
-skip = lazy
-
-[workspace/check-json-schema-meta]
-checkout = git clone 'git@github.com:thiagowfx/check-json-schema-meta' 'check-json-schema-meta'
 skip = lazy
 
 [workspace/aports]
@@ -29,9 +21,11 @@ skip = lazy
 
 [workspace/pancake]
 checkout = git clone 'git@github.com:thiagowfx/pancake' 'pancake'
+skip = lazy
 
 [workspace/perrotta.dev]
 checkout = git clone 'git@github.com:thiagowfx/thiagowfx.github.io.git' 'perrotta.dev'
+skip = lazy
 
 [workspace/pre-commit-hooks]
 checkout = git clone 'git@github.com:thiagowfx/pre-commit-hooks' 'pre-commit-hooks'
@@ -39,9 +33,4 @@ skip = lazy
 
 [workspace/skills]
 checkout = git clone 'git@github.com:thiagowfx/skills' 'skills'
-
-# chain corp repositories (skip if running from within Corp to avoid duplicates)
-# grep -i: on a case-insensitive filesystem the cwd may resolve with different
-# casing than the symlink target, so a case-sensitive match would miss and load
-# the chain twice.
-include = test -f $HOME/Corp/.mrconfig && ! pwd -P | grep -qi "^$(cd "$HOME/Corp" 2>/dev/null && pwd -P)" && sed '/^\[DEFAULT\]/,/^$/d; s|^\[\([^/DEFAULT]\)|[Corp/\1|' $HOME/Corp/.mrconfig || true
+skip = lazy
