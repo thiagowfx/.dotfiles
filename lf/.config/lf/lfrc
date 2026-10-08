@@ -1,5 +1,8 @@
 # lf configuration
+#
 # See `lf -doc` for documentation
+#
+# Toggle hidden files: 'zh'
 
 # Delete selection / files
 cmd remove delete
@@ -19,5 +22,3 @@ cmd edit-or-open ${{
     fi
 }}
 map <enter> edit-or-open
-
-# Toggle hidden files: 'zh'

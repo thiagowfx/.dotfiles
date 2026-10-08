@@ -32,7 +32,6 @@ packages.sort()
 for pkg in packages:
     cog.outl(f'brew "{pkg}"')
 # ]]]
-brew "ack"
 brew "actionlint"
 brew "argocd"
 brew "atlassian/acli/acli"
@@ -108,7 +107,6 @@ brew "pngcrush"
 brew "poppler"
 brew "prek"
 brew "proselint"
-brew "ranger"
 brew "rename"
 brew "ripgrep-all"
 brew "ruff"

@@ -1,7 +1,7 @@
 #!/usr/bin/env just --justfile
 # https://github.com/casey/just
 
-packages := "ack alacritty apk atuin bash cmux gh ghostty git gitui hg i3 iterm2 jj lf logseq mc mise mole mr nvim opencode pacman pi profile ranger screen ssh starship sway tmux vim vscode worktrunk x11 zed zsh"
+packages := "apk atuin bash cmux gh ghostty git gitui hg i3 jj lf logseq mc mise mole mr nvim opencode pacman pi profile ssh starship sway tmux vim vscode worktrunk x11 zed zsh"
 # claude is stowed without folding so corp-managed skills (from ~/.dotfiles_corp)
 # can be symlinked into the same ~/.claude/skills dir without this repo seeing them.
 packages_no_folding := "claude espanso"
@@ -30,8 +30,6 @@ stow:
     # Map package names to their binaries
     declare -A package_binaries=(
         # keep-sorted start
-        [ack]="ack"
-        [alacritty]="alacritty"
         [apk]="apk"
         [atuin]="atuin"
         [bash]="bash"
@@ -47,7 +45,6 @@ stow:
         [gitui]="gitui"
         [hg]="hg"
         [i3]="i3"
-        [iterm2]="/Applications/iTerm.app/Contents/MacOS/iTerm2"
         [jj]="jj"
         [lf]="lf"
         [logseq]="/Applications/LogSeq.app/Contents/MacOS/LogSeq"
@@ -60,8 +57,6 @@ stow:
         [pacman]="pacman"
         [pi]="pi"
         [profile]="sh"
-        [ranger]="ranger"
-        [screen]="screen"
         [ssh]="ssh"
         [starship]="starship"
         [sway]="sway"
