@@ -4,13 +4,5 @@
     "confirmQuit": "never",
     "iMessageMode": true
   },
-  "browser": {
-    "defaultSearchEngine": "kagi",
-    "urlsToAlwaysOpenExternally": [
-      "https://claude.ai",
-      "https://claude.com",
-      "https://github.com"
-    ]
-  },
   "schemaVersion": 1
 }
