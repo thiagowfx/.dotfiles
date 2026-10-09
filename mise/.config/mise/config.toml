@@ -10,7 +10,7 @@ go = "1.27"
 node = "26.9"
 # Ships bin/python next to bin/python3, so no `python` shim formula is needed.
 # Project virtualenvs still come from uv.
-python = "3.14"
+python = "3.15.0"
 ruby = "3.4"
 terraform = "1.16.3"
 terraform-docs = "0.24.0"
