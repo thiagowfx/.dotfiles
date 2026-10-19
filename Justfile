@@ -5,7 +5,7 @@ packages := "apk atuin bash gh ghostty git gitui i3 lf logseq mr nvim pacman pi 
 # claude is stowed without folding so corp-managed skills (from ~/.dotfiles_corp)
 # can be symlinked into the same ~/.claude/skills dir without this repo seeing them.
 packages_no_folding := "claude espanso"
-packages_no_stow := "obsidian ssh_auto_tmux vendor"
+packages_no_stow := "ssh_auto_tmux vendor"
 [private]
 _dotfiles_dir := justfile_directory()
 target_dir := env_var("HOME")
