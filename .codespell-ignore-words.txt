@@ -1,6 +1,4 @@
 # keep-sorted start
 ameba
 edn
-iTerm
-iterm
 # keep-sorted end
