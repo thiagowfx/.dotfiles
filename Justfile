@@ -178,7 +178,7 @@ configure-macos:
     defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 
     # Dock settings
-    defaults write com.apple.dock show-recents -bool false
+    defaults write com.apple.dock show-recents -bool true
 
     # System settings (requires sudo)
     sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticCheckEnabled -int 1
