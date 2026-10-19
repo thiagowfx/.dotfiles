@@ -186,14 +186,6 @@ xcode-command-line-tools:
         echo "Xcode Command Line Tools already installed"
     fi
 
-[doc('Install dependencies from Brewfile (Homebrew packages and casks)')]
-[group('bootstrap')]
-install-brewfile:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    # Strip cog markers and Python code before passing to brew bundle
-    sed '/# \[\[\[cog/,/# \]\]\]/d; /# \[\[\[end\]\]\]/d' Brewfile | brew bundle --file=-
-
 [doc('Configure macOS defaults (keyboard, dock, security, etc.)')]
 [group('bootstrap')]
 configure-macos:
@@ -232,9 +224,9 @@ configure-macos:
     #     rm /tmp/pam_tid_line; \
     # fi
 
-[doc('Bootstrap environment (install packages, casks, and configure macOS)')]
+[doc('Bootstrap environment (install Xcode Command Line Tools and configure macOS)')]
 [group('bootstrap')]
-bootstrap: xcode-command-line-tools install-brewfile configure-macos
+bootstrap: xcode-command-line-tools configure-macos
 
 [doc('Install dotfiles and bootstrap environment')]
 [group('install')]
