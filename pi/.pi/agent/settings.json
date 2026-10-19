@@ -2,19 +2,22 @@
   "compaction": {
     "enabled": true
   },
-  "defaultModel": "gpt-6-sol",
+  "defaultModel": "gpt-6.1-sol",
   "defaultProvider": "openai-codex",
   "defaultThinkingLevel": "high",
+  "defaultTools": [
+    "+codemode"
+  ],
   "doubleEscapeAction": "tree",
   "enableInstallTelemetry": false,
   "enabledModels": [
     "openai-codex/gpt-6-luna",
-    "openai-codex/gpt-6-sol",
+    "openai-codex/gpt-6.1-sol",
     "openai-codex/gpt-6-astra"
   ],
   "hideThinkingBlock": false,
   "httpIdleTimeoutMs": 30000,
-  "lastChangelogVersion": "1.0.4",
+  "lastChangelogVersion": "1.3.0",
   "packages": [
     "git:github.com/thiagowfx/skills",
     "local/web-search",
@@ -23,7 +26,6 @@
     "npm:@nerisma/pi-auto-title@1.0.1",
     "npm:@ryan_nookpi/pi-extension-memory-layer@0.5.1",
     "npm:@tmustier/pi-session-recap@0.5.1",
-    "npm:pi-team@0.6.11",
     "npm:@juicesharp/rpiv-ask-user-question@2.12.0",
     "npm:@juicesharp/rpiv-todo@2.12.0",
     "npm:@sreetej510/pi-usage@0.10.13"

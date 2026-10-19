@@ -1,6 +1,5 @@
 [
   "eamodio.gitlens",
-  "hashicorp.terraform",
   "ms-python.python",
   "redhat.vscode-yaml",
   "timonwong.shellcheck",

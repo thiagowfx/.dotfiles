@@ -33,6 +33,3 @@ path_munge "${HOMEBREW_PREFIX:-/opt/homebrew}/opt/gnu-sed/libexec/gnubin"
 
 # Trash
 path_munge "${HOMEBREW_PREFIX:-/opt/homebrew}/opt/macos-trash/bin"
-
-# Rancher Desktop: https://rancherdesktop.io
-path_munge "$HOME/.rd/bin"

@@ -50,12 +50,22 @@ else
   prompt="Look at the staged git changes and create a git commit message with a title and body. Follow standard commit practices: explain what changed, why it changed, and any relevant context or rationale. Respond only with the commit message (title on first line, blank line, then body). No affirmations or explanations."
 fi
 
-# Select AI agent (default: claude)
-agent="${GIT_AI_AGENT:-claude}"
+# Select AI agent (default: claude, then pi if claude is unavailable)
+agent="${GIT_AI_AGENT:-}"
+if [ -z "$agent" ]; then
+  if command -v claude >/dev/null 2>&1; then
+    agent=claude
+  else
+    agent=pi
+  fi
+fi
 case "$agent" in
   # keep-sorted start
   claude)
     ai_prompt() { claude -p "$1"; }
+    ;;
+  pi)
+    ai_prompt() { pi -p "$1"; }
     ;;
   # keep-sorted end
   *)

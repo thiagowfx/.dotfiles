@@ -1,6 +1,0 @@
-[user]
-name = "Thiago Perrotta"
-email = "thiago@perrotta.dev"
-
-[ui]
-default-command = "log"

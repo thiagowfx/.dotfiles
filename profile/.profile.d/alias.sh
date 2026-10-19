@@ -59,34 +59,6 @@ cdg() {
 	fi
 }
 
-# shortcuts
-# exit everything: quit all nested shells, closing the terminal tab
-ee() {
-	pid=$$
-	pids=$pid
-	while ppid=$(ps -o ppid= -p "$pid" | tr -d ' ') && [ "$ppid" -gt 1 ] 2>/dev/null; do
-		case "$(ps -o comm= -p "$ppid" 2>/dev/null)" in
-			*sh) pids="$pids $ppid"; pid=$ppid ;;
-			*) break ;;
-		esac
-	done
-	eval "kill -HUP $pids"
-}
-
-if command -v kubectl >/dev/null 2>&1; then
-	alias k=kubectl
-fi
-
-if command -v obsidian >/dev/null 2>&1; then
-	alias ob=obsidian
-fi
-
-if command -v claude >/dev/null 2>&1; then
-	if command -v cco >/dev/null 2>&1; then
-		alias claudey="cco --allow-oauth-refresh --add-dir ~/.cache --add-dir ~/.aws/cli/cache --add-dir ~/.aws/sso/cache --add-dir ~/.azure --add-dir ~/.terraform.d/plugin-cache --add-dir ~/go --allow-keychain"
-	fi
-fi
-
 # muscle memory
 alias unstow="stow -D"
 
