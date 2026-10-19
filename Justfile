@@ -185,12 +185,10 @@ configure-macos:
     defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
     # Sudo with Touch ID
-    # @if ! grep -q "pam_tid.so" /etc/pam.d/sudo; then \
-    #     echo "Configuring Touch ID for sudo..."; \
-    #     echo "auth       sufficient     pam_tid.so" | sudo tee /tmp/pam_tid_line > /dev/null; \
-    #     sudo sed -i "" "2r /tmp/pam_tid_line" /etc/pam.d/sudo; \
-    #     rm /tmp/pam_tid_line; \
-    # fi
+    if ! grep -Eq '^[[:space:]]*auth[[:space:]]+sufficient[[:space:]]+pam_tid\.so([[:space:]]|$)' /etc/pam.d/sudo_local 2>/dev/null; then
+        echo "Configuring Touch ID for sudo..."
+        printf '\nauth       sufficient     pam_tid.so\n' | sudo tee -a /etc/pam.d/sudo_local > /dev/null
+    fi
 
 [doc('Bootstrap environment (install Xcode Command Line Tools and configure macOS)')]
 [group('bootstrap')]
