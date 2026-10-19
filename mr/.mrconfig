@@ -9,12 +9,6 @@ checkout = git clone 'git@github.com:thiagowfx/.dotfiles.git' '.dotfiles'
 checkout = git clone 'git@github.com:thiagowfx/adventofcode' 'adventofcode'
 skip = lazy
 
-[workspace/aports]
-checkout = git clone 'git@gitlab.alpinelinux.org:thiagowfx/aports.git' 'aports'
-skip = lazy
-update = git pull upstream master
-push = git push origin master
-
 [workspace/homebrew-taps]
 checkout = git clone 'git@github.com:thiagowfx/homebrew-taps' 'homebrew-taps'
 skip = lazy
