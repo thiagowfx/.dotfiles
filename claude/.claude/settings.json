@@ -1,25 +1,13 @@
 {
   "alwaysThinkingEnabled": false,
   "enabledPlugins": {
-    "gopls-lsp@claude-plugins-official": true,
-    "lua-lsp@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
-    "ruby-lsp@claude-plugins-official": true,
-    "terraform-skill@antonbabenko": true,
-    "thiagowfx@thiagowfx": true,
-    "typescript-lsp@claude-plugins-official": true
+    "thiagowfx@thiagowfx": true
   },
   "env": {
-    "CLAUDE_CODE_ENABLE_TELEMETRY": "0",
-    "ENABLE_TOOL_SEARCH": "true"
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "0"
   },
   "extraKnownMarketplaces": {
-    "antonbabenko": {
-      "source": {
-        "repo": "antonbabenko/agent-plugins",
-        "source": "github"
-      }
-    },
     "thiagowfx": {
       "source": {
         "repo": "thiagowfx/skills",
@@ -57,19 +45,9 @@
   },
   "permissions": {
     "allow": [
-      "Bash(acli jira workitem view:*)",
-      "Bash(afplay:*)",
-      "Bash(ansible-doc:*)",
-      "Bash(basename:*)",
-      "Bash(brew info:*)",
       "Bash(cat:*)",
-      "Bash(command -v:*)",
-      "Bash(date:*)",
-      "Bash(dir:*)",
-      "Bash(echo:*)",
       "Bash(fd:*)",
       "Bash(find:*)",
-      "Bash(gh api:*)",
       "Bash(gh issue view:*)",
       "Bash(gh pr checks:*)",
       "Bash(gh pr diff:*)",
@@ -78,44 +56,23 @@
       "Bash(gh pr view:*)",
       "Bash(gh run view:*)",
       "Bash(gh search:*)",
-      "Bash(git add:*)",
-      "Bash(git branch:*)",
       "Bash(git check-ignore:*)",
-      "Bash(git commit:*)",
       "Bash(git diff:*)",
       "Bash(git log:*)",
       "Bash(git rev-parse:*)",
-      "Bash(git run list:*)",
       "Bash(git show:*)",
-      "Bash(go test:*)",
       "Bash(grep:*)",
-      "Bash(hadolint:*)",
       "Bash(head:*)",
-      "Bash(helm lint:*)",
-      "Bash(helm template:*)",
       "Bash(jq:*)",
-      "Bash(just --list:*)",
       "Bash(less:*)",
       "Bash(ls:*)",
-      "Bash(md5sum:*)",
-      "Bash(mktemp:*)",
-      "Bash(mkdir:*)",
-      "Bash(printf:*)",
-      "Bash(pytest:*)",
       "Bash(readlink:*)",
       "Bash(rg:*)",
-      "Bash(shellcheck:*)",
       "Bash(stat:*)",
       "Bash(tail:*)",
-      "Bash(terraform validate:*)",
       "Bash(test:*)",
-      "Bash(tflint:*)",
-      "Bash(tr:*)",
       "Bash(tree:*)",
-      "Bash(uuidgen:*)",
       "Bash(wc:*)",
-      "Bash(xxd:*)",
-      "Bash(yamllint:*)",
       "WebFetch(domain:api.github.com)",
       "WebFetch(domain:docs.github.com)",
       "WebFetch(domain:ghostty.org)",
