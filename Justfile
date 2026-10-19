@@ -1,11 +1,11 @@
 #!/usr/bin/env just --justfile
 # https://github.com/casey/just
 
-packages := "apk atuin bash cmux gh ghostty git gitui hg i3 jj lf logseq mc mise mole mr nvim pacman pi profile ssh starship sway tmux vim vscode worktrunk x11 zed zsh"
+packages := "apk atuin bash gh ghostty git gitui i3 lf logseq mr nvim pacman pi profile ssh starship sway tmux vim vscode worktrunk x11 zsh"
 # claude is stowed without folding so corp-managed skills (from ~/.dotfiles_corp)
 # can be symlinked into the same ~/.claude/skills dir without this repo seeing them.
 packages_no_folding := "claude espanso"
-packages_no_stow := "docs misc obsidian ssh_auto_tmux vendor"
+packages_no_stow := "obsidian ssh_auto_tmux vendor"
 [private]
 _dotfiles_dir := justfile_directory()
 target_dir := env_var("HOME")
@@ -34,7 +34,6 @@ stow:
         [atuin]="atuin"
         [bash]="bash"
         [claude]="claude"
-        [cmux]="cmux"
         # The espanso package only ships the macOS config path
         # (Library/Application Support/espanso); Linux espanso reads
         # ~/.config/espanso, so gate on the .app rather than the binary.
@@ -43,14 +42,9 @@ stow:
         [ghostty]="ghostty"
         [git]="git"
         [gitui]="gitui"
-        [hg]="hg"
         [i3]="i3"
-        [jj]="jj"
         [lf]="lf"
         [logseq]="/Applications/LogSeq.app/Contents/MacOS/LogSeq"
-        [mc]="mc"
-        [mise]="mise"
-        [mole]="mole"
         [mr]="mr"
         [nvim]="nvim"
         [pacman]="pacman"
@@ -65,7 +59,6 @@ stow:
         [vscode]="code"
         [worktrunk]="wt"
         [x11]="X"
-        [zed]="zed"
         [zsh]="zsh"
         # keep-sorted end
     )
@@ -243,14 +236,9 @@ configure-macos:
 [group('bootstrap')]
 bootstrap: xcode-command-line-tools install-brewfile configure-macos
 
-[doc('Install tools declared in global mise config')]
+[doc('Install dotfiles and bootstrap environment')]
 [group('install')]
-mise-install:
-    mise install
-
-[doc('Install dotfiles, bootstrap environment, and install mise tools')]
-[group('install')]
-install: bootstrap stow mise-install
+install: bootstrap stow
 
 [doc('Update git submodules, Pi packages, prek hooks, and upstream files')]
 [group('update')]
