@@ -169,26 +169,20 @@ configure-macos:
     # Keyboard settings
     defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
     defaults write com.apple.HIToolbox AppleFnUsageType -int 2
-    defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
-
-    # Application settings
-    defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-    defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
-    defaults write com.apple.Terminal FocusFollowsMouse -bool true
-    defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
-
-    # Dock settings
-    defaults write com.apple.dock show-recents -bool true
-
-    # System settings (requires sudo)
-    sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticCheckEnabled -int 1
-
-    # Touchpad settings
-    defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+    defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool true
 
     # Keyboard repeat rate
     defaults write NSGlobalDomain InitialKeyRepeat -int 10
     defaults write NSGlobalDomain KeyRepeat -int 1
+
+    # Application settings
+    defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+    # Dock settings
+    defaults write com.apple.dock show-recents -bool true
+
+    # Touchpad settings
+    defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
     # Sudo with Touch ID
     # @if ! grep -q "pam_tid.so" /etc/pam.d/sudo; then \
