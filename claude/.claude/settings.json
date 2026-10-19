@@ -42,46 +42,12 @@
         "matcher": "permission_prompt|idle_prompt|elicitation_dialog"
       }
     ],
-    "PostToolUse": [
-      {
-        "hooks": [
-          {
-            "command": "atuin hook claude-code",
-            "timeout": 5,
-            "type": "command"
-          }
-        ],
-        "matcher": "Bash"
-      }
-    ],
-    "PostToolUseFailure": [
-      {
-        "hooks": [
-          {
-            "command": "atuin hook claude-code",
-            "timeout": 5,
-            "type": "command"
-          }
-        ],
-        "matcher": "Bash"
-      }
-    ],
     "PreToolUse": [
       {
         "hooks": [
           {
             "command": "~/.claude/hooks/block_dangerous_commands.sh",
             "timeout": 10,
-            "type": "command"
-          }
-        ],
-        "matcher": "Bash"
-      },
-      {
-        "hooks": [
-          {
-            "command": "atuin hook claude-code",
-            "timeout": 5,
             "type": "command"
           }
         ],
