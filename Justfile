@@ -1,10 +1,7 @@
 #!/usr/bin/env just --justfile
 # https://github.com/casey/just
 
-packages := "apk atuin bash gh ghostty git gitui i3 lf logseq mr nvim pacman pi profile ssh starship sway tmux vim vscode worktrunk x11 zsh"
-# claude is stowed without folding so corp-managed skills (from ~/.dotfiles_corp)
-# can be symlinked into the same ~/.claude/skills dir without this repo seeing them.
-packages_no_folding := "claude espanso"
+packages := "apk atuin bash claude espanso gh ghostty git gitui i3 lf logseq mr nvim pacman pi profile ssh starship sway tmux vim vscode worktrunk x11 zsh"
 packages_no_stow := "ssh_auto_tmux vendor"
 [private]
 _dotfiles_dir := justfile_directory()
@@ -53,7 +50,6 @@ stow:
         [ssh]="ssh"
         [starship]="starship"
         [sway]="sway"
-        [swiftbar]="/Applications/SwiftBar.app/Contents/MacOS/SwiftBar"
         [tmux]="tmux"
         [vim]="vim"
         [vscode]="code"
@@ -63,18 +59,15 @@ stow:
         # keep-sorted end
     )
 
-    # The loops below warn when a package has no mapping; this is the missing
-    # inverse. A mapping without a package is either a placeholder for config
-    # not written yet (swiftbar) or a leftover from a deleted package, so warn
-    # rather than fail.
-    all_packages=" {{ packages }} {{ packages_no_folding }} "
+    # Warn about binary mappings without a package, as well as packages
+    # without a binary mapping below.
+    all_packages=" {{ packages }} "
     for pkg in "${!package_binaries[@]}"; do
         if [[ "$all_packages" != *" $pkg "* ]]; then
             echo "Warning: binary mapping for '$pkg', which is in no package list" >&2
         fi
     done
 
-    # Stow packages with regular folding
     stow_packages=""
     for pkg in {{ packages }}; do
         binary="${package_binaries[$pkg]:-}"
@@ -91,25 +84,6 @@ stow:
     done
     if [[ -n "$stow_packages" ]]; then
         stow -v -t {{ target_dir }} -d {{ _dotfiles_dir }} $stow_packages
-    fi
-
-    # Stow packages with no folding
-    stow_packages_no_folding=""
-    for pkg in {{ packages_no_folding }}; do
-        binary="${package_binaries[$pkg]:-}"
-        if [[ -z "$binary" ]]; then
-            echo "Warning: No binary mapping for package '$pkg', skipping" >&2
-            continue
-        fi
-        if [[ -f "$binary" ]] || command -v "$binary" &> /dev/null; then
-            echo "Stowing '$pkg' (no folding)"
-            stow_packages_no_folding="$stow_packages_no_folding $pkg"
-        else
-            echo "Skipping '$pkg' (binary '$binary' not found)"
-        fi
-    done
-    if [[ -n "$stow_packages_no_folding" ]]; then
-        stow -v -t {{ target_dir }} -d {{ _dotfiles_dir }} --no-folding $stow_packages_no_folding
     fi
 
 [doc('Check for dangling symlinks owned by this repository')]
@@ -148,7 +122,7 @@ stow-lint:
         -type l -lname "*$repo_name*" -print0 2>/dev/null)
 
     declare -A deep_roots=()
-    for package in {{ packages }} {{ packages_no_folding }}; do
+    for package in {{ packages }}; do
         while IFS= read -r -d '' source_dir; do
             relative_dir="${source_dir#"$repo/$package/"}"
             deep_roots["$target/$relative_dir"]=1
@@ -171,7 +145,7 @@ stow-lint:
 [doc('Remove all symlinks')]
 [group('stow')]
 unstow:
-    stow -t {{ target_dir }} -d {{ _dotfiles_dir }} --delete {{ packages }} {{ packages_no_folding }}
+    stow -t {{ target_dir }} -d {{ _dotfiles_dir }} --delete {{ packages }}
 
 [doc('Install Xcode Command Line Tools')]
 [group('bootstrap')]
