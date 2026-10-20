@@ -33,7 +33,6 @@
     "maxRetries": 5
   },
   "showCacheMissNotices": true,
-  "theme": "catppuccin-mocha",
   "treeFilterMode": "user-only",
   "tuiMode": "fullscreen"
 }
