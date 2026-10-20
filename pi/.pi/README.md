@@ -19,7 +19,6 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
   [`pi-powerline-footer`](https://pi.dev/packages/pi-powerline-footer?name=status), for model, thinking level,
   directory, branch, context, cache, main-session cost, and prioritized extension statuses; no editor, welcome,
   queue, or shell extras.
-- **Side chat** — `/btw [question]` opens a context-aware, read-only side conversation without growing main history.
 - **Prompt stash** — queue drafts with `Ctrl+s`, restore with `Ctrl+Shift+s`, or manage via `/stash`.
 - **Double paste expansion** — large pastes collapse; paste same clipboard text again to expand it.
 - **Command aliases** — `/clear` → `/new`; `/rename` → `/name`.
