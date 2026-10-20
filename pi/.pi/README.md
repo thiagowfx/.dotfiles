@@ -62,7 +62,6 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 
 - `@tmustier/pi-session-recap` — focus-aware while-you-were-away recaps using a cheap same-provider model automatically.
 - `@nerisma/pi-auto-title` — generates concise session names from first prompts using a cheap model.
-- `@ryan_nookpi/pi-extension-memory-layer` — curated global/project memory with compact index injection and on-demand recall.
 - `@zeldrisho/pi-web-fetch` — keyless, bounded public webpage fetching through sole `web_fetch` tool.
 - `pi-team` — assembles multiple AI agents for parallel task analysis and synthesis.
 - `@juicesharp/rpiv-ask-user-question` — lets model ask structured questions through terminal dialogs.
