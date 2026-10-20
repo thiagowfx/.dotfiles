@@ -39,9 +39,6 @@
 	unfreeze = thaw
 	# keep-sorted end
 
-	# usage: git ignore go,hugo,vim >> .gitignore
-	ignore = !curl -L -s "https://www.gitignore.io/api/$@"
-
 	# usage: [list | view Go]
 	ignore-gh = !gh repo gitignore
 
@@ -125,10 +122,6 @@
 
 [help]
 	autocorrect = 10
-
-[http]
-	# Needed for Gerrit authentication/integration
-	cookiefile = ~/.gitcookies
 
 [init]
 	# master or main
