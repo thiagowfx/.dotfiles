@@ -14,13 +14,11 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 
 ### Extensions
 
-- **Session ID** — full session UUID in footer for quick reference.
 - **Powerline status** — compact footer inspired by
   [`pi-powerline-footer`](https://pi.dev/packages/pi-powerline-footer?name=status), for model, thinking level,
   directory, branch, context, cache, main-session cost, and prioritized extension statuses; no editor, welcome,
   queue, or shell extras.
 - **Prompt stash** — queue drafts with `Ctrl+s`, restore with `Ctrl+Shift+s`, or manage via `/stash`.
-- **Double paste expansion** — large pastes collapse; paste same clipboard text again to expand it.
 - **Command aliases** — `/clear` → `/new`; `/rename` → `/name`.
 - **Dangerous command guard** — parses agent-issued shell with Tree-sitter, then blocks known destructive
   operations such as Terraform apply/destroy, hard resets, unsafe cleans, protected-branch force-pushes,
@@ -41,7 +39,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 ### Interface
 
 - **Theme:** Catppuccin Mocha dark palette with markdown, syntax, diff, tool, and thinking-level colors.
-- **Model cycling (backward):** `Shift+Ctrl+P` or `Ctrl+N`; scoped models stay grouped by provider and
+- **Model cycling (backward):** `Ctrl+N`; scoped models stay grouped by provider and
   ordered from cheaper/lighter to costlier/stronger.
 - **Model/thinking save or session sort:** `Alt+S`.
 - **Fullscreen TUI:** transcript scrolls in viewport; editor and powerline status stay docked at bottom.
