@@ -45,8 +45,6 @@
   },
   "permissions": {
     "allow": [
-      "Bash(cat:*)",
-      "Bash(fd:*)",
       "Bash(gh issue view:*)",
       "Bash(gh pr checks:*)",
       "Bash(gh pr diff:*)",
@@ -60,25 +58,20 @@
       "Bash(git log:*)",
       "Bash(git rev-parse:*)",
       "Bash(git show:*)",
-      "Bash(grep:*)",
-      "Bash(head:*)",
       "Bash(jq:*)",
       "Bash(ls:*)",
       "Bash(readlink:*)",
       "Bash(stat:*)",
-      "Bash(tail:*)",
       "Bash(test:*)",
       "Bash(tree:*)",
-      "Bash(wc:*)",
-      "WebFetch(domain:api.github.com)",
-      "WebFetch(domain:docs.github.com)",
-      "WebFetch(domain:ghostty.org)",
-      "WebFetch(domain:github.com)",
-      "WebFetch(domain:perrotta.dev)",
-      "WebSearch"
+      "Bash(wc:*)"
     ],
     "defaultMode": "auto",
     "deny": [
+      "Bash(git clean:*)",
+      "Bash(rm -R:*)",
+      "Bash(rm -fr:*)",
+      "Bash(rm -r:*)",
       "Bash(rm -rf:*)",
       "Bash(terraform apply:*)",
       "Bash(terraform destroy:*)"
