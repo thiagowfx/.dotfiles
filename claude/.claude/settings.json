@@ -47,7 +47,6 @@
     "allow": [
       "Bash(cat:*)",
       "Bash(fd:*)",
-      "Bash(find:*)",
       "Bash(gh issue view:*)",
       "Bash(gh pr checks:*)",
       "Bash(gh pr diff:*)",
@@ -64,10 +63,8 @@
       "Bash(grep:*)",
       "Bash(head:*)",
       "Bash(jq:*)",
-      "Bash(less:*)",
       "Bash(ls:*)",
       "Bash(readlink:*)",
-      "Bash(rg:*)",
       "Bash(stat:*)",
       "Bash(tail:*)",
       "Bash(test:*)",
@@ -88,8 +85,6 @@
     ]
   },
   "showThinkingSummaries": true,
-  "skipAutoPermissionPrompt": true,
-  "skipDangerousModePermissionPrompt": true,
   "statusLine": {
     "command": "bash ~/.claude/statusline.sh",
     "type": "command"
