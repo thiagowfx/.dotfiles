@@ -26,10 +26,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
   operations such as Terraform apply/destroy, hard resets, unsafe cleans, protected-branch force-pushes,
   and hook bypasses; dynamic command names and non-blocked push arguments bypass inspection; installs pinned
   parser dependencies automatically on first load.
-- **Ready notifications** — terminal bell and macOS chime when agent finishes; cmux owns completion alerts
-  inside an active cmux surface.
-- **cmux integration** — reports Pi lifecycle and tool activity for idle detection, notifications, Feed telemetry,
-  and session restore.
+- **Ready notifications** — terminal bell and macOS chime when agent finishes.
 - **Automatic session names** — generates a concise name from the first prompt using the cheapest available model.
 - **Title-bar spinner** — shows full agent activity through settled state, current session name, and session
   working directory in terminal title.
@@ -67,8 +64,6 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - `@nerisma/pi-auto-title` — generates concise session names from first prompts using a cheap model.
 - `@ryan_nookpi/pi-extension-memory-layer` — curated global/project memory with compact index injection and on-demand recall.
 - `@zeldrisho/pi-web-fetch` — keyless, bounded public webpage fetching through sole `web_fetch` tool.
-- `pi-tool-display` — OpenCode-style compact tool rendering and richer edit diffs; verified with Pi 0.85.1,
-  although published peer metadata stops at Pi 0.80.x.
 - `pi-team` — assembles multiple AI agents for parallel task analysis and synthesis.
 - `@juicesharp/rpiv-ask-user-question` — lets model ask structured questions through terminal dialogs.
 - `@juicesharp/rpiv-todo` — renders model todo lists as a live overlay that survives reloads and compaction.
