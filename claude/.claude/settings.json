@@ -1,5 +1,4 @@
 {
-  "alwaysThinkingEnabled": false,
   "enabledPlugins": {
     "pyright-lsp@claude-plugins-official": true,
     "thiagowfx@thiagowfx": true
@@ -77,10 +76,8 @@
       "Bash(terraform destroy:*)"
     ]
   },
-  "showThinkingSummaries": true,
   "statusLine": {
     "command": "bash ~/.claude/statusline.sh",
     "type": "command"
-  },
-  "tui": "fullscreen"
+  }
 }
