@@ -28,9 +28,6 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - **Automatic session names** — generates a concise name from the first prompt using the cheapest available model.
 - **Title-bar spinner** — shows full agent activity through settled state, current session name, and session
   working directory in terminal title.
-- **GitHub PR link** — statusline shows the session pull request and head branch as an underlined, clickable
-  `PR #123@branch` after provider usage, including an active `.worktrees` checkout; refreshes in background
-  on session start and after each turn with one `gh pr view` call; needs authenticated `gh`.
 
 ### Prompt templates
 
