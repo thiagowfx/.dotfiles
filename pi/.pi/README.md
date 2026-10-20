@@ -55,7 +55,6 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 
 ### npm packages
 
-- `@tmustier/pi-session-recap` — focus-aware while-you-were-away recaps using a cheap same-provider model automatically.
 - `@nerisma/pi-auto-title` — generates concise session names from first prompts using a cheap model.
 - `@zeldrisho/pi-web-fetch` — keyless, bounded public webpage fetching through sole `web_fetch` tool.
 - `pi-team` — assembles multiple AI agents for parallel task analysis and synthesis.
