@@ -33,10 +33,6 @@ matches:
   - trigger: ":option"
     replace: "⌥"
 
-  # macOS: Option + 3
-  - trigger: ":pound"
-    replace: "£"
-
   - trigger: ":right"
     replace: "→"
 
