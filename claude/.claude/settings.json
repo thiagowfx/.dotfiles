@@ -67,13 +67,8 @@
     ],
     "defaultMode": "auto",
     "deny": [
-      "Bash(git clean:*)",
       "Bash(rm -R:*)",
-      "Bash(rm -fr:*)",
-      "Bash(rm -r:*)",
-      "Bash(rm -rf:*)",
-      "Bash(terraform apply:*)",
-      "Bash(terraform destroy:*)"
+      "Bash(rm -r:*)"
     ]
   },
   "statusLine": {
