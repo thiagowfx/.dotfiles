@@ -17,7 +17,6 @@ local plugins = {
           -- keep-sorted start
           'bashls',
           'dockerls',
-          'gopls',
           'jsonls',
           'lua_ls',
           'marksman',
