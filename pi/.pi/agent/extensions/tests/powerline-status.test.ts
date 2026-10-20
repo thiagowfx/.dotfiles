@@ -26,9 +26,8 @@ function state(overrides: Partial<PowerlineState> = {}): PowerlineState {
 		context: { tokens: 50_000, contextWindow: 200_000, percent: 25 },
 		usingSubscription: true,
 		statuses: new Map([
-			["session-id", "sid:123"],
-			["github-pr", "PR #42"],
 			["provider-usage", "codex 30% 5h"],
+			["other", "extra"],
 		]),
 		nerdFonts: false,
 		...overrides,
@@ -42,7 +41,7 @@ function plain(value: string): string {
 test("renders powerline content in package order", () => {
 	const lines = renderPowerline(200, state(), theme);
 	assert.deepEqual(lines.map(plain), [
-		" Opus 5 | think:high | dir repo | ⎇ main | ◫ 50k/200k (25.0%) | cache in: 12k | main:$1.012 (sub) | codex 30% 5h | PR #42 | sid:123 ",
+		" Opus 5 | think:high | dir repo | ⎇ main | ◫ 50k/200k (25.0%) | cache in: 12k | main:$1.012 (sub) | codex 30% 5h | extra ",
 	]);
 });
 
@@ -66,14 +65,14 @@ test("keeps fitting extension statuses when later statuses exceed width", () => 
 		usingSubscription: false,
 		statuses: new Map([
 			["provider-usage", "usage 30%"],
-			["github-pr", "PR #42"],
-			["session-id", "sid:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"],
+			["short", "short"],
+			["zlong", "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"],
 		]),
 	}), theme).map(plain);
 
 	assert.match(lines.join("\n"), /usage 30%/);
-	assert.match(lines.join("\n"), /PR #42/);
-	assert.doesNotMatch(lines.join("\n"), /sid:/);
+	assert.match(lines.join("\n"), /short/);
+	assert.doesNotMatch(lines.join("\n"), /xxxx/);
 });
 
 test("uses warning and error context colors at thresholds", () => {
