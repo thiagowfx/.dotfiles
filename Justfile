@@ -1,7 +1,7 @@
 #!/usr/bin/env just --justfile
 # https://github.com/casey/just
 
-packages := "apk atuin bash claude espanso gh ghostty git gitui i3 lf logseq mr nvim pacman pi profile ssh starship sway tmux vim vscode worktrunk x11 zsh"
+packages := "apk atuin bash claude espanso gh ghostty git gitui i3 lf mr nvim pacman pi profile ssh starship sway tmux vim vscode worktrunk x11 zsh"
 packages_no_stow := "ssh_auto_tmux vendor"
 [private]
 _dotfiles_dir := justfile_directory()
@@ -41,7 +41,6 @@ stow:
         [gitui]="gitui"
         [i3]="i3"
         [lf]="lf"
-        [logseq]="/Applications/LogSeq.app/Contents/MacOS/LogSeq"
         [mr]="mr"
         [nvim]="nvim"
         [pacman]="pacman"
