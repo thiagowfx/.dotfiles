@@ -23,7 +23,6 @@ local plugins = {
           'lua_ls',
           'marksman',
           'pyright',
-          'terraformls',
           'ts_ls',
           'yamlls',
           -- keep-sorted end
@@ -77,7 +76,6 @@ local plugins = {
         python = { 'ruff' },
         ruby = { 'rubocop' },
         sh = { 'shellcheck' },
-        terraform = { 'tflint' },
         yaml = { 'yamllint' },
         zsh = { 'shellcheck' },
       }
@@ -113,7 +111,6 @@ local plugins = {
         python = { 'black' },
         ruby = { 'rubocop' },
         sh = { 'shfmt' },
-        terraform = { 'terraform_fmt' },
         yaml = { 'yamlfmt' },
         zsh = { 'shfmt' },
       },
