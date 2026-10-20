@@ -16,14 +16,12 @@ local plugins = {
         ensure_installed = {
           -- keep-sorted start
           'bashls',
-          'clangd',
           'dockerls',
           'gopls',
           'jsonls',
           'lua_ls',
           'marksman',
           'pyright',
-          'ts_ls',
           'yamlls',
           -- keep-sorted end
         },
