@@ -76,8 +76,8 @@
 	# Auto-convert CRLF <-> LF for a transparent experience on Windows.
 	autocrlf = input
 	commitGraph = true
-	excludesfile = ~/.gitignore_global
 	editor = vim
+	excludesfile = ~/.gitignore_global
 
 [credential "https://gist.github.com"]
 	helper =
@@ -162,10 +162,10 @@
 	enabled = true
 
 [status]
+	branch = true
+	short = true
 	# Show individual files in untracked directories.
 	showUntrackedFiles = all
-	short = true
-	branch = true
 
 [submodule]
 	# Clone new submodules in parallel with as many jobs.
