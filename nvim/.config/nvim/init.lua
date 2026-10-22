@@ -433,7 +433,13 @@ for _, plugin in ipairs(lsp.plugins) do
   table.insert(plugins, plugin)
 end
 
-require("lazy").setup(plugins)
+-- Optional extra specs: any files in lua/plugins/ (e.g. stowed in by another dotfiles repo)
+local spec = { plugins }
+if vim.uv.fs_stat(vim.fn.stdpath('config') .. '/lua/plugins') then
+  table.insert(spec, { import = 'plugins' })
+end
+
+require("lazy").setup(spec)
 
 -- Run LSP setup after plugins are loaded
 lsp.setup()
