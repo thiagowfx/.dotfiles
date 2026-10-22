@@ -29,10 +29,6 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - **Title-bar spinner** — shows full agent activity through settled state, current session name, and session
   working directory in terminal title.
 
-### Prompt templates
-
-- **`/commit`** — commits only files changed in current turn. Does not push.
-
 ### Interface
 
 - **Theme:** Catppuccin Mocha dark palette with markdown, syntax, diff, tool, and thinking-level colors.
