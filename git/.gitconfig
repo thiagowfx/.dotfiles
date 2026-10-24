@@ -108,8 +108,9 @@
 	noPrefix = true
 	renames = true
 	submodule = log
+	tool = difft
 
-# git difftool -t difft
+# git difftool (default tool via diff.tool); git diff still uses delta
 [difftool "difft"]
 	cmd = difft \"$LOCAL\" \"$REMOTE\"
 
