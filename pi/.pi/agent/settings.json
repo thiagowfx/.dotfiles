@@ -32,7 +32,6 @@
     "enabled": true,
     "maxRetries": 5
   },
-  "showCacheMissNotices": true,
   "treeFilterMode": "user-only",
   "tuiMode": "fullscreen"
 }
