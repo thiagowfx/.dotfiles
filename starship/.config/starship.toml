@@ -1,5 +1,5 @@
 # Minimal starship config matching grml prompt
-format = "$status$sudo$username$hostname$directory$git_branch$git_state$git_status${custom.git_worktree}${custom.github_pr}$line_break$character"
+format = "$status$sudo$username$hostname$directory$git_branch$git_state$git_status${custom.git_worktree}${custom.github_pr}${env_var.AWS_PROFILE}$line_break$character"
 right_format = "$cmd_duration$jobs"
 add_newline = true
 
@@ -38,6 +38,10 @@ format = "[$duration](yellow) "
 
 [jobs]
 format = "[$number](cyan) "
+
+[env_var.AWS_PROFILE]
+variable = "AWS_PROFILE"
+format = " [aws:$env_value](bold yellow)"
 
 [sudo]
 disabled = false
