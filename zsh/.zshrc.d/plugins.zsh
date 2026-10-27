@@ -31,4 +31,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 # Fish shell-like syntax highlighting for Zsh.
 # MUST be sourced last — wraps ZLE widgets and breaks if later plugins
 # (fzf, atuin, etc.) redefine the widgets it wraps.
+# Default comment color (fg=black,bold) is unreadable on dark themes.
+typeset -gA ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[comment]='fg=245'
 src_files "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
