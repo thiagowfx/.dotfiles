@@ -171,6 +171,7 @@ configure-macos:
     defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool true
 
     # Keyboard repeat rate
+    defaults write -g ApplePressAndHoldEnabled 0
     defaults write NSGlobalDomain InitialKeyRepeat -int 10
     defaults write NSGlobalDomain KeyRepeat -int 1
 
