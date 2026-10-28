@@ -181,6 +181,7 @@ configure-macos:
     # Dock settings
     defaults write com.apple.dock show-recents -bool true
     defaults write com.apple.dock show-recent-count -int 5
+    # killall Dock
 
     # Touchpad settings
     defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
