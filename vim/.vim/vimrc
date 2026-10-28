@@ -194,8 +194,10 @@ Plug 'bronson/vim-trailing-whitespace'
 
 " UI enhancements
 Plug 'itchyny/lightline.vim'
-Plug 'machakann/vim-highlightedyank'
 Plug 'wincent/terminus'
+
+" Highlight yanked text (built-in, Vim 9.1+)
+silent! packadd! hlyank
 
 " Better defaults
 Plug 'tpope/vim-sensible'
