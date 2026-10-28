@@ -126,10 +126,6 @@ Personal preferences across every project. Project-specific facts live in each r
 - Code vs live state disagreement → default is **update code to match live state**, not the
   reverse. Don't propose `terraform import` reshuffles unless I ask.
 
-## Terraform
-
-- Always run `terraform plan` with `-lock=false`.
-
 ## Serendipity
 
 - When my prompt contains the word "serendipity", answer the request normally, then end with a short
