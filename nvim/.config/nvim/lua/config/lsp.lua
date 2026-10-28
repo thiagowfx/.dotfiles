@@ -12,13 +12,10 @@ local plugins = {
     dependencies = { 'mason.nvim' },
     config = function()
       require('mason-lspconfig').setup({
-        automatic_installation = true,
         ensure_installed = {
           -- keep-sorted start
           'bashls',
-          'dockerls',
           'jsonls',
-          'lua_ls',
           'marksman',
           'pyright',
           'yamlls',
@@ -65,16 +62,11 @@ local plugins = {
     config = function()
       require('lint').linters_by_ft = {
         bash = { 'shellcheck' },
-        c = { 'clang-tidy' },
-        cpp = { 'clang-tidy' },
-        dockerfile = { 'hadolint' },
         go = { 'golangci-lint' },
         json = { 'jsonlint' },
         python = { 'ruff' },
-        ruby = { 'rubocop' },
         sh = { 'shellcheck' },
         yaml = { 'yamllint' },
-        zsh = { 'shellcheck' },
       }
       vim.api.nvim_create_autocmd({ 'BufWritePost', 'BufReadPost' }, {
         callback = function()
@@ -100,13 +92,10 @@ local plugins = {
     opts = {
       formatters_by_ft = {
         bash = { 'shfmt' },
-        c = { 'clang-format' },
-        cpp = { 'clang-format' },
         go = { 'gofmt' },
         json = { 'jq' },
         lua = { 'stylua' },
         python = { 'black' },
-        ruby = { 'rubocop' },
         sh = { 'shfmt' },
         yaml = { 'yamlfmt' },
         zsh = { 'shfmt' },
@@ -170,19 +159,6 @@ local function setup()
   -- Get capabilities from nvim-cmp
   local cmp_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
   local capabilities = cmp_ok and cmp_nvim_lsp.default_capabilities() or {}
-
-  -- Configure lua_ls
-  vim.lsp.config.lua_ls = {
-    capabilities = capabilities,
-    settings = {
-      Lua = {
-        runtime = { version = 'LuaJIT' },
-        diagnostics = { globals = { 'vim' } },
-        workspace = { library = vim.api.nvim_get_runtime_file('', true), checkThirdParty = false },
-        telemetry = { enable = false },
-      },
-    },
-  }
 
   -- Configure LSP diagnostics display
   vim.diagnostic.config({
