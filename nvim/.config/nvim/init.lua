@@ -8,7 +8,6 @@
 --
 -- Disabling Features (one-off, for the current buffer):
 --   <leader>da - Toggle auto-completion (off by default)
---   <leader>dc - Toggle Copilot, or :Copilot enable (off by default)
 --   <leader>dd - Toggle diagnostics (on by default)
 --   <leader>do - Toggle outline (aerial.nvim)
 --   <leader>ds - Toggle spell checking, or :set spell (off by default)
@@ -74,14 +73,6 @@
 --
 --   Clipboard:
 --     <C-c>     - Copy selection to system clipboard (built-in OSC52)
---
---   AI (GitHub Copilot):
---   First-time setup: :Copilot setup, :Copilot status
---     <leader>dc - Toggle Copilot (disabled by default)
---     <C-j>     - Accept suggestion (insert mode)
---     <M-]>     - Next suggestion (insert mode)
---     <M-[>     - Previous suggestion (insert mode)
---     <C-\>     - Dismiss suggestion (insert mode)
 
 -- Set leader key to comma. Default is '\'.
 vim.g.mapleader = ","
@@ -405,26 +396,6 @@ local plugins = {
 
   -- Diff tools
   'whiteinge/diffconflicts',
-
-  -- AI
-  {
-    "github/copilot.vim",
-    cmd = "Copilot",
-    keys = {
-      { '<leader>dc', function()
-        vim.g.copilot_enabled = not vim.g.copilot_enabled
-        print('Copilot ' .. (vim.g.copilot_enabled and 'enabled' or 'disabled'))
-      end, desc = 'Toggle Copilot' },
-    },
-    config = function()
-      vim.g.copilot_enabled = false
-      vim.g.copilot_no_tab_map = true
-      vim.keymap.set('i', '<C-j>', 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false, desc = 'Accept Copilot suggestion' })
-      vim.keymap.set('i', '<M-]>', '<Plug>(copilot-next)', { desc = 'Next Copilot suggestion' })
-      vim.keymap.set('i', '<M-[>', '<Plug>(copilot-previous)', { desc = 'Previous Copilot suggestion' })
-      vim.keymap.set('i', '<C-\\>', '<Plug>(copilot-dismiss)', { desc = 'Dismiss Copilot suggestion' })
-    end,
-  },
 }
 
 -- Load LSP, Linting, and Formatting plugins
@@ -460,9 +431,6 @@ vim.api.nvim_create_autocmd('VimLeavePre', {
     end
   end,
 })
-
--- Configure vim-eunuch custom command
-vim.cmd("command! DoasWrite execute 'silent! write !doas tee % >/dev/null' <bar> edit!")
 
 -- Clipboard integration - use Neovim's built-in OSC52
 vim.g.clipboard = {
