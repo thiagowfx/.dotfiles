@@ -9,7 +9,6 @@ return {
       'bash',
       'c',
       'cpp',
-      'go',
       'json',
       'lua',
       'markdown',
