@@ -191,7 +191,6 @@ command! DoasWrite execute 'silent! write !doas tee % >/dev/null' <bar> edit!
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-endwise'
 Plug 'bronson/vim-trailing-whitespace'
-Plug 'editorconfig/editorconfig-vim'
 
 " UI enhancements
 Plug 'itchyny/lightline.vim'
@@ -213,6 +212,12 @@ Plug 'joshdick/onedark.vim', { 'as': 'onedark' }
 Plug 'whiteinge/diffconflicts'
 
 call plug#end()
+
+" EditorConfig support (bundled with Vim 9.1+, replaces editorconfig-vim).
+" Guarded so older Vim versions without the package don't error.
+if !empty(globpath(&packpath, 'pack/dist/opt/editorconfig', 0, 1)) || !empty(globpath(&runtimepath, 'pack/dist/opt/editorconfig', 0, 1))
+  packadd editorconfig
+endif
 
 " Resolve symlinks on file open so fugitive (and friends) see the real path.
 " Without this, :Gwq and other fugitive commands fail when editing a symlink
