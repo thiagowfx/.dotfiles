@@ -130,6 +130,12 @@ Personal preferences across every project. Project-specific facts live in each r
 
 - Always run `terraform plan` with `-lock=false`.
 
+## Serendipity
+
+- When my prompt contains the word "serendipity", answer the request normally, then end with a short
+  "Serendipity" section: up to 3 follow-up questions or adjacent explorations I might not have thought
+  to ask (surprising connections, related tools, deeper "why" questions). One line each.
+
 ## Subagents
 
 Applies to any tool that spawns a subagent: the Claude Code `Agent` and `Explore` tools, and Pi
