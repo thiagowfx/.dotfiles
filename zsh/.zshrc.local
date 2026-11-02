@@ -89,13 +89,3 @@ else
     zstyle ':prompt:grml:left:items:user' pre '%B%F{green}'
     zstyle ':prompt:grml:left:setup' items rc change-root user at host path vcs newline percent
 fi
-
-# Hashed directories.
-# keep-sorted start
-hash -d anki=~/Library/Application\ Support/Anki2/Thiago
-hash -d blog=~/Workspace/perrotta.dev
-hash -d dotfiles=~/.dotfiles
-hash -d icloud=~/Library/Mobile\ Documents/com~apple~CloudDocs
-hash -d logseq=~/Library/Mobile\ Documents/iCloud~com~logseq~logseq/Documents
-hash -d pancake=~/Workspace/pancake
-# keep-sorted end
