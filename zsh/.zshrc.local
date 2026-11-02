@@ -79,13 +79,3 @@ unfunction vim 2>/dev/null  # Allow alias vim=nvim to work
 # Load user scripts and functions if existing. Order is important.
 # Corp config is handled as part of .zshrc.d.
 src_files "$HOME/.profile.d" "$HOME/.zshrc.d"
-
-# Use starship prompt if available, otherwise customize grml prompt.
-if (( $+commands[starship] )); then
-    prompt off
-    eval "$(starship init zsh)"
-else
-    # Customize grml prompt: two lines, user in bold green
-    zstyle ':prompt:grml:left:items:user' pre '%B%F{green}'
-    zstyle ':prompt:grml:left:setup' items rc change-root user at host path vcs newline percent
-fi
