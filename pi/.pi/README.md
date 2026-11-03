@@ -4,7 +4,6 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 
 ## Highlights
 
-- Catppuccin Mocha theme
 - GPT-6 Sol default with Luna, Sol, and Astra model cycling
 - High thinking level, visible thinking blocks, compaction, retries, and caching
 - Telemetry disabled
@@ -31,7 +30,6 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 
 ### Interface
 
-- **Theme:** Catppuccin Mocha dark palette with markdown, syntax, diff, tool, and thinking-level colors.
 - **Model cycling (backward):** `Ctrl+N`; scoped models stay grouped by provider and
   ordered from cheaper/lighter to costlier/stronger.
 - **Model/thinking save or session sort:** `Alt+S`.
@@ -53,7 +51,6 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 
 - `@nerisma/pi-auto-title` — generates concise session names from first prompts using a cheap model.
 - `@zeldrisho/pi-web-fetch` — keyless, bounded public webpage fetching through sole `web_fetch` tool.
-- `pi-team` — assembles multiple AI agents for parallel task analysis and synthesis.
 - `@juicesharp/rpiv-ask-user-question` — lets model ask structured questions through terminal dialogs.
 - `@juicesharp/rpiv-todo` — renders model todo lists as a live overlay that survives reloads and compaction.
 - `@sreetej510/pi-usage` — reports provider usage and rate-limit budgets through `/usage` and a live statusline widget.
@@ -70,5 +67,4 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - `agent/keybindings.json` — keybindings.
 - `agent/extensions/` — custom TypeScript extensions.
 - `agent/local/` — local Pi packages.
-- `agent/themes/` — custom themes.
 - `agent/check-pinned-npm-packages.py` — prek hook; rejects unpinned npm package specs.
