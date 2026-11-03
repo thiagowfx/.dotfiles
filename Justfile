@@ -181,7 +181,10 @@ configure-macos:
     # Dock settings
     defaults write com.apple.dock show-recents -bool true
     defaults write com.apple.dock show-recent-count -int 5
-    # killall Dock
+
+    # Don't write .DS_Store on network volumes or USB drives
+    defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+    defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
     # Touchpad settings
     defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
