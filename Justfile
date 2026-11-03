@@ -184,6 +184,7 @@ configure-macos:
 
     # Finder settings
     defaults write com.apple.finder ShowPathbar -bool true
+    defaults write com.apple.finder ShowStatusBar -bool true
 
     # Don't write .DS_Store on network volumes or USB drives
     defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
