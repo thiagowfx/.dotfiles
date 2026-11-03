@@ -182,6 +182,9 @@ configure-macos:
     defaults write com.apple.dock show-recents -bool true
     defaults write com.apple.dock show-recent-count -int 5
 
+    # Finder settings
+    defaults write com.apple.finder ShowPathbar -bool true
+
     # Don't write .DS_Store on network volumes or USB drives
     defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
     defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
