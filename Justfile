@@ -195,6 +195,9 @@ configure-macos:
         printf '\nauth       sufficient     pam_tid.so\n' | sudo tee -a /etc/pam.d/sudo_local > /dev/null
     fi
 
+    # Apply Dock and Finder changes
+    killall Dock Finder || true
+
 [doc('Bootstrap environment (install Xcode Command Line Tools and configure macOS)')]
 [group('bootstrap')]
 bootstrap: xcode-command-line-tools configure-macos
