@@ -62,8 +62,8 @@ shopt -s histverify
 src_files "/etc/bash_completion"
 
 # Load user scripts and functions if existing. Order is important.
-# Corp config (.bashrc.d.corp) must be sourced after .bashrc.d.
-src_files "$HOME/.profile.d" "$HOME/.bashrc.d" "$HOME/.bashrc.d.corp"
+# Corp config (.profile.d.corp, .bashrc.d.corp) is sourced after its public counterpart.
+src_files "$HOME/.profile.d" "$HOME/.profile.d.corp" "$HOME/.bashrc.d" "$HOME/.bashrc.d.corp"
 
 # Use starship prompt if available, otherwise use custom prompt.
 if command -v starship &> /dev/null; then
