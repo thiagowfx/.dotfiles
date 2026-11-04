@@ -12,9 +12,6 @@ matches:
   - trigger: ":github"
     replace: "https://github.com/thiagowfx"
 
-  - trigger: ":left"
-    replace: "←"
-
   - trigger: ":linkedin"
     replace: "https://www.linkedin.com/in/thiagoperrotta"
 
@@ -33,27 +30,26 @@ matches:
   - trigger: ":option"
     replace: "⌥"
 
-  - trigger: ":right"
-    replace: "→"
-
   - trigger: ":star"
     replace: "★"
 
   - trigger: ":therefore"
     replace: "∴"
 
-  - trigger: ":today"
+  - triggers:
+      - ":cqd"
+      - ":qed"
+    replace: "∎"
+
+  - triggers:
+      - ":date"
+      - ":today"
     replace: "{{mydate}}"
     vars:
       - name: mydate
         type: date
         params:
           format: "%Y-%m-%d"
-
-  - triggers:
-      - ":cqd"
-      - ":qed"
-    replace: "∎"
 
   - triggers:
       - ":hugo:link"
@@ -64,4 +60,14 @@ matches:
       - ":hugo:prev"
       - ":hugo:previously"
     replace: '[Previously]({{< ref "$|$" >}}).'
+
+  - triggers:
+      - ":left"
+      - ":<-"
+    replace: "←"
+
+  - triggers:
+      - ":right"
+      - ":->"
+    replace: "→"
 # keep-sorted end
