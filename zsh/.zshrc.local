@@ -78,4 +78,4 @@ unfunction vim 2>/dev/null  # Allow alias vim=nvim to work
 
 # Load user scripts and functions if existing. Order is important.
 # Corp config (.profile.d.corp, .zshrc.d.corp) is sourced after its public counterpart.
-src_files "$HOME/.profile.d" "$HOME/.profile.d.corp" "$HOME/.zshrc.d" "$HOME/.zshrc.d.corp"
+src_files "$HOME/.profile.d/brew.sh" "$HOME/.profile.d" "$HOME/.profile.d.corp" "$HOME/.zshrc.d" "$HOME/.zshrc.d.corp"

@@ -63,7 +63,7 @@ src_files "/etc/bash_completion"
 
 # Load user scripts and functions if existing. Order is important.
 # Corp config (.profile.d.corp, .bashrc.d.corp) is sourced after its public counterpart.
-src_files "$HOME/.profile.d" "$HOME/.profile.d.corp" "$HOME/.bashrc.d" "$HOME/.bashrc.d.corp"
+src_files "$HOME/.profile.d/brew.sh" "$HOME/.profile.d" "$HOME/.profile.d.corp" "$HOME/.bashrc.d" "$HOME/.bashrc.d.corp"
 
 # Use starship prompt if available, otherwise use custom prompt.
 if command -v starship &> /dev/null; then
