@@ -57,16 +57,52 @@ cdtmp() {
 	builtin pwd
 }
 
+# Print the canonical (symlink-free) path of a file, or the path itself if no resolver exists.
+_src_realpath() {
+        if command -v realpath >/dev/null 2>&1; then
+                realpath "$1" 2>/dev/null || printf '%s\n' "$1"
+        elif readlink -f / >/dev/null 2>&1; then
+                readlink -f "$1" 2>/dev/null || printf '%s\n' "$1"
+        else
+                printf '%s\n' "$1"
+        fi
+}
+
 # Source files and directories recursively if they exist.
+# Each file is sourced at most once per call, even when reachable through several
+# paths (e.g. an alias symlink to a directory listed twice).
 # Usage: src_files "/usr/local/etc/bashrc.d/" "/usr/share/doc/pkgfile/command-not-found.bash"
 src_files() {
-        local f
+        # Nested calls (a sourced file calling src_files) share the outermost state.
+        if [ "${_src_files_depth:-0}" -eq 0 ]; then
+                _src_files_seen=""
+        fi
+        _src_files_depth=$((${_src_files_depth:-0} + 1))
+        _src_files_walk "$@"
+        _src_files_depth=$((_src_files_depth - 1))
+        if [ "$_src_files_depth" -eq 0 ]; then
+                unset _src_files_seen _src_files_depth
+        fi
+}
+
+_src_files_walk() {
+        local f real
         for f in "$@"; do
                 # Source directories.
                 if [ -d "$f" ]; then
-                        src_files "$f"/* || true
+                        _src_files_walk "$f"/* || true
                 # Source files.
                 elif [ -f "$f" ]; then
+                        real="$(_src_realpath "$f")"
+                        case "
+$_src_files_seen
+" in
+                        *"
+$real
+"*) continue ;;
+                        esac
+                        _src_files_seen="$_src_files_seen
+$real"
                         . "$f" || true
                 fi
         done
