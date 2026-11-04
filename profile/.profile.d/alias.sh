@@ -70,3 +70,8 @@ if command -v nvim >/dev/null 2>&1; then
 elif command -v vim >/dev/null 2>&1; then
         export EDITOR="vim" VISUAL="vim"
 fi
+
+# Activate the 1Password agent if overridden
+ssh_1password_agent_activate() {
+	export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+}
