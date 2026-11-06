@@ -85,6 +85,10 @@ stow:
         stow -v -t {{ target_dir }} -d {{ _dotfiles_dir }} $stow_packages
     fi
 
+[doc('Run lint checks')]
+[group('lint')]
+lint: stow-lint
+
 [doc('Check for dangling symlinks owned by this repository')]
 [group('stow')]
 stow-lint:
