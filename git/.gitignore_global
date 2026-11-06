@@ -193,6 +193,7 @@ tags
 
 # Pi
 .pi/team/
+.pi/sandbox.json
 
 # Ansible
 *.lock
