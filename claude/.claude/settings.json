@@ -71,6 +71,13 @@
       "Bash(rm -r:*)"
     ]
   },
+  "pluginConfigs": {
+    "cc-plugin-agents-md@builtin": {
+      "options": {
+        "instructionFiles": "claude-md-and-agents-md"
+      }
+    }
+  },
   "statusLine": {
     "command": "bash ~/.claude/statusline.sh",
     "type": "command"
