@@ -18,5 +18,5 @@ if [ -n "$TTY" ] && [ -e "$TTY" ]; then
     printf '\a' > "$TTY"
 fi
 
-# macOS only; the same guard lives in pi/.pi/agent/extensions/notify.ts.
+# macOS only.
 command -v afplay >/dev/null 2>&1 && afplay /System/Library/Sounds/Glass.aiff &
