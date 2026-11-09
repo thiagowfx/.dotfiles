@@ -28,6 +28,10 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 - **Title-bar spinner** — shows full agent activity through settled state, current session name, and session
   working directory in terminal title.
 
+### Prompt templates
+
+- **`/c`** — commits only files changed in current turn. Does not push.
+
 ### Interface
 
 - **Model cycling (backward):** `Ctrl+N`; scoped models stay grouped by provider and
