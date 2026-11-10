@@ -1,7 +1,7 @@
 #!/usr/bin/env just --justfile
 # https://github.com/casey/just
 
-packages := "apk atuin bash claude espanso gh ghostty git gitui i3 lf mr nvim pacman pi profile ssh starship sway tmux vim vscode worktrunk x11 zsh"
+packages := "apk atuin bash claude dnf espanso gh ghostty git gitui i3 lf mr nvim pacman pi profile ssh starship sway tmux vim vscode worktrunk x11 zsh"
 packages_no_stow := "ssh_auto_tmux vendor"
 [private]
 _dotfiles_dir := justfile_directory()
@@ -31,6 +31,7 @@ stow:
         [atuin]="atuin"
         [bash]="bash"
         [claude]="claude"
+        [dnf]="container"
         # The espanso package only ships the macOS config path
         # (Library/Application Support/espanso); Linux espanso reads
         # ~/.config/espanso, so gate on the .app rather than the binary.
