@@ -69,6 +69,10 @@
 	autosetuprebase = always
 	sort = -committerdate
 
+[checkout]
+	# Resolve ambiguous branch names (e.g. main) to origin, not the fork remote.
+	defaultRemote = origin
+
 [commit]
 	verbose = true
 
