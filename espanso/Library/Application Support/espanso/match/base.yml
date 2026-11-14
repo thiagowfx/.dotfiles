@@ -44,6 +44,7 @@ matches:
   - triggers:
       - ":date"
       - ":today"
+      - "/today"
     replace: "{{mydate}}"
     vars:
       - name: mydate
