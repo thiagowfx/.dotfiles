@@ -74,7 +74,7 @@ repos:
     hooks:
       - id: misspell
   - repo: https://github.com/google/keep-sorted
-    rev: b225c42a9a8f480d760cf967d1e3a839060b242c # frozen: v0.10.0
+    rev: 167f8ca836e2a3639087849ce0a2f702f8835f88 # frozen: v0.11.0
     hooks:
       - id: keep-sorted
   - repo: https://github.com/google/yamlfmt
