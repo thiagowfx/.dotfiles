@@ -13,11 +13,17 @@
   "enabledModels": [
     "openai-codex/gpt-6-luna",
     "openai-codex/gpt-6.1-sol",
+    "openai-codex/gpt-6.1-terra",
     "openai-codex/gpt-6-astra"
   ],
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:@nerisma/pi-auto-title@1.0.1\",\"scope\":\"user\"}": "1.0.1",
+    "{\"source\":\"npm:@zeldrisho/pi-web-fetch@0.11.0\",\"scope\":\"user\"}": "0.11.0",
+    "{\"source\":\"npm:@zeldrisho/pi-web-fetch@0.16.3\",\"scope\":\"user\"}": "0.16.3"
+  },
   "hideThinkingBlock": false,
   "httpIdleTimeoutMs": 30000,
-  "lastChangelogVersion": "1.5.0",
+  "lastChangelogVersion": "1.5.2",
   "packages": [
     "git:github.com/thiagowfx/skills",
     "local/web-search",
