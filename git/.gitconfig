@@ -22,6 +22,7 @@
 	blank = desc -m \"blank commit\"
 	cm = commit
 	co = checkout
+	codef = switch-to-default
 	cp = cherry-pick
 	dc = diff --cached
 	desc = commit --allow-empty -n
