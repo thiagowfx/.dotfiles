@@ -60,7 +60,7 @@ style = "bold yellow"
 [custom.github_pr]
 command = "bkt --ttl=10m --scope=\"$(git rev-parse --show-toplevel):$(git branch --show-current)\" -- gh pr view --json number --jq '\"#\" + (.number | tostring)' 2>/dev/null"
 when = "git rev-parse --is-inside-work-tree 2>/dev/null"
-format = " [$output](magenta)"
+format = " [\\[git:PR$output\\]](bold bright-cyan) "
 ignore_timeout = true
 
 [kubernetes]
