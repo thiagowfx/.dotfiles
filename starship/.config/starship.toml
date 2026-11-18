@@ -41,7 +41,7 @@ format = "[$number](cyan) "
 
 [env_var.AWS_PROFILE]
 variable = "AWS_PROFILE"
-format = '[\[AWS_PROFILE:$env_value\]](bold yellow)'
+format = ' [\[AWS_PROFILE:$env_value\]](bold yellow)'
 
 [sudo]
 disabled = false
@@ -58,11 +58,14 @@ format = " [⎇ $output]($style)"
 style = "bold yellow"
 
 [custom.github_pr]
-command = "bkt --ttl=10m --scope=\"$(git rev-parse --show-toplevel):$(git branch --show-current)\" -- gh pr view --json number --jq '\"#\" + (.number | tostring)' 2>/dev/null"
+command = '''
+bkt --ttl=10m --scope="$(git rev-parse --show-toplevel):$(git branch --show-current)" -- gh pr view --json number,url --jq '.url + " " + (.number | tostring)' 2>/dev/null |
+  { read -r url number; [ -n "$url" ] && printf '\033]8;;%s\033\\#%s\033]8;;\033\\' "$url" "$number"; }
+'''
 when = "git rev-parse --is-inside-work-tree 2>/dev/null"
-format = " [\\[git:PR$output\\]](bold bright-cyan) "
+format = "( [\\[git:PR$output\\]](bold bright-cyan))"
 ignore_timeout = true
 
 [kubernetes]
 disabled = false
-format = '[\[kube:$context( \($namespace\))\]](bold blue)'
+format = ' [\[kube:$context( \($namespace\))\]](bold blue)'
