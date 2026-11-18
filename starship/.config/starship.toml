@@ -41,7 +41,7 @@ format = "[$number](cyan) "
 
 [env_var.AWS_PROFILE]
 variable = "AWS_PROFILE"
-format = " [AWS_PROFILE:$env_value](bold yellow)"
+format = '[\[AWS_PROFILE:$env_value\]](bold yellow)'
 
 [sudo]
 disabled = false
