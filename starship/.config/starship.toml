@@ -65,4 +65,4 @@ ignore_timeout = true
 
 [kubernetes]
 disabled = false
-format = '[\[$context( \($namespace\))\]](bold blue)'
+format = '[\[kube:$context( \($namespace\))\]](bold blue)'
