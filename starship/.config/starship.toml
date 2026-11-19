@@ -59,7 +59,7 @@ style = "bold yellow"
 
 [custom.github_pr]
 command = '''
-bkt --ttl=10m --scope="$(git rev-parse --show-toplevel):$(git branch --show-current)" -- gh pr view --json number,url --jq '.url + " " + (.number | tostring)' 2>/dev/null |
+bkt --ttl=5m --scope="$(git rev-parse --show-toplevel):$(git branch --show-current)" -- gh pr view --json number,url --jq '.url + " " + (.number | tostring)' 2>/dev/null |
   { read -r url number; [ -n "$url" ] && printf '\033[1;96m\033]8;;%s\033\\[git:PR#%s]\033]8;;\033\\\033[0m' "$url" "$number"; }
 '''
 when = "git rev-parse --is-inside-work-tree 2>/dev/null"
