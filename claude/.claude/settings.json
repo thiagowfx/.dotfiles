@@ -18,17 +18,6 @@
     "sonnet"
   ],
   "hooks": {
-    "Notification": [
-      {
-        "hooks": [
-          {
-            "command": "~/.claude/hooks/notify.sh",
-            "type": "command"
-          }
-        ],
-        "matcher": "permission_prompt|idle_prompt|elicitation_dialog"
-      }
-    ],
     "PreToolUse": [
       {
         "hooks": [
@@ -78,6 +67,7 @@
       }
     }
   },
+  "preferredNotifChannel": "notifications_disabled",
   "statusLine": {
     "command": "bash ~/.claude/statusline.sh",
     "type": "command"
