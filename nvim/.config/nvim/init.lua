@@ -233,7 +233,11 @@ local plugins = {
   {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
-    config = function() require('nvim-autopairs').setup({ map_cr = false, ignored_next_char = [=[[%w%%%'%[%"%.%`%$%/]]=] }) end,
+    config = function()
+      local autopairs = require('nvim-autopairs')
+      autopairs.setup({ map_cr = false, ignored_next_char = [=[[%w%%%'%[%"%.%`%$%/]]=] })
+      autopairs.remove_rule('`')
+    end,
   },
   { 'junegunn/vim-easy-align', cmd = { 'EasyAlign' } },
 
