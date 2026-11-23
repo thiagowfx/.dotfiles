@@ -38,6 +38,6 @@
     "enabled": true,
     "maxRetries": 5
   },
-  "treeFilterMode": "user-only",
+  "treeFilterMode": "no-tools",
   "tuiMode": "fullscreen"
 }
