@@ -14,6 +14,6 @@ fi
 git add -A
 
 # Create a commit with the freeze message
-git commit -m "git-freeze" -n
+git commit -m "git-freeze" -n --no-gpg-sign
 
 echo "Git freeze created successfully"
