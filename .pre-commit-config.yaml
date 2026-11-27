@@ -135,6 +135,14 @@ repos:
         files: ^README\.md$
   - repo: local
     hooks:
+      - id: forbid-apple
+        name: Forbid the word "apple"
+        entry: '(?i)apple'
+        language: pygrep
+        # exclusions: hook definition itself, benign pre-existing uses
+        # (com.apple.* defaults keys, .AppleDouble gitignore entries, Apple
+        # Silicon brew comment, stackexchange link, iCloud hash dir)
+        exclude: '(^\.pre-commit-config\.yaml$|^Justfile$|^\.gitignore$|^ssh/\.ssh/config$|^profile/\.profile\.d/brew\.sh$|^dnf/\.zshrc\.d/dnf\.zsh$|^zsh/\.zshrc\.d/dirs\.zsh$|^git/\.gitignore_global$)'
       - id: ghostty
         name: Validate Ghostty config
         entry: sh -c 'command -v ghostty >/dev/null 2>&1 && ghostty +validate-config --config-file=ghostty/.config/ghostty/config || echo "ghostty not installed, skipping validation"'
