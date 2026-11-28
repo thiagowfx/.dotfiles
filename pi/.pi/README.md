@@ -4,7 +4,7 @@ Personal [Pi](https://github.com/badlogic/pi-mono) agent configuration, managed 
 
 ## Highlights
 
-- GPT-6.1 Sol default with GPT-6 Luna, GPT-6.1 Sol, GPT-6.1 Terra, and GPT-6 Astra model cycling
+- GPT-6.2 Sol default with GPT-6 Luna, GPT-6.2 Sol, GPT-6.1 Terra, and GPT-6.2 Astra model cycling
 - High thinking level, visible thinking blocks, compaction, retries, and caching
 - Telemetry disabled
 - User-only session-tree filter
